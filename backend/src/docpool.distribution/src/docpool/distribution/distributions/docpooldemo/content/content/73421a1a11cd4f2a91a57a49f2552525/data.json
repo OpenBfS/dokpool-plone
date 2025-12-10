@@ -1,0 +1,54 @@
+{
+  "@id": "/berlin/esd/front-page",
+  "@type": "Document",
+  "UID": "73421a1a11cd4f2a91a57a49f2552525",
+  "allow_discussion": null,
+  "contributors": [],
+  "created": "2025-09-10T12:24:17+00:00",
+  "creators": [
+    "rescue"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.marker_interfaces": [
+    "docpool.base.events.IDocumentPoolUndeleteable"
+  ],
+  "id": "front-page",
+  "is_folderish": false,
+  "language": "##DEFAULT##",
+  "layout": "document_view",
+  "lock": {
+    "locked": false,
+    "stealable": true
+  },
+  "modified": "2025-09-10T13:22:25+00:00",
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "table_of_contents": null,
+  "text": {
+    "content-type": "text/html",
+    "data": "",
+    "encoding": "utf-8"
+  },
+  "title": "Elektronische Lagedarstellung",
+  "type_title": "Page",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-10T13:22:25+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

@@ -11,7 +11,7 @@
                    items python: view.items;
                  "
   >
-    <div class="m-2 container"
+    <div class="mx-2 my-0 p-1 container"
          id="listing-filters"
          tal:attributes="
            data-listing-modified python: view.modified;
@@ -22,7 +22,7 @@
       >
         <div class="d-flex flex-wrap justify-content-end">
 
-          <div class="my-1 py-2 me-auto">
+          <div class="mx-3 my-0 py-2 me-auto">
             <span tal:replace="python: len(items)"></span>
                Entries
           </div>
@@ -44,7 +44,7 @@
               >
                     Erstellt von
               </label>
-              <div class="d-flex justify-content-between mb-3">
+              <div class="d-flex justify-content-between mb-2">
                 <div>
                   <input class="form-control"
                          id="startdate"
@@ -68,7 +68,7 @@
               >
                     Erstellt bis
               </label>
-              <div class="d-flex justify-content-between mb-3">
+              <div class="d-flex justify-content-between mb-1">
                 <div>
                   <input class="form-control"
                          id="enddate"
@@ -154,14 +154,7 @@
             >
           Eintragsart
             </button>
-            <div class="dropdown-menu p-2 pat-checklist">
-              <button class="btn btn-primary mt-2"
-                      type="submit"
-                      tal:condition="python: len(doctypes) > 5"
-                      i18n:domain="plone"
-                      i18n:translate=""
-              >Filter</button>
-
+            <div class="dropdown-menu pt-2 pb-0 px-2 pat-checklist">
               <div class="form-check"
                    tal:condition="python: len(doctypes) > 5"
               ><label><input class="form-check-input toggle-all"
@@ -192,11 +185,13 @@
                   </label>
                 </div>
               </tal:doctypes>
-              <button class="btn btn-primary mt-2"
-                      type="submit"
-                      i18n:domain="plone"
-                      i18n:translate=""
-              >Filter</button>
+              <div class="sticky-bottom bg-white py-2">
+                <button class="btn btn-primary"
+                        type="submit"
+                        i18n:domain="plone"
+                        i18n:translate=""
+                >Filter</button>
+              </div>
             </div>
           </div>
 
@@ -238,11 +233,66 @@
                   </label>
                 </div>
               </tal:doctypes>
-              <button class="btn btn-primary mt-2"
+              <button class="btn btn-primary mt-1"
                       type="submit"
                       i18n:domain="plone"
                       i18n:translate=""
               >Filter</button>
+            </div>
+          </div>
+
+          <div class="m-1 dropdown"
+               tal:define="
+                 selected_groups python: view.selected_groups;
+                 groups python: view.groups;
+               "
+          >
+            <button class="btn btn-light dropdown-toggle"
+                    aria-expanded="false"
+                    type="button"
+                    data-bs-auto-close="outside"
+                    data-bs-toggle="dropdown"
+            >
+          Group
+            </button>
+            <div class="dropdown-menu pt-2 pb-0 px-2 pat-checklist">
+              <div class="form-check"
+                   tal:condition="python: len(groups) > 5"
+              ><label><input class="form-check-input toggle-all"
+                         type="checkbox"
+                  /><span i18n:translate="label_toggle">Toggle all</span></label></div>
+              <tal:groups tal:repeat="group python: groups">
+                <div class="form-check">
+                  <input class="form-check-input"
+                         id="${python: 'selected_groups-' + group}"
+                         name="selected_groups:list"
+                         type="checkbox"
+                         value="${python: group}"
+                         tal:attributes="
+                           checked python: group in selected_groups;
+                           disabled python: not groups[group]['count'] and 'disabled';
+                         "
+                  />
+                  <label class="form-check-label text-nowrap"
+                         for="${python: 'selected_groups-' + group}"
+                         i18n:translate=""
+                  >
+                    <span tal:replace="python: groups[group]['title']"
+                          i18n:translate=""
+                    ></span>
+                    <span class="badge rounded-pill text-bg-secondary"
+                          tal:content="python:groups[group]['count']"
+                    ></span>
+                  </label>
+                </div>
+              </tal:groups>
+              <div class="sticky-bottom bg-white py-2">
+                <button class="btn btn-primary"
+                        type="submit"
+                        i18n:domain="plone"
+                        i18n:translate=""
+                >Filter</button>
+              </div>
             </div>
           </div>
 
@@ -319,7 +369,7 @@
       </form>
     </div>
 
-    <div class="m-2 container border-bottom"
+    <div class="m-0 container border-bottom"
          id="listing"
          tal:attributes="
            data-items python: view.json_items;

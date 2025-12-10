@@ -1,0 +1,51 @@
+{
+  "@id": "/brandenburg/content/Transfers/dokumente-aus-berlin",
+  "@type": "DPTransferFolder",
+  "UID": "2399ce81f348479d90973de8ca891d95",
+  "allow_discussion": null,
+  "contributors": [],
+  "created": "2025-09-17T14:04:13+00:00",
+  "created_by": "admin <i>Transfers</i>",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "doctypePermissions": null,
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "dokumente-aus-berlin",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "lock": {},
+  "mdate": "2025-09-17T16:06:34",
+  "modified": "2025-09-17T14:09:38+00:00",
+  "modified_by": "admin <i>Transfers</i>",
+  "permLevel": "read/write",
+  "review_state": "published",
+  "rights": null,
+  "sendingESD": "55028c031aa9493eb4b68eaf70d2e82a",
+  "subjects": [],
+  "title": "Dokumente aus Berlin",
+  "type_title": "Transfer Folder",
+  "unknownDtDefault": "confirm",
+  "unknownScenDefault": "confirm",
+  "version": "current",
+  "wdate": "2025-09-17T16:04:13+00:00",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-17T14:04:13+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

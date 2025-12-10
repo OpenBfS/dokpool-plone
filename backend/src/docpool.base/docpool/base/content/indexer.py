@@ -1,4 +1,7 @@
 from docpool.base.content.documentpool import IDocumentPool
+from docpool.base.content.dpdocument import IDPDocument
+from docpool.base.content.dptransferfolder import IDPTransferFolder
+from docpool.base.content.groupfolder import IGroupFolder
 from docpool.base.content.infodocument import IInfoDocument
 from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
 from plone.dexterity.interfaces import IDexterityContent
@@ -31,3 +34,12 @@ def apps_supported(obj):
 @indexer(IInfoDocument)
 def infodoc_getIcon(obj):
     return None
+
+
+@indexer(IDPDocument)
+def group(obj):
+    for item in obj.aq_chain:
+        if IGroupFolder.providedBy(item):
+            return item.UID()
+        if IDPTransferFolder.providedBy(item):
+            return item.UID()

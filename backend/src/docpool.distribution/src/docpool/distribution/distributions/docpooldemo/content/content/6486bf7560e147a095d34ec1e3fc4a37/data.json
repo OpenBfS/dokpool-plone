@@ -1,0 +1,42 @@
+{
+  "@id": "/berlin/esd/separator",
+  "@type": "ELANSection",
+  "UID": "6486bf7560e147a095d34ec1e3fc4a37",
+  "allow_discussion": null,
+  "contributors": [],
+  "created": "2025-09-10T12:24:18+00:00",
+  "creators": [
+    "rescue"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "separator",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "lock": {},
+  "modified": "2025-09-10T13:22:25+00:00",
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "_____________________________________________",
+  "type_title": "Section",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-10T13:22:25+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

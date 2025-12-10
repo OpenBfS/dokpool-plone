@@ -1,0 +1,42 @@
+{
+  "@id": "/bund/archive/beispiel-notfall-archiviert_23-09-2025-15-31/esd/dose-projections",
+  "@type": "ELANSection",
+  "UID": "ba7ba79203a345d0aa0f831703acf649",
+  "allow_discussion": null,
+  "contributors": [],
+  "created": "2025-09-10T12:24:18+00:00",
+  "creators": [
+    "rescue"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "dose-projections",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "lock": {},
+  "modified": "2025-09-23T13:31:53+00:00",
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "AUSBREITUNGSRECHNUNGEN",
+  "type_title": "Section",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-23T13:31:53+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

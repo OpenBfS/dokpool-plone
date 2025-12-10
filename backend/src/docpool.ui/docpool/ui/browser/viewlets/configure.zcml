@@ -15,6 +15,15 @@
       />
 
   <browser:page
+      name="event-switcher-dropdown"
+      for="*"
+      class=".header.EventSwitcherDropdown"
+      template="header-event-switcher-dropdown.pt"
+      permission="zope.Public"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
+  <browser:page
       name="info-dropdown"
       for="*"
       class=".header.InfoDropdown"
@@ -48,12 +57,28 @@
       permission="zope2.View"
       />
 
-
   <browser:viewlet
       name="docpool.sidebar.info"
       manager=".sidebar.ISidebarManager"
       class=".sidebar.SidebarViewlet"
       permission="zope2.View"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
+  <browser:viewletManager
+      name="docpool.headernav.manager"
+      provides=".header.IHeaderNavManager"
+      class="plone.app.viewletmanager.manager.BaseOrderedViewletManager"
+      permission="zope2.View"
+      />
+
+  <browser:viewlet
+      name="docpool.headernav.eventswitcher"
+      manager=".header.IHeaderNavManager"
+      class=".header.EventSwitcherViewlet"
+      template="header-event-switcher.pt"
+      permission="zope2.View"
+      layer="docpool.elan.interfaces.IELANActive"
       />
 
   <browser:viewlet

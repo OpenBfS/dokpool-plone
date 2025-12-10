@@ -1,0 +1,48 @@
+{
+  "@id": "/bund/content/Groups/bund_rodos-rechnungen-wetterdienst/ein-potentiell-betroffenes-gebiet-bei-einem-unfall-in-chooz/rodos-rechnung.pdf",
+  "@type": "File",
+  "UID": "0ce762803e484ddba0d8b1df9d8bc7b6",
+  "allow_discussion": null,
+  "contributors": [],
+  "created": "2025-11-19T12:22:16+00:00",
+  "creators": [
+    "user-wetterdienst"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "file": {
+    "blob_path": "0ce762803e484ddba0d8b1df9d8bc7b6/file/rodos-rechnung.pdf",
+    "content-type": "application/pdf",
+    "filename": "rodos-rechnung.pdf",
+    "size": 8730
+  },
+  "id": "rodos-rechnung.pdf",
+  "is_folderish": false,
+  "language": "##DEFAULT##",
+  "layout": "file_view",
+  "lock": {},
+  "modified": "2025-11-19T12:22:16+00:00",
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "rodos-rechnung.pdf",
+  "type_title": "File",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "user-wetterdienst",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-11-19T12:22:16+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

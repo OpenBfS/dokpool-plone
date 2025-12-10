@@ -1,0 +1,47 @@
+{
+  "@id": "/bund/content/Members/user--wetterdienst",
+  "@type": "UserFolder",
+  "UID": "e8d94b2e4ca44280ba038ea5bca6453d",
+  "allow_discussion": null,
+  "allowedDocTypes": null,
+  "contributors": [],
+  "created": "2025-11-19T12:10:30+00:00",
+  "created_by": "User Wetterdienst (Bund)",
+  "creators": [
+    "user-wetterdienst"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "user--wetterdienst",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "lock": {},
+  "mdate": "2025-11-19T13:10:30",
+  "modified": "2025-11-19T12:10:30+00:00",
+  "modified_by": null,
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "User Wetterdienst (Bund)",
+  "type_title": "User Folder",
+  "version": "current",
+  "wdate": "2025-11-19T13:10:30",
+  "workflow_history": {
+    "dp_principalfolder_workflow": [
+      {
+        "action": null,
+        "actor": "user-wetterdienst",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-11-19T12:10:30+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

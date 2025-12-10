@@ -1,0 +1,42 @@
+{
+  "@id": "/berlin/content",
+  "@type": "ContentArea",
+  "UID": "01a922395cb4450fb65666f845f3a2d8",
+  "allow_discussion": null,
+  "contributors": [],
+  "created": "2025-09-10T13:22:24+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": true,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "content",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "lock": {},
+  "modified": "2025-09-10T13:22:27+00:00",
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Benutzer/Gruppen/Transferordner",
+  "type_title": "Content Area",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-10T13:22:24+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

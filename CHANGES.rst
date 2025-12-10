@@ -10,6 +10,17 @@ Technical:
   analyze spontaneous identification issues. (#4539)
   [tlotze]
 
+Changed:
+
+- Demo-content distribution for 4 docpools with groups, users and valid content for all apps (#5711).
+  [pbauer]
+
+
+Fixed:
+
+- Prevent access to ELAN-specific attributes on non-ELAN documents (which
+  turns out to be not well-defined). (#6125)
+  [tlotze]
 
 
 2.3.0 (2025-10-23)

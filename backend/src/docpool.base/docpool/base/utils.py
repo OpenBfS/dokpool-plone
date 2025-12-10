@@ -4,6 +4,9 @@ from AccessControl.SecurityManagement import setSecurityManager
 from AccessControl.users import UnrestrictedUser as BaseUnrestrictedUser
 from Acquisition import aq_get
 from Acquisition import aq_inner
+from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
+from docpool.base.marker import IAppActiveMarker
+from functools import wraps
 from plone import api
 from plone.api.exc import CannotGetPortalError
 from plone.base.utils import base_hasattr
@@ -11,6 +14,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.log import log_exc
 from Products.CMFPlone.utils import parent
 from zope.component import getMultiAdapter
+from zope.component import queryUtility
 
 import logging
 import re
@@ -64,6 +68,17 @@ def queryForObjects(self, **kwa):
     # print kwa
     res = cat(kwa)
     return res
+
+
+def is_in_dp_folder(context, *subpaths):
+    path = context.getPhysicalPath()
+    dp_path = getDocumentPoolSite(context).getPhysicalPath()
+    for subpath in subpaths:
+        parent = dp_path + tuple(el for el in subpath.split("/") if el)
+        # possibly more checks like identity or depth
+        if path[: len(parent)] == parent:
+            return True
+    return False
 
 
 def is_group_folder(context):
@@ -457,3 +472,29 @@ def get_current_state_title(obj, state):
             if state in workflow.states:
                 return workflow.states[state].title or state
     return state  # Fallback to state id if no title is found
+
+
+def app_only_decorator(app):
+    def app_only(func):
+        @wraps(func)
+        def wrapper(self, *args, **kwargs):
+            local_behaviors = ILocalBehaviorSupport(self.context).local_behaviors
+            if app not in local_behaviors:
+                raise ValueError(f"Method or attribute requires context document with {app} support.")
+            return func(self, *args, **kwargs)
+
+        return wrapper
+
+    return app_only
+
+
+def get_appactive_marker(app_name):
+    return queryUtility(IAppActiveMarker, name=app_name)
+
+
+def get_current_appactive_markers():
+    try:
+        user = api.user.get_current()
+    except api.exc.CannotGetPortalError:
+        return []
+    return [marker for app_name in user.getProperty("apps", ()) if (marker := get_appactive_marker(app_name))]

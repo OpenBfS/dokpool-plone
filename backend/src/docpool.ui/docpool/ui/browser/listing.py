@@ -93,6 +93,11 @@ class Listing(BrowserView):
         if self.selected_doctypes:
             self.query["dp_type"] = self.selected_doctypes
 
+        # Filter by Group
+        self.selected_groups = form.get("selected_groups") or []
+        if self.selected_groups:
+            self.query["group"] = self.selected_groups
+
         # Filter by Date
         if "form.button.Reset" in form:
             self.startdate = None
@@ -184,6 +189,13 @@ class Listing(BrowserView):
             doctypes_config[doctype.value]["count"] = self.count_options({"dp_type": doctype.value})
         self.doctypes = doctypes_config
 
+        # Prepare Group filter options (query needs to be complete)
+        groups_config = {}
+        for group in api.portal.get_vocabulary("docpool.base.vocabularies.Groups", self.context):
+            groups_config[group.value] = {"title": group.title}
+            groups_config[group.value]["count"] = self.count_options({"group": group.value})
+        self.groups = groups_config
+
         catalog = api.portal.get_tool("portal_catalog")
         brains = catalog(**self.query)
         uids = [brain.UID for brain in brains]
@@ -244,8 +256,10 @@ class Item(BrowserView):
                     show_transfer_action = True
 
         icon_name = "question"  # Unknown type
+        doctype_title = "Unknown"  # Unknown type
         if docTypeObj := obj.docTypeObj():
             icon_name = docTypeObj.icon_name
+            doctype_title = docTypeObj.title
 
         iconresolver = self.context.restrictedTraverse("@@iconresolver")
         attachments = api.content.get_view("contentlisting", obj, self.request)(portal_type=["Image", "File"])
@@ -261,6 +275,7 @@ class Item(BrowserView):
             "available_transitions": available_transitions,
             "uid": uid,
             "doctype": obj.docType,
+            "doctype_title": doctype_title,
             "doctype_icon_url": iconresolver.url(icon_name),
             "url": obj.absolute_url(),
             "path": obj.absolute_url_path(),

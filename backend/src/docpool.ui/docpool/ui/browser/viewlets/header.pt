@@ -1,31 +1,10 @@
-<?python
-from docpool.base.appregistry import appLogo as appLogo
-
-if view.current_app:
-    app_logo = appLogo(view.current_app)
-
-groups_folder = None
-emergency_info = None
-try:
-    dp = context.myDocumentPool()
-except BaseException:
-    dp = None
-else:
-    try:
-        groups_folder = dp["content"]["Groups"]
-    except BaseException:
-        pass
-    try:
-        emergency_info = dp["hintergrundinfos-ns"]
-    except BaseException:
-        pass
-?>
 <header class="app-header border-bottom"
         id="portal-header"
         tal:define="
           icons python:context.restrictedTraverse('@@iconresolver');
           auth_token context/@@authenticator/token;
         "
+        i18n:domain="docpool.ui"
 >
   <div class="container-fluid px-0">
     <div class="d-flex align-items-stretch">
@@ -40,8 +19,8 @@ else:
            i18n:attributes="title"
            i18n:domain="docpool.elan"
         >
-          <img src="${python: f'{view.site_url}/{app_logo}'}"
-               tal:condition="app_logo"
+          <img src="${python: view.site_url}/${python: view.app_logo}"
+               tal:condition="python: view.app_logo"
           />
         </a>
         <div class="d-flex align-items-center gap-1 small text-primary fw-light">
@@ -50,7 +29,10 @@ else:
                   aria-label="Config"
                   data-bs-toggle="dropdown"
           >
-            <span>${view/dp_title}</span>
+            <span tal:condition="python: view.dp is not None">${python: view.dp.title}</span>
+            <span tal:condition="python: view.dp is None"
+                  i18n:translate=""
+            >Docpools</span>
             <tal:icon replace="structure python:icons.tag('chevron-down', tag_class='ms-1')" />
           </button>
 
@@ -67,52 +49,20 @@ else:
 
       <!-- Middle: Event pill/button area with switcher and main nav buttons -->
       <div class="d-flex align-items-stretch flex-grow-1">
-        <!-- Event button -->
-        <button class="btn btn-icon event-switcher event-card d-flex align-items-center px-3 border-end"
-                aria-label="Config"
-                data-bs-toggle="dropdown"
-        >
-          <tal:selected define="
-                          scenario python: view.selected_scenario;
-                        "
-                        condition="python: scenario is not None"
-          >
-            <div class="text-primary small">${scenario/Title}</div>
-            <div class="d-flex align-items-center gap-3 mt-1">
-              <span class="badge bg-warning text-dark tag-badge">${scenario/EventType}</span>
-              <span class="small text-primary">${scenario/OperationMode}</span>
-            </div>
-          </tal:selected>
-          <tal:selected condition="python: view.selected_scenario is None">
-            <div class="text-primary small">Select scenario</div>
-          </tal:selected>
-
-          <!-- Event switcher narrow block -->
-          <div class="d-flex align-items-center justify-content-center border-end">
-            <tal:icon tal:replace="structure python:icons.tag('chevron-down', tag_class='')" />
-          </div>
-        </button>
-        <ul class="dropdown-menu menu-config-dropdown">
-          <li class="dropdown-item"
-              tal:repeat="scenario python: view.scenarios"
-          >
-            <a href="${python: f'{context.absolute_url()}/@@select_scenario?scenario={scenario.UID()}&amp;_authenticator={auth_token}'}">${scenario/Title}</a>
-          </li>
-        </ul>
-      </div>
-
-      <!-- Main navigation buttons -->
-      <div class="d-flex align-items-stretch flex-grow-1">
         <nav class="d-flex align-items-stretch">
-          <a class="nav-btn d-flex flex-column justify-content-center px-4 border-end text-decoration-none"
-             href="${groups_folder/absolute_url}"
-             tal:condition="python: groups_folder is not None"
+
+          <tal:headernav replace="structure provider:docpool.headernav.manager" />
+
+          <!-- Main navigation buttons -->
+          <a class="nav-btn d-flex flex-column justify-content-center px-4 border-end text-decoration-none ${python: view.active['groups']}"
+             href="${python: view.groups_folder_url}"
+             tal:condition="python: view.groups_folder_url"
           >
             <span class="small text-primary mb-n1">My group folders</span>
           </a>
-          <a class="nav-btn d-flex flex-column justify-content-center px-4 border-end text-decoration-none"
-             href="${emergency_info/absolute_url}"
-             tal:condition="python: emergency_info is not None"
+          <a class="nav-btn d-flex flex-column justify-content-center px-4 border-end text-decoration-none ${python: view.active['emergency']}"
+             href="${python: view.emergency_info_url}"
+             tal:condition="python: view.emergency_info_url"
           >
             <span class="small text-primary mb-n1">Emergency documents</span>
           </a>
@@ -121,8 +71,11 @@ else:
 
       <!-- Right: Icons -->
       <div class="d-flex align-items-center ms-auto gap-2 px-3">
-        <button class="btn btn-icon"
+        <button class="btn btn-icon collapsed"
+                aria-expanded="false"
                 aria-label="Suche"
+                data-bs-target="#portal-searchbox"
+                data-bs-toggle="collapse"
         >
           <tal:icon tal:replace="structure python:icons.tag('search', tag_class='me-2')" />
         </button>

@@ -1,41 +1,66 @@
 from App.config import getConfiguration
+from docpool.base.appregistry import appLogo as appLogo
 from docpool.base.appregistry import appName
 from docpool.elan.utils import get_scenario_for_current_user
 from docpool.elan.utils import getOpenScenarios
 from importlib.metadata import distribution
 from plone import api
 from plone.app.layout.viewlets.common import ViewletBase
-from plone.base.i18nl10n import utranslate
 from plone.base.utils import safe_hasattr
 from Products.Five.browser import BrowserView
+from zope.viewlet.interfaces import IViewletManager
 
 import os
 import shlex
 import subprocess
 
 
+class IHeaderNavManager(IViewletManager):
+    """Custom header navigation manager"""
+
+
+class EventSwitcherMixin:
+    def set_scenario_attributes(self):
+        possible = [s for s in getOpenScenarios(self.context) if s.review_state == "published"]
+        scenarios_by_uid = {s.UID: s.getObject() for s in possible}
+        selected_uid = get_scenario_for_current_user()
+        self.selected_scenario = scenarios_by_uid.get(selected_uid)
+        return scenarios_by_uid, selected_uid
+
+
 class PortalHeader(ViewletBase):
     def update(self):
         super().update()
-        self.current_dp, self.current_app, self.dp_apps = getApplicationDocPoolsForCurrentUser(
-            self.context, self.request
-        )
+        self.dp, self.app, self.dp_apps = getApplicationDocPoolsForCurrentUser(self.context, self.request)
+        self.dp_url = self.dp.absolute_url() if self.dp else None
+        self.app_logo = appLogo(self.app) if self.app else None
 
-        possible = [s for s in getOpenScenarios(self.context) if s.review_state == "published"]
-        scenarios_by_uid = {s.UID: s.getObject() for s in possible}
-        self.scenarios = scenarios_by_uid.values()
-        self.selected_scenario = scenarios_by_uid.get(get_scenario_for_current_user())
+        try:
+            self.groups_folder_url = self.dp["content"]["Groups"].absolute_url()
+        except BaseException:
+            self.groups_folder_url = None
+        try:
+            self.emergency_info_url = self.dp["hintergrundinfos-ns"].absolute_url()
+        except BaseException:
+            self.emergency_info_url = None
 
-    @property
-    def dp_title(self):
-        return (
-            self.current_dp.title
-            if self.current_dp
-            else utranslate("docpool.base", "Docpools", context=self.context)
-        )
+        url = self.request.getURL()
+        self.active = {
+            key: (
+                "nav-active"
+                if any(
+                    (url == (vurl := f"{self.dp_url}{val}")) or url.startswith(f"{vurl}/") for val in value
+                )
+                else ""
+            )
+            for key, value in dict(
+                groups=["/content/Groups"],
+                emergency=["/hintergrundinfos-ns"],
+            ).items()
+        }
 
     def apps_menu(self):
-        current_dp_id = self.current_dp.getId() if self.current_dp else None
+        current_dp_id = self.dp.getId() if self.dp else None
 
         for dp, app_names in self.dp_apps:
             dp_id = dp.getId()
@@ -50,6 +75,58 @@ class PortalHeader(ViewletBase):
                     title=f"{app_title} - {dp.title}",
                     url=f"{url}/setActiveApp?app={app_name}{params}",
                 )
+
+
+class EventSwitcherViewlet(EventSwitcherMixin, ViewletBase):
+    def update(self):
+        super().update()
+        try:
+            self.dp = self.context.myDocumentPool()
+        except AttributeError:
+            self.dp = None
+            return
+
+        self.dp_url = self.dp.absolute_url()
+        self.set_scenario_attributes()
+
+        url = self.request.getURL()
+        self.active = (
+            "nav-active"
+            if any(
+                (url == (vurl := f"{self.dp_url}{val}")) or url.startswith(f"{vurl}/")
+                for val in [
+                    "/esd",
+                    "/@@listing",
+                    "/config/dtypes",
+                ]
+            )
+            else ""
+        )
+
+
+class EventSwitcherDropdown(EventSwitcherMixin, BrowserView):
+    def __call__(self):
+        self.dp_url = self.context.myDocumentPool().absolute_url()
+
+        scenarios_by_uid, selected_uid = self.set_scenario_attributes()
+        self.scenarios = []
+        status_vocabulary = api.portal.get_vocabulary(
+            "docpool.elan.vocabularies.Status", context=self.context
+        )
+        for status_term in status_vocabulary:
+            scenarios = [
+                dict(
+                    scenario=s,
+                    selected=(uid == selected_uid),
+                    last=False,
+                )
+                for uid, s in scenarios_by_uid.items()
+                if s.Status == status_term.value
+            ]
+            if scenarios:
+                scenarios[-1]["last"] = True
+                self.scenarios.extend(scenarios)
+        return super().__call__()
 
 
 class InfoDropdown(BrowserView):

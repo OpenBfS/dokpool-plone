@@ -1,0 +1,69 @@
+{
+  "@id": "/bund/content/Groups/bund_ministerium/demo-mitteilung",
+  "@type": "DPDocument",
+  "UID": "b6cc22cdb1554dd68ff3ab101ec364cb",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2025-09-23T12:14:24+00:00",
+  "created_by": "User Ministerium (Bund) <i>Bundesministerium (Bund)</i>",
+  "creators": [
+    "user-ministerium"
+  ],
+  "description": "",
+  "docType": "note",
+  "effective": "2025-09-23T12:14:00+00:00",
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "demo-mitteilung",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "local_behaviors": [
+    "elan"
+  ],
+  "lock": {},
+  "mdate": "2025-09-23T14:14:24",
+  "modified": "2025-09-23T12:14:30+00:00",
+  "modified_by": null,
+  "review_state": "published",
+  "rights": null,
+  "scenarios": [
+    "e4b194cb504e47989098926df9cef057"
+  ],
+  "scenarios_to_keep": [],
+  "subjects": [],
+  "text": {
+    "content-type": "text/html",
+    "data": "Bundesministerium (Bund) meldet Einsatzbereitschaft",
+    "encoding": "utf-8"
+  },
+  "title": "Demo Mitteilung",
+  "transferLog": null,
+  "transferred": null,
+  "transferred_by": null,
+  "type_title": "Document",
+  "version": "current",
+  "wdate": "2025-09-23T14:14:30+00:00",
+  "workflow_history": {
+    "dp_doc_workflow": [
+      {
+        "action": null,
+        "actor": "user-ministerium",
+        "comments": "",
+        "review_state": "private",
+        "time": "2025-09-23T12:14:24+00:00"
+      },
+      {
+        "action": "publish",
+        "actor": "user-ministerium",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-23T12:14:30+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

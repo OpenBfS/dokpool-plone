@@ -1,0 +1,62 @@
+{
+  "@id": "/bund/rei-bericht-suche/rei-bericht-suche",
+  "@type": "Collection",
+  "UID": "ff03365742ae4b52888e8c830da95dd2",
+  "allow_discussion": null,
+  "contributors": [],
+  "created": "2025-09-11T07:05:07+00:00",
+  "creators": [
+    "bund_dpadmin"
+  ],
+  "customViewFields": [],
+  "description": "Die Suche umfasst alle Berichte ohne bereits ersetzte Berichte. Bitte w\u00e4hlen Sie Ihr Suchkriterium auf der linken Seite.",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "rei-bericht-suche",
+  "is_folderish": false,
+  "item_count": 30,
+  "items_total": 0,
+  "language": "##DEFAULT##",
+  "layout": "docpool_collection_view",
+  "limit": 1000,
+  "local_behaviors": [
+    "rei"
+  ],
+  "lock": {
+    "locked": false,
+    "stealable": true
+  },
+  "modified": "2025-09-11T07:05:07+00:00",
+  "query": [
+    {
+      "i": "Status",
+      "o": "plone.app.querystring.operation.selection.any",
+      "v": []
+    }
+  ],
+  "review_state": "published",
+  "rights": null,
+  "sort_on": null,
+  "sort_reversed": false,
+  "subjects": [],
+  "text": null,
+  "title": "REI-Bericht Suche",
+  "type_title": "Collection",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "bund_dpadmin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-11T07:05:07+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

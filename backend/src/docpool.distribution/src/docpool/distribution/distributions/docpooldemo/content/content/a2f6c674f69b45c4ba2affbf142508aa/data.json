@@ -1,0 +1,49 @@
+{
+  "@id": "/bund/rei-infos",
+  "@type": "ELANInfos",
+  "UID": "a2f6c674f69b45c4ba2affbf142508aa",
+  "allow_discussion": null,
+  "contributors": [],
+  "created": "2025-09-11T07:09:02+00:00",
+  "created_by": "DocPool Administrator (Bund)",
+  "creators": [
+    "bund_dpadmin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "rei-infos",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "tabular_view",
+  "local_behaviors": [
+    "rei"
+  ],
+  "lock": {},
+  "mdate": "2025-09-11T09:09:02",
+  "modified": "2025-09-11T07:09:22+00:00",
+  "modified_by": null,
+  "review_state": "published",
+  "rights": null,
+  "subjects": [],
+  "title": "REI Infos",
+  "type_title": "Area for general information",
+  "version": "current",
+  "wdate": "2025-09-11T09:09:02+00:00",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "bund_dpadmin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-11T07:09:02+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

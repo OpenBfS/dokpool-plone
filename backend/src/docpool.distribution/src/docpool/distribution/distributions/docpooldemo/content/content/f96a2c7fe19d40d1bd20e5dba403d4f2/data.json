@@ -1,0 +1,62 @@
+{
+  "@id": "/bund/content/Groups/bund_behoerde/lagebilder-zur-freigabe-durch-bundesministerium/beispiel-lagebild-fuer-freigabe-workflow",
+  "@type": "DPDocument",
+  "UID": "f96a2c7fe19d40d1bd20e5dba403d4f2",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2025-09-23T12:24:05+00:00",
+  "created_by": "User Beh\u00f6rde (Bund) <i>Bundesbeh\u00f6rde (Bund)</i>",
+  "creators": [
+    "user-behoerde"
+  ],
+  "description": "",
+  "docType": "situationreport",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "beispiel-lagebild-fuer-freigabe-workflow",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "local_behaviors": [
+    "elan"
+  ],
+  "lock": {},
+  "mdate": "2025-09-23T14:25:53",
+  "modified": "2025-11-19T10:25:15+00:00",
+  "modified_by": "User Beh\u00f6rde (Bund) <i>Bundesbeh\u00f6rde (Bund)</i>",
+  "review_state": "private",
+  "rights": null,
+  "scenarios": [
+    "e4b194cb504e47989098926df9cef057"
+  ],
+  "scenarios_to_keep": [],
+  "subjects": [],
+  "text": {
+    "content-type": "text/html",
+    "data": "Black qui go ristretto sit that viennese sugar at cup roast barista in",
+    "encoding": "utf-8"
+  },
+  "title": "Beispiel Lagebild f\u00fcr Freigabe-Workflow",
+  "transferLog": null,
+  "transferred": null,
+  "transferred_by": null,
+  "type_title": "Document",
+  "version": "current",
+  "wdate": "2025-09-23T14:24:05+00:00",
+  "workflow_history": {
+    "dp_review_workflow": [
+      {
+        "action": null,
+        "actor": "user-behoerde",
+        "comments": "",
+        "review_state": "private",
+        "time": "2025-09-23T12:24:05+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

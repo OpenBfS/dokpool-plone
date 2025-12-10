@@ -29,8 +29,14 @@
   >
     <indexed_attr value="sendingESD" />
   </index>
+  <index meta_type="FieldIndex"
+         name="group"
+  >
+    <indexed_attr value="group" />
+  </index>
 
   <column value="getMdate" />
   <column value="changed" />
   <column value="apps_supported" />
+  <column value="group" />
 </object>

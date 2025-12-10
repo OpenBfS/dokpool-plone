@@ -281,10 +281,14 @@ class DPDocumentWizard(ContextlessWizard):
     @memoize
     def containers(self):
         """Return uuid vocabulary of GroupFolders where user can add DPDocuments."""
+        dp_app_state = api.content.get_view("dp_app_state", self.context, self.request)
+        active_apps = dp_app_state.appsActivatedByCurrentUser()
+
         brains = api.content.find(
             context=get_content_area(self.context),
             portal_type="GroupFolder",
             sort_on="sortable_title",
+            apps_supported=active_apps,
         )
         terms = []
         for brain in brains:

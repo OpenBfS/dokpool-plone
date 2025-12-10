@@ -13,7 +13,7 @@
         >
 
           <span class="icon-24 d-flex align-items-center justify-content-center mb-2">
-            <tal:icon tal:replace="structure python:icons.tag('grid-3x3-gap-fill', tag_class='me-0')" />
+            <tal:icon tal:replace="structure python:icons.tag('grid-1x2-fill', tag_class='me-0')" />
           </span>
           <span class="label text-center">&Uuml;bersicht</span>
         </a>
@@ -27,7 +27,7 @@
         >
 
           <span class="icon-24 d-flex align-items-center justify-content-center mb-2">
-            <tal:icon tal:replace="structure python:icons.tag('clock', tag_class='me-0')" />
+            <tal:icon tal:replace="structure python:icons.tag('clock-fill', tag_class='me-0')" />
           </span>
           <span class="label text-center">Chronologie</span>
         </a>
@@ -63,7 +63,7 @@
            href="#"
         >
           <span class="icon-24 d-flex align-items-center justify-content-center mb-2">
-            <tal:icon tal:replace="structure python:icons.tag('check2-square', tag_class='me-0')" />
+            <tal:icon tal:replace="structure python:icons.tag('calendar-check-fill', tag_class='me-0')" />
           </span>
           <span class="label text-center">Aufgaben (1)</span>
         </a>

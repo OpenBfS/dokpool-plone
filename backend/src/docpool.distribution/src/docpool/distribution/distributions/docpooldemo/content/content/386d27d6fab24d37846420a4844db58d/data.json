@@ -1,0 +1,47 @@
+{
+  "@id": "/bund/content/Members/user--aufsicht",
+  "@type": "UserFolder",
+  "UID": "386d27d6fab24d37846420a4844db58d",
+  "allow_discussion": null,
+  "allowedDocTypes": null,
+  "contributors": [],
+  "created": "2025-11-19T11:51:32+00:00",
+  "created_by": "User Aufsicht (Bund)",
+  "creators": [
+    "user-aufsicht"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "user--aufsicht",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "lock": {},
+  "mdate": "2025-11-19T12:51:32",
+  "modified": "2025-11-19T11:51:32+00:00",
+  "modified_by": null,
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "User Aufsicht (Bund)",
+  "type_title": "User Folder",
+  "version": "current",
+  "wdate": "2025-11-19T12:51:32+00:00",
+  "workflow_history": {
+    "dp_principalfolder_workflow": [
+      {
+        "action": null,
+        "actor": "user-aufsicht",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-11-19T11:51:32+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

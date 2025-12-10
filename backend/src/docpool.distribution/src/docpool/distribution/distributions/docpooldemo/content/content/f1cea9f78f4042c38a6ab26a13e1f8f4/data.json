@@ -1,0 +1,62 @@
+{
+  "@id": "/mecklenburg-vorpommern/content/Groups/mv_Receivers",
+  "@type": "GroupFolder",
+  "UID": "f1cea9f78f4042c38a6ab26a13e1f8f4",
+  "allow_discussion": null,
+  "allowedDocTypes": null,
+  "contributors": [],
+  "created": "2025-09-10T13:25:25+00:00",
+  "created_by": "admin <i>Content Receivers (Mecklenburg-Vorpommern)</i>",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {
+    "immediately_addable_types": [
+      "DPDocument",
+      "SimpleFolder"
+    ],
+    "locally_allowed_types": [
+      "Collection",
+      "InfoFolder",
+      "DPDocument",
+      "SimpleFolder",
+      "ReviewFolder",
+      "CollaborationFolder",
+      "PrivateFolder"
+    ]
+  },
+  "exportimport.conversation": [],
+  "id": "mv_Receivers",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "local_behaviors": [],
+  "lock": {},
+  "mdate": "2025-09-10T15:25:25",
+  "modified": "2025-09-10T13:25:25+00:00",
+  "modified_by": null,
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Content Receivers (Mecklenburg-Vorpommern)",
+  "type_title": "Group Folder",
+  "version": "current",
+  "wdate": "2025-09-10T15:25:25+00:00",
+  "workflow_history": {
+    "dp_principalfolder_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-10T13:25:25+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

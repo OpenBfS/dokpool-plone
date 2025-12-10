@@ -1,17 +1,29 @@
 @import "header";
 @import "sidebar";
-$plone-default-private-color: #ad4541;
-$plone-default-pending-color: #ccd111;
-$plone-default-pending_bfs-color: #ffaa00;
+$plone-default-private-color: #b74d48;
+$plone-default-pending-color: #e5bc4a;
+$plone-default-pending_bfs-color: #e5bc4a;
 $plone-default-pending_authority-color: #d07317;
 $plone-default-pending_bmu-color: #75a30a;
-$plone-default-published-color: #2c445e;
-$plone-default-revised-color: #7a561f;
+$plone-default-published-color: #324d6a;
+$plone-default-revised-color: #d4d4d4;
 
 :root {
-  --bs-gray-light: #F1F3F6;
-  --bs-gray-dark: #D9D9D9;
-  --bs-blue-gray: #6A829D;
+  --bs-gray-light: #f1f3f6;
+  --bs-gray-dark: #d9d9d9;
+  --bs-blue-gray: #6a829d;
+}
+
+.btn-light {
+  --bs-btn-border-color: #e7f1f5;
+  --bs-btn-bg: #f8f9fa;
+  --bs-btn-hover-bg: #e7f1f6;
+  --bs-btn-active-bg: #c3dce7;
+  --bs-btn-color: #324d6a;
+  --bs-btn-hover-color: #324d6a;
+  --bs-btn-active-color: #324d6a;
+  --bs-btn-hover-border-color: #e7f1f6;
+  --bs-btn-active-border-color: #c3dce7;
 }
 
 .outer-wrapper {
@@ -51,7 +63,8 @@ img.doktype-icon {
   padding: 0.3rem;
 
   p.small {
-    font-size: 0.6em;
+    font-size: 0.6rem;
+    line-height: 1.2em;
   }
 
   &.state-published {
@@ -65,7 +78,7 @@ img.doktype-icon {
   }
 
   &.state-pending {
-    color: #fff !important;
+    color: #000 !important;
     background-color: $plone-default-pending-color;
   }
 
@@ -90,9 +103,21 @@ img.doktype-icon {
   }
 }
 
+#listing-filters {
+  background-color: #fafafa;
+  position: sticky;
+  top: 72px;
+  z-index: 900;
+
+  .dropdown-menu {
+    max-height: 60vh;
+    overflow-y: scroll;
+  }
+}
+
 #listing > a {
   display: block;
-  min-height: 84px;
+  min-height: 80px;
 }
 
 #listing > a.pat-inject.executed {
@@ -104,8 +129,32 @@ img.doktype-icon {
 }
 
 #listing .listing-item {
+  .dateinfo {
+    width: 80px;
+    font-size: 14px;
+
+    .small {
+      font-size: 10px;
+      color: $plone-default-published-color;
+    }
+  }
   .doctype-box {
-    min-width: 95px;
+    width: 80px;
+    .doktype-icon-container {
+      background-color: var(--bs-gray-light);
+    }
+  }
+  .text-box {
+    display: grid;
+    width: 50%;
+    h3 {
+      font-size: 14px;
+      color: #0f2237;
+    }
+    .description {
+      font-size: 10px;
+      color: $plone-default-published-color;
+    }
   }
 }
 
@@ -128,15 +177,6 @@ div.pat-modal.large {
 
 div.pat-modal::after {
   background-color: rgba(15, 15, 15, 0.84);
-}
-
-#portal-mainnavigation #portal-globalnav a {
-    color: #222 !important;
-}
-
-#portal-mainnavigation #portal-globalnav .nav-item.apps {
-  // TODO Remove once the new GUI is finished
-  display: none;
 }
 
 #portal-logo {
@@ -162,4 +202,17 @@ div.pat-modal::after {
 #portal-footer {
   background-color: #f8f9fa !important;
   min-height: 48px;
+}
+
+// Temp Stuff
+#portal-mainnavigation {
+  display: none;
+}
+
+body.template-listing {
+  #portal-breadcrumbs,
+  header h1,
+  #content header {
+    display: None;
+  }
 }
