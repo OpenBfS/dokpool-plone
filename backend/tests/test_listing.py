@@ -79,7 +79,7 @@ class TestListing:
         page.goto(f"{self.plone_url}/bund/setActiveApp?app=elan")
         page.goto(f"{self.plone_url}/bund/listing")
         # Tests if the DPDocument exists
-        first_list_item = page.locator(".listing-item h2").first
+        first_list_item = page.locator(".listing-item h3").first
         expect(first_list_item).to_have_text("A Weatherinfo")
         # Publish the DPDocument
         page.get_by_role("button", name="⋮").click()
