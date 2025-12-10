@@ -16,6 +16,9 @@ Fixed:
   turns out to be not well-defined). (#6125)
   [tlotze]
 
+- Replace old wysiwyg macro with pat-tinymce and fix journal links (#5824)
+  [slindner]
+
 
 2.3.0 (2025-10-23)
 ------------------

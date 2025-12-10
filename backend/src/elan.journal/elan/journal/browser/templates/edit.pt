@@ -20,23 +20,17 @@
               action string:${context/absolute_url}/@@edit-journalentry;
             "
       >
-        <div class="field">
-          <tal:editor define="
-                        here nocall:context;
-                        portal_url nocall:context/portal_url;
-                        portal portal_url/getPortalObject;
-                        id string:text;
-                        inputname string:text;
-                        inputvalue view/text;
-                        here_url request/getURL;
-                        member context/portal_membership/getAuthenticatedMember;
-                        tabindex nothing;
-                        rows python:15;
-                      ">
-            <div metal:use-macro="context/wysiwyg_support/macros/wysiwygEditorBox">
-            The WYSIWYG code
-            </div>
-          </tal:editor>
+        <div class="field bfs-editor">
+
+          <textarea class="pat-tinymce"
+                    name="text"
+                    data-pat-tinymce='{"relatedItems":{"vocabularyUrl":"${portal_url}/@@getVocabulary?name=plone.app.vocabularies.Catalog"}, "prependToUrl": "${portal_url}/resolveuid/", "linkAttribute": "uid"}'
+                    tal:define="
+                      portal context/plone_portal_state/portal;
+                      portal_url python:portal.absolute_url();
+                    "
+                    tal:content="python: view.text"
+          ></textarea>
         </div>
         <div class="formControls">
           <input class="btn btn-primary"
