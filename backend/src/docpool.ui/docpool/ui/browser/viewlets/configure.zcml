@@ -57,13 +57,12 @@
       permission="zope2.View"
       />
 
-
   <browser:viewlet
       name="docpool.sidebar.info"
       manager=".sidebar.ISidebarManager"
       class=".sidebar.SidebarViewlet"
       permission="zope2.View"
-      layer="docpool.elan.interfaces.IELANActive"
+      layer="docpool.ui.interfaces.IUITheme"
       />
 
   <browser:viewletManager
