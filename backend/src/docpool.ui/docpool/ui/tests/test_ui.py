@@ -109,17 +109,17 @@ class TestUIFeatures(unittest.TestCase):
         # The view can be used anywhere. On the portal:
         listing_item_view = api.content.get_view("listing-item", self.portal, self.request)
         html = listing_item_view(uid=uid)
-        self.assertIn("<h2>A Weatherinfo</h2>", html)
+        self.assertIn("A Weatherinfo</h3>", html)
 
         # On itself:
         listing_item_view = api.content.get_view("listing-item", self.entry, self.request)
         html = listing_item_view(uid=uid)
-        self.assertIn("<h2>A Weatherinfo</h2>", html)
+        self.assertIn("A Weatherinfo</h3>", html)
 
         # On a group-folder:
         listing_item_view = api.content.get_view("listing-item", self.group_folder, self.request)
         html = listing_item_view(uid=uid)
-        self.assertIn("<h2>A Weatherinfo</h2>", html)
+        self.assertIn("A Weatherinfo</h3>", html)
 
         # Test data
         data = listing_item_view.dpdocument
