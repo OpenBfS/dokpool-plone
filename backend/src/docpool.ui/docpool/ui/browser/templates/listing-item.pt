@@ -18,7 +18,7 @@
     >16.12.2021</div>
   </div>
 
-  <div class=" me-3 doctype-box flex-shrink-0">
+  <div class="me-3 doctype-box flex-shrink-0">
     <div class="h-100 doktype-icon-container px-3 pt-2 pb-1">
       <img class="doktype-icon p-1"
            alt="Type"
@@ -48,7 +48,9 @@
          href python: data['url'];
        "
     >
-      <h3 class="mb-0" tal:content="python: data['title']"></h3>
+      <h3 class="mb-0"
+          tal:content="python: data['title']"
+      ></h3>
     </a>
     <div class="description text-muted text-truncate"
          tal:content="python: data['description']"
