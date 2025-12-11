@@ -158,12 +158,12 @@ class Transferable(FlexibleView):
 
     def transferEvents(self):
         """Query metadata of past transfers ("transfer events") of the context object."""
-        if self.transferred:
-            type_ = "receive"
-            events = reversed(self.receiver_log)
-        else:
-            type_ = "send"
-            events = reversed(self.sender_log)
+        events = sorted(
+            [(event, "receive") for event in self.receiver_log]
+            + [(event, "send") for event in self.sender_log],
+            key=lambda item: item[0]["timestamp"],
+            reverse=True,
+        )
         plone_view = api.content.get_view("plone", self.context, self.request)
         return [
             {
@@ -173,7 +173,7 @@ class Transferable(FlexibleView):
                 "timeraw": event["timestamp"],
                 "time": plone_view.toLocalizedTime(DateTime(event["timestamp"]), long_format=1),
             }
-            for event in events
+            for event, type_ in events
         ]
 
     def transferable(self):

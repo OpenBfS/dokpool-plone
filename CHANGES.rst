@@ -18,7 +18,7 @@ Changed:
 - Do not use behavior plone.excludefromnavigation for DPDocuments. (#6319)
   [pbauer]
 
-- Don't copy transfer logs to a text field when archiving documents (#5674).
+- Don't copy transfer logs to a text field when archiving documents; always show both receive and send events. (#5674)
   [tlotze]
 
 Fixed:
