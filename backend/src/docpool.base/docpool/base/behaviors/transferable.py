@@ -112,15 +112,6 @@ class ITransferable(model.Schema):
     read_permission(transferred="docpool.transfers.AccessTransfers")
     write_permission(transferred="docpool.transfers.AccessTransfers")
 
-    transferLog = schema.Text(
-        title=_("label_dpdocument_transferlog", default="Transfer log"),
-        description=_("description_dpdocument_transferlog", default="Only used for archived documents."),
-        required=False,
-    )
-    directives.omitted("transferLog")
-    read_permission(transferLog="docpool.transfers.AccessTransfers")
-    write_permission(transferLog="docpool.transfers.AccessTransfers")
-
 
 class Transferable(FlexibleView):
     __allow_access_to_unprotected_subobjects__ = 1
@@ -135,7 +126,6 @@ class Transferable(FlexibleView):
 
     transferred_by = ContextProperty("transferred_by", skip_empty=True)
     transferred = ContextProperty("transferred", skip_empty=True)
-    transferLog = ContextProperty("transferLog", skip_empty=True)
 
     @property
     def sender_log(self):
@@ -166,35 +156,25 @@ class Transferable(FlexibleView):
         """ """
         return self.context.transferred or self.context.getMdate()
 
-    def checkTransferLog(self):
-        """ """
-        return self.context.transferLog
-
     def transferEvents(self):
         """Query metadata of past transfers ("transfer events") of the context object."""
-        if IArchiving(self.context).is_archive:
-            logRaw = self.transferLog
-            logRaw = logRaw and logRaw.replace("datetime.datetime", "datetime")
-            return eval(logRaw) if logRaw else None
-
+        if self.transferred:
+            type_ = "receive"
+            events = reversed(self.receiver_log)
         else:
-            if self.transferred:
-                type_ = "receive"
-                events = reversed(self.receiver_log)
-            else:
-                type_ = "send"
-                events = reversed(self.sender_log)
-            plone_view = api.content.get_view("plone", self.context, self.request)
-            return [
-                {
-                    "type": type_,
-                    "by": event["user"],
-                    "esd": event["esd_title"],
-                    "timeraw": event["timestamp"],
-                    "time": plone_view.toLocalizedTime(DateTime(event["timestamp"]), long_format=1),
-                }
-                for event in events
-            ]
+            type_ = "send"
+            events = reversed(self.sender_log)
+        plone_view = api.content.get_view("plone", self.context, self.request)
+        return [
+            {
+                "type": type_,
+                "by": event["user"],
+                "esd": event["esd_title"],
+                "timeraw": event["timestamp"],
+                "time": plone_view.toLocalizedTime(DateTime(event["timestamp"]), long_format=1),
+            }
+            for event in events
+        ]
 
     def transferable(self):
         """
