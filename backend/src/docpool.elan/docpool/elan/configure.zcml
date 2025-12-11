@@ -113,10 +113,6 @@
       component=".vocabularies.EventRefVocabularyFactory"
       />
   <utility
-      name="docpool.elan.vocabularies.EventSubstitutes"
-      component=".vocabularies.EventSubstituteVocabularyFactory"
-      />
-  <utility
       name="docpool.elan.vocabularies.Status"
       component=".vocabularies.StatusVocabularyFactory"
       />
