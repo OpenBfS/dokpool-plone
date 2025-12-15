@@ -6,7 +6,6 @@
         dummy python:request.set('ajax_load',1);
         can_edit python: context.canBeEdited();
         can_delete python: context.canBeDeleted();
-        uuid python: view.uuid();
         token context/@@authenticator/token;
       "
       i18n:domain="docpool.base"
@@ -35,12 +34,14 @@
             <div class="actions">
               <ul class="list-group list-group-horizontal"
                   tal:attributes="
-                    data-current-item python: uuid;
+                    data-current-item python: context.UID();
                   "
               >
                 <li class="list-group-item">
                   <a href="#"
-                     onclick="history.back(); return false;"
+                     tal:attributes="
+                       href python: view.getDocpoolListingPath();
+                     "
                   >Back</a>
                 </li>
                 <li class="list-group-item prev">

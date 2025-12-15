@@ -1,6 +1,6 @@
 from docpool.base.appregistry import APP_REGISTRY
 from docpool.base.browser.dpdocument import DPDocumentEditForm
-from plone import api
+from docpool.base.utils import getDocumentPoolSite
 from plone.dexterity.browser.view import DefaultView
 from plone.dexterity.interfaces import IDexterityEditForm
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -50,8 +50,10 @@ class DPDocumentView(DefaultView):
     def icon_name(self):
         return self.context.docTypeObj().icon_name
 
-    def uuid(self):
-        return api.content.get_uuid(obj=self.context)
+    def getDocpoolListingPath(self):
+        dp = getDocumentPoolSite(self.context)
+        path = "/".join(dp.getPhysicalPath()) + "/@@listing"
+        return path
 
 
 @implementer(IDexterityEditForm)

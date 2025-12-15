@@ -4,9 +4,7 @@ import "./docpool.scss";
 import("./pat-update-notification/index.js");
 import registry from "@patternslib/patternslib/src/core/registry";
 
-
 document.addEventListener("patterns-injected-delayed", (e) => {
-
   if (!(e.target instanceof Element)) return;
 
   if (!e.target.matches("#content.container")) return;
