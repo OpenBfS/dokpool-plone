@@ -5,6 +5,7 @@ from docpool.base.appregistry import activeApps
 from docpool.base.appregistry import appName
 from docpool.base.appregistry import extendingApps
 from docpool.base.appregistry import selectableApps
+from docpool.base.content.archiving import IArchiving
 from docpool.base.content.doctype import IDocType
 from docpool.base.content.dptransferfolder import IDPTransferFolder
 from docpool.base.content.groupfolder import IGroupFolder
@@ -308,6 +309,7 @@ def GroupsVocabularyFactory(context=None):
         "context": esd,
         "object_provides": [IDPTransferFolder.__identifier__, IGroupFolder.__identifier__],
         "unrestricted": True,  # Readers have no access to the group folders.
+        "sort_on": "sortable_title",
     }
     # Filter by current app
     request = getRequest()
@@ -317,7 +319,9 @@ def GroupsVocabularyFactory(context=None):
         query["apps_supported"] = active_apps
 
     brains = api.content.find(**query)
-    return SimpleVocabulary([SimpleTerm(value=i.UID, token=i.UID, title=i.Title) for i in brains])
+    return SimpleVocabulary([
+        SimpleTerm(value=i.UID, token=i.UID, title=i.Title) for i in brains if not IArchiving(i).is_archive
+    ])
 
 
 allow_module("docpool.base.vocabularies")
