@@ -12,8 +12,11 @@ Changed:
 - Remove concept of substitute scenarios (#6339)
   [tlotze]
 
-- Remove transfer veto by ELAN because of unknown scenarios (6338)
+- Remove transfer veto by ELAN because of unknown scenarios (#6338)
   [tlotze] 
+
+- Do not use behavior plone.excludefromnavigation for DPDocuments (#6319)
+  [pbauer]
 
 Fixed:
 
