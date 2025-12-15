@@ -12,6 +12,9 @@ Changed:
 - Remove concept of substitute scenarios (#6339)
   [tlotze]
 
+- Remove transfer veto by ELAN because of unknown scenarios (6338)
+  [tlotze] 
+
 Fixed:
 
 - Prevent access to ELAN-specific attributes on non-ELAN documents (which
