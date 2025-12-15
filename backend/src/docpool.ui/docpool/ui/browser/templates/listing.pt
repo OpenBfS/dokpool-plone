@@ -376,7 +376,7 @@
          "
     >
       <tal:block tal:repeat="item python: items">
-        <a class="pat-inject"
+        <a class="pat-inject list-item-inject-link"
            data-pat-inject="trigger: autoload-visible; delay: 50; target: self"
            tal:content="python: '@@listing-item?uid='+ item"
            tal:attributes="

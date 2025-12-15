@@ -43,16 +43,14 @@
                      onclick="history.back(); return false;"
                   >Back</a>
                 </li>
-                <li class="list-group-item priv">
-                  <a class="pat-inject2"
-                     href="#"
-                     data-pat-inject="trigger: default; source: #content; target: #content; history: record"
+                <li class="list-group-item prev">
+                  <a class="pat-inject prev-item"
+                     data-pat-inject="trigger: default; source: #portal-column-content; target: #content; history: record"
                   >Previous</a>
                 </li>
                 <li class="list-group-item next">
-                  <a class="pat-inject2"
-                     href="#"
-                     data-pat-inject="trigger: default; source: #content; target: #content; history: record"
+                  <a class="pat-inject next-item"
+                     data-pat-inject="trigger: default; source: #portal-column-content; target: #content; history: record"
                   >Next</a>
                 </li>
                 <li class="list-group-item">
