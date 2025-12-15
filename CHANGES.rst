@@ -9,6 +9,8 @@ Changed:
 - Demo-content distribution for 4 docpools with groups, users and valid content for all apps (#5711).
   [pbauer]
 
+- Remove concept of substitute scenarios (#6339)
+  [tlotze]
 
 Fixed:
 
