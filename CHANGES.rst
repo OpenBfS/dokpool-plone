@@ -30,6 +30,9 @@ Fixed:
 - Increase pyruvate max header and add error logger (#6337)
   [slindner] 
 
+- Fix archive-listing when the archiving user has been removed (#6288)
+  [pbauer]
+
 2.3.0 (2025-10-23)
 ------------------
 
