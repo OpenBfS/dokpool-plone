@@ -71,7 +71,6 @@
     >
       <permission-role>Manager</permission-role>
       <permission-role>Reader</permission-role>
-      <permission-role>Owner</permission-role>
     </permission-map>
     <permission-map acquired="False"
                     name="Add portal content"
@@ -90,7 +89,6 @@
       <permission-role>Manager</permission-role>
       <permission-role>Site Administrator</permission-role>
       <permission-role>DocPoolAdmin</permission-role>
-      <permission-role>Owner</permission-role>
     </permission-map>
     <permission-map acquired="False"
                     name="Sharing page: Delegate roles"
@@ -101,7 +99,6 @@
     >
       <permission-role>Manager</permission-role>
       <permission-role>Reader</permission-role>
-      <permission-role>Owner</permission-role>
     </permission-map>
   </state>
   <transition after_script=""

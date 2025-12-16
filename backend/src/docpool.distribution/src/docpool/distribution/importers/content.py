@@ -2,6 +2,7 @@ from docpool.base.marker import IImportingMarker
 from eea.facetednavigation.widgets.storage import Criterion
 from elan.journal.adapters import JournalEntry
 from persistent.list import PersistentList
+from persistent.mapping import PersistentMapping
 from plone.app.dexterity.behaviors.exclfromnav import IExcludeFromNavigation
 from plone.dexterity.schema import SCHEMA_CACHE
 from plone.dexterity.utils import resolveDottedName
@@ -177,6 +178,10 @@ def global_obj_hook(item, obj):
             entry["timestamp"] = dateutil.parser.parse(entry["timestamp"])
         obj.transfer_sender_log = log
 
+    if obj.portal_type == "DPTransferFolder":
+        if not obj.doctypePermissions:
+            obj.doctypePermissions = PersistentMapping()
+
     return obj
 
 
@@ -221,6 +226,18 @@ def import_annotations(obj, item):
                 data["_cid_"] = data.pop("__name__")
                 entry = Criterion(**data)
                 entries.append(entry)
+            if entries:
+                annotations[key] = entries
+        elif key == "docpool.elan.archiving":
+            if not item[ANNOTATIONS_KEY]["docpool.elan.archiving"]:
+                continue
+            entries = PersistentList()
+            for data in item[ANNOTATIONS_KEY]["docpool.elan.archiving"]:
+                if not data:
+                    continue
+                data["started"] = dateutil.parser.parse(data["started"]) if data.get("started") else None
+                data["finished"] = dateutil.parser.parse(data["finished"]) if data.get("finished") else None
+                entries.append(data)
             if entries:
                 annotations[key] = entries
         else:

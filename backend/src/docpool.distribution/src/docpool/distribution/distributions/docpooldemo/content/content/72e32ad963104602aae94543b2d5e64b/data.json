@@ -1,0 +1,47 @@
+{
+  "@id": "/bund/content/Members/user--behoerde",
+  "@type": "UserFolder",
+  "UID": "72e32ad963104602aae94543b2d5e64b",
+  "allow_discussion": null,
+  "allowedDocTypes": null,
+  "contributors": [],
+  "created": "2025-11-19T11:52:51+00:00",
+  "created_by": "User Beh\u00f6rde (Bund)",
+  "creators": [
+    "user-behoerde"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "user--behoerde",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "lock": {},
+  "mdate": "2025-11-19T12:52:51",
+  "modified": "2025-11-19T11:52:51+00:00",
+  "modified_by": null,
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "User Beh\u00f6rde (Bund)",
+  "type_title": "User Folder",
+  "version": "current",
+  "wdate": "2025-11-19T12:52:51+00:00",
+  "workflow_history": {
+    "dp_principalfolder_workflow": [
+      {
+        "action": null,
+        "actor": "user-behoerde",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-11-19T11:52:51+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

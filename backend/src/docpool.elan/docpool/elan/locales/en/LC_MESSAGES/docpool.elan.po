@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2025-09-25 12:42+0000\n"
+"POT-Creation-Date: 2025-12-04 08:52+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -517,11 +517,6 @@ msgstr ""
 msgid "description_dpevent_status"
 msgstr ""
 
-#. Default: "Only relevant for private events received from another organisation. Allows you map content for this event to one of your own events."
-#: docpool.elan/docpool/elan/content/dpevent.py
-msgid "description_dpevent_substitute"
-msgstr ""
-
 #: docpool.elan/docpool/elan/content/dpevent.py
 msgid "description_dpevent_timeofevent"
 msgstr ""
@@ -575,11 +570,6 @@ msgstr ""
 #. Default: "Status of the event"
 #: docpool.elan/docpool/elan/content/dpevent.py
 msgid "label_dpevent_status"
-msgstr ""
-
-#. Default: "Substitute event"
-#: docpool.elan/docpool/elan/content/dpevent.py
-msgid "label_dpevent_substitute"
 msgstr ""
 
 #. Default: "Time of event"

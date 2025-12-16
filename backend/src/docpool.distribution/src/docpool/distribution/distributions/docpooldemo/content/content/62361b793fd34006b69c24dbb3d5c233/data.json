@@ -1,0 +1,53 @@
+{
+  "@id": "/bund/imis-infos/allgemeines/mindestausstattung-landesmessstellen",
+  "@type": "InfoDocument",
+  "UID": "62361b793fd34006b69c24dbb3d5c233",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2025-09-10T12:58:17+00:00",
+  "created_by": "DocPool Administrator (Bund)",
+  "creators": [
+    "bund_dpadmin"
+  ],
+  "description": "",
+  "docType": "infodoc",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "mindestausstattung-landesmessstellen",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "local_behaviors": [],
+  "lock": {},
+  "mdate": "2025-09-10T14:58:28",
+  "modified": "2025-09-10T12:58:28+00:00",
+  "modified_by": "DocPool Administrator (Bund)",
+  "review_state": "published",
+  "rights": null,
+  "subjects": [],
+  "text": {
+    "content-type": "text/html",
+    "data": "<p>Mindestausstattung Landesmessstellen</p>",
+    "encoding": "utf-8"
+  },
+  "title": "Mindestausstattung Landesmessstellen",
+  "type_title": "General information",
+  "version": "current",
+  "wdate": "2025-09-10T14:58:17+00:00",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "bund_dpadmin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-10T12:58:17+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

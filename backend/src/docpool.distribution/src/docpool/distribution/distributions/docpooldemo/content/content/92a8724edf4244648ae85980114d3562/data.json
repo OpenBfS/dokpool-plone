@@ -1,0 +1,85 @@
+{
+  "@id": "/berlin/potentially-affected-areas/goesgen",
+  "@type": "Collection",
+  "UID": "92a8724edf4244648ae85980114d3562",
+  "allow_discussion": null,
+  "contributors": [],
+  "created": "2025-09-10T12:24:48+00:00",
+  "creators": [
+    "rescue"
+  ],
+  "customViewFields": [
+    "Title",
+    "Creator",
+    "Type",
+    "ModificationDate"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "goesgen",
+  "is_folderish": false,
+  "item_count": 30,
+  "items_total": 0,
+  "language": "##DEFAULT##",
+  "layout": "docpool_collection_view",
+  "limit": 1000,
+  "local_behaviors": [
+    "rodos"
+  ],
+  "lock": {
+    "locked": false,
+    "stealable": true
+  },
+  "modified": "2025-09-10T13:22:26+00:00",
+  "query": [
+    {
+      "i": "dp_type",
+      "o": "plone.app.querystring.operation.selection.is",
+      "v": [
+        "rodosprojection"
+      ]
+    },
+    {
+      "i": "PrognosisType",
+      "o": "plone.app.querystring.operation.selection.is",
+      "v": [
+        "Potenziell betroffene Gebiete"
+      ]
+    },
+    {
+      "i": "Title",
+      "o": "plone.app.querystring.operation.string.contains",
+      "v": "GOESGEN"
+    }
+  ],
+  "review_state": "published",
+  "rights": "",
+  "sort_on": "changed",
+  "sort_reversed": true,
+  "subjects": [],
+  "text": {
+    "content-type": "text/html",
+    "data": "",
+    "encoding": "utf-8"
+  },
+  "title": "GOESGEN",
+  "type_title": "Collection",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-10T13:22:26+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

@@ -1,0 +1,49 @@
+{
+  "@id": "/bund/imis-infos/imis-veranstaltungen",
+  "@type": "InfoFolder",
+  "UID": "34813b1d4dfc4fe7a848a03fbe707935",
+  "allow_discussion": null,
+  "contributors": [],
+  "created": "2025-09-10T13:00:10+00:00",
+  "created_by": "DocPool Administrator (Bund)",
+  "creators": [
+    "bund_dpadmin"
+  ],
+  "description": "Hier finden Sie alle Informationen rund um die IMIS-Grundlagen-Schulung, Aufbau-Veranstaltung, Pr\u00e4senztermine und die geplanten Schulungstermine f\u00fcr das laufende/kommende Jahr (Termine werden immer im September/Oktober f\u00fcr das folgende Kalenderjahr ver\u00f6ffentlicht).",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "imis-veranstaltungen",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "tabular_view",
+  "local_behaviors": [
+    "doksys"
+  ],
+  "lock": {},
+  "mdate": "2025-09-10T15:00:16",
+  "modified": "2025-09-10T13:00:47+00:00",
+  "modified_by": "DocPool Administrator (Bund)",
+  "review_state": "published",
+  "rights": null,
+  "subjects": [],
+  "title": "IMIS-Veranstaltungen",
+  "type_title": "Info-Folder",
+  "version": "current",
+  "wdate": "2025-09-10T15:00:10+00:00",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "bund_dpadmin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-10T13:00:10+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

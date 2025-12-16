@@ -1,0 +1,78 @@
+{
+  "@id": "/berlin/content/Groups/be_ministerium/uebung-uebung-uebung-1-radiologisches-lagebild-zur-imis-uebung-2025",
+  "@type": "DPDocument",
+  "UID": "35b68a45217142d4ba612016961151c6",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2025-09-17T13:32:23+00:00",
+  "created_by": "admin <i>Landesministerium (Berlin)</i>",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "docType": "situationreport",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.transfer_sender_log": [
+    {
+      "esd_title": "Brandenburg",
+      "scenario_ids": "uebung-imis-2025",
+      "timestamp": "2025-09-17T16:09:38",
+      "transferfolder_uid": "2399ce81f348479d90973de8ca891d95",
+      "user": "admin Landesministerium (Berlin)"
+    }
+  ],
+  "id": "uebung-uebung-uebung-1-radiologisches-lagebild-zur-imis-uebung-2025",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "local_behaviors": [
+    "elan"
+  ],
+  "lock": {},
+  "mdate": "2025-09-17T15:50:48",
+  "modified": "2025-09-17T13:57:40+00:00",
+  "modified_by": "User BE (Berlin) <i>Landesministerium (Berlin)</i>",
+  "review_state": "published",
+  "rights": null,
+  "scenarios": [
+    "0bb1834242c24743b5aa1a1a8852c40d"
+  ],
+  "scenarios_to_keep": [],
+  "subjects": [],
+  "text": {
+    "content-type": "text/html",
+    "data": "<p>Est macchiato bar skinny robusta dripper body breve origin single that ristretto caf\u00e9 turkish. Steamed saucer siphon variety froth flavour luwak organic origin seasonal trade. Crema cinnamon coffee seasonal eu trade fair aroma white mountain panna. Ut so fair beans dripper turkish macchiato shop doppio black viennese dripper. Chicory est cinnamon con medium blue robust medium panna ristretto half a aftertaste ut.</p>",
+    "encoding": "utf-8"
+  },
+  "title": "+++\u00dcbung+++\u00dcbung+++\u00dcbung 1. Radiologisches Lagebild zur IMIS-\u00dcbung 2025",
+  "transferLog": null,
+  "transferred": null,
+  "transferred_by": null,
+  "type_title": "Document",
+  "version": "current",
+  "wdate": "2025-09-17T15:57:40+00:00",
+  "workflow_history": {
+    "dp_doc_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "private",
+        "time": "2025-09-17T13:32:23+00:00"
+      },
+      {
+        "action": "publish",
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-17T13:57:40+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

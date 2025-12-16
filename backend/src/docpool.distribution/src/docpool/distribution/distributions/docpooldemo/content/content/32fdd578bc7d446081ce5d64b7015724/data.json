@@ -1,0 +1,62 @@
+{
+  "@id": "/brandenburg",
+  "@type": "DocumentPool",
+  "UID": "32fdd578bc7d446081ce5d64b7015724",
+  "allow_discussion": null,
+  "contributors": [],
+  "created": "2025-09-10T13:24:46+00:00",
+  "creators": [
+    "admin"
+  ],
+  "customLogo": {
+    "blob_path": "32fdd578bc7d446081ce5d64b7015724/customLogo/dokpool_logo_brandenburg.png",
+    "content-type": "image/png",
+    "filename": "dokpool_logo_brandenburg.png",
+    "height": 76,
+    "size": 7312,
+    "width": 400
+  },
+  "description": "",
+  "effective": null,
+  "expires": null,
+  "exportimport.annotations": {
+    "docpool_applications_key": [
+      "base",
+      "doksys",
+      "elan",
+      "transfers"
+    ]
+  },
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "brandenburg",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "lock": {},
+  "modified": "2025-09-17T14:06:34+00:00",
+  "prefix": "bb",
+  "review_state": "published",
+  "rights": null,
+  "subjects": [],
+  "supportedApps": [
+    "doksys",
+    "elan"
+  ],
+  "title": "Brandenburg",
+  "type_title": "Document Pool",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-10T13:24:46+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

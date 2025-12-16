@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2025-09-25 12:42+0000\n"
+"POT-Creation-Date: 2025-12-04 08:10+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,6 +35,10 @@ msgstr ""
 
 #: docpool.base/docpool/base/users/templates/usergroups_groupdetails.pt
 msgid "Adding a group is only allowed in a dokpool!"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/templates/group_members_flattened.pt
+msgid "All Users in ${python:view.grouptitle}"
 msgstr ""
 
 #: docpool.base/docpool/base/browser/transfer_config.py
@@ -191,6 +195,10 @@ msgstr ""
 
 #: docpool.base/docpool/base/profiles/default/types/GroupFolder.xml
 msgid "Group Folder"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/templates/group_members_flattened.pt
+msgid "Group members plus members of groups that are in this group:"
 msgstr ""
 
 #: docpool.base/docpool/base/profiles/default/types/Groups.xml
@@ -471,10 +479,6 @@ msgstr ""
 msgid "Transfer Folder"
 msgstr ""
 
-#: docpool.base/docpool/base/browser/dptransferfolder.pt
-msgid "Transfer Folder: filter not active!"
-msgstr ""
-
 #: docpool.base/docpool/base/browser/transfer_config.py
 msgid "Transfer config"
 msgstr ""
@@ -509,6 +513,10 @@ msgstr ""
 
 #: docpool.base/docpool/base/browser/folderbase.py
 msgid "Unknown error occured. Please check your logs"
+msgstr ""
+
+#: docpool.base/docpool/base/upgrades.zcml
+msgid "Upgrade profile for docpool.base"
 msgstr ""
 
 #: docpool.base/docpool/base/profiles/default/types/UserFolder.xml
@@ -726,10 +734,6 @@ msgstr ""
 msgid "description_dptransferfolder_unknowndtdefault"
 msgstr ""
 
-#: docpool.base/docpool/base/content/dptransferfolder.py
-msgid "description_dptransferfolder_unknownscendefault"
-msgstr ""
-
 #: docpool.base/docpool/base/content/dashboardcollection.py
 msgid "description_elandoccollection_doctypes"
 msgstr ""
@@ -767,6 +771,41 @@ msgstr ""
 
 #: docpool.base/docpool/base/vocabularies.py
 msgid "don't accept"
+msgstr ""
+
+#. Default: "All members"
+#: docpool.base/docpool/base/browser/templates/groups.pt
+msgid "groups_all_members"
+msgstr ""
+
+#. Default: "Global roles"
+#: docpool.base/docpool/base/browser/templates/groups.pt
+msgid "groups_global_roles"
+msgstr ""
+
+#. Default: "(${group_id})"
+#: docpool.base/docpool/base/browser/templates/groups.pt
+msgid "groups_group_id"
+msgstr ""
+
+#. Default: "Local roles on"
+#: docpool.base/docpool/base/browser/templates/groups.pt
+msgid "groups_local_roles"
+msgstr ""
+
+#. Default: "Member in groups"
+#: docpool.base/docpool/base/browser/templates/groups.pt
+msgid "groups_member_groups"
+msgstr ""
+
+#. Default: "Members"
+#: docpool.base/docpool/base/browser/templates/groups.pt
+msgid "groups_members"
+msgstr ""
+
+#. Default: "Name"
+#: docpool.base/docpool/base/browser/templates/groups.pt
+msgid "groups_name"
 msgstr ""
 
 #. Default: "Select the transition to be used for modifying the items state."
@@ -943,11 +982,6 @@ msgstr ""
 #. Default: "Default for unknown document types"
 #: docpool.base/docpool/base/content/dptransferfolder.py
 msgid "label_dptransferfolder_unknowndtdefault"
-msgstr ""
-
-#. Default: "Default for unknown scenarios"
-#: docpool.base/docpool/base/content/dptransferfolder.py
-msgid "label_dptransferfolder_unknownscendefault"
 msgstr ""
 
 #. Default: "Document Types"

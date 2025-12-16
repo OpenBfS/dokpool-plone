@@ -40,6 +40,8 @@ ifeq (, $(shell which $(UV) ))
   $(error "UV=$(UV) not found in $(PATH)")
 endif
 
+PYTHON_VERSION=3.12
+
 PLONE_SITE_ID=Plone
 BACKEND_FOLDER=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 PLONE_VERSION=$(shell cat $(BACKEND_FOLDER)/version.txt)
@@ -68,7 +70,7 @@ requirements-mxdev.txt: pyproject.toml mx.ini ## Generate constraints file
 
 $(VENV_FOLDER): requirements-mxdev.txt ## Install dependencies
 	@echo "$(GREEN)==> Install environment$(RESET)"
-	@uv venv $(VENV_FOLDER)
+	@uv venv --python $(PYTHON_VERSION) $(VENV_FOLDER)
 	@uv pip install -r requirements-mxdev.txt
 
 .PHONY: sync
@@ -153,6 +155,7 @@ test: $(VENV_FOLDER) ## run tests
 	@$(BIN_FOLDER)/zope-testrunner --auto-color --auto-progress \
 	--test-path src/docpool.base \
 	--test-path src/docpool.api/src \
+	--test-path src/docpool.base \
 	--test-path src/elan.journal \
 	--test-path src/docpool.doksys/src \
 	--test-path src/docpool.elan \
@@ -167,6 +170,7 @@ coverage: ## generate test-coverage report
 	@echo "$(GREEN)==> Running test coverage analysis for all packages...$(RESET)"
 	@uv run coverage run -p --source=src $(BIN_FOLDER)/zope-testrunner --auto-color --auto-progress \
 	--test-path src/docpool.api/src \
+	--test-path src/docpool.base \
 	--test-path src/elan.journal \
 	--test-path src/docpool.elan \
 	--test-path src/docpool.rei \

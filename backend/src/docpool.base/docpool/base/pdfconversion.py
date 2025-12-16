@@ -118,7 +118,7 @@ def get_images(doc, page_start=0, pages=1):
             logger.error(f"This is not an image: {raw_image}")
             break
 
-        img_thumb.thumbnail(thumb_size, Image.ANTIALIAS)
+        img_thumb.thumbnail(thumb_size, Image.Resampling.LANCZOS)
         # save the resulting thumbnail in the file object
         img_thumb.save(
             raw_image_thumb,
@@ -129,7 +129,7 @@ def get_images(doc, page_start=0, pages=1):
         )
         # use PIL to generate preview from image_result
         img_preview = Image.open(BytesIO(raw_image))
-        img_preview.thumbnail(preview_size, Image.ANTIALIAS)
+        img_preview.thumbnail(preview_size, Image.Resampling.LANCZOS)
         # save the resulting thumbnail in the file object
         img_preview.save(
             raw_image_preview,

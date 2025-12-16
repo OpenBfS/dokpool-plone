@@ -1,0 +1,48 @@
+{
+  "@id": "/bund/content/Groups/bund_leitstelle/eine-trajektorie/bericht.pdf",
+  "@type": "File",
+  "UID": "abeb042567374946bf336153fd44da51",
+  "allow_discussion": null,
+  "contributors": [],
+  "created": "2025-11-19T12:28:55+00:00",
+  "creators": [
+    "user-wetterdienst"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "file": {
+    "blob_path": "abeb042567374946bf336153fd44da51/file/bericht.pdf",
+    "content-type": "application/pdf",
+    "filename": "bericht.pdf",
+    "size": 8224
+  },
+  "id": "bericht.pdf",
+  "is_folderish": false,
+  "language": "##DEFAULT##",
+  "layout": "file_view",
+  "lock": {},
+  "modified": "2025-11-19T12:28:55+00:00",
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "bericht.pdf",
+  "type_title": "File",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "user-wetterdienst",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-11-19T12:28:55+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

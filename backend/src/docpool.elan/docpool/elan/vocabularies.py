@@ -66,21 +66,6 @@ class EventRefVocabulary:
 EventRefVocabularyFactory = EventRefVocabulary()
 
 
-@provider(IVocabularyFactory)
-def EventSubstituteVocabularyFactory(context=None):
-    esd = getDocumentPoolSite(context)
-    path = "/".join(esd.getPhysicalPath()) + "/contentconfig"
-    return StaticCatalogVocabulary(
-        {
-            "portal_type": "DPEvent",
-            "sort_on": "sortable_title",
-            "dp_type": "active",
-            "path": path,
-        },
-        title_template="{brain.Title}",
-    )
-
-
 @implementer(IVocabularyFactory)
 class StatusVocabulary:
     """ """

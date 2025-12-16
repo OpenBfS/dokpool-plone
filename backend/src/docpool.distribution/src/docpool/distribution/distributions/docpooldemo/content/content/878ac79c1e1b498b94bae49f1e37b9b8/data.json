@@ -1,0 +1,42 @@
+{
+  "@id": "/mecklenburg-vorpommern/content",
+  "@type": "ContentArea",
+  "UID": "878ac79c1e1b498b94bae49f1e37b9b8",
+  "allow_discussion": null,
+  "contributors": [],
+  "created": "2025-09-10T13:25:24+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": true,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "content",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "lock": {},
+  "modified": "2025-09-10T13:25:25+00:00",
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Benutzer/Gruppen/Transferordner",
+  "type_title": "Content Area",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-10T13:25:24+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

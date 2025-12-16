@@ -1,0 +1,48 @@
+{
+  "@id": "/bund/content/Groups/bund_betreiber/474a4d2b-ba0f-4e98-b0ac-9c9ac65b149a/bericht.pdf",
+  "@type": "File",
+  "UID": "5e3efa6470aa4e1da774c9e28c2df105",
+  "allow_discussion": null,
+  "contributors": [],
+  "created": "2025-11-19T11:47:56+00:00",
+  "creators": [
+    "user-betreiber"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "file": {
+    "blob_path": "5e3efa6470aa4e1da774c9e28c2df105/file/bericht.pdf",
+    "content-type": "application/pdf",
+    "filename": "bericht.pdf",
+    "size": 8224
+  },
+  "id": "bericht.pdf",
+  "is_folderish": false,
+  "language": "##DEFAULT##",
+  "layout": "file_view",
+  "lock": {},
+  "modified": "2025-11-19T11:47:56+00:00",
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "bericht.pdf",
+  "type_title": "File",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "user-betreiber",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-11-19T11:47:56+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

@@ -1,0 +1,70 @@
+{
+  "@id": "/brandenburg/content/Transfers/dokumente-aus-berlin/uebung-uebung-uebung-1-radiologisches-lagebild-zur-imis-uebung-2025",
+  "@type": "DPDocument",
+  "UID": "5eaff283d79945f7a39855a84a340773",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2025-09-17T13:32:23+00:00",
+  "created_by": "admin <i>Landesministerium (Berlin)</i>",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "docType": "situationreport",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.transfer_receiver_log": [
+    {
+      "esd_title": "Berlin",
+      "scenario_ids": "uebung-imis-2025",
+      "timestamp": "2025-09-17T16:09:38",
+      "user": "admin Landesministerium (Berlin)"
+    }
+  ],
+  "id": "uebung-uebung-uebung-1-radiologisches-lagebild-zur-imis-uebung-2025",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "local_behaviors": [
+    "elan"
+  ],
+  "lock": {},
+  "mdate": "2025-09-17T16:11:28",
+  "modified": "2025-09-17T14:11:28+00:00",
+  "modified_by": "admin <i>Transfers</i>",
+  "review_state": "private",
+  "rights": null,
+  "scenarios": [
+    "0bb243d1c586477794bebc59aa172f7c"
+  ],
+  "scenarios_to_keep": [],
+  "subjects": [],
+  "text": {
+    "content-type": "text/html",
+    "data": "<p>Est macchiato bar skinny robusta dripper body breve origin single that ristretto caf\u00e9 turkish. Steamed saucer siphon variety froth flavour luwak organic origin seasonal trade. Crema cinnamon coffee seasonal eu trade fair aroma white mountain panna. Ut so fair beans dripper turkish macchiato shop doppio black viennese dripper. Chicory est cinnamon con medium blue robust medium panna ristretto half a aftertaste ut.</p>",
+    "encoding": "utf-8"
+  },
+  "title": "+++\u00dcbung+++\u00dcbung+++\u00dcbung 1. Radiologisches Lagebild zur IMIS-\u00dcbung 2025",
+  "transferLog": null,
+  "transferred": "2025-09-17T16:09:38+00:00",
+  "transferred_by": "admin Landesministerium (Berlin)",
+  "type_title": "Document",
+  "version": "current",
+  "wdate": "2025-09-17T16:09:38+00:00",
+  "workflow_history": {
+    "elan_transfer_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "private",
+        "time": "2025-09-17T14:09:38+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

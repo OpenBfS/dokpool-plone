@@ -28,6 +28,8 @@ class ELANArchivesView(BrowserView):
 
     def get_user_info_string(self, username):
         userid, fullname, primary_group = getUserInfo(self.context, username)
+        if not fullname:
+            return username
         if primary_group:
             return fullname + f" <i>{primary_group}</i>"
         return fullname

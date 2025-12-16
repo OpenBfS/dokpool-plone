@@ -1,0 +1,60 @@
+{
+  "@id": "/mecklenburg-vorpommern",
+  "@type": "DocumentPool",
+  "UID": "d5aa26f2b11e4c049f1c94955c41e62a",
+  "allow_discussion": null,
+  "contributors": [],
+  "created": "2025-09-10T13:25:24+00:00",
+  "creators": [
+    "admin"
+  ],
+  "customLogo": {
+    "blob_path": "d5aa26f2b11e4c049f1c94955c41e62a/customLogo/dokpool_logo_mv.png",
+    "content-type": "image/png",
+    "filename": "dokpool_logo_mv.png",
+    "height": 76,
+    "size": 6240,
+    "width": 400
+  },
+  "description": "",
+  "effective": null,
+  "expires": null,
+  "exportimport.annotations": {
+    "docpool_applications_key": [
+      "base",
+      "doksys",
+      "transfers"
+    ]
+  },
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "mecklenburg-vorpommern",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "lock": {},
+  "modified": "2025-09-10T13:25:25+00:00",
+  "prefix": "mv",
+  "review_state": "published",
+  "rights": null,
+  "subjects": [],
+  "supportedApps": [
+    "doksys"
+  ],
+  "title": "Mecklenburg-Vorpommern",
+  "type_title": "Document Pool",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-10T13:25:24+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

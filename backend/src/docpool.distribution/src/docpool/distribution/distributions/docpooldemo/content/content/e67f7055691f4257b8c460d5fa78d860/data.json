@@ -1,0 +1,48 @@
+{
+  "@id": "/bund/rei-infos/dokumente/historie-der-stammdatenaenderungen/historie_stammdaten-aenderungen.pdf",
+  "@type": "File",
+  "UID": "e67f7055691f4257b8c460d5fa78d860",
+  "allow_discussion": null,
+  "contributors": [],
+  "created": "2025-09-11T07:10:20+00:00",
+  "creators": [
+    "bund_dpadmin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "file": {
+    "blob_path": "e67f7055691f4257b8c460d5fa78d860/file/historie_stammdaten-aenderungen.pdf",
+    "content-type": "application/pdf",
+    "filename": "historie_stammdaten-aenderungen.pdf",
+    "size": 169802
+  },
+  "id": "historie_stammdaten-aenderungen.pdf",
+  "is_folderish": false,
+  "language": "##DEFAULT##",
+  "layout": "file_view",
+  "lock": {},
+  "modified": "2025-09-11T07:10:21+00:00",
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "historie_stammdaten-aenderungen.pdf",
+  "type_title": "File",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "bund_dpadmin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-11T07:10:20+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

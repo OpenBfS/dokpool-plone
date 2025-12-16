@@ -26,6 +26,7 @@ ANNOTATIONS_TO_EXPORT = [
     "FacetedLayout",
     "FacetedVersion",
     "docpool_applications_key",
+    "docpool.elan.archiving",
 ]
 
 ANNOTATIONS_KEY = "exportimport.annotations"
@@ -82,6 +83,10 @@ def global_dict_hook(item, obj, config):
     item.pop("exportimport.versions", None)
     item.pop("changeActor", None)
     item.pop("changeNote", None)
+
+    # fix sorting of local_behaviors
+    if item.get("local_behaviors"):
+        item["local_behaviors"] = sorted(item["local_behaviors"])
 
     return item
 

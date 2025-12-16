@@ -149,6 +149,17 @@ body.userrole-contentadmin {
   }
 }
 
+// Hide all fields when editing published entries (only admins and ContentAdmins can edit anyway, #2033)
+.template-edit.portaltype-dpdocument.docstate-published .field {
+  display: none;
+}
+
+// Admins and ContentAdmins can only change event field (#2033)
+.user-is-admin-or-contentadmin.template-edit.portaltype-dpdocument.docstate-published
+  #formfield-form-widgets-IELANDocument-scenarios {
+  display: block;
+}
+
 #content {
   h1 {
     font-size: 1.5rem;

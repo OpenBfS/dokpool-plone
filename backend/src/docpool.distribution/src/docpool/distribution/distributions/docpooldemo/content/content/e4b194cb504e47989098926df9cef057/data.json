@@ -1,0 +1,63 @@
+{
+  "@id": "/bund/contentconfig/scen/beispiel-notfall",
+  "@type": "DPEvent",
+  "AlertingNote": null,
+  "AlertingStatus": "none",
+  "AreaOfInterest": null,
+  "EventCoordinates": null,
+  "EventPhase": null,
+  "EventType": "Emergency",
+  "Journals": [
+    "Einsatztagebuch BfS",
+    "Einsatztagebuch RLZ",
+    "Einsatztagebuch SSK",
+    "Einsatztagebuch Messdienste"
+  ],
+  "OperationMode": "routine",
+  "SectorizingSampleTypes": [],
+  "Status": "active",
+  "TimeOfEvent": "2025-09-23T10:25:00",
+  "UID": "e4b194cb504e47989098926df9cef057",
+  "allow_discussion": null,
+  "changelog": "[{\"Date\": \"23.09.2025 13:44\", \"User\": \"ELAN Administrator\", \"Status\": \"active\", \"EventType\": \"Emergency\", \"Operation mode\": \"Routine mode\", \"Alerting status\": \"keine\", \"Alerting note\": null, \"Phase\": null, \"Sectorizing sample types\": \"\", \"Sectorizing networks\": \"\"}]",
+  "contributors": [],
+  "created": "2025-09-23T11:44:31+00:00",
+  "created_by": "ELAN Administrator",
+  "creators": [
+    "elanadmin"
+  ],
+  "description": "Dokumente zu einem Beispiel Notfall vom 23.09.2025",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "beispiel-notfall",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "lock": {},
+  "mdate": "2025-09-23T13:44:31",
+  "modified": "2025-09-23T11:44:31+00:00",
+  "modified_by": null,
+  "review_state": "published",
+  "rights": null,
+  "subjects": [],
+  "title": "Beispiel-Notfall",
+  "type_title": "DP Event",
+  "version": "current",
+  "wdate": "2025-09-23T13:44:31+00:00",
+  "workflow_history": {
+    "dp_event_workflow": [
+      {
+        "action": null,
+        "actor": "elanadmin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2025-09-23T11:44:31+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}
