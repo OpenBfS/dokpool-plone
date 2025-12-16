@@ -14,6 +14,7 @@ from plone.namedfile.file import NamedBlobImage
 
 import os
 import pytest
+import re
 import transaction
 
 
@@ -42,7 +43,19 @@ class TestListing:
         logout()
         login(self.portal, "user1")
 
-        # create entry
+        # create first entry
+        self.entry = api.content.create(
+            container=self.group_folder,
+            type="DPDocument",
+            title="A Weatherinfo without images",
+            description="foo",
+            docType="weatherinformation",
+            local_behaviors=["elan"],
+            scenarios=getScenariosForCurrentUser(),
+        )
+        assert self.entry.created_by == "user1 (Bund) <i>Group1 (Bund)</i>"
+
+        # create second entry
         self.entry = api.content.create(
             container=self.group_folder,
             type="DPDocument",
@@ -78,26 +91,59 @@ class TestListing:
         page = self.page
         page.goto(f"{self.plone_url}/bund/setActiveApp?app=elan")
         page.goto(f"{self.plone_url}/bund/listing")
-        # Tests if the DPDocument exists
-        first_list_item = page.locator(".listing-item h3").first
-        expect(first_list_item).to_have_text("A Weatherinfo")
+        # Wait for items to get loaded
+        items = page.locator("#listing .listing-item")
+        expect(items).to_have_count(2)
+        # Tests if the DPDocument (without images) exists
+        dp_without_images = page.locator("#listing .listing-item", has_text="A Weatherinfo without images")
+        expect(dp_without_images).to_have_count(1)
         # Publish the DPDocument
-        page.get_by_role("button", name="⋮").click()
-        page.locator("#workflow-transition-publish").click()
+        dp_without_images.get_by_role("button", name="⋮").click()
+        dp_without_images.locator("#workflow-transition-publish").click()
         status_msg = page.locator(".statusmessage-info").first
-        expect(status_msg).to_contain_text(" Info: New review state for A Weatherinfo: Published")
+        expect(status_msg).to_contain_text(
+            " Info: New review state for A Weatherinfo without images: Published"
+        )
 
     def test_inject_open_close(self):
         page = self.page
         page.goto(f"{self.plone_url}/bund/setActiveApp?app=elan")
         page.goto(f"{self.plone_url}/bund/listing")
         # Open item through pat-inject and the stretched link
-        page.locator(".stretched-link").click()
+        first_list_item = page.locator("#listing .listing-item").first
+        first_list_item.locator(".stretched-link").click()
         # Wait for item actions to get injected
         page.wait_for_selector(".actions .list-group")
         expect(page.locator(".actions .list-group")).to_have_count(1)
         metadata = page.locator(".doc_metadata div").last
         expect(metadata).to_contain_text("Wetterinformation (WETTER UND TRAJEKTORIEN)")
+
+    def test_listing_item_actions(self):
+        page = self.page
+        page.goto(f"{self.plone_url}/bund/setActiveApp?app=elan")
+        page.goto(f"{self.plone_url}/bund/listing")
+        # Open the first item through pat-inject and the stretched link
+        items = page.locator("#listing .list-item-inject-link")
+        expect(items).to_have_count(2)
+        # Save the two hrefs (@@listing-item?uid=16fe85e237ab46d3a10b8929e2f956be)
+        hrefs = items.evaluate_all("els => els.map(e => e.getAttribute('href'))")
+        # Extract the uid from the href
+        uids = [re.search(r"uid=([0-9a-f]+)", h).group(1) for h in hrefs if h]
+        assert len(uids) == 2
+        # Click one item
+        uid_to_open = uids[0]
+        page.locator(f'#listing a.list-item-inject-link[href*="uid={uid_to_open}"] h3').click()
+        page.wait_for_selector("a.next-item", state="visible")
+        expected_next_uid = uids[1]
+        # Check if the correct item is open
+        nav = page.locator("ul.list-group[data-current-item]")
+        expect(nav).to_have_attribute("data-current-item", uid_to_open)
+        # Check if the next item has the other uid
+        next_link = page.locator("a.next-item")
+        href = next_link.get_attribute("href")
+        assert href is not None
+        assert f"/resolveuid/{expected_next_uid}" in href
+        # TODO open next item
 
     def test_wizard(self):
         page = self.page
