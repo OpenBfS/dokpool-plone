@@ -21,6 +21,9 @@ Changed:
 - Don't copy transfer logs to a text field when archiving documents; always show both receive and send events. (#5674)
   [tlotze]
 
+- Hide all fields except scenarios when Admins are editing published DPDocuments. (#2033)
+  [pbauer]
+
 - Remove Owner permission to edit published DPDocuments. (#2033)
   [pbauer]
 
@@ -34,16 +37,28 @@ Fixed:
 - Replace old wysiwyg macro with pat-tinymce and fix journal links. (#5824)
   [slindner]
 
-- Increase pyruvate max header and add error logger. (#6337)
-  [slindner]
-
 - Fix archive-listing when the archiving user has been removed. (#6288)
+  [pbauer]
+
+- Fix getMyImage when request is "Special Object Used to Force Acquisition" and fix PIL-calls to generate images from pdf. (#6294)
   [pbauer]
 
 - Fix regexes in DocTypes for finding images and pdfs. (#6294)
   [pbauer]
 
-- Increase pyruvate max header and add error logger (#6337)
+- Fix doctypePermission for imported DPTransferFolder in demo-content. (#6310)
+  [pbauer]
+
+
+Technical:
+
+- Add docstrings to local behavior module. (#6155)
+  [pbauer]
+
+- Add tests for local behavior feature. (#6155)
+  [pbauer]
+
+- Increase pyruvate max header and add error logger. (#6337)
   [slindner]
 
 
