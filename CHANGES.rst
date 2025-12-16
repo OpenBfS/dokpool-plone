@@ -6,17 +6,18 @@ Changelog
 
 Changed:
 
-- Demo-content distribution for 4 docpools with groups, users and valid content for all apps (#5711).
+- Demo-content distribution for 4 docpools with groups, users and valid content for all apps. (#5711)
   [pbauer]
 
-- Remove concept of substitute scenarios (#6339)
+- Remove concept of substitute scenarios. (#6339)
   [tlotze]
 
-- Remove transfer veto by ELAN because of unknown scenarios (#6338)
-  [tlotze] 
+- Remove transfer veto by ELAN because of unknown scenarios. (#6338)
+  [tlotze]
 
-- Do not use behavior plone.excludefromnavigation for DPDocuments (#6319)
+- Do not use behavior plone.excludefromnavigation for DPDocuments. (#6319)
   [pbauer]
+
 
 Fixed:
 
@@ -24,14 +25,18 @@ Fixed:
   turns out to be not well-defined). (#6125)
   [tlotze]
 
-- Replace old wysiwyg macro with pat-tinymce and fix journal links (#5824)
+- Replace old wysiwyg macro with pat-tinymce and fix journal links. (#5824)
   [slindner]
 
-- Increase pyruvate max header and add error logger (#6337)
-  [slindner] 
+- Increase pyruvate max header and add error logger. (#6337)
+  [slindner]
 
-- Fix archive-listing when the archiving user has been removed (#6288)
+- Fix archive-listing when the archiving user has been removed. (#6288)
   [pbauer]
+
+- Fix regexes in DocTypes for finding images and pdfs. (#6294)
+  [pbauer]
+
 
 2.3.0 (2025-10-23)
 ------------------

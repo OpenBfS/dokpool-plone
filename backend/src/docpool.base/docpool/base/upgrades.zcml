@@ -35,4 +35,15 @@
         />
   </genericsetup:upgradeSteps>
 
+  <genericsetup:upgradeSteps
+      profile="docpool.base:default"
+      source="1011"
+      destination="1012"
+      >
+    <genericsetup:upgradeStep
+        title="Fix regex to find pdfs and images"
+        handler="docpool.base.upgrades.to_1012"
+        />
+  </genericsetup:upgradeSteps>
+
 </configure>
