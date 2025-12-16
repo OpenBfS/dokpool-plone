@@ -45,3 +45,8 @@ def to_1012(context=None):
             obj.imgPattern = fixed_image
             obj._p_changed = 1
             log.info("Fixed imgPattern for %s", brain.getURL())
+
+    # remove obsolete copies of transfer logs
+    for brain in api.content.find(portal_type="DPDocument"):
+        if hasattr((obj := brain.getObject()).aq_base, "transferLog"):
+            del obj.transferLog
