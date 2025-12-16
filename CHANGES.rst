@@ -18,6 +18,8 @@ Changed:
 - Do not use behavior plone.excludefromnavigation for DPDocuments. (#6319)
   [pbauer]
 
+- Don't copy transfer logs to a text field when archiving documents; always show both receive and send events. (#5674)
+  [tlotze]
 
 Fixed:
 
@@ -37,6 +39,8 @@ Fixed:
 - Fix regexes in DocTypes for finding images and pdfs. (#6294)
   [pbauer]
 
+- Increase pyruvate max header and add error logger (#6337)
+  [slindner]
 
 2.3.0 (2025-10-23)
 ------------------
