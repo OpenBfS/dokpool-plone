@@ -6,6 +6,7 @@ from docpool.base.config import BASE_APP
 from docpool.base.config import TRANSFERS_APP
 from docpool.base.content.archiving import IArchiving
 from docpool.base.content.dpdocument import IDPDocument
+from docpool.base.utils import get_content_area
 from docpool.base.utils import get_current_state_title
 from docpool.elan.config import ELAN_APP
 from docpool.elan.utils import getScenariosForCurrentUser
@@ -174,6 +175,10 @@ class Listing(BrowserView):
         # Filter by context
         # TODO: Handle listing in content-area (which is a folder-listing)
         # TODO: Remove implicit default filtering on path + /content in docpool.elan.monkey
+        content_area = get_content_area(self.context)
+        if content_area:
+            self.query["path"] = "/".join(content_area.getPhysicalPath())
+        else:
         self.query["path"] = "/".join(self.context.getPhysicalPath())
 
         # Prepare review_state filter options (query needs to be complete)
