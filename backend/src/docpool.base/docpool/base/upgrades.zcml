@@ -44,6 +44,10 @@
         title="Fix regex to find pdfs and images"
         handler="docpool.base.upgrades.to_1012"
         />
+    <genericsetup:upgradeStep
+        title="Reload dp_doc_workflow and remove Owner permissions in published state"
+        handler="docpool.base.upgrades.to_1012_update_dp_doc_workflow"
+        />
   </genericsetup:upgradeSteps>
 
 </configure>
