@@ -47,6 +47,7 @@ class Listing(BrowserView):
 
         # Mod-Date dazu und hash über udis & mod-date
         self.items = uids
+        self.json_items = json.dumps(uids)
         self.modified = json.dumps(modified.timeTime()) if modified else None
         return self.index()
 

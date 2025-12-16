@@ -99,7 +99,7 @@ class TestUIFeatures(unittest.TestCase):
         # render listing view
         html = listing_view()
         self.assertIn(
-            f'<a class="pat-inject" data-pat-inject="trigger: autoload-visible; delay: 50; target: self" href="@@listing-item?uid={self.entry.UID()}" >',
+            f'<a class="pat-inject list-item-inject-link" data-pat-inject="trigger: autoload-visible; delay: 50; target: self" href="@@listing-item?uid={self.entry.UID()}" >',
             html,
         )
 

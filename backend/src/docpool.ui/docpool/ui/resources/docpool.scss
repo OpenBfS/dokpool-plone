@@ -1,5 +1,6 @@
 @import "header";
 @import "sidebar";
+
 $plone-default-private-color: #b74d48;
 $plone-default-pending-color: #e5bc4a;
 $plone-default-pending_bfs-color: #e5bc4a;
@@ -55,8 +56,7 @@ $plone-default-revised-color: #d4d4d4;
 
 img.doktype-icon {
   width: 100%;
-  filter: invert(24%) sepia(6%) saturate(3251%) hue-rotate(170deg)
-    brightness(97%) contrast(93%);
+  filter: invert(24%) sepia(6%) saturate(3251%) hue-rotate(170deg) brightness(97%) contrast(93%);
 }
 
 .card-body.review-state {
@@ -138,23 +138,38 @@ img.doktype-icon {
       color: $plone-default-published-color;
     }
   }
+
   .doctype-box {
     width: 80px;
+
     .doktype-icon-container {
       background-color: var(--bs-gray-light);
     }
   }
+
   .text-box {
     display: grid;
     width: 50%;
+
     h3 {
       font-size: 14px;
       color: #0f2237;
     }
+
     .description {
       font-size: 10px;
       color: $plone-default-published-color;
     }
+  }
+
+  .dp-document-dropdown {
+  }
+
+  .list-item-link {
+    position: absolute;
+    inset: 0;
+    right: 44px;
+    z-index: 1;
   }
 }
 
