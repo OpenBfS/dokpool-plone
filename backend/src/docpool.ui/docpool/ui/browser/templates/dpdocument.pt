@@ -57,7 +57,7 @@
                 <li class="list-group-item">
                   <a class="pat-inject"
                      href="edit"
-                     data-pat-inject="trigger: default; source: #content; target: #content-core; history: record"
+                     data-pat-inject="trigger: default; source: #content; target: #content; history: record"
                      tal:condition="python: can_edit"
                      tal:attributes="
                        href python: f'{context.absolute_url()}/@@edit?_authenticator={token}';
@@ -67,7 +67,7 @@
                 <li class="list-group-item">
                   <a class="pat-inject"
                      href="delete"
-                     data-pat-inject="source: #content; target: #content-core"
+                     data-pat-inject="source: #content; target: #content"
                      tal:condition="python: can_delete"
                      tal:attributes="
                        href python: f'{context.absolute_url()}/@@delete_confirmation?_authenticator={token}';
