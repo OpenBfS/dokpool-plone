@@ -179,7 +179,7 @@ class Listing(BrowserView):
         if content_area:
             self.query["path"] = "/".join(content_area.getPhysicalPath())
         else:
-        self.query["path"] = "/".join(self.context.getPhysicalPath())
+            self.query["path"] = "/".join(self.context.getPhysicalPath())
 
         # Prepare review_state filter options (query needs to be complete)
         for state in review_state_filter_config:
