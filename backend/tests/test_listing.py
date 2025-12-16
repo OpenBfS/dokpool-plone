@@ -87,20 +87,17 @@ class TestListing:
         status_msg = page.locator(".statusmessage-info").first
         expect(status_msg).to_contain_text(" Info: New review state for A Weatherinfo: Published")
 
-    def test_modal_open_close(self):
+    def test_inject_open_close(self):
         page = self.page
         page.goto(f"{self.plone_url}/bund/setActiveApp?app=elan")
         page.goto(f"{self.plone_url}/bund/listing")
-        # Open modal
-        page.get_by_role("link", name="A Weatherinfo", exact=True).click()
-        # Wait for modal to open
-        page.wait_for_selector("div#pat-modal")
-        expect(page.locator("div#pat-modal")).to_have_count(1)
+        # Open item through pat-inject and the stretched link
+        page.locator(".stretched-link").click()
+        # Wait for item actions to get injected
+        page.wait_for_selector(".actions .list-group")
+        expect(page.locator(".actions .list-group")).to_have_count(1)
         metadata = page.locator(".doc_metadata div").last
         expect(metadata).to_contain_text("Wetterinformation (WETTER UND TRAJEKTORIEN)")
-        # Close modal
-        page.get_by_role("button", name="Close").click()
-        expect(page.locator("div.panel-content")).to_have_count(0)
 
     def test_wizard(self):
         page = self.page
