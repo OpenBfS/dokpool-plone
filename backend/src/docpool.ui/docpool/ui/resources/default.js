@@ -9,8 +9,19 @@ document.addEventListener("patterns-injected-delayed", (e) => {
 
   if (!e.target.matches("#content.container")) return;
 
-  // TODO Cleanup duplicate code
   const $navContainer = $(".list-group[data-current-item]");
+
+  // Add saved query string to back link (listing), if present
+  const savedQuery = localStorage.getItem("dokpool-listing-query");
+  if (savedQuery && savedQuery.length > 0) {
+    const $backLink = $navContainer.find(".list-group-item.back a");
+    const backHref = $backLink.attr("href");
+    if (backHref && !backHref.includes("?")) {
+      $backLink.attr("href", `${backHref}?${savedQuery}`);
+    }
+  }
+
+  // TODO Cleanup duplicate code
   const currentUid = $navContainer.data("current-item");
   var $nextLink = $navContainer.find(".list-group-item.next a");
   if ($nextLink.length > 0) {
@@ -53,14 +64,19 @@ function getNeighborUrl(currentUid, direction) {
 }
 
 $(document).on("click", "a.pat-inject.list-item-link", function (e) {
-  // TODO Find correct event / click ...
+  // TODO Find correct event / click - if there is a better on??
 
-  const $listing = $("#listing");
-  if ($listing.length > 0) {
-    const items = $listing.data("items");
+  const listing = $("#listing");
+  if (listing.length > 0) {
+    // Save the (filtered) list into localstorage
+    const items = listing.data("items");
     if (items) {
       localStorage.setItem("dokpool-listing-items", JSON.stringify(items));
       console.log("Localstorage saved", items.length);
     }
+    // Save the filter query into localstorage
+    const params = new URLSearchParams(window.location.search);
+    // Override if empty
+    localStorage.setItem("dokpool-listing-query", params.toString());
   }
 });

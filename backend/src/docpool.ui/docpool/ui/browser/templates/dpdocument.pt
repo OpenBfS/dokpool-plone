@@ -37,7 +37,7 @@
                     data-current-item python: context.UID();
                   "
               >
-                <li class="list-group-item">
+                <li class="list-group-item back">
                   <a href="#"
                      tal:attributes="
                        href python: view.getDocpoolListingPath();
