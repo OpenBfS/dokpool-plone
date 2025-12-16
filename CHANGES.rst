@@ -21,6 +21,10 @@ Changed:
 - Don't copy transfer logs to a text field when archiving documents; always show both receive and send events. (#5674)
   [tlotze]
 
+- Remove Owner permission to edit published DPDocuments. (#2033)
+  [pbauer]
+
+
 Fixed:
 
 - Prevent access to ELAN-specific attributes on non-ELAN documents (which
@@ -41,6 +45,7 @@ Fixed:
 
 - Increase pyruvate max header and add error logger (#6337)
   [slindner]
+
 
 2.3.0 (2025-10-23)
 ------------------
