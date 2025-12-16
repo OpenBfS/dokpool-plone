@@ -24,7 +24,8 @@
     <div tal:content="python: toLocalizedTime(data['date'], time_only=1)">15:45</div>
     <div class="text-muted small"
          tal:content="python: toLocalizedTime(data['date'], long_format=0)"
-    >16.12.2021</div>
+    >16.12.2021
+    </div>
   </div>
 
   <div class="me-3 doctype-box flex-shrink-0">
@@ -132,9 +133,9 @@
     </div>
   </div>
 
-  <div class="ms-3 bg-light position-relative z-2">
-    <div class="dropdown position-relative z-3">
-      <a class="btn btn-secondary text-bg-secondary btn-sm"
+  <div class="ms-3 dp-document-dropdown bg-light position-relative d-flex align-items-center justify-content-center">
+    <div class="dropdown">
+      <a class="btn btn-secondary text-bg-secondary btn-sm z-3"
          aria-expanded="false"
          href="#"
          role="button"
@@ -142,7 +143,7 @@
       >
         &#8942;
       </a>
-      <ul class="dropdown-menu pe-2">
+      <ul class="dropdown-menu pe-2 z-3">
         <li>
           <a class="dropdown-item"
              href="#"
@@ -169,7 +170,7 @@
                   i18n:domain="plone"
                   i18n:translate=""
             >Mark as Favorite</span>
-             (TODO)
+            (TODO)
           </a>
         </li>
         <tal:transitions tal:repeat="transition python: data['available_transitions']">
@@ -246,7 +247,7 @@
                   i18n:domain="plone"
                   i18n:translate=""
             >Cut</span>
-             (TODO)
+            (TODO)
           </a>
         </li>
       </ul>
