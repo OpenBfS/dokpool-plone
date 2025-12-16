@@ -86,7 +86,12 @@ class ELANDocument(FlexibleView):
     @property
     @elan_only
     def scenarios(self):
-        return getattr(self.context, "scenarios", [])
+        # Dexterity overrides __getattr__ to return a default, which is not what we want. hasattr() just calls
+        # getattr() so it wouldn't be any help.
+        try:
+            return self.context.aq_base.__getattribute__("scenarios")
+        except AttributeError:
+            return []
 
     @scenarios.setter
     @elan_only
