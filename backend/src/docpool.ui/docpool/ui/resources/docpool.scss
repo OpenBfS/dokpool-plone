@@ -56,7 +56,8 @@ $plone-default-revised-color: #d4d4d4;
 
 img.doktype-icon {
   width: 100%;
-  filter: invert(24%) sepia(6%) saturate(3251%) hue-rotate(170deg) brightness(97%) contrast(93%);
+  filter: invert(24%) sepia(6%) saturate(3251%) hue-rotate(170deg)
+    brightness(97%) contrast(93%);
 }
 
 .card-body.review-state {
@@ -162,9 +163,6 @@ img.doktype-icon {
     }
   }
 
-  .dp-document-dropdown {
-  }
-
   .list-item-link {
     position: absolute;
     inset: 0;
@@ -228,6 +226,11 @@ body.template-listing {
   #portal-breadcrumbs,
   header h1,
   #content header {
-    display: None;
+    display: none;
   }
+}
+
+body.template-listing .autotoc-nav,
+body.portaltype-dpdocument.template-edit .autotoc-nav {
+  display: none !important;
 }
