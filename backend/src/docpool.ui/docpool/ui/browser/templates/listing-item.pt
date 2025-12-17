@@ -105,7 +105,8 @@
                target="_blank"
                tal:attributes="
                  href python: item.getURL();
-               ">
+               "
+            >
               <div class="d-flex align-items-center justify-content-center h-100 bg-dark-subtle">
                 <span class="text-gray-main bg-body-secondary p-1 rounded-1"
                       tal:content="python: item.content_type().split('/')[-1].upper()"
