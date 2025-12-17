@@ -28,3 +28,36 @@ def to_1011(context=None):
         portal_setup,
         "profile-docpool.base:to_1011",
     )
+
+
+def to_1012(context=None):
+    # Fix regex for images and pdfs
+    broken = ".*"
+    fixed_pdf = ".+\.pdf$"
+    fixed_image = ".+\.(png|jpg)$"
+    for brain in api.content.find(portal_type="DocType"):
+        obj = brain.getObject()
+        if obj.pdfPattern and obj.pdfPattern == broken:
+            obj.pdfPattern = fixed_pdf
+            obj._p_changed = 1
+            log.info("Fixed pdfPattern for %s", brain.getURL())
+        if obj.imgPattern and obj.imgPattern == broken:
+            obj.imgPattern = fixed_image
+            obj._p_changed = 1
+            log.info("Fixed imgPattern for %s", brain.getURL())
+
+    # remove obsolete copies of transfer logs
+    for brain in api.content.find(portal_type="DPDocument"):
+        if hasattr((obj := brain.getObject()).aq_base, "transferLog"):
+            del obj.transferLog
+            obj._p_changed = 1
+
+
+def to_1012_update_dp_doc_workflow(context=None):
+    # Update dp_doc_workflow
+    log.info("Reload dp_doc_workflow and remove Owner permissions in published state")
+    portal_setup = api.portal.get_tool("portal_setup")
+    loadMigrationProfile(portal_setup, "profile-docpool.base:default", steps=["workflow"])
+    portal_workflow = api.portal.get_tool("portal_workflow")
+    log.info("Upgrading permissions...")
+    portal_workflow.updateRoleMappings()

@@ -21,13 +21,6 @@
         <table class="listing table table-striped table-bordered">
 
           <tr tal:define="
-                widget python:view.widgets['Substitute'];
-              ">
-            <td tal:content="widget/label"></td>
-            <td tal:content="structure widget/render"></td>
-          </tr>
-
-          <tr tal:define="
                 widget python:view.widgets['EventType'];
               ">
             <td tal:content="widget/label"></td>

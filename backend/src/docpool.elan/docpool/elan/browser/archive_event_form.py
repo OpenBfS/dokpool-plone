@@ -1,6 +1,5 @@
 from Acquisition import aq_get
 from datetime import datetime
-from docpool.base.config import TRANSFERS_APP
 from docpool.base.content.archiving import IArchiving
 from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
 from docpool.config.local.base import navSettings
@@ -248,7 +247,6 @@ class ArchiveAndClose(BrowserView):
         )
 
         mdate = obj.modified()
-        transfer_events = obj.doc_extension(TRANSFERS_APP).transferEvents()
         old_state = api.content.get_state(obj)
         moved_obj = api.content.move(obj, target_folder_obj)
         new_state = api.content.get_state(moved_obj)
@@ -269,8 +267,6 @@ class ArchiveAndClose(BrowserView):
         # Now do some repairs
         moved_obj.scenarios = []
         moved_obj.setModificationDate(mdate)
-        # transferLog for archived items needs to be a string
-        moved_obj.transferLog = str(transfer_events)
         moved_obj.reindexObject(idxs=["modified", "review_state", "scenarios"])
 
     def _copy_to_archive(self, target_folder_obj, obj):
@@ -304,9 +300,6 @@ class ArchiveAndClose(BrowserView):
                 api.content.transition(copied_obj, to_state=old_state)
 
         copied_obj.setModificationDate(mdate)
-        # transferLog for archived items needs to be a string
-        events = obj.doc_extension(TRANSFERS_APP).transferEvents()
-        copied_obj.transferLog = str(events)
         copied_obj.reindexObject(idxs=["modified", "review_state", "scenarios"])
 
         # Cleanup original DPDocument

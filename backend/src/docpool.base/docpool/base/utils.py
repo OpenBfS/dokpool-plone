@@ -171,6 +171,8 @@ def getUserInfo(obj, username=None):
     mtool = api.portal.get_tool("portal_membership")
     if username:
         user = mtool.getMemberById(username)
+        if not user:
+            return username, None, None
     else:
         user = mtool.getAuthenticatedMember()
         # we can be called with a special permission context (execute_under_special_role)

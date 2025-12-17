@@ -1,11 +1,9 @@
-from docpool.base import DocpoolMessageFactory as _
 from docpool.base.behaviors.transferable import IAppSpecificTransfer
 from docpool.base.content.dpdocument import IDPDocument
 from docpool.base.content.dptransferfolder import IDPTransferFolder
 from docpool.base.utils import _copyPaste
 from docpool.elan.behaviors.elandocument import IELANDocument
 from docpool.elan.config import ELAN_APP
-from docpool.elan.utils import getOpenScenarios
 from plone import api
 from Products.CMFPlone.utils import log_exc
 from zope.component import adapter
@@ -24,28 +22,7 @@ class ELANSpecificTransfer:
         self.have_elan = ELAN_APP in self.transfer_folder.myDocumentPool().supportedApps
 
     def assert_allowed(self):
-        if not self.have_elan:
-            return
-
-        # Scenarios unknown at the target may either be blocked or handled (which currently means they will be
-        # created at the target later on). If they are going to be handled anyway, we're fine.
-        if self.transfer_folder.unknownScenDefault != "block":
-            return
-
-        # At this point, we're not going to be able to keep scenarios that are unknown at the target. Our
-        # policy is to veto against the transfer rather than lose scenario associations.
-
-        # TODO The following is inefficient in that it creates a list of
-        # full objects, but it effectively filters elanobj.scenarios for
-        # those that actually exist in the catalog. Is this necessary?
-        # FIXME: The following logic appears to be broken, see #5723.
-        scens = self.elanobj.myScenarioObjects()
-        if scens:
-            scen_id = scens[0].getId()
-            if not any(scen.getId == scen_id for scen in getOpenScenarios(self.transfer_folder)):
-                raise ValueError(_("Unknown scenario not accepted."))
-        else:
-            raise ValueError(_("Document has no scenario."))
+        return
 
     def sender_log_entry(self):
         scenario_ids = ", ".join(b.getId for b in api.content.find(UID=self.elanobj.scenarios))
@@ -77,10 +54,7 @@ def ensureScenariosInTarget(scenarios, target_docpool):
     For each scenario assigned to the original, try to identify a scenario at the target
     ESD, matching by object id. Copy unmatched scenarios to target ESD.
 
-    According to #5872, make sure copied scenarios are in published state. For each
-    existing equivalent scenario in the target that is in private state, if it defines
-    a published substitute scenario, replace it with that.
-
+    According to #5872, make sure copied scenarios are in published state.
     """
     scen = target_docpool.contentconfig.scen
 
@@ -88,10 +62,6 @@ def ensureScenariosInTarget(scenarios, target_docpool):
         copy_id = orig_brain.getId
         if scen.hasObject(copy_id):
             copy_event = scen[copy_id]
-            if api.content.get_state(copy_event) == "private" and copy_event.Substitute:
-                substitute = copy_event.Substitute.to_object
-                if substitute.canBeAssigned():
-                    copy_event = substitute
         else:
             orig_event = orig_brain.getObject()
             copy_id = _copyPaste(orig_event, scen)

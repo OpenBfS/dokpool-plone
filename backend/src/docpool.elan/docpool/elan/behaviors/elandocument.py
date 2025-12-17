@@ -86,7 +86,12 @@ class ELANDocument(FlexibleView):
     @property
     @elan_only
     def scenarios(self):
-        return getattr(self.context, "scenarios", [])
+        # Dexterity overrides __getattr__ to return a default, which is not what we want. hasattr() just calls
+        # getattr() so it wouldn't be any help.
+        try:
+            return self.context.aq_base.__getattribute__("scenarios")
+        except AttributeError:
+            return []
 
     @scenarios.setter
     @elan_only
@@ -124,10 +129,12 @@ class ELANDocument(FlexibleView):
         return self.unknownScenario() is None
 
     def myScenarioObjects(self):
-        """Return all DPEvent objects in the dokpool for this object."""
+        """Return DPEvent objects associated with this document."""
         # We can not use the catalog (and therefore, plone.api.content.get()) here since
         # this is used in a indexer and during clear & rebuild no Events would be found.
         # The path of events is assumed to be <docpool>/contentconfig/scen
+        # This implicitly filters for events present in the document's docpool but then,
+        # other events than those should not be associated with the document anyway.
         results = []
         if not (scns := self.scenarios):
             return results

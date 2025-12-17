@@ -75,17 +75,6 @@ class IDPTransferFolder(model.Schema, IFolderBase):
         source="docpool.transfers.vocabularies.UnknownOptions",
     )
 
-    unknownScenDefault = schema.Choice(
-        title=_(
-            "label_dptransferfolder_unknownscendefault",
-            default="Default for unknown scenarios",
-        ),
-        description=_("description_dptransferfolder_unknownscendefault", default=""),
-        required=True,
-        default="block",
-        source="docpool.transfers.vocabularies.UnknownOptions",
-    )
-
 
 @implementer(IDPTransferFolder)
 class DPTransferFolder(FolderBase):

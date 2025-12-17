@@ -40,6 +40,8 @@ ifeq (, $(shell which $(UV) ))
   $(error "UV=$(UV) not found in $(PATH)")
 endif
 
+PYTHON_VERSION=3.12
+
 PLONE_SITE_ID=Plone
 BACKEND_FOLDER=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 PLONE_VERSION=$(shell cat $(BACKEND_FOLDER)/version.txt)
@@ -68,7 +70,7 @@ requirements-mxdev.txt: pyproject.toml mx.ini ## Generate constraints file
 
 $(VENV_FOLDER): requirements-mxdev.txt ## Install dependencies
 	@echo "$(GREEN)==> Install environment$(RESET)"
-	@uv venv $(VENV_FOLDER)
+	@uv venv --python $(PYTHON_VERSION) $(VENV_FOLDER)
 	@uv pip install -r requirements-mxdev.txt
 
 .PHONY: sync
