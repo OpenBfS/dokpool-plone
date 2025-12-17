@@ -36,13 +36,6 @@
           </tal:file>
           <p tal:content="python: item.title">Title</p>
           <p tal:content="python: item.description">Description.</p>
-          <a class="pat-plone-modal"
-             data-pat-plone-modal='{"content": "#content-core", "templateOptions": {"classDialog": "modal-dialog modal-xl"}}'
-             tal:condition="python: is_image"
-             tal:attributes="
-               href python: item.getURL() + '/image_view_fullscreen';
-             "
-          ><img src="${python:icons.url('eye')}" /></a>
           <a href=""
              title="download"
              tal:attributes="

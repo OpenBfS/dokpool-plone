@@ -101,18 +101,24 @@
           <div class="preview-tile position-relative rounded-1"
                tal:condition="python: item.portal_type != 'Image'"
           >
-            <div class="d-flex align-items-center justify-content-center h-100 bg-dark-subtle">
-              <span class="text-gray-main bg-body-secondary p-1 rounded-1"
-                    tal:content="python: item.content_type().split('/')[-1].upper()"
-              >XLS</span>
-              <div class="position-absolute bottom-0 end-0 bg-light px-2 rounded-top-start rounded-bottom-end"
-                   tal:condition="python: plus_number"
-              >
-                <span class="text-small text-gray-darker"
-                      tal:content="python: '+' + str(plus_number)"
-                >+3</span>
+            <a href=""
+               target="_blank"
+               tal:attributes="
+                 href python: item.getURL();
+               ">
+              <div class="d-flex align-items-center justify-content-center h-100 bg-dark-subtle">
+                <span class="text-gray-main bg-body-secondary p-1 rounded-1"
+                      tal:content="python: item.content_type().split('/')[-1].upper()"
+                >XLS</span>
+                <div class="position-absolute bottom-0 end-0 bg-light px-2 rounded-top-start rounded-bottom-end"
+                     tal:condition="python: plus_number"
+                >
+                  <span class="text-small text-gray-darker"
+                        tal:content="python: '+' + str(plus_number)"
+                  >+3</span>
+                </div>
               </div>
-            </div>
+            </a>
           </div>
         </tal:item>
       </tal:items>

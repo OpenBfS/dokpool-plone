@@ -19,7 +19,8 @@
                target="_blank"
                tal:content="python: item.title"
                tal:attributes="
-                 href python: item.getURL() + '/@@images/image/huge';
+                 class python: 'gallery-item' if is_image else '';
+                 href python: item.getURL() + '/@@images/image/huge' if is_image else item.getURL();
                "
             >
             </a>
