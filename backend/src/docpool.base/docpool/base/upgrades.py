@@ -1,3 +1,4 @@
+from docpool.base.setuphandlers import create_session_stuff
 from plone import api
 from plone.app.upgrade.utils import loadMigrationProfile
 from plone.base.utils import get_installer
@@ -61,3 +62,18 @@ def to_1012_update_dp_doc_workflow(context=None):
     portal_workflow = api.portal.get_tool("portal_workflow")
     log.info("Upgrading permissions...")
     portal_workflow.updateRoleMappings()
+
+
+def to_3000(context=None):
+    """Upgrade existing DB to new GUI"""
+    portal = api.portal.get()
+    installer = get_installer(portal)
+    if not installer.is_product_installed("docpool.ui"):
+        installer.install_product("docpool.ui")
+
+    portal_setup = api.portal.get_tool("portal_setup")
+    loadMigrationProfile(
+        portal_setup,
+        "profile-docpool.base:to_3000",
+    )
+    create_session_stuff(portal)

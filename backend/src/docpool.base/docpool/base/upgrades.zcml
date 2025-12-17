@@ -12,6 +12,14 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       directory="profiles/to_1011"
       />
+genericsetup
+  <genericsetup:registerProfile
+      name="to_3000"
+      title="Upgrade profile for docpool.base"
+      description=""
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      directory="profiles/to_3000"
+      />
 
   <genericsetup:upgradeSteps
       profile="docpool.base:default"
@@ -47,6 +55,17 @@
     <genericsetup:upgradeStep
         title="Reload dp_doc_workflow and remove Owner permissions in published state"
         handler="docpool.base.upgrades.to_1012_update_dp_doc_workflow"
+        />
+  </genericsetup:upgradeSteps>
+
+  <genericsetup:upgradeSteps
+      profile="docpool.base:default"
+      source="*"
+      destination="3000"
+      >
+    <genericsetup:upgradeStep
+        title="Upgrade existing databse to use the new GUI"
+        handler="docpool.base.upgrades.to_3000"
         />
   </genericsetup:upgradeSteps>
 
