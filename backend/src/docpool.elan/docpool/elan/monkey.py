@@ -1,3 +1,4 @@
+# TODO: Remove once the new GUI is finished
 from docpool.elan.utils import getScenariosForCurrentUser
 from Products.CMFPlone.CatalogTool import CatalogTool
 
