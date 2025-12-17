@@ -321,12 +321,6 @@
           name="object"
   >
     <object meta_type="CMF Action"
-            name="folderContents"
-            i18n:domain="plone"
-    >
-      <property name="available_expr">python:context.portal_type != "DPDocument"</property>
-    </object>
-    <object meta_type="CMF Action"
             name="local_roles"
             i18n:domain="plone"
     >
