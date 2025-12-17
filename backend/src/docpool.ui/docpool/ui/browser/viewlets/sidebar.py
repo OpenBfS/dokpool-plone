@@ -10,6 +10,10 @@ class ISidebarManager(IViewletManager):
     """Custom sidebar manager"""
 
 
+class ISidebarAppSpecificManager(IViewletManager):
+    """App-specific viewlets in sidebar"""
+
+
 class SidebarViewlet(common.ViewletBase):
     index = ViewPageTemplateFile("sidebar.pt")
 
