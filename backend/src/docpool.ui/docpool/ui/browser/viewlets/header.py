@@ -61,6 +61,9 @@ class PortalHeader(ViewletBase):
 
     def apps_menu(self):
         current_dp_id = self.dp.getId() if self.dp else None
+        all_apps = sorted(
+            (appName(name), name) for name in set().union(*[names for _, names in self.dp_apps])
+        )
 
         for dp, app_names in self.dp_apps:
             dp_id = dp.getId()
@@ -69,12 +72,20 @@ class PortalHeader(ViewletBase):
                 current_dp_id == dp_id and "content" in physical_path and "archive" not in physical_path
             )
             url = (self.context if keep_context else dp).absolute_url()
-            for app_title, app_name in sorted({appName(i): i for i in app_names}.items()):
-                params = "" if keep_context else "&redirect_to=/@@listing"
-                yield dict(
-                    title=f"{app_title} - {dp.title}",
-                    url=f"{url}/setActiveApp?app={app_name}{params}",
-                )
+            params = "" if keep_context else "&redirect_to=/@@listing"
+            yield dict(
+                dptitle=dp.title,
+                selected=dp_id == current_dp_id,
+                apps=[
+                    dict(
+                        title=f"{app_title}",
+                        url=f"{url}/setActiveApp?app={app_name}{params}",
+                    )
+                    if app_name in app_names
+                    else None
+                    for app_title, app_name in all_apps
+                ],
+            )
 
 
 class EventSwitcherViewlet(EventSwitcherMixin, ViewletBase):

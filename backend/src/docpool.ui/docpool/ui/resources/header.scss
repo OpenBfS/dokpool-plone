@@ -54,6 +54,25 @@ body {
   text-transform: uppercase;
 }
 
+.app-dropdown-menu .d-table-cell {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 20px;
+}
+
+.app-dropdown-menu .d-table-cell:first-child {
+  padding-left: 20px;
+}
+
+.app-dropdown-menu a {
+  padding-left: 20px;
+  text-decoration: none;
+}
+
+.app-dropdown-menu li:last-child .border-bottom {
+  border-bottom: none;
+}
+
 .nav-active {
   background-color: var(--bs-light-blue);
   border-bottom: 2px solid var(--bs-primary);
@@ -107,7 +126,7 @@ body {
   margin-bottom: 10px;
 }
 
-.event-dropdown-menu .selected {
+.menu-config-dropdown .selected {
   background-color: var(--bs-light-blue);
 }
 

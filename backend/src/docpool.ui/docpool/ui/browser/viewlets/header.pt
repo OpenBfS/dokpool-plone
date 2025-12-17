@@ -36,11 +36,19 @@
             <tal:icon replace="structure python:icons.tag('chevron-down', tag_class='ms-1')" />
           </button>
 
-          <ul class="dropdown-menu menu-config-dropdown">
-            <li class="dropdown-item"
+          <ul class="dropdown-menu menu-config-dropdown app-dropdown-menu">
+            <li class="dropdown-item d-table-row ${python: 'selected' if item['selected'] else ''}"
                 tal:repeat="item python: view.apps_menu()"
             >
-              <a href="${item/url}">${item/title}</a>
+              <div class="d-table-cell border-bottom small">${item/dptitle}</div>
+              <div class="d-table-cell border-bottom"
+                   tal:repeat="app python:item['apps']"
+              >
+                <a class="border-start small text-primary"
+                   href="${app/url}"
+                   tal:condition="python: app"
+                >${app/title}</a>
+              </div>
             </li>
           </ul>
 
