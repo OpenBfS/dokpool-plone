@@ -17,6 +17,7 @@
      data-pat-inject="trigger: default; source: #portal-column-content; target: #content-core; history: record"
      tal:attributes="
        href python: data['url'];
+       title python:data['doctype_title'];
      "
   >
     <span class="visually-hidden">Stretched link to details view</span></a>
