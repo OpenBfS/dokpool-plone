@@ -88,7 +88,7 @@ class TestListing:
         transaction.commit()
 
     # Opens dropdown actions and clicks publish
-    def test_publish_dpdocument(self):
+    def test_dropdown_publish_dpdocument(self):
         page = self.page
         page.goto(f"{self.plone_url}/bund/setActiveApp?app=elan")
         page.goto(f"{self.plone_url}/bund/listing")
@@ -106,7 +106,32 @@ class TestListing:
             " Info: New review state for A Weatherinfo without images: Published"
         )
 
-    def test_inject_open_and_back(self):
+    def test_dropdown_edit(self):
+        page = self.page
+        page.goto(f"{self.plone_url}/bund/setActiveApp?app=elan")
+        page.goto(f"{self.plone_url}/bund/listing")
+        # Wait for items to get loaded
+        items = page.locator("#listing .listing-item")
+        expect(items).to_have_count(2)
+        # Tests if the DPDocument (without images) exists
+        dp_without_images = page.locator("#listing .listing-item", has_text="A Weatherinfo without images")
+        dp_without_images.get_by_role("button", name="⋮").click()
+        page.locator(".dropdown").get_by_role("link", name="Edit", exact=True).click()
+        page.get_by_role("textbox", name="Title •").click()
+        page.locator("#form-widgets-IDublinCore-title").fill("A Weatherinfo with updated title")
+        page.locator("iframe").content_frame.get_by_label("Rich Text Area").click()
+        page.locator("iframe").content_frame.get_by_label("Rich Text Area").fill("Test text")
+        # Click somewhere else, so Save button gets activated
+        page.locator("#form-widgets-IDublinCore-title").click()
+        page.get_by_role("button", name="Save").click()
+        # TODO Implement Redirect from save button
+        page.goto(f"{self.plone_url}/bund/listing")
+        dp_without_images = page.locator(
+            "#listing .listing-item", has_text="A Weatherinfo with updated title"
+        )
+        expect(dp_without_images).to_have_count(1)
+
+    def test_inject_and_go_back(self):
         page = self.page
         page.goto(f"{self.plone_url}/bund/setActiveApp?app=elan")
         page.goto(f"{self.plone_url}/bund/listing")
@@ -124,7 +149,7 @@ class TestListing:
         items = page.locator("#listing .listing-item")
         expect(items).to_have_count(2)
 
-    def test_listing_item_actions(self):
+    def test_listing_next_item(self):
         page = self.page
         page.goto(f"{self.plone_url}/bund/setActiveApp?app=elan")
         page.goto(f"{self.plone_url}/bund/listing")
@@ -149,7 +174,6 @@ class TestListing:
         href = next_link.get_attribute("href")
         assert href is not None
         assert f"/resolveuid/{expected_next_uid}" in href
-        # TODO open next item
 
     def test_wizard(self):
         page = self.page
