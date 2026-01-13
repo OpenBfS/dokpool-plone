@@ -87,6 +87,7 @@ class TestListing:
         )
         transaction.commit()
 
+    # Opens dropdown actions and clicks publish
     def test_publish_dpdocument(self):
         page = self.page
         page.goto(f"{self.plone_url}/bund/setActiveApp?app=elan")
@@ -105,7 +106,7 @@ class TestListing:
             " Info: New review state for A Weatherinfo without images: Published"
         )
 
-    def test_inject_open_close(self):
+    def test_inject_open_and_back(self):
         page = self.page
         page.goto(f"{self.plone_url}/bund/setActiveApp?app=elan")
         page.goto(f"{self.plone_url}/bund/listing")
@@ -117,6 +118,11 @@ class TestListing:
         expect(page.locator(".actions .list-group")).to_have_count(1)
         metadata = page.locator(".doc_metadata div").last
         expect(metadata).to_contain_text("Wetterinformation (WETTER UND TRAJEKTORIEN)")
+        # Go back to listing
+        page.get_by_role("link", name="Back").click()
+        # Wait for items to get loaded
+        items = page.locator("#listing .listing-item")
+        expect(items).to_have_count(2)
 
     def test_listing_item_actions(self):
         page = self.page
