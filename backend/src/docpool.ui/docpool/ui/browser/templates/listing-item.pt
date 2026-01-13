@@ -140,9 +140,9 @@
     </div>
   </div>
 
-  <div class="ms-3 dp-document-dropdown bg-light position-relative d-flex align-items-center justify-content-center">
+  <div class="mx-3 dp-document-dropdown position-relative d-flex align-items-center justify-content-center">
     <div class="dropdown">
-      <a class="btn btn-secondary text-bg-secondary btn-sm z-3"
+      <a class="btn btn-light text-bg-secondary btn-sm z-3"
          aria-expanded="false"
          href="#"
          role="button"
@@ -150,9 +150,9 @@
       >
         &#8942;
       </a>
-      <ul class="dropdown-menu pe-2 z-3">
+      <ul class="dropdown-menu pe-2 z-3 shadow">
         <li>
-          <a class="dropdown-item"
+          <a class="dropdown-item d-flex gap-2 align-items-center"
              href="#"
              tal:attributes="
                href python: f'{data['url']}/@@edit?_authenticator={token}';
@@ -166,7 +166,7 @@
           </a>
         </li>
         <li>
-          <a class="dropdown-item"
+          <a class="dropdown-item d-flex gap-2 align-items-center"
              href="#"
              tal:attributes="
                href python: f'{data['url']}/@@edit?_authenticator={token}';
@@ -182,7 +182,7 @@
         </li>
         <tal:transitions tal:repeat="transition python: data['available_transitions']">
           <li>
-            <a class="dropdown-item transition pat-inject"
+            <a class="dropdown-item d-flex gap-2 align-items-center transition pat-inject"
                href="#"
                data-pat-inject="source: #listing; target: #listing; trigger: default &amp;&amp; source: #global_statusmessage; target: #global_statusmessage; trigger: default "
                tal:define="
@@ -201,7 +201,7 @@
           </li>
         </tal:transitions>
         <li>
-          <a class="dropdown-item"
+          <a class="dropdown-item d-flex gap-2 align-items-center"
              href="#"
              tal:attributes="
                href python: f'{data['url']}?download_attachments=1';
@@ -215,7 +215,7 @@
           </a>
         </li>
         <li tal:condition="python: data['show_transfer_action']">
-          <a class="dropdown-item pat-modal"
+          <a class="dropdown-item d-flex gap-2 align-items-center pat-modal"
              href="#"
              data-pat-modal="class: large; source: #content"
              tal:attributes="
@@ -229,7 +229,7 @@
 
           </a></li>
         <li>
-          <a class="dropdown-item pat-plone-modal"
+          <a class="dropdown-item d-flex gap-2 align-items-center pat-plone-modal"
              href="#"
              tal:attributes="
                href python: f'{data['url']}/@@delete_confirmation?_authenticator={token}';
@@ -243,7 +243,7 @@
           </a>
         </li>
         <li>
-          <a class="dropdown-item"
+          <a class="dropdown-item d-flex gap-2 align-items-center"
              href="#"
              tal:attributes="
                href python: f'{data['url']}';
