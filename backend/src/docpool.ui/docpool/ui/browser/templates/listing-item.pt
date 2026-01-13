@@ -153,11 +153,11 @@
       </a>
       <ul class="dropdown-menu pe-2 z-3 shadow">
         <li>
-          <a class="dropdown-item d-flex gap-2 align-items-center"
+          <a class="dropdown-item d-flex gap-2 align-items-center pat-inject"
              href="#"
              data-pat-inject="trigger: default; source: #portal-column-content; target: #content-core; history: record"
              tal:attributes="
-               
+
               href python: f'{data['url']}/@@edit?_authenticator={token}';
              "
           >
@@ -232,8 +232,9 @@
 
           </a></li>
         <li>
-          <a class="dropdown-item d-flex gap-2 align-items-center pat-plone-modal"
+          <a class="dropdown-item d-flex gap-2 align-items-center pat-inject"
              href="#"
+             data-pat-inject="trigger: default; source: #portal-column-content; target: #content-core; history: record"
              tal:attributes="
                href python: f'{data['url']}/@@delete_confirmation?_authenticator={token}';
              "

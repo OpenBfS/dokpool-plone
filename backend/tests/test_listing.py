@@ -131,6 +131,24 @@ class TestListing:
         )
         expect(dp_without_images).to_have_count(1)
 
+    def test_dropdown_delete(self):
+        page = self.page
+        page.goto(f"{self.plone_url}/bund/setActiveApp?app=elan")
+        page.goto(f"{self.plone_url}/bund/listing")
+        # Wait for items to get loaded
+        items = page.locator("#listing .listing-item")
+        expect(items).to_have_count(2)
+        # Tests if the DPDocument (without images) exists
+        dp_without_images = page.locator("#listing .listing-item", has_text="A Weatherinfo without images")
+        dp_without_images.get_by_role("button", name="⋮").click()
+        page.locator(".dropdown").get_by_role("link", name="Delete", exact=True).click()
+        page.get_by_role("button", name="Delete").click()
+        # TODO Implement Redirect from delete button
+        page.goto(f"{self.plone_url}/bund/listing")
+        # Wait for items to get loaded
+        items = page.locator("#listing .listing-item")
+        expect(items).to_have_count(1)
+
     def test_inject_and_go_back(self):
         page = self.page
         page.goto(f"{self.plone_url}/bund/setActiveApp?app=elan")
