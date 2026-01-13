@@ -1,4 +1,4 @@
-<div class="listing-item d-flex align-items-center border-top position-relative"
+<div class="listing-item d-flex align-items-center border-bottom position-relative"
      tal:define="
        portal_state context/@@plone_portal_state;
        plone_view nocall:context/@@plone;
