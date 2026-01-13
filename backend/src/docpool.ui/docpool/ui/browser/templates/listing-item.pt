@@ -155,8 +155,10 @@
         <li>
           <a class="dropdown-item d-flex gap-2 align-items-center"
              href="#"
+             data-pat-inject="trigger: default; source: #portal-column-content; target: #content-core; history: record"
              tal:attributes="
-               href python: f'{data['url']}/@@edit?_authenticator={token}';
+               
+              href python: f'{data['url']}/@@edit?_authenticator={token}';
              "
           >
             <img src="${python:icons.url('pencil')}" />
