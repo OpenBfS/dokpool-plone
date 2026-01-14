@@ -1,6 +1,7 @@
 from Acquisition import aq_inner
 from docpool.base import DocpoolMessageFactory as _
 from docpool.base.browser.flexible_view import FlexibleView
+from docpool.ui.utils import prepare_came_from_link
 from docpool.base.browser.forms import EditForm
 from docpool.base.content.dpdocument import IDPDocument
 from plone import api
@@ -228,16 +229,14 @@ class DPDocumentEditForm(EditForm):
     def handleApply(self, action):
         super().handleApply(self, action)
 
-        came_from = self.request.get("came_from")
-        if came_from:
-            # Valid url?
-            url_tool = api.portal.get_tool("portal_url")
-            if not url_tool.isURLInPortal(came_from):
-                return
-            # We only get @@listing-item so fix it here:
-            listing_url = "/".join(came_from.split("/")[:-1])
-            self.request.response.redirect(listing_url + "/@@listing")
+        listing_url = prepare_came_from_link(self.request)
+        self.request.response.redirect(listing_url + "/@@listing")
 
+
+    @form.button.buttonAndHandler(_("label_cancel", default="Cancel"), name="Cancel")
+    def handle_cancel(self, action):
+        listing_url = prepare_came_from_link(self.request)
+        self.request.response.redirect(listing_url + "/@@listing")
 
 EditView = layout.wrap_form(DPDocumentEditForm)
 classImplements(EditView, IDexterityEditForm)

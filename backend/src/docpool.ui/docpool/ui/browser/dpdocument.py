@@ -3,7 +3,6 @@ from docpool.base.appregistry import APP_REGISTRY
 from docpool.base.browser.dpdocument import DPDocumentEditForm
 from docpool.base.utils import getDocumentPoolSite
 from docpool.ui.utils import prepare_came_from_link
-from plone import api
 from plone.app.content.browser.actions import DeleteConfirmationForm
 from plone.dexterity.browser.view import DefaultView
 from plone.dexterity.interfaces import IDexterityEditForm
