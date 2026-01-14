@@ -124,8 +124,6 @@ class TestListing:
         # Click somewhere else, so Save button gets activated
         page.locator("#form-widgets-IDublinCore-title").click()
         page.get_by_role("button", name="Save").click()
-        # TODO Implement Redirect from save button
-        page.goto(f"{self.plone_url}/bund/listing")
         dp_without_images = page.locator(
             "#listing .listing-item", has_text="A Weatherinfo with updated title"
         )
