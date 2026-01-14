@@ -1,9 +1,14 @@
+from docpool.base import DocpoolMessageFactory as _
 from docpool.base.appregistry import APP_REGISTRY
 from docpool.base.browser.dpdocument import DPDocumentEditForm
 from docpool.base.utils import getDocumentPoolSite
+from docpool.ui.utils import prepare_came_from_link
+from plone import api
+from plone.app.content.browser.actions import DeleteConfirmationForm
 from plone.dexterity.browser.view import DefaultView
 from plone.dexterity.interfaces import IDexterityEditForm
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from z3c.form import button
 from zope.interface import implementer
 
 import io
@@ -67,3 +72,29 @@ class DPDocumentEditFormUI(DPDocumentEditForm):
         self.text_widget = self.widgets.pop("text", None)
         self.description_widget = self.widgets.pop("IDublinCore.description", None)
         return super().render()
+
+
+class DPDocumentDeleteConfirmationFormUI(DeleteConfirmationForm):
+    """Override to add our custom redirect."""
+
+    template = ViewPageTemplateFile("templates/delete_confirmation.pt")
+
+    @button.buttonAndHandler(_("Delete"), name="Delete")
+    def handle_delete(self, action):
+        super().handle_delete(self, action)
+
+        listing_url = prepare_came_from_link(self.request)
+        self.request.response.redirect(listing_url + "/@@listing")
+
+    @button.buttonAndHandler(_("label_cancel", default="Cancel"), name="Cancel")
+    def handle_cancel(self, action):
+
+        listing_url = prepare_came_from_link(self.request)
+        self.request.response.redirect(listing_url + "/@@listing")
+
+    def updateActions(self):
+        super().updateActions()
+
+        # Pass it as hidden input in delete_confirm template so we can use it in the buttonHandler
+        if "came_from" in self.request:
+            self.came_from = self.request.get("came_from")

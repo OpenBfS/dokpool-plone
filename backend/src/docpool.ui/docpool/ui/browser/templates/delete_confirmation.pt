@@ -64,8 +64,20 @@
         <ul>
           <li tal:content="context/@@plone_context_state/object_title">The item title (ID)</li>
         </ul>
+        <form metal:use-macro="context/@@ploneform-macros/titlelessform">
+          <metal:bottom fill-slot="formbottom">
 
-        <form metal:use-macro="context/@@ploneform-macros/titlelessform"></form>
+
+            <input name="came_from"
+                   type="hidden"
+                   tal:condition="request/came_from|nothing"
+                   tal:attributes="
+                     value request/came_from;
+                   "
+            />
+          </metal:bottom>
+
+        </form>
       </div>
 
     </metal:main>

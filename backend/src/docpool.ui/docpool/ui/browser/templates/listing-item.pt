@@ -243,7 +243,7 @@
              href="#"
              data-pat-inject="trigger: default; source: #portal-column-content; target: #content-core; history: record"
              tal:attributes="
-               href python: f'{data['url']}/@@delete_confirmation?_authenticator={token}';
+               href python: f'{data['url']}/@@delete_confirmation?_authenticator={token}&came_from={came_from}';
              "
           >
             <img src="${python:icons.url('trash')}" />
