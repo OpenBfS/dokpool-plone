@@ -218,6 +218,9 @@ class TestListing:
         expect(page.locator("#content div").filter(has_text="Normalfall").nth(3)).to_be_visible()
         expect(page.get_by_text("Test text")).to_be_visible()
         page.goto(f"{self.plone_url}/bund/listing")
+        # Wait for items to get loaded
+        items = page.locator("#listing .listing-item")
+        expect(items).to_have_count(3)
         expect(page.get_by_text("Example Entry")).to_be_visible()
         # Sync to check in Plone
         transaction.commit()
