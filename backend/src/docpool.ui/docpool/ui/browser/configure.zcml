@@ -61,6 +61,14 @@
       />
 
   <browser:page
+      name="delete_confirmation"
+      for="docpool.base.interfaces.IDPDocument"
+      class=".dpdocument.DPDocumentDeleteConfirmationFormUI"
+      permission="zope2.DeleteObjects"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
+  <browser:page
       name="attachments"
       for="docpool.base.interfaces.IDPDocument"
       class=".attachments.Attachments"

@@ -1,7 +1,9 @@
 from Acquisition import aq_inner
+from docpool.base import DocpoolMessageFactory as _
 from docpool.base.browser.flexible_view import FlexibleView
 from docpool.base.browser.forms import EditForm
 from docpool.base.content.dpdocument import IDPDocument
+from docpool.ui.utils import prepare_came_from_link
 from plone import api
 from plone.app.content.browser.file import FileUploadView as BaseFileUploadView
 from plone.app.dexterity.interfaces import IDXFileFactory
@@ -14,6 +16,7 @@ from plone.z3cform import layout
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from urllib.parse import quote_plus
+from z3c.form import form
 from zope.component import queryMultiAdapter
 from zope.interface import alsoProvides
 from zope.interface import classImplements
@@ -217,6 +220,28 @@ class DPDocumentEditForm(EditForm):
         super().updateWidgets()
         if not api.user.has_permission("Docpool: Change docType for DPDocument", obj=self.context):
             self.widgets["docType"].mode = "display"
+
+        # Pass it into hidden input in dpdocument-edit.pt so we can use it in the buttonHandler
+        if "came_from" in self.request:
+            self.came_from = self.request.get("came_from")
+
+    @form.button.buttonAndHandler(_("Save"), name="save")
+    def handleApply(self, action):
+        super().handleApply(self, action)
+
+        listing_url = prepare_came_from_link(self.request)
+        if listing_url:
+            self.request.response.redirect(listing_url + "/@@listing")
+        else:
+            self.request.response.redirect(self.context.absolute_url())
+
+    @form.button.buttonAndHandler(_("label_cancel", default="Cancel"), name="Cancel")
+    def handle_cancel(self, action):
+        listing_url = prepare_came_from_link(self.request)
+        if listing_url:
+            self.request.response.redirect(listing_url + "/@@listing")
+        else:
+            self.request.response.redirect(self.context.absolute_url())
 
 
 EditView = layout.wrap_form(DPDocumentEditForm)

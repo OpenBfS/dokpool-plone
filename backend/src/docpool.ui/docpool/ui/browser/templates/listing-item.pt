@@ -8,10 +8,10 @@
        doctype python: data['doctype'];
        icons python:context.restrictedTraverse('@@iconresolver');
        token context/@@authenticator/token;
+       came_from request/URL;
      "
      i18n:domain="docpool.base"
 >
-
   <a class="pat-inject list-item-link stretched-link"
      href="#"
      data-pat-inject="trigger: default; source: #portal-column-content; target: #content-core; history: record"
@@ -153,10 +153,19 @@
       </a>
       <ul class="dropdown-menu pe-2 z-3 shadow">
         <li>
-          <a class="dropdown-item d-flex gap-2 align-items-center"
+          <input name="came_from"
+                 type="hidden"
+                 tal:condition="came_from|nothing"
+                 tal:attributes="
+                   value came_from;
+                 "
+          />
+          <a class="dropdown-item d-flex gap-2 align-items-center pat-inject"
              href="#"
+             data-pat-inject="trigger: default; source: #portal-column-content; target: #content-core; history: record"
              tal:attributes="
-               href python: f'{data['url']}/@@edit?_authenticator={token}';
+               
+              href python: f'{data['url']}/@@edit?_authenticator={token}&came_from={came_from}';
              "
           >
             <img src="${python:icons.url('pencil')}" />
@@ -230,10 +239,11 @@
 
           </a></li>
         <li>
-          <a class="dropdown-item d-flex gap-2 align-items-center pat-plone-modal"
+          <a class="dropdown-item d-flex gap-2 align-items-center pat-inject"
              href="#"
+             data-pat-inject="trigger: default; source: #portal-column-content; target: #content-core; history: record"
              tal:attributes="
-               href python: f'{data['url']}/@@delete_confirmation?_authenticator={token}';
+               href python: f'{data['url']}/@@delete_confirmation?_authenticator={token}&came_from={came_from}';
              "
           >
             <img src="${python:icons.url('trash')}" />
