@@ -160,4 +160,4 @@ def prepare_came_from_link(request):
             return
         # We only get @@listing-item so fix it here:
         return "/".join(came_from.split("/")[:-1])
-    return None
+    return

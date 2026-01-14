@@ -83,13 +83,19 @@ class DPDocumentDeleteConfirmationFormUI(DeleteConfirmationForm):
         super().handle_delete(self, action)
 
         listing_url = prepare_came_from_link(self.request)
-        self.request.response.redirect(listing_url + "/@@listing")
+        if listing_url:
+            self.request.response.redirect(listing_url + "/@@listing")
+        else:
+            self.request.response.redirect(self.context.absolute_url())
 
     @button.buttonAndHandler(_("label_cancel", default="Cancel"), name="Cancel")
     def handle_cancel(self, action):
 
         listing_url = prepare_came_from_link(self.request)
-        self.request.response.redirect(listing_url + "/@@listing")
+        if listing_url:
+            self.request.response.redirect(listing_url + "/@@listing")
+        else:
+            self.request.response.redirect(self.context.absolute_url())
 
     def updateActions(self):
         super().updateActions()
