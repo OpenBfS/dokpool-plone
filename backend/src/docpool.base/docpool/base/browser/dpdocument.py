@@ -1,4 +1,5 @@
 from Acquisition import aq_inner
+from docpool.base import DocpoolMessageFactory as _
 from docpool.base.browser.flexible_view import FlexibleView
 from docpool.base.browser.forms import EditForm
 from docpool.base.content.dpdocument import IDPDocument
@@ -14,6 +15,7 @@ from plone.z3cform import layout
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from urllib.parse import quote_plus
+from z3c.form import form
 from zope.component import queryMultiAdapter
 from zope.interface import alsoProvides
 from zope.interface import classImplements
@@ -217,6 +219,24 @@ class DPDocumentEditForm(EditForm):
         super().updateWidgets()
         if not api.user.has_permission("Docpool: Change docType for DPDocument", obj=self.context):
             self.widgets["docType"].mode = "display"
+
+        # Pass it into hidden input in dpdocument-edit.pt so we can use it in the buttonHandler
+        if "came_from" in self.request:
+            self.came_from = self.request.get("came_from")
+
+    @form.button.buttonAndHandler(_("Save"), name="save")
+    def handleApply(self, action):
+        super().handleApply(self, action)
+
+        came_from = self.request.get("came_from")
+        if came_from:
+            # Valid url?
+            url_tool = api.portal.get_tool("portal_url")
+            if not url_tool.isURLInPortal(came_from):
+                return
+            # We only get @@listing-item so fix it here:
+            listing_url = "/".join(came_from.split("/")[:-1])
+            self.request.response.redirect(listing_url + "/@@listing")
 
 
 EditView = layout.wrap_form(DPDocumentEditForm)
