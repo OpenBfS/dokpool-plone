@@ -141,8 +141,6 @@ class TestListing:
         dp_without_images.get_by_role("button", name="⋮").click()
         page.locator(".dropdown").get_by_role("link", name="Delete", exact=True).click()
         page.get_by_role("button", name="Delete").click()
-        # TODO Implement Redirect from delete button
-        page.goto(f"{self.plone_url}/bund/listing")
         # Wait for items to get loaded
         items = page.locator("#listing .listing-item")
         expect(items).to_have_count(1)
