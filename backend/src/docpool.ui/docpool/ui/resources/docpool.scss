@@ -115,92 +115,98 @@ img.doktype-icon {
   }
 }
 
-#listing > a {
-  display: block;
-  min-height: 80px;
-}
+#listing {
+  & > a {
+    display: block;
+    min-height: 80px;
+    text-decoration: none;
 
-#listing > a.pat-inject.executed {
-  height: auto;
-}
-
-#listing a {
-  text-decoration: none;
-}
-
-#listing .listing-item {
-        position: relative;
-      z-index: 1;
-  .dateinfo {
-    width: 80px;
-    font-size: 14px;
-
-    .small {
-      font-size: 10px;
-      color: $plone-default-published-color;
+    &.pat-inject.executed {
+      height: auto;
     }
   }
-       &:has(.dropdown-menu.show) {
-        z-index: 1050;
+
+  .listing-item {
+    position: relative;
+    z-index: 1;
+
+    &:has(.dropdown-menu.show) {
+      z-index: 1050;
+    }
+
+    .dateinfo {
+      width: 80px;
+      font-size: 14px;
+
+      .small {
+        font-size: 10px;
+        color: $plone-default-published-color;
+      }
+    }
+
+    .doctype-box {
+      width: 80px;
+
+      .doktype-icon-container {
+        background-color: var(--bs-gray-light);
+      }
+    }
+
+    .text-box {
+      display: grid;
+      width: 50%;
+
+      h3 {
+        font-size: 14px;
+        color: #0f2237;
       }
 
-  .doctype-box {
-    width: 80px;
-
-    .doktype-icon-container {
-      background-color: var(--bs-gray-light);
-    }
-  }
-
-  .text-box {
-    display: grid;
-    width: 50%;
-
-    h3 {
-      font-size: 14px;
-      color: #0f2237;
+      .description {
+        font-size: 10px;
+        color: $plone-default-published-color;
+      }
     }
 
-    .description {
-      font-size: 10px;
-      color: $plone-default-published-color;
+    .dp-document-creator {
+      margin-right: 100px;
+    }
+
+    .dp-document-dropdown {
+      position: absolute;
+      right: 0;
+      z-index: 2;
+
+      .dropdown-menu {
+        z-index: 1000;
+      }
     }
   }
-
-  .dp-document-creator {
-    margin-right: 100px;
-  }
-
-  .dp-document-dropdown {
-    position: absolute;
-    right: 0;
-       z-index: 2;
-    .dropdown-menu {
-      z-index: 1000;
-    }
-  }
-
 }
 
 div.pat-modal .header {
   height: auto !important;
 }
 
+// Modals - Can be removed?
 div.pat-modal {
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
   max-height: 90vh;
   min-height: 90vh;
-  background-color: white;
-}
+  background-color: #fff;
 
-div.pat-modal.large {
-  width: 90vw;
-  margin-left: -45vw;
-}
+  &::after {
+    background-color: rgba(15, 15, 15, 0.84);
+  }
 
-div.pat-modal::after {
-  background-color: rgba(15, 15, 15, 0.84);
+  .header {
+    height: auto !important;
+  }
+
+  &.large {
+    width: 90vw;
+    margin-left: -45vw;
+  }
 }
 
 #portal-logo {
