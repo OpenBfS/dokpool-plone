@@ -56,8 +56,7 @@ $plone-default-revised-color: #d4d4d4;
 
 img.doktype-icon {
   width: 100%;
-  filter: invert(24%) sepia(6%) saturate(3251%) hue-rotate(170deg)
-    brightness(97%) contrast(93%);
+  filter: invert(24%) sepia(6%) saturate(3251%) hue-rotate(170deg) brightness(97%) contrast(93%);
 }
 
 .card-body.review-state {
@@ -130,6 +129,8 @@ img.doktype-icon {
 }
 
 #listing .listing-item {
+        position: relative;
+      z-index: 1;
   .dateinfo {
     width: 80px;
     font-size: 14px;
@@ -139,6 +140,9 @@ img.doktype-icon {
       color: $plone-default-published-color;
     }
   }
+       &:has(.dropdown-menu.show) {
+        z-index: 1050;
+      }
 
   .doctype-box {
     width: 80px;
@@ -163,12 +167,19 @@ img.doktype-icon {
     }
   }
 
-  .list-item-link {
-    position: absolute;
-    inset: 0;
-    right: 44px;
-    z-index: 1;
+  .dp-document-creator {
+    margin-right: 100px;
   }
+
+  .dp-document-dropdown {
+    position: absolute;
+    right: 0;
+       z-index: 2;
+    .dropdown-menu {
+      z-index: 1000;
+    }
+  }
+
 }
 
 div.pat-modal .header {
