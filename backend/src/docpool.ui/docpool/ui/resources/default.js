@@ -21,23 +21,19 @@ document.addEventListener("patterns-injected-delayed", (e) => {
     }
   }
 
-  // TODO Cleanup duplicate code
   const currentUid = $navContainer.data("current-item");
-  var $nextLink = $navContainer.find(".list-group-item.next a");
-  if ($nextLink.length > 0) {
-    var newNextUrl = getNeighborUrl(currentUid, "next");
-    $nextLink.attr("href", newNextUrl);
-    console.log("Inject fertig (next-item):", newNextUrl);
-  }
-  registry.scan($nextLink[0]);
-
-  var $prevLink = $navContainer.find(".list-group-item.prev a");
-  if ($prevLink.length > 0) {
-    var newPrevUrl = getNeighborUrl(currentUid, "prev");
-    console.log("Inject fertig (prev-item):", newPrevUrl);
-    $prevLink.attr("href", newPrevUrl);
-  }
-  registry.scan($prevLink[0]);
+  ["next", "prev"].forEach((dir) => {
+    const $link = $navContainer.find(`.list-group-item.${dir} a`);
+    if ($link.length > 0) {
+      const newUrl = getNeighborUrl(currentUid, dir);
+      if (newUrl) {
+        $link.attr("href", newUrl);
+      }
+    }
+    if ($link[0]) {
+      registry.scan($link[0]);
+    }
+  });
 });
 
 function getNeighborUrl(currentUid, direction) {
@@ -63,16 +59,15 @@ function getNeighborUrl(currentUid, direction) {
   return targetUid ? baseUrl + `/resolveuid/${targetUid}` : null;
 }
 
+// Saves ordered items from listing into localstorage
 $(document).on("click", "a.pat-inject.list-item-link", function (e) {
-  // TODO Find correct event / click - if there is a better on??
-
+// TODO Find correct event / click - if there is a better one ??
   const listing = $("#listing");
   if (listing.length > 0) {
     // Save the (filtered) list into localstorage
     const items = listing.data("items");
     if (items) {
       localStorage.setItem("dokpool-listing-items", JSON.stringify(items));
-      console.log("Localstorage saved", items.length);
     }
     // Save the filter query into localstorage
     const params = new URLSearchParams(window.location.search);
