@@ -175,7 +175,7 @@ class InfoDropdown(BrowserView):
             return
 
         with open(file_path) as file:
-            content = file.read()
+            content = file.read().strip()
             if content:
                 return content
 
