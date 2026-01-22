@@ -8,7 +8,7 @@ import registry from "@patternslib/patternslib/src/core/registry";
 document.addEventListener("patterns-injected-delayed", (e) => {
   if (!(e.target instanceof Element)) return;
 
-  if (!e.target.matches("#content.container")) return;
+  if (!e.target.matches("#content")) return;
 
   const $navContainer = $(".list-group[data-current-item]");
 
@@ -62,7 +62,7 @@ function getNeighborUrl(currentUid, direction) {
 
 // Saves ordered items from listing into localstorage
 $(document).on("click", "a.pat-inject.list-item-link", function (e) {
-// TODO Find correct event / click - if there is a better one ??
+  // TODO Find correct event / click - if there is a better one ??
   const listing = $("#listing");
   if (listing.length > 0) {
     // Save the (filtered) list into localstorage
