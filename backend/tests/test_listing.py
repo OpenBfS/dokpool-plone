@@ -151,7 +151,7 @@ class TestListing:
         page.goto(f"{self.plone_url}/bund/listing")
         # Open item through pat-inject and the stretched link
         first_list_item = page.locator("#listing .listing-item").first
-        first_list_item.locator(".stretched-link").click()
+        first_list_item.click()
         # Wait for item actions to get injected
         page.wait_for_selector(".actions .list-group")
         expect(page.locator(".actions .list-group")).to_have_count(1)

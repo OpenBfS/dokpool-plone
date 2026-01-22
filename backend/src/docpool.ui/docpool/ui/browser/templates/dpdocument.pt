@@ -21,40 +21,34 @@
       <div id="header">
       </div>
 
-      <div class="container"
-           id="content"
-      >
+      <div id="content">
 
-        <div class="row">
+        <div class="dp-document-header row mx-0 my-0 p-1 border-bottom">
           <div class="col-sm-6">
             <h1 tal:content="python: context.title"></h1>
           </div>
           <div class="col-sm-6">
 
             <div class="actions">
-              <ul class="list-group list-group-horizontal"
+              <ul class="list-group list-group-horizontal list-group-flush justify-content-end"
                   tal:attributes="
                     data-current-item python: context.UID();
                   "
               >
-                <li class="list-group-item back">
-                  <a href="#"
-                     tal:attributes="
-                       href python: view.getDocpoolListingPath();
-                     "
-                  >Back</a>
-                </li>
-                <li class="list-group-item prev">
-                  <a class="pat-inject prev-item"
+
+                <li class="list-group-item border-0 bg-transparent prev">
+                  <a class="pat-inject prev-item text-decoration-none"
                      data-pat-inject="trigger: default; source: #portal-column-content; target: #content; history: record"
+                     i18n:translate=""
                   >Previous</a>
                 </li>
-                <li class="list-group-item next">
-                  <a class="pat-inject next-item"
+                <li class="list-group-item border-0 bg-transparent next">
+                  <a class="pat-inject next-item text-decoration-none"
                      data-pat-inject="trigger: default; source: #portal-column-content; target: #content; history: record"
+                     i18n:translate=""
                   >Next</a>
                 </li>
-                <li class="list-group-item">
+                <li class="list-group-item border-0 bg-transparent">
                   <a class="pat-inject"
                      href="edit"
                      data-pat-inject="trigger: default; source: #content; target: #content; history: record"
@@ -62,9 +56,12 @@
                      tal:attributes="
                        href python: f'{context.absolute_url()}/@@edit?_authenticator={token}';
                      "
-                  >Edit</a>
+                  >
+                    <tal:icon tal:replace="structure python:icons.tag('pencil', tag_alt='Edit')" />
+
+                  </a>
                 </li>
-                <li class="list-group-item">
+                <li class="list-group-item border-0 bg-transparent">
                   <a class="pat-inject"
                      href="delete"
                      data-pat-inject="source: #content; target: #content"
@@ -72,11 +69,35 @@
                      tal:attributes="
                        href python: f'{context.absolute_url()}/@@delete_confirmation?_authenticator={token}';
                      "
-                  >Delete</a>
+                  >
+
+                    <tal:icon tal:replace="structure python:icons.tag('trash3', tag_alt='Delete')" />
+
+                  </a>
                 </li>
 
-                <li class="list-group-item">Print</li>
-                <li class="list-group-item">Favorite</li>
+                <li class="list-group-item border-0 bg-transparent">
+                  <a href="javascript:this.print();">
+                    <tal:icon tal:replace="structure python:icons.tag('printer', tag_alt='Print')" />
+                  </a>
+
+
+                </li>
+                <li class="list-group-item border-0 bg-transparent">
+
+                  <a href="#">
+                    <tal:icon tal:replace="structure python:icons.tag('star', tag_alt='Favorite')" />
+                  </a></li>
+
+                <li class="list-group-item border-0 bg-transparent back">
+                  <a href="#"
+                     tal:attributes="
+                       href python: view.getDocpoolListingPath();
+                     "
+                  >
+                    <tal:icon tal:replace="structure python:icons.tag('x-lg', tag_alt='Back')" />
+                  </a>
+                </li>
               </ul>
             </div>
 
