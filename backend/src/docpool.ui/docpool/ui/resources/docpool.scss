@@ -251,3 +251,15 @@ body.template-listing .autotoc-nav,
 body.portaltype-dpdocument.template-edit .autotoc-nav {
   display: none !important;
 }
+
+//DPDocument Details
+.dp-document-header {
+    background-color: #fafafa;
+
+  .list-group-item a:not([href]) {
+    cursor: default;
+    color: gray;
+    text-decoration: none;
+    opacity: 0.5;
+  }
+}
