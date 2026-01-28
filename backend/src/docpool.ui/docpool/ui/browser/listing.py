@@ -79,12 +79,12 @@ class Listing(BrowserView):
 
         # Filter by APP
         dp_app_state = api.content.get_view("dp_app_state", self.context, self.request)
-        active_apps = dp_app_state.appsActivatedByCurrentUser()
-        active_apps.extend([BASE_APP, TRANSFERS_APP])
-        self.query["apps_supported"] = active_apps
+        self.active_apps = dp_app_state.appsActivatedByCurrentUser()
+        self.active_apps.extend([BASE_APP, TRANSFERS_APP])
+        self.query["apps_supported"] = self.active_apps
 
         # Filter by DPEvent (ELAN only)
-        if ELAN_APP in active_apps and not IArchiving(self.context).is_archive:
+        if ELAN_APP in self.active_apps and not IArchiving(self.context).is_archive:
             # This filters out archived entries unless the context is in an archive
             if event := getScenariosForCurrentUser():
                 self.query["scenarios"] = event
@@ -93,6 +93,11 @@ class Listing(BrowserView):
         self.selected_doctypes = form.get("selected_doctypes") or []
         if self.selected_doctypes:
             self.query["dp_type"] = self.selected_doctypes
+
+        # Filter by Category
+        self.selected_subcategories = form.get("selected_subcategories") or []
+        if self.selected_subcategories:
+            self.query["subcategory"] = self.selected_subcategories
 
         # Filter by Group
         self.selected_groups = form.get("selected_groups") or []
@@ -194,6 +199,9 @@ class Listing(BrowserView):
             doctypes_config[doctype.value]["count"] = self.count_options({"dp_type": doctype.value})
         self.doctypes = doctypes_config
 
+        # Prepare Entrytypes filter options
+        self.doctype_categories = self.doctype_options()
+
         # Prepare Group filter options (query needs to be complete)
         groups_config = {}
         for group in api.portal.get_vocabulary("docpool.base.vocabularies.Groups", self.context):
@@ -215,6 +223,25 @@ class Listing(BrowserView):
         query = copy(self.query)
         query.update(**extra)
         return len(api.content.find(**query))
+
+    def doctype_options(self):
+        """These are actually DocTypeCategories and the id's of their doctypes."""
+        query = {
+            "portal_type": "DocType",
+            "path": "/".join(self.context.getPhysicalPath()),
+            "sort_on": "category",  # Is this right?
+            "apps_supported": self.active_apps,
+        }
+        brains = api.content.find(**query)
+        results = {}
+        for brain in brains:
+            if brain.category not in results:
+                results[brain.category] = {}
+            if brain.subcategory not in results[brain.category]:
+                count = self.count_options({"subcategory": brain.subcategory})
+                results[brain.category][brain.subcategory] = {"count": count, "doctypes": []}
+            results[brain.category][brain.subcategory]["doctypes"].append(brain.id)
+        return results
 
 
 def extract_date(value):
@@ -260,8 +287,8 @@ class Item(BrowserView):
                 if adapted.transferable() and allowed_targets(obj):
                     show_transfer_action = True
 
-        icon_name = "question"  # Unknown type
-        doctype_title = "Unknown"  # Unknown type
+        icon_name = "question"  # Unknown type as fallback
+        doctype_title = obj.docType  # id of initially selected DocType as fallback
         if docTypeObj := obj.docTypeObj():
             icon_name = docTypeObj.icon_name
             doctype_title = docTypeObj.title

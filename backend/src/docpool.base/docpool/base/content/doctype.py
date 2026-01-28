@@ -1,4 +1,5 @@
 from docpool.base import DocpoolMessageFactory as _
+from docpool.base.content.doctypecategory import IDocTypeCategory
 from docpool.base.content.extendable import Extendable
 from docpool.base.utils import queryForObjects
 from plone import api
@@ -124,6 +125,16 @@ class IDocType(model.Schema):
 @implementer(IDocType)
 class DocType(Container, Extendable):
     """ """
+
+    def category(self):
+        parent = self.__parent__.__parent__
+        if IDocTypeCategory.providedBy(parent):
+            return parent.title
+
+    def subcategory(self):
+        parent = self.__parent__
+        if IDocTypeCategory.providedBy(parent):
+            return parent.title
 
 
 @adapter(IDocType, IEditFinishedEvent)

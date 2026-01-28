@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <object xmlns:i18n="http://xml.zope.org/namespaces/i18n"
         meta_type="Dexterity FTI"
-        name="DocTypes"
+        name="DocTypeCategory"
         i18n:domain="docpool.base"
 >
 
   <!-- Basic metadata -->
   <property name="title"
             i18n:translate=""
-  >Folder for Document Types</property>
+  >Document Type Category</property>
   <property name="description"
             i18n:translate=""
   />
@@ -17,15 +17,15 @@
   <property name="global_allow">False</property>
   <property name="filter_content_types">True</property>
   <property name="allowed_content_types">
-    <element value="DocTypeCategory" />
     <element value="DocType" />
+    <element value="DocTypeCategory" />
   </property>
 
   <!-- schema interface -->
-  <property name="schema">docpool.base.content.doctypes.IDocTypes</property>
+  <property name="schema">docpool.base.content.doctypecategory.IDocTypeCategory</property>
 
   <!-- class used for content items -->
-  <property name="klass">docpool.base.content.doctypes.DocTypes</property>
+  <property name="klass">docpool.base.content.doctypecategory.DocTypeCategory</property>
 
   <!-- add permission -->
   <property name="add_permission">docpool.base.AddDocTypes</property>
@@ -34,7 +34,6 @@
   <property name="behaviors">
     <element value="plone.basic" />
     <element value="plone.namefromtitle" />
-    <element value="plone.excludefromnavigation" />
   </property>
 
   <!-- View information -->

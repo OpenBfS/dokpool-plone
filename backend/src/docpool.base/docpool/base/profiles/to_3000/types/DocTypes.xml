@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+        meta_type="Dexterity FTI"
+        name="DocTypes"
+        i18n:domain="docpool.base"
+>
+
+  <property name="allowed_content_types">
+    <element value="DocType" />
+    <element value="DocTypeCategory" />
+  </property>
+
+  <property name="behaviors"
+            purge="false"
+  >
+    <element remove="True"
+             value="plone.dublincore"
+    />
+    <element value="plone.basic" />
+    <element remove="True"
+             value="plone.textindexer"
+    />
+  </property>
+
+</object>

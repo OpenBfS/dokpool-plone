@@ -34,9 +34,22 @@
   >
     <indexed_attr value="group" />
   </index>
+  <index meta_type="FieldIndex"
+         name="category"
+  >
+    <indexed_attr value="category" />
+  </index>
+  <index meta_type="FieldIndex"
+         name="subcategory"
+  >
+    <indexed_attr value="subcategory" />
+  </index>
 
   <column value="getMdate" />
   <column value="changed" />
   <column value="apps_supported" />
   <column value="group" />
+  <column value="category" />
+  <column value="subcategory" />
+
 </object>

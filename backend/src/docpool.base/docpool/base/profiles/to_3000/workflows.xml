@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object meta_type="Plone Workflow Tool"
+        name="portal_workflow"
+>
+  <bindings>
+    <type type_id="DocTypeCategory">
+      <bound-workflow workflow_id="dp_admin_workflow" />
+    </type>
+  </bindings>
+</object>

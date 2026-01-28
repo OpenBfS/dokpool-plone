@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<portlets>
+  <assignment category="context"
+              key="/"
+              manager="plone.leftcolumn"
+              name="Overview"
+              remove="true"
+              type="docpool.elan.Overview"
+              visible="True"
+  />
+  <assignment category="context"
+              key="/"
+              manager="plone.leftcolumn"
+              name="Recent"
+              remove="true"
+              type="docpool.elan.Recent"
+              visible="True"
+  />
+  <assignment category="context"
+              key="/"
+              manager="plone.leftcolumn"
+              name="navigation"
+              remove="true"
+              type="portlets.Navigation"
+              visible="True"
+  >
+ </assignment>
+</portlets>

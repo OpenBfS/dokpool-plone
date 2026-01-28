@@ -1,9 +1,9 @@
-from Acquisition import aq_get
 from BTrees.OOBTree import OOBTree
 from docpool.base import DocpoolMessageFactory as _
 from docpool.base.content.archiving import IArchiving
 from docpool.base.content.contentbase import ContentBase
 from docpool.base.content.contentbase import IContentBase
+from docpool.base.content.doctype import IDocType
 from docpool.base.content.extendable import Extendable
 from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
 from docpool.base.marker import IImportingMarker
@@ -11,6 +11,7 @@ from docpool.base.pdfconversion import get_images
 from docpool.base.pdfconversion import metadata
 from docpool.base.pdfconversion import pdfobj
 from docpool.base.utils import execute_under_special_role
+from docpool.base.utils import getDocumentPoolSite
 from docpool.base.utils import is_individual
 from io import StringIO
 from logging import getLogger
@@ -242,23 +243,22 @@ class DPDocument(Container, Extendable, ContentBase):
         if not self.id:
             # The object is being initialized
             return
-        et = self.docType
-        if not et:
+        doctype = self.docType
+        if not doctype:
             # The object is being saved and the attributes have not yet been saved
-            et = self.REQUEST.get("form.widgets.docType", None)
-            if et and isinstance(et, list):
-                et = et[0]
-        if not et:
+            doctype = self.REQUEST.get("form.widgets.docType", None)
+            if doctype and isinstance(doctype, list):
+                doctype = doctype[0]
+        if not doctype:
             return
-        # Uses Acquisition. Meh.
-        config_folder = aq_get(self, "config", None)
-        if not config_folder:
-            logger.debug("No config folder for %s", self.absolute_url())
+        path = "/".join(getDocumentPoolSite(self).getPhysicalPath()) + "/config"
+        brains = api.content.find(path=path, portal_type="DocType", id=doctype)
+        if not brains:
+            logger.info("No doctype for %s (%s)", doctype, self.absolute_url())
             return
-        dto = config_folder["dtypes"].get(et, None)
-
-        if not dto:
-            logger.info("No DocType Object for type name '%s'", et)
+        if len(brains) > 1:
+            logger.info("More than one doctype for %s (%s)", doctype, self.absolute_url())
+        dto = brains[0].getObject()
         return dto
 
     def publishedImmediately(self, raw=False):
@@ -558,6 +558,16 @@ class DPDocument(Container, Extendable, ContentBase):
             return False
         doc_type = obj.docTypeObj()
         return doc_type.allow_discussion_on_dpdocument if doc_type else False
+
+    def category(self):
+        doctype = self.docTypeObj()
+        if doctype and IDocType.providedBy(doctype):
+            return doctype.category()
+
+    def subcategory(self):
+        doctype = self.docTypeObj()
+        if doctype and IDocType.providedBy(doctype):
+            return doctype.subcategory()
 
 
 @adapter(IDPDocument, IContainerModifiedEvent)

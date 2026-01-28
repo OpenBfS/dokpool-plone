@@ -46,6 +46,9 @@
           name="DocTypes"
   />
 
+  <object meta_type="Dexterity FTI"
+          name="DocTypeCategory"
+  />
 
   <object meta_type="Dexterity FTI"
           name="Text"

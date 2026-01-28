@@ -134,15 +134,15 @@
 
               <div class="field mb-2 doc_metadata"
                    tal:define="
-                     elanobj python: apps['elan'];
-                     typeAndCat python: elanobj.typeAndCat();
-                     doktype python: typeAndCat[0];
-                     categories python: typeAndCat[1];
+                     doctype python: context.docTypeObj();
+                     doctype_title python: doctype.title if doctype else context.dp_type();
+                     subcategory python: context.subcategory();
                    "
               >
-                <img src="${python:icons.url(getattr(context.docTypeObj(), 'icon_name', 'question'))}" />
-                <tal:cat condition="python: categories">
-                  <div>${python: doktype} (${python: ', '.join(categories)})</div>
+                <img src="${python:icons.url(getattr(doctype, 'icon_name', 'question'))}" />
+                <tal:cat>
+                  <div>${python: doctype_title}
+                    <span tal:condition="subcategory">(${python: subcategory})</span></div>
                 </tal:cat>
               </div>
 

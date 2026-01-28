@@ -1,3 +1,4 @@
+from docpool.base.content.doctype import IDocType
 from docpool.base.content.documentpool import IDocumentPool
 from docpool.base.content.dpdocument import IDPDocument
 from docpool.base.content.dptransferfolder import IDPTransferFolder
@@ -43,3 +44,23 @@ def group(obj):
             return item.UID()
         if IDPTransferFolder.providedBy(item):
             return item.UID()
+
+
+@indexer(IDPDocument)
+def subcategory_dpdocument(obj):
+    return obj.subcategory()
+
+
+@indexer(IDocType)
+def subcategory_doctype(obj):
+    return obj.subcategory()
+
+
+@indexer(IDPDocument)
+def category_dpdocument(obj):
+    return obj.category()
+
+
+@indexer(IDocType)
+def category_doctype(obj):
+    return obj.category()

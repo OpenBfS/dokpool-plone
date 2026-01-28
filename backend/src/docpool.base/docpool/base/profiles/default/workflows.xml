@@ -115,7 +115,9 @@
       <bound-workflow workflow_id="dp_admin_workflow" />
     </type>
 
-
+    <type type_id="DocTypeCategory">
+      <bound-workflow workflow_id="dp_admin_workflow" />
+    </type>
 
 
 

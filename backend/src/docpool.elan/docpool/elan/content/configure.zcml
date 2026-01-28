@@ -10,11 +10,6 @@
       />
 
   <adapter
-      factory=".indexer.category_indexer"
-      name="category"
-      />
-
-  <adapter
       factory=".indexer.cat_path_indexer"
       name="cat_path"
       />
