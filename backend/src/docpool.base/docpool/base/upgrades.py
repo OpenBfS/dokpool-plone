@@ -1,5 +1,6 @@
 from docpool.base.content.simplefolder import ISimpleFolder
 from docpool.base.setuphandlers import create_session_stuff
+from docpool.base.utils import getDocumentPoolSite
 from plone import api
 from plone.app.upgrade.utils import loadMigrationProfile
 from plone.base.utils import get_installer
@@ -592,11 +593,11 @@ def create_doctype_structure():
             if info["id"] in container:
                 continue
 
-            # move and update existing doctypes
+            # Move and update existing doctypes
             for old_id in info["old_ids"]:
                 if old.get(old_id) and container.get(info["id"]):
-                    # a different old item with the same new id was already updated
-                    continue
+                    # A different old item with the same new id was already updated.
+                    pass
                 elif old_obj := old.get(old_id, None):
                     old_obj.title = info["title"]
                     old_obj.description = info["description"]
@@ -616,8 +617,38 @@ def create_doctype_structure():
 
         # Remove old doctypes that were not moved and updated, ignore links and relations
         old = doctypes_container["old"]
-        log.info("Deleting remaining old DokTypes from %s: %s", old.absolute_url(), ", ".join(old.keys()))
-        api.content.delete(doctypes_container["old"], check_linkintegrity=False)
+        for old_doctype in old.contentValues():
+            if old_doctype.id in rename_mapping:
+                log.info("Deleting old DokType %s from %s", old_doctype.id, old.absolute_url())
+                api.content.delete(old_doctype, check_linkintegrity=False)
+        if not old.contentValues():
+            api.content.delete(old, check_linkintegrity=False)
+
+        # Log infos on remains that ceen to be cleaned up
+        dp = getDocumentPoolSite(doctypes_container)
+        log.info("Remains in %s", dp.absolute_url())
+        content_area = dp.get("content", None)
+        archive_area = dp.get("archive", None)
+        for old_id in old.keys():
+            if old_id in rename_mapping:
+                continue
+            old_obj = old[old_id]
+            count_content = 0
+            count_archive = 0
+            if content_area:
+                count_content = len(
+                    api.content.find(context=content_area, portal_type="DPDocument", dp_type=old_id)
+                )
+            if archive_area:
+                count_archive = len(
+                    api.content.find(context=archive_area, portal_type="DPDocument", dp_type=old_id)
+                )
+            if count_content or count_archive:
+                log.info(
+                    f"{old_obj.id} ({old_obj.title}): {count_content + count_archive} ({count_archive} archived)"
+                )
+            else:
+                log.info(f"{old_obj.id} ({old_obj.title})")
 
     # Change all existing DPDocuments
     for brain in api.content.find(portal_type="DPDocument", sort_on="path"):
@@ -665,4 +696,5 @@ def delete_esd_structure(context=None):
             api.content.delete(obj, check_linkintegrity=False)
     portal_types = api.portal.get_tool("portal_types")
     for portal_type in to_delete:
-        portal_types.manage_delObjects(portal_type)
+        if portal_type in portal_types:
+            portal_types.manage_delObjects(portal_type)
