@@ -555,10 +555,6 @@ def create_doctype_structure():
         else:
             old = doctypes_container["old"]
 
-        # TODO: Handle special cases (e.g. Ukraine)
-        # * handle special doctypes
-        # * update DPDocuments of these types
-
         # Create main categories
         for info in DOCTYPES:
             if category_id := info.get("category_id"):
@@ -674,6 +670,36 @@ def create_doctype_structure():
         if allowed_types := obj.allowedPartnerDocTypes:
             new_allowed_types = [rename_mapping[i] for i in allowed_types if i in rename_mapping]
             obj.allowedPartnerDocTypes = list(set(new_allowed_types))
+
+    # Handle special cases (Ukraine-related sitreps)
+    for brain in api.content.find(portal_type="DocumentPool", sort_on="path"):
+        pool = brain.getObject()
+        content_area = pool["content"]
+        event_uids = [
+            i.UID
+            for i in api.content.find(context=pool, portal_type="DPEvent", sort_on="path", Title="ukraine")
+        ]
+        for brain in api.content.find(
+            context=content_area,
+            portal_type="DPDocument",
+            scenarios=event_uids,
+            dp_type="radiological_situation_report",
+            sort_on="path",
+        ):
+            obj = brain.getObject()
+            log.info("Change %s to situation_overview (%s)", obj.docType, obj.absolute_url())
+            obj.docType = "situation_overview"
+            obj.reindexObject(idxs=["category", "subcategory", "dp_type"])
+
+    for brain in api.content.find(portal_type="ELANArchive", sort_on="path", Title="ukraine"):
+        archive = brain.getObject()
+        for brain in api.content.find(
+            context=archive, portal_type="DPDocument", dp_type="radiological_situation_report", sort_on="path"
+        ):
+            obj = brain.getObject()
+            log.info("Change %s to situation_overview (%s)", obj.docType, obj.absolute_url())
+            obj.docType = "situation_overview"
+            obj.reindexObject(idxs=["category", "subcategory", "dp_type"])
 
 
 def delete_esd_structure(context=None):
