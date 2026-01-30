@@ -12,7 +12,6 @@
   "description": "",
   "docType": "notification",
   "effective": "2025-09-23T12:04:00+00:00",
-  "exclude_from_nav": false,
   "expires": null,
   "exportimport.constrains": {},
   "exportimport.conversation": [],
@@ -40,7 +39,6 @@
     "encoding": "utf-8"
   },
   "title": "Beispiel Meldung",
-  "transferLog": null,
   "transferred": null,
   "transferred_by": null,
   "type_title": "Document",

@@ -14,7 +14,6 @@
   "description": "",
   "docType": "rodosprojection",
   "effective": null,
-  "exclude_from_nav": false,
   "expires": null,
   "exportimport.constrains": {},
   "exportimport.conversation": [],
@@ -38,12 +37,11 @@
     "encoding": "utf-8"
   },
   "title": "Ein potentiell betroffenes Gebiet bei einem Unfall in CHOOZ",
-  "transferLog": null,
   "transferred": null,
   "transferred_by": null,
   "type_title": "Document",
   "version": "current",
-  "wdate": "2025-11-19T13:22:08",
+  "wdate": "2025-11-19T13:22:08+00:00",
   "workflow_history": {
     "dp_doc_workflow": [
       {

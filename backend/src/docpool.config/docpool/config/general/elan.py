@@ -484,7 +484,7 @@ DTYPES = [
     },
     {
         TYPE: "DocType",
-        TITLE: "Lageinformation",
+        TITLE: "Radiologisches Lagebild",
         ID: "situationreport",
         CHILDREN: [],
         "local_behaviors": ["elan"],

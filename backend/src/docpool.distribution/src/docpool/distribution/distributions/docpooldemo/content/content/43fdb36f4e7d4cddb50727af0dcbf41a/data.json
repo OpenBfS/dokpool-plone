@@ -1,13 +1,13 @@
 {
-  "@id": "/config/dtypes/situationreport",
+  "@id": "/berlin/config/dtypes/messstrategie",
   "@type": "DocType",
-  "UID": "4540eb93ebea402eaba0d806b9db812f",
+  "UID": "43fdb36f4e7d4cddb50727af0dcbf41a",
   "allowTransfer": true,
   "allowUploads": true,
   "allow_discussion": null,
   "allow_discussion_on_dpdocument": false,
   "automaticTransferTargets": [],
-  "created": "2025-09-10T12:24:18+00:00",
+  "created": "2026-01-30T11:14:04+00:00",
   "creators": [
     "admin"
   ],
@@ -16,7 +16,7 @@
   "exportimport.constrains": {},
   "exportimport.conversation": [],
   "globalAllow": true,
-  "id": "situationreport",
+  "id": "messstrategie",
   "imgPattern": null,
   "is_folderish": true,
   "language": "##DEFAULT##",
@@ -25,12 +25,12 @@
     "elan"
   ],
   "lock": {},
-  "modified": "2025-09-10T12:24:18+00:00",
+  "modified": "2026-01-30T11:22:40+00:00",
   "partsPattern": null,
   "pdfPattern": null,
   "publishImmediately": false,
   "review_state": "published",
-  "title": "Radiologisches Lagebild",
+  "title": "Messstrategie",
   "type_title": "Document Type",
   "version": "current",
   "workflow_history": {
@@ -40,7 +40,7 @@
         "actor": "rescue",
         "comments": "",
         "review_state": "published",
-        "time": "2025-09-10T12:24:18+00:00"
+        "time": "2026-01-30T11:22:40+00:00"
       }
     ]
   },

@@ -1087,13 +1087,14 @@
         "estimation",
         "doksysdok",
         "airactivity",
+        "mresult_precipitation",
         "note",
         "trajectory",
         "weatherinformation"
       ],
       "description": "",
       "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
-      "email": "",
+      "email": null,
       "groupid": "bund_wetterdienst",
       "groups": [],
       "principals": [
@@ -1436,7 +1437,7 @@
       "groups": [],
       "home_page": "",
       "location": "",
-      "password": "{SSHA}hM6nFsF9EDllycElpkOP2jTYAkM4nRWPGIlg",
+      "password": "{SSHA}GdRkgt2oz4bXpV/opGsf7h0O6gbUnlTcHMXR",
       "roles": [
         "ELANUser",
         "Member",
@@ -1453,7 +1454,7 @@
       "groups": [],
       "home_page": "",
       "location": "",
-      "password": "{SSHA}vE4MNSiQQTEkWEpCkFcNgy8BzU58l+nDZajt",
+      "password": "{SSHA}k2Rktckr+A2BW0UZeUqDowSl3Ct+OKkAhFSs",
       "roles": [
         "ELANUser",
         "Manager",
@@ -1470,7 +1471,7 @@
       "groups": [],
       "home_page": "",
       "location": "",
-      "password": "{SSHA}+EJhTFUAycvy1MtPESqh0Lr2o0J11K8mdTUw",
+      "password": "{SSHA}DKAWCAmVkNI4pfKDjXwGTLeV6rZPwRx5KmEo",
       "roles": [
         "ELANUser",
         "Member",
@@ -1486,7 +1487,7 @@
       "groups": [],
       "home_page": "",
       "location": "",
-      "password": "{SSHA}rE4A1RC6l6SoOqB4SKutu8x+IfqrSs442IJS",
+      "password": "{SSHA}og0TJa5lu4JzSa2D34jQaxvcK4R2qDMI01KR",
       "roles": [
         "ELANUser",
         "Manager",
@@ -1536,7 +1537,7 @@
       "groups": [],
       "home_page": "",
       "location": "",
-      "password": "{SSHA}R9a2lB8s2Skzsrcq0Kj4iQcVhWU1fs2mSfRy",
+      "password": "{SSHA}w8riU9UQOk5nouD3zgb/mDtBXxt456/5mYUU",
       "roles": [
         "Member",
         "REIUser",
@@ -1552,7 +1553,7 @@
       "groups": [],
       "home_page": "",
       "location": "",
-      "password": "{SSHA}hRF5y66A9j0WLjcvJgT/KjnPV4oZ0xvlcLx9",
+      "password": "{SSHA}W09xaXTrBvIyZYy7/pA8G8W7+KeJHPmuPUcH",
       "roles": [
         "Manager",
         "Member",

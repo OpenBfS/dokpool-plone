@@ -31,7 +31,6 @@
   "description": "",
   "docType": "trajectory",
   "effective": null,
-  "exclude_from_nav": false,
   "expires": null,
   "exportimport.constrains": {},
   "exportimport.conversation": [],
@@ -55,12 +54,11 @@
     "encoding": "utf-8"
   },
   "title": "Eine Trajektorie",
-  "transferLog": null,
   "transferred": null,
   "transferred_by": null,
   "type_title": "Document",
   "version": "current",
-  "wdate": "2025-11-19T13:29:06",
+  "wdate": "2025-11-19T13:29:06+00:00",
   "workflow_history": {
     "dp_doc_workflow": [
       {

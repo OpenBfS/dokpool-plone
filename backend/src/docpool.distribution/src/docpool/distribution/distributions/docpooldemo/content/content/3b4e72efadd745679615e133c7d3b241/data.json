@@ -1,13 +1,13 @@
 {
-  "@id": "/config/dtypes/sitrep",
+  "@id": "/config/dtypes/messstrategie",
   "@type": "DocType",
-  "UID": "f1426b5b26ed42008861cc4428715c33",
+  "UID": "3b4e72efadd745679615e133c7d3b241",
   "allowTransfer": true,
   "allowUploads": true,
   "allow_discussion": null,
   "allow_discussion_on_dpdocument": false,
   "automaticTransferTargets": [],
-  "created": "2025-09-10T12:24:18+00:00",
+  "created": "2026-01-30T11:14:04+00:00",
   "creators": [
     "admin"
   ],
@@ -16,7 +16,7 @@
   "exportimport.constrains": {},
   "exportimport.conversation": [],
   "globalAllow": true,
-  "id": "sitrep",
+  "id": "messstrategie",
   "imgPattern": null,
   "is_folderish": true,
   "language": "##DEFAULT##",
@@ -25,12 +25,12 @@
     "elan"
   ],
   "lock": {},
-  "modified": "2025-09-10T12:24:18+00:00",
+  "modified": "2026-01-30T11:14:04+00:00",
   "partsPattern": null,
   "pdfPattern": null,
   "publishImmediately": false,
   "review_state": "published",
-  "title": "Lagebericht",
+  "title": "Messstrategie",
   "type_title": "Document Type",
   "version": "current",
   "workflow_history": {
@@ -40,7 +40,7 @@
         "actor": "rescue",
         "comments": "",
         "review_state": "published",
-        "time": "2025-09-10T12:24:18+00:00"
+        "time": "2026-01-30T11:14:04+00:00"
       }
     ]
   },
