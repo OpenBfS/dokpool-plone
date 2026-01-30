@@ -1,6 +1,7 @@
 {
   "__version__": "1.0.0",
   "_blob_files_": [
+    "55028c031aa9493eb4b68eaf70d2e82a/customLogo/dokpool_logo_berlin.png",
     "32fdd578bc7d446081ce5d64b7015724/customLogo/dokpool_logo_brandenburg.png",
     "e84e6c60b3c34a99b9c82de2ff8f9c46/customLogo/dokpool_logo_bund.png",
     "70168f2d44604f768252fb071abd9d67/file/Beispiel.pdf",
@@ -19,8 +20,7 @@
     "8f1760a60e554508b297265e887a75f0/file/landesmessstellen-strvg_empfehlung-zur-mindestausstattung-von-lmst-nach-strvg_2015-07.pdf",
     "a44e14a35193463f97e577eba8044ded/file/bfs_2009_bfs-schr-47-09.pdf",
     "e67f7055691f4257b8c460d5fa78d860/file/historie_stammdaten-aenderungen.pdf",
-    "d5aa26f2b11e4c049f1c94955c41e62a/customLogo/dokpool_logo_mv.png",
-    "55028c031aa9493eb4b68eaf70d2e82a/customLogo/dokpool_logo_berlin.png"
+    "d5aa26f2b11e4c049f1c94955c41e62a/customLogo/dokpool_logo_mv.png"
   ],
   "_data_files_": [
     "plone_site_root/data.json",
@@ -2137,6 +2137,9 @@
     },
     "0ce762803e484ddba0d8b1df9d8bc7b6": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ],
@@ -2760,6 +2763,9 @@
     },
     "2243ba3a7461485ba3baf5a5dab5960c": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -2873,6 +2879,9 @@
     },
     "276ebb828506494597a3a3c0f22c09ee": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ],
@@ -3009,6 +3018,9 @@
     },
     "2cd86a11ecf9480bac15e677285154cf": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ],
@@ -3517,6 +3529,9 @@
     },
     "399a21e9a60b49a0be023f1142a72735": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ],
@@ -3570,6 +3585,9 @@
     },
     "3b4e72efadd745679615e133c7d3b241": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -4019,6 +4037,9 @@
     },
     "43fdb36f4e7d4cddb50727af0dcbf41a": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -4490,6 +4511,9 @@
     },
     "57df9b98ae7f4ca490c45372046ad57c": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ],
@@ -5212,6 +5236,9 @@
     },
     "6e39b265aef8423fba07aedf3945bc75": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ],
@@ -7112,6 +7139,9 @@
     },
     "abeb042567374946bf336153fd44da51": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ],
@@ -7221,6 +7251,9 @@
     },
     "af99e9859ebf453e968d1f0b5f6dd7a7": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -7394,6 +7427,9 @@
     },
     "b6bc78956bf147289c4087566b013315": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -8164,6 +8200,9 @@
     },
     "cddde4214fa44873a7eddd1d55172e3a": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -8560,6 +8599,9 @@
     },
     "dde61d567e614cf386ef72f0419cb4dc": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ]
@@ -8798,6 +8840,9 @@
     },
     "e5ea3624edeb496a89f64aca4b305c55": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ],
@@ -8975,6 +9020,9 @@
     },
     "e8d94b2e4ca44280ba038ea5bca6453d": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ],
@@ -9048,6 +9096,9 @@
     },
     "ea64314e81004b869c50b191f4e99172": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ],
@@ -9390,6 +9441,9 @@
     },
     "f47c344a0db24e179748d03b0027447c": {
       "local_roles": {
+        "admin": [
+          "Owner"
+        ],
         "rescue": [
           "Owner"
         ],
