@@ -4,7 +4,13 @@ Changelog
 2.5.0 (unreleased)
 ------------------
 
+Fixed:
 
+- Add back Facettierte Search Demo-data (#6385)
+  [slindner]
+
+- Improve facettierte Search table styling (#5334)
+  [slindner]
 
 2.4.0 (2025-12-16)
 ------------------

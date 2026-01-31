@@ -30,7 +30,7 @@ class ReiReport(BaseColumn):
             title = files[0].title
             url = files[0].absolute_url()
             pdf_link = f'<a title="{safe_text(title)}" href={url} target="_blank">PDF ansehen</a><br>'
-        return pdf_link + f'<a title="{safe_text(obj.Title())}" href={obj.absolute_url()}>zum Dokument</a>'
+        return pdf_link
 
 
 class ReiLegalBases(BaseColumn):
@@ -130,7 +130,7 @@ class Origin(BaseColumn):
 
 
 class Metadata(BaseColumn):
-    header = _("header_Title_Metadata")
+    header = _(" ")
     sort_index = -1
     weight = 80
     escape = False
