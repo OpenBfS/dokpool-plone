@@ -774,6 +774,10 @@
       "default_page": "front-page",
       "default_page_uuid": "9fdcaeaa2528420582e99f104a105802"
     },
+    "8414e587952e445097b7952d620e8201": {
+      "default_page": "rei-bericht-suche",
+      "default_page_uuid": "ff03365742ae4b52888e8c830da95dd2"
+    },
     "8bf9e01b7c4749d7946b888251b13012": {
       "default_page": "front-page",
       "default_page_uuid": "73421a1a11cd4f2a91a57a49f2552525"
