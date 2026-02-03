@@ -27,7 +27,6 @@ dependencies = [
     "plone.restapi",
     "pyruvate==1.5.0",
     "Products.PloneKeywordManager",
-    "pas.plugins.ldap",
     "eea.facetednavigation",
     "collective.impersonate",
     "collective.catalogcleanup",
