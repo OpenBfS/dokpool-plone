@@ -30,11 +30,15 @@
            tal:condition="view/data/hidecriteriaenabled|python:1"
       >
         <a class="faceted-criteria-hide"
+           title="Ausblenden Filter"
+           i18n:attributes="title"
            href="#"
         >
           <tal:block i18n:translate="">Ausblenden Filter</tal:block>
         </a>
         <a class="faceted-criteria-show"
+           title="Filter anzeigen"
+           i18n:attributes="title"
            href="#"
         >
           <tal:block i18n:translate="">Filter anzeigen</tal:block>
