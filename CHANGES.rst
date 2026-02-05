@@ -12,6 +12,10 @@ Fixed:
 - Improve facettierte Search table styling (#5334)
   [slindner]
 
+- Remove code that allowed for transferring a document again after
+  modification (#6341)
+  [tlotze]
+
 
 Technical:
 

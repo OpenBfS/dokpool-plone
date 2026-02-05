@@ -10,8 +10,7 @@ def allowed_targets(context):
     my DocType is known and must be accepted
         or the DocType is not defined in the other ESD (will be checked later)
         or we don't even have a DocType (because, e.g., we're about to create one)
-    and, if context is a document,
-        my current version must not have been transferred.
+    and context must not have been transferred.
     """
     from docpool.base.behaviors.transferable import ITransferable
 
@@ -51,10 +50,7 @@ def allowed_targets(context):
 
     transferable = ITransferable(context, None)
     if transferable is not None:
-        mdate = context.getMdate()
-        sent_to_since_last_modified = {
-            entry["transferfolder_uid"] for entry in transferable.sender_log if entry["timestamp"] > mdate
-        }
-        targets = [t for t in targets if t["uid"] not in sent_to_since_last_modified]
+        sent_to = {entry["transferfolder_uid"] for entry in transferable.sender_log}
+        targets = [t for t in targets if t["uid"] not in sent_to]
 
     return sorted(targets, key=itemgetter("from_to_title"))
