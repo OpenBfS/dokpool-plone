@@ -12,6 +12,9 @@ Fixed:
 - Improve facettierte Search table styling (#5334)
   [slindner]
 
+- Error on assigning doksys behavior to documents (#6289)
+  [tlotze]
+
 
 Technical:
 
