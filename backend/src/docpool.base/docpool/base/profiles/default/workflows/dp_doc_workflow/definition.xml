@@ -65,7 +65,6 @@
   >
     <description>Visible to everyone, not editable by the owner.</description>
     <exit-transition transition_id="retract" />
-    <exit-transition transition_id="reject" />
     <permission-map acquired="False"
                     name="Access contents information"
     >
