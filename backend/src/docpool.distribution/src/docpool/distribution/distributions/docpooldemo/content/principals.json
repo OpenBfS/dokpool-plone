@@ -586,7 +586,6 @@
         "information_expert_advisor",
         "info_public",
         "info_ecc",
-        "sitrep",
         "situationreport",
         "protectiveactions",
         "instructions",
@@ -1087,6 +1086,7 @@
         "estimation",
         "doksysdok",
         "airactivity",
+        "mresult_precipitation",
         "note",
         "trajectory",
         "weatherinformation"
@@ -1436,7 +1436,7 @@
       "groups": [],
       "home_page": "",
       "location": "",
-      "password": "{SSHA}hM6nFsF9EDllycElpkOP2jTYAkM4nRWPGIlg",
+      "password": "{SSHA}ds4ySG58C2GU9wlzrdcaTMzLXNcbaRgmvo41",
       "roles": [
         "ELANUser",
         "Member",
@@ -1453,7 +1453,7 @@
       "groups": [],
       "home_page": "",
       "location": "",
-      "password": "{SSHA}vE4MNSiQQTEkWEpCkFcNgy8BzU58l+nDZajt",
+      "password": "{SSHA}UAY4RAQghgegZbQ91hOtlxpvv4A3ACevRenH",
       "roles": [
         "ELANUser",
         "Manager",
@@ -1470,7 +1470,7 @@
       "groups": [],
       "home_page": "",
       "location": "",
-      "password": "{SSHA}+EJhTFUAycvy1MtPESqh0Lr2o0J11K8mdTUw",
+      "password": "{SSHA}e7fx2JedwZ9ikotRm0/1Qk7+QANdBXbVRBu3",
       "roles": [
         "ELANUser",
         "Member",
@@ -1486,7 +1486,7 @@
       "groups": [],
       "home_page": "",
       "location": "",
-      "password": "{SSHA}rE4A1RC6l6SoOqB4SKutu8x+IfqrSs442IJS",
+      "password": "{SSHA}rb3CjOkUH8HmPH4WW+oC5VQMViopvaohYJGI",
       "roles": [
         "ELANUser",
         "Manager",
@@ -1536,7 +1536,7 @@
       "groups": [],
       "home_page": "",
       "location": "",
-      "password": "{SSHA}R9a2lB8s2Skzsrcq0Kj4iQcVhWU1fs2mSfRy",
+      "password": "{SSHA}yyJ6/B5QuI0akq7P0gV52KQ02Dv/axHyVcFt",
       "roles": [
         "Member",
         "REIUser",
@@ -1552,7 +1552,7 @@
       "groups": [],
       "home_page": "",
       "location": "",
-      "password": "{SSHA}hRF5y66A9j0WLjcvJgT/KjnPV4oZ0xvlcLx9",
+      "password": "{SSHA}d1OBSn31iI7fJjZ6ig/DjaJBnEkP+8ofYgyf",
       "roles": [
         "Manager",
         "Member",

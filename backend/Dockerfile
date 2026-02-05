@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-ARG PLONE_VERSION=6.1.3
+ARG PLONE_VERSION=6.1.4
 
 # Stage to only build the theme
 FROM node:23-slim AS node
@@ -78,6 +78,12 @@ COPY --chown=500:500 templates/zope.ini /app/etc/zope.ini
 COPY --chown=500:500 templates/i18n-plone-configure.zcml /app/etc/package-includes/i18n-plone-configure.zcml
 # Adds the session temp storage to the zope conf
 COPY --chown=500:500 templates/temp_storage.conf /app/etc/zope.conf.d/temp_storage.conf
+# Install ghostscript into prod container
+RUN <<EOT
+    set -e
+    apt update
+    apt install -y --no-install-recommends ghostscript
+EOT
 
 # Compile our mo files
 ENV zope_i18n_compile_mo_files=true

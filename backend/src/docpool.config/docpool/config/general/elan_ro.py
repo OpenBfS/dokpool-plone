@@ -247,7 +247,7 @@ ESDCOLLECTIONS = [
                 TITLE: "SITUATION REPORTS",
                 ID: "situation-reports",
                 CHILDREN: [],
-                DOCTYPES: ["nppinformation", "situationreport", "sitrep"],
+                DOCTYPES: ["nppinformation", "situationreport"],
             },
             {
                 TYPE: "ELANDocCollection",
@@ -439,13 +439,6 @@ DTYPES = [
     },
     {
         TYPE: "DocType",
-        TITLE: "Situation Report",
-        ID: "sitrep",
-        CHILDREN: [],
-        "local_behaviors": ["elan"],
-    },
-    {
-        TYPE: "DocType",
         TITLE: "Instructions to the Public",
         ID: "instructions",
         CHILDREN: [],
@@ -542,10 +535,6 @@ def connectTypesAndCategories(self):
         pass
     try:
         self.config.dtypes.situationreport.type_extension(ELAN_APP).setCCategory("situation-reports")
-    except BaseException:
-        pass
-    try:
-        self.config.dtypes.sitrep.type_extension(ELAN_APP).setCCategory("situation-reports")
     except BaseException:
         pass
     try:

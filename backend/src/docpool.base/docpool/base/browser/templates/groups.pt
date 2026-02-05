@@ -9,9 +9,13 @@
 >
   <body>
 
-    <metal:content-core fill-slot="main">
+    <metal:content-core fill-slot="main"
+                        tal:define="
+                          groups python:view.get_groups();
+                        "
+    >
 
-      <h1>Groups Listing</h1>
+      <h1>Groups Listing for ${python: view.dp.title}</h1>
 
       <table class="pat-datatables table table-striped table-sm"
              id="groups-overview"
@@ -48,7 +52,7 @@
         </thead>
 
         <tbody>
-          <tr tal:repeat="group python:view.get_groups()">
+          <tr tal:repeat="group python:groups">
             <td>
               <a name="${group/id}"></a>
               <span tal:replace="group/title"></span>

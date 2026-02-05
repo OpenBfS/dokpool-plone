@@ -484,15 +484,8 @@ DTYPES = [
     },
     {
         TYPE: "DocType",
-        TITLE: "Lageinformation",
+        TITLE: "Radiologisches Lagebild",
         ID: "situationreport",
-        CHILDREN: [],
-        "local_behaviors": ["elan"],
-    },
-    {
-        TYPE: "DocType",
-        TITLE: "Lagebericht",
-        ID: "sitrep",
         CHILDREN: [],
         "local_behaviors": ["elan"],
     },
@@ -626,10 +619,6 @@ def connectTypesAndCategories(self):
         pass
     try:
         self.config.dtypes.situationreport.type_extension(ELAN_APP).setCCategory("situation-reports")
-    except BaseException:
-        pass
-    try:
-        self.config.dtypes.sitrep.type_extension(ELAN_APP).setCCategory("situation-reports")
     except BaseException:
         pass
     try:

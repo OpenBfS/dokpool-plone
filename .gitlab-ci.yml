@@ -6,7 +6,7 @@ image: python:3.13.3-bullseye
 variables:
   PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache"
   UV_CACHE_DIR: "$HOME/.cache/uv"
-  PLONE_VERSION: "6.1.1"
+  PLONE_VERSION: "6.1.4"
 
 # Pip's cache doesn't store the python packages
 # https://pip.pypa.io/en/stable/reference/pip_install/#caching

@@ -27,7 +27,6 @@
   "description": "",
   "docType": "reireport",
   "effective": "2025-11-19T11:52:00+00:00",
-  "exclude_from_nav": false,
   "expires": null,
   "exportimport.constrains": {},
   "exportimport.conversation": [],
@@ -52,7 +51,6 @@
     "encoding": "utf-8"
   },
   "title": "REI-Immissionsbericht des 1. Halbjahres 2025 Endlager f\u00fcr radioaktive Abf\u00e4lle Morsleben (ERAM) (Strahlenschutzverantwortlicher)",
-  "transferLog": null,
   "transferred": null,
   "transferred_by": null,
   "type_title": "Document",

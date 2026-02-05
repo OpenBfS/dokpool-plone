@@ -22,14 +22,14 @@ classifiers = [
     "Programming Language :: Python","Programming Language :: Python :: 3.12",
 ]
 dependencies = [
-    "Products.CMFPlone==6.1.3",
+    "Products.CMFPlone==6.1.4",
     "plone.api",
     "plone.restapi",
     "pyruvate==1.5.0",
     "Products.PloneKeywordManager",
-    "pas.plugins.ldap",
     "eea.facetednavigation",
     "collective.impersonate",
+    "collective.catalogcleanup",
     "RelStorage",
     "psycopg2",
     "pytest-playwright",

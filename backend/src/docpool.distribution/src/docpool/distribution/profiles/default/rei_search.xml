@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<object meta_type="Dexterity Container"
-        name="suche"
+<object meta_type="Dexterity Item"
+        name="rei-bericht-suche"
 >
   <criteria>
     <criterion name="c9">
@@ -10,6 +10,7 @@
       <property name="position">left</property>
       <property name="section">default</property>
       <property name="hidden">False</property>
+      <property name="custom_css" />
     </criterion>
     <criterion name="c4">
       <property name="widget">checkbox</property>
@@ -22,6 +23,7 @@
       <property name="position">left</property>
       <property name="section">default</property>
       <property name="hidden">False</property>
+      <property name="custom_css" />
       <property name="count">False</property>
       <property name="sortcountable">False</property>
       <property name="hidezerocount">False</property>
@@ -38,6 +40,7 @@
       <property name="position">left</property>
       <property name="section">default</property>
       <property name="hidden">False</property>
+      <property name="custom_css" />
       <property name="count">False</property>
       <property name="sortcountable">False</property>
       <property name="hidezerocount">False</property>
@@ -55,6 +58,7 @@
       <property name="position">left</property>
       <property name="section">default</property>
       <property name="hidden">False</property>
+      <property name="custom_css" />
       <property name="count">False</property>
       <property name="sortcountable">False</property>
       <property name="hidezerocount">False</property>
@@ -72,6 +76,7 @@
       <property name="position">left</property>
       <property name="section">default</property>
       <property name="hidden">False</property>
+      <property name="custom_css" />
       <property name="count">False</property>
       <property name="sortcountable">False</property>
       <property name="hidezerocount">False</property>
@@ -89,6 +94,7 @@
       <property name="position">left</property>
       <property name="section">default</property>
       <property name="hidden">False</property>
+      <property name="custom_css" />
       <property name="count">False</property>
       <property name="sortcountable">False</property>
       <property name="hidezerocount">False</property>
@@ -106,6 +112,7 @@
       <property name="position">left</property>
       <property name="section">default</property>
       <property name="hidden">False</property>
+      <property name="custom_css" />
       <property name="count">False</property>
       <property name="sortcountable">False</property>
       <property name="hidezerocount">False</property>
@@ -123,13 +130,13 @@
       <property name="position">left</property>
       <property name="section">default</property>
       <property name="hidden">False</property>
+      <property name="custom_css" />
       <property name="count">False</property>
       <property name="sortcountable">False</property>
       <property name="hidezerocount">False</property>
       <property name="maxitems">0</property>
       <property name="sortreversed">False</property>
     </criterion>
-
     <criterion name="c0">
       <property name="widget">resultsperpage</property>
       <property name="title">Results per page</property>
@@ -137,6 +144,7 @@
       <property name="position">right</property>
       <property name="section">default</property>
       <property name="hidden">True</property>
+      <property name="custom_css" />
       <property name="start">0</property>
       <property name="end">20</property>
       <property name="step">5</property>
@@ -149,6 +157,7 @@
       <property name="position">right</property>
       <property name="section">default</property>
       <property name="hidden">True</property>
+      <property name="custom_css" />
     </criterion>
     <criterion name="c3">
       <property name="widget">checkbox</property>
@@ -163,6 +172,7 @@
       <property name="position">right</property>
       <property name="section">default</property>
       <property name="hidden">True</property>
+      <property name="custom_css" />
       <property name="count">False</property>
       <property name="sortcountable">False</property>
       <property name="hidezerocount">False</property>

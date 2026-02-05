@@ -4,7 +4,28 @@ Changelog
 2.5.0 (unreleased)
 ------------------
 
+Fixed:
 
+- Add back Facettierte Search Demo-data (#6385)
+  [slindner]
+
+- Improve facettierte Search table styling (#5334)
+  [slindner]
+
+
+Technical:
+
+- Upgrade to Plone 6.1.4. (#5954)
+  [pbauer]
+
+- Add collective.catalogcleanup to be able to find and remove invalid catalog entries. (#6373)
+  [pbauer]
+
+- Remove unused pas.plugins.ldap and dependencies.
+  [pbauer]
+
+- Add missing title attribute to eea widget (#4378)
+  [slindner]
 
 2.4.0 (2025-12-16)
 ------------------

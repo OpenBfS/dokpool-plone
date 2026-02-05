@@ -13,8 +13,7 @@
   ],
   "description": "",
   "docType": "rodosprojection",
-  "effective": "2025-11-19T12:20:12+00:00",
-  "exclude_from_nav": false,
+  "effective": "2025-11-19T12:20:00+00:00",
   "expires": null,
   "exportimport.constrains": {},
   "exportimport.conversation": [],
@@ -43,12 +42,11 @@
     "encoding": "utf-8"
   },
   "title": "Eine RODOS Rechnung mit ELAN",
-  "transferLog": null,
   "transferred": null,
   "transferred_by": null,
   "type_title": "Document",
   "version": "current",
-  "wdate": "2025-11-19T13:20:12",
+  "wdate": "2025-11-19T13:20:12+00:00",
   "workflow_history": {
     "dp_doc_workflow": [
       {

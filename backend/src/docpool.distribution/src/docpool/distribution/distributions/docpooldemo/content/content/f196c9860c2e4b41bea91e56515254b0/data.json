@@ -29,7 +29,6 @@
   "description": "",
   "docType": "reireport",
   "effective": "2025-11-19T11:52:00+00:00",
-  "exclude_from_nav": false,
   "expires": null,
   "exportimport.constrains": {},
   "exportimport.conversation": [],
@@ -54,7 +53,6 @@
     "encoding": "utf-8"
   },
   "title": "REI-Emissionsbericht (Abwasser) November 2025 KKW Fessenheim (unabh\u00e4ngige Messstelle)",
-  "transferLog": null,
   "transferred": null,
   "transferred_by": null,
   "type_title": "Document",

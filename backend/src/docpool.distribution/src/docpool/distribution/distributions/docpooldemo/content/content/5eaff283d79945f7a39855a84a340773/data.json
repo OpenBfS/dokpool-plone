@@ -12,7 +12,6 @@
   "description": "",
   "docType": "situationreport",
   "effective": null,
-  "exclude_from_nav": false,
   "expires": null,
   "exportimport.constrains": {},
   "exportimport.conversation": [],
@@ -48,7 +47,6 @@
     "encoding": "utf-8"
   },
   "title": "+++\u00dcbung+++\u00dcbung+++\u00dcbung 1. Radiologisches Lagebild zur IMIS-\u00dcbung 2025",
-  "transferLog": null,
   "transferred": "2025-09-17T16:09:38+00:00",
   "transferred_by": "admin Landesministerium (Berlin)",
   "type_title": "Document",
