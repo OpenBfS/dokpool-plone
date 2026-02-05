@@ -575,19 +575,18 @@ def to_3000(context=None):
     create_session_stuff(portal)
     # TODO: Enable ELAN for Bremen, Hamburg, Mecklenburg-Vorpommern, Sachsen-Anhalt (#6380)
 
-    # Drop data from relationfields to speed up stuff
+    # Delete old structure first
+    delete_esd_structure()
+
+    # Drop data from relationfield to speed up stuff
     marker = object()
     for brain in api.content.find(portal_type="DocType", sort_on="path"):
         obj = brain.getObject()
         if getattr(obj.aq_base, "contentCategory", marker) is not marker:
             del obj.contentCategory
-    for brain in api.content.find(portal_type=["DashboardCollection", "ELANDocCollection"], sort_on="path"):
-        obj = brain.getObject()
-        if getattr(obj.aq_base, "docTypes", marker) is not marker:
-            del obj.docTypes
 
     create_doctype_structure()
-    delete_esd_structure()
+    # TODO: Purge Cache or tell user to shut down and start new since we use ram cache for doctypes
 
 
 def create_doctype_structure():
@@ -704,6 +703,9 @@ def create_doctype_structure():
                 )
             else:
                 log.info(f"{old_obj.id} ({old_obj.title})")
+
+        # Delete all remaining old types after logging
+        api.content.delete(old, check_linkintegrity=False)
 
     # Change all existing DPDocuments
     for brain in api.content.find(portal_type="DPDocument", sort_on="path"):
