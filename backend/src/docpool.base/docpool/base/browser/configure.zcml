@@ -364,7 +364,7 @@
       for="*"
       class=".groups.GroupsListing"
       template="templates/groups.pt"
-      permission="cmf.ManagePortal"
+      permission="zope2.ViewManagementScreens"
       />
 
   <browser:page
