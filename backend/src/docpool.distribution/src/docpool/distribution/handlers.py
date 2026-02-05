@@ -6,6 +6,7 @@ from Products.CMFPlone.Portal import PloneSite
 from Products.ZCatalog.ProgressHandler import ZLogHandler
 from zope.globalrequest import getRequest
 
+
 logger = getLogger(__name__)
 
 
