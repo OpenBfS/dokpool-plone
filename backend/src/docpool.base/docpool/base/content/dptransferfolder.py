@@ -235,4 +235,5 @@ def doctype_will_be_removed(obj, event=None):
         return
     dt_id = obj.getId()
     for tf in transfer_folders_for(event.oldParent):
-        tf.doctypePermissions.pop(dt_id, None)
+        if tf.doctypePermissions:
+            tf.doctypePermissions.pop(dt_id, None)

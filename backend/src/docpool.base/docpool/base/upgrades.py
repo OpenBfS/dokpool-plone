@@ -62,7 +62,7 @@ DOCTYPES = [
     {
         "title": "Messempfehlung",
         "id": "measurement_recommendation",
-        "old_ids": ["inquiry_measurement_order", "measurement_order", "measurement_requirements"],
+        "old_ids": ["measurement_order"],
         "behaviors": ["elan"],
         "description": "Messempfehlung an Einsatzkräfte des Bundes und der Länder, sowie KHG",
         "subcategory": "Messempfehlungen",
@@ -117,7 +117,7 @@ DOCTYPES = [
     {
         "title": "Messergebnis Luft/bodennah",
         "id": "mresult_air_near_ground",
-        "old_ids": ["airactivity", "mresult_emission", "mresult_flight", "mresult_insitu"],
+        "old_ids": ["airactivity", "mresult_emission", "mresult_flight"],
         "behaviors": ["elan"],
         "description": "Messergebnis Luft/bodennah",
         "subcategory": "Luft (inklusive Gamma-ODL)",
@@ -127,10 +127,10 @@ DOCTYPES = [
     },
     {
         "title": "Messergebnis Luft/bodennah (Spurenanalyse)",
-        "id": "mresult_air_near_ground_traces",
+        "id": "mresult_air_traceanalysis",
         "old_ids": ["mresult_traceanalysis"],
         "behaviors": ["elan"],
-        "description": "Messergebnis Luft/bodennah (Spurenanalyse einschließlich Edelgase)",
+        "description": "Messergebnis Luft/Spurenanalyse einschließlich Edelgase",
         "subcategory": "Luft (inklusive Gamma-ODL)",
         "subcategory_id": "mresults_air",
         "category": "Messergebnisse",
@@ -183,7 +183,7 @@ DOCTYPES = [
     {
         "title": "Messergebnis Inkorporationsüberwachung",
         "id": "mresult_incorporation_monitoring",
-        "old_ids": ["information_notfallstation"],
+        "old_ids": [],
         "behaviors": ["elan"],
         "description": "Messergebnis Inkorporationsüberwachung",
         "subcategory": "Inkorporationsüberwachung und biologische Dosimetrie",
@@ -269,9 +269,20 @@ DOCTYPES = [
         "category_id": "measurement_results",
     },
     {
+        "title": "Messergebnis Boden",
+        "id": "mresult_soil",
+        "old_ids": ["groundcontamination"],
+        "behaviors": ["elan"],
+        "description": "Messergebnis Boden",
+        "subcategory": "Bodenoberfläche und Niederschlag",
+        "subcategory_id": "mresults_soil_surface_and_precipitation",
+        "category": "Messergebnisse",
+        "category_id": "measurement_results",
+    },
+    {
         "title": "Messergebnis Bodenoberfläche",
         "id": "mresult_soil_surface",
-        "old_ids": ["groundcontamination"],
+        "old_ids": ["mresult_insitu"],
         "behaviors": ["elan"],
         "description": "Messergebnis Bodenoberfläche",
         "subcategory": "Bodenoberfläche und Niederschlag",
@@ -337,7 +348,7 @@ DOCTYPES = [
     {
         "title": "Sonstiger Eintrag",
         "id": "other_entry",
-        "old_ids": ["mresult_other", "other_document"],
+        "old_ids": ["mresult_other", "other_document", "kfue-dokument", "probenahmeplan"],
         "behaviors": ["elan"],
         "description": "Wählen Sie diese Eintragsart, wenn keine der anderen zutreffend erscheint.",
         "subcategory": "Sonstige Einträge",
@@ -379,13 +390,13 @@ DOCTYPES = [
         "category_id": "rei",
     },
     {
-        "title": "Maßnahmengebiet",
-        "id": "response_action_area",
+        "title": "Maßnahmen",
+        "id": "response_action",
         "old_ids": ["protectiveactions"],
         "behaviors": ["elan"],
         "description": "Ausweisung der Gebiete, in denen aus radiologischer Sicht Maßnahmen angemessen sind, und empfohlene Maßnahmen.",
-        "subcategory": "Maßnahmengebiete",
-        "subcategory_id": "response_action_areas",
+        "subcategory": "Maßnahmen",
+        "subcategory_id": "response_actions",
         "category": "Lagebewältigung",
         "category_id": "incident_management",
     },
@@ -425,7 +436,13 @@ DOCTYPES = [
     {
         "title": "Stabsmitteilung",
         "id": "staff_note",
-        "old_ids": ["insituinformation", "note_measurement_teams", "note"],
+        "old_ids": [
+            "insituinformation",
+            "note_measurement_teams",
+            "note",
+            "inquiry_measurement_order",
+            "measurement_requirements",
+        ],
         "behaviors": ["elan"],
         "description": "Mitteilung eines Stabes an alle ELAN-Nutzer, die für die Zusammenarbeit von Bedeutung ist. Bsp: Mitteilung über die Einsatzbereitschaft des Stabes",
         "subcategory": "Mitteilungen der Stäbe",
@@ -445,6 +462,42 @@ DOCTYPES = [
         "category_id": "incident",
     },
 ]
+
+OLD_OBJ_MAPPING = {
+    "measurement_strategy": [
+        "/dokpool/bund/archive/uebung-core-2021_31-12-2021-12-17/content/Transfers/dokumente-aus-ni/messstrategie",
+        "/dokpool/niedersachsen/content/Groups/ni_e-ni-nlwkn/messstrategie",
+    ],
+    "measurement_recommendation": [
+        "/dokpool/schleswig-holstein/content/Groups/sh_e-sh-melund/kfue/automatisch/teil-g2/b71a1312-944c-4dd1-839e-0aa910aa4d69",
+        "/dokpool/schleswig-holstein/archive/uebung-kkb-2023-1_22-11-2023-13-35/content/Groups/sh_e-sh-melund/6139c042-ef6f-42de-b361-487a2a15da9e/",
+    ],
+    "additional_event_information": [
+        "/dokpool/schleswig-holstein/archive/stabstraining-umweltministerium-sh-11-03-25_30-07/content/Groups/sh_e-sh-melund/seekarte",
+    ],
+    "other_entry": [
+        "/dokpool/niedersachsen/archive/imis-aufbauschulung-q2-2025-1_29-07-2025-12-43/content/Groups/ni_e-ni-nlwkn/einsatzkarte",
+        "/dokpool/schleswig-holstein/content/Groups/sh_e-sh-melund/kfue/automatisch/teil-g3/7626f52a-5e2e-440e-8471-cda28ef25a04",
+    ],
+    "mresult_air_external_radiation": [
+        "/dokpool/bund/content/Groups/bund_e-messzentrale-bfs/mobile-messungen/automatisch/91ae0e4e-f096-4c76-abe6-1e950c8c344f",
+        "/dokpool/dokpool/baden-wuerttemberg/content/Transfers/dokumente-aus-bund/91ae0e4e-f096-4c76-abe6-1e950c8c344f",
+        "/dokpool/dokpool/bayern/content/Transfers/dokumente-aus-bund/91ae0e4e-f096-4c76-abe6-1e950c8c344f",
+    ],
+    "mresult_north_and_baltic_sea": [
+        "/dokpool/bund/archive/voruebung-zur-core-2024_01-10-2024-13-12/content/Groups/bund_e-messzentrale-bfs/messergebnisse-gewaesser-1-entwurf-10-00uhr",
+        "/dokpool/schleswig-holstein/archive/stabstraining-umweltministerium-sh-11-03-25_30-07/content/Groups/sh_e-sh-melund/wasserproben-von-berta",
+    ],
+    "mresult_other_surface_waters": [
+        "/dokpool/brandenburg/archive/imis-uebung-berlin-brandenburg-202010_27-11-2020/content/Groups/bb_e-lavg/gewaesser-07-10-2020-cs",
+        "/dokpool/brandenburg/archive/imis-uebung-berlin-brandenburg-202010_27-11-2020/content/Groups/bb_e-lavg/gewaesser-07-10-2020-jod",
+    ],
+    "mresult_drinking_water": [
+        "/dokpool/brandenburg/archive/imis-uebung-berlin-brandenburg-202010_27-11-2020/content/Groups/bb_landeslabor_bbb/trinkwasser-2020-10-1.07",
+        "/dokpool/brandenburg/archive/imis-uebung-berlin-brandenburg-202010_27-11-2020/content/Groups/bb_landeslabor_bbb/trinkwasser-2020-10.07",
+    ],
+}
+
 
 log = logging.getLogger(__name__)
 
@@ -520,12 +573,18 @@ def to_3000(context=None):
         "profile-docpool.base:to_3000",
     )
     create_session_stuff(portal)
+    # TODO: Enable ELAN for Bremen, Hamburg, Mecklenburg-Vorpommern, Sachsen-Anhalt (#6380)
 
-    # TODO: Enable ELAN for Bremen, Hamburg, Mecklenburg-Vorpommern, Sachsen-Anhalt
-
-    # Drop unused relations
-    api.relation.delete(relationship="contentCategory")
-    api.relation.delete(relationship="docTypes")
+    # Drop data from relationfields to speed up stuff
+    marker = object()
+    for brain in api.content.find(portal_type="DocType", sort_on="path"):
+        obj = brain.getObject()
+        if getattr(obj.aq_base, "contentCategory", marker) is not marker:
+            del obj.contentCategory
+    for brain in api.content.find(portal_type=["DashboardCollection", "ELANDocCollection"], sort_on="path"):
+        obj = brain.getObject()
+        if getattr(obj.aq_base, "docTypes", marker) is not marker:
+            del obj.docTypes
 
     create_doctype_structure()
     delete_esd_structure()
@@ -653,13 +712,23 @@ def create_doctype_structure():
             obj.docType = rename_mapping[obj.docType]
             obj.reindexObject(idxs=["category", "subcategory", "dp_type"])
 
+    # Change special cases for existing DPDocuments
+    for new_doctype, paths in OLD_OBJ_MAPPING.items():
+        for path in paths:
+            if obj := api.content.get(path=path):
+                log.info("Changing from %s to %s : %s", obj.docType, new_doctype, obj.absolute_url())
+                obj.docType = new_doctype
+                obj.reindexObject(idxs=["category", "subcategory", "dp_type"])
+
     # Change all existing groups
     for group in api.group.get_groups():
         if allowed_types := group.getProperty("allowedDocTypes", []):
             new_allowed_types = list(set([rename_mapping[i] for i in allowed_types if i in rename_mapping]))
             group.setGroupProperties({"allowedDocTypes": new_allowed_types})
+            log.info("Updated group %s", group.id)
 
     # Change allowed types for some folder types
+    log.info("Updating all folders ...s")
     for brain in api.content.find(object_provides=ISimpleFolder.__identifier__):
         obj = brain.getObject()
         if allowed_types := obj.allowedDocTypes:
