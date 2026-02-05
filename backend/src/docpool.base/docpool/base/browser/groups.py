@@ -1,3 +1,4 @@
+from docpool.base.utils import getDocumentPoolSite
 from operator import itemgetter
 from plone import api
 from Products.Five import BrowserView
@@ -18,9 +19,15 @@ class GroupsListing(BrowserView):
     def get_groups(self):
         results = []
         group_tool = api.portal.get_tool("portal_groups")
+        self.dp = getDocumentPoolSite(self.context)
         for group in group_tool.listGroups():
             if group.id == "AuthenticatedUsers":
                 continue
+            if self.dp.portal_type == "DocumentPool":
+                # Only show groups in the current dp
+                prefix = (self.dp.prefix or self.dp.id) + "_"
+                if not group.id.startswith(prefix):
+                    continue
             groups = []
             users = []
             for member in group.getGroupMembers():
