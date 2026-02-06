@@ -6,7 +6,6 @@
               name="Overview"
               remove="true"
               type="docpool.elan.Overview"
-              visible="True"
   />
   <assignment category="context"
               key="/"
@@ -14,7 +13,6 @@
               name="Recent"
               remove="true"
               type="docpool.elan.Recent"
-              visible="True"
   />
   <assignment category="context"
               key="/"
@@ -22,7 +20,12 @@
               name="navigation"
               remove="true"
               type="portlets.Navigation"
-              visible="True"
-  >
- </assignment>
+  />
+  <assignment category="context"
+              key="/"
+              manager="plone.leftcolumn"
+              name="navigation-1"
+              remove="true"
+              type="portlets.Navigation"
+  />
 </portlets>
