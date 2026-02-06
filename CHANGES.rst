@@ -32,6 +32,10 @@ Fixed:
 - Allow only published ELAN events anymore. Fix handling of unknown doctypes and doctype permissions on transfer (#5779, #6204)
   [tlotze]
 
+- Disallow retracting published ELAN documents except for server Managers
+  (#6342)
+  [tlotze]
+
 
 Technical:
 
