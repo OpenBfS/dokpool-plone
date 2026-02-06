@@ -143,6 +143,7 @@
     >Retract</action>
     <guard>
       <guard-permission>Manage portal</guard-permission>
+      <guard-expression>python:here.is_transition_allowed('retract')</guard-expression>
     </guard>
   </transition>
   <worklist title=""
