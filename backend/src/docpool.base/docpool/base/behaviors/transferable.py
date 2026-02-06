@@ -145,13 +145,6 @@ class Transferable(FlexibleView):
         context = aq_inner(self.context)
         context.transfer_receiver_log = value
 
-    def isClean(self):
-        """
-        Is this document free for further action like publishing or transfer.
-        @return:
-        """
-        return True
-
     def changed(self):
         """ """
         return self.context.transferred or self.context.getMdate()

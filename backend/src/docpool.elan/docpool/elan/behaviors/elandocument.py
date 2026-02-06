@@ -124,13 +124,6 @@ class ELANDocument(FlexibleView):
     def scenarios_to_keep(self, value):
         pass
 
-    def isClean(self):
-        """
-        Is this document free for further action like publishing or transfer.
-        @return:
-        """
-        return True
-
     def myScenarioObjects(self):
         """Return DPEvent objects associated with this document."""
         # We can not use the catalog (and therefore, plone.api.content.get()) here since

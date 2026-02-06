@@ -40,7 +40,6 @@ from zExceptions import BadRequest
 from zope import schema
 from zope.annotation.interfaces import IAnnotations
 from zope.component import adapter
-from zope.component import getMultiAdapter
 from zope.component import getUtilitiesFor
 from zope.component import queryMultiAdapter
 from zope.container.interfaces import IContainerModifiedEvent
@@ -92,20 +91,7 @@ class DPDocument(Container, Extendable, ContentBase):
         Is this document free for further action like publishing or transfer.
         @return:
         """
-        request = self.REQUEST
-        dp_app_state = getMultiAdapter((self, request), name="dp_app_state")
-
-        def _isClean():
-            lbs = dp_app_state.appsEffectiveForObject(request)
-            for lb in lbs:
-                if not self.doc_extension(lb).isClean():
-                    return False
-            return self.unknownDocType() is None
-
-        # We need to do this as Manager, because we need to check for all possible
-        # reasons why a document could not by worked upon. Not just the reasons we
-        # would be allowed to see as a user.
-        return execute_under_special_role(self, "Manager", _isClean)
+        return self.unknownDocType() is None
 
     def createActions(self):
         """

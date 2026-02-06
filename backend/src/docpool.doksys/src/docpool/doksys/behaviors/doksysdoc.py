@@ -255,11 +255,3 @@ class DoksysDoc(FlexibleView):
     def sample_type_display(self):
         voc = getUtility(IVocabularyFactory, "docpool.doksys.SampleType")()
         return ", ".join(voc.getTerm(i).title for i in self.SampleType or [])
-
-    def isClean(self):
-        """
-        Is this document free for further action like publishing or transfer?
-        @return:
-        """
-        # TODO: define if necessary. Method MUST be present in Doc behavior.
-        return True
