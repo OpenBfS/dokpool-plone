@@ -129,7 +129,7 @@ class ELANDocument(FlexibleView):
         Is this document free for further action like publishing or transfer.
         @return:
         """
-        return self.unknownScenario() is None
+        return True
 
     def myScenarioObjects(self):
         """Return DPEvent objects associated with this document."""
@@ -160,18 +160,6 @@ class ELANDocument(FlexibleView):
         scns = api.content.find(UID=self.scenarios)
         titles = list({brain.Title for brain in scns})
         return titles
-
-    def unknownScenario(self):
-        """
-        If my scenario is in state private, return it.
-        """
-        scns = self.myScenarioObjects()
-        if scns:
-            scn = scns[0]
-            sstate = api.content.get_state(scn)
-            if sstate == "private":
-                return scn
-        return None
 
     def cat_convert(self):
         """ """
