@@ -1,4 +1,5 @@
 from AccessControl import ClassSecurityInfo
+from Acquisition import aq_get
 from docpool.base import DocpoolMessageFactory as _
 from docpool.base.config import TRANSFERS_APP
 from docpool.base.content.archiving import IArchiving
@@ -84,6 +85,9 @@ class DPTransferFolder(FolderBase):
     security = ClassSecurityInfo()
 
     def doctype_permission(self, doctype):
+        config_folder = aq_get(self, "config", None)
+        if doctype not in config_folder["dtypes"]:
+            return self.unknownDtDefault
         return self.doctypePermissions.get(doctype, DEFAULT_DTPERMISSION)
 
     # TODO should be indexed
