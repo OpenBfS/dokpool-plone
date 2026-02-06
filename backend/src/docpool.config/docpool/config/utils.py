@@ -4,6 +4,7 @@ from plone.app.relationfield.behavior import IRelatedItems
 from plone.app.textfield import RichTextValue
 from plone.base.utils import safe_hasattr
 from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.utils import _createObjectByType
 from z3c.relationfield.relation import RelationValue
 from zope.component import getUtility
 from zope.event import notify
@@ -34,7 +35,7 @@ def createPloneObjects(parent, definitions, fresh=False):
         # Objekt erzeugen, wenn noch nicht vorhanden
         if not parent.hasObject(id):
             #            print parent
-            parent.invokeFactory(id=id, type_name=objdef[TYPE], title=title)
+            _createObjectByType(objdef[TYPE], parent, id)
             # print "createBasicPortalStructure - %s %s erzeugt" % (objdef[TYPE], id)
         else:
             # print "createBasicPortalStructure - %s %s bereits vorhanden" % (objdef[TYPE], id)

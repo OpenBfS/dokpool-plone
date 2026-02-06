@@ -1,15 +1,10 @@
-from docpool.base.events import IDocumentPoolUndeleteable
 from docpool.config.utils import CHILDREN
 from docpool.config.utils import createPloneObjects
 from docpool.config.utils import ID
 from docpool.config.utils import TITLE
 from docpool.config.utils import TYPE
-from docpool.elan.config import ELAN_APP
 from plone import api
-from plone.app.textfield import RichTextValue
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.utils import log_exc
-from Products.Five.utilities.marker import mark
 
 import transaction
 
@@ -17,13 +12,10 @@ import transaction
 def install(self):
     """ """
     fresh = True
-    if self.hasObject("esd"):
+    if self.hasObject("contentconfig"):
         fresh = False  # It's a reinstall
     configUsers(self, fresh)
     createStructure(self, fresh)
-    if fresh:
-        connectTypesAndCategories(self)
-    setFrontpage(self)
 
 
 def configUsers(self, fresh):
@@ -54,8 +46,6 @@ def createStructure(self, fresh):
     transaction.commit()
     createDocTypes(self, fresh)
     transaction.commit()
-    fillBasicPortalStructure(self, fresh)
-    transaction.commit()
 
 
 def createDocTypes(plonesite, fresh):
@@ -66,40 +56,9 @@ def createDocTypes(plonesite, fresh):
 def createBasicPortalStructure(plonesite, fresh):
     """ """
     createPloneObjects(plonesite, BASICSTRUCTURE, fresh)
-    # RichText needs to be set here to prevent test-isolation issues!
-    plonesite.esd["front-page"].text = RichTextValue("", "text/html", "text/x-html-safe")
-
-
-def fillBasicPortalStructure(plonesite, fresh):
-    """ """
-    createPloneObjects(plonesite, BASICSTRUCTURE2, fresh)
-    # Now mark certain objects as undeleteable
-    mark(plonesite.esd["front-page"], IDocumentPoolUndeleteable)
-    mark(plonesite.esd.overview, IDocumentPoolUndeleteable)
-    mark(plonesite.esd.recent, IDocumentPoolUndeleteable)
-
-
-def setFrontpage(self):
-    """ """
-    self.esd.setDefaultPage("front-page")
 
 
 BASICSTRUCTURE = [
-    {
-        TYPE: "ELANCurrentSituation",
-        TITLE: "Vorlage aktuelle Situation",
-        ID: "esd",
-        CHILDREN: [
-            {
-                TYPE: "Document",
-                TITLE: "Elektronische Lagedarstellung",
-                ID: "front-page",
-                # RichText needs to be set in a method to prevent test-isolation issues!
-                # 'text': RichTextValue('', 'text/html', 'text/x-html-safe'),
-                CHILDREN: [],
-            }
-        ],
-    },
     {
         TYPE: "ELANContentConfig",
         TITLE: "Konfiguration Inhalte",
@@ -109,244 +68,8 @@ BASICSTRUCTURE = [
         ],
     },
 ]
-DOCTYPES = "ref_setDocTypesUpdateCollection"  # indicates that docTypes is referencing objects, which need to be queried by their id
-
-ESDCOLLECTIONS = [
-    {
-        TYPE: "ELANSection",
-        TITLE: "EREIGNIS",
-        ID: "incident",
-        CHILDREN: [
-            {
-                TYPE: "ELANDocCollection",
-                TITLE: "MELDUNGEN",
-                ID: "notifications",
-                CHILDREN: [],
-                DOCTYPES: ["notification"],
-            },
-            {
-                TYPE: "ELANDocCollection",
-                TITLE: "ANLAGENINFORMATION",
-                ID: "event-npp-information",
-                CHILDREN: [],
-                DOCTYPES: ["eventinformation", "nppinformation"],
-            },
-        ],
-    },
-    {
-        TYPE: "ELANSection",
-        TITLE: "LAGE",
-        ID: "current-situation",
-        CHILDREN: [
-            {
-                TYPE: "ELANDocCollection",
-                TITLE: "MITTEILUNGEN",
-                ID: "notes",
-                CHILDREN: [],
-                DOCTYPES: ["note"],
-            },
-            {
-                TYPE: "ELANDocCollection",
-                TITLE: "LAGEINFORMATIONEN",
-                ID: "situation-reports",
-                CHILDREN: [],
-                DOCTYPES: ["situationreport"],
-            },
-            {
-                TYPE: "ELANDocCollection",
-                TITLE: "FACHBERATUNG",
-                ID: "expert-advice",
-                CHILDREN: [],
-                DOCTYPES: ["information_expert_advisor"],
-            },
-            {
-                TYPE: "ELANDocCollection",
-                TITLE: "BEWERTUNG UND MASSNAHMEN",
-                ID: "protective-actions",
-                CHILDREN: [],
-                DOCTYPES: ["estimation", "instructions", "protectiveactions"],
-            },
-        ],
-    },
-    {
-        TYPE: "ELANSection",
-        TITLE: "MANAGEMENT",
-        ID: "management",
-        CHILDREN: [
-            {
-                TYPE: "ELANDocCollection",
-                TITLE: "MESSDIENSTKOORDINATION",
-                ID: "coordination_measurements",
-                CHILDREN: [],
-                DOCTYPES: [
-                    "measurement_order",
-                    "operation_map",
-                    "measurement_requirements",
-                    "note_measurement_teams",
-                    "inquiry_measurement_order",
-                ],
-            },
-            {
-                TYPE: "ELANDocCollection",
-                TITLE: "NOTFALLSTATIONEN",
-                ID: "emergency-care-centers",
-                CHILDREN: [],
-                DOCTYPES: ["info_ecc"],
-            },
-        ],
-    },
-    {
-        TYPE: "ELANSection",
-        TITLE: "INFORMATION DER ÖFFENTLICHKEIT",
-        ID: "information-of-the-public",
-        CHILDREN: [
-            {
-                TYPE: "ELANDocCollection",
-                TITLE: "MEDIENINFORMATIONEN",
-                ID: "media-releases",
-                CHILDREN: [],
-                DOCTYPES: ["mediarelease", "mediareport"],
-            },
-            {
-                TYPE: "ELANDocCollection",
-                TITLE: "INFORMATION DER BEVÖLKERUNG",
-                ID: "public",
-                CHILDREN: [],
-                DOCTYPES: ["info_public"],
-            },
-        ],
-    },
-    {
-        TYPE: "ELANSection",
-        TITLE: "_____________________________________________",
-        ID: "separator",
-    },
-    {
-        TYPE: "ELANSection",
-        TITLE: "METEOROLOGIE",
-        ID: "meteorology",
-        CHILDREN: [
-            {
-                TYPE: "ELANDocCollection",
-                TITLE: "WETTER UND TRAJEKTORIEN",
-                ID: "weather-information",
-                CHILDREN: [],
-                DOCTYPES: ["weatherinformation", "trajectory"],
-            },
-        ],
-    },
-    {
-        TYPE: "ELANSection",
-        TITLE: "AUSBREITUNGSRECHNUNGEN",
-        ID: "dose-projections",
-        CHILDREN: [
-            {
-                TYPE: "ELANDocCollection",
-                TITLE: "RODOS",
-                ID: "rodos-projections",
-                CHILDREN: [],
-                DOCTYPES: ["rodosprojection"],
-            },
-            {
-                TYPE: "ELANDocCollection",
-                TITLE: "SONSTIGE PROGNOSEN",
-                ID: "other-projections",
-                CHILDREN: [],
-                DOCTYPES: ["otherprojection"],
-            },
-        ],
-    },
-    {
-        TYPE: "ELANSection",
-        TITLE: "MESSERGEBNISSE",
-        ID: "measurement-results",
-        CHILDREN: [
-            {
-                TYPE: "ELANDocCollection",
-                TITLE: "ODL",
-                ID: "gamma-dose-rate",
-                CHILDREN: [],
-                DOCTYPES: [
-                    "gammadoserate",
-                    "gammadoserate_timeseries",
-                    "gammadoserate_mobile",
-                ],
-            },
-            {
-                TYPE: "ELANDocCollection",
-                TITLE: "IN-SITU MESSUNGEN",
-                ID: "insitu",
-                CHILDREN: [],
-                DOCTYPES: ["mresult_insitu"],
-            },
-            {
-                TYPE: "ELANDocCollection",
-                TITLE: "LUFTAKTIVITÄT",
-                ID: "air-activity",
-                CHILDREN: [],
-                DOCTYPES: ["airactivity"],
-            },
-            {
-                TYPE: "ELANDocCollection",
-                TITLE: "BODENKONTAMINATION",
-                ID: "ground-contamination",
-                CHILDREN: [],
-                DOCTYPES: ["groundcontamination"],
-            },
-            {
-                TYPE: "ELANDocCollection",
-                TITLE: "GEWÄSSER",
-                ID: "water",
-                CHILDREN: [],
-                DOCTYPES: ["mresult_water"],
-            },
-            {
-                TYPE: "ELANDocCollection",
-                TITLE: "LEBENS- UND FUTTERMITTEL",
-                ID: "food-and-feed",
-                CHILDREN: [],
-                DOCTYPES: ["mresult_feed", "mresult_food"],
-            },
-            {
-                TYPE: "ELANDocCollection",
-                TITLE: "SONSTIGE MESSUNGEN",
-                ID: "other",
-                CHILDREN: [],
-                DOCTYPES: ["mresult_other", "mresult_flight"],
-            },
-        ],
-    },
-    {
-        TYPE: "ELANDocCollection",
-        TITLE: "Überblick",
-        ID: "overview",
-        "setExcludeFromNav": True,
-        DOCTYPES: [],
-        CHILDREN: [],
-    },
-    {
-        TYPE: "ELANDocCollection",
-        TITLE: "Alle Dokumente",
-        ID: "recent",
-        "setExcludeFromNav": True,
-        DOCTYPES: [],
-        CHILDREN: [],
-    },
-    {TYPE: "Dashboard", TITLE: "Pinnwand", ID: "dashboard", "setExcludeFromNav": True},
-]
-
-BASICSTRUCTURE2 = [
-    {
-        TYPE: "ELANCurrentSituation",
-        TITLE: "Vorlage aktuelle Situation",
-        ID: "esd",
-        CHILDREN: ESDCOLLECTIONS,
-    }
-]
 
 # Structure definitions
-# CHANGE HERE. DocTypes, DocCollections and their connections must match.
-# not all DocTypes have doksys behavior!
 
 DTYPES = [
     {
@@ -595,153 +318,3 @@ DTYPES = [
         "local_behaviors": ["elan"],
     },
 ]
-
-
-def connectTypesAndCategories(self):
-    """ """
-
-    # print self.config.dtypes.eventinformation.type_extension(ELAN_APP)
-    try:
-        self.config.dtypes.notification.type_extension(ELAN_APP).setCCategory("notifications")
-    except Exception as e:
-        log_exc(e)
-    try:
-        self.config.dtypes.eventinformation.type_extension(ELAN_APP).setCCategory("event-npp-information")
-    except BaseException:
-        pass
-    try:
-        self.config.dtypes.nppinformation.type_extension(ELAN_APP).setCCategory("event-npp-information")
-    except BaseException:
-        pass
-    try:
-        self.config.dtypes.note.type_extension(ELAN_APP).setCCategory("notes")
-    except BaseException:
-        pass
-    try:
-        self.config.dtypes.situationreport.type_extension(ELAN_APP).setCCategory("situation-reports")
-    except BaseException:
-        pass
-    try:
-        self.config.dtypes.information_expert_advisor.type_extension(ELAN_APP).setCCategory("expert-advice")
-    except BaseException:
-        pass
-    try:
-        self.config.dtypes.estimation.type_extension(ELAN_APP).setCCategory("protective-actions")
-    except BaseException:
-        pass
-    try:
-        self.config.dtypes.instructions.type_extension(ELAN_APP).setCCategory("protective-actions")
-    except BaseException:
-        pass
-    try:
-        self.config.dtypes.protectiveactions.type_extension(ELAN_APP).setCCategory("protective-actions")
-    except BaseException:
-        pass
-    try:
-        self.config.dtypes.measurement_order.type_extension(ELAN_APP).setCCategory(
-            "coordination_measurements"
-        )
-    except BaseException:
-        pass
-    try:
-        self.config.dtypes.operation_map.type_extension(ELAN_APP).setCCategory("coordination_measurements")
-    except BaseException:
-        pass
-    try:
-        self.config.dtypes.measurement_requirements.type_extension(ELAN_APP).setCCategory(
-            "coordination_measurements"
-        )
-    except BaseException:
-        pass
-    try:
-        self.config.dtypes.note_measurement_teams.type_extension(ELAN_APP).setCCategory(
-            "coordination_measurements"
-        )
-    except BaseException:
-        pass
-    try:
-        self.config.dtypes.inquiry_measurement_order.type_extension(ELAN_APP).setCCategory(
-            "coordination_measurements"
-        )
-    except BaseException:
-        pass
-    try:
-        self.config.dtypes.info_ecc.type_extension(ELAN_APP).setCCategory("emergency-care-centers")
-    except BaseException:
-        pass
-    try:
-        self.config.dtypes.mediarelease.type_extension(ELAN_APP).setCCategory("media-releases")
-    except BaseException:
-        pass
-    try:
-        self.config.dtypes.mediareport.type_extension(ELAN_APP).setCCategory("media-releases")
-    except BaseException:
-        pass
-    try:
-        self.config.dtypes.info_public.type_extension(ELAN_APP).setCCategory("public")
-    except BaseException:
-        pass
-    try:
-        self.config.dtypes.weatherinformation.type_extension(ELAN_APP).setCCategory("weather-information")
-    except BaseException:
-        pass
-    try:
-        self.config.dtypes.trajectory.type_extension(ELAN_APP).setCCategory("weather-information")
-    except BaseException:
-        pass
-    try:
-        self.config.dtypes.rodosprojection.type_extension(ELAN_APP).setCCategory("rodos-projections")
-    except BaseException:
-        pass
-    try:
-        self.config.dtypes.lasair_lasat_projection.type_extension(ELAN_APP).setCCategory("lasair-lasat")
-    except BaseException:
-        pass
-    try:
-        self.config.dtypes.otherprojection.type_extension(ELAN_APP).setCCategory("other-projections")
-    except BaseException:
-        pass
-    try:
-        self.config.dtypes.gammadoserate.type_extension(ELAN_APP).setCCategory("gamma-dose-rate")
-    except BaseException:
-        pass
-    try:
-        self.config.dtypes.gammadoserate_timeseries.type_extension(ELAN_APP).setCCategory("gamma-dose-rate")
-    except BaseException:
-        pass
-    try:
-        self.config.dtypes.gammadoserate_mobile.type_extension(ELAN_APP).setCCategory("gamma-dose-rate")
-    except BaseException:
-        pass
-    try:
-        self.config.dtypes.mresult_insitu.type_extension(ELAN_APP).setCCategory("insitu")
-    except BaseException:
-        pass
-    try:
-        self.config.dtypes.airactivity.type_extension(ELAN_APP).setCCategory("air-activity")
-    except BaseException:
-        pass
-    try:
-        self.config.dtypes.groundcontamination.type_extension(ELAN_APP).setCCategory("ground-contamination")
-    except BaseException:
-        pass
-    try:
-        self.config.dtypes.mresult_water.type_extension(ELAN_APP).setCCategory("water")
-    except BaseException:
-        pass
-    try:
-        self.config.dtypes.mresult_feed.type_extension(ELAN_APP).setCCategory("food-and-feed")
-    except BaseException:
-        pass
-    try:
-        self.config.dtypes.mresult_food.type_extension(ELAN_APP).setCCategory("food-and-feed")
-    except BaseException:
-        pass
-    try:
-        self.config.dtypes.mresult_other.type_extension(ELAN_APP).setCCategory("other")
-    except BaseException:
-        pass
-    try:
-        self.config.dtypes.mresult_flight.type_extension(ELAN_APP).setCCategory("other")
-    except BaseException:
-        pass
