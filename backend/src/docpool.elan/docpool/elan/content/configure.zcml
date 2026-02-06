@@ -25,12 +25,6 @@
     <implements interface="plone.app.content.interfaces.INameFromTitle" />
     <implements interface="zope.component.interfaces.IPossibleSite" />
   </class>
-  <class class=".elansection.ELANSection">
-    <implements interface="Products.CMFPlone.interfaces.breadcrumbs.IHideFromBreadcrumbs" />
-  </class>
-
-  <subscriber handler=".elandoccollection.update_docTypes" />
-  <subscriber handler=".elandoccollection.enableSyndication" />
 
   <adapter factory=".transfers.ELANSpecificTransfer" />
 

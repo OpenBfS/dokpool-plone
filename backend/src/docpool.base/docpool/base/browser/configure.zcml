@@ -225,16 +225,6 @@
       />
 
   <browser:page
-      name="docpool_collection_view_with_actions_for_dashboardcollections"
-      for="docpool.base.content.dashboardcollection.IDashboardCollection"
-      class=".collection.DashboardCollectionView"
-      template="docpool_collection_view_with_actions.pt"
-      permission="zope2.View"
-      menu="plone_displayviews"
-      title="Docpool listing with bulk actions for DashboardCollections"
-      />
-
-  <browser:page
       name="listitem"
       for="..interfaces.IInfoLink"
       class=".infolink.InfoLinklistitemView"
@@ -314,20 +304,6 @@
       class=".dpdocument.EditView"
       permission="cmf.ModifyPortalContent"
       layer="plone.app.z3cform.interfaces.IPloneFormLayer"
-      />
-
-  <browser:page
-      name="dashboard"
-      for="..interfaces.IDPDocument"
-      class=".dpdocument.DPDocumentdashboardView"
-      permission="zope2.View"
-      />
-
-  <browser:page
-      name="view"
-      for="..content.dashboard.IDashboard"
-      class=".dashboard.DashboardView"
-      permission="zope2.View"
       />
 
   <browser:page
