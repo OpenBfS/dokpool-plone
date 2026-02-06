@@ -12,6 +12,9 @@ Fixed:
 - Improve facettierte Search table styling (#5334)
   [slindner]
 
+- Update mdate on ELAN documents on publication (#5883)
+  [tlotze]
+
 
 Technical:
 
