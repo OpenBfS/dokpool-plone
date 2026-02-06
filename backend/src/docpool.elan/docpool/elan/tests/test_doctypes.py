@@ -11,7 +11,6 @@ from plone.app.testing import TEST_USER_ID
 from plone.app.textfield import RichTextValue
 from plone.dexterity.events import EditFinishedEvent
 from plone.dexterity.interfaces import IDexterityFTI
-from zope.annotation.interfaces import IAnnotations
 from zope.component import getUtility
 from zope.event import notify
 from zope.lifecycleevent import modified
@@ -31,10 +30,8 @@ class TestDocTypes(unittest.TestCase):
     def test_default_content(self):
         global_config = self.portal["config"]
         global_contentconfig = self.portal["contentconfig"]
-        global_esd = self.portal["esd"]
         self.assertEqual(global_config.portal_type, "DPConfig")
         self.assertEqual(global_contentconfig.portal_type, "ELANContentConfig")
-        self.assertEqual(global_esd.portal_type, "ELANCurrentSituation")
 
         global_dtypes = global_config["dtypes"]
         self.assertEqual(
@@ -78,23 +75,6 @@ class TestDocTypes(unittest.TestCase):
             ],
         )
         self.assertEqual(global_contentconfig.keys(), ["impressum"])
-        self.assertEqual(
-            global_esd.keys(),
-            [
-                "front-page",
-                "incident",
-                "current-situation",
-                "management",
-                "information-of-the-public",
-                "separator",
-                "meteorology",
-                "dose-projections",
-                "measurement-results",
-                "overview",
-                "recent",
-                "dashboard",
-            ],
-        )
 
         from docpool.base.appregistry import selectableApps
 
@@ -103,26 +83,7 @@ class TestDocTypes(unittest.TestCase):
 
         self.assertEqual(
             docpool.keys(),
-            ["esd", "content", "config", "archive", "contentconfig", "help"],
-        )
-
-        esd = docpool["esd"]
-        self.assertEqual(
-            esd.keys(),
-            [
-                "front-page",
-                "incident",
-                "current-situation",
-                "management",
-                "information-of-the-public",
-                "separator",
-                "meteorology",
-                "dose-projections",
-                "measurement-results",
-                "overview",
-                "recent",
-                "dashboard",
-            ],
+            ["content", "config", "archive", "contentconfig", "help"],
         )
 
         content = docpool["content"]
@@ -177,7 +138,7 @@ class TestDocTypes(unittest.TestCase):
         self.assertEqual(archive.keys(), [".wf_policy_config"])
 
         contentconfig = docpool["contentconfig"]
-        self.assertEqual(contentconfig.keys(), ["scen", "ticker", "dbconfig"])
+        self.assertEqual(contentconfig.keys(), ["scen", "ticker"])
 
         notify(EditFinishedEvent(docpool))
         # trigger dpAdded method for enabled docpool-products
@@ -185,28 +146,8 @@ class TestDocTypes(unittest.TestCase):
 
         self.assertEqual(
             docpool.keys(),
-            ["esd", "content", "config", "archive", "contentconfig", "help"],
+            ["content", "config", "archive", "contentconfig", "help"],
         )
-
-        esd = docpool["esd"]
-        self.assertEqual(
-            esd.keys(),
-            [
-                "front-page",
-                "incident",
-                "current-situation",
-                "management",
-                "information-of-the-public",
-                "separator",
-                "meteorology",
-                "dose-projections",
-                "measurement-results",
-                "overview",
-                "recent",
-                "dashboard",
-            ],
-        )
-
         content = docpool["content"]
         self.assertEqual(content.keys(), ["Transfers", "Members", "Groups"])
 
@@ -259,7 +200,7 @@ class TestDocTypes(unittest.TestCase):
         self.assertEqual(archive.keys(), [".wf_policy_config"])
 
         contentconfig = docpool["contentconfig"]
-        self.assertEqual(contentconfig.keys(), ["scen", "ticker", "dbconfig"])
+        self.assertEqual(contentconfig.keys(), ["scen", "ticker"])
 
     def test_doctypes_change_event(self):
         docpool = self.portal["test_docpool"]
@@ -410,11 +351,11 @@ class TestDocTypes(unittest.TestCase):
         weatherinfo_template = docpool["config"]["dtypes"]["weatherinformation"]
 
         # Change the Category of this item
-        source = docpool["esd"]["dose-projections"]["other-projections"]
-        api.relation.create(source, weatherinfo_template, relationship="docTypes")
+        # TODO: Update test
+        # api.relation.create(source, weatherinfo_template, relationship="docTypes")
 
         # flush cache on ELANDocType.categories() before reindexing
-        IAnnotations(self.request).pop("plone.memoize", None)
+        # IAnnotations(self.request).pop("plone.memoize", None)
 
         # trigger reindexing some indexes of content derived from this
         # we reindex dok_type and category

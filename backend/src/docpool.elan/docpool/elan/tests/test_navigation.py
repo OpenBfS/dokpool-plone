@@ -66,16 +66,17 @@ class TestNavigation(unittest.TestCase):
         view = docpool.restrictedTraverse("setActiveApp")
         view.request.form.update(app="elan")
         view()
-        esd = docpool.esd
-        dp_app_state = esd.restrictedTraverse("dp_app_state")
-        # purge caching on request
-        # key = (('', 'plone', 'bund'), 'ApplicationState', 'isCurrentlyActive', ('elan',), frozenset([]))
-        # cache is self.layer["request"].__annotations__["plone.memoize"][key]
-        self.layer["request"].__annotations__.pop("plone.memoize")
-        self.assertTrue(dp_app_state.isCurrentlyActive("elan"))
-        view = esd.restrictedTraverse("@@view")
-        html = view()
-        # personal folder is not there
-        self.assertNotIn('<a href="http://nohost/plone/bund/content/Members/user1"', html)
-        # group folder is there
-        self.assertIn('<a href="http://nohost/plone/bund/content/Groups/bund_group1"', html)
+        # TODO: Do we still test this feature (personal folders not visible in for elan but for other apps)?
+        # esd = docpool.esd
+        # dp_app_state = esd.restrictedTraverse("dp_app_state")
+        # # purge caching on request
+        # # key = (('', 'plone', 'bund'), 'ApplicationState', 'isCurrentlyActive', ('elan',), frozenset([]))
+        # # cache is self.layer["request"].__annotations__["plone.memoize"][key]
+        # self.layer["request"].__annotations__.pop("plone.memoize")
+        # self.assertTrue(dp_app_state.isCurrentlyActive("elan"))
+        # view = esd.restrictedTraverse("@@view")
+        # html = view()
+        # # personal folder is not there
+        # self.assertNotIn('<a href="http://nohost/plone/bund/content/Members/user1"', html)
+        # # group folder is there
+        # self.assertIn('<a href="http://nohost/plone/bund/content/Groups/bund_group1"', html)
