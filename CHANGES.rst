@@ -28,6 +28,9 @@ Fixed:
 - Don't keep partial sender logs on transferred documents (#5674)
   [tlotze]
 
+- Allow only published ELAN events anymore. Fix handling of unknown doctypes and doctype permissions on transfer (#5779)
+  [tlotze]
+
 
 Technical:
 
