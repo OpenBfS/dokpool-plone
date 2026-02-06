@@ -699,7 +699,7 @@ quoted_id = quote_plus(econtext["b"].getId());
              tal:define="
                unknown_dt python:context.unknownDocType();
              "
-             tal:condition="nocall:unknown_dt"
+             tal:condition="python: unknown_dt is not None"
              tal:attributes="
                href unknown_dt/absolute_url;
              "
