@@ -14,6 +14,8 @@ Fixed:
 
 - Update mdate on ELAN documents on publication (#5883)
 - Error on assigning doksys behavior to documents (#6289)
+- Remove code that allowed for transferring a document again after
+  modification (#6341)
   [tlotze]
 
 
