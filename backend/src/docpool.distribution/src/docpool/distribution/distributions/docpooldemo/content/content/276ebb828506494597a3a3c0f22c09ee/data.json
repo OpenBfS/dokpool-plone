@@ -12,7 +12,7 @@
     "user-wetterdienst"
   ],
   "description": "",
-  "docType": "rodosprojection",
+  "docType": "forecast_spread_dose_contamination",
   "effective": "2025-11-19T12:20:00+00:00",
   "expires": null,
   "exportimport.constrains": {},

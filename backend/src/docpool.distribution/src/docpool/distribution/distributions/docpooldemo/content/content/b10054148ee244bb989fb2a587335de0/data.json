@@ -1,0 +1,37 @@
+{
+  "@id": "/berlin/config/dtypes/staff_work",
+  "@type": "DocTypeCategory",
+  "UID": "b10054148ee244bb989fb2a587335de0",
+  "allow_discussion": null,
+  "created": "2026-02-07T12:24:14+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "icon_name": "bookmark",
+  "id": "staff_work",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "tabular_view",
+  "lock": {},
+  "modified": "2026-02-07T12:24:15+00:00",
+  "review_state": "published",
+  "title": "Stabsarbeit",
+  "type_title": "Document Type Category",
+  "version": "current",
+  "workflow_history": {
+    "dp_admin_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2026-02-07T12:24:14+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

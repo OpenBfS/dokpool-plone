@@ -1,0 +1,37 @@
+{
+  "@id": "/config/dtypes/measurement_results/mresults_pharmaceuticals",
+  "@type": "DocTypeCategory",
+  "UID": "2b4aebff4a4542a08031e2b4eab115e8",
+  "allow_discussion": null,
+  "created": "2026-02-07T12:23:06+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "icon_name": "bookmark",
+  "id": "mresults_pharmaceuticals",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "tabular_view",
+  "lock": {},
+  "modified": "2026-02-07T12:23:07+00:00",
+  "review_state": "published",
+  "title": "Arzneimittel",
+  "type_title": "Document Type Category",
+  "version": "current",
+  "workflow_history": {
+    "dp_admin_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2026-02-07T12:23:06+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

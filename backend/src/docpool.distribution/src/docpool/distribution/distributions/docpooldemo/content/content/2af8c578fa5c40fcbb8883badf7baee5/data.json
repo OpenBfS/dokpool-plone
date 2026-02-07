@@ -1,0 +1,42 @@
+{
+  "@id": "/mecklenburg-vorpommern/contentconfig/scen",
+  "@type": "DPEvents",
+  "UID": "2af8c578fa5c40fcbb8883badf7baee5",
+  "allow_discussion": null,
+  "contributors": [],
+  "created": "2026-02-07T12:24:13+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "scen",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "lock": {},
+  "modified": "2026-02-07T12:24:13+00:00",
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Ereignisse",
+  "type_title": "DP Events",
+  "version": "current",
+  "workflow_history": {
+    "dp_one_state_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2026-02-07T12:24:13+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

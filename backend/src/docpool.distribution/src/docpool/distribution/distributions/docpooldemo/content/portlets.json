@@ -30,32 +30,32 @@
           },
           "type": "portlets.Classic",
           "visible": true
-        }
-      ],
-      "plone.leftcolumn": [
-        {
-          "assignment": {},
-          "type": "docpool.elan.Overview",
-          "visible": true
         },
         {
-          "assignment": {},
-          "type": "docpool.elan.Recent",
+          "assignment": {
+            "macro": "",
+            "template": "@@footer"
+          },
+          "type": "portlets.Classic",
           "visible": true
         },
         {
           "assignment": {
-            "bottomLevel": 0,
-            "currentFolderOnly": false,
-            "includeTop": false,
-            "name": "",
-            "no_icons": false,
-            "no_thumbs": false,
-            "root_uid": null,
-            "thumb_scale": null,
-            "topLevel": 1
+            "category": "site_actions",
+            "default_icon": "action_icon.png",
+            "ptitle": "site_actions",
+            "show_icons": false,
+            "show_title": false
           },
-          "type": "portlets.Navigation",
+          "type": "portlets.Actions",
+          "visible": true
+        },
+        {
+          "assignment": {
+            "macro": "",
+            "template": "colophon"
+          },
+          "type": "portlets.Classic",
           "visible": true
         }
       ]

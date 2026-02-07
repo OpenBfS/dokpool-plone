@@ -1,5 +1,5 @@
 {
-  "@id": "/berlin/config/dtypes/trajectory",
+  "@id": "/berlin/config/dtypes/incident/weather_conditions_and_forecasts/weather_conditions_and_forecast",
   "@type": "DocType",
   "UID": "bdd00365f922434cb0d8412d0a7c07fc",
   "allowTransfer": true,
@@ -12,26 +12,26 @@
     "admin"
   ],
   "customViewTemplate": null,
-  "description": "",
+  "description": "Informationen zur Wetterlage am Ereignisort, Wetterprognosen f\u00fcr das Gefahrengebiet",
   "exportimport.constrains": {},
   "exportimport.conversation": [],
   "globalAllow": true,
-  "id": "trajectory",
+  "icon_name": "radioactive",
+  "id": "weather_conditions_and_forecast",
   "imgPattern": null,
   "is_folderish": true,
   "language": "##DEFAULT##",
   "layout": "view",
   "local_behaviors": [
-    "doksys",
     "elan"
   ],
   "lock": {},
-  "modified": "2025-09-10T13:22:24+00:00",
+  "modified": "2026-02-07T12:24:16+00:00",
   "partsPattern": null,
   "pdfPattern": null,
   "publishImmediately": false,
   "review_state": "published",
-  "title": "Trajektorie",
+  "title": "Wetterlage und -prognose",
   "type_title": "Document Type",
   "version": "current",
   "workflow_history": {

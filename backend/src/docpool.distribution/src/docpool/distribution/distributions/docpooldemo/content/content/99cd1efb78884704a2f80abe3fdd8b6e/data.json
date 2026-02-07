@@ -10,7 +10,7 @@
     "user-behoerde"
   ],
   "description": "",
-  "docType": "situationreport",
+  "docType": "radiological_situation_report",
   "effective": "2025-09-23T12:27:00+00:00",
   "expires": null,
   "exportimport.constrains": {},

@@ -1,0 +1,50 @@
+{
+  "@id": "/berlin/config/dtypes/measurement_results/mresults_soil_surface_and_precipitation/mresult_precipitation",
+  "@type": "DocType",
+  "UID": "ed0c2712b0ec43818c88251e13c98e66",
+  "allowTransfer": true,
+  "allowUploads": true,
+  "allow_discussion": null,
+  "allow_discussion_on_dpdocument": false,
+  "automaticTransferTargets": [],
+  "created": "2026-02-07T12:24:15+00:00",
+  "creators": [
+    "admin"
+  ],
+  "customViewTemplate": null,
+  "description": "Messergebnis Niederschlag",
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "globalAllow": true,
+  "icon_name": "radioactive",
+  "id": "mresult_precipitation",
+  "imgPattern": null,
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "local_behaviors": [
+    "elan"
+  ],
+  "lock": {},
+  "modified": "2026-02-07T12:24:15+00:00",
+  "partsPattern": null,
+  "pdfPattern": null,
+  "publishImmediately": false,
+  "review_state": "published",
+  "title": "Messergebnis Niederschlag",
+  "type_title": "Document Type",
+  "version": "current",
+  "workflow_history": {
+    "dp_doctype_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2026-02-07T12:24:15+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

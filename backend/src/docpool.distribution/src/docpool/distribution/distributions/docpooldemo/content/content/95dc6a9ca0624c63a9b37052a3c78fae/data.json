@@ -1,0 +1,50 @@
+{
+  "@id": "/config/dtypes/staff_work/staff_notes/staff_note",
+  "@type": "DocType",
+  "UID": "95dc6a9ca0624c63a9b37052a3c78fae",
+  "allowTransfer": true,
+  "allowUploads": true,
+  "allow_discussion": null,
+  "allow_discussion_on_dpdocument": false,
+  "automaticTransferTargets": [],
+  "created": "2026-02-07T12:23:07+00:00",
+  "creators": [
+    "admin"
+  ],
+  "customViewTemplate": null,
+  "description": "Mitteilung eines Stabes an alle ELAN-Nutzer, die f\u00fcr die Zusammenarbeit von Bedeutung ist. Bsp: Mitteilung \u00fcber die Einsatzbereitschaft des Stabes",
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "globalAllow": true,
+  "icon_name": "radioactive",
+  "id": "staff_note",
+  "imgPattern": null,
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "local_behaviors": [
+    "elan"
+  ],
+  "lock": {},
+  "modified": "2026-02-07T12:23:07+00:00",
+  "partsPattern": null,
+  "pdfPattern": null,
+  "publishImmediately": false,
+  "review_state": "published",
+  "title": "Stabsmitteilung",
+  "type_title": "Document Type",
+  "version": "current",
+  "workflow_history": {
+    "dp_doctype_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2026-02-07T12:23:07+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

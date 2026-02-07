@@ -1,5 +1,5 @@
 {
-  "@id": "/mecklenburg-vorpommern/config/dtypes/note_measurement_teams",
+  "@id": "/mecklenburg-vorpommern/config/dtypes/staff_work/staff_notes/staff_note",
   "@type": "DocType",
   "UID": "6e7dbcc5465d4ae09d9aa3b48f1d6d10",
   "allowTransfer": true,
@@ -12,11 +12,12 @@
     "admin"
   ],
   "customViewTemplate": null,
-  "description": "",
+  "description": "Mitteilung eines Stabes an alle ELAN-Nutzer, die f\u00fcr die Zusammenarbeit von Bedeutung ist. Bsp: Mitteilung \u00fcber die Einsatzbereitschaft des Stabes",
   "exportimport.constrains": {},
   "exportimport.conversation": [],
   "globalAllow": true,
-  "id": "note_measurement_teams",
+  "icon_name": "radioactive",
+  "id": "staff_note",
   "imgPattern": null,
   "is_folderish": true,
   "language": "##DEFAULT##",
@@ -25,12 +26,12 @@
     "elan"
   ],
   "lock": {},
-  "modified": "2025-09-10T13:25:24+00:00",
+  "modified": "2026-02-07T12:24:24+00:00",
   "partsPattern": null,
   "pdfPattern": null,
   "publishImmediately": false,
   "review_state": "published",
-  "title": "Mitteilung_Messdienste",
+  "title": "Stabsmitteilung",
   "type_title": "Document Type",
   "version": "current",
   "workflow_history": {

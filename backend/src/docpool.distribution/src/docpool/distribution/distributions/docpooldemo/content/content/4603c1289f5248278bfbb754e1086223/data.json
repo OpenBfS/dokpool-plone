@@ -1,5 +1,5 @@
 {
-  "@id": "/mecklenburg-vorpommern/config/dtypes/info_public",
+  "@id": "/mecklenburg-vorpommern/config/dtypes/incident_management/information_for_the_public/information_for_the_public",
   "@type": "DocType",
   "UID": "4603c1289f5248278bfbb754e1086223",
   "allowTransfer": true,
@@ -12,11 +12,12 @@
     "admin"
   ],
   "customViewTemplate": null,
-  "description": "",
+  "description": "Abgestimmte Kommunikationsempfehlung zur Information der Bev\u00f6lkerung, inklusive eigene Pressemitteilungen",
   "exportimport.constrains": {},
   "exportimport.conversation": [],
   "globalAllow": true,
-  "id": "info_public",
+  "icon_name": "radioactive",
+  "id": "information_for_the_public",
   "imgPattern": null,
   "is_folderish": true,
   "language": "##DEFAULT##",
@@ -25,12 +26,12 @@
     "elan"
   ],
   "lock": {},
-  "modified": "2025-09-10T13:25:24+00:00",
+  "modified": "2026-02-07T12:24:23+00:00",
   "partsPattern": null,
   "pdfPattern": null,
   "publishImmediately": false,
   "review_state": "published",
-  "title": "Information_Bev\u00f6lkerung",
+  "title": "Information an Bev\u00f6lkerung",
   "type_title": "Document Type",
   "version": "current",
   "workflow_history": {

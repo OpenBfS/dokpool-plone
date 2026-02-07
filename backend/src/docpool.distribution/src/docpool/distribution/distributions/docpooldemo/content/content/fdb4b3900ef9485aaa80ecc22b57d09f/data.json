@@ -10,7 +10,7 @@
     "user-behoerde"
   ],
   "description": "",
-  "docType": "notification",
+  "docType": "official_notification",
   "effective": "2025-09-23T12:04:00+00:00",
   "expires": null,
   "exportimport.constrains": {},

@@ -1,0 +1,50 @@
+{
+  "@id": "/brandenburg/config/dtypes/measurement_results/mresults_water_bodies_and_fish/mresult_north_and_baltic_sea",
+  "@type": "DocType",
+  "UID": "d77e9b71d9df4f54ae8e7ff904682ad4",
+  "allowTransfer": true,
+  "allowUploads": true,
+  "allow_discussion": null,
+  "allow_discussion_on_dpdocument": false,
+  "automaticTransferTargets": [],
+  "created": "2026-02-07T12:24:18+00:00",
+  "creators": [
+    "admin"
+  ],
+  "customViewTemplate": null,
+  "description": "Messergebnis Nord- und Ostsee einschlie\u00dflich K\u00fcstengew\u00e4sser",
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "globalAllow": true,
+  "icon_name": "radioactive",
+  "id": "mresult_north_and_baltic_sea",
+  "imgPattern": null,
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "local_behaviors": [
+    "elan"
+  ],
+  "lock": {},
+  "modified": "2026-02-07T12:24:18+00:00",
+  "partsPattern": null,
+  "pdfPattern": null,
+  "publishImmediately": false,
+  "review_state": "published",
+  "title": "Messergebnis Nord- und Ostsee",
+  "type_title": "Document Type",
+  "version": "current",
+  "workflow_history": {
+    "dp_doctype_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2026-02-07T12:24:18+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

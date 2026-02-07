@@ -1,0 +1,37 @@
+{
+  "@id": "/bund/config/dtypes/measurement_results/mresults_drinking_water_and_placing_on_market",
+  "@type": "DocTypeCategory",
+  "UID": "1eb6726a459b4430a0c42e3463fe9f76",
+  "allow_discussion": null,
+  "created": "2026-02-07T12:24:19+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "icon_name": "bookmark",
+  "id": "mresults_drinking_water_and_placing_on_market",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "tabular_view",
+  "lock": {},
+  "modified": "2026-02-07T12:24:20+00:00",
+  "review_state": "published",
+  "title": "Trinkwasser und Inverkehrbringen von Lebensmittel, Futtermitteln etc.",
+  "type_title": "Document Type Category",
+  "version": "current",
+  "workflow_history": {
+    "dp_admin_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2026-02-07T12:24:19+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

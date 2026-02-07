@@ -1,0 +1,37 @@
+{
+  "@id": "/mecklenburg-vorpommern/config/dtypes/incident_management/response_actions",
+  "@type": "DocTypeCategory",
+  "UID": "d0adf45e223c450c9349fd137e776b84",
+  "allow_discussion": null,
+  "created": "2026-02-07T12:24:23+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "icon_name": "bookmark",
+  "id": "response_actions",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "tabular_view",
+  "lock": {},
+  "modified": "2026-02-07T12:24:24+00:00",
+  "review_state": "published",
+  "title": "Ma\u00dfnahmen",
+  "type_title": "Document Type Category",
+  "version": "current",
+  "workflow_history": {
+    "dp_admin_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2026-02-07T12:24:23+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

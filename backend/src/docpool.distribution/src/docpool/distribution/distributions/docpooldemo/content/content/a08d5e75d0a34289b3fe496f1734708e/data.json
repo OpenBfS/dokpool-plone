@@ -1,0 +1,42 @@
+{
+  "@id": "/mecklenburg-vorpommern/contentconfig/scen/routinemode/journal2",
+  "@type": "Journal",
+  "UID": "a08d5e75d0a34289b3fe496f1734708e",
+  "allow_discussion": null,
+  "contributors": [],
+  "created": "2026-02-07T12:24:13+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "journal2",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "lock": {},
+  "modified": "2026-02-07T12:24:13+00:00",
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Einsatztagebuch RLZ",
+  "type_title": "Journal",
+  "version": "current",
+  "workflow_history": {
+    "dp_journal_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2026-02-07T12:24:13+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

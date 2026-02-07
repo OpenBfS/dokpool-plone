@@ -1,0 +1,37 @@
+{
+  "@id": "/bund/config/dtypes/staff_work/staff_notes",
+  "@type": "DocTypeCategory",
+  "UID": "66d3ec151c274dd994c2c2aa79bf55ec",
+  "allow_discussion": null,
+  "created": "2026-02-07T12:24:20+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "icon_name": "bookmark",
+  "id": "staff_notes",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "tabular_view",
+  "lock": {},
+  "modified": "2026-02-07T12:24:21+00:00",
+  "review_state": "published",
+  "title": "Mitteilungen der St\u00e4be",
+  "type_title": "Document Type Category",
+  "version": "current",
+  "workflow_history": {
+    "dp_admin_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2026-02-07T12:24:20+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

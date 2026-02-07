@@ -26,7 +26,7 @@
     "user-betreiber"
   ],
   "description": "",
-  "docType": "reireport",
+  "docType": "rei_report",
   "effective": null,
   "expires": null,
   "exportimport.constrains": {},

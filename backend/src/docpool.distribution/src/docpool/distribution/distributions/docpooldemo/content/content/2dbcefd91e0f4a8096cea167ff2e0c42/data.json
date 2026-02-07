@@ -1,0 +1,64 @@
+{
+  "@id": "/mecklenburg-vorpommern/content/Groups/mv_Journal5_Editors",
+  "@type": "GroupFolder",
+  "UID": "2dbcefd91e0f4a8096cea167ff2e0c42",
+  "allow_discussion": null,
+  "allowedDocTypes": null,
+  "contributors": [],
+  "created": "2026-02-07T12:24:13+00:00",
+  "created_by": "admin <i>Journal 5 Editors (Mecklenburg-Vorpommern)</i>",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {
+    "immediately_addable_types": [
+      "DPDocument",
+      "SimpleFolder"
+    ],
+    "locally_allowed_types": [
+      "Collection",
+      "InfoFolder",
+      "DPDocument",
+      "SimpleFolder",
+      "ReviewFolder",
+      "CollaborationFolder",
+      "PrivateFolder"
+    ]
+  },
+  "exportimport.conversation": [],
+  "id": "mv_Journal5_Editors",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "local_behaviors": [
+    "doksys"
+  ],
+  "lock": {},
+  "mdate": "2026-02-07T13:24:13",
+  "modified": "2026-02-07T12:24:13+00:00",
+  "modified_by": null,
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Journal 5 Editors (Mecklenburg-Vorpommern)",
+  "type_title": "Group Folder",
+  "version": "current",
+  "wdate": "2026-02-07T13:24:13",
+  "workflow_history": {
+    "dp_principalfolder_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2026-02-07T12:24:13+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

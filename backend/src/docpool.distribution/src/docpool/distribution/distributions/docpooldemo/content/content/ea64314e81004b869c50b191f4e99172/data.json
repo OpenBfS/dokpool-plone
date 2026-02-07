@@ -31,7 +31,7 @@
     "user-wetterdienst"
   ],
   "description": "",
-  "docType": "doksysdok",
+  "docType": "doksys_entry",
   "effective": null,
   "expires": null,
   "exportimport.constrains": {},

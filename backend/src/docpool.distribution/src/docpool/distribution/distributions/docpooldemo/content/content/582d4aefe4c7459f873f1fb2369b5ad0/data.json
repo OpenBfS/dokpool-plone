@@ -1,0 +1,50 @@
+{
+  "@id": "/berlin/config/dtypes/measurement_results/mresults_drinking_water_and_placing_on_market/mresult_placing_on_market",
+  "@type": "DocType",
+  "UID": "582d4aefe4c7459f873f1fb2369b5ad0",
+  "allowTransfer": true,
+  "allowUploads": true,
+  "allow_discussion": null,
+  "allow_discussion_on_dpdocument": false,
+  "automaticTransferTargets": [],
+  "created": "2026-02-07T12:24:15+00:00",
+  "creators": [
+    "admin"
+  ],
+  "customViewTemplate": null,
+  "description": "Messergebnis Inverkehrbringen von Lebensmitteln, Bedarfsgegenst\u00e4nden, Mitteln zum T\u00e4towieren, kosmetischen Mitteln, Verf\u00fcttern oder Inverkehrbringen von Futtermitteln",
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "globalAllow": true,
+  "icon_name": "radioactive",
+  "id": "mresult_placing_on_market",
+  "imgPattern": null,
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "local_behaviors": [
+    "elan"
+  ],
+  "lock": {},
+  "modified": "2026-02-07T12:24:15+00:00",
+  "partsPattern": null,
+  "pdfPattern": null,
+  "publishImmediately": false,
+  "review_state": "published",
+  "title": "Messergebnis Inverkehrbringen",
+  "type_title": "Document Type",
+  "version": "current",
+  "workflow_history": {
+    "dp_doctype_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2026-02-07T12:24:15+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

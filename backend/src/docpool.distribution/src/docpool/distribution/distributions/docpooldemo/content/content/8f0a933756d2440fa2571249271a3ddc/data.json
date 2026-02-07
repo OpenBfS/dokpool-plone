@@ -1,5 +1,5 @@
 {
-  "@id": "/brandenburg/config/dtypes/situationreport",
+  "@id": "/brandenburg/config/dtypes/incident_management/situation_reports_and_overviews/radiological_situation_report",
   "@type": "DocType",
   "UID": "8f0a933756d2440fa2571249271a3ddc",
   "allowTransfer": true,
@@ -12,11 +12,12 @@
     "admin"
   ],
   "customViewTemplate": null,
-  "description": "",
+  "description": "Radiologisches Lagebild (RLB) gem\u00e4\u00df ANoPl Bund.",
   "exportimport.constrains": {},
   "exportimport.conversation": [],
   "globalAllow": true,
-  "id": "situationreport",
+  "icon_name": "radioactive",
+  "id": "radiological_situation_report",
   "imgPattern": null,
   "is_folderish": true,
   "language": "##DEFAULT##",
@@ -25,7 +26,7 @@
     "elan"
   ],
   "lock": {},
-  "modified": "2025-09-17T13:55:04+00:00",
+  "modified": "2026-02-07T12:24:18+00:00",
   "partsPattern": null,
   "pdfPattern": null,
   "publishImmediately": false,
