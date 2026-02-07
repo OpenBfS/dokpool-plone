@@ -1,12 +1,10 @@
 from AccessControl import ClassSecurityInfo
 from Acquisition import aq_inner
 from docpool.base.browser.flexible_view import FlexibleView
-from docpool.base.content.doctype import IDocType
 from docpool.base.interfaces import IDocumentExtension
 from docpool.base.utils import app_only_decorator
 from docpool.base.utils import getDocumentPoolSite
 from docpool.elan import DocpoolMessageFactory as _
-from docpool.elan.behaviors.elandoctype import IELANDocType
 from docpool.elan.config import ELAN_APP
 from docpool.elan.utils import getScenariosForCurrentUser
 from plone import api
@@ -14,7 +12,6 @@ from plone.autoform import directives
 from plone.autoform.directives import read_permission
 from plone.autoform.directives import write_permission
 from plone.autoform.interfaces import IFormFieldProvider
-from plone.base.utils import safe_text
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from zope import schema
 from zope.interface import provider
