@@ -195,7 +195,7 @@ class TestListing:
         page.goto(f"{self.plone_url}/bund/setActiveApp?app=elan")
         page.goto(f"{self.plone_url}/bund/@@dpdocument_wizard_1")
         expect(page.locator("#container_uid")).to_have_value(self.group_folder.UID())
-        page.locator("#form-widgets-docType").select_option("notification")
+        page.locator("#form-widgets-docType").select_option("official_notification")
         page.get_by_role("button", name="Next").click()
         assert "@@dpdocument_wizard_2" in page.url
         page.locator("#form-widgets-IDublinCore-title").fill("Example Entry")
@@ -213,7 +213,7 @@ class TestListing:
         page.get_by_role("button", name="Save").click()
 
         assert page.url.endswith("/bund")
-        expect(page.get_by_text("Created Meldung 'Example Entry'")).to_be_visible()
+        expect(page.get_by_text("Created Offizielle Meldung 'Example Entry'")).to_be_visible()
 
         page.goto(f"{self.plone_url}/bund/content/Groups/bund_group1/example-entry")
         expect(page.locator("#content div").filter(has_text="Normalfall").nth(3)).to_be_visible()

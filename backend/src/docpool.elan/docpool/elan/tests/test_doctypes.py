@@ -8,9 +8,11 @@ from plone.app.testing import login
 from plone.app.testing import logout
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
+from plone.app.testing import TEST_USER_NAME
 from plone.app.textfield import RichTextValue
 from plone.dexterity.events import EditFinishedEvent
 from plone.dexterity.interfaces import IDexterityFTI
+from Products.CMFPlone.controlpanel.events import handleConfigurationChangedEvent
 from zope.component import getUtility
 from zope.event import notify
 from zope.lifecycleevent import modified
@@ -37,41 +39,61 @@ class TestDocTypes(unittest.TestCase):
         self.assertEqual(
             global_dtypes.keys(),
             [
-                "notification",
-                "note",
-                "eventinformation",
-                "nppinformation",
-                "weatherinformation",
-                "trajectory",
-                "otherprojection",
-                "gammadoserate",
-                "gammadoserate_timeseries",
-                "gammadoserate_mobile",
-                "airactivity",
-                "mresult_insitu",
-                "groundcontamination",
-                "mresult_feed",
-                "mresult_food",
-                "mresult_water",
-                "mresult_other",
-                "mresult_flight",
-                "situationreport",
-                "estimation",
-                "instructions",
-                "protectiveactions",
-                "mediarelease",
-                "information_expert_advisor",
-                "measurement_order",
-                "operation_map",
-                "measurement_requirements",
-                "note_measurement_teams",
-                "inquiry_measurement_order",
-                "info_ecc",
-                "info_public",
-                "mediareport",
-                "lasair_lasat_projection",
-                "other_document",
+                "incident",
+                "doksys",
+                "incident_management",
+                "measurement_results",
+                "other_entries",
+                "rei",
+                "staff_work",
                 "doksysdok",
+            ],
+        )
+        global_doctypes = api.content.find(context=global_dtypes, portal_type="DocType", sort_on="id")
+        self.assertEqual(
+            [i.id for i in global_doctypes],
+            [
+                "additional_event_information",
+                "doksys_entry",
+                "doksysdok",
+                "forecast_spread_dose_contamination",
+                "information_for_the_public",
+                "measurement_recommendation",
+                "measurement_strategy",
+                "media_report",
+                "mresult_air_external_radiation",
+                "mresult_air_free_atmosphere",
+                "mresult_air_near_ground",
+                "mresult_air_traceanalysis",
+                "mresult_biological_dosimetry",
+                "mresult_crossborder_traffic",
+                "mresult_drinking_water",
+                "mresult_fish",
+                "mresult_incorporation_monitoring",
+                "mresult_north_and_baltic_sea",
+                "mresult_other_surface_waters",
+                "mresult_pharmaceuticals",
+                "mresult_placing_on_market",
+                "mresult_plant_and_animal_products",
+                "mresult_precipitation",
+                "mresult_representative_media",
+                "mresult_soil",
+                "mresult_soil_surface",
+                "mresult_transport_of_goods",
+                "mresult_waste",
+                "mresult_wastewater",
+                "mresult_waterways",
+                "official_notification",
+                "other_entry",
+                "radiological_situation_report",
+                "radiological_situation_report_draft",
+                "rei_report",
+                "response_action",
+                "response_action_taken",
+                "situation_overview",
+                "situation_overview_draft",
+                "staff_note",
+                "weather_conditions_and_forecast",
             ],
         )
         self.assertEqual(global_contentconfig.keys(), ["impressum"])
@@ -92,45 +114,65 @@ class TestDocTypes(unittest.TestCase):
         config = docpool["config"]
         self.assertEqual(config.keys(), ["dtypes"])
 
-        dtypes = docpool["config"]["dtypes"]
+        local_dtypes = docpool["config"]["dtypes"]
         self.assertEqual(
-            dtypes.keys(),
+            local_dtypes.keys(),
             [
-                "notification",
-                "note",
-                "eventinformation",
-                "nppinformation",
-                "weatherinformation",
-                "trajectory",
-                "otherprojection",
-                "gammadoserate",
-                "gammadoserate_timeseries",
-                "gammadoserate_mobile",
-                "airactivity",
-                "mresult_insitu",
-                "groundcontamination",
-                "mresult_feed",
-                "mresult_food",
-                "mresult_water",
-                "mresult_other",
-                "mresult_flight",
-                "situationreport",
-                "estimation",
-                "instructions",
-                "protectiveactions",
-                "mediarelease",
-                "information_expert_advisor",
-                "measurement_order",
-                "operation_map",
-                "measurement_requirements",
-                "note_measurement_teams",
-                "inquiry_measurement_order",
-                "info_ecc",
-                "info_public",
-                "mediareport",
-                "lasair_lasat_projection",
-                "other_document",
+                "incident",
+                "doksys",
+                "incident_management",
+                "measurement_results",
+                "other_entries",
+                "rei",
+                "staff_work",
                 "doksysdok",
+            ],
+        )
+        local_doctypes = api.content.find(context=local_dtypes, portal_type="DocType", sort_on="id")
+        self.assertEqual(
+            [i.id for i in local_doctypes],
+            [
+                "additional_event_information",
+                "doksys_entry",
+                "doksysdok",
+                "forecast_spread_dose_contamination",
+                "information_for_the_public",
+                "measurement_recommendation",
+                "measurement_strategy",
+                "media_report",
+                "mresult_air_external_radiation",
+                "mresult_air_free_atmosphere",
+                "mresult_air_near_ground",
+                "mresult_air_traceanalysis",
+                "mresult_biological_dosimetry",
+                "mresult_crossborder_traffic",
+                "mresult_drinking_water",
+                "mresult_fish",
+                "mresult_incorporation_monitoring",
+                "mresult_north_and_baltic_sea",
+                "mresult_other_surface_waters",
+                "mresult_pharmaceuticals",
+                "mresult_placing_on_market",
+                "mresult_plant_and_animal_products",
+                "mresult_precipitation",
+                "mresult_representative_media",
+                "mresult_soil",
+                "mresult_soil_surface",
+                "mresult_transport_of_goods",
+                "mresult_waste",
+                "mresult_wastewater",
+                "mresult_waterways",
+                "official_notification",
+                "other_entry",
+                "radiological_situation_report",
+                "radiological_situation_report_draft",
+                "rei_report",
+                "response_action",
+                "response_action_taken",
+                "situation_overview",
+                "situation_overview_draft",
+                "staff_note",
+                "weather_conditions_and_forecast",
             ],
         )
 
@@ -142,7 +184,7 @@ class TestDocTypes(unittest.TestCase):
 
         notify(EditFinishedEvent(docpool))
         # trigger dpAdded method for enabled docpool-products
-        # since only elan is active that doe not create new content
+        # since only elan is active that does not create new content
 
         self.assertEqual(
             docpool.keys(),
@@ -153,48 +195,6 @@ class TestDocTypes(unittest.TestCase):
 
         config = docpool["config"]
         self.assertEqual(config.keys(), ["dtypes"])
-
-        dtypes = docpool["config"]["dtypes"]
-        self.assertEqual(
-            dtypes.keys(),
-            [
-                "notification",
-                "note",
-                "eventinformation",
-                "nppinformation",
-                "weatherinformation",
-                "trajectory",
-                "otherprojection",
-                "gammadoserate",
-                "gammadoserate_timeseries",
-                "gammadoserate_mobile",
-                "airactivity",
-                "mresult_insitu",
-                "groundcontamination",
-                "mresult_feed",
-                "mresult_food",
-                "mresult_water",
-                "mresult_other",
-                "mresult_flight",
-                "situationreport",
-                "estimation",
-                "instructions",
-                "protectiveactions",
-                "mediarelease",
-                "information_expert_advisor",
-                "measurement_order",
-                "operation_map",
-                "measurement_requirements",
-                "note_measurement_teams",
-                "inquiry_measurement_order",
-                "info_ecc",
-                "info_public",
-                "mediareport",
-                "lasair_lasat_projection",
-                "other_document",
-                "doksysdok",
-            ],
-        )
 
         archive = docpool["archive"]
         self.assertEqual(archive.keys(), [".wf_policy_config"])
@@ -212,41 +212,47 @@ class TestDocTypes(unittest.TestCase):
         self.assertEqual(
             set(doctypes_ids),
             {
-                "notification",
-                "mresult_flight",
-                "info_ecc",
-                "mediarelease",
-                "lasair_lasat_projection",
-                "mresult_feed",
-                "measurement_requirements",
-                "protectiveactions",
-                "note_measurement_teams",
-                "mresult_food",
-                "instructions",
-                "weatherinformation",
-                "mresult_insitu",
-                "other_document",
-                "mresult_water",
-                "airactivity",
-                "mresult_other",
-                "eventinformation",
-                "inquiry_measurement_order",
-                "nppinformation",
-                "trajectory",
-                "operation_map",
-                "gammadoserate_mobile",
-                "mediareport",
-                "gammadoserate",
-                "gammadoserate_timeseries",
-                "otherprojection",
-                "groundcontamination",
-                "measurement_order",
-                "estimation",
-                "information_expert_advisor",
-                "situationreport",
-                "info_public",
-                "note",
+                "measurement_strategy",
+                "situation_overview_draft",
+                "mresult_soil",
+                "mresult_waste",
+                "mresult_plant_and_animal_products",
+                "response_action",
+                "mresult_drinking_water",
+                "forecast_spread_dose_contamination",
+                "mresult_soil_surface",
+                "mresult_placing_on_market",
+                "mresult_air_external_radiation",
+                "rei_report",
+                "mresult_air_near_ground",
+                "mresult_pharmaceuticals",
+                "measurement_recommendation",
+                "weather_conditions_and_forecast",
                 "doksysdok",
+                "mresult_transport_of_goods",
+                "mresult_biological_dosimetry",
+                "media_report",
+                "doksys_entry",
+                "mresult_fish",
+                "staff_note",
+                "mresult_representative_media",
+                "mresult_crossborder_traffic",
+                "mresult_air_traceanalysis",
+                "situation_overview",
+                "mresult_other_surface_waters",
+                "additional_event_information",
+                "information_for_the_public",
+                "mresult_precipitation",
+                "mresult_incorporation_monitoring",
+                "official_notification",
+                "mresult_air_free_atmosphere",
+                "radiological_situation_report",
+                "radiological_situation_report_draft",
+                "mresult_wastewater",
+                "response_action_taken",
+                "mresult_waterways",
+                "mresult_north_and_baltic_sea",
+                "other_entry",
             },
         )
 
@@ -316,7 +322,7 @@ class TestDocTypes(unittest.TestCase):
             type="DPDocument",
             title="Weatherinfo",
             description="foo",
-            docType="weatherinformation",
+            docType="weather_conditions_and_forecast",
             local_behaviors=["elan"],
         )
         self.assertEqual(weatherinfo.created_by, "foo <i>Content Administrators (Test Dokpool)</i>")
@@ -326,7 +332,7 @@ class TestDocTypes(unittest.TestCase):
             type="DPDocument",
             title="Eventinfo",
             description="foo",
-            docType="eventinformation",
+            docType="additional_event_information",
             local_behaviors=["elan"],
         )
         modified(weatherinfo)
@@ -334,36 +340,42 @@ class TestDocTypes(unittest.TestCase):
 
         # they can be found using the index dp_type
         self.assertEqual(
-            len(api.content.find(portal_type="DPDocument", dp_type="weatherinformation")),
+            len(api.content.find(portal_type="DPDocument", dp_type="weather_conditions_and_forecast")),
             1,
         )
         self.assertEqual(
-            len(api.content.find(portal_type="DPDocument", dp_type="eventinformation")),
+            len(api.content.find(portal_type="DPDocument", dp_type="additional_event_information")),
             1,
         )
 
         # check the category of the weatherinfo
         # TODO: Update test after new categories are setup in tests
-        # brain = api.content.find(portal_type="DPDocument", dp_type="weatherinformation")[0]
-        # self.assertEqual(brain.category, ["WETTER UND TRAJEKTORIEN"])
+        brain = api.content.find(portal_type="DPDocument", dp_type="weather_conditions_and_forecast")[0]
+        self.assertEqual(brain.category, "Ereignis")
+        self.assertEqual(brain.subcategory, "Wetterlage und -prognosen")
 
         # get the base-doctype for one of the two
-        weatherinfo_template = docpool["config"]["dtypes"]["weatherinformation"]
+        weatherinfo_template = docpool["config"]["dtypes"]["incident"]["weather_conditions_and_forecasts"][
+            "weather_conditions_and_forecast"
+        ]
 
-        # Change the Category of this item
-        # TODO: Update test
-        # api.relation.create(source, weatherinfo_template, relationship="docTypes")
+        # Only admins can change/move doktypes
+        logout()
+        login(self.portal, TEST_USER_NAME)
 
-        # flush cache on ELANDocType.categories() before reindexing
-        # IAnnotations(self.request).pop("plone.memoize", None)
+        # Change the Category of this item by moving it to a different DocTypeCategory
+        weatherinfo_template = api.content.move(
+            weatherinfo_template, docpool["config"]["dtypes"]["staff_work"]["staff_notes"]
+        )
 
-        # trigger reindexing some indexes of content derived from this
-        # we reindex dok_type and category
+        # Invalidate Cache on dokTypeObj()
+        handleConfigurationChangedEvent(None)
+        # reindex category and subcategory for it and for all items of that type
         notify(EditFinishedEvent(weatherinfo_template))
 
-        # TODO: Update test after new categories are setup in tests
-        # brain = api.content.find(portal_type="DPDocument", dp_type="weatherinformation")[0]
-        # self.assertCountEqual(brain.category, ["WETTER UND TRAJEKTORIEN", "SONSTIGE PROGNOSEN"])
+        brain = api.content.find(portal_type="DPDocument", dp_type="weather_conditions_and_forecast")[0]
+        self.assertEqual(brain.category, "Stabsarbeit")
+        self.assertEqual(brain.subcategory, "Mitteilungen der Stäbe")
 
     def test_docpool_searchresults(self):
         docpool = self.portal["test_docpool"]
@@ -383,7 +395,7 @@ class TestDocTypes(unittest.TestCase):
             type="DPDocument",
             title="Test DPDocument",
             description="willbefound",
-            docType="weatherinformation",
+            docType="weather_conditions_and_forecast",
             text=RichTextValue("<p>Text</p>", "text/html", "text/x-html-safe"),
             local_behaviors=["elan", "doksys"],
             scenarios=[event_uid],
@@ -428,7 +440,7 @@ class TestDocTypes(unittest.TestCase):
             type="DPDocument",
             title="Some Document",
             description="foo",
-            docType="weatherinformation",
+            docType="weather_conditions_and_forecast",
         )
 
         # check that commenting is enabled globally, per fti and per item

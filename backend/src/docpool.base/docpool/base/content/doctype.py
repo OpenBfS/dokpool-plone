@@ -148,12 +148,13 @@ def updated(obj, event=None):
         obj,
         portal_type="DPDocument",
         path=mpath,
-        dp_type=obj.getId(),
+        dp_type=obj.id,
     )
     for brain in brains:
         try:
             # reindex object without changing the modification-date.
             log("Reindexing " + brain.getPath())
-            catalog._reindexObject(brain.getObject(), idxs=["dp_type", "category"])
+            obj = brain.getObject()
+            catalog._reindexObject(obj, idxs=["dp_type", "category", "subcategory"])
         except BaseException as e:
             log(e)
