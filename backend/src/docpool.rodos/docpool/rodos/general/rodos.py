@@ -57,9 +57,6 @@ def createRodosDocTypes(plonesite, fresh):
     createPloneObjects(plonesite.config.dtypes, DTYPES, fresh)
 
 
-DOCTYPES = "ref_setDocTypesUpdateCollection"  # indicates that docTypes is referencing objects, which need to be queried by their id
-
-
 dp_type_query = {
     "i": "dp_type",
     "o": "plone.app.querystring.operation.selection.is",
@@ -247,11 +244,3 @@ DTYPES = [
         "ref_allowedDocTypes": [],
     },
 ]
-
-# TODO: run this code...
-# try:
-#     self.config.dtypes.rodosprojection.type_extension(ELAN_APP).setCCategory(
-#         "rodos-projections"
-#     )
-# except BaseException:
-#     pass

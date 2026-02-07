@@ -9,11 +9,3 @@ def scenarios_indexer(obj):
         return obj.doc_extension(ELAN_APP).scenarioIndex()
     except BaseException:
         return ["nonELANContent"]
-
-
-@indexer(IDPDocument)
-def cat_path_indexer(obj):
-    try:
-        return obj.doc_extension(ELAN_APP).cat_path()
-    except BaseException:
-        pass

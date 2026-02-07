@@ -9,11 +9,6 @@
       name="scenarios"
       />
 
-  <adapter
-      factory=".indexer.cat_path_indexer"
-      name="cat_path"
-      />
-
   <subscriber handler=".dpevent.eventAdded" />
   <subscriber handler=".dpevent.eventChanged" />
   <subscriber handler=".dpevent.eventRemoved" />

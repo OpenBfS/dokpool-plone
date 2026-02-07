@@ -211,15 +211,6 @@
     </field>
     <value>ELAN-E Content Category</value>
   </record>
-  <record field="vocabulary"
-          interface="plone.app.querystring.interfaces.IQueryField"
-          name="plone.app.querystring.field.category.vocabulary"
-  >
-    <field type="plone.registry.field.TextLine">
-      <title>Vocabulary</title>
-    </field>
-    <value>docpool.elan.vocabularies.Categories</value>
-  </record>
   <records interface="plone.app.querystring.interfaces.IQueryField"
            prefix="plone.app.querystring.field.mdate"
   >

@@ -96,12 +96,12 @@
           <dd tal:content="python:', '.join(scns)"></dd>
         </tal:scns>
         <tal:cat define="
-                   cat elanobj/category;
+                   cat context/subcategory;
                  "
                  condition="cat"
         >
           <dt i18n:translate="">Content from:</dt>
-          <dd>${item_type} ${python:elanobj.cat_convert()}</dd>
+          <dd>${item_type} (${python: cat.upper()})</dd>
         </tal:cat>
       </dl>
     </metal:macro>

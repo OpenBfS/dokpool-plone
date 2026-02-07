@@ -32,6 +32,4 @@ class AppCaching:
 
 cacheTimes.update({
     "ELANArchive": 7200,
-    "ELANCurrentSituation": 300,
-    "ELANDocCollection": 300,
 })

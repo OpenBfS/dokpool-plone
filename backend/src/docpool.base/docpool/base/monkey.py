@@ -17,6 +17,8 @@ def getURL(self, relative=0, original=False):
     request = aq_get(self, "REQUEST", None)
     if request is None:
         request = getRequest()
+    # back to original since there is no more cat_path after esd was removed
+    return request.physicalPathToURL(self.getPath(), relative)
     if (
         # original set we ignore this special code
         (
@@ -39,6 +41,7 @@ def getURL(self, relative=0, original=False):
     return request.physicalPathToURL(self.getPath(), relative)
 
 
+# TODO: Remove code when we have a solution for the entry view and seasrch results
 if not hasattr(AbstractCatalogBrain, "original_getURL"):
     AbstractCatalogBrain.original_getURL = AbstractCatalogBrain.getURL
     AbstractCatalogBrain.getURL = getURL

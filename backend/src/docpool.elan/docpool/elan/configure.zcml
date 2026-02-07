@@ -140,13 +140,5 @@
       name="docpool.elan.vocabularies.AlertingStatus"
       component=".vocabularies.AlertingStatusVocabularyFactory"
       />
-  <utility
-      name="docpool.elan.vocabularies.Categories"
-      component=".vocabularies.CategoriesVocabularyFactory"
-      />
-  <utility
-      name="docpool.elan.vocabularies.Category"
-      component=".vocabularies.CategoryVocabularyFactory"
-      />
 
 </configure>
