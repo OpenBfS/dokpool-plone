@@ -20,6 +20,7 @@ class GroupsListing(BrowserView):
         results = []
         group_tool = api.portal.get_tool("portal_groups")
         self.dp = getDocumentPoolSite(self.context)
+        self.base_url = self.dp.absolute_url()
         for group in group_tool.listGroups():
             if group.id == "AuthenticatedUsers":
                 continue

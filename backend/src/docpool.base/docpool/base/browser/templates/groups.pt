@@ -59,7 +59,7 @@
               <a href=""
                  target="_blank"
                  tal:attributes="
-                   href python:portal_url + '/@@usergroup-groupprefs?searchstring=' + group['id'];
+                   href python:view.base_url + '/@@usergroup-groupprefs?searchstring=' + group['id'];
                  "
               >
                 <tal:icon tal:replace="structure python:icons.tag('search')" /></a>
@@ -67,7 +67,7 @@
               <a href=""
                  target="_blank"
                  tal:attributes="
-                   href python:portal_url + '/@@usergroup-groupmembership?groupname=' + group['id'];
+                   href python:view.base_url + '/@@usergroup-groupmembership?groupname=' + group['id'];
                  "
               >
                 <tal:icon tal:replace="structure python:icons.tag('pencil')" /></a>
@@ -83,7 +83,7 @@
                   <a href=""
                      target="_blank"
                      tal:attributes="
-                       href python:portal_url + '/@@usergroup-userprefs?searchstring=' + memberuser[0];
+                       href python:view.base_url + '/@@usergroup-userprefs?searchstring=' + memberuser[0];
                      "
                   >
                    ${python: memberuser[1]}
@@ -96,7 +96,7 @@
                   <a href=""
                      target="_blank"
                      tal:attributes="
-                       href python:portal_url + '/@@usergroup-groupmembership?groupname=' + membergroup[0];
+                       href python:view.base_url + '/@@usergroup-groupmembership?groupname=' + membergroup[0];
                      "
                   >
                     ${python: membergroup[1]}
@@ -129,7 +129,7 @@
                      target="_blank"
                      tal:content="python:group_id"
                      tal:attributes="
-                       href python:portal_url + '/@@usergroup-groupmembership?groupname=' + group_id;
+                       href python:view.base_url + '/@@usergroup-groupmembership?groupname=' + group_id;
                      "
                   >
                   </a>
