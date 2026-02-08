@@ -10,9 +10,6 @@ from plone.dexterity.content import Container
 from plone.dexterity.interfaces import IEditFinishedEvent
 from plone.supermodel import model
 from Products.CMFPlone.utils import log
-from z3c.form.browser.orderedselect import OrderedSelectFieldWidget
-from z3c.relationfield.schema import RelationChoice
-from z3c.relationfield.schema import RelationList
 from zope import schema
 from zope.component import adapter
 from zope.interface import implementer
@@ -35,16 +32,6 @@ class IDocType(model.Schema):
         default=False,
     )
 
-    globalAllow = schema.Bool(
-        title=_(
-            "label_doctype_globalallow",
-            default="Can be used everywhere (not only as part of another type)",
-        ),
-        description=_("description_doctype_globalallow", default=""),
-        required=False,
-        default=True,
-    )
-
     allow_discussion_on_dpdocument = schema.Bool(
         title=_(
             "label_doctype_allow_discussion",
@@ -54,21 +41,6 @@ class IDocType(model.Schema):
         required=False,
         default=False,
     )
-
-    # TODO: This pattern allows to create relations to itself
-    # Would it be better to not use relations here?
-    allowedDocTypes = RelationList(
-        title=_(
-            "label_doctype_alloweddoctypes",
-            default="Types are allowed as part of this type",
-        ),
-        description=_("description_doctype_alloweddoctypes", default=""),
-        required=False,
-        value_type=RelationChoice(
-            vocabulary="docpool.base.vocabularies.DocType",
-        ),
-    )
-    directives.widget("allowedDocTypes", OrderedSelectFieldWidget)
 
     partsPattern = schema.TextLine(
         title=_(
@@ -100,12 +72,6 @@ class IDocType(model.Schema):
             "description_doctype_imgpattern",
             default="If image exists, it will be used as a visual representation for objects of this type.",
         ),
-        required=False,
-    )
-
-    customViewTemplate = schema.TextLine(
-        title=_("label_doctype_customviewtemplate", default="Custom View Template"),
-        description=_("description_doctype_customviewtemplate", default=""),
         required=False,
     )
 

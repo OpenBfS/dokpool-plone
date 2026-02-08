@@ -131,47 +131,11 @@ class DPDocument(Container, Extendable, ContentBase):
             self.reindexObject()
             self.reindexObjectSecurity()
 
-    def getAllowedSubTypes(self):
-        dto = self.docTypeObj()
-        if dto:
-            adt = dto.allowedDocTypes
-            if adt:
-                return [dt.to_object for dt in adt]
-        return []
-
     def customMenu(self, menu_items):
         """ """
-        res1 = []
-        if not self.uploadsAllowed():
-            for menu_item in menu_items:
-                if menu_item.get("id") in ["File", "Image"]:
-                    continue
-                res1.append(menu_item)
-        else:
-            res1 = menu_items
-        dts = self.getAllowedSubTypes()
-        res = []
-        for menu_item in res1:
-            if menu_item.get("id") == "DPDocument":
-                for dt in dts:
-                    action = f"{self.absolute_url()}add++DPDocument?form.widgets.docType:list={dt.id}"
-                    res.append({
-                        "extra": {
-                            "separator": None,
-                            "id": dt.id,
-                            "class": "contenttype-%s" % dt.id,
-                        },
-                        "submenu": None,
-                        "description": "",
-                        "title": safe_text(dt.Title),
-                        "action": action,
-                        "selected": False,
-                        "id": dt.id,
-                        "icon": None,
-                    })
-            else:
-                res.append(menu_item)
-        return res
+        if self.uploadsAllowed():
+            return menu_items
+        return []
 
     def allSubobjectsPublished(self):
         """

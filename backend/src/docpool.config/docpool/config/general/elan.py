@@ -50,7 +50,6 @@ def createStructure(self, fresh):
 
 def createDocTypes(plonesite, fresh):
     """ """
-    # createPloneObjects(plonesite.config.dtypes, DTYPES, fresh)
     doctypes_container = plonesite.config.dtypes
     assert doctypes_container.portal_type == "DocTypes"
 

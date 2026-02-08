@@ -52,8 +52,6 @@ class SimpleFolder(FolderBase):
         for menu_item in menu_items:
             if menu_item.get("id") == "DPDocument":
                 for dt in dts:
-                    if not dt.getObject().globalAllow:  # only generally allowed doctypes
-                        continue
                     # Get behavior of menu_item
                     from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
 

@@ -40,7 +40,7 @@ class FlexibleView(BrowserView):
         doctype = document.docTypeObj()
 
         if doctype:
-            typename = doctype.customViewTemplate or doctype.id
+            typename = getattr(doctype, "customViewTemplate", None) or doctype.id
         elif base_hasattr(document, "typeName"):
             # Some (non-DPDocument) may have custom typeNames, e.g. "SituationReport" is
             # called "sitrep"

@@ -241,6 +241,5 @@ DTYPES = [
         ID: "rodosprojection",
         CHILDREN: [],
         "local_behaviors": ["rodos", "elan"],
-        "ref_allowedDocTypes": [],
     },
 ]
