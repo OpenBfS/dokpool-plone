@@ -89,11 +89,6 @@ class Listing(BrowserView):
             if event := getScenariosForCurrentUser():
                 self.query["scenarios"] = event
 
-        # Filter by Doctype
-        self.selected_doctypes = form.get("selected_doctypes") or []
-        if self.selected_doctypes:
-            self.query["dp_type"] = self.selected_doctypes
-
         # Filter by Category
         self.selected_subcategories = form.get("selected_subcategories") or []
         if self.selected_subcategories:
@@ -192,14 +187,7 @@ class Listing(BrowserView):
             review_state_filter_config[state]["count"] = count
         self.review_states = review_state_filter_config
 
-        # Prepare Doctype filter options (query needs to be complete)
-        doctypes_config = {}
-        for doctype in api.portal.get_vocabulary("docpool.base.vocabularies.DocumentTypes", self.context):
-            doctypes_config[doctype.value] = {"title": doctype.title}
-            doctypes_config[doctype.value]["count"] = self.count_options({"dp_type": doctype.value})
-        self.doctypes = doctypes_config
-
-        # Prepare Entrytypes filter options
+        # Prepare Entrytypes filter options (query needs to be complete)
         self.doctype_categories = self.doctype_options()
 
         # Prepare Group filter options (query needs to be complete)

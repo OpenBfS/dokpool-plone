@@ -49,7 +49,7 @@ class TestListing:
             type="DPDocument",
             title="A Weatherinfo without images",
             description="foo",
-            docType="weatherinformation",
+            docType="weather_conditions_and_forecast",
             local_behaviors=["elan"],
             scenarios=getScenariosForCurrentUser(),
         )
@@ -59,9 +59,9 @@ class TestListing:
         self.entry = api.content.create(
             container=self.group_folder,
             type="DPDocument",
-            title="A Weatherinfo",
+            title="A Staff Note",
             description="foo",
-            docType="weatherinformation",
+            docType="staff_note",
             local_behaviors=["elan"],
             scenarios=getScenariosForCurrentUser(),
         )
@@ -156,13 +156,31 @@ class TestListing:
         page.wait_for_selector(".actions .list-group")
         expect(page.locator(".actions .list-group")).to_have_count(1)
         # TODO: Update test after new categories are setup in tests
-        # metadata = page.locator(".doc_metadata div").last
-        # expect(metadata).to_contain_text("Wetterinformation (WETTER UND TRAJEKTORIEN)")
+        metadata = page.locator(".doc_metadata div").last
+        expect(metadata).to_contain_text("Wetterlage und -prognose (Wetterlage und -prognosen)")
         # Go back to listing
         page.get_by_role("link", name="Back").click()
         # Wait for items to get loaded
         items = page.locator("#listing .listing-item")
         expect(items).to_have_count(2)
+
+    def test_listing_filter_category(self):
+        page = self.page
+        page.goto(f"{self.plone_url}/bund/setActiveApp?app=elan")
+        page.goto(f"{self.plone_url}/bund/listing")
+        # Filter by catagory
+        expect(page.locator(".listing-item")).to_have_count(2)
+        page.get_by_role("button", name="Eintragsart").click()
+        expect(
+            page.locator("label").filter(has_text="Wetterlage und -prognosen").locator("span")
+        ).to_contain_text("1")
+        expect(
+            page.locator("label").filter(has_text="Mitteilungen der Stäbe").locator("span")
+        ).to_contain_text("1")
+        page.get_by_role("checkbox", name="Wetterlage und -prognosen").click()
+        # page.pause()
+        page.get_by_role("button", name="Filter").click()
+        expect(page.locator(".listing-item")).to_have_count(1)
 
     def test_listing_next_item(self):
         page = self.page
