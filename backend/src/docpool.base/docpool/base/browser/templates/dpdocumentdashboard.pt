@@ -1,3 +1,0 @@
-<tal:block i18n:domain="docpool.base">
-  <tal:insert replace="structure python:view.myView('dashboard', **options)" />
-</tal:block>

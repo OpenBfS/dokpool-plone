@@ -2,8 +2,6 @@ from ..utils import set_local_roles
 from datetime import datetime
 from docpool.base.content.documentpool import APPLICATIONS_KEY
 from docpool.base.utils import RARELY_USED_TYPES
-from docpool.config import _
-from docpool.config.general.elan import connectTypesAndCategories
 from docpool.config.local.base import CONTENT_AREA
 from docpool.config.utils import CHILDREN
 from docpool.config.utils import createPloneObjects
@@ -31,16 +29,13 @@ def dpAdded(self):
     if fresh:
         annotations[APPLICATIONS_KEY].append(ELAN_APP)
 
-    copyCurrentSituation(self, fresh)
     transaction.commit()
     createBasicPortalStructure(self, fresh)
     transaction.commit()
     createContentConfig(self, fresh)
     transaction.commit()
     if fresh:
-        self.esd.correctAllDocTypes()
         transaction.commit()
-        connectTypesAndCategories(self)
 
         placeful_wf = getToolByName(self, "portal_placeful_workflow")
         try:
@@ -69,12 +64,6 @@ BASICSTRUCTURE = [
 ]
 
 ARCHIVESTRUCTURE = [
-    {
-        TYPE: "ELANCurrentSituation",
-        TITLE: "Elektronische Lagedarstellung",
-        ID: "esd",
-        CHILDREN: [],
-    },
     CONTENT_AREA,
 ]
 
@@ -107,12 +96,6 @@ ADMINSTRUCTURE = [
                 ],
             },
             {TYPE: "Text", TITLE: "Ticker", ID: "ticker", CHILDREN: []},
-            {
-                TYPE: "DashboardsConfig",
-                TITLE: "Dokumentsammlungen Pinnwand",
-                ID: "dbconfig",
-                CHILDREN: [],
-            },
         ],
     }
 ] + SPECIAL_PAGES
@@ -166,7 +149,6 @@ def setELANLocalRoles(self):
         set_local_roles(self, self[name], contentadmin, ["ContentAdmin"])
     set_local_roles(self, self.archive, contentadmin, ["DocPoolAdmin"])
     set_local_roles(self, self.content.Groups, contentadmin, ["Site Administrator"])
-    set_local_roles(self, self.esd, contentadmin, ["ContentAdmin"])
     set_local_roles(self, self, "{0}_ELANUsers", ["ELANUser"])
     set_local_roles(self, self.config, contentadmin, ["Owner"])
 
@@ -236,20 +218,6 @@ def createELANGroups(self):
             "dp": self.UID(),
         }
         gtool.addGroup(f"{prefix}_Journal{index}_Readers", properties=props)
-
-
-def copyCurrentSituation(self, fresh):
-    """ """
-    if not fresh:
-        return
-    esd = self.esd
-    from docpool.base.utils import _copyPaste
-
-    _copyPaste(esd, self, safe=False)
-    self.esd.setTitle(_("Aktuelle Lage"))
-    self.esd.reindexObject()
-    # make sure the current situation is first
-    self.moveObject("esd", 0)
 
 
 def dpRemoved(self):

@@ -1,0 +1,50 @@
+{
+  "@id": "/config/dtypes/incident/additional_event_information/additional_event_information",
+  "@type": "DocType",
+  "UID": "a97359a7154f4fdba388027bcb78f0c6",
+  "allowTransfer": true,
+  "allowUploads": true,
+  "allow_discussion": null,
+  "allow_discussion_on_dpdocument": false,
+  "automaticTransferTargets": [],
+  "created": "2026-02-07T12:23:06+00:00",
+  "creators": [
+    "admin"
+  ],
+  "customViewTemplate": null,
+  "description": "Informationen nach \u00a7 152 StrlSchV z.B. Daten, Absch\u00e4tzungen und Bewertungen \u00fcber die Anlage oder Strahlungsquelle, zum radiologischen Inventar und zu Freisetzungen sowie Freisetzungsabsch\u00e4tzungen und \u2011prognosen",
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "globalAllow": true,
+  "icon_name": "radioactive",
+  "id": "additional_event_information",
+  "imgPattern": null,
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "local_behaviors": [
+    "elan"
+  ],
+  "lock": {},
+  "modified": "2026-02-07T12:23:06+00:00",
+  "partsPattern": null,
+  "pdfPattern": null,
+  "publishImmediately": false,
+  "review_state": "published",
+  "title": "Erg\u00e4nzende Ereignisinformation",
+  "type_title": "Document Type",
+  "version": "current",
+  "workflow_history": {
+    "dp_doctype_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2026-02-07T12:23:06+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

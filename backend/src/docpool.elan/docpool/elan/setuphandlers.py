@@ -12,7 +12,7 @@ def post_install(context):
     install(api.portal.get())
 
     catalog = api.portal.get_tool("portal_catalog")
-    catalog.reindexIndex(["scenarios", "category"], REQUEST=getRequest())
+    catalog.reindexIndex(["scenarios", "category", "subcategory"], REQUEST=getRequest())
 
 
 def uninstall(context):

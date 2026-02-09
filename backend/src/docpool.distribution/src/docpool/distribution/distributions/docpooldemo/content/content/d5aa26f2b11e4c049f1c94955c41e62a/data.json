@@ -33,13 +33,14 @@
   "language": "##DEFAULT##",
   "layout": "view",
   "lock": {},
-  "modified": "2025-09-10T13:25:25+00:00",
+  "modified": "2026-02-07T12:24:13+00:00",
   "prefix": "mv",
   "review_state": "published",
   "rights": null,
   "subjects": [],
   "supportedApps": [
-    "doksys"
+    "doksys",
+    "elan"
   ],
   "title": "Mecklenburg-Vorpommern",
   "type_title": "Document Pool",

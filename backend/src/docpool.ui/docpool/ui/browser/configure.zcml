@@ -141,4 +141,13 @@
       layer="docpool.ui.interfaces.IUITheme"
       />
 
+  <browser:page
+      name="entrytypes"
+      for="*"
+      class=".entrytypes.EntryTypes"
+      template="templates/entrytypes.pt"
+      permission="zope2.View"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
 </configure>

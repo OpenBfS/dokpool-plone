@@ -1,12 +1,10 @@
 from AccessControl import ClassSecurityInfo
 from Acquisition import aq_inner
 from docpool.base.browser.flexible_view import FlexibleView
-from docpool.base.content.doctype import IDocType
 from docpool.base.interfaces import IDocumentExtension
 from docpool.base.utils import app_only_decorator
 from docpool.base.utils import getDocumentPoolSite
 from docpool.elan import DocpoolMessageFactory as _
-from docpool.elan.behaviors.elandoctype import IELANDocType
 from docpool.elan.config import ELAN_APP
 from docpool.elan.utils import getScenariosForCurrentUser
 from plone import api
@@ -14,7 +12,6 @@ from plone.autoform import directives
 from plone.autoform.directives import read_permission
 from plone.autoform.directives import write_permission
 from plone.autoform.interfaces import IFormFieldProvider
-from plone.base.utils import safe_text
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from zope import schema
 from zope.interface import provider
@@ -170,47 +167,13 @@ class ELANDocument(FlexibleView):
                 return scn
         return None
 
-    def cat_convert(self):
-        """ """
-        docp = self.context
-        while docp.id != "content":
-            docp = docp.aq_parent
-        docp = docp.aq_parent
-        over = docp.esd.overview.title_or_id()
-        rec = docp.esd.recent.title_or_id()
-        cats = [safe_text(i) for i in self.category()]
-        cats = [i for i in cats if i not in [over, rec]]
-        cats = "({})".format(", ".join(cats))
-        return cats
-
     def category(self):
         """ """
-        return self.typeAndCat()[1]
-
-    def cat_path(self):
-        """
-        Catalog path for the category object. Needed for a patch to the
-        getURL (src/docpool.base/docpool/base/monkey.py) function of brains.
-        """
-        try:
-            doctype_obj = self.context.docTypeObj()
-            if doctype_obj:
-                category = IELANDocType(doctype_obj).contentCategory
-                if category:
-                    category_path = category.to_path
-                    # Remove the '/Plone/bund/' context path
-                    # Todo: Improve
-                    return "/".join(category_path.split("/")[3:])
-        except BaseException:
-            return ""
+        return self.typeAndCat()[0]
 
     def typeAndCat(self):
         """ """
         dto = self.context.docTypeObj()
         if dto:
-            if IDocType.providedBy(dto) and IELANDocType(dto, None) is not None:
-                return dto.title, IELANDocType(dto).categories()
-            else:
-                return dto.title, []
-        else:
-            return ("", [])
+            return dto.title, [self.context.subcategory()]
+        return ("", [])

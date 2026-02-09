@@ -1,5 +1,5 @@
 {
-  "@id": "/bund/config/dtypes/mresult_insitu",
+  "@id": "/bund/config/dtypes/measurement_results/mresults_soil_surface_and_precipitation/mresult_soil_surface",
   "@type": "DocType",
   "UID": "cf6a3633058e4990a69ea6462d3b8097",
   "allowTransfer": true,
@@ -12,26 +12,26 @@
     "admin"
   ],
   "customViewTemplate": null,
-  "description": "",
+  "description": "Messergebnis Bodenoberfl\u00e4che",
   "exportimport.constrains": {},
   "exportimport.conversation": [],
   "globalAllow": true,
-  "id": "mresult_insitu",
+  "icon_name": "radioactive",
+  "id": "mresult_soil_surface",
   "imgPattern": ".+\\.(png|jpg)$",
   "is_folderish": true,
   "language": "##DEFAULT##",
   "layout": "view",
   "local_behaviors": [
-    "doksys",
     "elan"
   ],
   "lock": {},
-  "modified": "2025-09-10T12:30:28+00:00",
+  "modified": "2026-02-07T12:24:20+00:00",
   "partsPattern": null,
   "pdfPattern": ".+\\.pdf$",
   "publishImmediately": false,
   "review_state": "published",
-  "title": "Messergebnis_insitu",
+  "title": "Messergebnis Bodenoberfl\u00e4che",
   "type_title": "Document Type",
   "version": "current",
   "workflow_history": {

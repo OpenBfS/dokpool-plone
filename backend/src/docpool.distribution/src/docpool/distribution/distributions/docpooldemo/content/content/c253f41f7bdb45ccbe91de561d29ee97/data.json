@@ -1,5 +1,5 @@
 {
-  "@id": "/mecklenburg-vorpommern/config/dtypes/instructions",
+  "@id": "/mecklenburg-vorpommern/config/dtypes/incident_management/response_actions_taken/response_action_taken",
   "@type": "DocType",
   "UID": "c253f41f7bdb45ccbe91de561d29ee97",
   "allowTransfer": true,
@@ -12,11 +12,12 @@
     "admin"
   ],
   "customViewTemplate": null,
-  "description": "",
+  "description": "R\u00fcckmeldung \u00fcber den Umfang und Erfolg der durchgef\u00fchrten Ma\u00dfnahmen",
   "exportimport.constrains": {},
   "exportimport.conversation": [],
   "globalAllow": true,
-  "id": "instructions",
+  "icon_name": "radioactive",
+  "id": "response_action_taken",
   "imgPattern": null,
   "is_folderish": true,
   "language": "##DEFAULT##",
@@ -25,12 +26,12 @@
     "elan"
   ],
   "lock": {},
-  "modified": "2025-09-10T13:25:24+00:00",
+  "modified": "2026-02-07T12:24:24+00:00",
   "partsPattern": null,
   "pdfPattern": null,
   "publishImmediately": false,
   "review_state": "published",
-  "title": "Ma\u00dfnahmeninformation",
+  "title": "Durchgef\u00fchrte Ma\u00dfnahme",
   "type_title": "Document Type",
   "version": "current",
   "workflow_history": {

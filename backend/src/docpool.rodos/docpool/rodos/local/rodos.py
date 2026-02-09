@@ -24,10 +24,6 @@ def dpAdded(self, reindex=True):
     if fresh:
         annotations[APPLICATIONS_KEY].append(RODOS_APP)
         copyRodosContent(self, fresh)
-        # connectTypesAndCategories(self) # TOOD: only when RODOS doctypes need to be added to ELAN categories
-        # self.rodos.correctAllDocTypes() # TODO: if the run display templates contains collections
-        # with references to global doctypes, which need to be adapted to local
-        # doctypes.
         createRodosGroups(self)
         transaction.commit()
 

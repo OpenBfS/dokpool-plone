@@ -70,7 +70,7 @@ class TestTransferFunctional(unittest.TestCase):
             type="DPDocument",
             id="note",
             title="Note",
-            docType="note",
+            docType="staff_note",
             local_behaviors=["testapp"],
         )
         # Transfer to both targets, pass a (that doesn't have testapp) first on purpose. This is to make sure

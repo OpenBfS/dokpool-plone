@@ -1,5 +1,5 @@
 {
-  "@id": "/berlin/config/dtypes/messstrategie",
+  "@id": "/berlin/config/dtypes/incident_management/measurement_strategies/measurement_strategy",
   "@type": "DocType",
   "UID": "43fdb36f4e7d4cddb50727af0dcbf41a",
   "allowTransfer": true,
@@ -12,11 +12,12 @@
     "admin"
   ],
   "customViewTemplate": null,
-  "description": "",
+  "description": "Messstrategie zu einem Radiologischen Lagebild gem\u00e4\u00df ANoPl Bund.",
   "exportimport.constrains": {},
   "exportimport.conversation": [],
   "globalAllow": true,
-  "id": "messstrategie",
+  "icon_name": "radioactive",
+  "id": "measurement_strategy",
   "imgPattern": null,
   "is_folderish": true,
   "language": "##DEFAULT##",
@@ -25,7 +26,7 @@
     "elan"
   ],
   "lock": {},
-  "modified": "2026-01-30T11:22:40+00:00",
+  "modified": "2026-02-07T12:24:15+00:00",
   "partsPattern": null,
   "pdfPattern": null,
   "publishImmediately": false,

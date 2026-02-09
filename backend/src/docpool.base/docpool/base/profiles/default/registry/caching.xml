@@ -35,13 +35,11 @@
       </value_type>
     </field>
     <value>
-      <element key="SituationReport">plone.content.folderView</element>
       <element key="DashboardCollection">plone.content.feed</element>
       <element key="DocTypes">plone.content.folderView</element>
       <element key="DPEvent">plone.content.itemView</element>
       <element key="DocType">plone.content.itemView</element>
       <element key="Document">plone.content.itemView</element>
-      <element key="SRModule">plone.content.folderView</element>
       <element key="ELANContentConfig">plone.content.folderView</element>
       <element key="Link">plone.content.itemView</element>
       <element key="SimpleFolder">plone.content.folderView</element>

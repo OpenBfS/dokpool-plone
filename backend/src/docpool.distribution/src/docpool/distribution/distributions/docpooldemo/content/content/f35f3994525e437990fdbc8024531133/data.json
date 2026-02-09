@@ -4,7 +4,7 @@
   "UID": "f35f3994525e437990fdbc8024531133",
   "allow_discussion": null,
   "allowedDocTypes": [
-    "situationreport"
+    "radiological_situation_report"
   ],
   "contributors": [],
   "created": "2025-09-23T12:17:44+00:00",

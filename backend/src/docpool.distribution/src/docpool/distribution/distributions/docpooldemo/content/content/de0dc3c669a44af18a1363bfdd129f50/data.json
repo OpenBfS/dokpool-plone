@@ -1,5 +1,5 @@
 {
-  "@id": "/berlin/config/dtypes/measurement_order",
+  "@id": "/berlin/config/dtypes/incident_management/measurement_recommendations/measurement_recommendation",
   "@type": "DocType",
   "UID": "de0dc3c669a44af18a1363bfdd129f50",
   "allowTransfer": true,
@@ -12,11 +12,12 @@
     "admin"
   ],
   "customViewTemplate": null,
-  "description": "",
+  "description": "Messempfehlung an Einsatzkr\u00e4fte des Bundes und der L\u00e4nder, sowie KHG",
   "exportimport.constrains": {},
   "exportimport.conversation": [],
   "globalAllow": true,
-  "id": "measurement_order",
+  "icon_name": "radioactive",
+  "id": "measurement_recommendation",
   "imgPattern": null,
   "is_folderish": true,
   "language": "##DEFAULT##",
@@ -25,12 +26,12 @@
     "elan"
   ],
   "lock": {},
-  "modified": "2025-09-10T13:22:24+00:00",
+  "modified": "2026-02-07T12:24:15+00:00",
   "partsPattern": null,
   "pdfPattern": null,
   "publishImmediately": false,
   "review_state": "published",
-  "title": "Messauftrag",
+  "title": "Messempfehlung",
   "type_title": "Document Type",
   "version": "current",
   "workflow_history": {

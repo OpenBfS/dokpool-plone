@@ -1,5 +1,5 @@
 {
-  "@id": "/bund/config/dtypes/mediareport",
+  "@id": "/bund/config/dtypes/incident/media_reports/media_report",
   "@type": "DocType",
   "UID": "43fc8e7126c042c8a3aeb635662229d2",
   "allowTransfer": true,
@@ -12,11 +12,12 @@
     "admin"
   ],
   "customViewTemplate": null,
-  "description": "",
+  "description": "Mediale Berichterstattung zum Ereignis",
   "exportimport.constrains": {},
   "exportimport.conversation": [],
   "globalAllow": true,
-  "id": "mediareport",
+  "icon_name": "radioactive",
+  "id": "media_report",
   "imgPattern": null,
   "is_folderish": true,
   "language": "##DEFAULT##",
@@ -25,7 +26,7 @@
     "elan"
   ],
   "lock": {},
-  "modified": "2025-09-10T12:30:28+00:00",
+  "modified": "2026-02-07T12:24:20+00:00",
   "partsPattern": null,
   "pdfPattern": null,
   "publishImmediately": false,

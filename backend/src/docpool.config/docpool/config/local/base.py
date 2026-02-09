@@ -132,7 +132,6 @@ def copyDocTypes(self):
 def dpRemoved(self):
     deleteGroups(self)
     deleteUsers(self)
-    # documentpool.esdRemoved = esdRemoved
 
 
 def deleteGroups(self):

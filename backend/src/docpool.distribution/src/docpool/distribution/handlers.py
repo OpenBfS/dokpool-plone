@@ -35,6 +35,7 @@ def post_handler(distribution: Distribution, site: PloneSite, answers: dict) -> 
             "changed",
             "scenarios",
             "category",
+            "subcategory",
         ],
         REQUEST=None,
         pghandler=pghandler,

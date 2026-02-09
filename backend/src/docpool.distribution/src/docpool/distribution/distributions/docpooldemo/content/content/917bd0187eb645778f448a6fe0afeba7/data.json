@@ -1,0 +1,63 @@
+{
+  "@id": "/mecklenburg-vorpommern/contentconfig/scen/routinemode",
+  "@type": "DPEvent",
+  "AlertingNote": null,
+  "AlertingStatus": "none",
+  "AreaOfInterest": null,
+  "EventCoordinates": null,
+  "EventPhase": null,
+  "EventType": "Emergency",
+  "Journals": [
+    "Einsatztagebuch BfS",
+    "Einsatztagebuch RLZ",
+    "Einsatztagebuch SSK",
+    "Einsatztagebuch Messdienste"
+  ],
+  "OperationMode": "routine",
+  "SectorizingSampleTypes": null,
+  "Status": "active",
+  "TimeOfEvent": "2026-02-07T11:14:03",
+  "UID": "917bd0187eb645778f448a6fe0afeba7",
+  "allow_discussion": null,
+  "changelog": "[{\"Date\": \"07.02.2026 13:24\", \"User\": \"admin\", \"Status\": \"active\", \"EventType\": null, \"Operation mode\": null, \"Alerting status\": null, \"Alerting note\": null, \"Phase\": null, \"Sectorizing sample types\": \" \", \"Sectorizing networks\": \" \"}, {\"Date\": \"07.02.2026 13:24\", \"User\": \"admin\", \"Status\": \"active\", \"EventType\": \"Emergency\", \"Operation mode\": \"Routine mode\", \"Alerting status\": \"keine\", \"Alerting note\": null, \"Phase\": null, \"Sectorizing sample types\": \" \", \"Sectorizing networks\": \" \"}]",
+  "contributors": [],
+  "created": "2026-02-07T12:24:13+00:00",
+  "created_by": "admin",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "routinemode",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "lock": {},
+  "mdate": "2026-02-07T13:24:13",
+  "modified": "2026-02-07T12:24:13+00:00",
+  "modified_by": null,
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Normalfall",
+  "type_title": "DP Event",
+  "version": "current",
+  "wdate": "2026-02-07T13:24:13",
+  "workflow_history": {
+    "dp_event_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2026-02-07T12:24:13+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

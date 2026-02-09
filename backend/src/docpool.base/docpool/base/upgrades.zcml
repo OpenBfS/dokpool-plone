@@ -64,7 +64,7 @@ genericsetup
       destination="3000"
       >
     <genericsetup:upgradeStep
-        title="Upgrade existing databse to use the new GUI"
+        title="Upgrade existing database to use the new GUI"
         handler="docpool.base.upgrades.to_3000"
         />
   </genericsetup:upgradeSteps>

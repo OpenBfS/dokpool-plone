@@ -1,5 +1,5 @@
 {
-  "@id": "/brandenburg/config/dtypes/lasair_lasat_projection",
+  "@id": "/brandenburg/config/dtypes/incident_management/forecasts_spread_dose_contamination/forecast_spread_dose_contamination",
   "@type": "DocType",
   "UID": "c1fb8d1b505c48c1bca3381881d98da6",
   "allowTransfer": true,
@@ -12,11 +12,12 @@
     "admin"
   ],
   "customViewTemplate": null,
-  "description": "",
+  "description": "(RODOS-) Ausbreitungsrechnung \u00fcber die prognostizierte Ankunftszeit radioaktiver Luftmassen, die zu erwartende Kontamination der Umwelt oder die zu erwartende Dosis der Bev\u00f6lkerung unter Ber\u00fccksichtigung der aktuellen und prognostizierten Wetterbedingungen.",
   "exportimport.constrains": {},
   "exportimport.conversation": [],
   "globalAllow": true,
-  "id": "lasair_lasat_projection",
+  "icon_name": "radioactive",
+  "id": "forecast_spread_dose_contamination",
   "imgPattern": null,
   "is_folderish": true,
   "language": "##DEFAULT##",
@@ -25,12 +26,12 @@
     "elan"
   ],
   "lock": {},
-  "modified": "2025-09-10T13:24:46+00:00",
+  "modified": "2026-02-07T12:24:17+00:00",
   "partsPattern": null,
   "pdfPattern": null,
   "publishImmediately": false,
   "review_state": "published",
-  "title": "Prognose_LASAIR_LASAT",
+  "title": "Prognose \u00fcber Ausbreitung, Dosis und Kontamination",
   "type_title": "Document Type",
   "version": "current",
   "workflow_history": {

@@ -49,7 +49,7 @@ class TestListing:
             type="DPDocument",
             title="A Weatherinfo without images",
             description="foo",
-            docType="weatherinformation",
+            docType="weather_conditions_and_forecast",
             local_behaviors=["elan"],
             scenarios=getScenariosForCurrentUser(),
         )
@@ -59,9 +59,9 @@ class TestListing:
         self.entry = api.content.create(
             container=self.group_folder,
             type="DPDocument",
-            title="A Weatherinfo",
+            title="A Staff Note",
             description="foo",
-            docType="weatherinformation",
+            docType="staff_note",
             local_behaviors=["elan"],
             scenarios=getScenariosForCurrentUser(),
         )
@@ -149,19 +149,39 @@ class TestListing:
         page = self.page
         page.goto(f"{self.plone_url}/bund/setActiveApp?app=elan")
         page.goto(f"{self.plone_url}/bund/listing")
+        # Sort by a-z to prevent issues with same mdate
+        page.get_by_role("button", name="Sorting").click()
+        page.get_by_role("radio", name="A-Z").click()
         # Open item through pat-inject and the stretched link
-        first_list_item = page.locator("#listing .listing-item").first
-        first_list_item.click()
+        page.locator("#listing .listing-item").first.click()
         # Wait for item actions to get injected
         page.wait_for_selector(".actions .list-group")
         expect(page.locator(".actions .list-group")).to_have_count(1)
         metadata = page.locator(".doc_metadata div").last
-        expect(metadata).to_contain_text("Wetterinformation (WETTER UND TRAJEKTORIEN)")
+        expect(metadata).to_contain_text("Stabsmitteilung (Mitteilungen der Stäbe)")
         # Go back to listing
         page.get_by_role("link", name="Back").click()
         # Wait for items to get loaded
         items = page.locator("#listing .listing-item")
         expect(items).to_have_count(2)
+
+    def test_listing_filter_category(self):
+        page = self.page
+        page.goto(f"{self.plone_url}/bund/setActiveApp?app=elan")
+        page.goto(f"{self.plone_url}/bund/listing")
+        # Filter by catagory
+        expect(page.locator("#listing .listing-item")).to_have_count(2)
+        page.get_by_role("button", name="Eintragsart").click()
+        expect(
+            page.locator("label").filter(has_text="Wetterlage und -prognosen").locator("span")
+        ).to_contain_text("1")
+        expect(
+            page.locator("label").filter(has_text="Mitteilungen der Stäbe").locator("span")
+        ).to_contain_text("1")
+        page.get_by_role("checkbox", name="Wetterlage und -prognosen").click()
+        # page.pause()
+        page.get_by_role("button", name="Filter").click()
+        expect(page.locator(".listing-item")).to_have_count(1)
 
     def test_listing_next_item(self):
         page = self.page
@@ -194,7 +214,7 @@ class TestListing:
         page.goto(f"{self.plone_url}/bund/setActiveApp?app=elan")
         page.goto(f"{self.plone_url}/bund/@@dpdocument_wizard_1")
         expect(page.locator("#container_uid")).to_have_value(self.group_folder.UID())
-        page.locator("#form-widgets-docType").select_option("notification")
+        page.locator("#form-widgets-docType").select_option("official_notification")
         page.get_by_role("button", name="Next").click()
         assert "@@dpdocument_wizard_2" in page.url
         page.locator("#form-widgets-IDublinCore-title").fill("Example Entry")
@@ -212,7 +232,7 @@ class TestListing:
         page.get_by_role("button", name="Save").click()
 
         assert page.url.endswith("/bund")
-        expect(page.get_by_text("Created Meldung 'Example Entry'")).to_be_visible()
+        expect(page.get_by_text("Created Offizielle Meldung 'Example Entry'")).to_be_visible()
 
         page.goto(f"{self.plone_url}/bund/content/Groups/bund_group1/example-entry")
         expect(page.locator("#content div").filter(has_text="Normalfall").nth(3)).to_be_visible()

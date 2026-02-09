@@ -1,25 +1,6 @@
 {
   "@id": "/bund/content/Groups/bund_leitstelle/eine-trajektorie",
   "@type": "DPDocument",
-  "Area": null,
-  "DataType": [],
-  "Dom": null,
-  "Duration": null,
-  "InfoType": null,
-  "LegalBase": null,
-  "MeasurementCategory": null,
-  "MeasuringProgram": null,
-  "NetworkOperator": null,
-  "OperationMode": "Routine",
-  "Purpose": "Standard-Info DWD",
-  "SampleType": null,
-  "SamplingBegin": null,
-  "SamplingEnd": null,
-  "Status": null,
-  "TrajectoryEndLocation": null,
-  "TrajectoryEndTime": null,
-  "TrajectoryStartLocation": null,
-  "TrajectoryStartTime": null,
   "UID": "57df9b98ae7f4ca490c45372046ad57c",
   "allow_discussion": false,
   "contributors": [],
@@ -29,7 +10,7 @@
     "user-wetterdienst"
   ],
   "description": "",
-  "docType": "trajectory",
+  "docType": "weather_conditions_and_forecast",
   "effective": null,
   "expires": null,
   "exportimport.constrains": {},
@@ -39,7 +20,7 @@
   "language": "##DEFAULT##",
   "layout": "view",
   "local_behaviors": [
-    "doksys"
+    "elan"
   ],
   "lock": {},
   "mdate": "2025-11-19T13:28:55",
@@ -47,6 +28,8 @@
   "modified_by": "User Wetterdienst (Bund) <i>Leitstelle (Bund)</i>",
   "review_state": "published",
   "rights": null,
+  "scenarios": [],
+  "scenarios_to_keep": [],
   "subjects": [],
   "text": {
     "content-type": "text/html",

@@ -1,5 +1,5 @@
 {
-  "@id": "/bund/config/dtypes/reireport",
+  "@id": "/bund/config/dtypes/rei/rei/rei_report",
   "@type": "DocType",
   "UID": "fe494be27eae417aa7c0b18f620c5114",
   "allowTransfer": true,
@@ -12,11 +12,12 @@
     "admin"
   ],
   "customViewTemplate": null,
-  "description": "",
+  "description": "REI-Bericht",
   "exportimport.constrains": {},
   "exportimport.conversation": [],
   "globalAllow": true,
-  "id": "reireport",
+  "icon_name": "radioactive",
+  "id": "rei_report",
   "imgPattern": null,
   "is_folderish": true,
   "language": "##DEFAULT##",
@@ -25,12 +26,12 @@
     "rei"
   ],
   "lock": {},
-  "modified": "2025-09-10T12:30:28+00:00",
+  "modified": "2026-02-07T12:24:20+00:00",
   "partsPattern": null,
   "pdfPattern": null,
   "publishImmediately": false,
   "review_state": "published",
-  "title": "REI_Bericht",
+  "title": "REI-Bericht",
   "type_title": "Document Type",
   "version": "current",
   "workflow_history": {

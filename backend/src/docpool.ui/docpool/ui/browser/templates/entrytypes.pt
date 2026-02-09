@@ -1,0 +1,58 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      metal:use-macro="context/@@main_template/macros/master"
+      xml:lang="en"
+      i18n:domain="docpool.base"
+>
+  <metal:content fill-slot="content-core"
+                 tal:define="
+                   items python: view.items;
+                 "
+  >
+
+    <div class="entrytypes pat-masonry mx-3 my-5">
+
+      <tal:block tal:repeat="category python: items">
+        <div class="item me-3 mb-3 shadow-sm">
+
+          <div class="d-flex align-items-center p-3 border-bottom border-dark">
+            <div class="flex-grow-1">
+              <strong class="mb-0"
+                      tal:content="python: category"
+              >Category</strong>
+            </div>
+          </div>
+
+          <div class="entrytype position-relative d-flex align-items-center border-bottom gap-3 px-3 py-0 bg-white"
+               tal:repeat="data python:items[category]"
+          >
+            <div class="d-flex align-items-center px-1">
+              <img tal:attributes="
+                     src python:data['subcategory_icon_url'];
+                   " />
+            </div>
+            <div class="flex-grow-1">
+              <a class="mb-0 stretched-link"
+                 tal:content="python: data['title']"
+                 tal:attributes="
+                   href python:data['listing_url'];
+                 "
+              >
+                EntryType</a>
+            </div>
+            <div class="d-flex align-items-center ps-2">
+              <span class="badge rounded-pill text-bg-secondary"
+                    tal:condition="python:data['count']"
+                    tal:content="python:data['count']"
+              >
+              </span>
+            </div>
+          </div>
+        </div>
+      </tal:block>
+
+    </div>
+  </metal:content>
+</html>

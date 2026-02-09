@@ -9,16 +9,6 @@
       name="scenarios"
       />
 
-  <adapter
-      factory=".indexer.category_indexer"
-      name="category"
-      />
-
-  <adapter
-      factory=".indexer.cat_path_indexer"
-      name="cat_path"
-      />
-
   <subscriber handler=".dpevent.eventAdded" />
   <subscriber handler=".dpevent.eventChanged" />
   <subscriber handler=".dpevent.eventRemoved" />
@@ -30,12 +20,6 @@
     <implements interface="plone.app.content.interfaces.INameFromTitle" />
     <implements interface="zope.component.interfaces.IPossibleSite" />
   </class>
-  <class class=".elansection.ELANSection">
-    <implements interface="Products.CMFPlone.interfaces.breadcrumbs.IHideFromBreadcrumbs" />
-  </class>
-
-  <subscriber handler=".elandoccollection.update_docTypes" />
-  <subscriber handler=".elandoccollection.enableSyndication" />
 
   <adapter factory=".transfers.ELANSpecificTransfer" />
 

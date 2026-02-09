@@ -1,0 +1,37 @@
+{
+  "@id": "/config/dtypes/incident_management/situation_reports_and_overviews",
+  "@type": "DocTypeCategory",
+  "UID": "87cceb51073d447489c3d18fdd7b1d06",
+  "allow_discussion": null,
+  "created": "2026-02-07T12:23:06+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "icon_name": "bookmark",
+  "id": "situation_reports_and_overviews",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "tabular_view",
+  "lock": {},
+  "modified": "2026-02-07T12:23:07+00:00",
+  "review_state": "published",
+  "title": "Radiologische Lagebilder / Situationsdarstellungen",
+  "type_title": "Document Type Category",
+  "version": "current",
+  "workflow_history": {
+    "dp_admin_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2026-02-07T12:23:06+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

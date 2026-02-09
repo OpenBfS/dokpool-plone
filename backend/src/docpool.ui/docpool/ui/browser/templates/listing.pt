@@ -142,8 +142,8 @@
 
           <div class="m-1 dropdown"
                tal:define="
-                 selected_doctypes python: view.selected_doctypes;
-                 doctypes python: view.doctypes;
+                 selected_subcategories python: view.selected_subcategories;
+                 categories python: view.doctype_categories;
                "
           >
             <button class="btn btn-light dropdown-toggle"
@@ -156,36 +156,41 @@
             </button>
             <div class="dropdown-menu pt-2 pb-0 px-2 pat-checklist">
               <div class="form-check"
-                   tal:condition="python: len(doctypes) > 5"
+                   tal:condition="python: len(categories) > 1"
               ><label><input class="form-check-input toggle-all"
                          type="checkbox"
                   /><span i18n:translate="label_toggle">Toggle all</span></label></div>
-              <tal:doctypes tal:repeat="doctype python: doctypes">
-                <div class="form-check">
-                  <input class="form-check-input"
-                         id="${python: 'selected_doctypes-' + doctype}"
-                         name="selected_doctypes:list"
-                         type="checkbox"
-                         value="${python: doctype}"
-                         tal:attributes="
-                           checked python: doctype in selected_doctypes;
-                           disabled python: not doctypes[doctype]['count'] and 'disabled';
-                         "
-                  />
-                  <label class="form-check-label text-nowrap"
-                         for="${python: 'selected_doctypes-' + doctype}"
-                         i18n:translate=""
-                  >
-                    <span tal:replace="python: doctypes[doctype]['title']"
-                          i18n:translate=""
-                    ></span>
-                    <span class="badge rounded-pill text-bg-secondary"
-                          tal:condition="python:doctypes[doctype]['count']"
-                          tal:content="python:doctypes[doctype]['count']"
-                    ></span>
-                  </label>
-                </div>
-              </tal:doctypes>
+              <tal:category tal:repeat="category python: categories">
+                <!-- HEADING -->
+                <strong tal:content="python: category"></strong>
+
+                <tal:subcategory tal:repeat="subcategory python: categories[category]">
+                  <div class="form-check">
+                    <input class="form-check-input"
+                           id="${python: 'selected_subcategories-' + subcategory.replace(' ', '')}"
+                           name="selected_subcategories:list"
+                           type="checkbox"
+                           value="${python: subcategory}"
+                           tal:attributes="
+                             checked python: subcategory in selected_subcategories;
+                             disabled python: not categories[category][subcategory]['count'] and 'disabled';
+                           "
+                    />
+                    <label class="form-check-label text-nowrap"
+                           for="${python: 'selected_subcategories-' + subcategory.replace(' ', '')}"
+                           i18n:translate=""
+                    >
+                      <span tal:replace="python: subcategory"
+                            i18n:translate=""
+                      ></span>
+                      <span class="badge rounded-pill text-bg-secondary"
+                            tal:condition="python:categories[category][subcategory]['count']"
+                            tal:content="python:categories[category][subcategory]['count']"
+                      ></span>
+                    </label>
+                  </div>
+                </tal:subcategory>
+              </tal:category>
               <div class="sticky-bottom bg-white py-2">
                 <button class="btn btn-primary"
                         type="submit"

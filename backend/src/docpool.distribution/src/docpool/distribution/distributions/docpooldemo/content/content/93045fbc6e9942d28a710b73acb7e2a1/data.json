@@ -1,5 +1,5 @@
 {
-  "@id": "/brandenburg/config/dtypes/mresult_water",
+  "@id": "/brandenburg/config/dtypes/measurement_results/mresults_water_bodies_and_fish/mresult_other_surface_waters",
   "@type": "DocType",
   "UID": "93045fbc6e9942d28a710b73acb7e2a1",
   "allowTransfer": true,
@@ -12,26 +12,26 @@
     "admin"
   ],
   "customViewTemplate": null,
-  "description": "",
+  "description": "Messergebnis Sonstige Oberfl\u00e4chengew\u00e4sser",
   "exportimport.constrains": {},
   "exportimport.conversation": [],
   "globalAllow": true,
-  "id": "mresult_water",
+  "icon_name": "radioactive",
+  "id": "mresult_other_surface_waters",
   "imgPattern": ".+\\.(png|jpg)$",
   "is_folderish": true,
   "language": "##DEFAULT##",
   "layout": "view",
   "local_behaviors": [
-    "doksys",
     "elan"
   ],
   "lock": {},
-  "modified": "2025-09-10T13:24:46+00:00",
+  "modified": "2026-02-07T12:24:18+00:00",
   "partsPattern": null,
   "pdfPattern": ".+\\.pdf$",
   "publishImmediately": false,
   "review_state": "published",
-  "title": "Messergebnis_Gew\u00e4sser",
+  "title": "Messergebnis Sonstige Oberfl\u00e4chengew\u00e4sser",
   "type_title": "Document Type",
   "version": "current",
   "workflow_history": {

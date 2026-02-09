@@ -66,7 +66,7 @@ class TestUIFeatures(unittest.TestCase):
             type="DPDocument",
             title="A Weatherinfo",
             description="foo",
-            docType="weatherinformation",
+            docType="weather_conditions_and_forecast",
             local_behaviors=["elan"],
             scenarios=getScenariosForCurrentUser(),
         )
@@ -164,7 +164,7 @@ class TestUIFeatures(unittest.TestCase):
             type="DPDocument",
             title="A Weatherinfo",
             description="foo",
-            docType="weatherinformation",
+            docType="weather_conditions_and_forecast",
             local_behaviors=["elan"],
             scenarios=getScenariosForCurrentUser(),
         )

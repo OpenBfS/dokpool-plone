@@ -7,8 +7,6 @@ class NavigationHelper(BrowserView):
     def number_of_children(self, item):
         """Preview the number of results for each item in the navigation-portlet."""
         collection_types = [
-            "ELANDocCollection",
-            "DashboardCollection",
             "Collection",
         ]
         folder_types = [

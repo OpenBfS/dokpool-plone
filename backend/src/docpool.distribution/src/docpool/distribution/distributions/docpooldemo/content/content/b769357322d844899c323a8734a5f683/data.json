@@ -1,0 +1,42 @@
+{
+  "@id": "/mecklenburg-vorpommern/contentconfig/scen/routinemode/journal1",
+  "@type": "Journal",
+  "UID": "b769357322d844899c323a8734a5f683",
+  "allow_discussion": null,
+  "contributors": [],
+  "created": "2026-02-07T12:24:13+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "journal1",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "lock": {},
+  "modified": "2026-02-07T12:24:13+00:00",
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Einsatztagebuch BfS",
+  "type_title": "Journal",
+  "version": "current",
+  "workflow_history": {
+    "dp_journal_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2026-02-07T12:24:13+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

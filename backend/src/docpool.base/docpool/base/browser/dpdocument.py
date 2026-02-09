@@ -73,13 +73,6 @@ class DPDocumentlistitemView(FlexibleView):
             return s[0]
 
 
-class DPDocumentdashboardView(FlexibleView):
-    """Additional View"""
-
-    __allow_access_to_unprotected_subobjects__ = 1
-    __call__ = ViewPageTemplateFile("templates/dpdocumentdashboard.pt")
-
-
 @implementer(IViewView)
 class DPDocumentinlineView(DPDocumentView):
     """Additional View"""

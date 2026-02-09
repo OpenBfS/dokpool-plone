@@ -8,12 +8,5 @@
   >
     <indexed_attr value="scenarios" />
   </index>
-  <index meta_type="KeywordIndex"
-         name="category"
-  >
-    <indexed_attr value="category" />
-  </index>
-  <column value="category" />
-  <column value="cat_path" />
 
 </object>

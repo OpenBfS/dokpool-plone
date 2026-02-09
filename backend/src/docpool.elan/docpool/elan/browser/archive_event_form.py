@@ -337,12 +337,10 @@ class ArchiveAndClose(BrowserView):
 
     def _createArchive(self):
         """
-        We create an archive object. Into it, we copy the complete ESD hierarchy.
-        We also create two folders "Members" and "Groups", which will hold all the
+        We create an archive object and two folders "Members" and "Groups", which will hold all the
         documents for the scenario.
         """
         archive = aq_get(self.context, "archive")  # Acquire root for archives
-        esd = self.context.esd  # Acquire esd root
         now = self.context.toLocalizedTime(datetime.now(), long_format=1)
         # create the archive root
         arc = api.content.create(
@@ -358,13 +356,6 @@ class ArchiveAndClose(BrowserView):
         createPloneObjects(arc.content, TRANSFER_AREA)
 
         navSettings(arc)
-
-        # copy the ESD folders
-        contentlisting = esd.restrictedTraverse("@@contentlisting")
-        for brain in contentlisting(portal_type=["ELANSection", "ELANDocCollection"]):
-            api.content.copy(brain.getObject(), arc.esd)
-        arc.esd.setDefaultPage("overview")
-
         return arc
 
 

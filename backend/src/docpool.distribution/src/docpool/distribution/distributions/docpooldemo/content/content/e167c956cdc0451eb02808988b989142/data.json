@@ -3,15 +3,12 @@
   "@type": "DocTypes",
   "UID": "e167c956cdc0451eb02808988b989142",
   "allow_discussion": null,
-  "contributors": [],
   "created": "2025-09-10T12:24:17+00:00",
   "creators": [
-    "rescue"
+    "admin"
   ],
   "description": "",
-  "effective": null,
   "exclude_from_nav": false,
-  "expires": null,
   "exportimport.constrains": {},
   "exportimport.conversation": [],
   "id": "dtypes",
@@ -19,10 +16,8 @@
   "language": "##DEFAULT##",
   "layout": "tabular_view",
   "lock": {},
-  "modified": "2025-09-17T13:54:11+00:00",
+  "modified": "2026-02-07T12:24:16+00:00",
   "review_state": "published",
-  "rights": "",
-  "subjects": [],
   "title": "Dokumenttypen",
   "type_title": "Folder for Document Types",
   "version": "current",

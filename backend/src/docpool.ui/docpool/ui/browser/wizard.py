@@ -303,8 +303,6 @@ class DPDocumentWizard(ContextlessWizard):
                 if obj.allowedDocTypes and doctype_brain.id not in obj.allowedDocTypes:
                     continue
                 doctype_obj = doctype_brain.getObject()
-                if not doctype_obj.globalAllow:
-                    continue
                 if self.app not in ILocalBehaviorSupport(doctype_obj).local_behaviors:
                     continue
                 can_add_entries = True
@@ -328,8 +326,6 @@ class DPDocumentWizard(ContextlessWizard):
             if obj.allowedDocTypes and brain.id not in obj.allowedDocTypes:
                 continue
             doctype_obj = brain.getObject()
-            if not doctype_obj.globalAllow:
-                continue
             if self.app not in ILocalBehaviorSupport(doctype_obj).local_behaviors:
                 continue
 

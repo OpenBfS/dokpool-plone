@@ -1,0 +1,51 @@
+{
+  "@id": "/config/dtypes/incident_management/forecasts_spread_dose_contamination/forecast_spread_dose_contamination",
+  "@type": "DocType",
+  "UID": "a3efa704f8c24f35b9b8f2d7e7ab3d7f",
+  "allowTransfer": true,
+  "allowUploads": true,
+  "allow_discussion": null,
+  "allow_discussion_on_dpdocument": false,
+  "automaticTransferTargets": [],
+  "created": "2026-02-07T12:23:06+00:00",
+  "creators": [
+    "admin"
+  ],
+  "customViewTemplate": null,
+  "description": "(RODOS-) Ausbreitungsrechnung \u00fcber die prognostizierte Ankunftszeit radioaktiver Luftmassen, die zu erwartende Kontamination der Umwelt oder die zu erwartende Dosis der Bev\u00f6lkerung unter Ber\u00fccksichtigung der aktuellen und prognostizierten Wetterbedingungen.",
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "globalAllow": true,
+  "icon_name": "radioactive",
+  "id": "forecast_spread_dose_contamination",
+  "imgPattern": null,
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "local_behaviors": [
+    "elan",
+    "rodos"
+  ],
+  "lock": {},
+  "modified": "2026-02-07T12:23:06+00:00",
+  "partsPattern": null,
+  "pdfPattern": null,
+  "publishImmediately": false,
+  "review_state": "published",
+  "title": "Prognose \u00fcber Ausbreitung, Dosis und Kontamination",
+  "type_title": "Document Type",
+  "version": "current",
+  "workflow_history": {
+    "dp_doctype_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2026-02-07T12:23:06+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

@@ -1,5 +1,5 @@
 {
-  "@id": "/bund/config/dtypes/mresult_feed",
+  "@id": "/bund/config/dtypes/measurement_results/mresults_representive_media_and_plant_animal_procucts/mresult_plant_and_animal_products",
   "@type": "DocType",
   "UID": "6101c8c73bd8426196647b4e48ee3d1a",
   "allowTransfer": true,
@@ -12,26 +12,26 @@
     "admin"
   ],
   "customViewTemplate": null,
-  "description": "",
+  "description": "Messergebnis Produktion pflanzlicher und tierischer Erzeugnisse",
   "exportimport.constrains": {},
   "exportimport.conversation": [],
   "globalAllow": true,
-  "id": "mresult_feed",
+  "icon_name": "radioactive",
+  "id": "mresult_plant_and_animal_products",
   "imgPattern": ".+\\.(png|jpg)$",
   "is_folderish": true,
   "language": "##DEFAULT##",
   "layout": "view",
   "local_behaviors": [
-    "doksys",
     "elan"
   ],
   "lock": {},
-  "modified": "2025-09-10T12:30:28+00:00",
+  "modified": "2026-02-07T12:24:20+00:00",
   "partsPattern": null,
   "pdfPattern": ".+\\.pdf$",
   "publishImmediately": false,
   "review_state": "published",
-  "title": "Messergebnis_Futtermittel",
+  "title": "Messergebnis Pflanzliche und tierische Erzeugnisse",
   "type_title": "Document Type",
   "version": "current",
   "workflow_history": {

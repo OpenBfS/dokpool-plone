@@ -23,10 +23,6 @@ def dpAdded(docpool):
         annotations[APPLICATIONS_KEY].append(REI_APP)
 
     if fresh:
-        # connectTypesAndCategories(docpool) # TOOD: only when REI doctypes need to be added to ELAN categories
-        # docpool.rei.correctAllDocTypes() # TODO: if the run display templates contains collections
-        # with references to global doctypes, which need to be adapted to local
-        # doctypes.
         copyberichte(docpool)
         createREIUsers(docpool)
         createREIGroups(docpool)

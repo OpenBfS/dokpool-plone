@@ -17,15 +17,10 @@
   <property name="global_allow">False</property>
   <property name="filter_content_types">True</property>
   <property name="allowed_content_types">
-
-
-    <element value="SRModuleType" />
-
-
+    <element value="DocTypeCategory" />
     <element value="DocType" />
-
-
   </property>
+
   <!-- schema interface -->
   <property name="schema">docpool.base.content.doctypes.IDocTypes</property>
 
@@ -37,9 +32,8 @@
 
   <!-- enabled behaviors -->
   <property name="behaviors">
-    <element value="plone.dublincore" />
+    <element value="plone.basic" />
     <element value="plone.namefromtitle" />
-    <element value="plone.textindexer" />
     <element value="plone.excludefromnavigation" />
   </property>
 

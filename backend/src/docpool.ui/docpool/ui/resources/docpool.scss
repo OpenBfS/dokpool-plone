@@ -239,7 +239,8 @@ div.pat-modal {
   display: none;
 }
 
-body.template-listing {
+body.template-listing,
+body.template-entrytypes {
   #portal-breadcrumbs,
   header h1,
   #content header {
@@ -261,5 +262,30 @@ body.portaltype-dpdocument.template-edit .autotoc-nav {
     color: gray;
     text-decoration: none;
     opacity: 0.5;
+  }
+}
+
+body.template-entrytypes {
+  .outer-wrapper {
+    background-color: #fafafa;
+  }
+
+  .entrytypes .item {
+    width: 25em;
+  }
+
+  .entrytypes img {
+    width: 32px;
+    height: 32px;
+    max-width: 32px;
+  }
+
+  .entrytypes .entrytype {
+    padding: 15px 10px;
+    min-width: 25em;
+
+    &:hover {
+      background-color: #e7f1f6;
+    }
   }
 }

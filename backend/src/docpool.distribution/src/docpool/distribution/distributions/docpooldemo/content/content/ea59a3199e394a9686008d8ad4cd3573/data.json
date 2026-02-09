@@ -1,0 +1,37 @@
+{
+  "@id": "/config/dtypes/incident/media_reports",
+  "@type": "DocTypeCategory",
+  "UID": "ea59a3199e394a9686008d8ad4cd3573",
+  "allow_discussion": null,
+  "created": "2026-02-07T12:23:06+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "icon_name": "bookmark",
+  "id": "media_reports",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "tabular_view",
+  "lock": {},
+  "modified": "2026-02-07T12:23:07+00:00",
+  "review_state": "published",
+  "title": "Medienberichte",
+  "type_title": "Document Type Category",
+  "version": "current",
+  "workflow_history": {
+    "dp_admin_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2026-02-07T12:23:06+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

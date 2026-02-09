@@ -266,21 +266,17 @@
     },
     {
       "allowedDocTypes": [
-        "protectiveactions",
-        "instructions",
-        "groundcontamination",
-        "mresult_feed",
-        "mresult_water",
-        "mresult_insitu",
-        "mresult_food",
-        "airactivity",
-        "gammadoserate",
-        "gammadoserate_mobile",
-        "gammadoserate_timeseries",
-        "mresult_other",
-        "note",
-        "situationreport",
-        "other_document"
+        "other_entry",
+        "mresult_other_surface_waters",
+        "mresult_soil",
+        "mresult_air_near_ground",
+        "mresult_plant_and_animal_products",
+        "radiological_situation_report",
+        "response_action_taken",
+        "mresult_air_external_radiation",
+        "mresult_soil_surface",
+        "staff_note",
+        "response_action"
       ],
       "description": "f\u00fcr Inhalte ELAN",
       "dp": "32fdd578bc7d446081ce5d64b7015724",
@@ -295,8 +291,8 @@
     },
     {
       "allowedDocTypes": [
-        "doksysdok",
-        "other_document"
+        "other_entry",
+        "doksys_entry"
       ],
       "description": "",
       "dp": "32fdd578bc7d446081ce5d64b7015724",
@@ -561,8 +557,8 @@
     },
     {
       "allowedDocTypes": [
-        "doksysdok",
-        "other_document"
+        "other_entry",
+        "doksys_entry"
       ],
       "description": "",
       "dp": "55028c031aa9493eb4b68eaf70d2e82a",
@@ -577,43 +573,26 @@
     },
     {
       "allowedDocTypes": [
-        "otherprojection",
-        "nppinformation",
-        "estimation",
-        "doksysdok",
-        "operation_map",
-        "eventinformation",
-        "information_expert_advisor",
-        "info_public",
-        "info_ecc",
-        "situationreport",
-        "protectiveactions",
-        "instructions",
-        "mediareport",
-        "mediarelease",
-        "notification",
-        "measurement_order",
-        "mresult_flight",
-        "groundcontamination",
-        "mresult_feed",
-        "mresult_water",
-        "mresult_insitu",
-        "mresult_food",
-        "airactivity",
-        "gammadoserate",
-        "gammadoserate_mobile",
-        "gammadoserate_timeseries",
-        "mresult_other",
-        "note",
-        "note_measurement_teams",
-        "lasair_lasat_projection",
-        "reireport",
-        "rodosprojection",
-        "inquiry_measurement_order",
-        "other_document",
-        "measurement_requirements",
-        "trajectory",
-        "weatherinformation"
+        "information_for_the_public",
+        "mresult_other_surface_waters",
+        "mresult_soil",
+        "response_action_taken",
+        "weather_conditions_and_forecast",
+        "additional_event_information",
+        "measurement_recommendation",
+        "response_action",
+        "mresult_air_near_ground",
+        "forecast_spread_dose_contamination",
+        "mresult_plant_and_animal_products",
+        "official_notification",
+        "other_entry",
+        "rei_report",
+        "mresult_air_external_radiation",
+        "doksys_entry",
+        "media_report",
+        "radiological_situation_report",
+        "mresult_soil_surface",
+        "staff_note"
       ],
       "description": "IIA Atomaufsicht, Strahlenschutz, Strahlenmessstelle",
       "dp": "55028c031aa9493eb4b68eaf70d2e82a",
@@ -628,7 +607,7 @@
     },
     {
       "allowedDocTypes": [
-        "rodosprojection"
+        "forecast_spread_dose_contamination"
       ],
       "description": "",
       "dp": "55028c031aa9493eb4b68eaf70d2e82a",
@@ -965,15 +944,13 @@
     },
     {
       "allowedDocTypes": [
-        "otherprojection",
-        "nppinformation",
-        "mediarelease",
-        "notification",
-        "note",
-        "situationreport",
-        "rodosprojection",
-        "trajectory",
-        "weatherinformation"
+        "official_notification",
+        "information_for_the_public",
+        "forecast_spread_dose_contamination",
+        "radiological_situation_report",
+        "weather_conditions_and_forecast",
+        "additional_event_information",
+        "staff_note"
       ],
       "description": "",
       "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
@@ -988,7 +965,7 @@
     },
     {
       "allowedDocTypes": [
-        "reireport"
+        "rei_report"
       ],
       "description": "",
       "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
@@ -1029,8 +1006,8 @@
     },
     {
       "allowedDocTypes": [
-        "doksysdok",
-        "trajectory"
+        "weather_conditions_and_forecast",
+        "doksys_entry"
       ],
       "description": "",
       "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
@@ -1045,15 +1022,13 @@
     },
     {
       "allowedDocTypes": [
-        "nppinformation",
-        "estimation",
-        "eventinformation",
-        "protectiveactions",
-        "instructions",
-        "mediarelease",
-        "notification",
-        "note",
-        "situationreport"
+        "official_notification",
+        "information_for_the_public",
+        "radiological_situation_report",
+        "response_action_taken",
+        "additional_event_information",
+        "staff_note",
+        "response_action"
       ],
       "description": "",
       "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
@@ -1068,7 +1043,7 @@
     },
     {
       "allowedDocTypes": [
-        "rodosprojection"
+        "forecast_spread_dose_contamination"
       ],
       "description": "",
       "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
@@ -1083,13 +1058,12 @@
     },
     {
       "allowedDocTypes": [
-        "estimation",
-        "doksysdok",
-        "airactivity",
+        "mresult_air_near_ground",
+        "weather_conditions_and_forecast",
         "mresult_precipitation",
-        "note",
-        "trajectory",
-        "weatherinformation"
+        "additional_event_information",
+        "doksys_entry",
+        "staff_note"
       ],
       "description": "",
       "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
@@ -1111,10 +1085,24 @@
       "groups": [],
       "principals": [
         "mv_doksysadmin",
-        "mv_dpadmin"
+        "mv_dpadmin",
+        "mv_elanadmin"
       ],
       "roles": [],
       "title": "Administrators (Mecklenburg-Vorpommern)"
+    },
+    {
+      "allowedDocTypes": [],
+      "description": "Responsible for the definition of scenarios, ticker texts and additional content.",
+      "dp": "d5aa26f2b11e4c049f1c94955c41e62a",
+      "email": "",
+      "groupid": "mv_ContentAdministrators",
+      "groups": [],
+      "principals": [
+        "mv_contentadmin"
+      ],
+      "roles": [],
+      "title": "Content Administrators (Mecklenburg-Vorpommern)"
     },
     {
       "allowedDocTypes": [],
@@ -1132,13 +1120,140 @@
     },
     {
       "allowedDocTypes": [],
+      "description": "Users with access to ELAN functions.",
+      "dp": "d5aa26f2b11e4c049f1c94955c41e62a",
+      "email": "",
+      "groupid": "mv_ELANUsers",
+      "groups": [],
+      "principals": [
+        "mv_contentadmin",
+        "mv_dpadmin",
+        "mv_elanadmin"
+      ],
+      "roles": [],
+      "title": "ELAN Users (Mecklenburg-Vorpommern)"
+    },
+    {
+      "allowedDocTypes": [],
+      "description": "Users who can edit journal1 in Mecklenburg-Vorpommern.",
+      "dp": "d5aa26f2b11e4c049f1c94955c41e62a",
+      "email": "",
+      "groupid": "mv_Journal1_Editors",
+      "groups": [],
+      "principals": [],
+      "roles": [],
+      "title": "Journal 1 Editors (Mecklenburg-Vorpommern)"
+    },
+    {
+      "allowedDocTypes": [],
+      "description": "Users who can view journal1 in Mecklenburg-Vorpommern.",
+      "dp": "d5aa26f2b11e4c049f1c94955c41e62a",
+      "email": "",
+      "groupid": "mv_Journal1_Readers",
+      "groups": [],
+      "principals": [],
+      "roles": [],
+      "title": "Journal 1 Reader (Mecklenburg-Vorpommern)"
+    },
+    {
+      "allowedDocTypes": [],
+      "description": "Users who can edit journal2 in Mecklenburg-Vorpommern.",
+      "dp": "d5aa26f2b11e4c049f1c94955c41e62a",
+      "email": "",
+      "groupid": "mv_Journal2_Editors",
+      "groups": [],
+      "principals": [],
+      "roles": [],
+      "title": "Journal 2 Editors (Mecklenburg-Vorpommern)"
+    },
+    {
+      "allowedDocTypes": [],
+      "description": "Users who can view journal2 in Mecklenburg-Vorpommern.",
+      "dp": "d5aa26f2b11e4c049f1c94955c41e62a",
+      "email": "",
+      "groupid": "mv_Journal2_Readers",
+      "groups": [],
+      "principals": [],
+      "roles": [],
+      "title": "Journal 2 Reader (Mecklenburg-Vorpommern)"
+    },
+    {
+      "allowedDocTypes": [],
+      "description": "Users who can edit journal3 in Mecklenburg-Vorpommern.",
+      "dp": "d5aa26f2b11e4c049f1c94955c41e62a",
+      "email": "",
+      "groupid": "mv_Journal3_Editors",
+      "groups": [],
+      "principals": [],
+      "roles": [],
+      "title": "Journal 3 Editors (Mecklenburg-Vorpommern)"
+    },
+    {
+      "allowedDocTypes": [],
+      "description": "Users who can view journal3 in Mecklenburg-Vorpommern.",
+      "dp": "d5aa26f2b11e4c049f1c94955c41e62a",
+      "email": "",
+      "groupid": "mv_Journal3_Readers",
+      "groups": [],
+      "principals": [],
+      "roles": [],
+      "title": "Journal 3 Reader (Mecklenburg-Vorpommern)"
+    },
+    {
+      "allowedDocTypes": [],
+      "description": "Users who can edit journal4 in Mecklenburg-Vorpommern.",
+      "dp": "d5aa26f2b11e4c049f1c94955c41e62a",
+      "email": "",
+      "groupid": "mv_Journal4_Editors",
+      "groups": [],
+      "principals": [],
+      "roles": [],
+      "title": "Journal 4 Editors (Mecklenburg-Vorpommern)"
+    },
+    {
+      "allowedDocTypes": [],
+      "description": "Users who can view journal4 in Mecklenburg-Vorpommern.",
+      "dp": "d5aa26f2b11e4c049f1c94955c41e62a",
+      "email": "",
+      "groupid": "mv_Journal4_Readers",
+      "groups": [],
+      "principals": [],
+      "roles": [],
+      "title": "Journal 4 Reader (Mecklenburg-Vorpommern)"
+    },
+    {
+      "allowedDocTypes": [],
+      "description": "Users who can edit journal5 in Mecklenburg-Vorpommern.",
+      "dp": "d5aa26f2b11e4c049f1c94955c41e62a",
+      "email": "",
+      "groupid": "mv_Journal5_Editors",
+      "groups": [],
+      "principals": [],
+      "roles": [],
+      "title": "Journal 5 Editors (Mecklenburg-Vorpommern)"
+    },
+    {
+      "allowedDocTypes": [],
+      "description": "Users who can view journal5 in Mecklenburg-Vorpommern.",
+      "dp": "d5aa26f2b11e4c049f1c94955c41e62a",
+      "email": "",
+      "groupid": "mv_Journal5_Readers",
+      "groups": [],
+      "principals": [],
+      "roles": [],
+      "title": "Journal 5 Reader (Mecklenburg-Vorpommern)"
+    },
+    {
+      "allowedDocTypes": [],
       "description": "Users of the DocPool.",
       "dp": "d5aa26f2b11e4c049f1c94955c41e62a",
       "email": "",
       "groupid": "mv_Members",
       "groups": [],
       "principals": [
+        "mv_contentadmin",
         "mv_dpadmin",
+        "mv_elanadmin",
         "user-mv"
       ],
       "roles": [],
@@ -1167,9 +1282,24 @@
       "title": "Content Senders (Mecklenburg-Vorpommern)"
     },
     {
+      "allowedDocTypes": [],
+      "description": "Users who can manage situation reports.",
+      "dp": "d5aa26f2b11e4c049f1c94955c41e62a",
+      "email": "",
+      "groupid": "mv_SituationReportAdmins",
+      "groups": [],
+      "principals": [
+        "mv_contentadmin",
+        "mv_dpadmin",
+        "mv_elanadmin"
+      ],
+      "roles": [],
+      "title": "Situation Report Admins/Lagebild (Mecklenburg-Vorpommern)"
+    },
+    {
       "allowedDocTypes": [
-        "doksysdok",
-        "other_document"
+        "other_entry",
+        "doksys_entry"
       ],
       "description": "",
       "dp": "d5aa26f2b11e4c049f1c94955c41e62a",
@@ -1436,7 +1566,7 @@
       "groups": [],
       "home_page": "",
       "location": "",
-      "password": "{SSHA}ds4ySG58C2GU9wlzrdcaTMzLXNcbaRgmvo41",
+      "password": "{SSHA}kqe01h/NZZ+MC/bIlkEZ5KpmhEToFjdGaSv0",
       "roles": [
         "ELANUser",
         "Member",
@@ -1453,7 +1583,7 @@
       "groups": [],
       "home_page": "",
       "location": "",
-      "password": "{SSHA}UAY4RAQghgegZbQ91hOtlxpvv4A3ACevRenH",
+      "password": "{SSHA}gJSkJyEgNY8ih3YjNsjIFEo/mirJ44My1DGm",
       "roles": [
         "ELANUser",
         "Manager",
@@ -1470,7 +1600,7 @@
       "groups": [],
       "home_page": "",
       "location": "",
-      "password": "{SSHA}e7fx2JedwZ9ikotRm0/1Qk7+QANdBXbVRBu3",
+      "password": "{SSHA}jKAqEzj/kuLKcL+6OEcGrrQt8+xOukiGbhu9",
       "roles": [
         "ELANUser",
         "Member",
@@ -1486,13 +1616,32 @@
       "groups": [],
       "home_page": "",
       "location": "",
-      "password": "{SSHA}rb3CjOkUH8HmPH4WW+oC5VQMViopvaohYJGI",
+      "password": "{SSHA}jdGipIMCrxOgwe70XYvRaA6TPGmXqhVK5QgB",
       "roles": [
         "ELANUser",
         "Manager",
         "Member"
       ],
       "username": "elanmanager"
+    },
+    {
+      "description": "",
+      "dp": "d5aa26f2b11e4c049f1c94955c41e62a",
+      "email": "",
+      "fullname": "Content Admin (Mecklenburg-Vorpommern)",
+      "groups": [
+        "mv_ContentAdministrators",
+        "mv_ELANUsers",
+        "mv_Members",
+        "mv_SituationReportAdmins"
+      ],
+      "home_page": "",
+      "location": "",
+      "password": "{SSHA}Xg2vIRzXP0Lk5dmLphZdhfaC/Jf0ep1CziDj",
+      "roles": [
+        "Member"
+      ],
+      "username": "mv_contentadmin"
     },
     {
       "description": "",
@@ -1518,7 +1667,9 @@
       "fullname": "DocPool Administrator (Mecklenburg-Vorpommern)",
       "groups": [
         "mv_Administrators",
-        "mv_Members"
+        "mv_ELANUsers",
+        "mv_Members",
+        "mv_SituationReportAdmins"
       ],
       "home_page": "",
       "location": "",
@@ -1530,13 +1681,32 @@
     },
     {
       "description": "",
+      "dp": "d5aa26f2b11e4c049f1c94955c41e62a",
+      "email": "",
+      "fullname": "ELAN Administrator (Mecklenburg-Vorpommern)",
+      "groups": [
+        "mv_Administrators",
+        "mv_ELANUsers",
+        "mv_Members",
+        "mv_SituationReportAdmins"
+      ],
+      "home_page": "",
+      "location": "",
+      "password": "{SSHA}5ZNaOvAQpXkduwWxs+mz4SMD91QRZEWSEzwB",
+      "roles": [
+        "Member"
+      ],
+      "username": "mv_elanadmin"
+    },
+    {
+      "description": "",
       "dp": "",
       "email": "",
       "fullname": "REI Administrator",
       "groups": [],
       "home_page": "",
       "location": "",
-      "password": "{SSHA}yyJ6/B5QuI0akq7P0gV52KQ02Dv/axHyVcFt",
+      "password": "{SSHA}SVQARs4I0pECkmgDnK4k6cnz4EFht60TVENW",
       "roles": [
         "Member",
         "REIUser",
@@ -1552,7 +1722,7 @@
       "groups": [],
       "home_page": "",
       "location": "",
-      "password": "{SSHA}d1OBSn31iI7fJjZ6ig/DjaJBnEkP+8ofYgyf",
+      "password": "{SSHA}sG3aZrEkjpHbSbdgP0Du0dzdcf0LF3v9tgEs",
       "roles": [
         "Manager",
         "Member",
