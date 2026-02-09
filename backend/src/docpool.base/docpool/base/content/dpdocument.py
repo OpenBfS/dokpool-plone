@@ -86,12 +86,12 @@ class IDPDocument(IContentBase):
 
 @implementer(IDPDocument)
 class DPDocument(Container, Extendable, ContentBase):
-    def isClean(self):
+    def is_doctype_public(self):
         """
         Is this document free for further action like publishing or transfer.
         @return:
         """
-        return self.unknownDocType() is None
+        return self.private_doctype() is None
 
     def createActions(self):
         """
@@ -201,7 +201,7 @@ class DPDocument(Container, Extendable, ContentBase):
                 })
         return results
 
-    def unknownDocType(self):
+    def private_doctype(self):
         """
         If my doc type is in state private, return it.
         """
