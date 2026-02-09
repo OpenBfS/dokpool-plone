@@ -149,15 +149,16 @@ class TestListing:
         page = self.page
         page.goto(f"{self.plone_url}/bund/setActiveApp?app=elan")
         page.goto(f"{self.plone_url}/bund/listing")
+        # Sort by a-z to prevent issues with same mdate
+        page.get_by_role("button", name="Sorting").click()
+        page.get_by_role("radio", name="A-Z").click()
         # Open item through pat-inject and the stretched link
-        first_list_item = page.locator("#listing .listing-item").first
-        first_list_item.click()
+        page.locator("#listing .listing-item").first.click()
         # Wait for item actions to get injected
         page.wait_for_selector(".actions .list-group")
         expect(page.locator(".actions .list-group")).to_have_count(1)
-        # TODO: Update test after new categories are setup in tests
         metadata = page.locator(".doc_metadata div").last
-        expect(metadata).to_contain_text("Wetterlage und -prognose (Wetterlage und -prognosen)")
+        expect(metadata).to_contain_text("Stabsmitteilung (Mitteilungen der Stäbe)")
         # Go back to listing
         page.get_by_role("link", name="Back").click()
         # Wait for items to get loaded
@@ -169,7 +170,7 @@ class TestListing:
         page.goto(f"{self.plone_url}/bund/setActiveApp?app=elan")
         page.goto(f"{self.plone_url}/bund/listing")
         # Filter by catagory
-        expect(page.locator(".listing-item")).to_have_count(2)
+        expect(page.locator("#listing .listing-item")).to_have_count(2)
         page.get_by_role("button", name="Eintragsart").click()
         expect(
             page.locator("label").filter(has_text="Wetterlage und -prognosen").locator("span")
