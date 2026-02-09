@@ -87,6 +87,11 @@ class TestListing:
         )
         transaction.commit()
 
+    def test_for_viewlet_errors(self):
+        page = self.page
+        page.goto(f"{self.plone_url}")
+        expect(page.locator("body")).not_to_contain_text("error while rendering")
+
     # Opens dropdown actions and clicks publish
     def test_dropdown_publish_dpdocument(self):
         page = self.page
@@ -237,8 +242,9 @@ class TestListing:
         page.goto(f"{self.plone_url}/bund/content/Groups/bund_group1/example-entry")
         expect(page.locator("#content div").filter(has_text="Normalfall").nth(3)).to_be_visible()
         expect(page.get_by_text("Test text")).to_be_visible()
-        page.goto(f"{self.plone_url}/bund/listing")
+        page.goto(f"{self.plone_url}/bund/@@listing")
         # Wait for items to get loaded
+        page.wait_for_selector("#listing .listing-item", state="visible")
         items = page.locator("#listing .listing-item")
         expect(items).to_have_count(3)
         expect(page.get_by_text("Example Entry")).to_be_visible()
