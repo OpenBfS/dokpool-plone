@@ -22,6 +22,9 @@ Fixed:
   modification (#6341)
   [tlotze]
 
+- Grant local permissions on journals on transferring an event (#6399)
+  [tlotze]
+
 
 Technical:
 
