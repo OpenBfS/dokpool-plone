@@ -77,17 +77,16 @@ class EntryTypes(BrowserView):
                     "sort_on": "getObjPositionInParent",
                     "apps_supported": self.active_apps,
                 }
-                doctype_ids = [i.getId for i in catalog(**doctypequery)]
-                if not doctype_ids:
+                if not catalog(**doctypequery):
                     # Do not show subcategories without DocTypes that fit the current app!
                     continue
-                doctype_ids_qs = "&".join([f"selected_doctypes:list={i}" for i in doctype_ids])
+                subcategory_qs = f"selected_subcategories:list={subcategory.title}"
                 entry = {
                     "title": subcategory.title,
                     "id": subcategory.id,
-                    "listing_url": f"{listing_url}?{doctype_ids_qs}",
+                    "listing_url": f"{listing_url}?{subcategory_qs}",
                     "subcategory_icon_url": iconresolver.url(subcategory.icon_name),
-                    "count": self.count_options(doctype_ids),
+                    "count": self.count_options(subcategory.title),
                 }
                 entries.append(entry)
             if entries:
@@ -122,6 +121,6 @@ class EntryTypes(BrowserView):
             query["path"] = "/".join(self.context.getPhysicalPath())
 
         # Filter by Doctype
-        query["dp_type"] = extra
+        query["subcategory"] = extra
 
         return len(api.content.find(**query))
