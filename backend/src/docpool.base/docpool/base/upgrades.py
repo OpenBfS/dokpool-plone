@@ -181,8 +181,6 @@ def create_doctype_structure(log_remains=False):
             )
             for obj in doctypes_container.contentValues({"portal_type": "DocType"}):
                 api.content.move(source=obj, target=old_subcategory)
-        else:
-            old = doctypes_container["old"]
 
         # Create categories
         for info in DOCTYPES:
@@ -233,6 +231,7 @@ def create_doctype_structure(log_remains=False):
                 continue
 
             # Move and update existing doctypes
+            old = doctypes_container["old"]["old"]
             for old_id in info["old_ids"]:
                 if old.get(old_id) and container.get(info["id"]):
                     # A different old item with the same new id was already updated.
