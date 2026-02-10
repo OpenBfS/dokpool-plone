@@ -50,4 +50,15 @@
         />
   </genericsetup:upgradeSteps>
 
+  <genericsetup:upgradeSteps
+      profile="docpool.base:default"
+      source="1012"
+      destination="1013"
+      >
+    <genericsetup:upgradeStep
+        title="Add intids to all comments"
+        handler="docpool.base.upgrades.to_1013_fix_comments"
+        />
+  </genericsetup:upgradeSteps>
+
 </configure>
