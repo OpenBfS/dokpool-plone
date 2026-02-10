@@ -8,7 +8,9 @@ from plone.app.upgrade.utils import loadMigrationProfile
 from plone.base.utils import get_installer
 from Products.CMFPlone.controlpanel.events import handleConfigurationChangedEvent
 from Products.ZCatalog.ProgressHandler import ZLogHandler
+from zc.relation.interfaces import ICatalog
 from zope.annotation.interfaces import IAnnotations
+from zope.component import getUtility
 
 import logging
 
@@ -151,6 +153,14 @@ def to_3000(context=None):
         REQUEST=None,
         pghandler=pghandler,
     )
+
+    log.info("Removing obsolete relations ...")
+    relation_catalog = getUtility(ICatalog)
+    for relationship in ["contentCategory", "dbCollections", "docTypes"]:
+        query = {"from_attribute": relationship}
+        for rel in [rel for rel in relation_catalog.findRelations(query)]:
+            relation_catalog.unindex(rel)
+
     log.info("Done")
 
 
@@ -295,6 +305,7 @@ def create_doctype_structure(log_remains=False):
     handleConfigurationChangedEvent(None)
 
     # Change all existing DPDocuments
+    log.info("Updating all DPDocuments ...")
     for brain in api.content.find(portal_type="DPDocument", sort_on="path"):
         obj = brain.getObject()
         if obj.docType in rename_mapping:
