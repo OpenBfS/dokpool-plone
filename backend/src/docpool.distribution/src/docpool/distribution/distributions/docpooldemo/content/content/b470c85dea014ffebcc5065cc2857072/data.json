@@ -1,6 +1,6 @@
 {
   "@id": "/mecklenburg-vorpommern/config/dtypes/measurement_results/mresults_transport_of_goods_and_crossborder_traffic",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "b470c85dea014ffebcc5065cc2857072",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:22+00:00",

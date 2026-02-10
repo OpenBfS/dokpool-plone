@@ -1,6 +1,6 @@
 {
   "@id": "/brandenburg/config/dtypes/incident/media_reports",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "d0950bdee0364608a99ee83b63f4ebeb",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:17+00:00",

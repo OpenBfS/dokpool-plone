@@ -1,6 +1,6 @@
 {
   "@id": "/berlin/config/dtypes/doksys/doksys",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "000386adbac040ec8a388778baf527fe",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:14+00:00",

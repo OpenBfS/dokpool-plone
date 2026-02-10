@@ -246,11 +246,7 @@ class TestDocTypeFormIntegration(unittest.TestCase, LocalBehaviorTestMixin):
         )
 
         # Navigate to DocType configuration area
-        if hasattr(self.bund_docpool, "config") and hasattr(self.bund_docpool.config, "dtypes"):
-            dtypes_folder = self.bund_docpool.config.dtypes
-        else:
-            # Skip if config structure is not available
-            return
+        dtypes_folder = self.bund_docpool.config.dtypes.incident.media_reports
 
         # Navigate to DocType add form
         add_url = f"{dtypes_folder.absolute_url()}/++add++DocType"

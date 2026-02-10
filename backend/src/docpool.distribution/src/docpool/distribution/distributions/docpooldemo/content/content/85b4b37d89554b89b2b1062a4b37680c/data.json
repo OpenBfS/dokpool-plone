@@ -1,6 +1,6 @@
 {
   "@id": "/bund/config/dtypes/incident/media_reports",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "85b4b37d89554b89b2b1062a4b37680c",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:19+00:00",

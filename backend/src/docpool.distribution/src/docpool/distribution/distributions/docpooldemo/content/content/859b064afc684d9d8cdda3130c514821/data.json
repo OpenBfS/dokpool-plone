@@ -1,6 +1,6 @@
 {
   "@id": "/berlin/config/dtypes/measurement_results/mresults_waste_and_wastewater",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "859b064afc684d9d8cdda3130c514821",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:15+00:00",

@@ -1,6 +1,6 @@
 {
   "@id": "/bund/config/dtypes/incident_management/response_actions_taken",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "30132cc5d79744bc89fbb4fc070d9c54",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:20+00:00",

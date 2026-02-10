@@ -1,6 +1,6 @@
 {
   "@id": "/brandenburg/config/dtypes/incident/weather_conditions_and_forecasts",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "d6993e217fbd49f68755f7e812fca2d0",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:17+00:00",

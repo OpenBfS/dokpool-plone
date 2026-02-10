@@ -167,18 +167,24 @@ def create_doctype_structure(log_remains=False):
 
         # Move old DocTypes out of the way before moving/updating them
         if "old" not in doctypes_container:
-            old = api.content.create(
+            old_category = api.content.create(
                 container=doctypes_container,
                 type="DocTypeCategory",
                 id="old",
                 title="Old DocTypes",
             )
+            old_subcategory = api.content.create(
+                container=old_category,
+                type="DocTypeSubCategory",
+                id="old",
+                title="Old DocTypes",
+            )
             for obj in doctypes_container.contentValues({"portal_type": "DocType"}):
-                api.content.move(source=obj, target=old)
+                api.content.move(source=obj, target=old_subcategory)
         else:
             old = doctypes_container["old"]
 
-        # Create main categories
+        # Create categories
         for info in DOCTYPES:
             if category_id := info.get("category_id"):
                 if category_id in doctypes_container:
@@ -197,7 +203,7 @@ def create_doctype_structure(log_remains=False):
                     continue
                 api.content.create(
                     container=category_container,
-                    type="DocTypeCategory",
+                    type="DocTypeSubCategory",
                     id=subcategory_id,
                     title=info["subcategory"],
                 )
@@ -249,7 +255,7 @@ def create_doctype_structure(log_remains=False):
                 )
 
         # Remove old doctypes that were not moved and updated, ignore links and relations
-        old = doctypes_container["old"]
+        old = doctypes_container["old"]["old"]
         for old_doctype in old.contentValues():
             if old_doctype.id in rename_mapping:
                 log.debug("Deleting old DokType %s from %s", old_doctype.id, old.absolute_url())
@@ -284,7 +290,7 @@ def create_doctype_structure(log_remains=False):
                     log.debug(f"{old_obj.id} ({old_obj.title})")
 
         # Delete all remaining old types after logging
-        api.content.delete(old, check_linkintegrity=False)
+        api.content.delete(doctypes_container["old"], check_linkintegrity=False)
 
     # Purge ram cache
     handleConfigurationChangedEvent(None)

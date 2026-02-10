@@ -1,5 +1,6 @@
 from docpool.base import DocpoolMessageFactory as _
 from docpool.base.content.doctypecategory import IDocTypeCategory
+from docpool.base.content.doctypesubcategory import IDocTypeSubCategory
 from docpool.base.content.extendable import Extendable
 from docpool.base.utils import queryForObjects
 from plone import api
@@ -9,6 +10,7 @@ from plone.base.utils import safe_hasattr
 from plone.dexterity.content import Container
 from plone.dexterity.interfaces import IEditFinishedEvent
 from plone.supermodel import model
+from Products.CMFPlone.controlpanel.events import handleConfigurationChangedEvent
 from Products.CMFPlone.utils import log
 from zope import schema
 from zope.component import adapter
@@ -99,13 +101,14 @@ class DocType(Container, Extendable):
 
     def subcategory(self):
         parent = self.__parent__
-        if IDocTypeCategory.providedBy(parent):
+        if IDocTypeSubCategory.providedBy(parent):
             return parent.title
 
 
 @adapter(IDocType, IEditFinishedEvent)
 def updated(obj, event=None):
     log("DocType updated: %s" % str(obj))
+    handleConfigurationChangedEvent(None)
     catalog = api.portal.get_tool("portal_catalog")
     mpath = "/"
     if safe_hasattr(obj, "dpSearchPath"):

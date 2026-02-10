@@ -1,6 +1,6 @@
 {
   "@id": "/config/dtypes/incident/official_notifications",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "869be6e94b0e4ad5bf2f7f7028e6942c",
   "allow_discussion": null,
   "created": "2026-02-07T12:23:06+00:00",

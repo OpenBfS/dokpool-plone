@@ -1,6 +1,6 @@
 {
   "@id": "/berlin/config/dtypes/incident_management/measurement_strategies",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "929dbeadf30944d29444c043db48666c",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:15+00:00",

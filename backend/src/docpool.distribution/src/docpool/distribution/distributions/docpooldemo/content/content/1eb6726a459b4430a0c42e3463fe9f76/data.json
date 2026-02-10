@@ -1,6 +1,6 @@
 {
   "@id": "/bund/config/dtypes/measurement_results/mresults_drinking_water_and_placing_on_market",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "1eb6726a459b4430a0c42e3463fe9f76",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:19+00:00",

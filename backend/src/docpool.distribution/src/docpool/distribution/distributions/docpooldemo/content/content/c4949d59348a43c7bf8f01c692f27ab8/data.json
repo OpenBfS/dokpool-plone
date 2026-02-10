@@ -1,6 +1,6 @@
 {
   "@id": "/config/dtypes/incident/weather_conditions_and_forecasts",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "c4949d59348a43c7bf8f01c692f27ab8",
   "allow_discussion": null,
   "created": "2026-02-07T12:23:06+00:00",

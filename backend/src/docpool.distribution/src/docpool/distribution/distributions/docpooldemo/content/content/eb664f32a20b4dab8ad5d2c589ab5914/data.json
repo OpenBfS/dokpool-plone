@@ -1,6 +1,6 @@
 {
   "@id": "/mecklenburg-vorpommern/config/dtypes/incident_management/situation_reports_and_overviews",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "eb664f32a20b4dab8ad5d2c589ab5914",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:23+00:00",

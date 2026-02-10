@@ -1,6 +1,6 @@
 {
   "@id": "/mecklenburg-vorpommern/config/dtypes/doksys/doksys",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "ba7dfd21701d4cf7933965e898e6b4ab",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:22+00:00",

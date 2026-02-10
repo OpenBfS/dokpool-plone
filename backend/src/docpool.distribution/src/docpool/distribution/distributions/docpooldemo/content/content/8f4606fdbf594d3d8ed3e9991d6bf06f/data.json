@@ -1,6 +1,6 @@
 {
   "@id": "/mecklenburg-vorpommern/config/dtypes/measurement_results/mresults_air",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "8f4606fdbf594d3d8ed3e9991d6bf06f",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:22+00:00",

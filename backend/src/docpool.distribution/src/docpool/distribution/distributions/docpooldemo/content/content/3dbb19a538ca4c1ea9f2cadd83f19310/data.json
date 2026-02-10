@@ -1,6 +1,6 @@
 {
   "@id": "/brandenburg/config/dtypes/incident_management/situation_reports_and_overviews",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "3dbb19a538ca4c1ea9f2cadd83f19310",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:17+00:00",

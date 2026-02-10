@@ -1,6 +1,6 @@
 {
   "@id": "/brandenburg/config/dtypes/incident_management/forecasts_spread_dose_contamination",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "b7a5fa4ff18b48e591c07cf17dccff09",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:17+00:00",

@@ -1,6 +1,6 @@
 {
   "@id": "/brandenburg/config/dtypes/measurement_results/mresults_water_bodies_and_fish",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "4972fdd159364e02b40e215743005fbf",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:17+00:00",

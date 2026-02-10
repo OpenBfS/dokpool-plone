@@ -1,6 +1,6 @@
 {
   "@id": "/brandenburg/config/dtypes/staff_work/staff_notes",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "fa7f842e358640a890a2debf9c6a1b65",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:17+00:00",

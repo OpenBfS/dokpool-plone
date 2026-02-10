@@ -1,6 +1,6 @@
 {
   "@id": "/config/dtypes/other_entries/other_entries",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "9be8b888c80a44e6a538c196778c01a7",
   "allow_discussion": null,
   "created": "2026-02-07T12:23:06+00:00",

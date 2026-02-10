@@ -1,6 +1,6 @@
 {
   "@id": "/bund/config/dtypes/incident_management/situation_reports_and_overviews",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "ddb89fc5be0c4585b71599f16c982efd",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:19+00:00",

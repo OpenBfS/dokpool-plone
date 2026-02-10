@@ -1,6 +1,6 @@
 {
   "@id": "/mecklenburg-vorpommern/config/dtypes/incident/additional_event_information",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "fef75f17020f4f6e8aff50900d5a920a",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:22+00:00",

@@ -1,6 +1,6 @@
 {
   "@id": "/berlin/config/dtypes/measurement_results/mresults_representive_media_and_plant_animal_procucts",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "6a617eda7b8c4d279a8990ab3647d68a",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:15+00:00",

@@ -1,6 +1,6 @@
 {
   "@id": "/config/dtypes/measurement_results/mresults_air",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "a26375b1bbf644ba947fcd2c5ab6f0e0",
   "allow_discussion": null,
   "created": "2026-02-07T12:23:06+00:00",

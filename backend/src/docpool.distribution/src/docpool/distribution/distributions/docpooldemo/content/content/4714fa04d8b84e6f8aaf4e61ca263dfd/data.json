@@ -1,6 +1,6 @@
 {
   "@id": "/mecklenburg-vorpommern/config/dtypes/incident/media_reports",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "4714fa04d8b84e6f8aaf4e61ca263dfd",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:22+00:00",

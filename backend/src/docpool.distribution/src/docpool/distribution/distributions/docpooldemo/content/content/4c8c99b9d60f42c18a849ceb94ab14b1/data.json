@@ -1,6 +1,6 @@
 {
   "@id": "/brandenburg/config/dtypes/measurement_results/mresults_soil_surface_and_precipitation",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "4c8c99b9d60f42c18a849ceb94ab14b1",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:17+00:00",

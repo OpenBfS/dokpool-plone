@@ -1,6 +1,6 @@
 {
   "@id": "/bund/config/dtypes/doksys/doksys",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "ee6e7abf65134b2ea2ac7f93a54dcb4b",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:19+00:00",

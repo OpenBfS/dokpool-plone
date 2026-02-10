@@ -1,6 +1,6 @@
 {
   "@id": "/bund/config/dtypes/measurement_results/mresults_representive_media_and_plant_animal_procucts",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "8c0b8af1ab8b4f6a91b510c5e9d7ded3",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:19+00:00",

@@ -1,6 +1,6 @@
 {
   "@id": "/berlin/config/dtypes/measurement_results/mresults_transport_of_goods_and_crossborder_traffic",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "1c230454deef40cebe9ce90d1c2badc4",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:15+00:00",

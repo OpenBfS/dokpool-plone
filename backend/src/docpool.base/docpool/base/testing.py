@@ -297,7 +297,7 @@ class LocalBehaviorTestMixin:
             # Find config/dtypes folder in bund docpool
             bund = getattr(self.portal, "bund", None)
             if bund and hasattr(bund, "config") and hasattr(bund.config, "dtypes"):
-                container = bund.config.dtypes
+                container = bund.config.dtypes.incident.media_reports
             else:
                 container = self.portal
 

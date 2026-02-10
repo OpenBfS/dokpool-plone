@@ -1,6 +1,6 @@
 {
   "@id": "/mecklenburg-vorpommern/config/dtypes/measurement_results/mresults_representive_media_and_plant_animal_procucts",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "c09b8fa8eeda4a60b23517f69ac7b13a",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:23+00:00",

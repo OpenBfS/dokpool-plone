@@ -72,7 +72,7 @@ def createDocTypes(plonesite, fresh):
                 continue
             api.content.create(
                 container=category_container,
-                type="DocTypeCategory",
+                type="DocTypeSubCategory",
                 id=subcategory_id,
                 title=info["subcategory"],
             )

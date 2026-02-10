@@ -1,6 +1,6 @@
 {
   "@id": "/bund/config/dtypes/measurement_results/mresults_transport_of_goods_and_crossborder_traffic",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "e39da8f2adf141cebb70e60ecab97c65",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:19+00:00",

@@ -1,6 +1,6 @@
 {
   "@id": "/bund/config/dtypes/measurement_results/mresults_waste_and_wastewater",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "20329afffe524972999d6c7d77cf7aa3",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:19+00:00",

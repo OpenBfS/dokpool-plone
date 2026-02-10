@@ -1,6 +1,6 @@
 {
   "@id": "/bund/config/dtypes/incident_management/measurement_recommendations",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "59bf08b6882b4a248494293fa2a08b5b",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:19+00:00",

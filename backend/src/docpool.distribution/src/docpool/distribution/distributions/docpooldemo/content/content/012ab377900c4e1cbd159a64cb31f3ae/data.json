@@ -1,6 +1,6 @@
 {
   "@id": "/config/dtypes/measurement_results/mresults_water_bodies_and_fish",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "012ab377900c4e1cbd159a64cb31f3ae",
   "allow_discussion": null,
   "created": "2026-02-07T12:23:06+00:00",

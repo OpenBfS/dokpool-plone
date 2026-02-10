@@ -2,134 +2,82 @@
 <object meta_type="Plone Types Tool"
         name="portal_types"
 >
-
-  <!-- This file registers new types with portal_types. The types are
-      then configured with the corresponding files in types/*.xml. Note
-      that spaces are allowed in type names, but the corresponding XML file
-      uses an underscore instead. The "Factory-based Type Information with
-      dynamic views" refers to an FTI from Products.CMFDynamicViewFTI,
-      which supports Plone's "display" menu.
-   -->
-
-
   <object meta_type="Dexterity FTI"
           name="InfoFolder"
   />
-
-
   <object meta_type="Dexterity FTI"
           name="InfoDocument"
   />
-
-
   <object meta_type="Dexterity FTI"
           name="InfoLink"
   />
-
-
   <object meta_type="Dexterity FTI"
           name="DPDocument"
   />
-
-
   <object meta_type="Dexterity FTI"
           name="DocType"
   />
-
-
   <object meta_type="Dexterity FTI"
           name="SimpleFolder"
   />
-
-
   <object meta_type="Dexterity FTI"
           name="DocTypes"
   />
-
   <object meta_type="Dexterity FTI"
           name="DocTypeCategory"
   />
-
+  <object meta_type="Dexterity FTI"
+          name="DocTypeSubCategory"
+  />
   <object meta_type="Dexterity FTI"
           name="Text"
   />
-
-
   <object meta_type="Dexterity FTI"
           name="GroupFolder"
   />
-
-
   <object meta_type="Dexterity FTI"
           name="UserFolder"
   />
-
-
   <object meta_type="Dexterity FTI"
           name="Groups"
   />
-
-
   <object meta_type="Dexterity FTI"
           name="Users"
   />
-
-
   <object meta_type="Dexterity FTI"
           name="ReviewFolder"
   />
-
-
   <object meta_type="Dexterity FTI"
           name="CollaborationFolder"
   />
-
-
   <object meta_type="Dexterity FTI"
           name="PrivateFolder"
   />
-
-
   <object meta_type="Dexterity FTI"
           name="DocumentPool"
   />
-
-
   <object meta_type="Dexterity FTI"
           name="ContentArea"
   />
-
-
   <object meta_type="Dexterity FTI"
           name="DPConfig"
   />
-
-
   <object meta_type="Dexterity FTI"
           name="Collection"
   />
-
-
   <object meta_type="Dexterity FTI"
           name="DashboardCollection"
   />
-
-
   <object meta_type="Dexterity FTI"
           name="DashboardsConfig"
   />
-
-
   <object meta_type="Dexterity FTI"
           name="Dashboard"
   />
-
   <object meta_type="Dexterity FTI"
           name="DPTransferFolder"
   />
-
   <object meta_type="Dexterity FTI"
           name="DPTransfersArea"
   />
-
 </object>

@@ -1,6 +1,6 @@
 {
   "@id": "/brandenburg/config/dtypes/incident/official_notifications",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "24903bef7bbc4bd299d7a8af105c4fe2",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:17+00:00",

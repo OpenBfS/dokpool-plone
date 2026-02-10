@@ -1,6 +1,6 @@
 {
   "@id": "/bund/config/dtypes/incident_management/measurement_strategies",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "a07b3ecd297e438ba0a05f4de4c64fee",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:19+00:00",

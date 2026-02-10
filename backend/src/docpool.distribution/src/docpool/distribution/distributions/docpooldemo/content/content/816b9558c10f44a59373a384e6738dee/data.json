@@ -1,6 +1,6 @@
 {
   "@id": "/bund/config/dtypes/incident/official_notifications",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "816b9558c10f44a59373a384e6738dee",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:19+00:00",

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <object xmlns:i18n="http://xml.zope.org/namespaces/i18n"
         meta_type="Dexterity FTI"
-        name="DocTypeCategory"
+        name="DocTypeSubCategory"
         i18n:domain="docpool.base"
 >
 
   <!-- Basic metadata -->
   <property name="title"
             i18n:translate=""
-  >Document Type Category</property>
+  >Document Type Subcategory</property>
   <property name="description"
             i18n:translate=""
   />
@@ -17,14 +17,14 @@
   <property name="global_allow">False</property>
   <property name="filter_content_types">True</property>
   <property name="allowed_content_types">
-    <element value="DocTypeSubCategory" />
+    <element value="DocType" />
   </property>
 
   <!-- schema interface -->
-  <property name="schema">docpool.base.content.doctypecategory.IDocTypeCategory</property>
+  <property name="schema">docpool.base.content.doctypesubcategory.IDocTypeSubCategory</property>
 
   <!-- class used for content items -->
-  <property name="klass">docpool.base.content.doctypecategory.DocTypeCategory</property>
+  <property name="klass">docpool.base.content.doctypesubcategory.DocTypeSubCategory</property>
 
   <!-- add permission -->
   <property name="add_permission">docpool.base.AddDocTypes</property>

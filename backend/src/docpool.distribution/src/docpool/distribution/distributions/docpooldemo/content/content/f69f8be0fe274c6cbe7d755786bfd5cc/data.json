@@ -1,6 +1,6 @@
 {
   "@id": "/bund/config/dtypes/measurement_results/mresults_pharmaceuticals",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "f69f8be0fe274c6cbe7d755786bfd5cc",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:19+00:00",

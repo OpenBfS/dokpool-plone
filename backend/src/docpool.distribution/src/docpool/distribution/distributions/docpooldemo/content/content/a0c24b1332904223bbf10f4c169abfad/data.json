@@ -1,6 +1,6 @@
 {
   "@id": "/bund/config/dtypes/other_entries/other_entries",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "a0c24b1332904223bbf10f4c169abfad",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:19+00:00",

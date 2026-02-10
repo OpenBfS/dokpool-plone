@@ -1,6 +1,6 @@
 {
   "@id": "/mecklenburg-vorpommern/config/dtypes/measurement_results/mresults_incorporation_and_biological_dosimetry",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "370057f300b245d9ab9db85b34c69802",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:22+00:00",

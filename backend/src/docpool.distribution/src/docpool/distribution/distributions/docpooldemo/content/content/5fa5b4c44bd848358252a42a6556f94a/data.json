@@ -1,6 +1,6 @@
 {
   "@id": "/config/dtypes/doksys/doksys",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "5fa5b4c44bd848358252a42a6556f94a",
   "allow_discussion": null,
   "created": "2026-02-07T12:23:06+00:00",

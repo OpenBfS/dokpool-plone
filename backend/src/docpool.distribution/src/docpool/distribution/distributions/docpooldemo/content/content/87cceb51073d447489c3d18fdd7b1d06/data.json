@@ -1,6 +1,6 @@
 {
   "@id": "/config/dtypes/incident_management/situation_reports_and_overviews",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "87cceb51073d447489c3d18fdd7b1d06",
   "allow_discussion": null,
   "created": "2026-02-07T12:23:06+00:00",

@@ -1,6 +1,6 @@
 {
   "@id": "/config/dtypes/measurement_results/mresults_drinking_water_and_placing_on_market",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "c9159cc4332c427ebcf59525db415632",
   "allow_discussion": null,
   "created": "2026-02-07T12:23:06+00:00",

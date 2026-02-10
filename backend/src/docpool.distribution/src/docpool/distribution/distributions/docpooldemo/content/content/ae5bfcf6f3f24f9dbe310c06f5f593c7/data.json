@@ -1,6 +1,6 @@
 {
   "@id": "/brandenburg/config/dtypes/incident_management/response_actions_taken",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "ae5bfcf6f3f24f9dbe310c06f5f593c7",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:17+00:00",

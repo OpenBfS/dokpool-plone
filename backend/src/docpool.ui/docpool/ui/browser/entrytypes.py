@@ -53,7 +53,7 @@ class EntryTypes(BrowserView):
         # Find categories
         query = {
             "path": {"query": "/".join(self.context.getPhysicalPath()), "depth": 1},
-            "portal_type": ["DocTypeCategory"],
+            "portal_type": "DocTypeCategory",
             "sort_on": "getObjPositionInParent",
             "apps_supported": self.active_apps,
         }
@@ -63,7 +63,7 @@ class EntryTypes(BrowserView):
             # Find all subcategories for this category
             subquery = {
                 "path": {"query": "/".join(category.getPhysicalPath()), "depth": 1},
-                "portal_type": ["DocTypeCategory"],
+                "portal_type": "DocTypeSubCategory",
                 "sort_on": "getObjPositionInParent",
                 "apps_supported": self.active_apps,
             }

@@ -1,6 +1,6 @@
 {
   "@id": "/brandenburg/config/dtypes/incident/additional_event_information",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "1dba9d9245ac49c4b04f6be9fd0b728d",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:17+00:00",

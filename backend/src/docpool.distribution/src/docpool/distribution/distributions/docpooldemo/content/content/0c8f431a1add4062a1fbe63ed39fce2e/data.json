@@ -1,6 +1,6 @@
 {
   "@id": "/brandenburg/config/dtypes/other_entries/other_entries",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "0c8f431a1add4062a1fbe63ed39fce2e",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:17+00:00",

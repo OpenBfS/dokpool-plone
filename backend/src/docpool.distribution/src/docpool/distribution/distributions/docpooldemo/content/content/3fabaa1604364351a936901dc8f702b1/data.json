@@ -1,6 +1,6 @@
 {
   "@id": "/config/dtypes/measurement_results/mresults_transport_of_goods_and_crossborder_traffic",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "3fabaa1604364351a936901dc8f702b1",
   "allow_discussion": null,
   "created": "2026-02-07T12:23:06+00:00",

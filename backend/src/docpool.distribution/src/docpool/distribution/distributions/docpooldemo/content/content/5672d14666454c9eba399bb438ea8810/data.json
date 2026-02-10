@@ -1,6 +1,6 @@
 {
   "@id": "/config/dtypes/measurement_results/mresults_soil_surface_and_precipitation",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "5672d14666454c9eba399bb438ea8810",
   "allow_discussion": null,
   "created": "2026-02-07T12:23:06+00:00",

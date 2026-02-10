@@ -1,6 +1,6 @@
 {
   "@id": "/berlin/config/dtypes/measurement_results/mresults_pharmaceuticals",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "b74a154a0a6a44eea9ce9aa19d504f7b",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:15+00:00",

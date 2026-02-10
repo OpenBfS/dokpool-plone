@@ -1,6 +1,6 @@
 {
   "@id": "/config/dtypes/staff_work/staff_notes",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "9450887b71a143f6912bddd356069ccd",
   "allow_discussion": null,
   "created": "2026-02-07T12:23:06+00:00",

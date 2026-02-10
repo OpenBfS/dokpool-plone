@@ -1,6 +1,6 @@
 {
   "@id": "/berlin/config/dtypes/incident/additional_event_information",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "d1da6ff19e0443c39235b84161dfb8ea",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:14+00:00",

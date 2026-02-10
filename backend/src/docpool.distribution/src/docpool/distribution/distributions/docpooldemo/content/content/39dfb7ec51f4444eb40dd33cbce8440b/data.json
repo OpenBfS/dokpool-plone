@@ -1,6 +1,6 @@
 {
   "@id": "/mecklenburg-vorpommern/config/dtypes/incident/weather_conditions_and_forecasts",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "39dfb7ec51f4444eb40dd33cbce8440b",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:23+00:00",

@@ -1,6 +1,6 @@
 {
   "@id": "/mecklenburg-vorpommern/config/dtypes/measurement_results/mresults_water_bodies_and_fish",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "6550cc1688a24c02b75d650b504663c5",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:23+00:00",

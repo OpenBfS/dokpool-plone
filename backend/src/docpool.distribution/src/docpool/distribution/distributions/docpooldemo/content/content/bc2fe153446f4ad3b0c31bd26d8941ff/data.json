@@ -1,6 +1,6 @@
 {
   "@id": "/brandenburg/config/dtypes/measurement_results/mresults_air",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "bc2fe153446f4ad3b0c31bd26d8941ff",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:17+00:00",

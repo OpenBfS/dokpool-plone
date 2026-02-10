@@ -1,6 +1,6 @@
 {
   "@id": "/mecklenburg-vorpommern/config/dtypes/rei/rei",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "cbe2dbd42959404e8fa11ca6f8316bc4",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:23+00:00",

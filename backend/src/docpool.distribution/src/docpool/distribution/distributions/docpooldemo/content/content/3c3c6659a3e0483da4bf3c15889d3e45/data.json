@@ -1,6 +1,6 @@
 {
   "@id": "/berlin/config/dtypes/measurement_results/mresults_drinking_water_and_placing_on_market",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "3c3c6659a3e0483da4bf3c15889d3e45",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:15+00:00",

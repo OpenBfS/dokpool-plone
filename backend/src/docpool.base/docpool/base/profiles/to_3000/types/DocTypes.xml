@@ -6,7 +6,6 @@
 >
 
   <property name="allowed_content_types">
-    <element value="DocType" />
     <element value="DocTypeCategory" />
   </property>
 

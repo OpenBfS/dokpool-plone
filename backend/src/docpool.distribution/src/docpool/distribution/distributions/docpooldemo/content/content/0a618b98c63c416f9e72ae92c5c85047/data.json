@@ -1,6 +1,6 @@
 {
   "@id": "/bund/config/dtypes/incident_management/forecasts_spread_dose_contamination",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "0a618b98c63c416f9e72ae92c5c85047",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:19+00:00",

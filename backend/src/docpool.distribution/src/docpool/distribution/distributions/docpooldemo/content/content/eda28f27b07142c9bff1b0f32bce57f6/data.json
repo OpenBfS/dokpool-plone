@@ -1,6 +1,6 @@
 {
   "@id": "/bund/config/dtypes/incident/weather_conditions_and_forecasts",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "eda28f27b07142c9bff1b0f32bce57f6",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:20+00:00",

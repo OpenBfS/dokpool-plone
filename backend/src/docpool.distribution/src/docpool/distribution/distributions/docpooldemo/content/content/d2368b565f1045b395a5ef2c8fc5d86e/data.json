@@ -1,6 +1,6 @@
 {
   "@id": "/bund/config/dtypes/measurement_results/mresults_air",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "d2368b565f1045b395a5ef2c8fc5d86e",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:19+00:00",

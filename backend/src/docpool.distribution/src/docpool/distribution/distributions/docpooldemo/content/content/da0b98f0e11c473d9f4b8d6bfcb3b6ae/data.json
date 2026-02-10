@@ -1,6 +1,6 @@
 {
   "@id": "/berlin/config/dtypes/incident_management/situation_reports_and_overviews",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "da0b98f0e11c473d9f4b8d6bfcb3b6ae",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:15+00:00",

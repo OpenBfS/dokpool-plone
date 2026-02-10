@@ -1,6 +1,6 @@
 {
   "@id": "/mecklenburg-vorpommern/config/dtypes/incident_management/information_for_the_public",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "596aaa0375ac49f693b776d1a9613379",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:22+00:00",

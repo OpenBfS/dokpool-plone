@@ -1,6 +1,6 @@
 {
   "@id": "/berlin/config/dtypes/rei/rei",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "03403c0a8058497b9ed5ccd97996ea1d",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:15+00:00",

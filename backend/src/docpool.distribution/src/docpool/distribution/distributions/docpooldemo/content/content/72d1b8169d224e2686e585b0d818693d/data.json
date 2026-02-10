@@ -1,6 +1,6 @@
 {
   "@id": "/berlin/config/dtypes/other_entries/other_entries",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "72d1b8169d224e2686e585b0d818693d",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:15+00:00",

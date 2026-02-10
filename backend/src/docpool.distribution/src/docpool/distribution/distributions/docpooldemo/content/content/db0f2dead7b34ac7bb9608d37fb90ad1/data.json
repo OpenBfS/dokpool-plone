@@ -1,6 +1,6 @@
 {
   "@id": "/berlin/config/dtypes/incident_management/response_actions",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "db0f2dead7b34ac7bb9608d37fb90ad1",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:15+00:00",

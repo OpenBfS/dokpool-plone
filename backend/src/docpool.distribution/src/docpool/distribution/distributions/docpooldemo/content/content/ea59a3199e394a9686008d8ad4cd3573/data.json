@@ -1,6 +1,6 @@
 {
   "@id": "/config/dtypes/incident/media_reports",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "ea59a3199e394a9686008d8ad4cd3573",
   "allow_discussion": null,
   "created": "2026-02-07T12:23:06+00:00",

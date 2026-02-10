@@ -363,7 +363,7 @@ class TestDocTypes(unittest.TestCase):
         logout()
         login(self.portal, TEST_USER_NAME)
 
-        # Change the Category of this item by moving it to a different DocTypeCategory
+        # Change the Category of this item by moving it to a different DocTypeSubCategory
         weatherinfo_template = api.content.move(
             weatherinfo_template, docpool["config"]["dtypes"]["staff_work"]["staff_notes"]
         )

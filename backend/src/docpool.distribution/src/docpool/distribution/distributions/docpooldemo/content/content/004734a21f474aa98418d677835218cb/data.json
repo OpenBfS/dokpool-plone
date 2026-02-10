@@ -1,6 +1,6 @@
 {
   "@id": "/config/dtypes/incident/additional_event_information",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "004734a21f474aa98418d677835218cb",
   "allow_discussion": null,
   "created": "2026-02-07T12:23:06+00:00",

@@ -1,6 +1,6 @@
 {
   "@id": "/bund/config/dtypes/incident_management/information_for_the_public",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "4035d6f5d0ae42488f756ca2090f271d",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:19+00:00",

@@ -1,6 +1,6 @@
 {
   "@id": "/mecklenburg-vorpommern/config/dtypes/incident_management/forecasts_spread_dose_contamination",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "193b2bcccced431cb81ca08b269c5722",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:22+00:00",

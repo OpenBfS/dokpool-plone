@@ -1,6 +1,6 @@
 {
   "@id": "/brandenburg/config/dtypes/incident_management/measurement_recommendations",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "38171cb1b3bf44d39e4ce7f6d26df1c4",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:17+00:00",

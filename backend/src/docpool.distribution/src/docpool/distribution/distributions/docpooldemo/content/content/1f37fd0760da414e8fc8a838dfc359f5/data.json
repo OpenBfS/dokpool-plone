@@ -1,6 +1,6 @@
 {
   "@id": "/bund/config/dtypes/incident/additional_event_information",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "1f37fd0760da414e8fc8a838dfc359f5",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:19+00:00",

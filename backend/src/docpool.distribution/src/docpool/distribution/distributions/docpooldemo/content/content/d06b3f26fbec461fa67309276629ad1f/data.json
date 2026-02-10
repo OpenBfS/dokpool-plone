@@ -1,6 +1,6 @@
 {
   "@id": "/config/dtypes/incident_management/information_for_the_public",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "d06b3f26fbec461fa67309276629ad1f",
   "allow_discussion": null,
   "created": "2026-02-07T12:23:06+00:00",

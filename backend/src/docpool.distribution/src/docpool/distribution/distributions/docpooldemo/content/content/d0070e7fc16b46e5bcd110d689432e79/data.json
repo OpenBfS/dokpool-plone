@@ -1,6 +1,6 @@
 {
   "@id": "/brandenburg/config/dtypes/incident_management/information_for_the_public",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "d0070e7fc16b46e5bcd110d689432e79",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:17+00:00",

@@ -1,6 +1,6 @@
 {
   "@id": "/mecklenburg-vorpommern/config/dtypes/other_entries/other_entries",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "81869cf70cfb491aa002cd9fd7173eeb",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:23+00:00",

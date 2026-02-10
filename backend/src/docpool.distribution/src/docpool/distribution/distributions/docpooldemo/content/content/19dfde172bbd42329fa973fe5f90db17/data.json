@@ -1,6 +1,6 @@
 {
   "@id": "/brandenburg/config/dtypes/measurement_results/mresults_waste_and_wastewater",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "19dfde172bbd42329fa973fe5f90db17",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:17+00:00",

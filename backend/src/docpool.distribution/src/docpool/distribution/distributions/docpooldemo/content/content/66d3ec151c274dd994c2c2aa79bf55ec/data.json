@@ -1,6 +1,6 @@
 {
   "@id": "/bund/config/dtypes/staff_work/staff_notes",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "66d3ec151c274dd994c2c2aa79bf55ec",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:20+00:00",

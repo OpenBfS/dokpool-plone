@@ -1,6 +1,6 @@
 {
   "@id": "/bund/config/dtypes/measurement_results/mresults_incorporation_and_biological_dosimetry",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "221ecf5b91a549b39481d6278b9e1a74",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:19+00:00",

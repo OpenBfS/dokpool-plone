@@ -1,6 +1,6 @@
 {
   "@id": "/config/dtypes/rei/rei",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "b016f10d8f3146d2afba4c6e14adad47",
   "allow_discussion": null,
   "created": "2026-02-07T12:23:06+00:00",

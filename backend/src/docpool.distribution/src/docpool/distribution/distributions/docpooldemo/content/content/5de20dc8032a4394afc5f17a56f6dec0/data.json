@@ -1,6 +1,6 @@
 {
   "@id": "/config/dtypes/incident_management/measurement_strategies",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "5de20dc8032a4394afc5f17a56f6dec0",
   "allow_discussion": null,
   "created": "2026-02-07T12:23:06+00:00",

@@ -1,6 +1,6 @@
 {
   "@id": "/berlin/config/dtypes/measurement_results/mresults_incorporation_and_biological_dosimetry",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "b94efcc30cb448028b7ae545f2e5d39e",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:15+00:00",

@@ -1,6 +1,6 @@
 {
   "@id": "/berlin/config/dtypes/incident/official_notifications",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "90403fc34e5c402584d1cd13abd7771c",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:15+00:00",

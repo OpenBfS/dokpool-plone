@@ -1,6 +1,6 @@
 {
   "@id": "/mecklenburg-vorpommern/config/dtypes/incident_management/measurement_strategies",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "9801d0d877034da8981340b5eed87f76",
   "allow_discussion": null,
   "created": "2026-02-07T12:24:22+00:00",

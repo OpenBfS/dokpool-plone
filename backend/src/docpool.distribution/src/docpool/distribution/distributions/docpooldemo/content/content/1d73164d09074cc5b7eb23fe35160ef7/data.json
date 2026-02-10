@@ -1,6 +1,6 @@
 {
   "@id": "/config/dtypes/incident_management/response_actions_taken",
-  "@type": "DocTypeCategory",
+  "@type": "DocTypeSubCategory",
   "UID": "1d73164d09074cc5b7eb23fe35160ef7",
   "allow_discussion": null,
   "created": "2026-02-07T12:23:06+00:00",
