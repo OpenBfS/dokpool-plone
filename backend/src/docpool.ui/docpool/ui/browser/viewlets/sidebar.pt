@@ -2,6 +2,7 @@
      tal:define="
        icons python:context.restrictedTraverse('@@iconresolver');
      "
+     tal:condition="python:not context.restrictedTraverse('@@plone_portal_state').anonymous()"
 >
   <tal:appspecific replace="structure provider:docpool.sidebar.appspecific.manager" />
 
