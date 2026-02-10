@@ -28,11 +28,6 @@
     <viewlet name="plone.colophon" />
     <viewlet name="plone.analytics" />
   </hidden>
-  <hidden manager="plone.portalheader"
-          skinname="*"
-  >
-    <viewlet name="plone.logo" />
-  </hidden>
   <hidden manager="plone.belowcontenttitle"
           skinname="*"
   >
