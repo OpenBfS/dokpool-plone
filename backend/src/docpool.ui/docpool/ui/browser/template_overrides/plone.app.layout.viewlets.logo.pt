@@ -1,4 +1,5 @@
 <a id="portal-logo"
+   tal:condition="python:context.restrictedTraverse('@@plone_portal_state').anonymous()"
    title="Home"
    tal:attributes="
      href view/navigation_root_url;
