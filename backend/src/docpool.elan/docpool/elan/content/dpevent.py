@@ -252,15 +252,14 @@ class DPEvent(Container, ContentBase):
                 continue
             journal_id = f"journal{index!s}"
             # Skip if it already exists
-            if self.get(journal_id):
-                continue
-            journal = api.content.create(
-                container=self,
-                type="Journal",
-                title=title,
-                id=journal_id,
-                exclude_from_nav=False,
-            )
+            if not (journal := self.get(journal_id)):
+                journal = api.content.create(
+                    container=self,
+                    type="Journal",
+                    title=title,
+                    id=journal_id,
+                    exclude_from_nav=False,
+                )
             # Grant local role to Journal Editor Groups
             api.group.grant_roles(
                 groupname=f"{prefix}_Journal{index}_Editors",
