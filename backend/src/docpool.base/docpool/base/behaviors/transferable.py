@@ -334,6 +334,9 @@ class Transferable(FlexibleView):
                 log_entry.update(app_transfer.receiver_log_entry())
             transfer_copy.receiver_log += (log_entry,)
 
+            # 9) Clear sender log, which is just a random snapshot of the original's sender log.
+            transfer_copy.sender_log = ()
+
             if apps_to_remove:
                 msg = _(
                     "Transferred to ${target_title}, apps removed: ${apps}",
