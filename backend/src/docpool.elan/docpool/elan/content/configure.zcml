@@ -22,7 +22,6 @@
   <subscriber handler=".dpevent.eventAdded" />
   <subscriber handler=".dpevent.eventChanged" />
   <subscriber handler=".dpevent.eventRemoved" />
-  <subscriber handler=".dpevent.eventPublished" />
 
   <subscriber handler=".elaninfos.infosAdded" />
   <class class=".elanarchive.ELANArchive">
