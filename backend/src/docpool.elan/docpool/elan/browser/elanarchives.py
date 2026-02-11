@@ -4,6 +4,8 @@ from plone import api
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
+import json
+
 
 class ELANArchivesView(BrowserView):
     """Default view"""
@@ -33,3 +35,12 @@ class ELANArchivesView(BrowserView):
         if primary_group:
             return fullname + f" <i>{primary_group}</i>"
         return fullname
+
+    def deleted_archives(self):
+        return json.loads(self.context.deleted_archives) if self.context.deleted_archives else None
+
+    def can_delete(self, archive):
+        event = archive.get_archived_event()
+        if event.EventType not in ["Exercise", "Test"]:
+            return False
+        return set(["Manager", "Site Administrator"]) & set(api.user.get_roles(obj=self.context))
