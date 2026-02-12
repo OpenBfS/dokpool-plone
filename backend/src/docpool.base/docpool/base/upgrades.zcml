@@ -13,6 +13,14 @@
       directory="profiles/to_1011"
       />
 
+  <genericsetup:registerProfile
+      name="to_1013"
+      title="Upgrade profile for docpool.base"
+      description=""
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      directory="profiles/to_1013"
+      />
+
   <genericsetup:upgradeSteps
       profile="docpool.base:default"
       source="1009"

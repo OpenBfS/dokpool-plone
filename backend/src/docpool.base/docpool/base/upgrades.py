@@ -68,3 +68,5 @@ def to_1013_fix_comments(context=None):
     for brain in api.content.find(portal_type="Discussion Item"):
         obj = brain.getObject()
         addIntIdSubscriber(obj, None)
+    portal_setup = api.portal.get_tool("portal_setup")
+    loadMigrationProfile(portal_setup, "profile-docpool.base:to_1013")
