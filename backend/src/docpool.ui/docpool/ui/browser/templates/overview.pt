@@ -7,7 +7,7 @@
       xml:lang="en"
    i18n:domain="docpool.base"
 >
-<metal:content fill-slot="content-core">
+<metal:content fill-slot="content">
 
   <main class="container-fluid py-2">
     <section class="row g-2 overview-layout">
