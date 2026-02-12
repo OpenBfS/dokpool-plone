@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object>
+  <hidden manager="plone.abovecontent"
+          skinname="*"
+  >
+    <viewlet name="plone.path_bar" />
+  </hidden>
+
+  <hidden manager="plone.belowcontent"
+          skinname="*"
+  >
+    <viewlet name="plone.documentactions" />
+  </hidden>
+</object>
