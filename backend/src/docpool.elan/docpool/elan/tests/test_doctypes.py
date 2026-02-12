@@ -8,6 +8,7 @@ from plone.app.testing import login
 from plone.app.testing import logout
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
+from plone.app.testing import TEST_USER_NAME
 from plone.app.textfield import RichTextValue
 from plone.dexterity.events import EditFinishedEvent
 from plone.dexterity.interfaces import IDexterityFTI
@@ -435,6 +436,12 @@ class TestDocTypes(unittest.TestCase):
         )
         event_uid = event.UID()
         folder = docpool["content"]["Groups"]["test_docpool_ELANUsers"]
+
+        # Allow docType for Group and User
+        api.group.add_user(groupname=folder.id, username=TEST_USER_NAME)
+        group = folder.getGroupOfFolder()
+        group.setGroupProperties({"allowedDocTypes": ["weatherinformation"]})
+
         new = api.content.create(
             container=folder,
             type="DPDocument",
@@ -478,6 +485,12 @@ class TestDocTypes(unittest.TestCase):
         docpool = self.portal["test_docpool"]
         groups = docpool["content"]["Groups"]
         folder = groups["test_docpool_ContentAdministrators"]
+
+        # Allow docType for Group and User
+        api.group.add_user(groupname="test_docpool_ContentAdministrators", username=TEST_USER_NAME)
+        group = folder.getGroupOfFolder()
+        group.setGroupProperties({"allowedDocTypes": ["weatherinformation"]})
+
         weatherinfo = api.content.create(
             container=folder,
             type="DPDocument",
