@@ -23,7 +23,7 @@
 
       <div id="content">
 
-        <div class="dp-document-header row mx-0 my-0 p-1 border-bottom">
+        <div class="dp-document-header row mx-3 my-3 p-1 border-bottom">
           <div class="col-sm-6">
             <h1 tal:content="python: context.title"></h1>
           </div>

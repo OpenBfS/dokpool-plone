@@ -12,7 +12,7 @@
 
     <metal:content-core fill-slot="main">
 
-      <form class="rowlike pat-formunloadalert pat-formautofocus pat-validation enableFormTabbing"
+      <form class="mx-3 my-3 rowlike pat-formunloadalert pat-formautofocus pat-validation enableFormTabbing"
             id="form"
             enctype="multipart/form-data"
             method="post"
