@@ -6,6 +6,7 @@ from plone.app.testing import setRoles
 from plone.app.testing import SITE_OWNER_NAME
 from plone.app.testing import SITE_OWNER_PASSWORD
 from plone.app.testing import TEST_USER_ID
+from plone.app.testing import TEST_USER_NAME
 from plone.app.textfield import RichTextValue
 from plone.testing.zope import Browser
 
@@ -70,6 +71,11 @@ class TestDPEventArchivingWithBrowser(unittest.TestCase):
                 title="Test Users for Archive",
             )
 
+        # Allow docType for Group and User
+        api.group.add_user(groupname=group_folder.id, username=TEST_USER_NAME)
+        group = group_folder.getGroupOfFolder()
+        group.setGroupProperties({"allowedDocTypes": ["weatherinformation"]})
+
         # Create documents with local behaviors and different workflow states
         # Note: DPDocuments have simple workflow with only private -> published transition
 
@@ -80,6 +86,7 @@ class TestDPEventArchivingWithBrowser(unittest.TestCase):
                 id=f"test_doc_for_event_{i}",
                 title=f"Test Document {i + 1} for Event",
                 text=RichTextValue(f"<p>Content for document {i + 1}</p>", "text/html", "text/x-html-safe"),
+                docType="weatherinformation",
             )
 
             # All documents need ELAN behavior to be found by archiving process
@@ -298,6 +305,11 @@ class TestDPEventArchivingWithBrowser(unittest.TestCase):
         groups_folder = self.test_docpool.content.Groups
         group_folder = list(groups_folder.objectValues())[0]
 
+        # Allow docType for Group and User
+        api.group.add_user(groupname=group_folder.id, username=TEST_USER_NAME)
+        group = group_folder.getGroupOfFolder()
+        group.setGroupProperties({"allowedDocTypes": ["weatherinformation"]})
+
         # Create 20 documents assigned to multiple events
         multi_event_documents = []
 
@@ -308,6 +320,7 @@ class TestDPEventArchivingWithBrowser(unittest.TestCase):
                 id=f"multi_event_doc_{i}",
                 title=f"Multi-Event Document {i + 1}",
                 text=RichTextValue(f"<p>Multi-event content {i + 1}</p>", "text/html", "text/x-html-safe"),
+                docType="weatherinformation",
             )
 
             # Assign ELAN behavior
@@ -398,6 +411,11 @@ class TestDPEventArchivingWithBrowser(unittest.TestCase):
 
         test_docs = []
 
+        # Allow docType for Group and User
+        api.group.add_user(groupname=group_folder.id, username=TEST_USER_NAME)
+        group = group_folder.getGroupOfFolder()
+        group.setGroupProperties({"allowedDocTypes": ["weatherinformation"]})
+
         # Create documents in available workflow states (private and published)
         states_and_transitions = [("private", None), ("published", "publish")]
 
@@ -411,6 +429,7 @@ class TestDPEventArchivingWithBrowser(unittest.TestCase):
                     text=RichTextValue(
                         f"<p>Content for {state_name} document {i + 1}</p>", "text/html", "text/x-html-safe"
                     ),
+                    docType="weatherinformation",
                 )
 
                 # Assign ELAN behavior
@@ -668,12 +687,18 @@ class TestDPEventArchivingEdgeCases(unittest.TestCase):
         groups_folder = self.test_docpool.content.Groups
         group_folder = list(groups_folder.objectValues())[0]
 
+        # Allow docType for Group and User
+        api.group.add_user(groupname=group_folder.id, username=TEST_USER_NAME)
+        group = group_folder.getGroupOfFolder()
+        group.setGroupProperties({"allowedDocTypes": ["weatherinformation"]})
+
         plain_doc = api.content.create(
             container=group_folder,
             type="DPDocument",
             id="plain_doc",
             title="Document Without Local Behaviors",
             text=RichTextValue("<p>Plain content</p>", "text/html", "text/x-html-safe"),
+            docType="weatherinformation",
         )
 
         # Document needs ELAN behavior to be found by archiving, but we'll test empty behaviors after archiving
