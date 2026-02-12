@@ -28,6 +28,13 @@ $plone-default-revised-color: #d4d4d4;
   --bs-btn-active-border-color: #c3dce7;
 }
 
+body {
+  /* Fallback for browsers that don't support dvh */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 .outer-wrapper {
   padding-left: var(--sidebar-width);
 }
@@ -231,6 +238,7 @@ div.pat-modal {
 }
 
 #portal-footer {
+  margin-top: auto;
   background-color: #f8f9fa !important;
   min-height: 48px;
 }

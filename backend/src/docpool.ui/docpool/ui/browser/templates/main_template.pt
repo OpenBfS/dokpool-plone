@@ -165,14 +165,14 @@
           </metal:block>
         </article>
 
-
-        <footer class="border-top"
-                id="portal-footer"
-                i18n:domain="plone"
-        >
-          <div tal:replace="structure provider:plone.portalfooter"></div>
-        </footer>
       </div>
+
+      <footer class="border-top"
+              id="portal-footer"
+              i18n:domain="plone"
+      >
+        <div tal:replace="structure provider:plone.portalfooter"></div>
+      </footer>
 
     </body>
   </html>
