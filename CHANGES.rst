@@ -40,6 +40,10 @@ Technical:
 - Add missing title attribute to eea widget (#4378)
   [slindner]
 
+- Replace queryForObjects by api call (#5867)
+  [tlotze]
+
+
 2.4.0 (2025-12-16)
 ------------------
 

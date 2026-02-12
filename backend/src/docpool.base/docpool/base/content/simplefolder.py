@@ -3,7 +3,6 @@ from docpool.base.content.folderbase import FolderBase
 from docpool.base.content.folderbase import IFolderBase
 from docpool.base.utils import getAllowedDocumentTypes
 from docpool.base.utils import portalMessage
-from docpool.base.utils import queryForObjects
 from plone import api
 from plone.base.utils import safe_text
 from plone.protect.interfaces import IDisableCSRFProtection
@@ -108,8 +107,7 @@ class SimpleFolder(FolderBase):
         """ """
         return (
             len(
-                queryForObjects(
-                    self,
+                api.content.find(
                     path="/".join(self.getPhysicalPath()),
                     portal_type="DPDocument",
                     review_state="published",
