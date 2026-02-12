@@ -41,6 +41,6 @@ class ELANArchivesView(BrowserView):
 
     def can_delete(self, archive):
         event = archive.get_archived_event()
-        if event.EventType not in ["Exercise", "Test"]:
+        if event and event.EventType not in ["Exercise", "Test"]:
             return False
         return set(["Manager", "Site Administrator"]) & set(api.user.get_roles(obj=self.context))
