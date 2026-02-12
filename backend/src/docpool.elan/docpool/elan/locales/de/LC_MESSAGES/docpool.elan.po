@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2025-12-04 08:52+0000\n"
+"POT-Creation-Date: 2026-02-11 09:28+0000\n"
 "PO-Revision-Date: 2025-09-25 14:43+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -170,13 +170,17 @@ msgstr "Daten"
 msgid "Delete Ticker"
 msgstr "Ticker löschen"
 
+#: docpool.elan/docpool/elan/browser/elanarchives.pt
+msgid "Deleted"
+msgstr "Gelöscht"
+
+#: docpool.elan/docpool/elan/browser/elanarchives.pt
+msgid "Deleted Archives"
+msgstr "Gelösche Archive"
+
 #: docpool.elan/docpool/elan/browser/archive_event_form.pt
 msgid "Depending on the number of entries in this event this can take an hour or longer."
 msgstr "Abhängig von der Anzahl der Einträge in diesem Ereignis kann dies bis zu einer Stunde oder länger dauern."
-
-#: docpool.elan/docpool/elan/content/transfers.py
-msgid "Document has no scenario."
-msgstr "Dem Dokument ist kein Ereignis zugeordnet."
 
 #: docpool.elan/docpool/elan/profiles/default/types/ELANDocCollection.xml
 msgid "ELAN Collection"
@@ -425,7 +429,6 @@ msgid "This event is already being archived by"
 msgstr "Für dieses Ereignis läuft bereits die Erstellung eines Snapshots oder eine Archivierung durch"
 
 #: docpool.elan/docpool/elan/browser/dpevents.pt
-#: docpool.elan/docpool/elan/browser/elanarchives.pt
 msgid "Title/Description"
 msgstr "Titel/Beschreibung"
 
@@ -436,10 +439,6 @@ msgstr "Art des Ereignisses"
 #: docpool.elan/docpool/elan/configure.zcml
 msgid "Uninstalls the docpool.elan add-on."
 msgstr ""
-
-#: docpool.elan/docpool/elan/content/transfers.py
-msgid "Unknown scenario not accepted."
-msgstr "Unbekanntes Ereignis wurde nicht akzeptiert."
 
 #: docpool.elan/docpool/elan/upgrades.zcml
 msgid "Upgrade profile for docpool.elan"

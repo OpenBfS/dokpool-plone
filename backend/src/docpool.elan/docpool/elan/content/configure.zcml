@@ -39,4 +39,6 @@
 
   <adapter factory=".transfers.ELANSpecificTransfer" />
 
+  <subscriber handler=".elanarchive.delete_handler" />
+
 </configure>
