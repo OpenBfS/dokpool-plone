@@ -26,6 +26,7 @@
               <th i18n:domain="plone"
                   i18n:translate=""
               >Title</th>
+              <th i18n:translate="">Type of event</th>
               <th i18n:translate="">Entries</th>
               <th i18n:domain="plone"
                   i18n:translate=""
@@ -51,6 +52,17 @@
                 </a>
                 <br />
                 <span tal:content="python:archive.description"></span>
+              </td>
+              <td tal:define="
+                    eventtype python: view.eventtype(archive);
+                  ">
+                <span tal:condition="python: eventtype"
+                      tal:content="python: eventtype"
+                ></span>
+                <span tal:condition="python: eventtype is None"
+                      i18n:domain="z3c.form"
+                      i18n:translate=""
+                >No value</span>
               </td>
               <td tal:content="python: view.number_of_entries(archive)"></td>
               <td><a href=""

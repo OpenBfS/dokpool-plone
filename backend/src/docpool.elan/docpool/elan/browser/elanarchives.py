@@ -21,6 +21,13 @@ class ELANArchivesView(BrowserView):
         }
         return [obj.getObject() for obj in api.content.find(context=self.context, **query)]
 
+    def eventtype(self, archive):
+        event = archive.get_archived_event()
+        if not event:
+            return None
+        vocabulary = api.portal.get_vocabulary(name="docpool.elan.vocabularies.EventTypes", context=event)
+        return vocabulary.getTermByToken(event.EventType).title
+
     def number_of_entries(self, archive):
         contentarea = aq_get(archive, "content")
         args = {
