@@ -1,4 +1,3 @@
-from plone import api
 from Products.Five.browser import BrowserView
 
 

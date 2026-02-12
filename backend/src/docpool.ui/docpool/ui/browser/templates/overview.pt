@@ -3,305 +3,316 @@
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:tal="http://xml.zope.org/namespaces/tal"
-   metal:use-macro="context/@@main_template/macros/master"
+      metal:use-macro="context/@@main_template/macros/master"
       xml:lang="en"
-   i18n:domain="docpool.base"
+      i18n:domain="docpool.base"
 >
-<metal:content fill-slot="content">
+  <metal:content fill-slot="content">
 
-  <main class="mx-3 my-3">
-    <section class="row g-2 overview-layout">
-      <article class="col-12 col-xl-4">
-        <div class="card tile-card h-100">
-          <header class="tile-header d-flex align-items-center justify-content-between">
-            <h2 class="tile-headline mb-0">KKW Grohnde, Deutschland / N 52.034, E 9.410</h2>
-          </header>
-          <div class="tile-map-wrap">
-            <img src="assets/map-overview.png" class="img-fluid tile-map-image" alt="Kartenansicht des Ereignisorts">
+    <main class="mx-3 my-3">
+      <section class="row g-2 overview-layout">
+        <article class="col-12 col-xl-4">
+          <div class="card tile-card h-100">
+            <header class="tile-header d-flex align-items-center justify-content-between">
+              <h2 class="tile-headline mb-0">KKW Grohnde, Deutschland / N 52.034, E 9.410</h2>
+            </header>
+            <div class="tile-map-wrap">
+              <img class="img-fluid tile-map-image"
+                   alt="Kartenansicht des Ereignisorts"
+                   src="assets/map-overview.png"
+              />
+            </div>
+            <div class="card-body tile-body">
+              <dl class="mb-0 overview-facts">
+                <div class="fact-row">
+                  <dt>Ereignisart</dt>
+                  <dd>
+                    <span class="event-tag">Uebung</span>
+                  </dd>
+                </div>
+                <div class="fact-row">
+                  <dt>Ereigniszeitpunkt</dt>
+                  <dd><span class="highlight-value">ME(S)Z&nbsp;&nbsp;&nbsp;&nbsp;24.03.2023&nbsp;&nbsp;&nbsp;&nbsp;09:42</span></dd>
+                </div>
+                <div class="fact-row">
+                  <dt>Ereignisdauer</dt>
+                  <dd>+ 6d 13h 52min</dd>
+                </div>
+                <div class="fact-row">
+                  <dt>Referenzszenario</dt>
+                  <dd>S2 - ....</dd>
+                </div>
+                <div class="fact-row">
+                  <dt>Notfalleinstufung</dt>
+                  <dd>Ueberregional</dd>
+                </div>
+                <div class="fact-row">
+                  <dt>Phase</dt>
+                  <dd>Freisetzungsphase</dd>
+                </div>
+                <div class="fact-row">
+                  <dt>Kurzbeschreibung</dt>
+                  <dd>Im Kernkraftwerk ABC im Ort XYZ kam es gestern um 03:00 Ortszeit zu einem Brand. Fuer weitere Informationen zum Ereignis siehe Meldungen oder Lagebilder.</dd>
+                </div>
+                <div class="fact-row">
+                  <dt>IMIS Betriebsart</dt>
+                  <dd>Intensivbetrieb</dd>
+                </div>
+              </dl>
+            </div>
           </div>
-          <div class="card-body tile-body">
-            <dl class="mb-0 overview-facts">
-              <div class="fact-row">
-                <dt>Ereignisart</dt>
-                <dd>
-                  <span class="event-tag">Uebung</span>
-                </dd>
+        </article>
+
+        <div class="col-12 col-xl-8">
+          <div class="row g-2 h-100">
+            <article class="col-12 col-lg-6">
+              <div class="card tile-card h-100">
+                <header class="tile-header section-title-wrap">
+                  <h3 class="section-title mb-0">Aktuellste Lageinformationen</h3>
+                </header>
+                <div class="list-group list-group-flush message-list">
+                  <div class="list-group-item px-0">
+                    <div class="message-item d-flex">
+                      <div class="message-side text-center">
+                        <div class="message-side-icons">
+                          <tal:icon tal:replace="structure python:icons.tag('globe', tag_class='me-2')" />
+                          <tal:icon tal:replace="structure python:icons.tag('calendar', tag_class='me-2')" />
+                        </div>
+                        <span class="badge message-status">Oeffentlich</span>
+                        <p class="message-time mb-0">13:06</p>
+                        <p class="message-date mb-0">15.05.2024</p>
+                      </div>
+                      <div class="message-main">
+                        <div class="d-flex align-items-start justify-content-between gap-2">
+                          <h4 class="message-title mb-1">Messstrategie des BfS zum...</h4>
+                          <tal:icon tal:replace="structure python:icons.tag('paperclip', tag_class='me-2')" />
+                        </div>
+                        <p class="message-text mb-0">Messstrategie des BfS zum RLB Nr 12</p>
+                      </div>
+                      <div class="message-menu">
+                        <tal:icon tal:replace="structure python:icons.tag('menu-dots-vertical', tag_class='me-2')" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="list-group-item px-0">
+                    <div class="message-item d-flex">
+                      <div class="message-side text-center">
+                        <div class="message-side-icons">
+                          <tal:icon tal:replace="structure python:icons.tag('globe', tag_class='me-2')" />
+                        </div>
+                        <span class="badge message-status">Oeffentlich</span>
+                        <p class="message-time mb-0">13:01</p>
+                        <p class="message-date mb-0">15.05.2024</p>
+                      </div>
+                      <div class="message-main">
+                        <div class="d-flex align-items-start justify-content-between gap-2">
+                          <h4 class="message-title mb-1">+++ Uebung +++ RLZ Lagebil...</h4>
+                          <tal:icon tal:replace="structure python:icons.tag('paperclip', tag_class='me-2')" />
+                        </div>
+                        <p class="message-text mb-0">Original date: 2021-12-16T12:01:15Z Exercise For Addresses Use Only Die seit 15.12.2021 17:30 Uhr andauernd...</p>
+                      </div>
+                      <div class="message-menu">
+                        <tal:icon tal:replace="structure python:icons.tag('menu-dots-vertical', tag_class='me-2')" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <footer class="tile-footer">
+                  <a class="tile-link"
+                     href="#"
+                  >Zeige alle</a>
+                  <span class="counter-pill">99</span>
+                </footer>
               </div>
-              <div class="fact-row">
-                <dt>Ereigniszeitpunkt</dt>
-                <dd><span class="highlight-value">ME(S)Z&nbsp;&nbsp;&nbsp;&nbsp;24.03.2023&nbsp;&nbsp;&nbsp;&nbsp;09:42</span></dd>
+            </article>
+
+            <article class="col-12 col-lg-6">
+              <div class="card tile-card h-100">
+                <header class="tile-header section-title-wrap">
+                  <h3 class="section-title mb-0">Meldungen und Anlageinformationen</h3>
+                </header>
+                <div class="list-group list-group-flush message-list">
+                  <div class="list-group-item px-0">
+                    <div class="message-item d-flex">
+                      <div class="message-side text-center">
+                        <div class="message-side-icons">
+                          <tal:icon tal:replace="structure python:icons.tag('globe', tag_class='me-2')" />
+                        </div>
+                        <span class="badge message-status submitted">Eingereicht</span>
+                        <p class="message-time mb-0">16:03</p>
+                        <p class="message-date mb-0">15.05.2024</p>
+                      </div>
+                      <div class="message-main">
+                        <div class="d-flex align-items-start justify-content-between gap-2">
+                          <h4 class="message-title mb-1">Lorem ipsum</h4>
+                          <tal:icon tal:replace="structure python:icons.tag('paperclip', tag_class='me-2')" />
+                        </div>
+                        <p class="message-text mb-0">dolor sit amet, consectetur adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque pen...</p>
+                      </div>
+                      <div class="message-menu">
+                        <tal:icon tal:replace="structure python:icons.tag('menu-dots-vertical', tag_class='me-2')" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="list-group-item px-0">
+                    <div class="message-item d-flex">
+                      <div class="message-side text-center">
+                        <div class="message-side-icons">
+                          <tal:icon tal:replace="structure python:icons.tag('globe', tag_class='me-2')" />
+                        </div>
+                        <span class="badge message-status submitted">Eingereicht</span>
+                        <p class="message-time mb-0">16:03</p>
+                        <p class="message-date mb-0">15.05.2024</p>
+                      </div>
+                      <div class="message-main">
+                        <div class="d-flex align-items-start justify-content-between gap-2">
+                          <h4 class="message-title mb-1">Lorem ipsum</h4>
+                          <tal:icon tal:replace="structure python:icons.tag('paperclip', tag_class='me-2')" />
+                        </div>
+                        <p class="message-text mb-0">dolor sit amet, consectetur adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque pen...</p>
+                      </div>
+                      <div class="message-menu">
+                        <tal:icon tal:replace="structure python:icons.tag('menu-dots-vertical', tag_class='me-2')" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <footer class="tile-footer">
+                  <a class="tile-link"
+                     href="#"
+                  >Zeige alle</a>
+                  <span class="counter-pill">99</span>
+                </footer>
               </div>
-              <div class="fact-row">
-                <dt>Ereignisdauer</dt>
-                <dd>+ 6d 13h 52min</dd>
+            </article>
+
+            <article class="col-12 col-lg-6">
+              <div class="card tile-card h-100">
+                <header class="tile-header section-title-wrap">
+                  <h3 class="section-title mb-0">RODOS Prognosen</h3>
+                </header>
+                <div class="list-group list-group-flush message-list">
+                  <div class="list-group-item px-0">
+                    <div class="message-item d-flex">
+                      <div class="message-side text-center">
+                        <div class="message-side-icons">
+                          <tal:icon tal:replace="structure python:icons.tag('globe', tag_class='me-2')" />
+                          <tal:icon tal:replace="structure python:icons.tag('calendar', tag_class='me-2')" />
+                        </div>
+                        <span class="badge message-status">Oeffentlich</span>
+                        <p class="message-time mb-0">13:06</p>
+                        <p class="message-date mb-0">15.05.2024</p>
+                      </div>
+                      <div class="message-main">
+                        <div class="d-flex align-items-start justify-content-between gap-2">
+                          <h4 class="message-title mb-1">Messstrategie des BfS zum...</h4>
+                          <tal:icon tal:replace="structure python:icons.tag('paperclip', tag_class='me-2')" />
+                        </div>
+                        <p class="message-text mb-0">Messstrategie des BfS zum RLB Nr 12</p>
+                      </div>
+                      <div class="message-menu">
+                        <tal:icon tal:replace="structure python:icons.tag('menu-dots-vertical', tag_class='me-2')" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="list-group-item px-0">
+                    <div class="message-item d-flex">
+                      <div class="message-side text-center">
+                        <div class="message-side-icons">
+                          <tal:icon tal:replace="structure python:icons.tag('globe', tag_class='me-2')" />
+                        </div>
+                        <span class="badge message-status">Oeffentlich</span>
+                        <p class="message-time mb-0">13:01</p>
+                        <p class="message-date mb-0">15.05.2024</p>
+                      </div>
+                      <div class="message-main">
+                        <div class="d-flex align-items-start justify-content-between gap-2">
+                          <h4 class="message-title mb-1">+++ Uebung +++ RLZ Lagebil...</h4>
+                          <tal:icon tal:replace="structure python:icons.tag('paperclip', tag_class='me-2')" />
+                        </div>
+                        <p class="message-text mb-0">Original date: 2021-12-16T12:01:15Z Exercise For Addresses Use Only Die seit 15.12.2021 17:30 Uhr andauernd...</p>
+                      </div>
+                      <div class="message-menu">
+                        <tal:icon tal:replace="structure python:icons.tag('menu-dots-vertical', tag_class='me-2')" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <footer class="tile-footer">
+                  <a class="tile-link"
+                     href="#"
+                  >Zeige alle</a>
+                  <span class="counter-pill">99</span>
+                </footer>
               </div>
-              <div class="fact-row">
-                <dt>Referenzszenario</dt>
-                <dd>S2 - ....</dd>
+            </article>
+
+            <article class="col-12 col-lg-6">
+              <div class="card tile-card h-100">
+                <header class="tile-header section-title-wrap">
+                  <h3 class="section-title mb-0">Messergebnisse und Messstrategien</h3>
+                </header>
+                <div class="list-group list-group-flush message-list">
+                  <div class="list-group-item px-0">
+                    <div class="message-item d-flex">
+                      <div class="message-side text-center">
+                        <div class="message-side-icons">
+                          <tal:icon tal:replace="structure python:icons.tag('globe', tag_class='me-2')" />
+                        </div>
+                        <span class="badge message-status submitted">Eingereicht</span>
+                        <p class="message-time mb-0">16:03</p>
+                        <p class="message-date mb-0">15.05.2024</p>
+                      </div>
+                      <div class="message-main">
+                        <div class="d-flex align-items-start justify-content-between gap-2">
+                          <h4 class="message-title mb-1">Lorem ipsum</h4>
+                          <tal:icon tal:replace="structure python:icons.tag('paperclip', tag_class='me-2')" />
+                        </div>
+                        <p class="message-text mb-0">dolor sit amet, consectetur adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque pen...</p>
+                      </div>
+                      <div class="message-menu">
+                        <tal:icon tal:replace="structure python:icons.tag('menu-dots-vertical', tag_class='me-2')" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="list-group-item px-0">
+                    <div class="message-item d-flex">
+                      <div class="message-side text-center">
+                        <div class="message-side-icons">
+                          <tal:icon tal:replace="structure python:icons.tag('globe', tag_class='me-2')" />
+                        </div>
+                        <span class="badge message-status submitted">Eingereicht</span>
+                        <p class="message-time mb-0">16:03</p>
+                        <p class="message-date mb-0">15.05.2024</p>
+                      </div>
+                      <div class="message-main">
+                        <div class="d-flex align-items-start justify-content-between gap-2">
+                          <h4 class="message-title mb-1">Lorem ipsum</h4>
+                          <tal:icon tal:replace="structure python:icons.tag('paperclip', tag_class='me-2')" />
+                        </div>
+                        <p class="message-text mb-0">dolor sit amet, consectetur adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque pen...</p>
+                      </div>
+                      <div class="message-menu">
+                        <tal:icon tal:replace="structure python:icons.tag('menu-dots-vertical', tag_class='me-2')" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <footer class="tile-footer">
+                  <a class="tile-link"
+                     href="#"
+                  >Zeige alle</a>
+                  <span class="counter-pill">99</span>
+                </footer>
               </div>
-              <div class="fact-row">
-                <dt>Notfalleinstufung</dt>
-                <dd>Ueberregional</dd>
-              </div>
-              <div class="fact-row">
-                <dt>Phase</dt>
-                <dd>Freisetzungsphase</dd>
-              </div>
-              <div class="fact-row">
-                <dt>Kurzbeschreibung</dt>
-                <dd>Im Kernkraftwerk ABC im Ort XYZ kam es gestern um 03:00 Ortszeit zu einem Brand. Fuer weitere Informationen zum Ereignis siehe Meldungen oder Lagebilder.</dd>
-              </div>
-              <div class="fact-row">
-                <dt>IMIS Betriebsart</dt>
-                <dd>Intensivbetrieb</dd>
-              </div>
-            </dl>
+            </article>
           </div>
         </div>
-      </article>
-
-      <div class="col-12 col-xl-8">
-        <div class="row g-2 h-100">
-          <article class="col-12 col-lg-6">
-            <div class="card tile-card h-100">
-              <header class="tile-header section-title-wrap">
-                <h3 class="section-title mb-0">Aktuellste Lageinformationen</h3>
-              </header>
-              <div class="list-group list-group-flush message-list">
-                <div class="list-group-item px-0">
-                  <div class="message-item d-flex">
-                    <div class="message-side text-center">
-                      <div class="message-side-icons">
-                        <tal:icon tal:replace="structure python:icons.tag('globe', tag_class='me-2')" />
-                        <tal:icon tal:replace="structure python:icons.tag('calendar', tag_class='me-2')" />
-                      </div>
-                      <span class="badge message-status">Oeffentlich</span>
-                      <p class="message-time mb-0">13:06</p>
-                      <p class="message-date mb-0">15.05.2024</p>
-                    </div>
-                    <div class="message-main">
-                      <div class="d-flex align-items-start justify-content-between gap-2">
-                        <h4 class="message-title mb-1">Messstrategie des BfS zum...</h4>
-                        <tal:icon tal:replace="structure python:icons.tag('paperclip', tag_class='me-2')" />
-                      </div>
-                      <p class="message-text mb-0">Messstrategie des BfS zum RLB Nr 12</p>
-                    </div>
-                    <div class="message-menu">
-                      <tal:icon tal:replace="structure python:icons.tag('menu-dots-vertical', tag_class='me-2')" />
-                    </div>
-                  </div>
-                </div>
-
-                <div class="list-group-item px-0">
-                  <div class="message-item d-flex">
-                    <div class="message-side text-center">
-                      <div class="message-side-icons">
-                        <tal:icon tal:replace="structure python:icons.tag('globe', tag_class='me-2')" />
-                      </div>
-                      <span class="badge message-status">Oeffentlich</span>
-                      <p class="message-time mb-0">13:01</p>
-                      <p class="message-date mb-0">15.05.2024</p>
-                    </div>
-                    <div class="message-main">
-                      <div class="d-flex align-items-start justify-content-between gap-2">
-                        <h4 class="message-title mb-1">+++ Uebung +++ RLZ Lagebil...</h4>
-                        <tal:icon tal:replace="structure python:icons.tag('paperclip', tag_class='me-2')" />
-                      </div>
-                      <p class="message-text mb-0">Original date: 2021-12-16T12:01:15Z Exercise For Addresses Use Only Die seit 15.12.2021 17:30 Uhr andauernd...</p>
-                    </div>
-                    <div class="message-menu">
-                      <tal:icon tal:replace="structure python:icons.tag('menu-dots-vertical', tag_class='me-2')" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <footer class="tile-footer">
-                <a href="#" class="tile-link">Zeige alle</a>
-                <span class="counter-pill">99</span>
-              </footer>
-            </div>
-          </article>
-
-          <article class="col-12 col-lg-6">
-            <div class="card tile-card h-100">
-              <header class="tile-header section-title-wrap">
-                <h3 class="section-title mb-0">Meldungen und Anlageinformationen</h3>
-              </header>
-              <div class="list-group list-group-flush message-list">
-                <div class="list-group-item px-0">
-                  <div class="message-item d-flex">
-                    <div class="message-side text-center">
-                      <div class="message-side-icons">
-                        <tal:icon tal:replace="structure python:icons.tag('globe', tag_class='me-2')" />
-                      </div>
-                      <span class="badge message-status submitted">Eingereicht</span>
-                      <p class="message-time mb-0">16:03</p>
-                      <p class="message-date mb-0">15.05.2024</p>
-                    </div>
-                    <div class="message-main">
-                      <div class="d-flex align-items-start justify-content-between gap-2">
-                        <h4 class="message-title mb-1">Lorem ipsum</h4>
-                        <tal:icon tal:replace="structure python:icons.tag('paperclip', tag_class='me-2')" />
-                      </div>
-                      <p class="message-text mb-0">dolor sit amet, consectetur adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque pen...</p>
-                    </div>
-                    <div class="message-menu">
-                      <tal:icon tal:replace="structure python:icons.tag('menu-dots-vertical', tag_class='me-2')" />
-                    </div>
-                  </div>
-                </div>
-
-                <div class="list-group-item px-0">
-                  <div class="message-item d-flex">
-                    <div class="message-side text-center">
-                      <div class="message-side-icons">
-                        <tal:icon tal:replace="structure python:icons.tag('globe', tag_class='me-2')" />
-                      </div>
-                      <span class="badge message-status submitted">Eingereicht</span>
-                      <p class="message-time mb-0">16:03</p>
-                      <p class="message-date mb-0">15.05.2024</p>
-                    </div>
-                    <div class="message-main">
-                      <div class="d-flex align-items-start justify-content-between gap-2">
-                        <h4 class="message-title mb-1">Lorem ipsum</h4>
-                        <tal:icon tal:replace="structure python:icons.tag('paperclip', tag_class='me-2')" />
-                      </div>
-                      <p class="message-text mb-0">dolor sit amet, consectetur adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque pen...</p>
-                    </div>
-                    <div class="message-menu">
-                      <tal:icon tal:replace="structure python:icons.tag('menu-dots-vertical', tag_class='me-2')" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <footer class="tile-footer">
-                <a href="#" class="tile-link">Zeige alle</a>
-                <span class="counter-pill">99</span>
-              </footer>
-            </div>
-          </article>
-
-          <article class="col-12 col-lg-6">
-            <div class="card tile-card h-100">
-              <header class="tile-header section-title-wrap">
-                <h3 class="section-title mb-0">RODOS Prognosen</h3>
-              </header>
-              <div class="list-group list-group-flush message-list">
-                <div class="list-group-item px-0">
-                  <div class="message-item d-flex">
-                    <div class="message-side text-center">
-                      <div class="message-side-icons">
-                        <tal:icon tal:replace="structure python:icons.tag('globe', tag_class='me-2')" />
-                        <tal:icon tal:replace="structure python:icons.tag('calendar', tag_class='me-2')" />
-                      </div>
-                      <span class="badge message-status">Oeffentlich</span>
-                      <p class="message-time mb-0">13:06</p>
-                      <p class="message-date mb-0">15.05.2024</p>
-                    </div>
-                    <div class="message-main">
-                      <div class="d-flex align-items-start justify-content-between gap-2">
-                        <h4 class="message-title mb-1">Messstrategie des BfS zum...</h4>
-                        <tal:icon tal:replace="structure python:icons.tag('paperclip', tag_class='me-2')" />
-                      </div>
-                      <p class="message-text mb-0">Messstrategie des BfS zum RLB Nr 12</p>
-                    </div>
-                    <div class="message-menu">
-                      <tal:icon tal:replace="structure python:icons.tag('menu-dots-vertical', tag_class='me-2')" />
-                    </div>
-                  </div>
-                </div>
-
-                <div class="list-group-item px-0">
-                  <div class="message-item d-flex">
-                    <div class="message-side text-center">
-                      <div class="message-side-icons">
-                        <tal:icon tal:replace="structure python:icons.tag('globe', tag_class='me-2')" />
-                      </div>
-                      <span class="badge message-status">Oeffentlich</span>
-                      <p class="message-time mb-0">13:01</p>
-                      <p class="message-date mb-0">15.05.2024</p>
-                    </div>
-                    <div class="message-main">
-                      <div class="d-flex align-items-start justify-content-between gap-2">
-                        <h4 class="message-title mb-1">+++ Uebung +++ RLZ Lagebil...</h4>
-                        <tal:icon tal:replace="structure python:icons.tag('paperclip', tag_class='me-2')" />
-                      </div>
-                      <p class="message-text mb-0">Original date: 2021-12-16T12:01:15Z Exercise For Addresses Use Only Die seit 15.12.2021 17:30 Uhr andauernd...</p>
-                    </div>
-                    <div class="message-menu">
-                      <tal:icon tal:replace="structure python:icons.tag('menu-dots-vertical', tag_class='me-2')" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <footer class="tile-footer">
-                <a href="#" class="tile-link">Zeige alle</a>
-                <span class="counter-pill">99</span>
-              </footer>
-            </div>
-          </article>
-
-          <article class="col-12 col-lg-6">
-            <div class="card tile-card h-100">
-              <header class="tile-header section-title-wrap">
-                <h3 class="section-title mb-0">Messergebnisse und Messstrategien</h3>
-              </header>
-              <div class="list-group list-group-flush message-list">
-                <div class="list-group-item px-0">
-                  <div class="message-item d-flex">
-                    <div class="message-side text-center">
-                      <div class="message-side-icons">
-                        <tal:icon tal:replace="structure python:icons.tag('globe', tag_class='me-2')" />
-                      </div>
-                      <span class="badge message-status submitted">Eingereicht</span>
-                      <p class="message-time mb-0">16:03</p>
-                      <p class="message-date mb-0">15.05.2024</p>
-                    </div>
-                    <div class="message-main">
-                      <div class="d-flex align-items-start justify-content-between gap-2">
-                        <h4 class="message-title mb-1">Lorem ipsum</h4>
-                        <tal:icon tal:replace="structure python:icons.tag('paperclip', tag_class='me-2')" />
-                      </div>
-                      <p class="message-text mb-0">dolor sit amet, consectetur adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque pen...</p>
-                    </div>
-                    <div class="message-menu">
-                      <tal:icon tal:replace="structure python:icons.tag('menu-dots-vertical', tag_class='me-2')" />
-                    </div>
-                  </div>
-                </div>
-
-                <div class="list-group-item px-0">
-                  <div class="message-item d-flex">
-                    <div class="message-side text-center">
-                      <div class="message-side-icons">
-                        <tal:icon tal:replace="structure python:icons.tag('globe', tag_class='me-2')" />
-                      </div>
-                      <span class="badge message-status submitted">Eingereicht</span>
-                      <p class="message-time mb-0">16:03</p>
-                      <p class="message-date mb-0">15.05.2024</p>
-                    </div>
-                    <div class="message-main">
-                      <div class="d-flex align-items-start justify-content-between gap-2">
-                        <h4 class="message-title mb-1">Lorem ipsum</h4>
-                        <tal:icon tal:replace="structure python:icons.tag('paperclip', tag_class='me-2')" />
-                      </div>
-                      <p class="message-text mb-0">dolor sit amet, consectetur adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque pen...</p>
-                    </div>
-                    <div class="message-menu">
-                      <tal:icon tal:replace="structure python:icons.tag('menu-dots-vertical', tag_class='me-2')" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <footer class="tile-footer">
-                <a href="#" class="tile-link">Zeige alle</a>
-                <span class="counter-pill">99</span>
-              </footer>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-  </main>
-</metal:content>
+      </section>
+    </main>
+  </metal:content>
 </html>

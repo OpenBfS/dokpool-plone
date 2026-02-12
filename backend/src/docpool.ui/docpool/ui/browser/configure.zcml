@@ -151,12 +151,12 @@
       />
 
   <browser:page
-    name="overview"
-    for="*"
-    class=".overview.Overview"
-    template="templates/overview.pt"
-    permission="zope2.View"
-    layer="docpool.ui.interfaces.IUITheme"
-  />
+      name="overview"
+      for="*"
+      class=".overview.Overview"
+      template="templates/overview.pt"
+      permission="zope2.View"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
 
 </configure>
