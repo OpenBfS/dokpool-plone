@@ -376,7 +376,7 @@
       </form>
     </div>
 
-    <div class="m-0"
+    <div class="mx-3 my-3"
          id="listing"
          tal:attributes="
            data-items python: view.json_items;

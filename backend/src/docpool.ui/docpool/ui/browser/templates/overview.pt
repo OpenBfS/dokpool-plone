@@ -9,7 +9,7 @@
 >
 <metal:content fill-slot="content">
 
-  <main class="container-fluid py-2">
+  <main class="mx-3 my-3">
     <section class="row g-2 overview-layout">
       <article class="col-12 col-xl-4">
         <div class="card tile-card h-100">
