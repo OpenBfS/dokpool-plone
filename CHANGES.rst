@@ -25,6 +25,9 @@ Fixed:
 - Grant local permissions on journals on transferring an event (#6399)
   [tlotze]
 
+- Don't keep partial sender logs on transferred documents (#5674)
+  [tlotze]
+
 
 Technical:
 
