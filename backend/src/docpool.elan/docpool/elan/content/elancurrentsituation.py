@@ -1,4 +1,5 @@
 from docpool.elan.config import ELAN_APP
+from plone import api
 from plone.dexterity.content import Container
 from plone.supermodel import model
 from zope.interface import implementer
@@ -15,9 +16,8 @@ class ELANCurrentSituation(Container):
     def correctAllDocTypes(self):
         # Correct references
         mpath = self.dpSearchPath()
-        from docpool.base.utils import queryForObjects
 
-        ecs = queryForObjects(self, path=mpath, portal_type="ELANDocCollection")
+        ecs = api.content.find(path=mpath, portal_type="ELANDocCollection")
         for ec in ecs:
             ec.getObject().correctDocTypes()
 

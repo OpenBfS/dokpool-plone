@@ -9,7 +9,6 @@ from docpool.base.content.folderbase import IFolderBase
 from docpool.base.marker import IImportingMarker
 from docpool.base.utils import execute_under_special_role
 from docpool.base.utils import queryForObject
-from docpool.base.utils import queryForObjects
 from logging import getLogger
 from persistent.mapping import PersistentMapping
 from plone import api
@@ -225,7 +224,7 @@ def transfer_folders_for(obj):
     except AttributeError:
         return []
 
-    brains = queryForObjects(esd, path=esd.dpSearchPath(), object_provides=IDPTransferFolder.__identifier__)
+    brains = api.content.find(path=esd.dpSearchPath(), object_provides=IDPTransferFolder.__identifier__)
     return [brain.getObject() for brain in brains]
 
 

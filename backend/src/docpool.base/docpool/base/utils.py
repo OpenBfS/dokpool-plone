@@ -60,14 +60,6 @@ def queryForObject(self, **kwa):
         return None
 
 
-def queryForObjects(self, **kwa):
-    """ """
-    cat = getToolByName(self, "portal_catalog")
-    # print kwa
-    res = cat(kwa)
-    return res
-
-
 def is_group_folder(context):
     return "Groups" in context.getPhysicalPath() and context.getId() != "Groups"
 
