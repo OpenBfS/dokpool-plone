@@ -57,29 +57,6 @@
     <metal:macro define-macro="elan_actions"
                  i18n:domain="docpool.elan"
     >
-      <tal:cond define="
-                  _is nocall:context/@@is;
-                "
-                condition="python: not (isCollection or _is.archive())"
-      >
-        <a href=""
-           title="Edit unknown scenario"
-           tal:define="
-             unknown_scen python:elanobj.unknownScenario();
-           "
-           tal:condition="nocall:unknown_scen"
-           tal:attributes="
-             href unknown_scen/absolute_url;
-           "
-           i18n:attributes="title"
-        >
-          <img src=""
-               tal:attributes="
-                 src string:${context/portal_url}/publish.png;
-               "
-          />
-        </a>
-      </tal:cond>
     </metal:macro>
 
     <metal:macro define-macro="elan_meta"

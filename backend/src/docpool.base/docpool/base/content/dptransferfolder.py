@@ -1,4 +1,5 @@
 from AccessControl import ClassSecurityInfo
+from Acquisition import aq_get
 from docpool.base import DocpoolMessageFactory as _
 from docpool.base.config import TRANSFERS_APP
 from docpool.base.content.archiving import IArchiving
@@ -84,7 +85,10 @@ class DPTransferFolder(FolderBase):
     security = ClassSecurityInfo()
 
     def doctype_permission(self, doctype):
-        return self.doctypePermissions.get(doctype, DEFAULT_DTPERMISSION)
+        config_folder = aq_get(self, "config", None)
+        if doctype not in config_folder["dtypes"]:
+            return self.unknownDtDefault
+        return getattr(self, "doctypePermissions", {}).get(doctype, DEFAULT_DTPERMISSION)
 
     # TODO should be indexed
     def from_to_title(self):
@@ -234,4 +238,4 @@ def doctype_will_be_removed(obj, event=None):
         return
     dt_id = obj.getId()
     for tf in transfer_folders_for(event.oldParent):
-        tf.doctypePermissions.pop(dt_id, None)
+        getattr(tf, "doctypePermissions", {}).pop(dt_id, None)
