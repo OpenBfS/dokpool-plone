@@ -19,7 +19,7 @@
             <div class="tile-map-wrap">
               <img class="img-fluid tile-map-image"
                    alt="Kartenansicht des Ereignisorts"
-                   src="assets/map-overview.png"
+                   src="++plone++docpoolui/map-overview.png"
               />
             </div>
             <div class="card-body tile-body">
