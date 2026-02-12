@@ -146,7 +146,12 @@ module.exports = () => {
 
   // Compile our docpool styling and bootstrap separate from the other files,
   // to be loaded immediately to avoid flash of unstyled content.
-  config.plugins.push(new MiniCssExtractPlugin());
+  config.plugins.push(
+    new MiniCssExtractPlugin({
+      filename: "[name].[contenthash:8].css",
+      chunkFilename: "[id].[contenthash:8].css",
+    }),
+  );
   config.module.rules.push({
     test: /docpool\.scss$/,
     use: [
