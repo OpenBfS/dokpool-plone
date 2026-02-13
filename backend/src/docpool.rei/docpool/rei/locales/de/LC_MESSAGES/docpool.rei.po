@@ -37,7 +37,7 @@ msgstr "Bericht enthält Daten folgender Messstellen"
 
 #: docpool.rei/docpool/rei/behaviors/configure.zcml
 msgid "Makes documents support REI functions"
-msgstr "Sorgt bei Dokumenten für REI Funktionen"
+msgstr "Sorgt bei Einträgen für REI Funktionen"
 
 #: docpool.rei/docpool/rei/profiles/default/registry.xml
 msgid "Medium"
@@ -65,7 +65,7 @@ msgstr "Zeitraum"
 
 #: docpool.rei/docpool/rei/behaviors/configure.zcml
 msgid "REI DocType"
-msgstr "REI Dokumenttyp"
+msgstr "REI Eintragsart"
 
 #: docpool.rei/docpool/rei/profiles/default/registry.xml
 msgid "REI legal Bases"

@@ -19,7 +19,7 @@
   </rule>
   <assignment bubbles="True"
               enabled="True"
-              location="/baden-wuerttemberg/content/Transfers/dokumente-aus-bund"
+              location="/baden-wuerttemberg/content/Transfers/eintraege-aus-bund"
               name="rule-1"
   />
 </contentrules>

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-02-11 09:28+0000\n"
+"POT-Creation-Date: 2026-02-13 11:14+0000\n"
 "PO-Revision-Date: 2025-05-19 17:02+0200\n"
 "Last-Translator: Philip Bauer <bauer@starzel.de>\n"
 "Language-Team: BfS <elan@bfs.de>\n"
@@ -437,6 +437,7 @@ msgid "Title/Description"
 msgstr ""
 
 #: docpool.elan/docpool/elan/browser/dpevent.pt
+#: docpool.elan/docpool/elan/browser/elanarchives.pt
 msgid "Type of event"
 msgstr ""
 

@@ -5,18 +5,18 @@
     </p>
     <ul>
       <li>
-        welche Dokumenttypen bei Ver&ouml;ffentlichung automatisch an andere
+        welche Eintragsarten bei Ver&ouml;ffentlichung automatisch an andere
         Dokpools &uuml;bertragen werden sollen
       </li>
       <li>
-        bzw. welche Dokumenttypen nicht mehr automatisch &uuml;bertragen werden
+        bzw. welche Eintragsarten nicht mehr automatisch &uuml;bertragen werden
         sollen.
       </li>
     </ul>
     <p>
       Die aktuellen oder neu vorgenommenen Transfereinstellungen zu den
-      einzelnen Dokumenttypen k&ouml;nnen Sie jederzeit unter &bdquo;Konfiguration &gt;
-      Dokumenttypen&ldquo; kontrollieren (&bdquo;Wohin werden Dokumente dieses Typs
+      einzelnen Eintragsarten k&ouml;nnen Sie jederzeit unter &bdquo;Konfiguration &gt;
+      Eintragsarten&ldquo; kontrollieren (&bdquo;Wohin werden Einträge dieses Typs
       automatisch &uuml;bermittelt&ldquo;).
     </p>
   </tal:block>

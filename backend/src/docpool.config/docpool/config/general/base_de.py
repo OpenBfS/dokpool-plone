@@ -34,7 +34,7 @@ ADMINSTRUCTURE = [
         CHILDREN: [
             {
                 TYPE: "DocTypes",
-                TITLE: "Globale Dokumenttypen",
+                TITLE: "Globale Eintragsarten",
                 ID: "dtypes",
                 CHILDREN: [],
             }

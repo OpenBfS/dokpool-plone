@@ -123,7 +123,7 @@ def copyDocTypes(self):
     _copyPaste(config, self)
     self.config.setTitle(_("Konfiguration"))
     self.config.reindexObject()
-    self.config.dtypes.setTitle(_("Dokumenttypen"))
+    self.config.dtypes.setTitle(_("Eintragsarten"))
     self.config.dtypes.reindexObject()
 
 

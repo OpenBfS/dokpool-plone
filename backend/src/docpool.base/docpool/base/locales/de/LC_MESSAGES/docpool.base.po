@@ -78,11 +78,11 @@ msgstr ""
 
 #: docpool.base/docpool/base/profiles/default/types/DPDocument.xml
 msgid "DPDocument"
-msgstr "Dokument"
+msgstr "Eintrag"
 
 #: docpool.base/docpool/base/profiles/default/types/DashboardCollection.xml
 msgid "Dashboard Collection"
-msgstr "Pinnwand Dokumentsammlung"
+msgstr "Pinnwand Eintragsammlung"
 
 #: docpool.base/docpool/base/profiles/default/types/DashboardsConfig.xml
 msgid "Dashboards Configuration"
@@ -99,7 +99,7 @@ msgstr "Einfügen nicht erlaubt."
 
 #: docpool.base/docpool/base/behaviors/transferable.py
 msgid "Doc type not accepted."
-msgstr "Dokumententyp wurde nicht akzeptiert."
+msgstr "Eintragstyp wurde nicht akzeptiert."
 
 #: docpool.base/docpool/base/profiles/default/types/DPConfig.xml
 msgid "Docpool Configuration Area"
@@ -120,19 +120,19 @@ msgstr "Docpool Ansicht mit Mehrfach-Aktionen"
 #: docpool.base/docpool/base/content/dashboard.py
 #: docpool.base/docpool/base/content/dashboardcollection.py
 msgid "Document Types"
-msgstr "Dokumenttypen"
+msgstr "Eintragsarten"
 
 #: docpool.base/docpool/base/browser/collectiondoc.pt
 msgid "Document state"
-msgstr "Dokumentenstatus"
+msgstr "Eintragsstatus"
 
 #: docpool.base/docpool/base/browser/collectiondoc.pt
 msgid "Document workflow:"
-msgstr "Dokument Workflow:"
+msgstr "Eintrag Workflow:"
 
 #: docpool.base/docpool/base/profiles/default/types/DocType.xml
 msgid "DocumentType"
-msgstr "Dokumenttyp"
+msgstr "Eintragsart"
 
 #: docpool.base/docpool/base/profiles/default/types/CollaborationFolder.xml
 #: docpool.base/docpool/base/profiles/default/types/ContentArea.xml
@@ -146,11 +146,11 @@ msgstr "Pinnwand bearbeiten"
 
 #: docpool.base/docpool/base/browser/collectiondoc.pt
 msgid "Edit the document"
-msgstr "Das Dokument bearbeiten"
+msgstr "Eintrag bearbeiten"
 
 #: docpool.base/docpool/base/browser/dp_macros.pt
 msgid "Edit unknown doc type"
-msgstr "Unbekannten Dokumenttyp bearbeiten"
+msgstr "Unbekannten Eintragsart bearbeiten"
 
 #: docpool.base/docpool/base/profiles/default/types/DocumentPool.xml
 msgid "Electronic Situation Display"
@@ -182,11 +182,11 @@ msgstr "Basisordner"
 
 #: docpool.base/docpool/base/profiles/default/types/DocTypes.xml
 msgid "Folder for Document Types"
-msgstr "Ordner für Dokumenttypen"
+msgstr "Ordner für Eintragsarten"
 
 #: docpool.base/docpool/base/profiles/default/types/InfoDocument.xml
 msgid "General information"
-msgstr "Info-Dokument"
+msgstr "Info-Eintrag"
 
 #: docpool.base/docpool/base/profiles/default/types/InfoDocument.xml
 msgid "General information (generic type)"
@@ -251,7 +251,7 @@ msgstr "Unterstützung für Anwendungen"
 
 #: docpool.base/docpool/base/behaviors/configure.zcml
 msgid "Makes documents transferable between pools"
-msgstr "Macht Dokumente übertragbar zwischen Dokpools"
+msgstr "Macht Einträge übertragbar zwischen Dokpools"
 
 #: docpool.base/docpool/base/browser/collectionlistitem.pt
 #: docpool.base/docpool/base/browser/dp_macros.pt
@@ -437,11 +437,11 @@ msgstr "Textseite"
 
 #: docpool.base/docpool/base/content/simplefolder.py
 msgid "The document has been published."
-msgstr "Das Dokument wurde veröffentlicht."
+msgstr "Der Eintrag wurde veröffentlicht."
 
 #: docpool.base/docpool/base/browser/helpers.py
 msgid "The document state has been changed."
-msgstr "Der Dokumentstatus wurde geändert."
+msgstr "Der Eintragsstatus wurde geändert."
 
 #: docpool.base/docpool/base/browser/dpdocument_transfer_form.pt
 msgid "The following items will be transferred:"
@@ -449,7 +449,7 @@ msgstr "Folgende Inhalte werden übertragen:"
 
 #: docpool.base/docpool/base/users/monkey.py
 msgid "The group folder could not be deleted because of protected documents. Please check!"
-msgstr "Der Gruppenordner konnte wegen geschützter Dokumente nicht gelöscht werden. Bitte prüfen!"
+msgstr "Der Gruppenordner konnte wegen geschützter Einträge nicht gelöscht werden. Bitte prüfen!"
 
 #: docpool.base/docpool/base/browser/folderbase.py
 msgid "The item you are trying to paste could not be found. It may have been moved or deleted after you copied or cut it. "
@@ -477,7 +477,7 @@ msgstr "Übertragen"
 
 #: docpool.base/docpool/base/behaviors/configure.zcml
 msgid "Transfer DocType"
-msgstr "Dokumenttyp übertragen"
+msgstr "Eintragsart übertragen"
 
 #: docpool.base/docpool/base/profiles/default/types/DPTransferFolder.xml
 msgid "Transfer Folder"
@@ -543,63 +543,63 @@ msgstr "Anzeigen"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "alert_delete_popup"
-msgstr "Wollen Sie dieses Dokument wirklich löschen?"
+msgstr "Wollen Sie diesen Eintrag wirklich löschen?"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "alert_publish_popup"
-msgstr "Wollen Sie dieses Dokument wirklich veröffentlichen?"
+msgstr "Wollen Sie diesen Eintrag wirklich veröffentlichen?"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "alert_reject_popup"
-msgstr "Wollen Sie dieses Dokument wirklich zurückweisen?"
+msgstr "Wollen Sie diesen Eintrag wirklich zurückweisen?"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "alert_reject_to_authority_popup"
-msgstr "Wollen Sie dieses Dokument wirklich an die Aufsichtsbehörde zurückweisen?"
+msgstr "Wollen Sie diesen Eintrag wirklich an die Aufsichtsbehörde zurückweisen?"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "alert_reject_to_bfs_popup"
-msgstr "Wollen Sie dieses Dokument wirklich ans BfS zurückweisen?"
+msgstr "Wollen Sie diesen Eintrag wirklich ans BfS zurückweisen?"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "alert_reject_to_npp_operator_popup"
-msgstr "Wollen Sie dieses Dokument wirklich an den Anlagenbetreiber zurückweisen?"
+msgstr "Wollen Sie diesen Eintrag wirklich an den Anlagenbetreiber zurückweisen?"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "alert_retract_for_revision_popup"
-msgstr "Wollen Sie dieses Dokument wirklich in ersetzte Berichte verschieben?"
+msgstr "Wollen Sie diesen Eintrag wirklich in ersetzte Berichte verschieben?"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "alert_retract_popup"
-msgstr "Wollen Sie dieses Dokument wirklich zurückziehen?"
+msgstr "Wollen Sie diesen Eintrag wirklich zurückziehen?"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "alert_retract_to_authority_popup"
-msgstr "Wollen Sie dieses Dokument wirklich zur Aufsichtsbehörde zurückziehen?"
+msgstr "Wollen Sie diesen Eintrag wirklich zur Aufsichtsbehörde zurückziehen?"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "alert_retract_to_bfs_popup"
-msgstr "Wollen Sie dieses Dokument wirklich zum BfS zurückziehen?"
+msgstr "Wollen Sie diesen Eintrag wirklich zum BfS zurückziehen?"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "alert_retract_to_npp_operator_popup"
-msgstr "Wollen Sie dieses Dokument wirklich zum Anlagenbetreiber zurückziehen?"
+msgstr "Wollen Sie diesen Eintrag wirklich zum Anlagenbetreiber zurückziehen?"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "alert_submit_authority_popup"
-msgstr "Wollen Sie dieses Dokument wirklich an die Aufsichtsbehörde einreichen?"
+msgstr "Wollen Sie diesen Eintrag wirklich an die Aufsichtsbehörde einreichen?"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "alert_submit_bfs_popup"
-msgstr "Wollen Sie dieses Dokument wirklich ans BfS einreichen?"
+msgstr "Wollen Sie diesen Eintrag wirklich ans BfS einreichen?"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "alert_submit_bmu_popup"
-msgstr "Wollen Sie dieses Dokument wirklich ans BMUKN einreichen?"
+msgstr "Wollen Sie diesen Eintrag wirklich ans BMUKN einreichen?"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "alert_submit_popup"
-msgstr "Wollen Sie dieses Dokument wirklich einreichen?"
+msgstr "Wollen Sie diesen Eintrag wirklich einreichen?"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "alert_transition"
@@ -617,12 +617,12 @@ msgstr "erzeugt:"
 #. Default: "Document types that shall be transferred from now on, or whose transferral shall be ended."
 #: docpool.base/docpool/base/browser/transfer_config.py
 msgid "desc_transfer_config_document_types"
-msgstr "Dokumenttypen, die ab sofort übertragen werden sollen oder deren Übertragung eingestellt werden soll."
+msgstr "Eintragsarten, die ab sofort übertragen werden sollen oder deren Übertragung eingestellt werden soll."
 
 #. Default: "Automatic transfer targets to add or remove for the document types selected above."
 #: docpool.base/docpool/base/browser/transfer_config.py
 msgid "desc_transfer_config_transfer_targets"
-msgstr "Automatische Transfers, die für die oben ausgewählten Dokumenttypen eingerichtet oder abgeschaltet werden sollen."
+msgstr "Automatische Transfers, die für die oben ausgewählten Eintragsarten eingerichtet oder abgeschaltet werden sollen."
 
 #: docpool.base/docpool/base/content/collaborationfolder.py
 msgid "description_collaborationfolder_allowedpartnerdoctypes"
@@ -647,7 +647,7 @@ msgstr ""
 #. Default: "Select the document types you want to show in this dashboard."
 #: docpool.base/docpool/base/content/dashboard.py
 msgid "description_dashboard_dbcollections"
-msgstr "Wählen Sie die Dokumentsammlungen, welche Sie auf dieser Pinnwand zeigen wollen."
+msgstr "Wählen Sie die Eintragsammlungen, welche Sie auf dieser Pinnwand zeigen wollen."
 
 #: docpool.base/docpool/base/content/doctype.py
 msgid "description_doctype_alloweddoctypes"
@@ -740,7 +740,7 @@ msgstr ""
 #. Default: "Select applications supported for this content, changes will be applied after saving"
 #: docpool.base/docpool/base/localbehavior/localbehavior.py
 msgid "description_local_behaviors"
-msgstr "Unterstützte Anwendungen für diesen Inhalt auswählen. Änderungen werden nach dem Speichern angewendet."
+msgstr "Unterstützte Anwendungen für diesen Eintrag auswählen. Änderungen werden nach dem Speichern angewendet."
 
 #. Default: "There are currently no items in this folder."
 #: docpool.base/docpool/base/browser/dp_macros.pt
@@ -836,7 +836,7 @@ msgstr "Abbrechen"
 #. Default: "Document types allowed for the guest group(s)"
 #: docpool.base/docpool/base/content/collaborationfolder.py
 msgid "label_collaborationfolder_allowedpartnerdoctypes"
-msgstr "Dokumenttypen, welche der Gast-Gruppe zur Verfügung stehen."
+msgstr "Eintragsarten, welche der Gast-Gruppe zur Verfügung stehen."
 
 #. Default: "Created by"
 #: docpool.base/docpool/base/content/contentbase.py
@@ -866,7 +866,7 @@ msgstr "Pinnwand"
 #. Default: "Document Types"
 #: docpool.base/docpool/base/content/dashboard.py
 msgid "label_dashboard_dbcollections"
-msgstr "Pinnwand Dokumentsammlungen"
+msgstr "Pinnwand Eintragsammlungen"
 
 #. Default: "Allow commenting on this type"
 #: docpool.base/docpool/base/content/doctype.py
@@ -876,22 +876,22 @@ msgstr "Kommentare auf Inhalten dieses Typs erlauben"
 #. Default: "Types are allowed as part of this type"
 #: docpool.base/docpool/base/content/doctype.py
 msgid "label_doctype_alloweddoctypes"
-msgstr "Dokumenttypen, die als Teil dieses Typs zulässig sind."
+msgstr "Eintragsarten, die als Teil dieses Typs zulässig sind."
 
 #. Default: "Can documents of this type be sent to other ESDs?"
 #: docpool.base/docpool/base/behaviors/transferstype.py
 msgid "label_doctype_allowtransfer"
-msgstr "Können Dokumente dieses Typs an andere Lagedarstellungen übermittelt werden?"
+msgstr "Können Einträge dieses Typs an andere Lagedarstellungen übermittelt werden?"
 
 #. Default: "Can contain documents and images"
 #: docpool.base/docpool/base/content/doctype.py
 msgid "label_doctype_allowuploads"
-msgstr "Darf Dokumente und Bilder beinhalten"
+msgstr "Darf Dateien und Bilder beinhalten"
 
 #. Default: "Where are documents of this type transferred automatically?"
 #: docpool.base/docpool/base/behaviors/transferstype.py
 msgid "label_doctype_automatictransfertargets"
-msgstr "Wohin werden Dokumente dieses Typs automatisch übermittelt?"
+msgstr "Wohin werden Einträge dieses Typs automatisch übermittelt?"
 
 #. Default: "Custom View Template"
 #: docpool.base/docpool/base/content/doctype.py
@@ -921,7 +921,7 @@ msgstr "Namensmuster (RegEx) für ein repräsentatives PDF"
 #. Default: "Publish immediately?"
 #: docpool.base/docpool/base/content/doctype.py
 msgid "label_doctype_publishimmediately"
-msgstr "Dokumente dieses Typs sofort veröffentlichen?"
+msgstr "Einträge dieses Typs sofort veröffentlichen?"
 
 #. Default: "Custom Logo"
 #: docpool.base/docpool/base/content/documentpool.py
@@ -941,7 +941,7 @@ msgstr "Verfügbare Anwendungen"
 #. Default: "Document Type"
 #: docpool.base/docpool/base/content/dpdocument.py
 msgid "label_dpdocument_doctype"
-msgstr "Dokumenttyp"
+msgstr "Eintragsart"
 
 #. Default: "Text"
 #: docpool.base/docpool/base/content/dpdocument.py
@@ -976,7 +976,7 @@ msgstr "Die sendende Organisation"
 #. Default: "Default for unknown document types"
 #: docpool.base/docpool/base/content/dptransferfolder.py
 msgid "label_dptransferfolder_unknowndtdefault"
-msgstr "Default für unbekannte Dokumenttypen"
+msgstr "Default für unbekannte Eintragsarten"
 
 #. Default: "Document Types"
 #: docpool.base/docpool/base/content/dashboardcollection.py
@@ -986,7 +986,7 @@ msgstr ""
 #. Default: "Document types allowed in this folder"
 #: docpool.base/docpool/base/content/simplefolder.py
 msgid "label_simplefolder_alloweddoctypes"
-msgstr "Dokumenttypen, welche in diesem Ordner zulässig sind"
+msgstr "Eintragsarten, welche in diesem Ordner zulässig sind"
 
 #. Default: "Text"
 #: docpool.base/docpool/base/content/text.py
@@ -1006,12 +1006,12 @@ msgstr "einrichten"
 #. Default: "Automatic transfer for selected document types:"
 #: docpool.base/docpool/base/browser/transfer_config.py
 msgid "label_transfer_config_add_or_remove"
-msgstr "Automatischen Transfer für die gewählten Dokumenttypen:"
+msgstr "Automatischen Transfer für die gewählten Eintragsarten:"
 
 #. Default: "Document types"
 #: docpool.base/docpool/base/browser/transfer_config.py
 msgid "label_transfer_config_document_types"
-msgstr "Dokumenttypen"
+msgstr "Eintragsarten"
 
 #. Default: "remove"
 #: docpool.base/docpool/base/browser/transfer_config.py
@@ -1047,19 +1047,19 @@ msgstr "Anhang öffnen"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "pending - Show document"
-msgstr "eingereicht - Klicken, um das Dokument anzuzeigen"
+msgstr "eingereicht - Klicken, um den Eintrag anzuzeigen"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "pending_authority - Show document"
-msgstr "An die Aufsichtsbehörde eingereicht - Klicken, um das Dokument anzuzeigen"
+msgstr "An die Aufsichtsbehörde eingereicht - Klicken, um den Eintrag anzuzeigen"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "pending_bfs - Show document"
-msgstr "An BfS eingereicht - Klicken, um das Dokument anzuzeigen"
+msgstr "An BfS eingereicht - Klicken, um den Eintrag anzuzeigen"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "pending_bmu - Show document"
-msgstr "An BMUKN eingereicht - Klicken, um das Dokument anzuzeigen"
+msgstr "An BMUKN eingereicht - Klicken, um den Eintrag anzuzeigen"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "private"
@@ -1067,7 +1067,7 @@ msgstr ""
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "private - Show document"
-msgstr "privat/Gruppenintern - Klicken, um das Dokument anzuzeigen"
+msgstr "privat/Gruppenintern - Klicken, um den Eintrag anzuzeigen"
 
 #: docpool.base/docpool/base/vocabularies.py
 msgid "publish immediately"
@@ -1079,7 +1079,7 @@ msgstr ""
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "published - Show document"
-msgstr "veröffentlicht - Klicken, um das Dokument anzuzeigen"
+msgstr "veröffentlicht - Klicken, um den Eintrag anzuzeigen"
 
 #: docpool.base/docpool/base/vocabularies.py
 msgid "read/write"
@@ -1087,12 +1087,12 @@ msgstr "lesen/schreiben"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "revised - Show document"
-msgstr "revidiert - Klicken, um das Dokument anzuzeigen"
+msgstr "revidiert - Klicken, um den Eintrag anzuzeigen"
 
 #. Default: "Configured ${targets} target(s) for ${types} type(s)."
 #: docpool.base/docpool/base/browser/transfer_config.py
 msgid "status_transfer_config_success"
-msgstr "Es wurden ${targets} Transferziel(e) für ${types} Dokumenttyp(en) konfiguriert."
+msgstr "Es wurden ${targets} Transferziel(e) für ${types} Eintragsart(en) konfiguriert."
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "submit_bmu"

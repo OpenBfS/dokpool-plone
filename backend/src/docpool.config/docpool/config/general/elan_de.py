@@ -332,7 +332,7 @@ ESDCOLLECTIONS = [
     },
     {
         TYPE: "ELANDocCollection",
-        TITLE: "Alle Dokumente",
+        TITLE: "Alle Einträge",
         ID: "recent",
         "setExcludeFromNav": True,
         DOCTYPES: [],
@@ -532,7 +532,7 @@ DTYPES = [
     },
     {
         TYPE: "DocType",
-        TITLE: "Messauftrag",
+        TITLE: "Messempfehlung",
         ID: "measurement_order",
         CHILDREN: [],
         "local_behaviors": ["elan"],
@@ -560,7 +560,7 @@ DTYPES = [
     },
     {
         TYPE: "DocType",
-        TITLE: "Rückfrage_Messauftrag",
+        TITLE: "Rückfrage_Messempfehlung",
         ID: "inquiry_measurement_order",
         CHILDREN: [],
         "local_behaviors": ["elan"],
@@ -602,7 +602,7 @@ DTYPES = [
     },
     {
         TYPE: "DocType",
-        TITLE: "Sonstiges Dokument",
+        TITLE: "Sonstiger Eintrag",
         ID: "other_document",
         CHILDREN: [],
         "local_behaviors": ["elan"],

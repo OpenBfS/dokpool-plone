@@ -1,5 +1,5 @@
 {
-  "@id": "/bund/content/Groups/bund_leitstelle/beispieldokument-leitstelle",
+  "@id": "/bund/content/Groups/bund_leitstelle/beispieleintrag-leitstelle",
   "@type": "DPDocument",
   "Area": null,
   "DataType": [],
@@ -36,7 +36,7 @@
   "expires": null,
   "exportimport.constrains": {},
   "exportimport.conversation": [],
-  "id": "beispieldokument-leitstelle",
+  "id": "beispieleintrag-leitstelle",
   "is_folderish": true,
   "language": "##DEFAULT##",
   "layout": "view",
@@ -55,7 +55,7 @@
     "data": "A turkish carajillo breve variety irish aroma cultivar acerbic irish doppio filter.",
     "encoding": "utf-8"
   },
-  "title": "Beispieldokument Leitstelle",
+  "title": "Beispieleintrag Leitstelle",
   "transferred": null,
   "transferred_by": null,
   "type_title": "Document",

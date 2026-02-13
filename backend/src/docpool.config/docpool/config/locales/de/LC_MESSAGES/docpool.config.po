@@ -22,7 +22,7 @@ msgstr ""
 
 #: docpool.config/docpool/config/general/base.py
 msgid "Allowed document types"
-msgstr "Erlaubte Dokumenttypen"
+msgstr "Erlaubte Eintragsarten"
 
 #: docpool.config/docpool/config/local/base_en.py
 #: docpool.config/docpool/config/local/base_ro.py
@@ -32,12 +32,12 @@ msgstr "Konfiguration"
 #: docpool.config/docpool/config/local/base_en.py
 #: docpool.config/docpool/config/local/base_ro.py
 msgid "Document Types"
-msgstr "Dokumenttypen"
+msgstr "Eintragsarten"
 
 #: docpool.config/docpool/config/local/base.py
 #: docpool.config/docpool/config/local/base_de.py
-msgid "Dokumenttypen"
-msgstr "Dokumenttypen"
+msgid "Eintragsarten"
+msgstr "Eintragsarten"
 
 #: docpool.config/docpool/config/configure.zcml
 msgid "Installs the docpool.config add-on."
