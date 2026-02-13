@@ -70,3 +70,9 @@ def to_1013_fix_comments(context=None):
         addIntIdSubscriber(obj, None)
     portal_setup = api.portal.get_tool("portal_setup")
     loadMigrationProfile(portal_setup, "profile-docpool.base:to_1013")
+
+
+def to_1013_update_dp_doc_workflow(context=None):
+    log.info("Reload dp_doc_workflow")
+    portal_setup = api.portal.get_tool("portal_setup")
+    loadMigrationProfile(portal_setup, "profile-docpool.base:default", steps=["workflow"])

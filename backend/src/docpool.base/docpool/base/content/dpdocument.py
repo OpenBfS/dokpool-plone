@@ -41,6 +41,7 @@ from zope import schema
 from zope.annotation.interfaces import IAnnotations
 from zope.component import adapter
 from zope.component import getUtilitiesFor
+from zope.component import queryAdapter
 from zope.component import queryMultiAdapter
 from zope.container.interfaces import IContainerModifiedEvent
 from zope.globalrequest import getRequest
@@ -63,6 +64,11 @@ def default_text():
     request = getRequest()
     if request and "reireport" in request.get("form.widgets.docType", []):
         return RichTextValue("REI-Bericht", "text/html", "text/x-html-safe")
+
+
+class IAppSpecificWorkflow(Interface):
+    def is_transition_allowed(transition):
+        pass
 
 
 class IDPDocument(IContentBase):
@@ -544,6 +550,16 @@ class DPDocument(Container, Extendable, ContentBase):
             return False
         doc_type = obj.docTypeObj()
         return doc_type.allow_discussion_on_dpdocument if doc_type else False
+
+    def is_transition_allowed(self, transition):
+        """Allow by default and if at least one app allows it. Deny only if all apps do."""
+        default = True
+        for app in ILocalBehaviorSupport(self).local_behaviors:
+            if app_wf := queryAdapter(self, IAppSpecificWorkflow, name=app):
+                if app_wf.is_transition_allowed(transition):
+                    return True
+                default = False
+        return default
 
 
 @adapter(IDPDocument, IContainerModifiedEvent)

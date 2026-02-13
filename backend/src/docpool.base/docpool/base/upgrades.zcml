@@ -67,6 +67,10 @@
         title="Add intids to all comments"
         handler="docpool.base.upgrades.to_1013_fix_comments"
         />
+    <genericsetup:upgradeStep
+        title="Reload dp_doc_workflow"
+        handler="docpool.base.upgrades.to_1013_update_dp_doc_workflow"
+        />
   </genericsetup:upgradeSteps>
 
 </configure>
