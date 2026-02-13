@@ -107,7 +107,7 @@ ADMINSTRUCTURE = [
             {TYPE: "Text", TITLE: "Hilfe", ID: "help", CHILDREN: []},
             {
                 TYPE: "DashboardsConfig",
-                TITLE: "Eintragsammlungen Pinnwand",
+                TITLE: "Kategorien Pinnwand",
                 ID: "dbconfig",
                 CHILDREN: [],
             },

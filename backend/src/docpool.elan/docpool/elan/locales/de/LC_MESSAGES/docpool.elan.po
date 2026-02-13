@@ -184,7 +184,7 @@ msgstr "Abhängig von der Anzahl der Einträge in diesem Ereignis kann dies bis 
 
 #: docpool.elan/docpool/elan/profiles/default/types/ELANDocCollection.xml
 msgid "ELAN Collection"
-msgstr "Eintragsammlung"
+msgstr "Kategorie"
 
 #: docpool.elan/docpool/elan/profiles/default/types/ELANContentConfig.xml
 msgid "ELAN Content Configuration"

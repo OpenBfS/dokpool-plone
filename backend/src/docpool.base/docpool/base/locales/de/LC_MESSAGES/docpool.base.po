@@ -82,7 +82,7 @@ msgstr "Eintrag"
 
 #: docpool.base/docpool/base/profiles/default/types/DashboardCollection.xml
 msgid "Dashboard Collection"
-msgstr "Pinnwand Eintragsammlung"
+msgstr "Pinnwand Kategorie"
 
 #: docpool.base/docpool/base/profiles/default/types/DashboardsConfig.xml
 msgid "Dashboards Configuration"
@@ -647,7 +647,7 @@ msgstr ""
 #. Default: "Select the document types you want to show in this dashboard."
 #: docpool.base/docpool/base/content/dashboard.py
 msgid "description_dashboard_dbcollections"
-msgstr "Wählen Sie die Eintragsammlungen, welche Sie auf dieser Pinnwand zeigen wollen."
+msgstr "Wählen Sie die Kategorien, welche Sie auf dieser Pinnwand zeigen wollen."
 
 #: docpool.base/docpool/base/content/doctype.py
 msgid "description_doctype_alloweddoctypes"
@@ -866,7 +866,7 @@ msgstr "Pinnwand"
 #. Default: "Document Types"
 #: docpool.base/docpool/base/content/dashboard.py
 msgid "label_dashboard_dbcollections"
-msgstr "Pinnwand Eintragsammlungen"
+msgstr "Pinnwand Kategorien"
 
 #. Default: "Allow commenting on this type"
 #: docpool.base/docpool/base/content/doctype.py
