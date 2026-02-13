@@ -2,6 +2,7 @@ from datetime import datetime
 from docpool.elan.config import ELAN_APP
 from OFS.interfaces import IObjectWillBeRemovedEvent
 from plone import api
+from plone.base.interfaces.siteroot import IPloneSiteRoot
 from plone.dexterity.content import Container
 from plone.restapi.serializer.converters import json_compatible
 from plone.supermodel import model
@@ -40,8 +41,11 @@ def delete_handler(obj, event):
     """
     Log info on deleted archives.
     """
+    if IPloneSiteRoot.providedBy(event.object):
+        return
+
     parent = obj.__parent__
-    data = json.loads(parent.deleted_archives) if parent.deleted_archives else []
+    data = json.loads(parent.deleted_archives) if getattr(parent, "deleted_archives", []) else []
     plone_view = api.content.get_view("plone", obj)
     new = [plone_view.toLocalizedTime(datetime.now(), long_format=1), api.user.get_current().id, obj.title]
     data.append(new)
