@@ -64,7 +64,7 @@
   </div>
 
   <!-- Attachment Column -->
-  <div class="py-2 px-3 position-relative z-2"
+  <div class="py-2 px-3 position-relative z-2 d-none d-xl-block"
        tal:condition="python: data['attachments']"
   >
     <div class="d-flex gap-2">
@@ -128,7 +128,7 @@
   </div>
 
   <!-- Creator Column -->
-  <div class="dp-document-creator py-3 px-2"
+  <div class="dp-document-creator py-3 px-2 d-none d-xl-block"
        style="width: 158px;"
   >
     <div class="d-flex flex-column">

@@ -70,7 +70,8 @@ body {
 
 img.doktype-icon {
   width: 100%;
-  filter: invert(24%) sepia(6%) saturate(3251%) hue-rotate(170deg) brightness(97%) contrast(93%);
+  filter: invert(24%) sepia(6%) saturate(3251%) hue-rotate(170deg)
+    brightness(97%) contrast(93%);
 }
 
 .card-body.review-state {
@@ -181,12 +182,7 @@ img.doktype-icon {
       }
     }
 
-    .dp-document-creator {
-      margin-right: 100px;
-    }
-
     .dp-document-dropdown {
-      position: absolute;
       right: 0;
       z-index: 2;
 
@@ -269,7 +265,7 @@ body.portaltype-dpdocument.template-edit .autotoc-nav {
 
 //DPDocument Details
 .dp-document-header {
-    background-color: #fafafa;
+  background-color: #fafafa;
 
   .list-group-item a:not([href]) {
     cursor: default;
