@@ -981,7 +981,7 @@ msgstr "Default für unbekannte Eintragsarten"
 #. Default: "Document Types"
 #: docpool.base/docpool/base/content/dashboardcollection.py
 msgid "label_elandoccollection_doctypes"
-msgstr ""
+msgstr "Eintragsarten"
 
 #. Default: "Document types allowed in this folder"
 #: docpool.base/docpool/base/content/simplefolder.py
