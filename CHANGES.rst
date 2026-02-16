@@ -1,8 +1,23 @@
 Changelog
 =========
 
-2.5.0 (unreleased)
+2.5.0 (2026-02-16)
 ------------------
+
+Changed:
+
+- Rename Messauftrag to Messempfehlung (#6281) 
+  [pbauer]
+
+- Rename Dokumentensammlung to Kategorie (#5751)
+  [pbauer]
+
+- Rename Dokument to Eintrag (#5744) 
+  [pbauer]
+
+- Update demo content (#6237)
+  [pbauer] 
+
 
 Fixed:
 
@@ -18,8 +33,7 @@ Fixed:
 - Error on assigning doksys behavior to documents (#6289)
   [tlotze]
 
-- Remove code that allowed for transferring a document again after
-  modification (#6341)
+- Remove code that allowed for transferring a document again after modification (#6341)
   [tlotze]
 
 - Grant local permissions on journals on transferring an event (#6399)
@@ -28,13 +42,26 @@ Fixed:
 - Don't keep partial sender logs on transferred documents (#5674)
   [tlotze]
 
-- Allow only published ELAN events anymore. Fix handling of unknown doctypes and doctype permissions on transfer (#5779)
 - Allow only published ELAN events anymore. Fix handling of unknown doctypes and doctype permissions on transfer (#5779, #6204)
   [tlotze]
 
-- Disallow retracting published ELAN documents except for server Managers
-  (#6342)
+- Disallow retracting published ELAN documents except for server Managers (#6342)
   [tlotze]
+
+- Add upgrade-step to set missing intids to all comments to fix deleting archives (#6374)
+  [pbauer]
+
+- When using groups-overview in docpool, link to group- and usermanagement of that docpool (#6243) 
+  [pbauer]
+
+- Check if doctype is allowed before pasting DPDocuments (#5849) 
+  [pbauer] 
+
+- Only show current username in @@change-password (#5763) 
+  [pbauer]
+
+- Set correct pdf and image patterns for demo-content (#6382) 
+  [pbauer]
 
 
 Technical:
@@ -54,6 +81,8 @@ Technical:
 - Replace queryForObjects by api call (#5867)
   [tlotze]
 
+- Add ghostscript dependency - fixes broken pdf preview (#6294)
+  [pbauer]
 
 2.4.0 (2025-12-16)
 ------------------
