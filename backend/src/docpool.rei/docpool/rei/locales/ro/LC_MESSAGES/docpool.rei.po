@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2025-07-21 07:44+0000\n"
+"POT-Creation-Date: 2026-02-11 09:28+0000\n"
 "PO-Revision-Date: 2025-05-19 17:02+0200\n"
 "Last-Translator: Philip Bauer <bauer@starzel.de>\n"
 "Language-Team: BfS <elan@bfs.de>\n"
@@ -17,6 +17,10 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: docpool.rei\n"
 "Language: ro\n"
+
+#: docpool.rei/docpool/rei/browser/columns.py
+msgid " "
+msgstr ""
 
 #: docpool.rei/docpool/rei/local/rei.py
 msgid "Berichte"
@@ -136,10 +140,6 @@ msgstr ""
 
 #: docpool.rei/docpool/rei/browser/columns.py
 msgid "header_Title_Medium"
-msgstr ""
-
-#: docpool.rei/docpool/rei/browser/columns.py
-msgid "header_Title_Metadata"
 msgstr ""
 
 #: docpool.rei/docpool/rei/browser/columns.py

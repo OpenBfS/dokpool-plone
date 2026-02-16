@@ -1,5 +1,5 @@
 {
-  "@id": "/bund/content/Groups/bund_leitstelle/beispieldokument-leitstelle",
+  "@id": "/bund/content/Groups/bund_leitstelle/beispieleintrag-leitstelle",
   "@type": "DPDocument",
   "Area": null,
   "DataType": [],
@@ -33,11 +33,10 @@
   "description": "",
   "docType": "doksysdok",
   "effective": null,
-  "exclude_from_nav": false,
   "expires": null,
   "exportimport.constrains": {},
   "exportimport.conversation": [],
-  "id": "beispieldokument-leitstelle",
+  "id": "beispieleintrag-leitstelle",
   "is_folderish": true,
   "language": "##DEFAULT##",
   "layout": "view",
@@ -56,13 +55,12 @@
     "data": "A turkish carajillo breve variety irish aroma cultivar acerbic irish doppio filter.",
     "encoding": "utf-8"
   },
-  "title": "Beispieldokument Leitstelle",
-  "transferLog": null,
+  "title": "Beispieleintrag Leitstelle",
   "transferred": null,
   "transferred_by": null,
   "type_title": "Document",
   "version": "current",
-  "wdate": "2025-11-19T13:27:26",
+  "wdate": "2025-11-19T13:27:26+00:00",
   "workflow_history": {
     "dp_doc_workflow": [
       {

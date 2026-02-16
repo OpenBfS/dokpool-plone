@@ -1,5 +1,6 @@
 from AccessControl import ClassSecurityInfo
 from Acquisition import aq_inner
+from datetime import datetime
 from docpool.base.browser.flexible_view import FlexibleView
 from docpool.base.content.doctype import IDocType
 from docpool.base.interfaces import IDocumentExtension
@@ -15,8 +16,10 @@ from plone.autoform.directives import read_permission
 from plone.autoform.directives import write_permission
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.base.utils import safe_text
+from Products.DCWorkflow.interfaces import IAfterTransitionEvent
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from zope import schema
+from zope.component import adapter
 from zope.interface import provider
 from zope.schema.interfaces import IContextAwareDefaultFactory
 
@@ -121,13 +124,6 @@ class ELANDocument(FlexibleView):
     def scenarios_to_keep(self, value):
         pass
 
-    def isClean(self):
-        """
-        Is this document free for further action like publishing or transfer.
-        @return:
-        """
-        return self.unknownScenario() is None
-
     def myScenarioObjects(self):
         """Return DPEvent objects associated with this document."""
         # We can not use the catalog (and therefore, plone.api.content.get()) here since
@@ -157,18 +153,6 @@ class ELANDocument(FlexibleView):
         scns = api.content.find(UID=self.scenarios)
         titles = list({brain.Title for brain in scns})
         return titles
-
-    def unknownScenario(self):
-        """
-        If my scenario is in state private, return it.
-        """
-        scns = self.myScenarioObjects()
-        if scns:
-            scn = scns[0]
-            sstate = api.content.get_state(scn)
-            if sstate == "private":
-                return scn
-        return None
 
     def cat_convert(self):
         """ """
@@ -214,3 +198,14 @@ class ELANDocument(FlexibleView):
                 return dto.title, []
         else:
             return ("", [])
+
+
+@adapter(IAfterTransitionEvent)
+def set_transition_mdate(event):
+    if event.transition and event.transition.id != "publish":
+        return
+    try:
+        IELANDocument(event.object)
+    except TypeError:
+        return
+    event.object.mdate = datetime.now()

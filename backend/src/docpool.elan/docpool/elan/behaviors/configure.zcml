@@ -30,4 +30,6 @@
       for="docpool.base.interfaces.IDocType"
       />
 
+  <subscriber handler=".elandocument.set_transition_mdate" />
+
 </configure>

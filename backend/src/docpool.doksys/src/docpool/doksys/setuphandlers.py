@@ -73,8 +73,8 @@ def create_today_collection(plonesite):
     if "today" in container:
         return
 
-    title = "Dokumente von Heute"
-    description = "Dokumente seit heute 0:00 Uhr"
+    title = "Einträge von Heute"
+    description = "Einträge seit heute 0:00 Uhr"
     _createObjectByType("Collection", container, id="today", title=title, description=description)
     new = container["today"]
     ILocalBehaviorSupport(new).local_behaviors = [DOKSYS_APP]
@@ -104,7 +104,7 @@ def create_today_collection(plonesite):
     ]
     new.text = RichTextValue("", "text/html", "text/x-html-safe")
     new.setLayout("docpool_collection_view")
-    log.info('Collection "Dokumente von Heute" angelegt')
+    log.info('Collection "Einträge von Heute" angelegt')
     return new
 
 
@@ -113,8 +113,8 @@ def create_since_yesterday_collection(plonesite):
     if "yesterday" in container:
         return
 
-    title = "Dokumente seit Gestern"
-    description = "Dokumente der letzten 24 Stunden"
+    title = "Einträge seit Gestern"
+    description = "Einträge der letzten 24 Stunden"
     _createObjectByType("Collection", container, id="yesterday", title=title, description=description)
     new = container["yesterday"]
     ILocalBehaviorSupport(new).local_behaviors = [DOKSYS_APP]
@@ -144,7 +144,7 @@ def create_since_yesterday_collection(plonesite):
     ]
     new.text = RichTextValue("", "text/html", "text/x-html-safe")
     new.setLayout("docpool_collection_view")
-    log.info('Collection "Dokumente seit Gestern" angelegt')
+    log.info('Collection "Einträge seit Gestern" angelegt')
     return new
 
 

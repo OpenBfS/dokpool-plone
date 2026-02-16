@@ -12,7 +12,6 @@
   "description": "",
   "docType": "weatherinformation",
   "effective": "2025-09-23T13:04:00+00:00",
-  "exclude_from_nav": false,
   "expires": null,
   "exportimport.constrains": {},
   "exportimport.conversation": [],
@@ -38,7 +37,6 @@
     "encoding": "utf-8"
   },
   "title": "Kommentar zur Wetterlage",
-  "transferLog": "[]",
   "transferred": null,
   "transferred_by": null,
   "type_title": "Document",

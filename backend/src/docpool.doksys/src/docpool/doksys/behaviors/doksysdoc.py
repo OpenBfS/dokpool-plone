@@ -21,6 +21,12 @@ class IDoksysDoc(IDocumentExtension):
     # dexteritytextindexer.searchable('NetworkOperator')  if a field is
     # supposed to be fulltext searchable
 
+    # TODO re #6289: These fields may get added to a form by selecting the
+    # doksys behavior. Due to the timing, the form infrastructure needs to be
+    # able to handle None values rather than iterables even for the sequence
+    # fields. Thus, we cannot specify a missing value of []. Needs a more
+    # elegant solution.
+
     OperationMode = schema.Choice(
         title=_("label_doksys_operation_mode", default="Operation Mode"),
         description=_("description_doksys_operation_mode", default=""),
@@ -48,7 +54,7 @@ class IDoksysDoc(IDocumentExtension):
             source="docpool.doksys.NetworkOperators",
         ),
         required=False,
-        missing_value=[],
+        # missing_value=[],
     )
     read_permission(NetworkOperator="docpool.doksys.AccessDoksys")
     write_permission(NetworkOperator="docpool.doksys.AccessDoksys")
@@ -61,7 +67,7 @@ class IDoksysDoc(IDocumentExtension):
             source="docpool.doksys.LegalBase",
         ),
         required=False,
-        missing_value=[],
+        # missing_value=[],
     )
     read_permission(LegalBase="docpool.doksys.AccessDoksys")
     write_permission(LegalBase="docpool.doksys.AccessDoksys")
@@ -83,7 +89,7 @@ class IDoksysDoc(IDocumentExtension):
             source="docpool.doksys.DataType",
         ),
         required=False,
-        missing_value=[],
+        # missing_value=[],
     )
     read_permission(DataType="docpool.doksys.AccessDoksys")
     write_permission(DataType="docpool.doksys.AccessDoksys")
@@ -96,7 +102,7 @@ class IDoksysDoc(IDocumentExtension):
             source="docpool.doksys.SampleType",
         ),
         required=False,
-        missing_value=[],
+        # missing_value=[],
     )
     read_permission(SampleType="docpool.doksys.AccessDoksys")
     write_permission(SampleType="docpool.doksys.AccessDoksys")
@@ -109,7 +115,7 @@ class IDoksysDoc(IDocumentExtension):
             source="docpool.doksys.Dom",
         ),
         required=False,
-        missing_value=[],
+        # missing_value=[],
     )
     read_permission(Dom="docpool.doksys.AccessDoksysDOM")
     write_permission(Dom="docpool.doksys.AccessDoksysDOM")
@@ -131,7 +137,7 @@ class IDoksysDoc(IDocumentExtension):
             source="docpool.doksys.MeasurementCategory",
         ),
         required=False,
-        missing_value=[],
+        # missing_value=[],
     )
     read_permission(MeasurementCategory="docpool.doksys.AccessDoksys")
     write_permission(MeasurementCategory="docpool.doksys.AccessDoksys")
@@ -248,12 +254,4 @@ class DoksysDoc(FlexibleView):
 
     def sample_type_display(self):
         voc = getUtility(IVocabularyFactory, "docpool.doksys.SampleType")()
-        return ", ".join(voc.getTerm(i).title for i in self.SampleType)
-
-    def isClean(self):
-        """
-        Is this document free for further action like publishing or transfer?
-        @return:
-        """
-        # TODO: define if necessary. Method MUST be present in Doc behavior.
-        return True
+        return ", ".join(voc.getTerm(i).title for i in self.SampleType or [])

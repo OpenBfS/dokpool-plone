@@ -22,7 +22,7 @@ msgstr "Einem ELAN Ereignis zuweisen"
 
 #: docpool.rodos/docpool/rodos/browser/views.py
 msgid "Assigned to ELAN event"
-msgstr "Das Dokument wurde einem ELAN Ereignis zugewiesen"
+msgstr "Der Eintrag wurde einem ELAN Ereignis zugewiesen"
 
 #: docpool.rodos/docpool/rodos/vocabularies.py
 msgid "DWD Ausbreitungsrechnung ab Quelle"
@@ -87,7 +87,7 @@ msgstr ""
 
 #: docpool.rodos/docpool/rodos/browser/views.py
 msgid "This is already a ELAN document."
-msgstr "Dieses Dokument ist bereits ein ELAN Dokument."
+msgstr "Dieser Eintrag ist bereits ein ELAN Eintrag."
 
 #: docpool.rodos/docpool/rodos/behaviors/configure.zcml
 msgid "Type extension for Rodos types"
@@ -99,7 +99,7 @@ msgstr "Sie müssen ein ELAN Ereignis auswählen."
 
 #: docpool.rodos/docpool/rodos/browser/templates/i18ndummy.pt
 msgid "alert_assign_to_elan"
-msgstr "Wollen Sie dieses Dokument wirklich einem ELAN Ereignis zuweisen?"
+msgstr "Wollen Sie diesen Eintrag wirklich einem ELAN Ereignis zuweisen?"
 
 #: docpool.rodos/docpool/rodos/configure.zcml
 msgid "docpool.rodos"

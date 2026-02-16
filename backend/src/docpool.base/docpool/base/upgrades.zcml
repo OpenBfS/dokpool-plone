@@ -13,6 +13,14 @@
       directory="profiles/to_1011"
       />
 
+  <genericsetup:registerProfile
+      name="to_1013"
+      title="Upgrade profile for docpool.base"
+      description=""
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      directory="profiles/to_1013"
+      />
+
   <genericsetup:upgradeSteps
       profile="docpool.base:default"
       source="1009"
@@ -47,6 +55,21 @@
     <genericsetup:upgradeStep
         title="Reload dp_doc_workflow and remove Owner permissions in published state"
         handler="docpool.base.upgrades.to_1012_update_dp_doc_workflow"
+        />
+  </genericsetup:upgradeSteps>
+
+  <genericsetup:upgradeSteps
+      profile="docpool.base:default"
+      source="1012"
+      destination="1013"
+      >
+    <genericsetup:upgradeStep
+        title="Add intids to all comments"
+        handler="docpool.base.upgrades.to_1013_fix_comments"
+        />
+    <genericsetup:upgradeStep
+        title="Reload dp_doc_workflow"
+        handler="docpool.base.upgrades.to_1013_update_dp_doc_workflow"
         />
   </genericsetup:upgradeSteps>
 

@@ -293,3 +293,10 @@ def patched_usersdelete_reply(self):
         )
 
     return self.reply_no_content()
+
+
+@property
+def member(self):
+    # Dokpool patch: Only show current name in @@change-password. https://redmine-koala.bfs.de/issues/5763
+    mtool = getToolByName(self.context, "portal_membership")
+    return mtool.getAuthenticatedMember()

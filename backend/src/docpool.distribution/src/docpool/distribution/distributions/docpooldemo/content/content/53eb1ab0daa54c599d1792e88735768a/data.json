@@ -31,16 +31,8 @@
     "doksys"
   ],
   "lock": {
-    "created": "2025-11-19T12:30:11+00:00",
-    "creator": "admin",
-    "creator_name": "admin",
-    "creator_url": "http://nohost/Plone/author/admin",
-    "locked": true,
-    "name": "plone.locking.stealable",
-    "stealable": true,
-    "time": 1763555411.541354,
-    "timeout": 600,
-    "token": "0.5453052273973282-0.8583797885042701-00105A989226:1763555411.541"
+    "locked": false,
+    "stealable": true
   },
   "modified": "2025-09-10T12:30:29+00:00",
   "query": [

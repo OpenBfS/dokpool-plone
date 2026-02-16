@@ -38,7 +38,7 @@ msgstr ""
 
 #: docpool.config/docpool/config/local/base.py
 #: docpool.config/docpool/config/local/base_de.py
-msgid "Dokumenttypen"
+msgid "Eintragsarten"
 msgstr ""
 
 #: docpool.config/docpool/config/configure.zcml

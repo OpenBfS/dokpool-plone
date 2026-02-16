@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2025-12-04 08:52+0000\n"
+"POT-Creation-Date: 2026-02-13 11:14+0000\n"
 "PO-Revision-Date: 2025-09-25 14:43+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -170,17 +170,21 @@ msgstr "Daten"
 msgid "Delete Ticker"
 msgstr "Ticker löschen"
 
+#: docpool.elan/docpool/elan/browser/elanarchives.pt
+msgid "Deleted"
+msgstr "Gelöscht"
+
+#: docpool.elan/docpool/elan/browser/elanarchives.pt
+msgid "Deleted Archives"
+msgstr "Gelösche Archive"
+
 #: docpool.elan/docpool/elan/browser/archive_event_form.pt
 msgid "Depending on the number of entries in this event this can take an hour or longer."
 msgstr "Abhängig von der Anzahl der Einträge in diesem Ereignis kann dies bis zu einer Stunde oder länger dauern."
 
-#: docpool.elan/docpool/elan/content/transfers.py
-msgid "Document has no scenario."
-msgstr "Dem Dokument ist kein Ereignis zugeordnet."
-
 #: docpool.elan/docpool/elan/profiles/default/types/ELANDocCollection.xml
 msgid "ELAN Collection"
-msgstr "Dokumentsammlung"
+msgstr "Kategorie"
 
 #: docpool.elan/docpool/elan/profiles/default/types/ELANContentConfig.xml
 msgid "ELAN Content Configuration"
@@ -218,7 +222,7 @@ msgstr "Ticker bearbeiten"
 
 #: docpool.elan/docpool/elan/browser/elandoccollectiondoc.pt
 msgid "Edit the document"
-msgstr "Das Dokument bearbeiten"
+msgstr "Den Eintrag bearbeiten"
 
 #: docpool.elan/docpool/elan/browser/elan_macros.pt
 msgid "Edit unknown scenario"
@@ -425,21 +429,17 @@ msgid "This event is already being archived by"
 msgstr "Für dieses Ereignis läuft bereits die Erstellung eines Snapshots oder eine Archivierung durch"
 
 #: docpool.elan/docpool/elan/browser/dpevents.pt
-#: docpool.elan/docpool/elan/browser/elanarchives.pt
 msgid "Title/Description"
 msgstr "Titel/Beschreibung"
 
 #: docpool.elan/docpool/elan/browser/dpevent.pt
+#: docpool.elan/docpool/elan/browser/elanarchives.pt
 msgid "Type of event"
 msgstr "Art des Ereignisses"
 
 #: docpool.elan/docpool/elan/configure.zcml
 msgid "Uninstalls the docpool.elan add-on."
 msgstr ""
-
-#: docpool.elan/docpool/elan/content/transfers.py
-msgid "Unknown scenario not accepted."
-msgstr "Unbekanntes Ereignis wurde nicht akzeptiert."
 
 #: docpool.elan/docpool/elan/upgrades.zcml
 msgid "Upgrade profile for docpool.elan"
@@ -465,19 +465,19 @@ msgstr "Wollen Sie dieses Objekt wirklich löschen?"
 
 #: docpool.elan/docpool/elan/browser/i18ndummy.pt
 msgid "alert_publish_popup"
-msgstr "Wollen Sie das Dokument veröffentlichen?"
+msgstr "Wollen Sie den Eintrag veröffentlichen?"
 
 #: docpool.elan/docpool/elan/browser/i18ndummy.pt
 msgid "alert_reject_popup"
-msgstr "Wollen Sie dieses Dokument wirklich zurückweisen?"
+msgstr "Wollen Sie diesen Eintrag wirklich zurückweisen?"
 
 #: docpool.elan/docpool/elan/browser/i18ndummy.pt
 msgid "alert_retract_popup"
-msgstr "Wollen Sie dieses Dokument wirklich zurückziehen?"
+msgstr "Wollen Sie diesen Eintrag wirklich zurückziehen?"
 
 #: docpool.elan/docpool/elan/browser/i18ndummy.pt
 msgid "alert_submit_popup"
-msgstr "Wollen Sie dieses Dokument wirklich einreichen?"
+msgstr "Wollen Sie diesen Eintrag wirklich einreichen?"
 
 #: docpool.elan/docpool/elan/browser/i18ndummy.pt
 msgid "archive_confirm_msg"
@@ -545,7 +545,7 @@ msgstr "Archivieren"
 #. Default: "Choose category for this type "
 #: docpool.elan/docpool/elan/behaviors/elandoctype.py
 msgid "label_doctype_contentcategory"
-msgstr "Kategorie für diesen Typ"
+msgstr "Kategorie für diese Eintragsart"
 
 #. Default: "Belongs to scenarios"
 #: docpool.elan/docpool/elan/behaviors/elandocument.py
@@ -608,7 +608,7 @@ msgstr "Veröffentlicht"
 
 #: docpool.elan/docpool/elan/browser/i18ndummy.pt
 msgid "snapshot_confirm_msg"
-msgstr "Wollen Sie wirklich dieses Ereignis teilarchivieren? Das Ereignis bleibt dabei erhalten, alle Dokumente werden in ein Archiv verschoben."
+msgstr "Wollen Sie wirklich dieses Ereignis teilarchivieren? Das Ereignis bleibt dabei erhalten, alle Einträge werden in ein Archiv verschoben."
 
 #. Default: "Archive event"
 #: docpool.elan/docpool/elan/browser/archive_event_form.pt

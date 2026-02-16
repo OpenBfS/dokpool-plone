@@ -68,4 +68,13 @@
       description="Do not reindex security after deleting local roles with restapi"
       />
 
+  <monkey:patch
+      original="member"
+      replacement=".monkey.member"
+      class="plone.app.users.browser.passwordpanel.PasswordPanel"
+      preservedoc="false"
+      docstringWarning="false"
+      description="Only show current username in label"
+      />
+
 </configure>

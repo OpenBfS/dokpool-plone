@@ -17,7 +17,7 @@ msgstr ""
 "X-Generator: Poedit 1.6.10\n"
 
 msgid "Allowed document types"
-msgstr "Erlaubte Dokumenttypen"
+msgstr "Erlaubte Eintragsarten"
 
 #. Default: "Up to List of Users"
 #: plone.app.users/plone/app/users/browser/account-configlet.pt:17

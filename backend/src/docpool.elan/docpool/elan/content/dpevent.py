@@ -15,9 +15,7 @@ from plone.base.i18nl10n import utranslate
 from plone.base.interfaces.siteroot import IPloneSiteRoot
 from plone.base.utils import safe_text
 from plone.dexterity.content import Container
-from Products.CMFCore.interfaces import IActionSucceededEvent
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.utils import log_exc
 from pygeoif import from_wkt
 from z3c.form.browser.radio import RadioFieldWidget
 from z3c.form.interfaces import IEditForm
@@ -252,15 +250,14 @@ class DPEvent(Container, ContentBase):
                 continue
             journal_id = f"journal{index!s}"
             # Skip if it already exists
-            if self.get(journal_id):
-                continue
-            journal = api.content.create(
-                container=self,
-                type="Journal",
-                title=title,
-                id=journal_id,
-                exclude_from_nav=False,
-            )
+            if not (journal := self.get(journal_id)):
+                journal = api.content.create(
+                    container=self,
+                    type="Journal",
+                    title=title,
+                    id=journal_id,
+                    exclude_from_nav=False,
+                )
             # Grant local role to Journal Editor Groups
             api.group.grant_roles(
                 groupname=f"{prefix}_Journal{index}_Editors",
@@ -369,26 +366,3 @@ def eventRemoved(obj, event=None):
 
     global_scenarios = get_global_scenario_selection()
     global_scenarios[obj.UID()] = "removed"
-
-
-@adapter(IDPEvent, IActionSucceededEvent)
-def eventPublished(obj, event=None):
-    if event.__dict__["action"] == "publish":
-        if IImportingMarker.providedBy(getRequest()):
-            return
-        # Update all objects for this scenario
-        m = obj.content
-        mpath = "/".join(m.getPhysicalPath())
-        args = {"portal_type": "DPDocument", "path": mpath}
-        cat = getToolByName(obj, "portal_catalog")
-        mdocs = cat(args)
-        for doc in mdocs:
-            try:
-                docobj = doc.getObject()
-                scens = docobj.scenarios
-                # print docobj, scens
-                if scens and obj.UID() in scens:
-                    docobj.reindexObject()
-                    # print "changed", docobj
-            except Exception as e:
-                log_exc(e)

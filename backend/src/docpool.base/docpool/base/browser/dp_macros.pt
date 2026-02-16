@@ -662,7 +662,7 @@ quoted_id = quote_plus(econtext["b"].getId());
       <tal:define define="
                     _is nocall:context/@@is;
                   ">
-        <tal:if condition="python: not (isCollection or individual) and not _is.archive() and context.isClean()">
+        <tal:if condition="python: not (isCollection or individual or _is.archive()) and context.is_doctype_public()">
           <tal:loop define="
                       actions context/workflowActions;
                     "
@@ -697,9 +697,9 @@ quoted_id = quote_plus(econtext["b"].getId());
           <a href=""
              title="Edit unknown doc type"
              tal:define="
-               unknown_dt python:context.unknownDocType();
+               unknown_dt python:context.private_doctype();
              "
-             tal:condition="nocall:unknown_dt"
+             tal:condition="python: unknown_dt is not None"
              tal:attributes="
                href unknown_dt/absolute_url;
              "

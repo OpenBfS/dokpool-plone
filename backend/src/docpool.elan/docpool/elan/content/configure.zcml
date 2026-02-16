@@ -22,7 +22,6 @@
   <subscriber handler=".dpevent.eventAdded" />
   <subscriber handler=".dpevent.eventChanged" />
   <subscriber handler=".dpevent.eventRemoved" />
-  <subscriber handler=".dpevent.eventPublished" />
 
   <subscriber handler=".elaninfos.infosAdded" />
   <class class=".elanarchive.ELANArchive">
@@ -38,5 +37,8 @@
   <subscriber handler=".elandoccollection.enableSyndication" />
 
   <adapter factory=".transfers.ELANSpecificTransfer" />
+  <adapter factory=".workflow.ELANSpecificWorkflow" />
+
+  <subscriber handler=".elanarchive.delete_handler" />
 
 </configure>

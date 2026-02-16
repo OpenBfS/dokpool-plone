@@ -1,4 +1,5 @@
 from AccessControl import ClassSecurityInfo
+from Acquisition import aq_get
 from docpool.base import DocpoolMessageFactory as _
 from docpool.base.config import TRANSFERS_APP
 from docpool.base.content.archiving import IArchiving
@@ -9,7 +10,6 @@ from docpool.base.content.folderbase import IFolderBase
 from docpool.base.marker import IImportingMarker
 from docpool.base.utils import execute_under_special_role
 from docpool.base.utils import queryForObject
-from docpool.base.utils import queryForObjects
 from logging import getLogger
 from persistent.mapping import PersistentMapping
 from plone import api
@@ -85,7 +85,10 @@ class DPTransferFolder(FolderBase):
     security = ClassSecurityInfo()
 
     def doctype_permission(self, doctype):
-        return self.doctypePermissions.get(doctype, DEFAULT_DTPERMISSION)
+        config_folder = aq_get(self, "config", None)
+        if doctype not in config_folder["dtypes"]:
+            return self.unknownDtDefault
+        return getattr(self, "doctypePermissions", {}).get(doctype, DEFAULT_DTPERMISSION)
 
     # TODO should be indexed
     def from_to_title(self):
@@ -225,7 +228,7 @@ def transfer_folders_for(obj):
     except AttributeError:
         return []
 
-    brains = queryForObjects(esd, path=esd.dpSearchPath(), object_provides=IDPTransferFolder.__identifier__)
+    brains = api.content.find(path=esd.dpSearchPath(), object_provides=IDPTransferFolder.__identifier__)
     return [brain.getObject() for brain in brains]
 
 
@@ -235,4 +238,4 @@ def doctype_will_be_removed(obj, event=None):
         return
     dt_id = obj.getId()
     for tf in transfer_folders_for(event.oldParent):
-        tf.doctypePermissions.pop(dt_id, None)
+        getattr(tf, "doctypePermissions", {}).pop(dt_id, None)

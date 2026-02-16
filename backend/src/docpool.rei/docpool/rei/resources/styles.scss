@@ -55,6 +55,9 @@
 }
 
 a.rei-eea-search {
+  vertical-align: middle;
+  display: inline-block;
+
   &.metadata {
     div {
       background-image: url("../browser/static/metainfos.png");
@@ -79,6 +82,7 @@ a.rei-eea-search {
       width: 20px;
       text-indent: -99999em;
       float: left;
+      margin-bottom: 10px;
     }
   }
 }

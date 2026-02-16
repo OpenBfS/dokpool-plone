@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2025-07-21 07:44+0000\n"
+"POT-Creation-Date: 2026-02-11 09:28+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,6 +14,10 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 "Language: de\n"
+
+#: docpool.rei/docpool/rei/browser/columns.py
+msgid " "
+msgstr ""
 
 #: docpool.rei/docpool/rei/local/rei.py
 msgid "Berichte"
@@ -33,7 +37,7 @@ msgstr "Bericht enthält Daten folgender Messstellen"
 
 #: docpool.rei/docpool/rei/behaviors/configure.zcml
 msgid "Makes documents support REI functions"
-msgstr "Sorgt bei Dokumenten für REI Funktionen"
+msgstr "Sorgt bei Einträgen für REI Funktionen"
 
 #: docpool.rei/docpool/rei/profiles/default/registry.xml
 msgid "Medium"
@@ -61,7 +65,7 @@ msgstr "Zeitraum"
 
 #: docpool.rei/docpool/rei/behaviors/configure.zcml
 msgid "REI DocType"
-msgstr "REI Dokumenttyp"
+msgstr "REI Eintragsart"
 
 #: docpool.rei/docpool/rei/profiles/default/registry.xml
 msgid "REI legal Bases"
@@ -134,10 +138,6 @@ msgstr "Netzbetreiber/Aufsichtsbehörde"
 #: docpool.rei/docpool/rei/browser/columns.py
 msgid "header_Title_Medium"
 msgstr "Medium"
-
-#: docpool.rei/docpool/rei/browser/columns.py
-msgid "header_Title_Metadata"
-msgstr "Titel, Metadaten"
 
 #: docpool.rei/docpool/rei/browser/columns.py
 msgid "header_Title_NuclearInstallation"

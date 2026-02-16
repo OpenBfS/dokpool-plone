@@ -28,7 +28,6 @@
   "description": "",
   "docType": "reireport",
   "effective": null,
-  "exclude_from_nav": false,
   "expires": null,
   "exportimport.constrains": {},
   "exportimport.conversation": [],
@@ -53,7 +52,6 @@
     "encoding": "utf-8"
   },
   "title": "REI-Immissions- und Emissionsbericht (Fortluft) des Jahres 2025 Endlager Konrad (Strahlenschutzverantwortlicher)",
-  "transferLog": null,
   "transferred": null,
   "transferred_by": null,
   "type_title": "Document",

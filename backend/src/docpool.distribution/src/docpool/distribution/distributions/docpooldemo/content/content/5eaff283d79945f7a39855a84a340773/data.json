@@ -1,5 +1,5 @@
 {
-  "@id": "/brandenburg/content/Transfers/dokumente-aus-berlin/uebung-uebung-uebung-1-radiologisches-lagebild-zur-imis-uebung-2025",
+  "@id": "/brandenburg/content/Transfers/eintrage-aus-berlin/uebung-uebung-uebung-1-radiologisches-lagebild-zur-imis-uebung-2025",
   "@type": "DPDocument",
   "UID": "5eaff283d79945f7a39855a84a340773",
   "allow_discussion": false,
@@ -12,7 +12,6 @@
   "description": "",
   "docType": "situationreport",
   "effective": null,
-  "exclude_from_nav": false,
   "expires": null,
   "exportimport.constrains": {},
   "exportimport.conversation": [],
@@ -48,7 +47,6 @@
     "encoding": "utf-8"
   },
   "title": "+++\u00dcbung+++\u00dcbung+++\u00dcbung 1. Radiologisches Lagebild zur IMIS-\u00dcbung 2025",
-  "transferLog": null,
   "transferred": "2025-09-17T16:09:38+00:00",
   "transferred_by": "admin Landesministerium (Berlin)",
   "type_title": "Document",

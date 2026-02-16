@@ -12,7 +12,6 @@
   "description": "",
   "docType": "situationreport",
   "effective": null,
-  "exclude_from_nav": false,
   "expires": null,
   "exportimport.constrains": {},
   "exportimport.conversation": [],
@@ -40,7 +39,6 @@
     "encoding": "utf-8"
   },
   "title": "Beispiel Lagebild f\u00fcr Freigabe-Workflow",
-  "transferLog": null,
   "transferred": null,
   "transferred_by": null,
   "type_title": "Document",
