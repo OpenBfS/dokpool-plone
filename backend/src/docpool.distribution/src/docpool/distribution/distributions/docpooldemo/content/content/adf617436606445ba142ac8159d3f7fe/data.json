@@ -11,11 +11,9 @@
   "creators": [
     "admin"
   ],
-  "customViewTemplate": null,
   "description": "(RODOS-) Ausbreitungsrechnung \u00fcber die prognostizierte Ankunftszeit radioaktiver Luftmassen, die zu erwartende Kontamination der Umwelt oder die zu erwartende Dosis der Bev\u00f6lkerung unter Ber\u00fccksichtigung der aktuellen und prognostizierten Wetterbedingungen.",
   "exportimport.constrains": {},
   "exportimport.conversation": [],
-  "globalAllow": true,
   "icon_name": "radioactive",
   "id": "forecast_spread_dose_contamination",
   "imgPattern": null,

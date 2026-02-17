@@ -11,11 +11,9 @@
   "creators": [
     "admin"
   ],
-  "customViewTemplate": null,
   "description": "Mitteilung eines Stabes an alle ELAN-Nutzer, die f\u00fcr die Zusammenarbeit von Bedeutung ist. Bsp: Mitteilung \u00fcber die Einsatzbereitschaft des Stabes",
   "exportimport.constrains": {},
   "exportimport.conversation": [],
-  "globalAllow": true,
   "icon_name": "radioactive",
   "id": "staff_note",
   "imgPattern": null,

@@ -11,11 +11,9 @@
   "creators": [
     "admin"
   ],
-  "customViewTemplate": null,
   "description": "Informationen zur Wetterlage am Ereignisort, Wetterprognosen f\u00fcr das Gefahrengebiet",
   "exportimport.constrains": {},
   "exportimport.conversation": [],
-  "globalAllow": true,
   "icon_name": "radioactive",
   "id": "weather_conditions_and_forecast",
   "imgPattern": null,

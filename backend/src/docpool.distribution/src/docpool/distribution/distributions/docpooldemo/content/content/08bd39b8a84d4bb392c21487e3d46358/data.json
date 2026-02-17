@@ -11,11 +11,9 @@
   "creators": [
     "admin"
   ],
-  "customViewTemplate": null,
   "description": "Abgestimmte Kommunikationsempfehlung zur Information der Bev\u00f6lkerung, inklusive eigene Pressemitteilungen",
   "exportimport.constrains": {},
   "exportimport.conversation": [],
-  "globalAllow": true,
   "icon_name": "radioactive",
   "id": "information_for_the_public",
   "imgPattern": null,

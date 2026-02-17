@@ -1,6 +1,6 @@
 {
   "@id": "/config/dtypes/other_entries",
-  "@type": "DocTypeSDocTypeCategoryubCategory",
+  "@type": "DocTypeCategory",
   "UID": "30ea113170a145bd86e63791679fcd6c",
   "allow_discussion": null,
   "created": "2026-02-07T12:23:06+00:00",
@@ -10,7 +10,6 @@
   "description": "",
   "exportimport.constrains": {},
   "exportimport.conversation": [],
-  "icon_name": "bookmark",
   "id": "other_entries",
   "is_folderish": true,
   "language": "##DEFAULT##",

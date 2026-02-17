@@ -11,11 +11,9 @@
   "creators": [
     "admin"
   ],
-  "customViewTemplate": null,
   "description": "Messergebnis Nord- und Ostsee einschlie\u00dflich K\u00fcstengew\u00e4sser",
   "exportimport.constrains": {},
   "exportimport.conversation": [],
-  "globalAllow": true,
   "icon_name": "radioactive",
   "id": "mresult_north_and_baltic_sea",
   "imgPattern": null,

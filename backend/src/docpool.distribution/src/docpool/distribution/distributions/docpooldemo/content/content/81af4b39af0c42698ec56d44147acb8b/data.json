@@ -11,11 +11,9 @@
   "creators": [
     "admin"
   ],
-  "customViewTemplate": null,
   "description": "Messergebnis Luft/Spurenanalyse einschlie\u00dflich Edelgase",
   "exportimport.constrains": {},
   "exportimport.conversation": [],
-  "globalAllow": true,
   "icon_name": "radioactive",
   "id": "mresult_air_traceanalysis",
   "imgPattern": null,

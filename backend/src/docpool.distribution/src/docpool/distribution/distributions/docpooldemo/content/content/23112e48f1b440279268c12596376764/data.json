@@ -11,11 +11,9 @@
   "creators": [
     "admin"
   ],
-  "customViewTemplate": null,
   "description": "Radiologisches Lagebild (RLB) gem\u00e4\u00df ANoPl Bund.",
   "exportimport.constrains": {},
   "exportimport.conversation": [],
-  "globalAllow": true,
   "icon_name": "radioactive",
   "id": "radiological_situation_report_draft",
   "imgPattern": null,

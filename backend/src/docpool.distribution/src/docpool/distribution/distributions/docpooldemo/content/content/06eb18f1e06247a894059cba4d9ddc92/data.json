@@ -11,11 +11,9 @@
   "creators": [
     "admin"
   ],
-  "customViewTemplate": null,
   "description": "R\u00fcckmeldung \u00fcber den Umfang und Erfolg der durchgef\u00fchrten Ma\u00dfnahmen",
   "exportimport.constrains": {},
   "exportimport.conversation": [],
-  "globalAllow": true,
   "icon_name": "radioactive",
   "id": "response_action_taken",
   "imgPattern": null,

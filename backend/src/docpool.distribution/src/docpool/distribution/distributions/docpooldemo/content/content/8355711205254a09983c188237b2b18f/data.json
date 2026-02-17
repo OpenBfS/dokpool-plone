@@ -11,11 +11,9 @@
   "creators": [
     "admin"
   ],
-  "customViewTemplate": null,
   "description": "Darstellung der radiologischen Lage f\u00fcr ein Ereignis, dass nicht als Notfall eingestuft wurde und daher kein Radiologisches Lagebild hat.",
   "exportimport.constrains": {},
   "exportimport.conversation": [],
-  "globalAllow": true,
   "icon_name": "radioactive",
   "id": "situation_overview",
   "imgPattern": null,

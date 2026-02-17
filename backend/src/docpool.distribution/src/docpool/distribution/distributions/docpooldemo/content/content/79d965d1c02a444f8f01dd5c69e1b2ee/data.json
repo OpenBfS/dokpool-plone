@@ -11,11 +11,9 @@
   "creators": [
     "admin"
   ],
-  "customViewTemplate": null,
   "description": "W\u00e4hlen Sie diese Eintragsart, wenn keine der anderen zutreffend erscheint.",
   "exportimport.constrains": {},
   "exportimport.conversation": [],
-  "globalAllow": true,
   "icon_name": "radioactive",
   "id": "other_entry",
   "imgPattern": ".+\\.(png|jpg)$",

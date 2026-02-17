@@ -11,11 +11,9 @@
   "creators": [
     "admin"
   ],
-  "customViewTemplate": null,
   "description": "Messergebnis Arzneimittel und deren Ausgangsstoffe",
   "exportimport.constrains": {},
   "exportimport.conversation": [],
-  "globalAllow": true,
   "icon_name": "radioactive",
   "id": "mresult_pharmaceuticals",
   "imgPattern": null,

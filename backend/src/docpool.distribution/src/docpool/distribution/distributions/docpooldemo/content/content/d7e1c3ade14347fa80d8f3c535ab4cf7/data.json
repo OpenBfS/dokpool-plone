@@ -14,7 +14,7 @@
     "Type",
     "ModificationDate"
   ],
-  "description": "Einträge seit heute 0:00 Uhr",
+  "description": "Eintr\u00e4ge seit heute 0:00 Uhr",
   "effective": null,
   "exclude_from_nav": false,
   "expires": null,
@@ -67,7 +67,7 @@
     "data": "",
     "encoding": "utf-8"
   },
-  "title": "Einträge von Heute",
+  "title": "Eintr\u00e4ge von Heute",
   "type_title": "Collection",
   "version": "current",
   "workflow_history": {

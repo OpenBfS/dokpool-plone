@@ -30,33 +30,6 @@
           },
           "type": "portlets.Classic",
           "visible": true
-        },
-        {
-          "assignment": {
-            "macro": "",
-            "template": "@@footer"
-          },
-          "type": "portlets.Classic",
-          "visible": true
-        },
-        {
-          "assignment": {
-            "category": "site_actions",
-            "default_icon": "action_icon.png",
-            "ptitle": "site_actions",
-            "show_icons": false,
-            "show_title": false
-          },
-          "type": "portlets.Actions",
-          "visible": true
-        },
-        {
-          "assignment": {
-            "macro": "",
-            "template": "colophon"
-          },
-          "type": "portlets.Classic",
-          "visible": true
         }
       ]
     }

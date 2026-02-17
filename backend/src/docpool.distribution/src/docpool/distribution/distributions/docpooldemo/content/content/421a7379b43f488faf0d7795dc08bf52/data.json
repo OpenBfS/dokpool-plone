@@ -11,11 +11,9 @@
   "creators": [
     "admin"
   ],
-  "customViewTemplate": null,
   "description": "Informationen nach \u00a7 152 StrlSchV z.B. Daten, Absch\u00e4tzungen und Bewertungen \u00fcber die Anlage oder Strahlungsquelle, zum radiologischen Inventar und zu Freisetzungen sowie Freisetzungsabsch\u00e4tzungen und \u2011prognosen",
   "exportimport.constrains": {},
   "exportimport.conversation": [],
-  "globalAllow": true,
   "icon_name": "radioactive",
   "id": "additional_event_information",
   "imgPattern": null,

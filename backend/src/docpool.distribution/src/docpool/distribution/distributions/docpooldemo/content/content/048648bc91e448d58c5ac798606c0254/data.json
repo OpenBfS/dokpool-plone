@@ -11,11 +11,9 @@
   "creators": [
     "admin"
   ],
-  "customViewTemplate": null,
   "description": "Messergebnis Bundeswasserstra\u00dfen, au\u00dfer K\u00fcstengew\u00e4sser",
   "exportimport.constrains": {},
   "exportimport.conversation": [],
-  "globalAllow": true,
   "icon_name": "radioactive",
   "id": "mresult_waterways",
   "imgPattern": null,

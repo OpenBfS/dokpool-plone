@@ -11,11 +11,9 @@
   "creators": [
     "admin"
   ],
-  "customViewTemplate": null,
   "description": "Messempfehlung an Einsatzkr\u00e4fte des Bundes und der L\u00e4nder, sowie KHG",
   "exportimport.constrains": {},
   "exportimport.conversation": [],
-  "globalAllow": true,
   "icon_name": "radioactive",
   "id": "measurement_recommendation",
   "imgPattern": null,

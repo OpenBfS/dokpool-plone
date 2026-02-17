@@ -14,7 +14,7 @@
     "Type",
     "ModificationDate"
   ],
-  "description": "Einträge der letzten 24 Stunden",
+  "description": "Eintr\u00e4ge der letzten 24 Stunden",
   "effective": null,
   "exclude_from_nav": false,
   "expires": null,
@@ -67,7 +67,7 @@
     "data": "",
     "encoding": "utf-8"
   },
-  "title": "Einträge seit Gestern",
+  "title": "Eintr\u00e4ge seit Gestern",
   "type_title": "Collection",
   "version": "current",
   "workflow_history": {

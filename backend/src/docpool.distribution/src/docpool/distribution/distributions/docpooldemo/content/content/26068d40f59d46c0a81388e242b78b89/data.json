@@ -11,11 +11,9 @@
   "creators": [
     "admin"
   ],
-  "customViewTemplate": null,
   "description": "Messergebnis Inverkehrbringen von Lebensmitteln, Bedarfsgegenst\u00e4nden, Mitteln zum T\u00e4towieren, kosmetischen Mitteln, Verf\u00fcttern oder Inverkehrbringen von Futtermitteln",
   "exportimport.constrains": {},
   "exportimport.conversation": [],
-  "globalAllow": true,
   "icon_name": "radioactive",
   "id": "mresult_placing_on_market",
   "imgPattern": null,

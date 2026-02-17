@@ -11,11 +11,9 @@
   "creators": [
     "admin"
   ],
-  "customViewTemplate": null,
   "description": "Messstrategie zu einem Radiologischen Lagebild gem\u00e4\u00df ANoPl Bund.",
   "exportimport.constrains": {},
   "exportimport.conversation": [],
-  "globalAllow": true,
   "icon_name": "radioactive",
   "id": "measurement_strategy",
   "imgPattern": null,

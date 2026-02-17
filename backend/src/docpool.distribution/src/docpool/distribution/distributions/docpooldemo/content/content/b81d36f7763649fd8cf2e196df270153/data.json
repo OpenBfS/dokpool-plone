@@ -11,11 +11,9 @@
   "creators": [
     "admin"
   ],
-  "customViewTemplate": null,
   "description": "Messergebnis Fisch und Fischereierzeugnisse, Krustentiere, Schalentiere, Meereswasserpflanzen",
   "exportimport.constrains": {},
   "exportimport.conversation": [],
-  "globalAllow": true,
   "icon_name": "radioactive",
   "id": "mresult_fish",
   "imgPattern": null,

@@ -1566,7 +1566,7 @@
       "groups": [],
       "home_page": "",
       "location": "",
-      "password": "{SSHA}kqe01h/NZZ+MC/bIlkEZ5KpmhEToFjdGaSv0",
+      "password": "{SSHA}aYI3LBpfm1InhwXEAzr1/Bp5Wn+B4pRpAUVk",
       "roles": [
         "ELANUser",
         "Member",
@@ -1583,7 +1583,7 @@
       "groups": [],
       "home_page": "",
       "location": "",
-      "password": "{SSHA}gJSkJyEgNY8ih3YjNsjIFEo/mirJ44My1DGm",
+      "password": "{SSHA}XYQ1AapEmkZd8RJym7/EhShIUXxZcsPAimQ+",
       "roles": [
         "ELANUser",
         "Manager",
@@ -1600,7 +1600,7 @@
       "groups": [],
       "home_page": "",
       "location": "",
-      "password": "{SSHA}jKAqEzj/kuLKcL+6OEcGrrQt8+xOukiGbhu9",
+      "password": "{SSHA}spip7eOwqbIs4LnX862/fGju7fRTPSrRvOKF",
       "roles": [
         "ELANUser",
         "Member",
@@ -1616,7 +1616,7 @@
       "groups": [],
       "home_page": "",
       "location": "",
-      "password": "{SSHA}jdGipIMCrxOgwe70XYvRaA6TPGmXqhVK5QgB",
+      "password": "{SSHA}m01et2t1si5Ycmy4cgvLkxEXHT7RIygW4mhk",
       "roles": [
         "ELANUser",
         "Manager",
@@ -1627,7 +1627,7 @@
     {
       "description": "",
       "dp": "d5aa26f2b11e4c049f1c94955c41e62a",
-      "email": "",
+      "email": "ihotline@bfs.de",
       "fullname": "Content Admin (Mecklenburg-Vorpommern)",
       "groups": [
         "mv_ContentAdministrators",
@@ -1682,7 +1682,7 @@
     {
       "description": "",
       "dp": "d5aa26f2b11e4c049f1c94955c41e62a",
-      "email": "",
+      "email": "ihotline@bfs.de",
       "fullname": "ELAN Administrator (Mecklenburg-Vorpommern)",
       "groups": [
         "mv_Administrators",
@@ -1706,7 +1706,7 @@
       "groups": [],
       "home_page": "",
       "location": "",
-      "password": "{SSHA}SVQARs4I0pECkmgDnK4k6cnz4EFht60TVENW",
+      "password": "{SSHA}f4StSLrMGzpSMnH1XKSTPuUuTbXU2nc0mMTq",
       "roles": [
         "Member",
         "REIUser",
@@ -1722,7 +1722,7 @@
       "groups": [],
       "home_page": "",
       "location": "",
-      "password": "{SSHA}sG3aZrEkjpHbSbdgP0Du0dzdcf0LF3v9tgEs",
+      "password": "{SSHA}NvwuWfIUGurOrgEhfBa95sKpxOiDl2CDsnwC",
       "roles": [
         "Manager",
         "Member",
