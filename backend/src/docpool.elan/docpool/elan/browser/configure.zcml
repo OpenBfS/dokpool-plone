@@ -15,13 +15,6 @@
       />
 
   <browser:page
-      name="event.macros"
-      for="*"
-      template="event_macros.pt"
-      permission="zope2.View"
-      />
-
-  <browser:page
       name="view"
       for="..interfaces.IDPEvents"
       class=".dpevents.DPEventsView"

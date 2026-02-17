@@ -47,17 +47,11 @@
                        "
                        replace="python:a_obj and a_obj.Title() or ''"
               /></h3>
-            <tal:if condition="not:context/@@is/archive">
-              <tal:def define="
-                         view view/scenario_view;
-                       ">
-                <div metal:use-macro="context/@@event.macros/macros/scenario_table"></div>
-              </tal:def>
-            </tal:if>
-            <div class="cat_scen">
-              <div metal:use-macro="context/@@elan.macros/macros/cat_filter"></div>
-            </div>
           </tal:if>
+          <div class="cat_scen">
+            <div metal:use-macro="context/@@elan.macros/macros/cat_filter"></div>
+          </div>
+
           <div metal:use-macro="context/@@dp.macros/macros/doccollection"></div>
         </div>
 
