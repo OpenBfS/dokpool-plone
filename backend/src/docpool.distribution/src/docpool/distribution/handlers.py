@@ -2,6 +2,7 @@ from logging import getLogger
 from plone import api
 from plone.dexterity.content import ASSIGNABLE_CACHE_KEY
 from plone.distribution.core import Distribution
+from Products.CMFPlone.controlpanel.events import handleConfigurationChangedEvent
 from Products.CMFPlone.Portal import PloneSite
 from Products.ZCatalog.ProgressHandler import ZLogHandler
 from zope.globalrequest import getRequest
@@ -26,6 +27,7 @@ def post_handler(distribution: Distribution, site: PloneSite, answers: dict) -> 
     logger.info("Reindexing a bunch of indexes")
     catalog = api.portal.get_tool("portal_catalog")
     pghandler = ZLogHandler(steps=1000)
+    handleConfigurationChangedEvent(None)
     catalog.reindexIndex(
         [
             "created",
