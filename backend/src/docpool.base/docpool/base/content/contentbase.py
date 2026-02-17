@@ -34,17 +34,23 @@ def initializeMdate(context):
 class IContentBase(model.Schema):
     """ """
 
-    created_by = schema.TextLine(
+    created_by = schema.Tuple(
         title=_("label_contentbase_created_by", default="Created by"),
         description=_("description_contentbase_created_by", default=""),
         required=False,
+        value_type=schema.TextLine(required=False),
+        min_length=3,
+        max_length=3,
     )
     directives.omitted("created_by")
 
-    modified_by = schema.TextLine(
+    modified_by = schema.Tuple(
         title=_("label_contentbase_modified_by", default="Modified by"),
         description=_("description_contentbase_modified_by", default=""),
         required=False,
+        value_type=schema.TextLine(required=False),
+        min_length=3,
+        max_length=3,
     )
     directives.omitted("modified_by")
 
@@ -68,17 +74,20 @@ class IContentBase(model.Schema):
 class ContentBase:
     """Mixin used by DPDocument, FolderBase, InfoLink, Text, DPEvent and SRTextBlock."""
 
-    def _getUserInfoString(self, plain=False):
+    def _getUserInfoString(self):
         from docpool.base.utils import getUserInfo
 
         userid, fullname, primary_group = getUserInfo(self)
-        # print userid, fullname, primary_group
-        res = safe_text(fullname)
+        userid = safe_text(userid) if userid else ""
+        fullname = safe_text(fullname) if fullname else ""
+        primary_group = safe_text(primary_group) if primary_group else ""
+        return (userid, fullname, primary_group)
+
+    def formatUserInfo(self, userinfo):
+        userid, fullname, primary_group = userinfo
+        res = fullname
         if primary_group:
-            if plain:
-                res += " %s" % safe_text(primary_group)
-            else:
-                res += " <i>%s</i>" % safe_text(primary_group)
+            res += " %s" % primary_group
         return res
 
     def getWdate(self):
@@ -114,10 +123,10 @@ class ContentBase:
         """ """
         cdate = self.CreationDate()
         mdate = self.mdate
-        cby = self.created_by
-        mby = self.modified_by
+        cby = self.formatUserInfo(self.created_by)
+        mby = self.formatUserInfo(self.modified_by)
 
-        if (not mby) or show_created:
+        if (not any(mby)) or show_created:
             return cdate, cby
         else:
             return mdate, mby

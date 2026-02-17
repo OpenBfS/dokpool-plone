@@ -52,7 +52,7 @@
               <tal:def define="
                          mi python:scenario.modInfo();
                          date python:mi[0];
-                         uinfo python:mi[1];
+                         uinfo python:scenario.formatUserInfo(mi[1]);
                        ">
                 <td class="scenario_desc">
                   <input name="pscnrs:list"

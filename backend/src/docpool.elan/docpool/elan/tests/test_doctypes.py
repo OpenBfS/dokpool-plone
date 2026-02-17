@@ -325,7 +325,10 @@ class TestDocTypes(unittest.TestCase):
             docType="weather_conditions_and_forecast",
             local_behaviors=["elan"],
         )
-        self.assertEqual(weatherinfo.created_by, "foo <i>Content Administrators (Test Dokpool)</i>")
+        self.assertEqual(
+            weatherinfo.created_by,
+            ("foo", "foo", "Content Administrators (Test Dokpool)"),
+        )
 
         eventinfo = api.content.create(
             container=folder,
