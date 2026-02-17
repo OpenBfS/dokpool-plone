@@ -86,7 +86,13 @@ class DPTransferFolder(FolderBase):
 
     def doctype_permission(self, doctype):
         config_folder = aq_get(self, "config", None)
-        if doctype not in config_folder["dtypes"]:
+        catalog = api.portal.get_tool("portal_catalog")
+        if doctype not in [
+            i.id
+            for i in catalog.unrestrictedSearchResults(
+                path="/".join(config_folder.getPhysicalPath()), portal_type="DocType"
+            )
+        ]:
             return self.unknownDtDefault
         return getattr(self, "doctypePermissions", {}).get(doctype, DEFAULT_DTPERMISSION)
 
