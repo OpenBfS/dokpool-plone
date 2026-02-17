@@ -4,6 +4,7 @@ from docpool.base.content.dpdocument import IDPDocument
 from docpool.base.content.dptransferfolder import IDPTransferFolder
 from docpool.base.content.groupfolder import IGroupFolder
 from docpool.base.content.infodocument import IInfoDocument
+from docpool.base.content.userfolder import IUserFolder
 from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
 from plone.dexterity.interfaces import IDexterityContent
 from plone.indexer import indexer
@@ -42,7 +43,9 @@ def group(obj):
     for item in obj.aq_chain:
         if IGroupFolder.providedBy(item):
             return item.UID()
-        if IDPTransferFolder.providedBy(item):
+        elif IDPTransferFolder.providedBy(item):
+            return item.UID()
+        elif IUserFolder.providedBy(item):
             return item.UID()
 
 

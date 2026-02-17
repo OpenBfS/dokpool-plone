@@ -1,3 +1,4 @@
+from Acquisition import aq_get
 from copy import copy
 from docpool.base import DocpoolMessageFactory as _
 from docpool.base.behaviors.transferable import ITransferable
@@ -191,11 +192,18 @@ class Listing(BrowserView):
         self.doctype_categories = self.doctype_options()
 
         # Prepare Group filter options (query needs to be complete)
-        groups_config = {}
-        for group in api.portal.get_vocabulary("docpool.base.vocabularies.Groups", self.context):
-            groups_config[group.value] = {"title": group.title}
-            groups_config[group.value]["count"] = self.count_options({"group": group.value})
-        self.groups = groups_config
+        self.groups = {}
+        # TODO: Check if we need UserFolder in some context
+        if content_area:
+            group_query = {
+                "portal_type": ["DPTransferFolder", "GroupFolder"],
+                "unrestricted": True,  # Readers have no access to the group folders.
+                "active_apps": self.active_apps,
+                "sort_on": ["portal_type", "sortable_title"],
+            }
+            for brain in api.content.find(context=content_area, **group_query):
+                self.groups[brain.UID] = {"title": brain.Title}
+                self.groups[brain.UID]["count"] = self.count_options({"group": brain.UID})
 
         catalog = api.portal.get_tool("portal_catalog")
         brains = catalog(**self.query)
@@ -214,13 +222,15 @@ class Listing(BrowserView):
 
     def doctype_options(self):
         """These are actually DocTypeCategories and the id's of their doctypes."""
+        config = aq_get(self.context, "config", None)
+        if not config or config.portal_type != "DPConfig":
+            return {}
         query = {
             "portal_type": "DocType",
-            "path": "/".join(self.context.getPhysicalPath()),
-            "sort_on": "category",  # Is this right?
+            "sort_on": "getObjPositionInParent",
             "apps_supported": self.active_apps,
         }
-        brains = api.content.find(**query)
+        brains = api.content.find(context=config, **query)
         results = {}
         for brain in brains:
             if brain.category not in results:
