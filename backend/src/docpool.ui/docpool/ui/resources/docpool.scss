@@ -20,6 +20,11 @@ $plone-default-revised-color: #d4d4d4;
   --bs-warning: #fed86c; /* Gelb Main */
   --bs-light: #e1e6eb; /* Graublau Hell3 */
   --bs-light-blue: #c3dce7; /* Hellblau(Hell2) */
+// Bootstrap default:
+// $font-size-base:              1rem !default; // Assumes the browser default, typically `16px`
+  --dp-font-title: 1rem; /* 16px */
+  --dp-font-body: 0.85rem; /* 13px */
+  --dp-font-small: 0.75rem; /* 12px */
 }
 
 .btn-light {
@@ -151,10 +156,10 @@ img.doktype-icon {
 
     .dateinfo {
       width: 80px;
-      font-size: 14px;
+      font-size: var(--dp-font-body);
 
       .small {
-        font-size: 10px;
+        font-size: var(--dp-font-small);
         color: $plone-default-published-color;
       }
     }
@@ -172,14 +177,18 @@ img.doktype-icon {
       width: 50%;
 
       h3 {
-        font-size: 14px;
+        font-size: var(--dp-font-title);
         color: #0f2237;
       }
 
       .description {
-        font-size: 10px;
+        font-size: var(--dp-font-body);
         color: $plone-default-published-color;
       }
+    }
+
+    .dp-document-creator {
+      font-size: var(--dp-font-small);
     }
 
     .dp-document-dropdown {
@@ -191,6 +200,20 @@ img.doktype-icon {
       }
     }
   }
+}
+
+#edit-zone .nav-link,
+#edit-zone .dropdown-item,
+#edit-zone .toolbar-header a,
+#edit-zone .toolbar-label {
+  font-size: var(--dp-font-small);
+}
+
+.documentByLine,
+.documentByLine .documentAuthor,
+.documentByLine .documentPublished,
+.documentByLine .documentCreated {
+  font-size: var(--dp-font-small);
 }
 
 div.pat-modal .header {
@@ -232,11 +255,11 @@ div.pat-modal {
 }
 
 .text-small {
-  font-size: 0.625rem; // 10px
+  font-size: var(--dp-font-small);
 }
 
 .text-medium {
-  font-size: 0.875rem; // 14px
+  font-size: var(--dp-font-body);
 }
 
 #portal-footer {

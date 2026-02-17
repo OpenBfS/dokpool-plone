@@ -32,7 +32,7 @@ body.plone-toolbar-left-expanded .sidebar {
 }
 
 .sidebar .nav-link .label {
-  font-size: 10px;
+  font-size: var(--dp-font-body);
   line-height: 1.2;
   color: var(--bs-primary);
 }
@@ -63,7 +63,7 @@ body.plone-toolbar-left-expanded .sidebar {
 }
 
 .sidebar-tz {
-  font-size: 0.5rem; /* ~8px visual density as per design */
+  font-size: var(--dp-font-body);
 }
 
 /* Tweak the thin divider look in footer */
