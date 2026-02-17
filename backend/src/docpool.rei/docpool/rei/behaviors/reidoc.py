@@ -225,14 +225,6 @@ class REIDoc(FlexibleView):
     PDFVersion = ContextProperty("PDFVersion")
     Origins = ContextProperty("Origins")
 
-    def isClean(self):
-        """
-        Is this document free for further action like publishing or transfer?
-        @return:
-        """
-        # TODO: define if necessary. Method MUST be present in Doc behavior.
-        return True
-
     @property
     def StartSampling(self):
         date_fragment = START_SAMPLING_MAPPING[self.Period]

@@ -316,7 +316,7 @@ class TestDocTypes(unittest.TestCase):
             ],
         )
 
-        # add a dpdocument of type weatherinformation
+        # add a dpdocument of type weather_conditions_and_forecast
         weatherinfo = api.content.create(
             container=folder,
             type="DPDocument",
@@ -390,6 +390,12 @@ class TestDocTypes(unittest.TestCase):
         )
         event_uid = event.UID()
         folder = docpool["content"]["Groups"]["test_docpool_ELANUsers"]
+
+        # Allow docType for Group and User
+        api.group.add_user(groupname=folder.id, username=TEST_USER_NAME)
+        group = folder.getGroupOfFolder()
+        group.setGroupProperties({"allowedDocTypes": ["weather_conditions_and_forecast"]})
+
         new = api.content.create(
             container=folder,
             type="DPDocument",
@@ -435,6 +441,12 @@ class TestDocTypes(unittest.TestCase):
         docpool = self.portal["test_docpool"]
         groups = docpool["content"]["Groups"]
         folder = groups["test_docpool_ContentAdministrators"]
+
+        # Allow docType for Group and User
+        api.group.add_user(groupname="test_docpool_ContentAdministrators", username=TEST_USER_NAME)
+        group = folder.getGroupOfFolder()
+        group.setGroupProperties({"allowedDocTypes": ["weather_conditions_and_forecast"]})
+
         weatherinfo = api.content.create(
             container=folder,
             type="DPDocument",

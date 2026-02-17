@@ -44,11 +44,3 @@ class RodosDoc(FlexibleView):
 
     PrognosisType = ContextProperty("PrognosisType")
     PrognosisForm = ContextProperty("PrognosisForm")
-
-    def isClean(self):
-        """
-        Is this document free for further action like publishing or transfer?
-        @return:
-        """
-        # TODO: define if necessary. Method MUST be present in Doc behavior.
-        return True

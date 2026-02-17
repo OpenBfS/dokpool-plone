@@ -3,6 +3,7 @@ from docpool.base.content.simplefolder import ISimpleFolder
 from docpool.base.setuphandlers import create_session_stuff
 from docpool.base.utils import getDocumentPoolSite
 from docpool.config.general.elan import DOCTYPES
+from five.intid.intid import addIntIdSubscriber
 from plone import api
 from plone.app.upgrade.utils import loadMigrationProfile
 from plone.base.utils import get_installer
@@ -106,6 +107,20 @@ def to_1012_update_dp_doc_workflow(context=None):
     portal_workflow = api.portal.get_tool("portal_workflow")
     log.info("Upgrading permissions...")
     portal_workflow.updateRoleMappings()
+
+
+def to_1013_fix_comments(context=None):
+    for brain in api.content.find(portal_type="Discussion Item"):
+        obj = brain.getObject()
+        addIntIdSubscriber(obj, None)
+    portal_setup = api.portal.get_tool("portal_setup")
+    loadMigrationProfile(portal_setup, "profile-docpool.base:to_1013")
+
+
+def to_1013_update_dp_doc_workflow(context=None):
+    log.info("Reload dp_doc_workflow")
+    portal_setup = api.portal.get_tool("portal_setup")
+    loadMigrationProfile(portal_setup, "profile-docpool.base:default", steps=["workflow"])
 
 
 def to_3000(context=None):

@@ -6,14 +6,12 @@ from docpool.config.utils import createPloneObjects
 from docpool.config.utils import ID
 from docpool.config.utils import TITLE
 from docpool.config.utils import TYPE
-from logging import getLogger
 from plone.app.dexterity.behaviors.exclfromnav import IExcludeFromNavigation
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import base_hasattr
+from Products.CMFPlone.utils import log_exc
 from zope.annotation.interfaces import IAnnotations
 
-
-logger = getLogger(__name__)
 
 # General Docpool structures
 
@@ -132,30 +130,31 @@ def copyDocTypes(self):
 def dpRemoved(self):
     deleteGroups(self)
     deleteUsers(self)
+    # documentpool.esdRemoved = esdRemoved
 
 
 def deleteGroups(self):
     """ """
     prefix = (hasattr(self, "prefix") and self.prefix) or self.getId()
-    prefix += "_"
+    prefix = str(prefix)
     gtool = getToolByName(self, "portal_groups")
     # list existing groups and then delete them
     gids = gtool.getGroupIds()
     for gid in gids:
         if gid.startswith(prefix):
-            # also deletes the group folder via monkeypatched removeGroup
-            gtool.removeGroup(gid)
+            gtool.removeGroup(gid)  # also deletes the group folder via event subscribers
 
 
 def deleteUsers(self):
     """ """
     prefix = (hasattr(self, "prefix") and self.prefix) or self.getId()
-    prefix += "_"
+    prefix = str(prefix)
     mtool = getToolByName(self, "portal_membership", None)
-    # Get all users for this ESD and delete them
+    # list all users for this ESD and delete them
     uids = mtool.listMemberIds()
-    member_ids = [i for i in uids if i.startswith(prefix)]
-    logger.info("Deleting members: %s" % member_ids)
-    # This also deletes the member folders and reindexes security
-    if member_ids:
-        mtool.deleteMembers(member_ids=member_ids)
+    for uid in uids:
+        if uid.startswith(prefix):
+            try:
+                mtool.deleteMembers([uid])  # also deletes the member folders
+            except Exception as e:
+                log_exc(e)

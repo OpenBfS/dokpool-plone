@@ -1,13 +1,14 @@
+from Acquisition import aq_base
 from docpool.base import DocpoolMessageFactory as _
 from docpool.base.content.folderbase import FolderBase
 from docpool.base.content.folderbase import IFolderBase
 from docpool.base.utils import getAllowedDocumentTypes
 from docpool.base.utils import portalMessage
-from docpool.base.utils import queryForObjects
 from plone import api
 from plone.base.utils import safe_text
 from plone.protect.interfaces import IDisableCSRFProtection
 from plone.supermodel import model
+from Products.CMFCore.interfaces import IContentish
 from Products.CMFCore.utils import getToolByName
 from zope import schema
 from zope.interface import alsoProvides
@@ -106,8 +107,7 @@ class SimpleFolder(FolderBase):
         """ """
         return (
             len(
-                queryForObjects(
-                    self,
+                api.content.find(
                     path="/".join(self.getPhysicalPath()),
                     portal_type="DPDocument",
                     review_state="published",
@@ -131,3 +131,18 @@ class SimpleFolder(FolderBase):
             if REQUEST:
                 portalMessage(self, _("The document has been published."), "info")
                 return self.restrictedTraverse("@@view")()
+
+    def _verifyObjectPaste(self, obj, validate_src=True):
+        # Extend checks of plone.dexterity.content.PasteBehaviourMixin to test for allowed docTypes
+        # to prevent pasting not allowd content. See https://redmine-koala.bfs.de/issues/5849
+        super()._verifyObjectPaste(obj, validate_src)
+        if IContentish.providedBy(obj):
+            portal_type = getattr(aq_base(obj), "portal_type", None)
+            if portal_type == "DPDocument":
+                # Check if this docType is allowed here
+                doctype = obj.docType
+                allowed_for_group = [i.id for i in getAllowedDocumentTypes(self)]
+                if doctype not in allowed_for_group:
+                    raise ValueError("Disallowed entrytype: %s" % doctype)
+                if self.allowedDocTypes and doctype not in self.allowedDocTypes:
+                    raise ValueError("Disallowed entrytype: %s" % doctype)

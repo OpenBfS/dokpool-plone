@@ -1,13 +1,11 @@
-from docpool.base.marker import IImportingMarker
 from docpool.config.utils import CHILDREN
 from docpool.config.utils import createPloneObjects
 from docpool.config.utils import ID
 from docpool.config.utils import TITLE
 from docpool.config.utils import TYPE
-from plone.base import PloneMessageFactory as _
+from plone.app.dexterity.behaviors.exclfromnav import IExcludeFromNavigation
 from Products.CMFCore.utils import getToolByName
 from Products.PortalTransforms.Transform import make_config_persistent
-from zope.globalrequest import getRequest
 
 import transaction
 
@@ -17,14 +15,12 @@ def install(self):
     fresh = True
     if self.hasObject("config"):
         fresh = False  # It's a reinstall
+    configUserFolders(self, fresh)
+    createStructure(self, fresh)
+    navSettings(self)
     createGroups(self)
     configureFiltering(self)
     setFrontpage(self)
-    if IImportingMarker.providedBy(getRequest()):
-        return
-
-    configUserFolders(self, fresh)
-    createStructure(self, fresh)
 
 
 # Further base structures
@@ -76,6 +72,15 @@ def configUserFolders(self, fresh):
         dpmanager = mtool.getMemberById("dpmanager")
         dpmanager.setMemberProperties({"fullname": "Docpool Manager"})
         dpmanager.setSecurityProfile(password="admin")
+
+
+def navSettings(self):
+    IExcludeFromNavigation(self.news).exclude_from_nav = True
+    self.news.reindexObject()
+    IExcludeFromNavigation(self.events).exclude_from_nav = True
+    self.events.reindexObject()
+    IExcludeFromNavigation(self.Members).exclude_from_nav = True
+    self.Members.reindexObject()
 
 
 def createStructure(self, fresh):
@@ -232,9 +237,11 @@ def configureFiltering(self):
 
 def createGroups(self):
     gdata = getToolByName(self, "portal_groupdata")
-    gdata.manage_addProperty("allowedDocTypes", "possibleDocTypes", "multiple selection")
-    allowedDocTypes = gdata.propdict().get("allowedDocTypes")
-    allowedDocTypes["label"] = _("Allowed document types")
-
-    gdata.manage_addProperty("dp", "possibleDocumentPools", "selection")
-    gdata._p_changed = True
+    try:
+        gdata.manage_addProperty("allowedDocTypes", "possibleDocTypes", "multiple selection")
+    except BaseException:
+        pass
+    try:
+        gdata.manage_addProperty("dp", "possibleDocumentPools", "selection")
+    except BaseException:
+        pass

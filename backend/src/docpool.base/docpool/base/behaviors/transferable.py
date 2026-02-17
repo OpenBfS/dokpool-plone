@@ -1,4 +1,5 @@
 from AccessControl import ClassSecurityInfo
+from Acquisition import aq_get
 from Acquisition import aq_inner
 from contextlib import contextmanager
 from DateTime import DateTime
@@ -145,13 +146,6 @@ class Transferable(FlexibleView):
         context = aq_inner(self.context)
         context.transfer_receiver_log = value
 
-    def isClean(self):
-        """
-        Is this document free for further action like publishing or transfer.
-        @return:
-        """
-        return True
-
     def changed(self):
         """ """
         return self.context.transferred or self.context.getMdate()
@@ -258,13 +252,10 @@ class Transferable(FlexibleView):
             esd_to_title = transfer_folder.myDocumentPool().Title()
 
             # Check permissions:
-            # a) Is my DocType accepted, are unknown DocTypes accepted?
-            udt_ok = transfer_folder.unknownDtDefault != "block"
-            if not udt_ok:
-                # check my precise DocType
-                if not transfer_folder.acceptsDT(dto.getId()):
-                    error_message(esd_to_title, _("Doc type not accepted."))
-                    return
+            # a) Is my DocType accepted (defaults to handling of unknown DocTypes)?
+            if not transfer_folder.acceptsDT(dto.getId()):
+                error_message(esd_to_title, _("Doc type not accepted."))
+                return
 
             # Collect transfer specifics for apps supported by both original and target.
             app_transfers = []
@@ -311,7 +302,12 @@ class Transferable(FlexibleView):
             # 5) Make sure about document type in the target ESD.
             private = False
             if not my_copy.docTypeObj():
-                my_copy.docType = "none"
+                target_config_folder = aq_get(transfer_folder, "config", None)
+                target_dt_folder = target_config_folder["dtypes"]
+                new_dt_id = _copyPaste(self.context.docTypeObj(), target_dt_folder)
+                dto_copy = target_dt_folder[new_dt_id]
+                if api.content.get_state(dto_copy) != "private":
+                    api.content.transition(dto_copy, "retract")
                 private = True
 
             # 6) Apply app-specific transfer steps.
@@ -333,6 +329,9 @@ class Transferable(FlexibleView):
             for app_transfer in app_transfers:
                 log_entry.update(app_transfer.receiver_log_entry())
             transfer_copy.receiver_log += (log_entry,)
+
+            # 9) Clear sender log, which is just a random snapshot of the original's sender log.
+            transfer_copy.sender_log = ()
 
             if apps_to_remove:
                 msg = _(

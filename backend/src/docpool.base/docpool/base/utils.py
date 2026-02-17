@@ -62,14 +62,6 @@ def queryForObject(self, **kwa):
         return None
 
 
-def queryForObjects(self, **kwa):
-    """ """
-    cat = getToolByName(self, "portal_catalog")
-    # print kwa
-    res = cat(kwa)
-    return res
-
-
 def is_in_dp_folder(context, *subpaths):
     path = context.getPhysicalPath()
     dp_path = getDocumentPoolSite(context).getPhysicalPath()
@@ -81,32 +73,25 @@ def is_in_dp_folder(context, *subpaths):
     return False
 
 
-def is_group_folder(context):
-    return "Groups" in context.getPhysicalPath() and context.getId() != "Groups"
-
-
 def getAllowedDocumentTypes(self):
     """
-    Determine the document types allowed for the current user in the current context
-    """
-    # if in a group folder, only allow the types for this group
-    isGF = is_group_folder(self)
+    Determine the document types allowed for the current user in the current context.
 
-    grps = getGroupsForCurrentUser(self)
-    dts = []
-    # Determine the union of the allowed documents for each of the user's
-    # groups
-    if grps:
-        for grp in grps:
-            if not isGF or grp["id"] in self.getPhysicalPath():
-                et = grp["etypes"]
-                if et:
-                    dts.extend(et)
-    tids = list(set(dts))
-    cat = getToolByName(self, "portal_catalog")
+    If in a group folder, only allow the types for this group.
+    Otherwise, take the union of the allowed documents for each of the user's groups.
+
+    """
+    types_by_group = {group["id"]: group["etypes"] for group in getGroupsForCurrentUser(self)}
+
+    try:
+        folder = self.myGroupFolder()
+    except AttributeError:
+        tids = list(set().union(*types_by_group.values()))
+    else:
+        tids = types_by_group.get(folder.id, [])
+
     esd = getDocumentPoolSite(self)
-    # print tids
-    res = cat(
+    res = api.content.find(
         path="/".join(esd.getPhysicalPath()) + "/config",
         portal_type="DocType",
         id=tids,
@@ -116,21 +101,19 @@ def getAllowedDocumentTypes(self):
 
 
 def getAllowedDocumentTypesForGroup(self):
-    """ """
-    isGF = is_group_folder(self)
-    dts = []
-    if isGF:
-        grp = self.getGroupOfFolder()
-        if grp:
-            allowed = grp.getProperty("allowedDocTypes", [])
-            if allowed:
-                dts.extend(allowed)
-    else:
+    """Determine the document types allowed inside the current group folder.
+
+    Outside group folders, return all allowed types.
+
+    """
+    try:
+        group = self.getGroupOfFolder()
+    except AttributeError:
         return getAllowedDocumentTypes(self)
-    tids = list(set(dts))
-    cat = getToolByName(self, "portal_catalog")
+
+    tids = group.getProperty("allowedDocTypes", []) if group else []
     esd = getDocumentPoolSite(self)
-    res = cat(
+    res = api.content.find(
         path="/".join(esd.getPhysicalPath()) + "/config",
         portal_type="DocType",
         id=tids,
@@ -150,7 +133,7 @@ def get_content_area(obj):
 
 
 def getGroupsForCurrentUser(obj, sort_on="path"):
-    """Return groups that can create content based on GroupFolders."""
+    """Return groups that can create content based on GroupFolders visible to the logged-in user."""
     results = []
     content_area = get_content_area(obj)
 

@@ -2,7 +2,6 @@ from docpool.base import DocpoolMessageFactory as _
 from docpool.base.content.doctypecategory import IDocTypeCategory
 from docpool.base.content.doctypesubcategory import IDocTypeSubCategory
 from docpool.base.content.extendable import Extendable
-from docpool.base.utils import queryForObjects
 from plone import api
 from plone.app.z3cform.widget import SelectFieldWidget
 from plone.autoform import directives
@@ -113,8 +112,7 @@ def updated(obj, event=None):
     mpath = "/"
     if safe_hasattr(obj, "dpSearchPath"):
         mpath = obj.dpSearchPath()
-    brains = queryForObjects(
-        obj,
+    brains = api.content.find(
         portal_type="DPDocument",
         path=mpath,
         dp_type=obj.id,

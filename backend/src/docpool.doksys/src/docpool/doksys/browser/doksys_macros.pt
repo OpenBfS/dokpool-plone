@@ -16,12 +16,12 @@
 
       <b><span i18n:translate="label_doksys_network_operator">Network Operator</span>:</b>
       <span tal:condition="python:hasattr(doksysobj,'NetworkOperator')">
-        <tal:var replace="python:', '.join(doksysobj.NetworkOperator)" />
+        <tal:var replace="python:', '.join(doksysobj.NetworkOperator or [])" />
       </span><br /><br />
 
       <b><span i18n:translate="label_doksys_legal_base">Legal Base</span>:</b>
       <span tal:condition="python:hasattr(doksysobj,'LegalBase')">
-        <tal:var replace="python:', '.join(doksysobj.LegalBase)" />
+        <tal:var replace="python:', '.join(doksysobj.LegalBase or [])" />
       </span><br />
       <b><span i18n:translate="label_doksys_measuring_program">Measuring Program</span>:</b>
       <span tal:condition="python:hasattr(doksysobj,'MeasuringProgram')">
@@ -29,7 +29,7 @@
       </span><br />
       <b><span i18n:translate="label_doksys_data_type">Data Type</span>:</b>
       <span tal:condition="python:hasattr(doksysobj,'DataType')">
-        <tal:var replace="python:', '.join(doksysobj.DataType)" />
+        <tal:var replace="python:', '.join(doksysobj.DataType or [])" />
       </span><br />
       <b><span i18n:translate="label_doksys_operation_mode">Operation Mode</span>:</b>
       <span tal:condition="python:hasattr(doksysobj,'OperationMode')">
@@ -43,7 +43,7 @@
       <tal:nodom tal:replace="nothing">
         <b><span i18n:translate="label_doksys_Dom">Dom</span>:</b>
         <span tal:condition="python:hasattr(doksysobj,'Dom')">
-          <tal:var replace="python:', '.join(doksysobj.Dom)" />
+          <tal:var replace="python:', '.join(doksysobj.Dom or [])" />
         </span><br />
       </tal:nodom>
       <b><span i18n:translate="label_doksys_infotype">InfoType</span>:</b>
@@ -52,7 +52,7 @@
       </span><br />
       <b><span i18n:translate="label_doksys_measurement_category">Measurement Category</span>:</b>
       <span tal:condition="python:hasattr(doksysobj,'MeasurementCategory')">
-        <tal:var replace="python:', '.join(doksysobj.MeasurementCategory)" />
+        <tal:var replace="python:', '.join(doksysobj.MeasurementCategory or [])" />
       </span><br />
       <b><span i18n:translate="label_doksys_duration">Duration</span>:</b>
       <span tal:condition="python:hasattr(doksysobj,'Duration')">
