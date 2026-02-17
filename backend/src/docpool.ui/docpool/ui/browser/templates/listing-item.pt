@@ -94,7 +94,7 @@
             <div class="position-absolute bottom-0 end-0 bg-light px-2 rounded-top-start rounded-bottom-end"
                  tal:condition="python: plus_number"
             >
-              <span class="text-small text-gray-darker"
+              <span class="small text-gray-darker"
                     tal:content="python: '+' + str(plus_number)"
               >+3</span>
             </div>
@@ -115,7 +115,7 @@
                 <div class="position-absolute bottom-0 end-0 bg-light px-2 rounded-top-start rounded-bottom-end"
                      tal:condition="python: plus_number"
                 >
-                  <span class="text-small text-gray-darker"
+                  <span class="-small text-gray-darker"
                         tal:content="python: '+' + str(plus_number)"
                   >+3</span>
                 </div>
@@ -132,10 +132,10 @@
        style="width: 158px;"
   >
     <div class="d-flex flex-column">
-      <span class="text-small text-gray-darker text-truncate"
+      <span class="small text-gray-darker text-truncate"
             tal:content="structure python: data['modified_by_user']"
       >Max Mustermann (Bund)</span>
-      <span class="text-small text-gray-dark text-truncate"
+      <span class="small text-gray-dark text-truncate"
             tal:content="structure python: data['modified_by_group']"
       >Messzentrale BfS (Bund)</span>
     </div>
