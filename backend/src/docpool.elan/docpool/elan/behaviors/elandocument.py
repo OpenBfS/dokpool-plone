@@ -13,7 +13,6 @@ from plone.autoform import directives
 from plone.autoform.directives import read_permission
 from plone.autoform.directives import write_permission
 from plone.autoform.interfaces import IFormFieldProvider
-from plone.base.utils import safe_text
 from Products.DCWorkflow.interfaces import IAfterTransitionEvent
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from zope import schema

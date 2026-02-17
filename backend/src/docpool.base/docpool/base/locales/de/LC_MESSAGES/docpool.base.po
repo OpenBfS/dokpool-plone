@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Docpool\n"
-"POT-Creation-Date: 2026-02-11 09:28+0000\n"
+"POT-Creation-Date: 2026-02-17 08:54+0000\n"
 "PO-Revision-Date: 2025-07-28 12:16+0200\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <docpool@bfs.de>\n"
@@ -80,14 +80,6 @@ msgstr ""
 msgid "DPDocument"
 msgstr "Eintrag"
 
-#: docpool.base/docpool/base/profiles/default/types/DashboardCollection.xml
-msgid "Dashboard Collection"
-msgstr "Pinnwand Kategorie"
-
-#: docpool.base/docpool/base/profiles/default/types/DashboardsConfig.xml
-msgid "Dashboards Configuration"
-msgstr "Pinnwand Konfiguration"
-
 #: docpool.base/docpool/base/browser/dp_macros.pt
 #: docpool.base/docpool/base/browser/folderbase.py
 msgid "Delete"
@@ -106,10 +98,6 @@ msgid "Docpool Configuration Area"
 msgstr "Dokpool Konfiguration"
 
 #: docpool.base/docpool/base/browser/configure.zcml
-msgid "Docpool listing with bulk actions for DashboardCollections"
-msgstr ""
-
-#: docpool.base/docpool/base/browser/configure.zcml
 msgid "Docpool view"
 msgstr "Dokpool Ansicht"
 
@@ -117,10 +105,15 @@ msgstr "Dokpool Ansicht"
 msgid "Docpool view with bulk actions"
 msgstr "Docpool Ansicht mit Mehrfach-Aktionen"
 
-#: docpool.base/docpool/base/content/dashboard.py
-#: docpool.base/docpool/base/content/dashboardcollection.py
-msgid "Document Types"
-msgstr "Eintragsarten"
+#: docpool.base/docpool/base/profiles/default/types/DocTypeCategory.xml
+#: docpool.base/docpool/base/profiles/to_3000/types/DocTypeCategory.xml
+msgid "Document Type Category"
+msgstr "Kategorie"
+
+#: docpool.base/docpool/base/profiles/default/types/DocTypeSubCategory.xml
+#: docpool.base/docpool/base/profiles/to_3000/types/DocTypeSubCategory.xml
+msgid "Document Type Subcategory"
+msgstr "Unterkategorie"
 
 #: docpool.base/docpool/base/browser/collectiondoc.pt
 msgid "Document state"
@@ -259,9 +252,9 @@ msgstr "Macht Einträge übertragbar zwischen Dokpools"
 msgid "Metadata"
 msgstr "Metadaten"
 
-#: docpool.base/docpool/base/browser/templates/dashboard.pt
-msgid "No current data"
-msgstr "Keine aktuellen Daten"
+#: docpool.base/docpool/base/browser/helpers.py
+msgid "New review state for ${title}: ${new_state}"
+msgstr "Neuer Status für ${title}: ${new_state}"
 
 #: docpool.base/docpool/base/browser/folderbase.py
 msgid "No items deleted."
@@ -379,6 +372,10 @@ msgstr "Zur Aufsichtsbehörde zurück ziehen"
 msgid "Revised"
 msgstr "Revidiert"
 
+#: docpool.base/docpool/base/browser/dpdocument.py
+msgid "Save"
+msgstr "Speichern"
+
 #: docpool.base/docpool/base/browser/sharing.py
 msgid "Search for user or group"
 msgstr "Nach Nutzern oder Gruppen suchen"
@@ -438,10 +435,6 @@ msgstr "Textseite"
 #: docpool.base/docpool/base/content/simplefolder.py
 msgid "The document has been published."
 msgstr "Der Eintrag wurde veröffentlicht."
-
-#: docpool.base/docpool/base/browser/helpers.py
-msgid "The document state has been changed."
-msgstr "Der Eintragsstatus wurde geändert."
 
 #: docpool.base/docpool/base/browser/dpdocument_transfer_form.pt
 msgid "The following items will be transferred:"
@@ -644,15 +637,6 @@ msgstr ""
 msgid "description_contentbase_wdate"
 msgstr ""
 
-#. Default: "Select the document types you want to show in this dashboard."
-#: docpool.base/docpool/base/content/dashboard.py
-msgid "description_dashboard_dbcollections"
-msgstr "Wählen Sie die Kategorien, welche Sie auf dieser Pinnwand zeigen wollen."
-
-#: docpool.base/docpool/base/content/doctype.py
-msgid "description_doctype_alloweddoctypes"
-msgstr ""
-
 #: docpool.base/docpool/base/behaviors/transferstype.py
 msgid "description_doctype_allowtransfer"
 msgstr ""
@@ -665,13 +649,10 @@ msgstr ""
 msgid "description_doctype_automatictransfertargets"
 msgstr ""
 
+#. Default: "Name of a icon (see https://icons.getbootstrap.com for reference)"
 #: docpool.base/docpool/base/content/doctype.py
-msgid "description_doctype_customviewtemplate"
-msgstr ""
-
-#: docpool.base/docpool/base/content/doctype.py
-msgid "description_doctype_globalallow"
-msgstr ""
+msgid "description_doctype_icon_name"
+msgstr "Name des Icons (siehe https://icons.getbootstrap.com)"
 
 #. Default: "If image exists, it will be used as a visual representation for objects of this type."
 #: docpool.base/docpool/base/content/doctype.py
@@ -691,6 +672,11 @@ msgstr "Wenn das PDF existiert, wird bei Bedarf automatisch ein Bild von seiner 
 #: docpool.base/docpool/base/content/doctype.py
 msgid "description_doctype_publishimmediately"
 msgstr ""
+
+#. Default: "Name of a icon (see https://icons.getbootstrap.com for reference)"
+#: docpool.base/docpool/base/content/doctypesubcategory.py
+msgid "description_doctypecategory_icon_name"
+msgstr "Name des Icons (siehe https://icons.getbootstrap.com)"
 
 #: docpool.base/docpool/base/content/documentpool.py
 msgid "description_documentpool_customlogo"
@@ -731,10 +717,6 @@ msgstr ""
 
 #: docpool.base/docpool/base/content/dptransferfolder.py
 msgid "description_dptransferfolder_unknowndtdefault"
-msgstr ""
-
-#: docpool.base/docpool/base/content/dashboardcollection.py
-msgid "description_elandoccollection_doctypes"
 msgstr ""
 
 #. Default: "Select applications supported for this content, changes will be applied after saving"
@@ -828,6 +810,7 @@ msgid "label_anonymous_user"
 msgstr ""
 
 #. Default: "Cancel"
+#: docpool.base/docpool/base/browser/dpdocument.py
 #: docpool.base/docpool/base/browser/folderbase.py
 #: docpool.base/docpool/base/browser/transfer_config.py
 msgid "label_cancel"
@@ -858,25 +841,10 @@ msgstr "Geändert durch"
 msgid "label_contentbase_wdate"
 msgstr "Datum der letzten Workflowaktion"
 
-#. Default: "Dashboard"
-#: docpool.base/docpool/base/profiles/default/types/Dashboard.xml
-msgid "label_dashboard"
-msgstr "Pinnwand"
-
-#. Default: "Document Types"
-#: docpool.base/docpool/base/content/dashboard.py
-msgid "label_dashboard_dbcollections"
-msgstr "Pinnwand Kategorien"
-
 #. Default: "Allow commenting on this type"
 #: docpool.base/docpool/base/content/doctype.py
 msgid "label_doctype_allow_discussion"
 msgstr "Kommentare auf Inhalten dieses Typs erlauben"
-
-#. Default: "Types are allowed as part of this type"
-#: docpool.base/docpool/base/content/doctype.py
-msgid "label_doctype_alloweddoctypes"
-msgstr "Eintragsarten, die als Teil dieses Typs zulässig sind."
 
 #. Default: "Can documents of this type be sent to other ESDs?"
 #: docpool.base/docpool/base/behaviors/transferstype.py
@@ -893,15 +861,11 @@ msgstr "Darf Dateien und Bilder beinhalten"
 msgid "label_doctype_automatictransfertargets"
 msgstr "Wohin werden Einträge dieses Typs automatisch übermittelt?"
 
-#. Default: "Custom View Template"
+#. Default: "Icon Name"
 #: docpool.base/docpool/base/content/doctype.py
-msgid "label_doctype_customviewtemplate"
-msgstr "Spezielles Template zur Darstellung"
-
-#. Default: "Can be used everywhere (not only as part of another type)"
-#: docpool.base/docpool/base/content/doctype.py
-msgid "label_doctype_globalallow"
-msgstr "Kann grundsätzlich frei zugefügt werden (und nicht nur innerhalb eines anderen Typs)"
+#: docpool.base/docpool/base/content/doctypesubcategory.py
+msgid "label_doctype_icon_name"
+msgstr ""
 
 #. Default: "Name pattern for representative image"
 #: docpool.base/docpool/base/content/doctype.py
@@ -977,11 +941,6 @@ msgstr "Die sendende Organisation"
 #: docpool.base/docpool/base/content/dptransferfolder.py
 msgid "label_dptransferfolder_unknowndtdefault"
 msgstr "Default für unbekannte Eintragsarten"
-
-#. Default: "Document Types"
-#: docpool.base/docpool/base/content/dashboardcollection.py
-msgid "label_elandoccollection_doctypes"
-msgstr "Eintragsarten"
 
 #. Default: "Document types allowed in this folder"
 #: docpool.base/docpool/base/content/simplefolder.py

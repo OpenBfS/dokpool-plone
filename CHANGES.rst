@@ -10,17 +10,17 @@ Changelog
 
 Changed:
 
-- Rename Messauftrag to Messempfehlung (#6281) 
+- Rename Messauftrag to Messempfehlung (#6281)
   [pbauer]
 
 - Rename Dokumentensammlung to Kategorie (#5751)
   [pbauer]
 
-- Rename Dokument to Eintrag (#5744) 
+- Rename Dokument to Eintrag (#5744)
   [pbauer]
 
 - Update demo content (#6237)
-  [pbauer] 
+  [pbauer]
 
 
 Fixed:
@@ -55,16 +55,16 @@ Fixed:
 - Add upgrade-step to set missing intids to all comments to fix deleting archives (#6374)
   [pbauer]
 
-- When using groups-overview in docpool, link to group- and usermanagement of that docpool (#6243) 
+- When using groups-overview in docpool, link to group- and usermanagement of that docpool (#6243)
   [pbauer]
 
-- Check if doctype is allowed before pasting DPDocuments (#5849) 
-  [pbauer] 
-
-- Only show current username in @@change-password (#5763) 
+- Check if doctype is allowed before pasting DPDocuments (#5849)
   [pbauer]
 
-- Set correct pdf and image patterns for demo-content (#6382) 
+- Only show current username in @@change-password (#5763)
+  [pbauer]
+
+- Set correct pdf and image patterns for demo-content (#6382)
   [pbauer]
 
 

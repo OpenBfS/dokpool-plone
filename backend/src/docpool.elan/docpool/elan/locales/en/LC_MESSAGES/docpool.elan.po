@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-02-13 11:14+0000\n"
+"POT-Creation-Date: 2026-02-17 08:54+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -222,10 +222,6 @@ msgstr ""
 
 #: docpool.elan/docpool/elan/browser/elandoccollectiondoc.pt
 msgid "Edit the document"
-msgstr ""
-
-#: docpool.elan/docpool/elan/browser/elan_macros.pt
-msgid "Edit unknown scenario"
 msgstr ""
 
 #: docpool.elan/docpool/elan/vocabularies.py
@@ -496,10 +492,6 @@ msgstr ""
 msgid "closed"
 msgstr ""
 
-#: docpool.elan/docpool/elan/behaviors/elandoctype.py
-msgid "description_doctype_contentcategory"
-msgstr ""
-
 #: docpool.elan/docpool/elan/behaviors/elandocument.py
 msgid "description_dpdocument_scenarios"
 msgstr ""
@@ -540,11 +532,6 @@ msgstr ""
 #. Default: "Archive"
 #: docpool.elan/docpool/elan/browser/archive_event_form.pt
 msgid "label_archive"
-msgstr ""
-
-#. Default: "Choose category for this type "
-#: docpool.elan/docpool/elan/behaviors/elandoctype.py
-msgid "label_doctype_contentcategory"
 msgstr ""
 
 #. Default: "Belongs to scenarios"

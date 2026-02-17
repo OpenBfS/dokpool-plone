@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2025-11-24 11:23+0000\n"
+"POT-Creation-Date: 2026-02-17 08:54+0000\n"
 "PO-Revision-Date: 2025-11-24 12:24+0100\n"
 "Last-Translator: Thomas Lotze <lotze@starzel.de>\n"
 "Language-Team: German <translation-team-de@lists.sourceforge.net>\n"
@@ -22,16 +22,20 @@ msgstr ""
 msgid "A-Z"
 msgstr ""
 
-#: docpool.ui/docpool/ui/browser/viewlets/header.pt
+#: docpool.ui/docpool/ui/browser/viewlets/header-event-switcher-dropdown.pt
 msgid "Add scenario"
 msgstr "Neues Ereignis anlegen"
 
-#: docpool.ui/docpool/ui/browser/viewlets/header.pt
+#: docpool.ui/docpool/ui/browser/viewlets/header-event-switcher-dropdown.pt
 msgid "Archived events"
 msgstr "Archivierte Ereignisse"
 
 #: docpool.ui/docpool/ui/browser/wizard.py
 msgid "Created ${doktype} '${title}'"
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/dpdocument.py
+msgid "Delete"
 msgstr ""
 
 #: docpool.ui/docpool/ui/browser/viewlets/header.pt
@@ -62,16 +66,17 @@ msgstr ""
 msgid "Only for member of '${container_title}'"
 msgstr ""
 
-#: docpool.ui/docpool/ui/browser/viewlets/header.pt
-msgid "Select scenario"
-msgstr "Wählen Sie ein Ereignis"
-
 #: docpool.ui/docpool/ui/browser/listing.py
 msgid "Storniert"
 msgstr ""
 
 #: docpool.ui/docpool/ui/browser/listing.py
 msgid "Z-A"
+msgstr ""
+
+#. Default: "Cancel"
+#: docpool.ui/docpool/ui/browser/dpdocument.py
+msgid "label_cancel"
 msgstr ""
 
 #. Default: "There was an error processing the form!"

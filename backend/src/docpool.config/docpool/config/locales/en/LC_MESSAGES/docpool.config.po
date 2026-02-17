@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2025-07-21 09:04+0000\n"
+"POT-Creation-Date: 2026-02-17 08:54+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,23 +14,12 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
-#: docpool.config/docpool/config/local/elan.py
 #: docpool.config/docpool/config/local/elan_de.py
 msgid "Aktuelle Lage"
 msgstr ""
 
 #: docpool.config/docpool/config/general/base.py
 msgid "Allowed document types"
-msgstr ""
-
-#: docpool.config/docpool/config/local/base_en.py
-#: docpool.config/docpool/config/local/base_ro.py
-msgid "Configuration"
-msgstr ""
-
-#: docpool.config/docpool/config/local/base_en.py
-#: docpool.config/docpool/config/local/base_ro.py
-msgid "Document Types"
 msgstr ""
 
 #: docpool.config/docpool/config/local/base.py
@@ -51,11 +40,6 @@ msgstr ""
 #: docpool.config/docpool/config/browser/templates/simpleviz_inline.pt
 #: docpool.config/docpool/config/browser/templates/simpleviz_listitem.pt
 msgid "Printable version"
-msgstr ""
-
-#: docpool.config/docpool/config/local/elan_en.py
-#: docpool.config/docpool/config/local/elan_ro.py
-msgid "Situation Display"
 msgstr ""
 
 #: docpool.config/docpool/config/configure.zcml
