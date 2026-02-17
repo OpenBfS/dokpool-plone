@@ -193,6 +193,8 @@ coverage: ## generate test-coverage report
 	@uv pip install coverage
 	@echo "$(GREEN)==> Erasing old coverage results$(RESET)"
 	@uv run coverage erase
+	@echo "$(GREEN)==> Running test coverage analysis for playwright tests...$(RESET)"
+	@uv run coverage run -p --source=src $(BIN_FOLDER)/pytest tests/
 	@echo "$(GREEN)==> Running test coverage analysis for all packages...$(RESET)"
 	@uv run coverage run -p --source=src $(BIN_FOLDER)/zope-testrunner --auto-color --auto-progress \
 	--test-path src/docpool.api/src \
