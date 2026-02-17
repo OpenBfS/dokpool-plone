@@ -12,7 +12,6 @@ $colour-error: red !default;
 $colour-info: $colour-notice !default;
 
 // Font treatment
-$base-font-size: 18px;
 $base-line-height: 150%;
 $font-weight-normal: normal;
 $font-weight-bold: bold;
@@ -25,7 +24,7 @@ $glyph-radio-button-active: "\e2001";
 $glyph-close: "\e2005";
 
 // We use these to control various global styles
-$body-font-family: "Source Sans Pro", sans-serif;
+$body-font-family: "InterVariable", system-ui, sans-serif;
 $body-font-weight: $font-weight-normal;
 $body-font-style: normal;
 

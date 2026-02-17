@@ -1,3 +1,12 @@
+@import "../fonts/fonts";
+
+:root { font-family: "InterVariable", sans-serif; }
+@supports (font-variation-settings: normal) {
+  :root { font-family: "InterVariable", sans-serif; font-optical-sizing: auto; }
+}
+
+$font-family-sans-serif: "InterVariable", system-ui, sans-serif;
+
 $primary: #0f2237;
 $secondary: #324d6a;
 $tertiary: #0f2237;
