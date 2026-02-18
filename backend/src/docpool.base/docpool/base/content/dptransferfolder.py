@@ -94,7 +94,7 @@ class DPTransferFolder(FolderBase):
             )
         ]:
             return self.unknownDtDefault
-        return getattr(self, "doctypePermissions", {}).get(doctype, DEFAULT_DTPERMISSION)
+        return (getattr(self, "doctypePermissions", None) or {}).get(doctype, DEFAULT_DTPERMISSION)
 
     # TODO should be indexed
     def from_to_title(self):
@@ -244,4 +244,4 @@ def doctype_will_be_removed(obj, event=None):
         return
     dt_id = obj.getId()
     for tf in transfer_folders_for(event.oldParent):
-        getattr(tf, "doctypePermissions", {}).pop(dt_id, None)
+        (getattr(tf, "doctypePermissions", None) or {}).pop(dt_id, None)
