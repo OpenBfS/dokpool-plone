@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-02-13 11:14+0000\n"
+"POT-Creation-Date: 2026-02-18 10:20+0000\n"
 "PO-Revision-Date: 2025-09-25 14:43+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -223,10 +223,6 @@ msgstr "Ticker bearbeiten"
 #: docpool.elan/docpool/elan/browser/elandoccollectiondoc.pt
 msgid "Edit the document"
 msgstr "Den Eintrag bearbeiten"
-
-#: docpool.elan/docpool/elan/browser/elan_macros.pt
-msgid "Edit unknown scenario"
-msgstr "Unbekanntes Ereignis bearbeiten"
 
 #: docpool.elan/docpool/elan/vocabularies.py
 msgid "Emergency"
