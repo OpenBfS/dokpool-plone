@@ -53,7 +53,7 @@ class TestListing:
             local_behaviors=["elan"],
             scenarios=getScenariosForCurrentUser(),
         )
-        assert self.entry.created_by == "user1 (Bund) <i>Group1 (Bund)</i>"
+        assert self.entry.created_by == ('user1', 'user1 (Bund)', 'Group1 (Bund)')
 
         # create second entry
         self.entry = api.content.create(
@@ -65,7 +65,7 @@ class TestListing:
             local_behaviors=["elan"],
             scenarios=getScenariosForCurrentUser(),
         )
-        assert self.entry.created_by == "user1 (Bund) <i>Group1 (Bund)</i>"
+        assert self.entry.created_by == ('user1', 'user1 (Bund)', 'Group1 (Bund)')
         # add attachments
         filename = os.path.join(os.path.dirname(__file__), "image.png")
         with open(filename, "rb") as f:
