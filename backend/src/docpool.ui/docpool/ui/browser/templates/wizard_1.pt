@@ -82,12 +82,12 @@
                         tal:condition="python:len(containers) > 1"
                         i18n:translate=""
                 >Select a container</option>
-                <option id="${item/value}"
-                        value="${item/value}"
-                        tal:repeat="item containers"
-                        tal:content="item/title"
+                <option id="${python:item['uid']}"
+                        value="${python:item['uid']}"
+                        tal:repeat="item python:containers"
+                        tal:content="python:item['title']"
                         tal:attributes="
-                          selected python:item.value == widget_value;
+                          selected python:item['uid'] == widget_value;
                         "
                 >
                 </option>

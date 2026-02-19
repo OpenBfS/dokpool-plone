@@ -100,6 +100,7 @@ class DocumentTypesVocabulary:
             "portal_type": "DocType",
             "path": "/".join(context.getPhysicalPath()) + "/config",
             "sort_on": "sortable_title",
+            "unrestricted": True,  # User may not be able to see the types
         }
         # Filter by current app
         request = getRequest()

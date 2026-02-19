@@ -3,7 +3,6 @@ from Acquisition import aq_get
 from docpool.base import DocpoolMessageFactory as _
 from docpool.base.browser.dpdocument import AddForm
 from docpool.base.content.archiving import IArchiving
-from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
 from docpool.base.utils import get_content_area
 from docpool.base.utils import getAllowedDocumentTypes
 from docpool.base.utils import getDocumentPoolSite
@@ -280,56 +279,72 @@ class DPDocumentWizard(ContextlessWizard):
 
     @memoize
     def containers(self):
-        """Return uuid vocabulary of GroupFolders where user can add DPDocuments."""
-        dp_app_state = api.content.get_view("dp_app_state", self.context, self.request)
-        active_apps = dp_app_state.appsActivatedByCurrentUser()
-
+        """List of containers (uid and title) where the user can add DPDocuments."""
         brains = api.content.find(
             context=get_content_area(self.context),
             portal_type="GroupFolder",
             sort_on="sortable_title",
-            apps_supported=active_apps,
+            apps_supported=self.app,
         )
-        terms = []
+        tree = []
         for brain in brains:
             if IArchiving(brain).is_archive:
                 continue
             obj = brain.getObject()
-            if not api.user.has_permission("Add portal content", obj=obj):
+            if item := self.check_tree(obj):
+                tree.append(item)
+        return [i for i in self.flatten(tree)]
+
+    def flatten(self, items):
+        for item in items:
+            for child in self.flatten(item["children"]):
+                yield child
+            yield item
+
+    def check_tree(self, obj):
+        query = {
+            "portal_type": [
+                "PrivateFolder",
+                "SimpleFolder",
+                "ReviewFolder",
+                "CollaborationFolder",
+                "InfoFolder",
+            ],
+            "apps_supported": self.app,
+        }
+        if data := self.check_container(obj):
+            data["children"] = [self.check_tree(child) for child in obj.contentValues(query)]
+        return data
+
+    def check_container(self, container):
+        if not api.user.has_permission("Add portal content", obj=container):
+            return
+        for doctype_brain in getAllowedDocumentTypes(container):
+            if self.app not in doctype_brain.apps_supported:
                 continue
-
-            can_add_entries = False
-            for doctype_brain in getAllowedDocumentTypes(obj):
-                if obj.allowedDocTypes and doctype_brain.id not in obj.allowedDocTypes:
-                    continue
-                doctype_obj = doctype_brain.getObject()
-                if self.app not in ILocalBehaviorSupport(doctype_obj).local_behaviors:
-                    continue
-                can_add_entries = True
-                break
-
-            if can_add_entries:
-                terms.append(SimpleTerm(value=brain.UID, token=brain.UID, title=brain.Title))
-        return SimpleVocabulary(terms)
+            if container.allowedDocTypes and doctype_brain.id not in container.allowedDocTypes:
+                continue
+            return {"uid": container.UID(), "title": container.title, "children": []}
 
     def doctypes(self):
-        container = self.data.get("container_uid") or self.form.get("container_uid")
-        if not container:
+        # DocTypes that the user is allowed to create in the
+        container_uid = self.data.get("container_uid") or self.form.get("container_uid")
+        if not container_uid:
             all_containers = self.containers()
             if len(all_containers) == 1:
-                container = all_containers._terms[0].value
-        if not container:
+                container_uid = all_containers[0]["uid"]
+        if not container_uid:
             return []
-        obj = api.content.get(UID=container)
+        container = api.content.get(UID=container_uid)
         terms = []
-        for brain in getAllowedDocumentTypes(obj):
-            if obj.allowedDocTypes and brain.id not in obj.allowedDocTypes:
+        for doctype_brain in getAllowedDocumentTypes(container):
+            if self.app not in doctype_brain.apps_supported:
                 continue
-            doctype_obj = brain.getObject()
-            if self.app not in ILocalBehaviorSupport(doctype_obj).local_behaviors:
+            if container.allowedDocTypes and doctype_brain.id not in container.allowedDocTypes:
                 continue
-
-            terms.append(SimpleTerm(value=brain.id, token=brain.id, title=brain.Title))
+            terms.append(
+                SimpleTerm(value=doctype_brain.id, token=doctype_brain.id, title=doctype_brain.Title)
+            )
         return SimpleVocabulary(terms)
 
     def scenarios(self):
