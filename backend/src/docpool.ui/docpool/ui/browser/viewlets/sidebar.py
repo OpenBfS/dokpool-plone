@@ -1,3 +1,4 @@
+from docpool.base.content.archiving import IArchiving
 from docpool.base.utils import is_in_dp_folder
 from plone.app.layout.viewlets import common
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -36,3 +37,9 @@ class SidebarViewlet(common.ViewletBase):
 
     def get_jst_time(self):
         return datetime.datetime.now(datetime.UTC) + datetime.timedelta(hours=8)
+
+    def base_url(self):
+        """Return dp-url or archive-url if we're in a archive."""
+        if IArchiving(self.context).is_archive and getattr(self.context, "myELANArchive", None):
+            return self.context.myELANArchive().absolute_url()
+        return self.navigation_root_url
