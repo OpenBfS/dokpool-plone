@@ -55,9 +55,13 @@ class Listing(BrowserView):
 
     def find(self, limit=0):
         form = self.request.form
-        self.query = {
+
+        # base_query is the query for results without manual filtering
+        self.base_query = {
             "portal_type": ["DPDocument"],
         }
+        # query are manual filters
+        self.query = {}
 
         self.limit = int(form.get("limit", limit))
 
@@ -82,13 +86,13 @@ class Listing(BrowserView):
         dp_app_state = api.content.get_view("dp_app_state", self.context, self.request)
         self.active_apps = dp_app_state.appsActivatedByCurrentUser()
         self.active_apps.extend([BASE_APP, TRANSFERS_APP])
-        self.query["apps_supported"] = self.active_apps
+        self.base_query["apps_supported"] = self.active_apps
 
         # Filter by DPEvent (ELAN only)
         if ELAN_APP in self.active_apps and not IArchiving(self.context).is_archive:
             # This filters out archived entries unless the context is in an archive
             if event := getScenariosForCurrentUser():
-                self.query["scenarios"] = event
+                self.base_query["scenarios"] = event
 
         # Filter by Category
         self.selected_subcategories = form.get("selected_subcategories") or []
@@ -178,9 +182,9 @@ class Listing(BrowserView):
         # TODO: Remove implicit default filtering on path + /content in docpool.elan.monkey
         content_area = get_content_area(self.context)
         if content_area:
-            self.query["path"] = "/".join(content_area.getPhysicalPath())
+            self.base_query["path"] = "/".join(content_area.getPhysicalPath())
         else:
-            self.query["path"] = "/".join(self.context.getPhysicalPath())
+            self.base_query["path"] = "/".join(self.context.getPhysicalPath())
 
         # Prepare review_state filter options (query needs to be complete)
         for state in review_state_filter_config:
@@ -202,11 +206,18 @@ class Listing(BrowserView):
                 "sort_on": ["portal_type", "sortable_title"],
             }
             for brain in api.content.find(context=content_area, **group_query):
-                self.groups[brain.UID] = {"title": brain.Title}
-                self.groups[brain.UID]["count"] = self.count_options({"group": brain.UID})
+                # Ignore groups that have no content for the base_query
+                show_group = self.count_options({"group": brain.UID}, self.base_query)
+                if show_group:
+                    count = self.count_options({"group": brain.UID})
+                    self.groups[brain.UID] = {"title": brain.Title}
+                    self.groups[brain.UID]["count"] = count
 
         catalog = api.portal.get_tool("portal_catalog")
-        brains = catalog(**self.query)
+
+        # Merge base query with and manual filters for real results
+        query = self.base_query | self.query
+        brains = catalog(**query)
         uids = [brain.UID for brain in brains]
         modified = max(brain.modified for brain in brains) if brains else None
 
@@ -215,13 +226,17 @@ class Listing(BrowserView):
 
         return uids, modified
 
-    def count_options(self, extra):
-        query = copy(self.query)
+    def count_options(self, extra, query=None):
+        if not query:
+            query = self.query | self.base_query
+        else:
+            # Do not change the passed query!
+            query = copy(query)
         query.update(**extra)
         return len(api.content.find(**query))
 
     def doctype_options(self):
-        """These are actually DocTypeCategories and the id's of their doctypes."""
+        """These are DocTypeSubCategories."""
         config = aq_get(self.context, "config", None)
         if not config or config.portal_type != "DPConfig":
             return {}
@@ -236,9 +251,11 @@ class Listing(BrowserView):
             if brain.category not in results:
                 results[brain.category] = {}
             if brain.subcategory not in results[brain.category]:
-                count = self.count_options({"subcategory": brain.subcategory})
-                results[brain.category][brain.subcategory] = {"count": count, "doctypes": []}
-            results[brain.category][brain.subcategory]["doctypes"].append(brain.id)
+                # Ignore subcategories that have no content for the base_query
+                show_subcategory = self.count_options({"subcategory": brain.subcategory}, self.base_query)
+                if show_subcategory:
+                    count = self.count_options({"subcategory": brain.subcategory})
+                    results[brain.category][brain.subcategory] = {"count": count}
         return results
 
 
