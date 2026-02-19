@@ -1,3 +1,4 @@
+from Acquisition import aq_get
 from docpool.base.config import BASE_APP
 from docpool.base.config import TRANSFERS_APP
 from docpool.base.content.archiving import IArchiving
@@ -16,70 +17,69 @@ class EntryTypes(BrowserView):
 
     def find(self):
         results = {}
-        dp = getDocumentPoolSite(self.context)
-        listing_url = f"{dp.absolute_url()}/@@listing"
         iconresolver = self.context.restrictedTraverse("@@iconresolver")
         catalog = api.portal.get_tool("portal_catalog")
+
+        # Find the right context for the search
+        self.is_archive = False
+        if IArchiving(self.context).is_archive and getattr(self.context, "myELANArchive", None):
+            self.is_archive = True
+            self.search_context = self.context.myELANArchive()
+        else:
+            self.search_context = getDocumentPoolSite(self.context)
+        listing_url = f"{self.search_context.absolute_url()}/@@listing"
+
+        # Prepare query-parameters for count_options
+        content_area = get_content_area(self.search_context)
+        if content_area:
+            self.content_area_path = "/".join(content_area.getPhysicalPath())
+        else:
+            # Is this fallback needed?
+            self.content_area_path = "/".join(self.context.getPhysicalPath())
 
         # Prepare filter by APP
         dp_app_state = api.content.get_view("dp_app_state", self.context, self.request)
         self.active_apps = dp_app_state.appsActivatedByCurrentUser()
         self.active_apps.extend([BASE_APP, TRANSFERS_APP])
 
-        # Collect DokTypes without Catagory (e.g. REI, RODOS)
-        # TODO: Remove this if we only allow categorized Doctypes!
-        # without_category = []
-        # query = {
-        #     "path": {"query": "/".join(self.context.getPhysicalPath()), "depth": 1},
-        #     "portal_type": ["DocType"],
-        #     "sort_on": "getObjPositionInParent",
-        #     "apps_supported": self.active_apps,
-        # }
-        # for brain in catalog(**query):
-        #     doctypeobj = brain.getObject()
-        #     entry = {
-        #         "title": brain.Title,
-        #         "id": brain.id,
-        #         "url": brain.getURL(),
-        #         "listing_url": f"{listing_url}?selected_doctypes:list={brain.id}",
-        #         "doctype_icon_url": iconresolver.url(doctypeobj.icon_name),
-        #         "count": self.count_options(brain.id),
-        #         "can_edit": api.user.has_permission("Modify portal content", obj=doctypeobj),
-        #     }
-        #     without_category.append(entry)
-        # if without_category:
-        #     results["Without category"] = without_category
+        # Filter by DPEvent (ELAN only)
+        if not self.is_archive and ELAN_APP in self.active_apps:
+            # This filters out archived entries unless the context is in an archive
+            if event := getScenariosForCurrentUser():
+                self.scenarios = event
+        else:
+            self.scenarios = None
 
         # Find categories
+        config = aq_get(self.context, "config")
         query = {
-            "path": {"query": "/".join(self.context.getPhysicalPath()), "depth": 1},
+            "path": {"query": "/".join(config.getPhysicalPath()), "depth": -1},
             "portal_type": "DocTypeCategory",
             "sort_on": "getObjPositionInParent",
             "apps_supported": self.active_apps,
         }
 
         for category_brain in api.content.find(**query):
-            category = category_brain.getObject()
             # Find all subcategories for this category
             subquery = {
-                "path": {"query": "/".join(category.getPhysicalPath()), "depth": 1},
+                "path": {"query": category_brain.getPath(), "depth": 1},
                 "portal_type": "DocTypeSubCategory",
                 "sort_on": "getObjPositionInParent",
                 "apps_supported": self.active_apps,
             }
             entries = []
-            for brain in catalog(**subquery):
-                subcategory = brain.getObject()
+            for subcategory_brain in catalog(**subquery):
                 # Find all DocTypes for this subcategory
                 doctypequery = {
-                    "path": {"query": "/".join(subcategory.getPhysicalPath()), "depth": 1},
+                    "path": {"query": subcategory_brain.getPath(), "depth": 1},
                     "portal_type": ["DocType"],
                     "sort_on": "getObjPositionInParent",
                     "apps_supported": self.active_apps,
                 }
                 if not catalog(**doctypequery):
-                    # Do not show subcategories without DocTypes that fit the current app!
+                    # Hide subcategories without DocTypes for the current app!
                     continue
+                subcategory = subcategory_brain.getObject()
                 subcategory_qs = f"selected_subcategories:list={subcategory.title}"
                 entry = {
                     "title": subcategory.title,
@@ -90,37 +90,19 @@ class EntryTypes(BrowserView):
                 }
                 entries.append(entry)
             if entries:
-                results[category.title] = entries
+                results[subcategory.title] = entries
 
         return results
 
     def count_options(self, extra):
         query = {
             "portal_type": ["DPDocument"],
+            "apps_supported": self.active_apps,
+            "path": self.content_area_path,
         }
+        if self.scenarios:
+            query["scenarios"] = self.scenarios
 
-        # Filter by APP
-        dp_app_state = api.content.get_view("dp_app_state", self.context, self.request)
-        active_apps = dp_app_state.appsActivatedByCurrentUser()
-        active_apps.extend([BASE_APP, TRANSFERS_APP])
-        query["apps_supported"] = active_apps
-
-        # Filter by DPEvent (ELAN only)
-        if ELAN_APP in active_apps and not IArchiving(self.context).is_archive:
-            # This filters out archived entries unless the context is in an archive
-            if event := getScenariosForCurrentUser():
-                query["scenarios"] = event
-
-        # Filter by context
-        # TODO: Handle listing in content-area (which is a folder-listing)
-        # TODO: Remove implicit default filtering on path + /content in docpool.elan.monkey
-        content_area = get_content_area(self.context)
-        if content_area:
-            query["path"] = "/".join(content_area.getPhysicalPath())
-        else:
-            query["path"] = "/".join(self.context.getPhysicalPath())
-
-        # Filter by Doctype
+        # Filter by Subcategory
         query["subcategory"] = extra
-
         return len(api.content.find(**query))
