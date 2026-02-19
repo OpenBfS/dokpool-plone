@@ -256,7 +256,7 @@ class Listing(BrowserView):
                 if show_subcategory:
                     count = self.count_options({"subcategory": brain.subcategory})
                     results[brain.category][brain.subcategory] = {"count": count}
-        return results
+        return {k: v for k, v in results.items() if v}
 
 
 def extract_date(value):
