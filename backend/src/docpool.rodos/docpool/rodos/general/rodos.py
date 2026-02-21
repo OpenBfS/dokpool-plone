@@ -105,7 +105,7 @@ AREAS_COLLECTIONS = [
     {
         TYPE: "Collection",
         TITLE: area,
-        ID: area.lower(),
+        ID: area.lower().replace(" ", "-"),
         "local_behaviors": ["rodos"],
         "query": [
             dp_type_query,
