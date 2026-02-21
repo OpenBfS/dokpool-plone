@@ -225,8 +225,7 @@ class TestListing:
         page.locator("#form-widgets-IDublinCore-title").fill("Example Entry")
         page.locator("iframe").content_frame.get_by_label("Rich Text Area").click()
         page.locator("iframe").content_frame.get_by_label("Rich Text Area").fill("Test text")
-        # TODO:
-        # page.get_by_role("button", name="Attachments").set_input_files("SOMETHING")
+        page.set_input_files("#attachments", "tests/image.png")
         page.get_by_role("button", name="Next").click()
         assert "@@dpdocument_wizard_3" in page.url
 
@@ -240,6 +239,11 @@ class TestListing:
         expect(page.get_by_text("Created Offizielle Meldung 'Example Entry'")).to_be_visible()
 
         page.goto(f"{self.plone_url}/bund/content/Groups/bund_group1/example-entry")
+        # Check that the image was uploaded
+        expect(page.get_by_text("image.png")).to_be_visible()
+        # Switch to list and assert content
+        page.locator("#attachments_list").click()
+        expect(page.get_by_role("cell", name="image.png PNG image 1.2 KB")).to_be_visible()
         expect(page.locator("#content div").filter(has_text="Normalfall").nth(3)).to_be_visible()
         expect(page.get_by_text("Test text")).to_be_visible()
         page.goto(f"{self.plone_url}/bund/@@listing")
