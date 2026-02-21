@@ -147,8 +147,8 @@ class DPDocumentWizard(ContextlessWizard):
     session_base_name = f"{portal_type}_wizard"
 
     required_for_1 = []
-    required_for_2 = ["container_uid", "form.widgets.docType"]
-    required_for_3 = ["container_uid", "form.widgets.docType", "form.widgets.IDublinCore.title"]
+    required_for_2 = ["container_uid", "entrytype"]
+    required_for_3 = ["container_uid", "entrytype", "form.widgets.IDublinCore.title"]
 
     custom_handled_widgets = [
         "docType",
@@ -257,9 +257,11 @@ class DPDocumentWizard(ContextlessWizard):
                 item_dict[key] = value
 
         container = api.content.get(UID=self.data["container_uid"])
+        entrytype = self.data["entrytype"]
         new = api.content.create(
             container=container,
             type=self.portal_type,
+            docType=entrytype,
             local_behaviors=[self.app],
             **item_dict,
         )
@@ -279,7 +281,7 @@ class DPDocumentWizard(ContextlessWizard):
 
     @memoize
     def containers(self):
-        """List of containers (uid and title) where the user can add DPDocuments."""
+        """All containers (uid, title, level) where the user can add entries."""
         brains = api.content.find(
             context=get_content_area(self.context),
             portal_type="GroupFolder",
@@ -293,15 +295,20 @@ class DPDocumentWizard(ContextlessWizard):
             obj = brain.getObject()
             if item := self.check_tree(obj):
                 tree.append(item)
-        return [i for i in self.flatten(tree)]
+        flat = [i for i in self.flatten(tree)]
+        return flat
 
     def flatten(self, items):
+        """Flatten a list of nested dicts."""
         for item in items:
-            for child in self.flatten(item["children"]):
-                yield child
+            children = item.pop("children", None)
             yield item
+            if children:
+                for child in self.flatten(children):
+                    yield child
 
-    def check_tree(self, obj):
+    def check_tree(self, obj, level=0):
+        """Walk a directory tree and return data about containers where a user can add."""
         query = {
             "portal_type": [
                 "PrivateFolder",
@@ -312,22 +319,27 @@ class DPDocumentWizard(ContextlessWizard):
             ],
             "apps_supported": self.app,
         }
-        if data := self.check_container(obj):
-            data["children"] = [self.check_tree(child) for child in obj.contentValues(query)]
-        return data
+        if self.entries_the_user_can_add(obj):
+            data = {"uid": obj.UID(), "title": obj.title, "level": level}
+            data["children"] = [self.check_tree(child, level=level + 1) for child in obj.contentValues(query)]
+            return data
 
-    def check_container(self, container):
+    def entries_the_user_can_add(self, container):
+        """Brains of DocTypes that the current user can add to a given container."""
         if not api.user.has_permission("Add portal content", obj=container):
             return
+        allowed = container.allowedDocTypes
+        addable = []
         for doctype_brain in getAllowedDocumentTypes(container):
             if self.app not in doctype_brain.apps_supported:
                 continue
-            if container.allowedDocTypes and doctype_brain.id not in container.allowedDocTypes:
+            if allowed and doctype_brain.id not in allowed:
                 continue
-            return {"uid": container.UID(), "title": container.title, "children": []}
+            addable.append(doctype_brain)
+        return addable
 
     def doctypes(self):
-        # DocTypes that the user is allowed to create in the
+        """DocTypes that the user is allowed to create in the form given the uid of a container."""
         container_uid = self.data.get("container_uid") or self.form.get("container_uid")
         if not container_uid:
             all_containers = self.containers()
@@ -336,16 +348,7 @@ class DPDocumentWizard(ContextlessWizard):
         if not container_uid:
             return []
         container = api.content.get(UID=container_uid)
-        terms = []
-        for doctype_brain in getAllowedDocumentTypes(container):
-            if self.app not in doctype_brain.apps_supported:
-                continue
-            if container.allowedDocTypes and doctype_brain.id not in container.allowedDocTypes:
-                continue
-            terms.append(
-                SimpleTerm(value=doctype_brain.id, token=doctype_brain.id, title=doctype_brain.Title)
-            )
-        return SimpleVocabulary(terms)
+        return self.entries_the_user_can_add(container)
 
     def scenarios(self):
         vocabulary = api.portal.get_vocabulary(

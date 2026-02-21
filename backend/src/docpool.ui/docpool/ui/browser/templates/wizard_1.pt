@@ -85,7 +85,7 @@
                 <option id="${python:item['uid']}"
                         value="${python:item['uid']}"
                         tal:repeat="item python:containers"
-                        tal:content="python:item['title']"
+                        tal:content="python:item['level'] * '&emsp;' + '&#128193; ' + item['title']"
                         tal:attributes="
                           selected python:item['uid'] == widget_value;
                         "
@@ -96,9 +96,9 @@
           </div>
         </div>
 
-        <!-- DOCTYPE -->
+        <!-- DOCTYPE (named entrytype to skip validation!) -->
         <div tal:define="
-               widget_name string:form.widgets.docType;
+               widget_name string:entrytype;
                widget_id python:widget_name.replace('.', '-');
                widget_value python:form.get(widget_name);
                error python:errors.get(widget_name);
@@ -142,12 +142,12 @@
                         tal:condition="python:len(doctypes) > 1"
                         i18n:translate=""
                 >Select a Doctype</option>
-                <option id="${item/value}"
-                        value="${item/value}"
+                <option id="${python:item.id}"
+                        value="${python:item.id}"
                         tal:repeat="item doctypes"
-                        tal:content="item/title"
+                        tal:content="python:item.Title"
                         tal:attributes="
-                          selected python:item.value == widget_value;
+                          selected python:item.id == widget_value;
                         "
                 >
                 </option>

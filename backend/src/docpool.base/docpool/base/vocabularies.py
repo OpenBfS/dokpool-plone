@@ -93,7 +93,15 @@ class DocumentTypesVocabulary:
     """ """
 
     def __call__(self, context):
-        # When validating a widget in a add form there is no context
+        if not context:
+            return SimpleVocabulary([])
+
+        # Filter by current app
+        request = getRequest()
+        dp_app_state = api.content.get_view("dp_app_state", context, request)
+        active_apps = dp_app_state.appsActivatedByCurrentUser()
+
+        # When validating a widget in a add form the context is the portal
         # In that case we can return all doctypes
         context = getDocumentPoolSite(context)
         query = {
@@ -101,12 +109,8 @@ class DocumentTypesVocabulary:
             "path": "/".join(context.getPhysicalPath()) + "/config",
             "sort_on": "sortable_title",
             "unrestricted": True,  # User may not be able to see the types
+            "apps_supported": active_apps,
         }
-        # Filter by current app
-        request = getRequest()
-        dp_app_state = api.content.get_view("dp_app_state", context, request)
-        active_apps = dp_app_state.appsActivatedByCurrentUser()
-        query["apps_supported"] = active_apps
 
         items = [SimpleTerm(i.id, i.id, i.Title) for i in api.content.find(**query)]
         # TODO: Can we remove these?

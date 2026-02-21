@@ -219,7 +219,7 @@ class TestListing:
         page.goto(f"{self.plone_url}/bund/setActiveApp?app=elan")
         page.goto(f"{self.plone_url}/bund/@@dpdocument_wizard_1")
         expect(page.locator("#container_uid")).to_have_value(self.group_folder.UID())
-        page.locator("#form-widgets-docType").select_option("official_notification")
+        page.locator("#entrytype").select_option("official_notification")
         page.get_by_role("button", name="Next").click()
         assert "@@dpdocument_wizard_2" in page.url
         page.locator("#form-widgets-IDublinCore-title").fill("Example Entry")
