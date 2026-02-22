@@ -618,11 +618,11 @@ class SerializeToJsonDPDocument(SerializeFolderToJson):
         """Add id of scenario to json used for data-transfer with BW (#5999)."""
         result = super().__call__(version=version, include_items=include_items)
 
-        scenario_ids = []
-        for scenario in result.get("scenarios", []):
+        if scenario := (result.get("scenarios") or [None])[0]:
             uid = scenario["token"] if isinstance(scenario, dict) else scenario
             if brains := api.content.find(UID=uid):
-                scenario_ids.append(brains[0].id)
-        if scenario_ids:
-            result["scenario_ids"] = scenario_ids
+                # The list is left from when scenarios itself was a list. We keep it for the time being
+                # since this interfaces with external systems. XXX #6447: Is this actually necessary?
+                result["scenario_ids"] = [brains[0].id]
+
         return result

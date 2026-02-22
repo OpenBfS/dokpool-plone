@@ -17,7 +17,7 @@ from plone.autoform.directives import write_permission
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.base.utils import safe_text
 from Products.DCWorkflow.interfaces import IAfterTransitionEvent
-from z3c.form.browser.checkbox import CheckBoxFieldWidget
+from z3c.form.browser.radio import RadioFieldWidget
 from zope import schema
 from zope.component import adapter
 from zope.interface import provider
@@ -28,7 +28,7 @@ elan_only = app_only_decorator(ELAN_APP)
 
 
 @provider(IContextAwareDefaultFactory)
-def initializeScenarios(context):
+def initializeScenario(context):
     query = {
         "portal_type": "DPEvent",
         "UID": getScenariosForCurrentUser(),
@@ -37,7 +37,7 @@ def initializeScenarios(context):
     if getattr(context, "dpSearchPath", None):
         query["path"] = context.dpSearchPath()
     scenarios = api.content.find(**query)
-    return [scen.UID for scen in scenarios]
+    return scenarios[0].UID if scenarios else None
 
 
 @provider(IFormFieldProvider)
@@ -49,11 +49,11 @@ class IELANDocument(IDocumentExtension):
         description=_("description_dpdocument_scenarios", default=""),
         required=True,
         value_type=schema.Choice(source="docpool.elan.vocabularies.Events"),
-        defaultFactory=initializeScenarios,
+        defaultFactory=initializeScenario,
     )
     read_permission(scenarios="docpool.elan.AccessELAN")
     write_permission(scenarios="docpool.elan.AccessELAN")
-    directives.widget(scenarios=CheckBoxFieldWidget)
+    directives.widget(scenarios=RadioFieldWidget)
 
 
 class ELANDocument(FlexibleView):
@@ -109,9 +109,10 @@ class ELANDocument(FlexibleView):
         if not (scen := docpool.unrestrictedTraverse("contentconfig/scen", None)):
             return
 
-        results = [i for i in scen.contentValues({"portal_type": "DPEvent"}) if i.UID() in scns]
-        res = [s.UID() for s in results if api.content.get_state(s) == "published"]
-        return res
+        scn = scns[0]
+        for candidate in scen.contentValues({"portal_type": "DPEvent"}):
+            if candidate.UID() == scn and api.content.get_state(candidate) == "published":
+                return [scn]
 
     def getScenarioNames(self):
         """ """

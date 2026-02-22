@@ -70,7 +70,7 @@
                   condition="scns"
         >
           <dt i18n:translate="">Belongs to scenario:</dt>
-          <dd tal:content="python:', '.join(scns)"></dd>
+          <dd>${scns[0]}</dd>
         </tal:scns>
         <tal:cat define="
                    cat elanobj/category;

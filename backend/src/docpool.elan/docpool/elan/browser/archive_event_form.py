@@ -228,15 +228,9 @@ class ArchiveAndClose(BrowserView):
         return new
 
     def can_move(self, obj):
-        try:
-            scns = IELANDocument(obj).scenarios
-        except BaseException:
-            # Object could have lost its ELAN behavior but that means we can
-            # potentially delete it
-            scns = ["dummy"]
         # Ignore duplicates!
         apps = set(ILocalBehaviorSupport(obj).local_behaviors)
-        return bool(len(scns) == 1 and len(apps) == 1)
+        return len(apps) == 1
 
     def _move_to_archive(self, target_folder_obj, obj):
         logger.info(
