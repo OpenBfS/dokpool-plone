@@ -114,14 +114,10 @@ class ELANDocument(FlexibleView):
             if candidate.UID() == scn and api.content.get_state(candidate) == "published":
                 return [scn]
 
-    def getScenarioNames(self):
+    def getScenarioName(self):
         """ """
-        # Uniquify titles: While scenarios are UIDs and thus unique, they may
-        # refer to events with the same title, most commonly in the case of
-        # partly archived events.
-        scns = api.content.find(UID=self.scenarios)
-        titles = list({brain.Title for brain in scns})
-        return titles
+        if self.scenarios and (scn := api.content.get(UID=self.scenarios[0])):
+            return scn.Title
 
     def cat_convert(self):
         """ """
