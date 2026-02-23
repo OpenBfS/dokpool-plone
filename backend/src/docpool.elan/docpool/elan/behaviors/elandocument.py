@@ -55,13 +55,6 @@ class IELANDocument(IDocumentExtension):
     write_permission(scenarios="docpool.elan.AccessELAN")
     directives.widget(scenarios=CheckBoxFieldWidget)
 
-    scenarios_to_keep = schema.List(
-        required=False,
-        value_type=schema.TextLine(),
-    )
-    read_permission(scenarios_to_keep="docpool.elan.AccessELAN")
-    directives.mode(scenarios_to_keep="hidden")
-
 
 class ELANDocument(FlexibleView):
     # XXX re #6125: We've seen that accessing ELAN-related attributes on non-ELAN documents may not be
@@ -99,30 +92,9 @@ class ELANDocument(FlexibleView):
     @scenarios.setter
     @elan_only
     def scenarios(self, value):
-        scenarios_to_keep = self.request.form.get(
-            "form.widgets.IELANDocument.scenarios_to_keep", ""
-        ).splitlines()
-        new_scenarios = scenarios_to_keep + value
-        if not new_scenarios:
-            return
         context = aq_inner(self.context)
-        context.scenarios = new_scenarios
-
-    @property
-    def scenarios_to_keep(self):
-        """Inactive scenarios that should be kept referenced when editing.
-
-        There is the feature in editing an ELAN document to hide inactive scenarios from
-        the selection of scenarios that may be referenced. By the mechanisms of how
-        forms work, this would result in actually removing inactive scenarios from the
-        selection. So we need to transport information about these through the edit form
-        and count them in when storing the edited form data.
-        """
-        return [s.UID() for s in self.myScenarioObjects() if s.Status != "active"]
-
-    @scenarios_to_keep.setter
-    def scenarios_to_keep(self, value):
-        pass
+        if value != self.scenario:
+            context.scenario = value
 
     def myScenarioObjects(self):
         """Return DPEvent objects associated with this document."""
