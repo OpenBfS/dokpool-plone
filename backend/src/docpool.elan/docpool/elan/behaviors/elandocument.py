@@ -96,25 +96,21 @@ class ELANDocument(FlexibleView):
         if value != self.scenario:
             context.scenario = value
 
-    def myScenarioObjects(self):
-        """Return DPEvent objects associated with this document."""
+    def scenarioIndex(self):
         # We can not use the catalog (and therefore, plone.api.content.get()) here since
         # this is used in a indexer and during clear & rebuild no Events would be found.
         # The path of events is assumed to be <docpool>/contentconfig/scen
         # This implicitly filters for events present in the document's docpool but then,
         # other events than those should not be associated with the document anyway.
-        results = []
         if not (scns := self.scenarios):
-            return results
-        docpool = getDocumentPoolSite(self.context)
-        if scen := docpool.unrestrictedTraverse("contentconfig/scen", None):
-            results = [i for i in scen.contentValues({"portal_type": "DPEvent"}) if i.UID() in scns]
-        return results
+            return
 
-    def scenarioIndex(self):
-        """ """
-        scens = self.myScenarioObjects()
-        res = [s.UID() for s in scens if api.content.get_state(s) == "published"]
+        docpool = getDocumentPoolSite(self.context)
+        if not (scen := docpool.unrestrictedTraverse("contentconfig/scen", None)):
+            return
+
+        results = [i for i in scen.contentValues({"portal_type": "DPEvent"}) if i.UID() in scns]
+        res = [s.UID() for s in results if api.content.get_state(s) == "published"]
         return res
 
     def getScenarioNames(self):
