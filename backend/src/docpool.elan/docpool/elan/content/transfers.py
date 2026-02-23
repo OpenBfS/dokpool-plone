@@ -25,25 +25,25 @@ class ELANSpecificTransfer:
 
     def sender_log_entry(self):
         scenario_id = (
-            scen.id if (uids := self.elanobj.scenarios) and (scen := api.content.get(UID=uids[0])) else None
+            scen.id if (uid := self.elanobj.scenario) and (scen := api.content.get(UID=uid)) else None
         )
         return dict(scenario_id=scenario_id)
 
     def __call__(self, copy):
         if not self.have_elan:
             try:
-                del copy.aq_base.scenarios
+                del copy.aq_base.scenario
             except AttributeError:
                 pass
             return
 
-        (elan_copy := IELANDocument(copy)).scenarios = []
-        if not self.elanobj.scenarios:
+        (elan_copy := IELANDocument(copy)).scenario = None
+        if not self.elanobj.scenario:
             return
 
-        self.copy_scenario = ensureScenarioInTarget(self.elanobj.scenarios[0], copy.myDocumentPool())
+        self.copy_scenario = ensureScenarioInTarget(self.elanobj.scenario, copy.myDocumentPool())
         if self.copy_scenario:
-            elan_copy.scenarios = [self.copy_scenario.UID()]
+            elan_copy.scenario = self.copy_scenario.UID()
 
     def receiver_log_entry(self):
         if not self.have_elan:

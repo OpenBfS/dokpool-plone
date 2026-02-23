@@ -28,7 +28,7 @@ SIMPLE_SETTER_FIELDS = {
     "ALL": [],
     "CollaborationFolder": ["allowedDocTypes", "allowedPartnerDocTypes"],
     "DocType": ["automaticTransferTargets"],
-    "DPDocument": ["scenarios", "OperationMode", "Origins"],
+    "DPDocument": ["scenario", "OperationMode", "Origins"],
     "DPEvent": ["Status"],
     "DPTransferFolder": ["sendingESD"],
     "Folder": ["nextPreviousEnabled"],

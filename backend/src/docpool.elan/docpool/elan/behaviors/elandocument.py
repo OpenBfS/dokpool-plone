@@ -44,16 +44,16 @@ def initializeScenario(context):
 class IELANDocument(IDocumentExtension):
     """ """
 
-    scenarios = schema.List(
-        title=_("label_dpdocument_scenarios", default="Belongs to scenarios"),
-        description=_("description_dpdocument_scenarios", default=""),
+    scenario = schema.Choice(
+        title=_("label_dpdocument_scenario", default="Belongs to scenario"),
+        description=_("description_dpdocument_scenario", default=""),
         required=True,
-        value_type=schema.Choice(source="docpool.elan.vocabularies.Events"),
+        source="docpool.elan.vocabularies.Events",
         defaultFactory=initializeScenario,
     )
-    read_permission(scenarios="docpool.elan.AccessELAN")
-    write_permission(scenarios="docpool.elan.AccessELAN")
-    directives.widget(scenarios=RadioFieldWidget)
+    read_permission(scenario="docpool.elan.AccessELAN")
+    write_permission(scenario="docpool.elan.AccessELAN")
+    directives.widget(scenario=RadioFieldWidget)
 
 
 class ELANDocument(FlexibleView):
@@ -81,17 +81,17 @@ class ELANDocument(FlexibleView):
 
     @property
     @elan_only
-    def scenarios(self):
+    def scenario(self):
         # Dexterity overrides __getattr__ to return a default, which is not what we want. hasattr() just calls
         # getattr() so it wouldn't be any help.
         try:
-            return self.context.aq_base.__getattribute__("scenarios")
+            return self.context.aq_base.__getattribute__("scenario")
         except AttributeError:
-            return []
+            return None
 
-    @scenarios.setter
+    @scenario.setter
     @elan_only
-    def scenarios(self, value):
+    def scenario(self, value):
         context = aq_inner(self.context)
         if value != self.scenario:
             context.scenario = value
@@ -102,21 +102,20 @@ class ELANDocument(FlexibleView):
         # The path of events is assumed to be <docpool>/contentconfig/scen
         # This implicitly filters for events present in the document's docpool but then,
         # other events than those should not be associated with the document anyway.
-        if not (scns := self.scenarios):
+        if not (scn := self.scenario):
             return
 
         docpool = getDocumentPoolSite(self.context)
         if not (scen := docpool.unrestrictedTraverse("contentconfig/scen", None)):
             return
 
-        scn = scns[0]
         for candidate in scen.contentValues({"portal_type": "DPEvent"}):
             if candidate.UID() == scn and api.content.get_state(candidate) == "published":
                 return [scn]
 
     def getScenarioName(self):
         """ """
-        if self.scenarios and (scn := api.content.get(UID=self.scenarios[0])):
+        if self.scenario and (scn := api.content.get(UID=self.scenario)):
             return scn.Title
 
     def cat_convert(self):

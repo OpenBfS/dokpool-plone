@@ -102,7 +102,7 @@ class TestDPEventArchivingWithBrowser(unittest.TestCase):
 
             # Link document to event using UID
             event_uid = self.test_event.UID()
-            document.scenarios = [event_uid]
+            document.scenario = event_uid
             document.reindexObject(idxs=["scenarios"])
 
             documents.append(document)
@@ -331,7 +331,7 @@ class TestDPEventArchivingWithBrowser(unittest.TestCase):
 
                 # Link to event
                 event_uid = self.test_event.UID()
-                document.scenarios = [event_uid]
+                document.scenario = event_uid
                 document.reindexObject(idxs=["scenarios"])
 
                 # Store for verification
@@ -596,7 +596,7 @@ class TestDPEventArchivingEdgeCases(unittest.TestCase):
 
         # Link to event
         event_uid = test_event.UID()
-        plain_doc.scenarios = [event_uid]
+        plain_doc.scenario = event_uid
         plain_doc.reindexObject(idxs=["scenarios"])
 
         transaction.commit()

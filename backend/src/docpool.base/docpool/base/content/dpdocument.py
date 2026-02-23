@@ -618,7 +618,7 @@ class SerializeToJsonDPDocument(SerializeFolderToJson):
         """Add id of scenario to json used for data-transfer with BW (#5999)."""
         result = super().__call__(version=version, include_items=include_items)
 
-        if scenario := (result.get("scenarios") or [None])[0]:
+        if scenario := result.get("scenario"):
             uid = scenario["token"] if isinstance(scenario, dict) else scenario
             if brains := api.content.find(UID=uid):
                 # The list is left from when scenarios itself was a list. We keep it for the time being

@@ -149,7 +149,7 @@ class ArchiveAndClose(BrowserView):
         )
         for index, brain in enumerate(brains, start=1):
             obj = brain.getObject()
-            if self.context.UID() not in IELANDocument(obj).scenarios:
+            if self.context.UID() != IELANDocument(obj).scenario:
                 # If the object is not part of the current event, the index is wrong and we skip it
                 logger.info("Skipping %s since it is not part of the current event", obj.absolute_url())
                 continue
@@ -259,7 +259,7 @@ class ArchiveAndClose(BrowserView):
                 api.content.transition(moved_obj, to_state=old_state)
 
         # Now do some repairs
-        moved_obj.scenarios = []
+        moved_obj.scenario = None
         moved_obj.setModificationDate(mdate)
         moved_obj.reindexObject(idxs=["modified", "review_state", "scenarios"])
 
@@ -275,7 +275,7 @@ class ArchiveAndClose(BrowserView):
 
         # Now do some repairs
         mdate = obj.modified()
-        copied_obj.scenarios = []
+        copied_obj.scenario = None
 
         old_state = api.content.get_state(obj)
         new_state = api.content.get_state(copied_obj)
@@ -298,14 +298,10 @@ class ArchiveAndClose(BrowserView):
 
         # Cleanup original DPDocument
         # 1. Remove current scenario
-        scns = IELANDocument(obj).scenarios
-        # Drop duplicates
-        scns = list(set(scns))
-        scns.remove(self.context.UID())
-        obj.scenarios = scns
+        obj.scenario = None
 
         # 2. Remove elan behavior if there are no other events but other behaviors
-        if not scns:
+        if obj.scenario is None:
             apps = ILocalBehaviorSupport(obj).local_behaviors
             if len(apps) > 1:
                 # There are others --> only remove ELAN behavior
@@ -396,7 +392,7 @@ class Snapshot(ArchiveAndClose):
         )
         for index, brain in enumerate(brains, start=1):
             obj = brain.getObject()
-            if self.context.UID() not in IELANDocument(obj).scenarios:
+            if self.context.UID() != IELANDocument(obj).scenario:
                 # If the object is not part of the current event, the index is wrong and we skip it
                 logger.info("Skipping %s since it is not part of the current event", obj.absolute_url())
                 continue
