@@ -235,7 +235,7 @@ class TestListing:
         page.get_by_role("radio", name="For all users of 'ELAN Bund'").click()
         page.get_by_role("button", name="Save").click()
 
-        assert page.url.endswith("/bund")
+        assert page.url.endswith("/bund/@@listing")
         expect(page.get_by_text("Created Offizielle Meldung 'Example Entry'")).to_be_visible()
 
         page.goto(f"{self.plone_url}/bund/content/Groups/bund_group1/example-entry")
