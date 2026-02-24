@@ -4,7 +4,7 @@
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       metal:use-macro="context/@@main_template/macros/master"
       xml:lang="en"
-      i18n:domain="docpool.base"
+      i18n:domain="docpool.ui"
 >
   <metal:content fill-slot="content-core"
                  tal:define="
@@ -24,7 +24,7 @@
 
           <div class="mx-3 my-0 py-2 me-auto">
             <span tal:replace="python: len(items)"></span>
-               Entries
+            <span i18n:translate="">Entries</span>
           </div>
 
           <div class="m-1 dropdown">
@@ -42,7 +42,7 @@
                      for="startdate"
                      i18n:translate=""
               >
-                    Erstellt von
+                    Created since
               </label>
               <div class="d-flex justify-content-between mb-2">
                 <div>
@@ -66,7 +66,7 @@
                      for="enddate"
                      i18n:translate=""
               >
-                    Erstellt bis
+                    Created until
               </label>
               <div class="d-flex justify-content-between mb-1">
                 <div>
@@ -106,41 +106,6 @@
           </div>
 
           <div class="m-1 dropdown"
-               tal:replace="nothing"
-          >
-            <button class="btn btn-light dropdown-toggle"
-                    aria-expanded="false"
-                    type="button"
-                    data-bs-auto-close="outside"
-                    data-bs-toggle="dropdown"
-                    i18n:translate=""
-            >
-          Anzahl der Eintr&auml;ge
-            </button>
-            <div class="dropdown-menu p-2">
-              <tal:limit tal:repeat="limit_value python: [0, 5, 10]">
-                <div class="form-check">
-                  <input class="form-check-input"
-                         id="${python: limit_value}"
-                         name="limit"
-                         onchange="this.form.submit()"
-                         type="radio"
-                         value="${python: limit_value}"
-                         tal:attributes="
-                           checked python: view.limit == limit_value;
-                         "
-                  />
-                  <label class="form-check-label"
-                         for="${python: limit_value}"
-                  >
-              ${python: limit_value or 'Alle'}
-                  </label>
-                </div>
-              </tal:limit>
-            </div>
-          </div>
-
-          <div class="m-1 dropdown"
                tal:define="
                  selected_subcategories python: view.selected_subcategories;
                  categories python: view.doctype_categories;
@@ -151,15 +116,16 @@
                     type="button"
                     data-bs-auto-close="outside"
                     data-bs-toggle="dropdown"
+                    i18n:translate=""
             >
-          Eintragsart
+          Entrytype
             </button>
             <div class="dropdown-menu pt-2 pb-0 px-2 pat-checklist">
               <div class="form-check"
                    tal:condition="python: len(categories) > 1"
               ><label><input class="form-check-input toggle-all"
                          type="checkbox"
-                  /><span i18n:translate="label_toggle">Toggle all</span></label></div>
+                  /><span i18n:domain="docpool.base" i18n:translate="label_toggle">Toggle all</span></label></div>
               <tal:category tal:repeat="category python: categories">
                 <!-- HEADING -->
                 <strong tal:content="python: category"></strong>
@@ -178,11 +144,8 @@
                     />
                     <label class="form-check-label text-nowrap"
                            for="${python: 'selected_subcategories-' + subcategory.replace(' ', '')}"
-                           i18n:translate=""
                     >
-                      <span tal:replace="python: subcategory"
-                            i18n:translate=""
-                      ></span>
+                      <span tal:replace="python: subcategory"></span>
                       <span class="badge rounded-pill text-bg-secondary"
                             tal:condition="python:categories[category][subcategory]['count']"
                             tal:content="python:categories[category][subcategory]['count']"
@@ -211,6 +174,7 @@
                     type="button"
                     data-bs-auto-close="outside"
                     data-bs-toggle="dropdown"
+                    i18n:translate=""
             >
                 Visibility
             </button>
@@ -258,6 +222,7 @@
                     type="button"
                     data-bs-auto-close="outside"
                     data-bs-toggle="dropdown"
+                    i18n:translate=""
             >
           Group
             </button>
@@ -266,7 +231,7 @@
                    tal:condition="python: len(groups) > 5"
               ><label><input class="form-check-input toggle-all"
                          type="checkbox"
-                  /><span i18n:translate="label_toggle">Toggle all</span></label></div>
+                  /><span i18n:domain="docpool.base" i18n:translate="label_toggle">Toggle all</span></label></div>
               <tal:groups tal:repeat="group python: groups">
                 <div class="form-check">
                   <input class="form-check-input"
@@ -281,11 +246,8 @@
                   />
                   <label class="form-check-label text-nowrap"
                          for="${python: 'selected_groups-' + group}"
-                         i18n:translate=""
                   >
-                    <span tal:replace="python: groups[group]['title']"
-                          i18n:translate=""
-                    ></span>
+                    <span tal:replace="python: groups[group]['title']"></span>
                     <span class="badge rounded-pill text-bg-secondary"
                           tal:condition="python:groups[group]['count']"
                           tal:content="python:groups[group]['count']"
@@ -309,11 +271,13 @@
                      aria-label="Search"
                      autocomplete="off"
                      name="searchable_text"
-                     placeholder="Search on this page"
+                     placeholder="Search on this page…"
                      type="text"
                      tal:attributes="
                        value python: view.searchable_text or nothing;
                      "
+                     i18n:attributes="placeholder"
+                     i18n:translate=""
               />
               <button class="btn border-light-subtle btn-light"
                       type="submit"
@@ -330,6 +294,7 @@
                     type="button"
                     data-bs-auto-close="outside"
                     data-bs-toggle="dropdown"
+                    i18n:attributes="title"
             >
               <tal:icon tal:replace="structure python:icons.tag('sort-down')" />
             </button>
@@ -349,7 +314,6 @@
                 />
                 <label class="form-check-label text-nowrap"
                        for="${python: sort_on}"
-                       i18n:translate=""
                 >
                   ${python: view.sort_on_options[sort_on][2]}
                 </label>
@@ -360,16 +324,20 @@
           <div class="m-1">
             <a class="btn btn-light"
                href="javascript:this.print();"
+               title="Print"
+               i18n:attributes="title"
             >
-              <tal:icon tal:replace="structure python:icons.tag('printer', tag_alt='Print')" />
+              <tal:icon tal:replace="structure python:icons.tag('printer')" />
             </a>
           </div>
 
           <div class="ms-1 my-1">
             <a class="btn btn-light"
                href="${python: context.absolute_url()}/@@dpdocument_wizard_1"
+               title="Add entry"
+               i18n:attributes="title"
             >
-              <tal:icon tal:replace="structure python:icons.tag('plus-circle', tag_alt='Add entry')" />
+              <tal:icon tal:replace="structure python:icons.tag('plus-circle')" />
             </a>
           </div>
         </div>

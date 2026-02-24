@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-02-24 10:27+0000\n"
+"POT-Creation-Date: 2026-02-24 14:43+0000\n"
 "PO-Revision-Date: 2025-11-24 12:24+0100\n"
 "Last-Translator: Thomas Lotze <lotze@starzel.de>\n"
 "Language-Team: German <translation-team-de@lists.sourceforge.net>\n"
@@ -21,6 +21,10 @@ msgstr ""
 #: docpool.ui/docpool/ui/browser/listing.py
 msgid "A-Z"
 msgstr ""
+
+#: docpool.ui/docpool/ui/browser/templates/listing.pt
+msgid "Add entry"
+msgstr "Neuen Eintrag anlegen"
 
 #: docpool.ui/docpool/ui/browser/viewlets/header-event-switcher-dropdown.pt
 msgid "Add scenario"
@@ -59,6 +63,14 @@ msgstr "Neuen Eintrag anlegen"
 msgid "Created ${doktype} '${title}'"
 msgstr "Eintrag '${title}' erfolgreich gespeichert"
 
+#: docpool.ui/docpool/ui/browser/templates/listing.pt
+msgid "Created since"
+msgstr "Erstellt von"
+
+#: docpool.ui/docpool/ui/browser/templates/listing.pt
+msgid "Created until"
+msgstr "Erstellt bis"
+
 #: docpool.ui/docpool/ui/browser/dpdocument.py
 msgid "Delete"
 msgstr "Löschen"
@@ -67,13 +79,22 @@ msgstr "Löschen"
 msgid "Docpools"
 msgstr ""
 
+#: docpool.ui/docpool/ui/browser/templates/listing.pt
+msgid "Entries"
+msgstr "Einträge"
+
+#: docpool.ui/docpool/ui/browser/templates/listing.pt
 #: docpool.ui/docpool/ui/browser/templates/wizard_1.pt
-msgid "Doctype"
+msgid "Entrytype"
 msgstr "Eintragsart"
 
 #: docpool.ui/docpool/ui/browser/wizard.py
 msgid "For all users of '${app} ${docpool_title}'"
 msgstr "Für alle Anwender von '${app} ${docpool_title}' sichtbar"
+
+#: docpool.ui/docpool/ui/browser/templates/listing.pt
+msgid "Group"
+msgstr "Gruppe"
 
 #: docpool.ui/docpool/ui/browser/listing.py
 msgid "Internal"
@@ -104,6 +125,10 @@ msgstr "Eingereicht"
 msgid "Please select a container first"
 msgstr "Bitte wählen Sie zunächst einen Ablageort"
 
+#: docpool.ui/docpool/ui/browser/templates/listing.pt
+msgid "Print"
+msgstr "Drucken"
+
 #: docpool.ui/docpool/ui/browser/listing.py
 msgid "Published"
 msgstr "Öffentlich"
@@ -116,14 +141,27 @@ msgstr "Storniert"
 msgid "Save"
 msgstr "Speichern"
 
+#: docpool.ui/docpool/ui/browser/templates/listing.pt
+msgid "Search on this page…"
+msgstr "Auf dieser Seite suchen…"
+
 #: docpool.ui/docpool/ui/browser/templates/wizard_1.pt
-msgid "Select a Doctype"
+msgid "Select a Entrytype"
 msgstr "Wählen Sie eine Eintragsart"
 
 #: docpool.ui/docpool/ui/browser/templates/wizard_1.pt
 msgid "Select a container"
 msgstr "Wählen Sie einen Ablageort"
 
+#: docpool.ui/docpool/ui/browser/templates/listing.pt
+msgid "Sorting"
+msgstr "Sortierung"
+
+#: docpool.ui/docpool/ui/browser/templates/listing.pt
+msgid "Time [ME(S)Z]"
+msgstr "Zeit [ME(S)Z]"
+
+#: docpool.ui/docpool/ui/browser/templates/listing.pt
 #: docpool.ui/docpool/ui/browser/templates/wizard_3.pt
 msgid "Visibility"
 msgstr "Sichtbarkeit"
@@ -145,4 +183,4 @@ msgstr "Abbrechen"
 #. Default: "There was an error processing the form!"
 #: docpool.ui/docpool/ui/browser/wizard.py
 msgid "there_was_an_error_processing_the_form"
-msgstr ""
+msgstr "Es gab einen Fehler bei der Formularauswertung"

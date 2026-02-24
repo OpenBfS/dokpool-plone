@@ -141,7 +141,7 @@
                           class python:view.is_required(widget_name);
                         "
                         i18n:translate=""
-                  >Doctype</span>
+                  >Entrytype</span>
                 </label>
                 <p class=""
                    tal:condition="python: not doctypes"
@@ -168,7 +168,7 @@
                             value=""
                             tal:condition="python:len(doctypes) > 1"
                             i18n:translate=""
-                    >Select a Doctype</option>
+                    >Select a Entrytype</option>
                     <option id="${python:item.id}"
                             value="${python:item.id}"
                             tal:repeat="item doctypes"

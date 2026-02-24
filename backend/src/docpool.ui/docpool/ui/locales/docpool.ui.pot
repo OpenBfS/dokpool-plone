@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-02-24 10:27+0000\n"
+"POT-Creation-Date: 2026-02-24 14:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,6 +19,10 @@ msgstr ""
 
 #: docpool.ui/docpool/ui/browser/listing.py
 msgid "A-Z"
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/templates/listing.pt
+msgid "Add entry"
 msgstr ""
 
 #: docpool.ui/docpool/ui/browser/viewlets/header-event-switcher-dropdown.pt
@@ -58,6 +62,14 @@ msgstr ""
 msgid "Created ${doktype} '${title}'"
 msgstr ""
 
+#: docpool.ui/docpool/ui/browser/templates/listing.pt
+msgid "Created since"
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/templates/listing.pt
+msgid "Created until"
+msgstr ""
+
 #: docpool.ui/docpool/ui/browser/dpdocument.py
 msgid "Delete"
 msgstr ""
@@ -66,12 +78,21 @@ msgstr ""
 msgid "Docpools"
 msgstr ""
 
+#: docpool.ui/docpool/ui/browser/templates/listing.pt
+msgid "Entries"
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/templates/listing.pt
 #: docpool.ui/docpool/ui/browser/templates/wizard_1.pt
-msgid "Doctype"
+msgid "Entrytype"
 msgstr ""
 
 #: docpool.ui/docpool/ui/browser/wizard.py
 msgid "For all users of '${app} ${docpool_title}'"
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/templates/listing.pt
+msgid "Group"
 msgstr ""
 
 #: docpool.ui/docpool/ui/browser/listing.py
@@ -103,6 +124,10 @@ msgstr ""
 msgid "Please select a container first"
 msgstr ""
 
+#: docpool.ui/docpool/ui/browser/templates/listing.pt
+msgid "Print"
+msgstr ""
+
 #: docpool.ui/docpool/ui/browser/listing.py
 msgid "Published"
 msgstr ""
@@ -115,14 +140,27 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
+#: docpool.ui/docpool/ui/browser/templates/listing.pt
+msgid "Search on this page…"
+msgstr ""
+
 #: docpool.ui/docpool/ui/browser/templates/wizard_1.pt
-msgid "Select a Doctype"
+msgid "Select a Entrytype"
 msgstr ""
 
 #: docpool.ui/docpool/ui/browser/templates/wizard_1.pt
 msgid "Select a container"
 msgstr ""
 
+#: docpool.ui/docpool/ui/browser/templates/listing.pt
+msgid "Sorting"
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/templates/listing.pt
+msgid "Time [ME(S)Z]"
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/templates/listing.pt
 #: docpool.ui/docpool/ui/browser/templates/wizard_3.pt
 msgid "Visibility"
 msgstr ""
