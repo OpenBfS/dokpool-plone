@@ -176,7 +176,7 @@ class TestListing:
         page.goto(f"{self.plone_url}/bund/listing")
         # Filter by catagory
         expect(page.locator("#listing .listing-item")).to_have_count(2)
-        page.get_by_role("button", name="Eintragsart").click()
+        page.get_by_role("button", name="Entrytype").click()
         expect(
             page.locator("label").filter(has_text="Wetterlage und -prognosen").locator("span")
         ).to_contain_text("1")
