@@ -67,3 +67,12 @@ def category_dpdocument(obj):
 @indexer(IDocType)
 def category_doctype(obj):
     return obj.category()
+
+
+@indexer(IDPDocument)
+def getIcon(obj):
+    """Override p.a.contenttypes.indexers.getIcon to not to get the result of obj.image as icon.
+
+    TODO: Check if we want to use the docType icon as icon.
+    """
+    return False

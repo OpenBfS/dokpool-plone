@@ -66,6 +66,11 @@
       name="category"
       />
 
+  <adapter
+      factory=".indexer.getIcon"
+      name="getIcon"
+      />
+
   <adapter factory=".dpdocument.DeserializeFromJsonDPDocument" />
   <adapter factory=".dpdocument.SerializeToJsonDPDocument" />
 
