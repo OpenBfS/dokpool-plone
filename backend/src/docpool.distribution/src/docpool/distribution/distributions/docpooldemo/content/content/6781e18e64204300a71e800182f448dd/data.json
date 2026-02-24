@@ -1,5 +1,5 @@
 {
-  "@id": "/berlin/potentially-affected-areas/mobiler%20standort",
+  "@id": "/berlin/potentially-affected-areas/mobiler-standort",
   "@type": "Collection",
   "UID": "6781e18e64204300a71e800182f448dd",
   "allow_discussion": null,
@@ -20,7 +20,7 @@
   "expires": null,
   "exportimport.constrains": {},
   "exportimport.conversation": [],
-  "id": "mobiler standort",
+  "id": "mobiler-standort",
   "is_folderish": false,
   "item_count": 30,
   "items_total": 0,

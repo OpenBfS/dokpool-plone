@@ -1,5 +1,5 @@
 {
-  "@id": "/potentially-affected-areas/mobiler%20standort",
+  "@id": "/potentially-affected-areas/mobiler-standort",
   "@type": "Collection",
   "UID": "6473ed05d5d847bdb668da93305aad81",
   "allow_discussion": null,
@@ -20,7 +20,7 @@
   "expires": null,
   "exportimport.constrains": {},
   "exportimport.conversation": [],
-  "id": "mobiler standort",
+  "id": "mobiler-standort",
   "is_folderish": false,
   "item_count": 30,
   "items_total": 0,
