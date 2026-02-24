@@ -1,6 +1,5 @@
 from Acquisition import aq_get
 from copy import copy
-from docpool.base import DocpoolMessageFactory as _
 from docpool.base.behaviors.transferable import ITransferable
 from docpool.base.behaviors.utils import allowed_targets
 from docpool.base.config import BASE_APP
@@ -11,6 +10,7 @@ from docpool.base.utils import get_content_area
 from docpool.base.utils import get_current_state_title
 from docpool.elan.config import ELAN_APP
 from docpool.elan.utils import getScenariosForCurrentUser
+from docpool.ui import _
 from plone import api
 from plone.i18n.normalizer.interfaces import IIDNormalizer
 from Products.CMFPlone.browser.search import munge_search_term
@@ -148,11 +148,11 @@ class Listing(BrowserView):
         # Filter by review_state
         review_state_filter_config = {
             "private": {
-                "title": _("Gruppenintern"),
+                "title": _("Internal"),
                 "review_states": ["private"],
             },
             "pending": {
-                "title": _("Eingereicht"),
+                "title": _("Pending"),
                 "review_states": [
                     "pending",
                     "pending_authority",
@@ -162,11 +162,11 @@ class Listing(BrowserView):
                 ],
             },
             "published": {
-                "title": _("Öffentlich"),
+                "title": _("Published"),
                 "review_states": ["published"],
             },
             "revised": {
-                "title": _("Storniert"),
+                "title": _("Revised"),
                 "review_states": ["revised"],
             },
         }

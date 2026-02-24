@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-02-17 08:54+0000\n"
+"POT-Creation-Date: 2026-02-24 10:01+0000\n"
 "PO-Revision-Date: 2025-05-19 17:02+0200\n"
 "Last-Translator: Philip Bauer <bauer@starzel.de>\n"
 "Language-Team: BfS <elan@bfs.de>\n"
@@ -18,16 +18,11 @@ msgstr ""
 "Domain: docpool.config\n"
 "Language: ro\n"
 
-#: docpool.config/docpool/config/local/elan_de.py
-msgid "Aktuelle Lage"
-msgstr ""
-
 #: docpool.config/docpool/config/general/base.py
 msgid "Allowed document types"
 msgstr ""
 
 #: docpool.config/docpool/config/local/base.py
-#: docpool.config/docpool/config/local/base_de.py
 msgid "Eintragsarten"
 msgstr ""
 
@@ -36,7 +31,6 @@ msgid "Installs the docpool.config add-on."
 msgstr ""
 
 #: docpool.config/docpool/config/local/base.py
-#: docpool.config/docpool/config/local/base_de.py
 msgid "Konfiguration"
 msgstr ""
 

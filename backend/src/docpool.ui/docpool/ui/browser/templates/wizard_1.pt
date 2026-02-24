@@ -5,7 +5,7 @@
       lang="en"
       metal:use-macro="context/@@main_template/macros/master"
       xml:lang="en"
-      i18n:domain="docpool.base"
+      i18n:domain="docpool.ui"
 >
 
   <body>
@@ -119,7 +119,9 @@
                     i18n:translate=""
               >Doctype</span>
             </label>
-            <p tal:condition="python: not doctypes">
+            <p tal:condition="python: not doctypes"
+               i18n:translate=""
+            >
               Please select a container first
             </p>
             <div class="form-text"></div>

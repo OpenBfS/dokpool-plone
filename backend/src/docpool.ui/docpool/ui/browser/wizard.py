@@ -1,12 +1,12 @@
 from AccessControl import Unauthorized
 from Acquisition import aq_get
-from docpool.base import DocpoolMessageFactory as _
 from docpool.base.browser.dpdocument import AddForm
 from docpool.base.content.archiving import IArchiving
 from docpool.base.utils import get_content_area
 from docpool.base.utils import getAllowedDocumentTypes
 from docpool.base.utils import getDocumentPoolSite
 from docpool.elan.utils import getScenariosForCurrentUser
+from docpool.ui import _
 from docpool.ui.utils import extract_data
 from plone import api
 from plone.app.dexterity.interfaces import IDXFileFactory

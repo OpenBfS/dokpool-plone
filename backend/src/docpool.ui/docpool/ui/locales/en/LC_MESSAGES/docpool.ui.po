@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-02-17 08:54+0000\n"
+"POT-Creation-Date: 2026-02-24 10:27+0000\n"
 "PO-Revision-Date: 2025-11-24 11:56+0100\n"
 "Last-Translator: Thomas Lotze <lotze@starzel.de>\n"
 "Language-Team: English\n"
@@ -26,8 +26,33 @@ msgstr "A-Z"
 msgid "Add scenario"
 msgstr ""
 
+#: docpool.ui/docpool/ui/browser/templates/wizard_2.pt
+msgid "Advanced Settings"
+msgstr ""
+
 #: docpool.ui/docpool/ui/browser/viewlets/header-event-switcher-dropdown.pt
 msgid "Archived events"
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/templates/wizard_2.pt
+#: docpool.ui/docpool/ui/browser/templates/wizard_3.pt
+msgid "Back"
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/templates/wizard_1.pt
+#: docpool.ui/docpool/ui/browser/templates/wizard_2.pt
+#: docpool.ui/docpool/ui/browser/templates/wizard_3.pt
+msgid "Cancel"
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/templates/wizard_1.pt
+msgid "Container"
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/templates/wizard_1.pt
+#: docpool.ui/docpool/ui/browser/templates/wizard_2.pt
+#: docpool.ui/docpool/ui/browser/templates/wizard_3.pt
+msgid "Create new entry"
 msgstr ""
 
 #: docpool.ui/docpool/ui/browser/wizard.py
@@ -42,21 +67,26 @@ msgstr ""
 msgid "Docpools"
 msgstr ""
 
-#: docpool.ui/docpool/ui/browser/listing.py
-msgid "Eingereicht"
-msgstr "Eingereicht"
+#: docpool.ui/docpool/ui/browser/templates/wizard_1.pt
+msgid "Doctype"
+msgstr ""
 
 #: docpool.ui/docpool/ui/browser/wizard.py
 msgid "For all users of '${app} ${docpool_title}'"
 msgstr "For all users of '${app} ${docpool_title}'"
 
 #: docpool.ui/docpool/ui/browser/listing.py
-msgid "Gruppenintern"
-msgstr "Gruppenintern"
+msgid "Internal"
+msgstr ""
 
 #: docpool.ui/docpool/ui/browser/listing.py
 msgid "Newest first"
 msgstr "Newest first"
+
+#: docpool.ui/docpool/ui/browser/templates/wizard_1.pt
+#: docpool.ui/docpool/ui/browser/templates/wizard_2.pt
+msgid "Next"
+msgstr ""
 
 #: docpool.ui/docpool/ui/browser/listing.py
 msgid "Oldest first"
@@ -67,12 +97,45 @@ msgid "Only for member of '${container_title}'"
 msgstr "Only for member of '${container_title}'"
 
 #: docpool.ui/docpool/ui/browser/listing.py
-msgid "Storniert"
-msgstr "Storniert"
+msgid "Pending"
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/templates/wizard_1.pt
+msgid "Please select a container first"
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/listing.py
+msgid "Published"
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/listing.py
+msgid "Revised"
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/templates/wizard_3.pt
+msgid "Save"
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/templates/wizard_1.pt
+msgid "Select a Doctype"
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/templates/wizard_1.pt
+msgid "Select a container"
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/templates/wizard_3.pt
+msgid "Visibility"
+msgstr ""
 
 #: docpool.ui/docpool/ui/browser/listing.py
 msgid "Z-A"
 msgstr "Z-A"
+
+#. Default: "Attachments"
+#: docpool.ui/docpool/ui/browser/templates/wizard_2.pt
+msgid "attachments"
+msgstr ""
 
 #. Default: "Cancel"
 #: docpool.ui/docpool/ui/browser/dpdocument.py
@@ -83,7 +146,3 @@ msgstr ""
 #: docpool.ui/docpool/ui/browser/wizard.py
 msgid "there_was_an_error_processing_the_form"
 msgstr "there_was_an_error_processing_the_form"
-
-#: docpool.ui/docpool/ui/browser/listing.py
-msgid "Öffentlich"
-msgstr "Öffentlich"

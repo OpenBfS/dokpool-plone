@@ -1,7 +1,7 @@
-from docpool.base import DocpoolMessageFactory as _
 from docpool.base.appregistry import APP_REGISTRY
 from docpool.base.browser.dpdocument import DPDocumentEditForm
 from docpool.base.utils import getDocumentPoolSite
+from docpool.ui import _
 from docpool.ui.utils import prepare_came_from_link
 from plone.app.content.browser.actions import DeleteConfirmationForm
 from plone.dexterity.browser.view import DefaultView
