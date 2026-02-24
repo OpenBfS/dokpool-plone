@@ -85,7 +85,7 @@
                 <option id="${python:item['uid']}"
                         value="${python:item['uid']}"
                         tal:repeat="item python:containers"
-                        tal:content="python:item['level'] * '&emsp;' + '&#128193; ' + item['title']"
+                        tal:content="python:item['level'] * '&emsp;' + '&#128194; ' + item['title']"
                         tal:attributes="
                           selected python:item['uid'] == widget_value;
                         "
