@@ -43,12 +43,11 @@ class EntryTypes(BrowserView):
         self.active_apps.extend([BASE_APP, TRANSFERS_APP])
 
         # Filter by DPEvent (ELAN only)
+        self.scenarios = None
         if not self.is_archive and ELAN_APP in self.active_apps:
             # This filters out archived entries unless the context is in an archive
             if event := getScenariosForCurrentUser():
                 self.scenarios = event
-        else:
-            self.scenarios = None
 
         # Find categories
         config = aq_get(self.context, "config")
