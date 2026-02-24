@@ -189,6 +189,17 @@ class DPDocumentWizard(ContextlessWizard):
             self.add_form.update()
             self.add_form.updateWidgets()
 
+        # Prepare some data for display on the form
+        if container_uid:
+            self.container_title = container.title
+            if entrytype_id := self.data.get("entrytype", None):
+                brains = api.content.find(
+                    context=self.context, portal_type="DocType", id=entrytype_id, unrestricted=True
+                )
+                entrytype = brains[0]._unrestrictedGetObject()
+                self.entrytype_title = entrytype.title
+                self.entrytype_icon = entrytype.icon_name
+
         # Render form
         if self.form.get("form.buttons.continue", None) is None:
             return self.template()

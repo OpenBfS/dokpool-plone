@@ -12,7 +12,7 @@
 
     <metal:content-core fill-slot="main">
 
-      <form class="mx-3 my-3 rowlike pat-formunloadalert pat-formautofocus pat-validation enableFormTabbing"
+      <form class="bg-light mx-3 my-3 rowlike pat-formunloadalert pat-formautofocus pat-validation enableFormTabbing"
             id="form"
             enctype="multipart/form-data"
             method="post"
@@ -34,93 +34,136 @@
                "
         />
 
-        <h1 i18n:translate="">Create new entry</h1>
+        <div class="row">
+          <div class="col-12 p-3">
+            <h1 i18n:translate="">Create new entry</h1>
+          </div>
+        </div>
 
-        <!-- All additional widgets -->
-        <tal:block repeat="widget view/add_form/widgets/values|nothing">
-          <tal:block tal:condition="python:widget.__name__ not in view.custom_handled_widgets">
-            <tal:widget tal:replace="structure widget/@@ploneform-render-widget" />
-          </tal:block>
-        </tal:block>
+        <div class="row">
+          <div class="col-3 p-3">
+            <p class="h5">
+              <tal:icon tal:replace="structure python:icons.tag('1-circle')" />
+              <span>Ablageort und Eintragsart</span>
+            </p>
+            <p>
+              <tal:icon tal:replace="structure python:icons.tag('folder2-open')" />
+              <span tal:replace="python: view.container_title"></span>
+            </p>
+            <p>
+              <tal:icon tal:replace="structure python:icons.tag(view.entrytype_icon)" />
+              <span tal:replace="python: view.entrytype_title"></span>
+            </p>
+            <p class="h5">
+              <tal:icon tal:replace="structure python:icons.tag('2-circle')" />
+              <span>Inhalt</span>
+            </p>
+            <p><tal:icon tal:replace="structure python:icons.tag('check')" />Titel definiert</p>
+            <p><tal:icon tal:replace="structure python:icons.tag('check')" />Inhalt definiert</p>
+            <p class="h5">
+              <tal:icon tal:replace="structure python:icons.tag('3-circle-fill')" />
+              <span>Sichtbarkeit</span>
+            </p>
+            <p>Bitte &uuml;berpr&uuml;fen Sie die gew&uuml;nschte Sichtbarkeit des Eintrags.</p>
+          </div>
+          <div class="col-9 bg-white p-3">
 
-        <!-- VISIBILITY -->
-        <div class="wizard-field"
-             id="formfield-${widget_id}"
-             tal:define="
-               widget_name string:visibility;
-               widget_id python:widget_name.replace('.', '-');
-               widget_value python:form.get(widget_name) or 'private';
-               error python:errors.get(widget_name);
-               visibility_options python: view.visibility_options();
-             "
-             tal:condition="python: visibility_options"
-             tal:attributes="
-               class python:'wizard-field mb-3 error' if error else 'wizard-field mb-3';
-             "
-        >
-          <!-- Data -->
-          <div class="wizard-field-data">
-            <h2 class="wizard-field-label">
-              <label for="${widget_name}">
-                <span tal:attributes="
-                        class python:view.is_required(widget_name);
-                      "
-                      i18n:translate=""
-                >Visibility</span>
-              </label>
-            </h2>
+            <!-- All additional widgets -->
+            <tal:block repeat="widget view/add_form/widgets/values|nothing">
+              <tal:block tal:condition="python:widget.__name__ not in view.custom_handled_widgets">
+                <tal:widget tal:replace="structure widget/@@ploneform-render-widget" />
+              </tal:block>
+            </tal:block>
 
+            <!-- VISIBILITY -->
             <div class="wizard-field"
-                 tal:repeat="item python:visibility_options"
+                 id="formfield-${widget_id}"
+                 tal:define="
+                   widget_name string:visibility;
+                   widget_id python:widget_name.replace('.', '-');
+                   widget_value python:form.get(widget_name) or 'private';
+                   error python:errors.get(widget_name);
+                   visibility_options python: view.visibility_options();
+                 "
+                 tal:condition="python: visibility_options"
                  tal:attributes="
-                   class python: error and 'wizard-field error' or 'wizard-field';
+                   class python:'wizard-field mb-3 error' if error else 'wizard-field mb-3';
                  "
             >
+              <!-- Data -->
+              <div class="wizard-field-data">
+                <h2 class="wizard-field-label">
+                  <label for="${widget_name}">
+                    <span tal:attributes="
+                            class python:view.is_required(widget_name);
+                          "
+                          i18n:translate=""
+                    >Visibility</span>
+                  </label>
+                </h2>
 
-              <div class="error-msg"
-                   tal:condition="error"
-              ><span tal:replace="error"></span></div>
+                <div class="wizard-field"
+                     tal:repeat="item python:visibility_options"
+                     tal:attributes="
+                       class python: error and 'wizard-field error' or 'wizard-field';
+                     "
+                >
 
-              <label>
-                <input name="${widget_name}"
-                       type="radio"
-                       value="${item/value}"
-                       tal:define="
-                         first_item repeat/item/start;
-                         has_value python:True if widget_value else False;
-                       "
-                       tal:attributes="
-                         checked python:item.value == widget_value if has_value else first_item;
-                         title item/title;
-                       "
-                       i18n:attributes="title"
-                />
-                <span tal:replace="item/title"
-                      i18n:translate=""
-                ></span>
-              </label>
+                  <div class="error-msg"
+                       tal:condition="error"
+                  ><span tal:replace="error"></span></div>
+
+                  <label>
+                    <input name="${widget_name}"
+                           type="radio"
+                           value="${item/value}"
+                           tal:define="
+                             first_item repeat/item/start;
+                             has_value python:True if widget_value else False;
+                           "
+                           tal:attributes="
+                             checked python:item.value == widget_value if has_value else first_item;
+                             title item/title;
+                           "
+                           i18n:attributes="title"
+                    />
+                    <span tal:replace="item/title"
+                          i18n:translate=""
+                    ></span>
+                  </label>
+                </div>
+
+              </div>
             </div>
+
+          </div>
+
+        </div>
+
+        <div class="row">
+          <div class="col-12 p-3 text-end">
+
+            <button class="btn btn-secondary me-3"
+                    formnovalidate="formnovalidate"
+                    name="form.buttons.cancel"
+                    type="submit"
+                    i18n:translate=""
+            >Cancel</button>
+            <button class="btn btn-outline-secondary ms-3"
+                    formnovalidate="formnovalidate"
+                    name="form.buttons.back"
+                    type="submit"
+                    i18n:translate=""
+            >Back</button>
+            <button class="btn btn-primary"
+                    name="form.buttons.continue"
+                    type="submit"
+                    i18n:translate=""
+            >Save</button>
 
           </div>
         </div>
 
-        <button class="btn btn-secondary me-3"
-                formnovalidate="formnovalidate"
-                name="form.buttons.cancel"
-                type="submit"
-                i18n:translate=""
-        >Cancel</button>
-        <button class="btn btn-outline-secondary ms-3"
-                formnovalidate="formnovalidate"
-                name="form.buttons.back"
-                type="submit"
-                i18n:translate=""
-        >Back</button>
-        <button class="btn btn-primary"
-                name="form.buttons.continue"
-                type="submit"
-                i18n:translate=""
-        >Save</button>
 
       </form>
 

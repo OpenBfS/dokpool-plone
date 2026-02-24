@@ -12,7 +12,7 @@
 
     <metal:content-core fill-slot="main">
 
-      <form class="mx-3 my-3 rowlike pat-formunloadalert pat-formautofocus pat-validation enableFormTabbing"
+      <form class="bg-light mx-3 my-3 rowlike pat-formunloadalert pat-formautofocus pat-validation enableFormTabbing"
             id="form"
             enctype="multipart/form-data"
             method="post"
@@ -35,140 +35,176 @@
                "
         />
 
-        <h1 i18n:translate="">Create new entry</h1>
-
-        <!-- CONTAINER -->
-        <div class="wizard-field"
-             id="formfield-${widget_id}"
-             tal:define="
-               widget_name string:container_uid;
-               widget_id python:widget_name.replace('.', '-');
-               widget_value python:form.get(widget_name);
-               error python:errors.get(widget_name);
-             "
-             tal:attributes="
-               class python:'wizard-field mb-3 error' if error else 'wizard-field mb-3';
-             "
-        >
-          <!-- Data -->
-          <div class="wizard-field-data">
-            <h2 class="wizard-field-label">
-              <label for="${widget_name}">
-                <span tal:attributes="
-                        class python:view.is_required(widget_name);
-                      "
-                      i18n:translate=""
-                >Container</span>
-              </label>
-            </h2>
-            <div class="error-msg"
-                 tal:condition="error"
-            ><span tal:replace="error"></span></div>
-            <div class="wizard-field field"
-                 tal:define="
-                   containers python: view.containers();
-                 "
-                 tal:attributes="
-                   class python:error and 'wizard-field field error' or 'wizard-field field';
-                 "
-            >
-              <select class="pat-autosubmit form-select select-widget choice-field"
-                      id="${widget_id}"
-                      name="${widget_name}"
-                      size="1"
-              >
-                <option id="form-widgets-containers-novalue"
-                        value=""
-                        tal:condition="python:len(containers) > 1"
-                        i18n:translate=""
-                >Select a container</option>
-                <option id="${python:item['uid']}"
-                        value="${python:item['uid']}"
-                        tal:repeat="item python:containers"
-                        tal:content="python:item['level'] * '&emsp;' + '&#128194; ' + item['title']"
-                        tal:attributes="
-                          selected python:item['uid'] == widget_value;
-                        "
-                >
-                </option>
-              </select>
-            </div>
+        <div class="row">
+          <div class="col-12 p-3">
+            <h1 i18n:translate="">Create new entry</h1>
           </div>
         </div>
 
-        <!-- DOCTYPE (named entrytype to skip validation!) -->
-        <div tal:define="
-               widget_name string:entrytype;
-               widget_id python:widget_name.replace('.', '-');
-               widget_value python:form.get(widget_name);
-               error python:errors.get(widget_name);
-               css_class python:f'mb-3 field fieldname-form.widgets.{widget_name} widget-mode-input';
-               css_class python: css_class + ' error' if error else css_class;
-             "
-             tal:attributes="
-               class python: css_class;
-               id python: f'formfield-{widget_id}';
-             "
-        >
-          <!-- Data -->
-          <div class="wizard-field-data">
-            <label for="${widget_name}">
-              <span tal:attributes="
-                      class python:view.is_required(widget_name);
-                    "
-                    i18n:translate=""
-              >Doctype</span>
-            </label>
-            <p tal:condition="python: not doctypes"
-               i18n:translate=""
-            >
-              Please select a container first
+        <div class="row">
+          <div class="col-3 p-3">
+            <p class="h5">
+              <tal:icon tal:replace="structure python:icons.tag('1-circle-fill')" />
+              <span>Ablageort und Eintragsart</span>
             </p>
-            <div class="form-text"></div>
-            <div class="error-msg"
-                 tal:condition="error"
-            ><span tal:replace="error"></span></div>
-            <div class="wizard-field field"
-                 tal:condition="python: doctypes"
+            <p>
+              Bitte w&auml;hlen Sie zun&auml;chst den Gruppenordner, in dem der neue Eintrag abgelegt werden soll. W&auml;hlen Sie danach die Eintragsart aus.
+            </p>
+            <p class="h5">
+              <tal:icon tal:replace="structure python:icons.tag('2-circle')" />
+              <span>Inhalt</span>
+            </p>
+            <p class="h5">
+              <tal:icon tal:replace="structure python:icons.tag('3-circle')" />
+              <span>Sichtbarkeit</span>
+            </p>
+          </div>
+          <div class="col-9 bg-white px-3">
+
+            <!-- CONTAINER -->
+            <div class="wizard-field"
+                 id="formfield-${widget_id}"
+                 tal:define="
+                   widget_name string:container_uid;
+                   widget_id python:widget_name.replace('.', '-');
+                   widget_value python:form.get(widget_name);
+                   error python:errors.get(widget_name);
+                 "
                  tal:attributes="
-                   class python:error and 'wizard-field field error' or 'wizard-field field';
+                   class python:'wizard-field mb-3 error' if error else 'wizard-field mb-3';
                  "
             >
-              <select class="select-widget required choice-field form-select"
-                      id="${widget_id}"
-                      name="${widget_name}"
-                      size="1"
-              >
-                <option id="form-widgets-doctypes-novalue"
-                        value=""
-                        tal:condition="python:len(doctypes) > 1"
-                        i18n:translate=""
-                >Select a Doctype</option>
-                <option id="${python:item.id}"
-                        value="${python:item.id}"
-                        tal:repeat="item doctypes"
-                        tal:content="python:item.Title"
-                        tal:attributes="
-                          selected python:item.id == widget_value;
-                        "
+              <!-- Data -->
+              <div class="wizard-field-data">
+                <div class="mb-2 wizard-field-label">
+                  <label for="${widget_name}">
+                    <span tal:attributes="
+                            class python:view.is_required(widget_name);
+                          "
+                          i18n:translate=""
+                    >Container</span>
+                  </label>
+                </div>
+                <div class="error-msg"
+                     tal:condition="error"
+                ><span tal:replace="error"></span></div>
+                <div class="wizard-field field"
+                     tal:define="
+                       containers python: view.containers();
+                     "
+                     tal:attributes="
+                       class python:error and 'wizard-field field error' or 'wizard-field field';
+                     "
                 >
-                </option>
-              </select>
+                  <select class="pat-autosubmit form-select select-widget choice-field"
+                          id="${widget_id}"
+                          name="${widget_name}"
+                          size="1"
+                  >
+                    <option id="form-widgets-containers-novalue"
+                            value=""
+                            tal:condition="python:len(containers) > 1"
+                            i18n:translate=""
+                    >Select a container</option>
+                    <option id="${python:item['uid']}"
+                            value="${python:item['uid']}"
+                            tal:repeat="item python:containers"
+                            tal:content="python:item['level'] * '&emsp;' + '&#128194; ' + item['title']"
+                            tal:attributes="
+                              selected python:item['uid'] == widget_value;
+                            "
+                    >
+                    </option>
+                  </select>
+                </div>
+              </div>
             </div>
+
+            <!-- DOCTYPE (named entrytype to skip validation!) -->
+            <div tal:define="
+                   widget_name string:entrytype;
+                   widget_id python:widget_name.replace('.', '-');
+                   widget_value python:form.get(widget_name);
+                   error python:errors.get(widget_name);
+                   css_class python:f'mb-3 field fieldname-form.widgets.{widget_name} widget-mode-input';
+                   css_class python: css_class + ' error' if error else css_class;
+                 "
+                 tal:attributes="
+                   class python: css_class;
+                   id python: f'formfield-{widget_id}';
+                 "
+            >
+              <!-- Data -->
+              <div class="mb-2 wizard-field-label">
+                <label for="${widget_name}">
+                  <span tal:attributes="
+                          class python:view.is_required(widget_name);
+                        "
+                        i18n:translate=""
+                  >Doctype</span>
+                </label>
+                <p class=""
+                   tal:condition="python: not doctypes"
+                   i18n:translate=""
+                >
+                    Please select a container first
+                </p>
+                <div class="form-text"></div>
+                <div class="error-msg"
+                     tal:condition="error"
+                ><span tal:replace="error"></span></div>
+                <div class="wizard-field field"
+                     tal:condition="python: doctypes"
+                     tal:attributes="
+                       class python:error and 'wizard-field field error' or 'wizard-field field';
+                     "
+                >
+                  <select class="select-widget required choice-field form-select"
+                          id="${widget_id}"
+                          name="${widget_name}"
+                          size="1"
+                  >
+                    <option id="form-widgets-doctypes-novalue"
+                            value=""
+                            tal:condition="python:len(doctypes) > 1"
+                            i18n:translate=""
+                    >Select a Doctype</option>
+                    <option id="${python:item.id}"
+                            value="${python:item.id}"
+                            tal:repeat="item doctypes"
+                            tal:content="python:item.Title"
+                            tal:attributes="
+                              selected python:item.id == widget_value;
+                            "
+                    >
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+          <div class="col-12 p-3 text-end">
+
+
+            <button class="btn btn-secondary me-3"
+                    formnovalidate="formnovalidate"
+                    name="form.buttons.cancel"
+                    type="submit"
+                    i18n:translate=""
+            >Cancel</button>
+            <button class="btn btn-primary"
+                    name="form.buttons.continue"
+                    type="submit"
+                    i18n:translate=""
+            >Next</button>
+
           </div>
         </div>
 
-        <button class="btn btn-secondary me-3"
-                formnovalidate="formnovalidate"
-                name="form.buttons.cancel"
-                type="submit"
-                i18n:translate=""
-        >Cancel</button>
-        <button class="btn btn-primary"
-                name="form.buttons.continue"
-                type="submit"
-                i18n:translate=""
-        >Next</button>
 
       </form>
 

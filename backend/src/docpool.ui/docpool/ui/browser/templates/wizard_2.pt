@@ -12,7 +12,7 @@
 
     <metal:content-core fill-slot="main">
 
-      <form class="mx-3 my-3 rowlike pat-formunloadalert pat-formautofocus pat-validation enableFormTabbing"
+      <form class="bg-light mx-3 my-3 rowlike pat-formunloadalert pat-formautofocus pat-validation enableFormTabbing"
             id="form"
             enctype="multipart/form-data"
             method="post"
@@ -35,130 +35,171 @@
                "
         />
 
-        <h1 i18n:translate="">Create new entry</h1>
+        <div class="row">
+          <div class="col-12 p-3">
+            <h1 i18n:translate="">Create new entry</h1>
+          </div>
+        </div>
 
-        <tal:block tal:define="
-                     widget python:view.get_widget('IDublinCore.title');
-                   ">
-          <tal:widget tal:replace="structure widget/@@ploneform-render-widget" />
-        </tal:block>
+        <div class="row">
+          <div class="col-3 p-3">
+            <p class="h5">
+              <tal:icon tal:replace="structure python:icons.tag('1-circle')" />
+              <span>Ablageort und Eintragsart</span>
+            </p>
+            <p>
+              <tal:icon tal:replace="structure python:icons.tag('folder2-open')" />
+              <span tal:replace="python: view.container_title"></span>
+            </p>
+            <p>
+              <tal:icon tal:replace="structure python:icons.tag(view.entrytype_icon)" />
+              <span tal:replace="python: view.entrytype_title"></span>
+            </p>
+            <p class="h5">
+              <tal:icon tal:replace="structure python:icons.tag('2-circle-fill')" />
+              <span>Inhalt</span>
+            </p>
+            <p>Bitte definieren Sie den Inhalt des Eintrags.</p>
+            <p class="h5">
+              <tal:icon tal:replace="structure python:icons.tag('3-circle')" />
+              <span>Sichtbarkeit</span>
+            </p>
+          </div>
+          <div class="col-9 bg-white p-3">
 
-        <tal:block tal:define="
-                     widget python:view.get_widget('text');
-                   ">
-          <tal:widget tal:replace="structure widget/@@ploneform-render-widget" />
-        </tal:block>
+            <tal:block tal:define="
+                         widget python:view.get_widget('IDublinCore.title');
+                       ">
+              <tal:widget tal:replace="structure widget/@@ploneform-render-widget" />
+            </tal:block>
 
-        <!-- ATTACHMENTS -->
-        <div class="wizard-field"
-             id="formfield-${widget_id}"
-             tal:define="
-               widget_name string:attachments;
-               widget_id python:widget_name.replace('.', '-');
-               widget_value python:form.get(widget_name);
-               error python:errors.get(widget_name);
-             "
-             tal:attributes="
-               class python:'wizard-field mb-3 error' if error else 'wizard-field mb-3';
-             "
-        >
-          <!-- Data -->
-          <div class="wizard-field-data">
-            <div class="wizard-field-label">
-              <label for="${widget_name}">
-                <span tal:attributes="
-                        class python:view.is_required(widget_name);
-                      "
-                      i18n:translate="attachments"
-                >Attachments</span>
-              </label>
-            </div>
-            <div class="error-msg"
-                 tal:condition="error"
-            ><span tal:replace="error"></span></div>
-            <div class="wizard-field field"
+            <tal:block tal:define="
+                         widget python:view.get_widget('text');
+                       ">
+              <tal:widget tal:replace="structure widget/@@ploneform-render-widget" />
+            </tal:block>
+
+            <!-- ATTACHMENTS -->
+            <div class="wizard-field"
+                 id="formfield-${widget_id}"
+                 tal:define="
+                   widget_name string:attachments;
+                   widget_id python:widget_name.replace('.', '-');
+                   widget_value python:form.get(widget_name);
+                   error python:errors.get(widget_name);
+                 "
                  tal:attributes="
-                   class python:error and 'wizard-field field error' or 'wizard-field field';
+                   class python:'wizard-field mb-3 error' if error else 'wizard-field mb-3';
                  "
             >
-              <input class="form-control"
-                     id="attachments"
-                     multiple
-                     name="attachments"
-                     type="file"
-              />
-            </div>
-          </div>
-        </div>
-
-        <hr />
-
-        <div class="accordion accordion-flush"
-             id="advancedSettings"
-        >
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed"
-                      aria-controls="flush-collapseOne"
-                      aria-expanded="false"
-                      type="button"
-                      data-bs-target="#flush-collapseOne"
-                      data-bs-toggle="collapse"
-                      i18n:translate=""
-              >
-        Advanced Settings
-              </button>
-            </h2>
-            <div class="accordion-collapse collapse"
-                 id="flush-collapseOne"
-                 data-bs-parent="#advancedSettings"
-            >
-              <div class="accordion-body">
-                <tal:block tal:define="
-                             widget python:view.get_widget('IExcludeFromNavigation.exclude_from_nav');
-                           "
-                           tal:condition="python: widget"
+              <!-- Data -->
+              <div class="wizard-field-data">
+                <div class="wizard-field-label">
+                  <label for="${widget_name}">
+                    <span tal:attributes="
+                            class python:view.is_required(widget_name);
+                          "
+                          i18n:translate="attachments"
+                    >Attachments</span>
+                  </label>
+                </div>
+                <div class="error-msg"
+                     tal:condition="error"
+                ><span tal:replace="error"></span></div>
+                <div class="wizard-field field"
+                     tal:attributes="
+                       class python:error and 'wizard-field field error' or 'wizard-field field';
+                     "
                 >
-                  <tal:widget tal:replace="structure widget/@@ploneform-render-widget" />
-                </tal:block>
-
-                <tal:block tal:define="
-                             widget python:view.get_widget('IDublinCore.effective');
-                           "
-                           tal:condition="python: widget"
-                >
-                  <tal:widget tal:replace="structure widget/@@ploneform-render-widget" />
-                </tal:block>
-                <tal:block tal:define="
-                             widget python:view.get_widget('IDublinCore.expires');
-                           "
-                           tal:condition="python: widget"
-                >
-                  <tal:widget tal:replace="structure widget/@@ploneform-render-widget" />
-                </tal:block>
-
+                  <input class="form-control"
+                         id="attachments"
+                         multiple
+                         name="attachments"
+                         type="file"
+                  />
+                </div>
               </div>
             </div>
+
+            <hr />
+
+            <div class="accordion accordion-flush"
+                 id="advancedSettings"
+            >
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed"
+                          aria-controls="flush-collapseOne"
+                          aria-expanded="false"
+                          type="button"
+                          data-bs-target="#flush-collapseOne"
+                          data-bs-toggle="collapse"
+                          i18n:translate=""
+                  >
+                Advanced Settings
+                  </button>
+                </h2>
+                <div class="accordion-collapse collapse"
+                     id="flush-collapseOne"
+                     data-bs-parent="#advancedSettings"
+                >
+                  <div class="accordion-body">
+                    <tal:block tal:define="
+                                 widget python:view.get_widget('IExcludeFromNavigation.exclude_from_nav');
+                               "
+                               tal:condition="python: widget"
+                    >
+                      <tal:widget tal:replace="structure widget/@@ploneform-render-widget" />
+                    </tal:block>
+
+                    <tal:block tal:define="
+                                 widget python:view.get_widget('IDublinCore.effective');
+                               "
+                               tal:condition="python: widget"
+                    >
+                      <tal:widget tal:replace="structure widget/@@ploneform-render-widget" />
+                    </tal:block>
+                    <tal:block tal:define="
+                                 widget python:view.get_widget('IDublinCore.expires');
+                               "
+                               tal:condition="python: widget"
+                    >
+                      <tal:widget tal:replace="structure widget/@@ploneform-render-widget" />
+                    </tal:block>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
 
-        <button class="btn btn-secondary me-3"
-                formnovalidate="formnovalidate"
-                name="form.buttons.cancel"
-                type="submit"
-                i18n:translate=""
-        >Cancel</button>
-        <button class="btn btn-outline-secondary ms-3"
-                formnovalidate="formnovalidate"
-                name="form.buttons.back"
-                type="submit"
-                i18n:translate=""
-        >Back</button>
-        <button class="btn btn-primary"
-                name="form.buttons.continue"
-                type="submit"
-                i18n:translate=""
-        >Next</button>
+        <div class="row">
+          <div class="col-12 p-3 text-end">
+
+
+            <button class="btn btn-secondary me-3"
+                    formnovalidate="formnovalidate"
+                    name="form.buttons.cancel"
+                    type="submit"
+                    i18n:translate=""
+            >Cancel</button>
+            <button class="btn btn-outline-secondary ms-3"
+                    formnovalidate="formnovalidate"
+                    name="form.buttons.back"
+                    type="submit"
+                    i18n:translate=""
+            >Back</button>
+            <button class="btn btn-primary"
+                    name="form.buttons.continue"
+                    type="submit"
+                    i18n:translate=""
+            >Next</button>
+
+          </div>
+        </div>
+
 
       </form>
 
