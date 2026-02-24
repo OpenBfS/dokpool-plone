@@ -3,11 +3,13 @@ from eea.facetednavigation.widgets.storage import Criterion
 from elan.journal.adapters import JournalEntry
 from persistent.list import PersistentList
 from persistent.mapping import PersistentMapping
+from plone import api
 from plone.app.dexterity.behaviors.exclfromnav import IExcludeFromNavigation
 from plone.dexterity.schema import SCHEMA_CACHE
 from plone.dexterity.utils import resolveDottedName
 from plone.exportimport.importers.content import ContentImporter
 from Products.CMFPlacefulWorkflow.PlacefulWorkflowTool import WorkflowPolicyConfig_id
+from Products.CMFPlone.controlpanel.events import handleConfigurationChangedEvent
 from zope.annotation.interfaces import IAnnotations
 from zope.globalrequest import getRequest
 from zope.interface import alsoProvides
@@ -25,7 +27,7 @@ MARKER_INTERFACES_KEY = "exportimport.marker_interfaces"
 
 # Work around issues with fields based on Vocabularies
 SIMPLE_SETTER_FIELDS = {
-    "ALL": [],
+    "ALL": ["docType"],
     "CollaborationFolder": ["allowedDocTypes", "allowedPartnerDocTypes"],
     "DocType": ["automaticTransferTargets"],
     "DPDocument": ["scenarios", "OperationMode", "Origins"],
@@ -39,7 +41,7 @@ SIMPLE_SETTER_FIELDS = {
 
 FACTORY_KWARGS = {
     "ALL": ["supportedApps", "local_behaviors"],
-    "DPDocument": ["docType"],
+    "DPDocument": [],
 }
 
 
@@ -195,6 +197,9 @@ class CustomContentImporter(ContentImporter):
 
     def finish(self):
         noLongerProvides(self.request, IImportingMarker)
+        handleConfigurationChangedEvent(None)
+        catalog = api.portal.get_tool("portal_catalog")
+        catalog.clearFindAndRebuild()
 
 
 def import_annotations(obj, item):
