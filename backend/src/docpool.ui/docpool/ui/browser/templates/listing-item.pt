@@ -110,7 +110,7 @@
             >
               <div class="d-flex align-items-center justify-content-center h-100 bg-dark-subtle">
                 <span class="text-gray-main bg-body-secondary p-1 rounded-1"
-                      tal:content="python: item.content_type().split('/')[-1].upper()"
+                      tal:content="python: item.getObject().content_type().split('/')[-1].upper()"
                 >XLS</span>
                 <div class="position-absolute bottom-0 end-0 bg-light px-2 rounded-top-start rounded-bottom-end"
                      tal:condition="python: plus_number"

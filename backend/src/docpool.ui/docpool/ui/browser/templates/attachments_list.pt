@@ -26,7 +26,7 @@
             </a>
             <div class="float-end">
               <span class="badge text-bg-secondary"
-                    tal:content="python: view.mimetype_name(item.content_type())"
+                    tal:content="python: view.mimetype_name(item.getObject().content_type())"
               ></span>
               <span tal:content="python: item.getSize()"></span>
             </div>
