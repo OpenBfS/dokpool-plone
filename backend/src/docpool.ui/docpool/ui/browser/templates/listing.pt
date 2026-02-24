@@ -125,7 +125,9 @@
                    tal:condition="python: len(categories) > 1"
               ><label><input class="form-check-input toggle-all"
                          type="checkbox"
-                  /><span i18n:domain="docpool.base" i18n:translate="label_toggle">Toggle all</span></label></div>
+                  /><span i18n:domain="docpool.base"
+                        i18n:translate="label_toggle"
+                  >Toggle all</span></label></div>
               <tal:category tal:repeat="category python: categories">
                 <!-- HEADING -->
                 <strong tal:content="python: category"></strong>
@@ -231,7 +233,9 @@
                    tal:condition="python: len(groups) > 5"
               ><label><input class="form-check-input toggle-all"
                          type="checkbox"
-                  /><span i18n:domain="docpool.base" i18n:translate="label_toggle">Toggle all</span></label></div>
+                  /><span i18n:domain="docpool.base"
+                        i18n:translate="label_toggle"
+                  >Toggle all</span></label></div>
               <tal:groups tal:repeat="group python: groups">
                 <div class="form-check">
                   <input class="form-check-input"

@@ -1,0 +1,38 @@
+#--- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+#SOME DESCRIPTIVE TITLE.
+#FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2026-02-17 08:54+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: docpool.distribution\n"
+
+#: docpool.distribution/src/docpool/distribution/profiles.zcml
+msgid "Dokpool Distribution: Install"
+msgstr ""
+
+#: docpool.distribution/src/docpool/distribution/profiles.zcml
+msgid "Dokpool Distribution: Uninstall"
+msgstr ""
+
+#: docpool.distribution/src/docpool/distribution/configure.zcml
+msgid "Dokpool Site with demo content"
+msgstr ""
+
+#: docpool.distribution/src/docpool/distribution/profiles.zcml
+msgid "Package to configure a new Dokpool Distribution site"
+msgstr ""
+
+#: docpool.distribution/src/docpool/distribution/profiles.zcml
+msgid "Uninstall Dokpool Distribution setup."
+msgstr ""
