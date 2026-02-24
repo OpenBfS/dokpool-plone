@@ -17,8 +17,6 @@ from Products.Five import BrowserView
 from z3c.form.interfaces import NO_VALUE
 from zope.interface import Invalid
 from zope.schema import ValidationError
-from zope.schema.vocabulary import SimpleTerm
-from zope.schema.vocabulary import SimpleVocabulary
 from ZPublisher.HTTPRequest import FileUpload
 
 import logging
@@ -377,20 +375,23 @@ class DPDocumentWizard(ContextlessWizard):
         container_title = container.title
         docpool_title = getDocumentPoolSite(container).title
         options = [
-            (
-                "private",
-                _("Only for member of '${container_title}'", mapping={"container_title": container_title}),
-            ),
-            (
-                "published",
-                _(
+            {
+                "value": "private",
+                "title": _("Internal"),
+                "description": _(
                     "For all users of '${app} ${docpool_title}'",
                     mapping={"app": self.app.upper(), "docpool_title": docpool_title},
                 ),
-            ),
+            },
+            {
+                "value": "published",
+                "title": _("Published"),
+                "description": _(
+                    "Only for member of '${container_title}'", mapping={"container_title": container_title}
+                ),
+            },
         ]
-        terms = [SimpleTerm(value=i[0], token=i[0], title=i[1]) for i in options]
-        return SimpleVocabulary(terms)
+        return options
 
     def default_scenario(self):
         query = {

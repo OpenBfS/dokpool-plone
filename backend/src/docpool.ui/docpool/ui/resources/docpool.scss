@@ -299,3 +299,18 @@ body.template-entrytypes {
     }
   }
 }
+
+// Wizard
+span.badge.visibility-option-private {
+  color: #fff !important;
+  background-color: $plone-default-private-color;
+  padding: 0.8em 1.6em;
+  font-size: 0.8em;
+}
+
+span.badge.visibility-option-published {
+  color: #fff !important;
+  background-color: $plone-default-published-color;
+  padding: 0.8em 1.6em;
+  font-size: 0.8em;
+}

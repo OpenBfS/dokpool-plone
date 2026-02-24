@@ -92,7 +92,7 @@
             >
               <!-- Data -->
               <div class="wizard-field-data">
-                <h2 class="wizard-field-label">
+                <div class="wizard-field-label">
                   <label for="${widget_name}">
                     <span tal:attributes="
                             class python:view.is_required(widget_name);
@@ -100,7 +100,7 @@
                           i18n:translate=""
                     >Visibility</span>
                   </label>
-                </h2>
+                </div>
 
                 <div class="wizard-field"
                      tal:repeat="item python:visibility_options"
@@ -116,18 +116,22 @@
                   <label>
                     <input name="${widget_name}"
                            type="radio"
-                           value="${item/value}"
+                           value="${python: item['value']}"
                            tal:define="
                              first_item repeat/item/start;
                              has_value python:True if widget_value else False;
                            "
                            tal:attributes="
-                             checked python:item.value == widget_value if has_value else first_item;
-                             title item/title;
+                             checked python:item['value'] == widget_value if has_value else first_item;
+                             title python: item['title'];
                            "
                            i18n:attributes="title"
                     />
-                    <span tal:replace="item/title"
+                    <span class="badge rounded-pill text-bg-primary visibility-option-${item/value}"
+                          tal:content="python: item['title']"
+                          i18n:translate=""
+                    ></span><br />
+                    <span tal:content="python: item['description']"
                           i18n:translate=""
                     ></span>
                   </label>

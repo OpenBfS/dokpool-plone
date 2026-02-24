@@ -230,9 +230,9 @@ class TestListing:
         assert "@@dpdocument_wizard_3" in page.url
 
         expect(page.get_by_role("checkbox", name="Normalfall")).to_be_checked()
-        expect(page.get_by_role("radio", name="Only for member of 'Group1 (")).to_be_checked()
-        expect(page.get_by_role("radio", name="For all users of 'ELAN Bund'")).not_to_be_checked()
-        page.get_by_role("radio", name="For all users of 'ELAN Bund'").click()
+        expect(page.get_by_title("Internal")).to_be_checked()
+        expect(page.get_by_title("Published")).not_to_be_checked()
+        page.get_by_title("Published").click()
         page.get_by_role("button", name="Save").click()
 
         assert page.url.endswith("/bund/@@listing")
