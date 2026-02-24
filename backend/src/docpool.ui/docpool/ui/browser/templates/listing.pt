@@ -335,7 +335,9 @@
             </a>
           </div>
 
-          <div class="ms-1 my-1">
+          <div class="ms-1 my-1"
+               tal:condition="python: not view.is_archive"
+          >
             <a class="btn btn-light"
                href="${python: context.absolute_url()}/@@dpdocument_wizard_1"
                title="Add entry"
