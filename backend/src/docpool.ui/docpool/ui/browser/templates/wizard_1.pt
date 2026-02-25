@@ -67,7 +67,7 @@
                  tal:define="
                    widget_name string:container_uid;
                    widget_id python:widget_name.replace('.', '-');
-                   widget_value python:form.get(widget_name);
+                   widget_value python:form.get(widget_name) or view.container_uid;
                    error python:errors.get(widget_name);
                  "
                  tal:attributes="

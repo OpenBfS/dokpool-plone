@@ -25,6 +25,19 @@ import time
 
 logger = logging.getLogger(__name__)
 
+FOLDER_TYPES = [
+    "Users",
+    "UserFolder",
+    "ContentArea",
+    "Groups",
+    "GroupFolder",
+    "PrivateFolder",
+    "SimpleFolder",
+    "ReviewFolder",
+    "CollaborationFolder",
+    "InfoFolder",
+]
+
 
 class ContextlessWizard(BrowserView):
     """Base-class for contextless multistep wizards with custom templates."""
@@ -191,12 +204,14 @@ class DPDocumentWizard(ContextlessWizard):
         if container_uid:
             self.container_title = container.title
             if entrytype_id := self.data.get("entrytype", None):
-                brains = api.content.find(
-                    context=self.context, portal_type="DocType", id=entrytype_id, unrestricted=True
-                )
-                entrytype = brains[0]._unrestrictedGetObject()
-                self.entrytype_title = entrytype.title
-                self.entrytype_icon = entrytype.icon_name
+                config = aq_get(self.context, "config", None)
+                if config or config.portal_type != "DPConfig":
+                    brains = api.content.find(
+                        context=config, portal_type="DocType", id=entrytype_id, unrestricted=True
+                    )
+                    entrytype = brains[0]._unrestrictedGetObject()
+                    self.entrytype_title = entrytype.title
+                    self.entrytype_icon = entrytype.icon_name
 
         # Render form
         if self.form.get("form.buttons.continue", None) is None:
@@ -304,6 +319,9 @@ class DPDocumentWizard(ContextlessWizard):
             if item := self.check_tree(obj):
                 tree.append(item)
         flat = [i for i in self.flatten(tree)]
+        self.container_uid = None
+        if self.context.portal_type in FOLDER_TYPES and self.context.UID() in [i["uid"] for i in flat]:
+            self.container_uid = self.context.UID()
         return flat
 
     def flatten(self, items):
@@ -351,7 +369,11 @@ class DPDocumentWizard(ContextlessWizard):
         container_uid = self.data.get("container_uid") or self.form.get("container_uid")
         if not container_uid:
             all_containers = self.containers()
-            if len(all_containers) == 1:
+            if self.context.portal_type in FOLDER_TYPES and self.context.UID() in [
+                i["uid"] for i in all_containers
+            ]:
+                container_uid = self.context.UID()
+            elif len(all_containers) == 1:
                 container_uid = all_containers[0]["uid"]
         if not container_uid:
             return []
