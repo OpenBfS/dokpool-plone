@@ -20,11 +20,20 @@ $plone-default-revised-color: #d4d4d4;
   --bs-warning: #fed86c; /* Gelb Main */
   --bs-light: #e1e6eb; /* Graublau Hell3 */
   --bs-light-blue: #c3dce7; /* Hellblau(Hell2) */
+  --bs-btn-font-size: 0.75rem;
 // Bootstrap default:
 // $font-size-base:              1rem !default; // Assumes the browser default, typically `16px`
   --dp-font-title: 1rem; /* 16px */
   --dp-font-body: 0.85rem; /* 13px */
   --dp-font-small: 0.75rem; /* 12px */
+}
+
+.btn {
+  font-size: var(--dp-font-small);
+}
+
+.btn-icon {
+  font-size: var(--dp-font-title);
 }
 
 .btn-light {
