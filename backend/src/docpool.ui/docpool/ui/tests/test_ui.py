@@ -30,7 +30,7 @@ class TestUI(unittest.TestCase):
     def test_listing_find_on_empty_docpool(self):
         listing_view = api.content.get_view("listing", self.portal, self.request)
         # Nothing found - no UIDs and no modified date
-        self.assertEqual(listing_view.find(), ([], None))
+        self.assertEqual(listing_view.find(), ([], None, []))
 
 
 class TestUIFeatures(unittest.TestCase):
@@ -94,7 +94,7 @@ class TestUIFeatures(unittest.TestCase):
     def test_listing_view_with_entries(self):
         listing_view = api.content.get_view("listing", self.group_folder, self.request)
         # One item is found
-        self.assertEqual(listing_view.find(), ([self.entry.UID()], self.entry.modified()))
+        self.assertEqual(listing_view.find(), ([self.entry.UID()], self.entry.modified(), []))
 
         # render listing view
         html = listing_view()
@@ -128,8 +128,9 @@ class TestUIFeatures(unittest.TestCase):
         self.assertEqual(data["modified_by_user"], "user1 (Bund)")
         self.assertEqual(data["available_transitions"][0]["id"], "publish")
 
-        # It needs a valid uid of a DPDocument the user can access
-        self.assertIsNone(listing_item_view(uid=self.group_folder.UID()))
+        # It works on Folders as well
+        html = listing_item_view(uid=self.group_folder.UID())
+        self.assertIn("Group1 (Bund)</h3>", html)
 
     def test_dpdocument_view(self):
         dpdocument_view = api.content.get_view("view", self.entry, self.request)
@@ -155,7 +156,7 @@ class TestUIFeatures(unittest.TestCase):
 
     def test_time_filter(self):
         listing_view = api.content.get_view("listing", self.group_folder, self.request)
-        uids, _ = listing_view.find()
+        uids, _, _ = listing_view.find()
         self.assertEqual(len(uids), 1)
 
         # create entry
@@ -168,20 +169,20 @@ class TestUIFeatures(unittest.TestCase):
             local_behaviors=["elan"],
             scenarios=getScenariosForCurrentUser(),
         )
-        uids, _ = listing_view.find()
+        uids, _, _ = listing_view.find()
         self.assertEqual(len(uids), 2)
 
         self.request.form["startdate"] = (datetime.date.today() - datetime.timedelta(days=3)).isoformat()
-        uids, _ = listing_view.find()
+        uids, _, _ = listing_view.find()
         self.assertEqual(len(uids), 2)
 
         self.request.form["enddate"] = (datetime.date.today() - datetime.timedelta(days=1)).isoformat()
-        uids, _ = listing_view.find()
+        uids, _, _ = listing_view.find()
         self.assertEqual(len(uids), 0)
 
         # change creation-date of entry2
         older_date = datetime.datetime.now() - datetime.timedelta(days=2)
         entry.creation_date = datify(older_date)
         entry.reindexObject()
-        uids, _ = listing_view.find()
+        uids, _, _ = listing_view.find()
         self.assertEqual(len(uids), 1)
