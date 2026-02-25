@@ -1,3 +1,5 @@
+from docpool.base.behaviors.transferable import ITransferable
+from docpool.base.content.contentbase import IContentBase
 from docpool.base.content.documentpool import APPLICATIONS_KEY
 from docpool.base.content.simplefolder import ISimpleFolder
 from docpool.base.setuphandlers import create_session_stuff
@@ -52,6 +54,45 @@ OLD_OBJ_MAPPING = {
         "/dokpool/brandenburg/archive/imis-uebung-berlin-brandenburg-202010_27-11-2020/content/Groups/bb_landeslabor_bbb/trinkwasser-2020-10.07",
     ],
 }
+
+
+def _normalize_userinfo_tuple(value, obj=None):
+    if value is None:
+        log.info(f"Object has no value: {obj.absolute_url()}")
+        return None
+    # Already done - return value
+    if isinstance(value, tuple) and len(value) == 3:
+        return value
+    if isinstance(value, str):
+        if "<i>" in value:
+            text = value.split('<i>')
+            fullname = text[0].strip()
+            group = text[1].split('</i>')[0]
+        else:
+            fullname = ""
+            group = value.strip()
+        return ("", fullname, group)
+    return ("", str(value), "")
+
+
+def _upgrade_userinfo_fields(obj):
+    changed = False
+    for field in ("created_by", "modified_by", "transferred_by"):
+        import pdb; pdb.set_trace()
+        if not hasattr(obj, field):
+            continue
+        value = getattr(obj, field, None)
+        if value is None:
+            continue
+        print(value)
+        normalized = _normalize_userinfo_tuple(value, obj)
+        if normalized is None or normalized == value:
+            continue
+        setattr(obj, field, normalized)
+        changed = True
+    if changed:
+        obj._p_changed = 1
+    return changed
 
 
 def to_1010(context=None):
@@ -138,44 +179,46 @@ def to_3000(context=None):
         portal_setup,
         "profile-docpool.base:to_3000",
     )
-    create_session_stuff(portal)
-
-    enable_elan_for_all_docpools()
-
-    # Delete old structure first
-    delete_esd_structure()
-
-    # Drop data from relationfield to speed up stuff
-    marker = object()
-    for brain in api.content.find(portal_type="DocType", sort_on="path"):
-        obj = brain.getObject()
-        if getattr(obj.aq_base, "contentCategory", marker) is not marker:
-            del obj.contentCategory
-
-    create_doctype_structure()
-    handleConfigurationChangedEvent(None)
-
-    log.info("Indexing...")
-    catalog = api.portal.get_tool("portal_catalog")
-    pghandler = ZLogHandler(steps=5000)
-    catalog.reindexIndex(
-        [
-            "dp_type",
-            "apps_supported",
-            "object_provides",
-            "allowedRolesAndUsers",
-        ],
-        REQUEST=None,
-        pghandler=pghandler,
-    )
-
-    log.info("Removing obsolete relations ...")
-    relation_catalog = getUtility(ICatalog)
-    for relationship in ["contentCategory", "dbCollections", "docTypes"]:
-        query = {"from_attribute": relationship}
-        for rel in [rel for rel in relation_catalog.findRelations(query)]:
-            relation_catalog.unindex(rel)
-
+    # create_session_stuff(portal)
+    #
+    # enable_elan_for_all_docpools()
+    #
+    # # Delete old structure first
+    # delete_esd_structure()
+    #
+    # # Drop data from relationfield to speed up stuff
+    # marker = object()
+    # for brain in api.content.find(portal_type="DocType", sort_on="path"):
+    #     obj = brain.getObject()
+    #     if getattr(obj.aq_base, "contentCategory", marker) is not marker:
+    #         del obj.contentCategory
+    #
+    # create_doctype_structure()
+    # handleConfigurationChangedEvent(None)
+    #
+    # log.info("Indexing...")
+    # catalog = api.portal.get_tool("portal_catalog")
+    # pghandler = ZLogHandler(steps=5000)
+    # catalog.reindexIndex(
+    #     [
+    #         "dp_type",
+    #         "apps_supported",
+    #         "object_provides",
+    #         "allowedRolesAndUsers",
+    #     ],
+    #     REQUEST=None,
+    #     pghandler=pghandler,
+    # )
+    #
+    # log.info("Removing obsolete relations ...")
+    # relation_catalog = getUtility(ICatalog)
+    # for relationship in ["contentCategory", "dbCollections", "docTypes"]:
+    #     query = {"from_attribute": relationship}
+    #     for rel in [rel for rel in relation_catalog.findRelations(query)]:
+    #         relation_catalog.unindex(rel)
+    #
+    log.info("Convert userinfo")
+    convert_userinfo()
     log.info("Done")
 
 
@@ -458,3 +501,28 @@ def enable_elan_for_all_docpools():
             createELANUsers(obj)
             createELANGroups(obj)
             setELANLocalRoles(obj)
+
+
+def convert_userinfo(context=None):
+    updated = 0
+    checked = 0
+    seen = set()
+
+    for brain in api.content.find(object_provides=IContentBase.__identifier__):
+        obj = brain.getObject()
+        key = brain.UID or brain.getPath()
+        seen.add(key)
+        checked += 1
+        if _upgrade_userinfo_fields(obj):
+            updated += 1
+
+    for brain in api.content.find(object_provides=ITransferable.__identifier__):
+        key = brain.UID or brain.getPath()
+        if key in seen:
+            continue
+        obj = brain.getObject()
+        checked += 1
+        if _upgrade_userinfo_fields(obj):
+            updated += 1
+
+    log.info("Converted userinfo fields to tuples: updated %s of %s objects", updated, checked)
