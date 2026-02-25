@@ -44,7 +44,7 @@
           <div class="col-3 p-3">
             <p class="h5">
               <tal:icon tal:replace="structure python:icons.tag('1-circle')" />
-              <span>Ablageort und Eintragsart</span>
+              <span i18n:translate="">Folder and Entrytype</span>
             </p>
             <p>
               <tal:icon tal:replace="structure python:icons.tag('folder2-open')" />
@@ -56,15 +56,19 @@
             </p>
             <p class="h5">
               <tal:icon tal:replace="structure python:icons.tag('2-circle')" />
-              <span>Inhalt</span>
+              <span i18n:translate="">Content</span>
             </p>
-            <p><tal:icon tal:replace="structure python:icons.tag('check')" />Titel definiert</p>
-            <p><tal:icon tal:replace="structure python:icons.tag('check')" />Inhalt definiert</p>
+            <p>
+              <tal:icon tal:replace="structure python:icons.tag('check')" />
+              <span i18n:translate="">Title added</span></p>
+            <p>
+              <tal:icon tal:replace="structure python:icons.tag('check')" />
+              <span i18n:translate="">Content added</span></p>
             <p class="h5">
               <tal:icon tal:replace="structure python:icons.tag('3-circle-fill')" />
-              <span>Sichtbarkeit</span>
+              <span i18n:translate="">Visibility</span>
             </p>
-            <p>Bitte &uuml;berpr&uuml;fen Sie die gew&uuml;nschte Sichtbarkeit des Eintrags.</p>
+            <p i18n:translate="">Please check who will have access to the entry.</p>
           </div>
           <div class="col-9 bg-white p-3">
 

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-02-24 14:43+0000\n"
+"POT-Creation-Date: 2026-02-25 11:46+0000\n"
 "PO-Revision-Date: 2025-11-24 12:24+0100\n"
 "Last-Translator: Thomas Lotze <lotze@starzel.de>\n"
 "Language-Team: German <translation-team-de@lists.sourceforge.net>\n"
@@ -56,6 +56,16 @@ msgstr "Ablageort"
 #: docpool.ui/docpool/ui/browser/templates/wizard_1.pt
 #: docpool.ui/docpool/ui/browser/templates/wizard_2.pt
 #: docpool.ui/docpool/ui/browser/templates/wizard_3.pt
+msgid "Content"
+msgstr "Inhalt"
+
+#: docpool.ui/docpool/ui/browser/templates/wizard_3.pt
+msgid "Content added"
+msgstr "Inhalt ist definiert"
+
+#: docpool.ui/docpool/ui/browser/templates/wizard_1.pt
+#: docpool.ui/docpool/ui/browser/templates/wizard_2.pt
+#: docpool.ui/docpool/ui/browser/templates/wizard_3.pt
 msgid "Create new entry"
 msgstr "Neuen Eintrag anlegen"
 
@@ -88,6 +98,12 @@ msgstr "Einträge"
 msgid "Entrytype"
 msgstr "Eintragsart"
 
+#: docpool.ui/docpool/ui/browser/templates/wizard_1.pt
+#: docpool.ui/docpool/ui/browser/templates/wizard_2.pt
+#: docpool.ui/docpool/ui/browser/templates/wizard_3.pt
+msgid "Folder and Entrytype"
+msgstr "Ablageort und Eintragsart"
+
 #: docpool.ui/docpool/ui/browser/wizard.py
 msgid "For all users of '${app} ${docpool_title}'"
 msgstr "Für alle Anwender von '${app} ${docpool_title}' sichtbar"
@@ -97,6 +113,7 @@ msgid "Group"
 msgstr "Gruppe"
 
 #: docpool.ui/docpool/ui/browser/listing.py
+#: docpool.ui/docpool/ui/browser/wizard.py
 msgid "Internal"
 msgstr "Gruppenintern"
 
@@ -121,15 +138,28 @@ msgstr "Für alle Mitglieder der Gruppe '${container_title}' sichtbar"
 msgid "Pending"
 msgstr "Eingereicht"
 
+#: docpool.ui/docpool/ui/browser/templates/wizard_3.pt
+msgid "Please check who will have access to the entry."
+msgstr "Bitte &uuml;berpr&uuml;fen Sie die gew&uuml;nschte Sichtbarkeit des Eintrags."
+
 #: docpool.ui/docpool/ui/browser/templates/wizard_1.pt
 msgid "Please select a container first"
 msgstr "Bitte wählen Sie zunächst einen Ablageort"
+
+#: docpool.ui/docpool/ui/browser/templates/wizard_1.pt
+msgid "Please select the group-folder in which the entry should be created. Then select the entrytype."
+msgstr "Bitte w&auml;hlen Sie zun&auml;chst den Gruppenordner, in dem der neue Eintrag abgelegt werden soll. W&auml;hlen Sie danach die Eintragsart aus."
+
+#: docpool.ui/docpool/ui/browser/templates/wizard_2.pt
+msgid "Please set the content of the entry."
+msgstr "Bitte definieren Sie den Inhalt des Eintrags."
 
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
 msgid "Print"
 msgstr "Drucken"
 
 #: docpool.ui/docpool/ui/browser/listing.py
+#: docpool.ui/docpool/ui/browser/wizard.py
 msgid "Published"
 msgstr "Öffentlich"
 
@@ -161,8 +191,13 @@ msgstr "Sortierung"
 msgid "Time [ME(S)Z]"
 msgstr "Zeit [ME(S)Z]"
 
-#: docpool.ui/docpool/ui/browser/templates/listing.pt
 #: docpool.ui/docpool/ui/browser/templates/wizard_3.pt
+msgid "Title added"
+msgstr "Titel ist definiert"
+
+#: docpool.ui/docpool/ui/browser/templates/listing.pt
+#: docpool.ui/docpool/ui/browser/templates/wizard_1.pt
+#: docpool.ui/docpool/ui/browser/templates/wizard_2.pt
 msgid "Visibility"
 msgstr "Sichtbarkeit"
 

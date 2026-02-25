@@ -45,18 +45,18 @@
           <div class="col-3 p-3">
             <p class="h5">
               <tal:icon tal:replace="structure python:icons.tag('1-circle-fill')" />
-              <span>Ablageort und Eintragsart</span>
+              <span i18n:translate="">Folder and Entrytype</span>
             </p>
-            <p>
-              Bitte w&auml;hlen Sie zun&auml;chst den Gruppenordner, in dem der neue Eintrag abgelegt werden soll. W&auml;hlen Sie danach die Eintragsart aus.
+            <p i18n:translate="">
+              Please select the group-folder in which the entry should be created. Then select the entrytype.
             </p>
             <p class="h5">
               <tal:icon tal:replace="structure python:icons.tag('2-circle')" />
-              <span>Inhalt</span>
+              <span i18n:translate="">Content</span>
             </p>
             <p class="h5">
               <tal:icon tal:replace="structure python:icons.tag('3-circle')" />
-              <span>Sichtbarkeit</span>
+              <span i18n:translate="">Visibility</span>
             </p>
           </div>
           <div class="col-9 bg-white px-3">

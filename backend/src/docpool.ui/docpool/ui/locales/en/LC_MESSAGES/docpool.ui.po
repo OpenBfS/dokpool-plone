@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-02-24 14:43+0000\n"
+"POT-Creation-Date: 2026-02-25 11:46+0000\n"
 "PO-Revision-Date: 2025-11-24 11:56+0100\n"
 "Last-Translator: Thomas Lotze <lotze@starzel.de>\n"
 "Language-Team: English\n"
@@ -56,6 +56,16 @@ msgstr ""
 #: docpool.ui/docpool/ui/browser/templates/wizard_1.pt
 #: docpool.ui/docpool/ui/browser/templates/wizard_2.pt
 #: docpool.ui/docpool/ui/browser/templates/wizard_3.pt
+msgid "Content"
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/templates/wizard_3.pt
+msgid "Content added"
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/templates/wizard_1.pt
+#: docpool.ui/docpool/ui/browser/templates/wizard_2.pt
+#: docpool.ui/docpool/ui/browser/templates/wizard_3.pt
 msgid "Create new entry"
 msgstr ""
 
@@ -88,6 +98,12 @@ msgstr ""
 msgid "Entrytype"
 msgstr ""
 
+#: docpool.ui/docpool/ui/browser/templates/wizard_1.pt
+#: docpool.ui/docpool/ui/browser/templates/wizard_2.pt
+#: docpool.ui/docpool/ui/browser/templates/wizard_3.pt
+msgid "Folder and Entrytype"
+msgstr ""
+
 #: docpool.ui/docpool/ui/browser/wizard.py
 msgid "For all users of '${app} ${docpool_title}'"
 msgstr "For all users of '${app} ${docpool_title}'"
@@ -97,6 +113,7 @@ msgid "Group"
 msgstr ""
 
 #: docpool.ui/docpool/ui/browser/listing.py
+#: docpool.ui/docpool/ui/browser/wizard.py
 msgid "Internal"
 msgstr ""
 
@@ -121,8 +138,20 @@ msgstr "Only for member of '${container_title}'"
 msgid "Pending"
 msgstr ""
 
+#: docpool.ui/docpool/ui/browser/templates/wizard_3.pt
+msgid "Please check who will have access to the entry."
+msgstr ""
+
 #: docpool.ui/docpool/ui/browser/templates/wizard_1.pt
 msgid "Please select a container first"
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/templates/wizard_1.pt
+msgid "Please select the group-folder in which the entry should be created. Then select the entrytype."
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/templates/wizard_2.pt
+msgid "Please set the content of the entry."
 msgstr ""
 
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
@@ -130,6 +159,7 @@ msgid "Print"
 msgstr ""
 
 #: docpool.ui/docpool/ui/browser/listing.py
+#: docpool.ui/docpool/ui/browser/wizard.py
 msgid "Published"
 msgstr ""
 
@@ -161,8 +191,13 @@ msgstr ""
 msgid "Time [ME(S)Z]"
 msgstr ""
 
-#: docpool.ui/docpool/ui/browser/templates/listing.pt
 #: docpool.ui/docpool/ui/browser/templates/wizard_3.pt
+msgid "Title added"
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/templates/listing.pt
+#: docpool.ui/docpool/ui/browser/templates/wizard_1.pt
+#: docpool.ui/docpool/ui/browser/templates/wizard_2.pt
 msgid "Visibility"
 msgstr ""
 
