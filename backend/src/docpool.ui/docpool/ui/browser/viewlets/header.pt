@@ -64,7 +64,7 @@
 
           <!-- Main navigation buttons -->
           <a class="nav-btn d-flex flex-column justify-content-center px-4 border-end text-decoration-none ${python: view.active['groups']}"
-             href="${python: view.groups_folder_url}"
+             href="${python: view.groups_folder_url}/@@listing"
              tal:condition="python: view.groups_folder_url"
           >
             <span class="small text-primary mb-n1">My group folders</span>
