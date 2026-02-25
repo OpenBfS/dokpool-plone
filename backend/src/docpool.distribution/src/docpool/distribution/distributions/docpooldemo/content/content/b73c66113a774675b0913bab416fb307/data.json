@@ -6,7 +6,11 @@
   "allowedDocTypes": null,
   "contributors": [],
   "created": "2025-09-23T12:50:58+00:00",
-  "created_by": "admin <i>Event Editors (Bund)</i>",
+  "created_by": [
+    "",
+    "admin",
+    "Event Editors (Bund)"
+  ],
   "creators": [
     "admin"
   ],

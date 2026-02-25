@@ -6,7 +6,11 @@
   "allowedDocTypes": null,
   "contributors": [],
   "created": "2025-11-19T10:53:39+00:00",
-  "created_by": "admin <i>Aufsicht (Bund)</i>",
+  "created_by": [
+    "",
+    "admin",
+    "Aufsicht (Bund)"
+  ],
   "creators": [
     "admin"
   ],

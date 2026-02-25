@@ -21,7 +21,11 @@
   "allow_discussion": false,
   "contributors": [],
   "created": "2025-11-19T11:43:38+00:00",
-  "created_by": "User Betreiber (Bund) <i>Betreiber (Bund)</i>",
+  "created_by": [
+    "",
+    "User Betreiber (Bund)",
+    "Betreiber (Bund)"
+  ],
   "creators": [
     "user-betreiber"
   ],
@@ -41,7 +45,11 @@
   "lock": {},
   "mdate": "2025-11-19T12:44:49",
   "modified": "2025-11-19T11:46:52+00:00",
-  "modified_by": "User Betreiber (Bund) <i>Betreiber (Bund)</i>",
+  "modified_by": [
+    "",
+    "User Betreiber (Bund)",
+    "Betreiber (Bund)"
+  ],
   "mstids_initial_value": null,
   "review_state": "pending_authority",
   "rights": null,

@@ -6,7 +6,11 @@
   "allowedDocTypes": null,
   "contributors": [],
   "created": "2025-09-23T11:51:04+00:00",
-  "created_by": "admin <i>Bundesbeh\u00f6rde (Bund)</i>",
+  "created_by": [
+    "",
+    "admin",
+    "Bundesbeh\u00f6rde (Bund)"
+  ],
   "creators": [
     "admin"
   ],

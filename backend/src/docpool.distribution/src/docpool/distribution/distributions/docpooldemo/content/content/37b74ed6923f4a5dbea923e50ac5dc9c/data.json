@@ -6,7 +6,11 @@
   "allowedDocTypes": null,
   "contributors": [],
   "created": "2025-11-19T10:54:10+00:00",
-  "created_by": "admin <i>REI Redakteure (Bund)</i>",
+  "created_by": [
+    "",
+    "admin",
+    "REI Redakteure (Bund)"
+  ],
   "creators": [
     "admin"
   ],

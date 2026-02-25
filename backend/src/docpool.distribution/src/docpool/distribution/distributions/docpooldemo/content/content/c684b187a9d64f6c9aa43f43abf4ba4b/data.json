@@ -6,7 +6,11 @@
   "allowedDocTypes": null,
   "contributors": [],
   "created": "2026-02-07T12:24:13+00:00",
-  "created_by": "admin <i>Journal 3 Reader (Mecklenburg-Vorpommern)</i>",
+  "created_by": [
+    "",
+    "admin",
+    "Journal 3 Reader (Mecklenburg-Vorpommern)"
+  ],
   "creators": [
     "admin"
   ],

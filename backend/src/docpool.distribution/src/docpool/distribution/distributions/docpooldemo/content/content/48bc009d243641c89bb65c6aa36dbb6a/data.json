@@ -6,7 +6,11 @@
   "allowedDocTypes": null,
   "contributors": [],
   "created": "2025-11-19T10:54:28+00:00",
-  "created_by": "admin <i>REI Bearbeiter Ministerium (Bund)</i>",
+  "created_by": [
+    "",
+    "admin",
+    "REI Bearbeiter Ministerium (Bund)"
+  ],
   "creators": [
     "admin"
   ],

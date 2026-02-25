@@ -6,7 +6,11 @@
   "allowedDocTypes": null,
   "contributors": [],
   "created": "2025-09-10T13:24:48+00:00",
-  "created_by": "admin <i>Journal 4 Editors (Brandenburg)</i>",
+  "created_by": [
+    "",
+    "admin",
+    "Journal 4 Editors (Brandenburg)"
+  ],
   "creators": [
     "admin"
   ],

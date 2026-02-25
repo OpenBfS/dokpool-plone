@@ -6,7 +6,11 @@
   "allowedDocTypes": null,
   "contributors": [],
   "created": "2025-09-10T12:30:30+00:00",
-  "created_by": "rescue <i>Journal 5 Editors (Bund)</i>",
+  "created_by": [
+    "",
+    "rescue",
+    "Journal 5 Editors (Bund)"
+  ],
   "creators": [
     "rescue"
   ],

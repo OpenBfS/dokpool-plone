@@ -22,7 +22,11 @@
   "changelog": "[{\"Date\": \"23.09.2025 13:44\", \"User\": \"ELAN Administrator\", \"Status\": \"active\", \"EventType\": \"Emergency\", \"Operation mode\": \"Routine mode\", \"Alerting status\": \"keine\", \"Alerting note\": null, \"Phase\": null, \"Sectorizing sample types\": \"\", \"Sectorizing networks\": \"\"}]",
   "contributors": [],
   "created": "2025-09-23T11:44:31+00:00",
-  "created_by": "ELAN Administrator",
+  "created_by": [
+    "",
+    "ELAN Administrator",
+    ""
+  ],
   "creators": [
     "elanadmin"
   ],

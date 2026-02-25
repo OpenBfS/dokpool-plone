@@ -5,7 +5,11 @@
   "allow_discussion": false,
   "contributors": [],
   "created": "2025-09-23T12:03:52+00:00",
-  "created_by": "User Beh\u00f6rde (Bund) <i>Bundesbeh\u00f6rde (Bund)</i>",
+  "created_by": [
+    "",
+    "User Beh\u00f6rde (Bund)",
+    "Bundesbeh\u00f6rde (Bund)"
+  ],
   "creators": [
     "user-behoerde"
   ],

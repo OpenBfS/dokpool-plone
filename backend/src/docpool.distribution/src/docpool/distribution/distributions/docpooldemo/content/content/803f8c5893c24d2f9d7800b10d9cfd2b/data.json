@@ -6,7 +6,11 @@
   "allowedDocTypes": null,
   "contributors": [],
   "created": "2025-09-10T12:45:56+00:00",
-  "created_by": "Docpool Administrator",
+  "created_by": [
+    "",
+    "Docpool Administrator",
+    ""
+  ],
   "creators": [
     "dpadmin"
   ],

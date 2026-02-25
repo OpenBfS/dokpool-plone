@@ -6,7 +6,11 @@
   "allowedDocTypes": null,
   "contributors": [],
   "created": "2025-09-10T13:25:24+00:00",
-  "created_by": "admin <i>Administrators (Mecklenburg-Vorpommern)</i>",
+  "created_by": [
+    "",
+    "admin",
+    "Administrators (Mecklenburg-Vorpommern)"
+  ],
   "creators": [
     "admin"
   ],

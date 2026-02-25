@@ -5,7 +5,11 @@
   "allow_discussion": null,
   "contributors": [],
   "created": "2025-09-17T14:03:27+00:00",
-  "created_by": "admin <i>Transfers</i>",
+  "created_by": [
+    "",
+    "admin",
+    "Transfers"
+  ],
   "creators": [
     "admin"
   ],

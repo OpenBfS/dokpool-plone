@@ -5,7 +5,11 @@
   "allow_discussion": null,
   "contributors": [],
   "created": "2026-02-07T12:24:13+00:00",
-  "created_by": "admin",
+  "created_by": [
+    "",
+    "admin",
+    ""
+  ],
   "creators": [
     "admin"
   ],

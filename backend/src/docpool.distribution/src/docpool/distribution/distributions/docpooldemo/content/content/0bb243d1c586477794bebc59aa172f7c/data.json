@@ -20,7 +20,11 @@
   "changelog": "[{\"Date\": \"17.09.2025 15:40\", \"User\": \"User BE (Berlin)\", \"Status\": \"active\", \"EventType\": \"Exercise\", \"Operation mode\": \"Routine mode\", \"Alerting status\": \"keine\", \"Alerting note\": null, \"Phase\": null, \"Sectorizing sample types\": \"\", \"Sectorizing networks\": \"\"}]",
   "contributors": [],
   "created": "2025-09-17T13:40:38+00:00",
-  "created_by": "User BE (Berlin)",
+  "created_by": [
+    "",
+    "User BE (Berlin)",
+    ""
+  ],
   "creators": [
     "user-be"
   ],

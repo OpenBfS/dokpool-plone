@@ -6,7 +6,11 @@
   "allowedDocTypes": null,
   "contributors": [],
   "created": "2025-09-10T13:22:00+00:00",
-  "created_by": "admin",
+  "created_by": [
+    "",
+    "admin",
+    ""
+  ],
   "creators": [
     "admin"
   ],

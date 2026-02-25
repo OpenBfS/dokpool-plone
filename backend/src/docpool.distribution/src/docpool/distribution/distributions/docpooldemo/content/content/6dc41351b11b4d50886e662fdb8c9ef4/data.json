@@ -6,7 +6,11 @@
   "allowedDocTypes": null,
   "contributors": [],
   "created": "2025-09-17T14:15:28+00:00",
-  "created_by": "admin <i>Landesbeh\u00f6rde (Brandenburg)</i>",
+  "created_by": [
+    "",
+    "admin",
+    "Landesbeh\u00f6rde (Brandenburg)"
+  ],
   "creators": [
     "admin"
   ],

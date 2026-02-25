@@ -5,7 +5,11 @@
   "allow_discussion": false,
   "contributors": [],
   "created": "2025-09-11T07:09:49+00:00",
-  "created_by": "DocPool Administrator (Bund)",
+  "created_by": [
+    "",
+    "DocPool Administrator (Bund)",
+    ""
+  ],
   "creators": [
     "bund_dpadmin"
   ],
@@ -24,7 +28,11 @@
   "lock": {},
   "mdate": "2025-09-11T09:10:21",
   "modified": "2025-09-11T07:10:21+00:00",
-  "modified_by": "DocPool Administrator (Bund)",
+  "modified_by": [
+    "",
+    "DocPool Administrator (Bund)",
+    ""
+  ],
   "review_state": "published",
   "rights": null,
   "subjects": [],
