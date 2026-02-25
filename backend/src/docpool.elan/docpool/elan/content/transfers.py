@@ -5,7 +5,6 @@ from docpool.base.utils import _copyPaste
 from docpool.elan.behaviors.elandocument import IELANDocument
 from docpool.elan.config import ELAN_APP
 from plone import api
-from Products.CMFPlone.utils import log_exc
 from zope.component import adapter
 from zope.interface import implementer
 from zope.interface import named
@@ -25,8 +24,10 @@ class ELANSpecificTransfer:
         return
 
     def sender_log_entry(self):
-        scenario_ids = ", ".join(b.getId for b in api.content.find(UID=self.elanobj.scenarios))
-        return dict(scenario_ids=scenario_ids)
+        scenario_id = (
+            scen.id if (uids := self.elanobj.scenarios) and (scen := api.content.get(UID=uids[0])) else None
+        )
+        return dict(scenario_id=scenario_id)
 
     def __call__(self, copy):
         if not self.have_elan:
@@ -36,37 +37,38 @@ class ELANSpecificTransfer:
                 pass
             return
 
-        self.copy_scenarios = list(ensureScenariosInTarget(self.elanobj.scenarios, copy.myDocumentPool()))
-        try:
-            IELANDocument(copy).scenarios = [s.UID() for s in self.copy_scenarios]
-        except Exception as e:
-            log_exc(e)
+        (elan_copy := IELANDocument(copy)).scenarios = []
+        if not self.elanobj.scenarios:
+            return
+
+        self.copy_scenario = ensureScenarioInTarget(self.elanobj.scenarios[0], copy.myDocumentPool())
+        if self.copy_scenario:
+            elan_copy.scenarios = [self.copy_scenario.UID()]
 
     def receiver_log_entry(self):
         if not self.have_elan:
             return {}
-        return dict(scenario_ids=", ".join(s.getId() for s in self.copy_scenarios))
+        return dict(scenario_id=self.copy_scenario.getId())
 
 
-def ensureScenariosInTarget(scenarios, target_docpool):
-    """Prepare target scenarios on document transfer.
+def ensureScenarioInTarget(scenario, target_docpool):
+    """Prepare target scenario on document transfer.
 
     For each scenario assigned to the original, try to identify a scenario at the target
-    ESD, matching by object id. Copy unmatched scenarios to target ESD.
+    ESD, matching by object id. Copy unmatched scenario to target ESD.
 
-    According to #5872, make sure copied scenarios are in published state.
+    According to #5872, make sure copied scenario is in published state.
     """
     scen = target_docpool.contentconfig.scen
 
-    for orig_brain in api.content.find(UID=scenarios):
-        copy_id = orig_brain.getId
+    if orig_event := api.content.get(UID=scenario):
+        copy_id = orig_event.id
         if scen.hasObject(copy_id):
             copy_event = scen[copy_id]
         else:
-            orig_event = orig_brain.getObject()
             copy_id = _copyPaste(orig_event, scen)
             copy_event = scen[copy_id]
             if api.content.get_state(copy_event) == "private":
                 api.content.transition(copy_event, "publish")
 
-        yield copy_event
+        return copy_event
