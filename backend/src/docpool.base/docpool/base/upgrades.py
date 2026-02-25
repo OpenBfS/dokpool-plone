@@ -64,27 +64,42 @@ def _normalize_userinfo_tuple(value, obj=None):
     if isinstance(value, tuple) and len(value) == 3:
         return value
     if isinstance(value, str):
+        # Variant 1: Name with land and group in <i>
+        # 'Firstname Lastname (Bund) <i>Radiologisches Lagezentrum (Bund)</i>'
         if "<i>" in value:
-            text = value.split('<i>')
+            text = value.split("<i>")
             fullname = text[0].strip()
-            group = text[1].split('</i>')[0]
+            group = text[1].split("</i>")[0]
+            log.info("Variant 1: Fullname: {} Group: {} ".format(fullname, group))
+            return ("", fullname, group)
         else:
-            fullname = ""
-            group = value.strip()
-        return ("", fullname, group)
-    return ("", str(value), "")
+            if "(" in value and ")" in value:
+                split_index = value.index(")") + 1
+                fullname = value[:split_index].strip()
+                group = value[split_index:].strip()
+                if group == "":
+                    # Variant 3: Name with land NO group
+                    # 'Firstname Lastname (Thüringen)'
+                    log.info("Variant 3: Fullname: {}".format(fullname))
+                    return ("", fullname, "")
+                # Variant 2: Name with land follwed by group
+                # 'Firstname Lastname (Thüringen) Transfers'
+                log.info("Variant 2: Fullname: {} Group: {} ".format(fullname, group))
+                return ("", fullname, group)
+            # Variant 4: Only Name
+            fullname = value.strip()
+            log.info("Variant 4: Fullname: {} ".format(fullname))
+            return ("", fullname, "")
 
 
 def _upgrade_userinfo_fields(obj):
     changed = False
     for field in ("created_by", "modified_by", "transferred_by"):
-        import pdb; pdb.set_trace()
         if not hasattr(obj, field):
             continue
         value = getattr(obj, field, None)
         if value is None:
             continue
-        print(value)
         normalized = _normalize_userinfo_tuple(value, obj)
         if normalized is None or normalized == value:
             continue
@@ -179,44 +194,44 @@ def to_3000(context=None):
         portal_setup,
         "profile-docpool.base:to_3000",
     )
-    # create_session_stuff(portal)
-    #
-    # enable_elan_for_all_docpools()
-    #
-    # # Delete old structure first
-    # delete_esd_structure()
-    #
-    # # Drop data from relationfield to speed up stuff
-    # marker = object()
-    # for brain in api.content.find(portal_type="DocType", sort_on="path"):
-    #     obj = brain.getObject()
-    #     if getattr(obj.aq_base, "contentCategory", marker) is not marker:
-    #         del obj.contentCategory
-    #
-    # create_doctype_structure()
-    # handleConfigurationChangedEvent(None)
-    #
-    # log.info("Indexing...")
-    # catalog = api.portal.get_tool("portal_catalog")
-    # pghandler = ZLogHandler(steps=5000)
-    # catalog.reindexIndex(
-    #     [
-    #         "dp_type",
-    #         "apps_supported",
-    #         "object_provides",
-    #         "allowedRolesAndUsers",
-    #     ],
-    #     REQUEST=None,
-    #     pghandler=pghandler,
-    # )
-    #
-    # log.info("Removing obsolete relations ...")
-    # relation_catalog = getUtility(ICatalog)
-    # for relationship in ["contentCategory", "dbCollections", "docTypes"]:
-    #     query = {"from_attribute": relationship}
-    #     for rel in [rel for rel in relation_catalog.findRelations(query)]:
-    #         relation_catalog.unindex(rel)
-    #
+    create_session_stuff(portal)
+
+    enable_elan_for_all_docpools()
+
+    # Delete old structure first
+    delete_esd_structure()
+
+    # Drop data from relationfield to speed up stuff
+    marker = object()
+    for brain in api.content.find(portal_type="DocType", sort_on="path"):
+        obj = brain.getObject()
+        if getattr(obj.aq_base, "contentCategory", marker) is not marker:
+            del obj.contentCategory
+
+    create_doctype_structure()
+    handleConfigurationChangedEvent(None)
+
+    log.info("Indexing...")
+    catalog = api.portal.get_tool("portal_catalog")
+    pghandler = ZLogHandler(steps=5000)
+    catalog.reindexIndex(
+        [
+            "dp_type",
+            "apps_supported",
+            "object_provides",
+            "allowedRolesAndUsers",
+        ],
+        REQUEST=None,
+        pghandler=pghandler,
+    )
+
+    log.info("Removing obsolete relations ...")
+    relation_catalog = getUtility(ICatalog)
+    for relationship in ["contentCategory", "dbCollections", "docTypes"]:
+        query = {"from_attribute": relationship}
+        for rel in [rel for rel in relation_catalog.findRelations(query)]:
+            relation_catalog.unindex(rel)
+
     log.info("Convert userinfo")
     convert_userinfo()
     log.info("Done")
@@ -508,19 +523,11 @@ def convert_userinfo(context=None):
     checked = 0
     seen = set()
 
-    for brain in api.content.find(object_provides=IContentBase.__identifier__):
+    all_brains = api.content.find(object_provides=(ITransferable.__identifier__, IContentBase.__identifier__))
+    for brain in all_brains:
         obj = brain.getObject()
         key = brain.UID or brain.getPath()
         seen.add(key)
-        checked += 1
-        if _upgrade_userinfo_fields(obj):
-            updated += 1
-
-    for brain in api.content.find(object_provides=ITransferable.__identifier__):
-        key = brain.UID or brain.getPath()
-        if key in seen:
-            continue
-        obj = brain.getObject()
         checked += 1
         if _upgrade_userinfo_fields(obj):
             updated += 1
