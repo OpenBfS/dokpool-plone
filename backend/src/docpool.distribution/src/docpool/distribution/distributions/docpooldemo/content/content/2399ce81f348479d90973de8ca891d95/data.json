@@ -5,7 +5,11 @@
   "allow_discussion": null,
   "contributors": [],
   "created": "2025-09-17T14:04:13+00:00",
-  "created_by": "admin <i>Transfers</i>",
+  "created_by": [
+    "",
+    "admin",
+    "Transfers"
+  ],
   "creators": [
     "admin"
   ],
@@ -23,7 +27,11 @@
   "lock": {},
   "mdate": "2025-09-17T16:06:34",
   "modified": "2025-09-17T14:09:38+00:00",
-  "modified_by": "admin <i>Transfers</i>",
+  "modified_by": [
+    "",
+    "admin",
+    "Transfers"
+  ],
   "permLevel": "read/write",
   "review_state": "published",
   "rights": null,

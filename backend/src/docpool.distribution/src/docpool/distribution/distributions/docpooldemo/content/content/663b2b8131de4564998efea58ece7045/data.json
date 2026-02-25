@@ -6,7 +6,11 @@
   "allowedDocTypes": null,
   "contributors": [],
   "created": "2025-11-19T11:38:33+00:00",
-  "created_by": "User Betreiber (Bund)",
+  "created_by": [
+    "",
+    "User Betreiber (Bund)",
+    ""
+  ],
   "creators": [
     "user-betreiber"
   ],

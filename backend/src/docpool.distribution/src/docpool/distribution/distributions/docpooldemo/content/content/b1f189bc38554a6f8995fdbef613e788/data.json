@@ -5,7 +5,11 @@
   "allow_discussion": false,
   "contributors": [],
   "created": "2025-09-23T13:04:32+00:00",
-  "created_by": "User Wetterdienst (Bund) <i>Wetterdienst (Bund)</i>",
+  "created_by": [
+    "",
+    "User Wetterdienst (Bund)",
+    "Wetterdienst (Bund)"
+  ],
   "creators": [
     "user-wetterdienst"
   ],
@@ -25,7 +29,11 @@
   "lock": {},
   "mdate": "2025-09-23T15:04:40",
   "modified": "2025-09-23T13:04:47+00:00",
-  "modified_by": "User Wetterdienst (Bund) <i>Wetterdienst (Bund)</i>",
+  "modified_by": [
+    "",
+    "User Wetterdienst (Bund)",
+    "Wetterdienst (Bund)"
+  ],
   "review_state": "published",
   "rights": null,
   "scenarios": [],

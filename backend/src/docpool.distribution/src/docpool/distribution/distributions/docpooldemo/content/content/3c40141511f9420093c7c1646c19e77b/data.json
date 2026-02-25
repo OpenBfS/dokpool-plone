@@ -6,7 +6,11 @@
   "allowedDocTypes": null,
   "contributors": [],
   "created": "2025-09-10T13:22:27+00:00",
-  "created_by": "admin <i>Content Receivers (Berlin)</i>",
+  "created_by": [
+    "",
+    "admin",
+    "Content Receivers (Berlin)"
+  ],
   "creators": [
     "admin"
   ],

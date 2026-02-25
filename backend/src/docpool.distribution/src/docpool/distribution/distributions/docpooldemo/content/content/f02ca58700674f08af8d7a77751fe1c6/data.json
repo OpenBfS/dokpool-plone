@@ -6,7 +6,11 @@
   "allowedDocTypes": null,
   "contributors": [],
   "created": "2025-09-23T12:56:44+00:00",
-  "created_by": "admin <i>Wetterdienst (Bund)</i>",
+  "created_by": [
+    "",
+    "admin",
+    "Wetterdienst (Bund)"
+  ],
   "creators": [
     "admin"
   ],

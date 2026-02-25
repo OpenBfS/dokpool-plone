@@ -5,7 +5,11 @@
   "allow_discussion": false,
   "contributors": [],
   "created": "2025-09-17T13:32:23+00:00",
-  "created_by": "admin <i>Landesministerium (Berlin)</i>",
+  "created_by": [
+    "",
+    "admin",
+    "Landesministerium (Berlin)"
+  ],
   "creators": [
     "admin"
   ],
@@ -34,7 +38,11 @@
   "lock": {},
   "mdate": "2025-09-17T15:50:48",
   "modified": "2025-09-17T13:57:40+00:00",
-  "modified_by": "User BE (Berlin) <i>Landesministerium (Berlin)</i>",
+  "modified_by": [
+    "",
+    "User BE (Berlin)",
+    "Landesministerium (Berlin)"
+  ],
   "review_state": "published",
   "rights": null,
   "scenarios": [

@@ -8,7 +8,11 @@
   ],
   "contributors": [],
   "created": "2025-09-23T12:17:44+00:00",
-  "created_by": "admin <i>Bundesbeh\u00f6rde (Bund)</i>",
+  "created_by": [
+    "",
+    "admin",
+    "Bundesbeh\u00f6rde (Bund)"
+  ],
   "creators": [
     "admin"
   ],
@@ -32,7 +36,11 @@
   "lock": {},
   "mdate": "2025-11-19T11:23:40",
   "modified": "2025-11-19T10:25:15+00:00",
-  "modified_by": "admin <i>Bundesbeh\u00f6rde (Bund)</i>",
+  "modified_by": [
+    "",
+    "admin",
+    "Bundesbeh\u00f6rde (Bund)"
+  ],
   "review_state": "published",
   "rights": null,
   "subjects": [],

@@ -6,7 +6,11 @@
   "allowedDocTypes": null,
   "contributors": [],
   "created": "2025-11-19T11:08:28+00:00",
-  "created_by": "admin <i>Messstelle (Brandenburg)</i>",
+  "created_by": [
+    "",
+    "admin",
+    "Messstelle (Brandenburg)"
+  ],
   "creators": [
     "admin"
   ],

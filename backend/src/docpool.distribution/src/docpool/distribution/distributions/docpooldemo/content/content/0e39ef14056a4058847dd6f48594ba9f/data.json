@@ -22,7 +22,11 @@
   "changelog": "[{\"Date\": \"10.09.2025 14:30\", \"User\": \"rescue\", \"Status\": \"active\", \"EventType\": null, \"Operation mode\": null, \"Alerting status\": null, \"Alerting note\": null, \"Phase\": null, \"Sectorizing sample types\": \" \", \"Sectorizing networks\": \" \"}, {\"Date\": \"10.09.2025 14:30\", \"User\": \"rescue\", \"Status\": \"active\", \"EventType\": \"Emergency\", \"Operation mode\": \"Routine mode\", \"Alerting status\": \"keine\", \"Alerting note\": null, \"Phase\": null, \"Sectorizing sample types\": \" \", \"Sectorizing networks\": \" \"}]",
   "contributors": [],
   "created": "2025-09-10T12:30:29+00:00",
-  "created_by": "rescue",
+  "created_by": [
+    "",
+    "rescue",
+    ""
+  ],
   "creators": [
     "rescue"
   ],

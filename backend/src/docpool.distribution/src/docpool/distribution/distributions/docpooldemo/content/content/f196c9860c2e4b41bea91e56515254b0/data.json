@@ -22,7 +22,11 @@
   "allow_discussion": false,
   "contributors": [],
   "created": "2025-11-19T11:50:26+00:00",
-  "created_by": "User Betreiber (Bund) <i>Betreiber (Bund)</i>",
+  "created_by": [
+    "",
+    "User Betreiber (Bund)",
+    "Betreiber (Bund)"
+  ],
   "creators": [
     "user-betreiber"
   ],
@@ -42,7 +46,11 @@
   "lock": {},
   "mdate": "2025-11-19T12:50:31",
   "modified": "2025-11-19T11:52:34+00:00",
-  "modified_by": "User Betreiber (Bund) <i>Betreiber (Bund)</i>",
+  "modified_by": [
+    "",
+    "User Betreiber (Bund)",
+    "Betreiber (Bund)"
+  ],
   "mstids_initial_value": "08082 - Landeszentrale Baden-W\u00fcrttemberg (BW)",
   "review_state": "pending_bfs",
   "rights": null,

@@ -6,7 +6,11 @@
   "allowedDocTypes": null,
   "contributors": [],
   "created": "2025-11-19T10:46:42+00:00",
-  "created_by": "admin <i>Leitstelle</i>",
+  "created_by": [
+    "",
+    "admin",
+    "Leitstelle"
+  ],
   "creators": [
     "admin"
   ],
@@ -40,7 +44,11 @@
   "lock": {},
   "mdate": "2025-11-19T11:47:45",
   "modified": "2025-11-19T12:28:43+00:00",
-  "modified_by": "admin <i>Leitstelle (Bund)</i>",
+  "modified_by": [
+    "",
+    "admin",
+    "Leitstelle (Bund)"
+  ],
   "review_state": "published",
   "rights": null,
   "subjects": [],

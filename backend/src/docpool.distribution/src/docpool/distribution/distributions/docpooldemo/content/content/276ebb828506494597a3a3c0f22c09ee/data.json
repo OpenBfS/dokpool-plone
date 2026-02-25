@@ -7,7 +7,11 @@
   "allow_discussion": false,
   "contributors": [],
   "created": "2025-11-19T12:13:23+00:00",
-  "created_by": "User Wetterdienst (Bund) <i>RODOS Rechnungen Wetterdienst (Bund)</i>",
+  "created_by": [
+    "",
+    "User Wetterdienst (Bund)",
+    "RODOS Rechnungen Wetterdienst (Bund)"
+  ],
   "creators": [
     "user-wetterdienst"
   ],
@@ -28,7 +32,11 @@
   "lock": {},
   "mdate": "2025-11-19T13:17:47",
   "modified": "2025-11-19T12:20:12+00:00",
-  "modified_by": "User Wetterdienst (Bund) <i>RODOS Rechnungen Wetterdienst (Bund)</i>",
+  "modified_by": [
+    "",
+    "User Wetterdienst (Bund)",
+    "RODOS Rechnungen Wetterdienst (Bund)"
+  ],
   "review_state": "published",
   "rights": null,
   "scenarios": [

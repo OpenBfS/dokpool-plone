@@ -6,7 +6,11 @@
   "allowedDocTypes": null,
   "contributors": [],
   "created": "2025-09-10T13:24:46+00:00",
-  "created_by": "admin <i>Members (Brandenburg)</i>",
+  "created_by": [
+    "",
+    "admin",
+    "Members (Brandenburg)"
+  ],
   "creators": [
     "admin"
   ],
