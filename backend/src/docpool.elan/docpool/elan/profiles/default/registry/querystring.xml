@@ -144,15 +144,6 @@
   </record>
   <record field="description"
           interface="plone.app.querystring.interfaces.IQueryField"
-          name="plone.app.querystring.field.scenarios.description"
-  >
-    <field type="plone.registry.field.Text">
-      <title>Description</title>
-    </field>
-    <value>Scenario categorization</value>
-  </record>
-  <record field="description"
-          interface="plone.app.querystring.interfaces.IQueryField"
           name="plone.app.querystring.field.category.description"
   >
     <field type="plone.registry.field.Text">
