@@ -4,10 +4,12 @@
      "
      tal:condition="python:not context.restrictedTraverse('@@plone_portal_state').anonymous()"
 >
-  <tal:appspecific replace="structure provider:docpool.sidebar.appspecific.manager" />
 
   <nav class="w-100 d-flex flex-column align-items-center">
     <ul class="nav nav-pills flex-column align-items-center w-100">
+
+      <tal:appspecific replace="structure provider:docpool.sidebar.appspecific.manager"/>
+
       <li class="nav-item w-100">
         <a class="nav-link d-flex flex-column align-items-center justify-content-center text-decoration-none"
            tal:attributes="
