@@ -232,10 +232,12 @@ def to_3000(context=None):
         for rel in [rel for rel in relation_catalog.findRelations(query)]:
             relation_catalog.unindex(rel)
 
+
+def to_3000_convert_tupel(context=None):
+    """Convert fields to tupel"""
     log.info("Convert userinfo")
     convert_userinfo()
     log.info("Done")
-
 
 def create_doctype_structure(log_remains=False):
     rename_mapping = {}

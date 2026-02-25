@@ -90,6 +90,12 @@
         title="Upgrade existing database to use the new GUI"
         handler="docpool.base.upgrades.to_3000"
         />
+
+    <genericsetup:upgradeStep
+      title="Convert 'created_by', 'modified_by', 'transferred_by' fields to tupel"
+      handler="docpool.base.upgrades.to_3000_convert_tupel"
+    />
+
   </genericsetup:upgradeSteps>
 
 </configure>
