@@ -76,3 +76,22 @@ def to_1013_update_dp_doc_workflow(context=None):
     log.info("Reload dp_doc_workflow")
     portal_setup = api.portal.get_tool("portal_setup")
     loadMigrationProfile(portal_setup, "profile-docpool.base:default", steps=["workflow"])
+
+
+def to_1014_single_scenario_per_dpdocument(context=None):
+    log.info("Turn DPDocument's scenarios attribute into single-valued scenario attribute.")
+    multiple = 0
+    for brain in api.content.find(portal_type="DPDocument"):
+        try:
+            scns = (obj := brain.getObject()).aq_base.__getattribute__("scenarios")
+        except AttributeError:
+            continue
+        if len(scns) > 1:
+            multiple += 1
+            log.error(f"Multiple scenarios for {brain.getPath()}")
+            continue
+        obj.scenario = scns[0] if scns else None
+        del obj.scenarios
+        obj._p_changed = 1
+    if multiple:
+        raise ValueError(f"Aborting upgrade step: {multiple} documents assigned to multiple scenarios.")
