@@ -9,6 +9,7 @@
   <metal:content fill-slot="content-core"
                  tal:define="
                    items python: view.items;
+                   folders python: view.folders;
                  "
   >
     <div class="mx-0 my-0 p-1 border-bottom"
@@ -218,6 +219,7 @@
                  selected_groups python: view.selected_groups;
                  groups python: view.groups;
                "
+               tal:condition="python: not view.folder_listing"
           >
             <button class="btn btn-light dropdown-toggle"
                     aria-expanded="false"
@@ -356,7 +358,7 @@
            data-items python: view.json_items;
          "
     >
-      <tal:block tal:repeat="item python: items">
+      <tal:block tal:repeat="item python: folders + items">
         <a class="pat-inject list-item-inject-link"
            data-pat-inject="trigger: autoload-visible; delay: 50; target: self"
            tal:content="python: '@@listing-item?uid='+ item"

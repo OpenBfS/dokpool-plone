@@ -15,6 +15,7 @@ from plone import api
 from plone.i18n.normalizer.interfaces import IIDNormalizer
 from Products.CMFPlone.browser.search import munge_search_term
 from Products.Five.browser import BrowserView
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.component import queryUtility
 
 import datetime
@@ -40,15 +41,29 @@ TRANSITION_ICON_MAPPING = {
     "submit": "arrow-right",
 }
 
+FOLDER_TYPES = [
+    "Users",
+    "UserFolder",
+    "ContentArea",
+    "Groups",
+    "GroupFolder",
+    "PrivateFolder",
+    "SimpleFolder",
+    "ReviewFolder",
+    "CollaborationFolder",
+    "InfoFolder",
+]
+
 
 class Listing(BrowserView):
     """Example view called from template"""
 
     def __call__(self, limit=0):
-        uids, modified = self.find(limit)
+        uids, modified, folder_uids = self.find(limit)
 
         # Mod-Date dazu und hash über udis & mod-date
         self.items = uids
+        self.folders = folder_uids
         self.is_archive = IArchiving(self.context).is_archive
         self.json_items = json.dumps(uids)
         self.modified = json.dumps(modified.timeTime()) if modified else None
@@ -56,6 +71,7 @@ class Listing(BrowserView):
 
     def find(self, limit=0):
         form = self.request.form
+        self.folder_listing = self.context.portal_type in FOLDER_TYPES
 
         # base_query is the query for results without manual filtering
         self.base_query = {
@@ -89,9 +105,12 @@ class Listing(BrowserView):
         self.active_apps.extend([BASE_APP, TRANSFERS_APP])
         self.base_query["apps_supported"] = self.active_apps
 
-        # Filter by DPEvent (ELAN only)
-        if ELAN_APP in self.active_apps and not IArchiving(self.context).is_archive:
-            # This filters out archived entries unless the context is in an archive
+        # Filter by DPEvent
+        if (
+            not self.folder_listing
+            and ELAN_APP in self.active_apps
+            and not IArchiving(self.context).is_archive
+        ):
             if event := getScenariosForCurrentUser():
                 self.base_query["scenarios"] = event
 
@@ -181,11 +200,18 @@ class Listing(BrowserView):
         # Filter by context
         # TODO: Handle listing in content-area (which is a folder-listing)
         # TODO: Remove implicit default filtering on path + /content in docpool.elan.monkey
-        content_area = get_content_area(self.context)
-        if content_area:
-            self.base_query["path"] = "/".join(content_area.getPhysicalPath())
+        if self.folder_listing:
+            content_area = self.context
+            self.base_query["path"] = {
+                "query": "/".join(content_area.getPhysicalPath()),
+                "depth": 1,
+            }
         else:
-            self.base_query["path"] = "/".join(self.context.getPhysicalPath())
+            content_area = get_content_area(self.context)
+            if content_area:
+                self.base_query["path"] = "/".join(content_area.getPhysicalPath())
+            else:
+                self.base_query["path"] = "/".join(self.context.getPhysicalPath())
 
         # Prepare review_state filter options (query needs to be complete)
         for state in review_state_filter_config:
@@ -225,7 +251,18 @@ class Listing(BrowserView):
         if self.limit > 0:
             uids = uids[: self.limit]
 
-        return uids, modified
+        folder_uids = []
+        if self.folder_listing:
+            # Add folders to the listing
+            folder_query = {
+                "portal_type": FOLDER_TYPES,
+                "path": query["path"],
+                "sort_on": "getObjPositionInParent",
+            }
+            folder_brains = catalog(**folder_query)
+            folder_uids = [brain.UID for brain in folder_brains]
+
+        return uids, modified, folder_uids
 
     def count_options(self, extra, query=None):
         if not query:
@@ -275,11 +312,18 @@ def extract_time(value):
 
 
 class Item(BrowserView):
+    template = ViewPageTemplateFile("templates/listing-item.pt")
+    template_folder = ViewPageTemplateFile("templates/listing-folder.pt")
+
     def __call__(self, uid=None):
         obj = api.content.get(UID=uid) if uid else self.context
-        if not IDPDocument.providedBy(obj):
-            return
 
+        if IDPDocument.providedBy(obj):
+            return self.prepare_entry(obj)
+        if obj.portal_type in FOLDER_TYPES:
+            return self.prepare_folder(obj)
+
+    def prepare_entry(self, obj):
         review_state = api.content.get_state(obj)
         review_state_title = get_current_state_title(obj, review_state)
 
@@ -322,7 +366,7 @@ class Item(BrowserView):
             "state_title": review_state_title,
             "state_class": state_class,
             "available_transitions": available_transitions,
-            "uid": uid,
+            "uid": obj.UID(),
             "doctype": obj.docType,
             "doctype_title": doctype_title,
             "doctype_icon_url": iconresolver.url(icon_name),
@@ -342,3 +386,31 @@ class Item(BrowserView):
         mtr = api.portal.get_tool("mimetypes_registry")
         mimetypes = mtr.lookup(content_type)
         return mimetypes[0].name() if mimetypes else content_type.split("/")[-1]
+
+    def prepare_folder(self, obj):
+        modified_by_user = ""
+        modified_by_group = ""
+        if userinfo := getattr(obj, "modified_by", None) or getattr(obj, "created_by", None):
+            modified_by_user = userinfo[1]
+            modified_by_group = userinfo[2]
+
+        iconresolver = self.context.restrictedTraverse("@@iconresolver")
+        icon_name = "folder"
+        count = len(obj.contentItems())
+        self.folder = {
+            "date": getattr(obj, "mdate", None),
+            "title": obj.title,
+            "id": obj.id,
+            "description": obj.description,
+            "doctype": obj.portal_type,
+            "doctype_title": obj.portal_type,
+            "doctype_icon_url": iconresolver.url(icon_name),
+            "uid": obj.UID(),
+            "icon": iconresolver.url(icon_name),
+            "url": obj.absolute_url(),
+            "path": obj.absolute_url_path(),
+            "modified_by_user": modified_by_user,
+            "modified_by_group": modified_by_group,
+            "count": count,
+        }
+        return self.template_folder()
