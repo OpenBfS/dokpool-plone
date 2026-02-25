@@ -101,6 +101,9 @@
                           name="${widget_name}"
                           size="1"
                           data-pat-inject="trigger: #container_uid; source: #formfield-entrytype; target: #formfield-entrytype"
+                          tal:attributes="
+                            autofocus python: False if doctypes else True;
+                          "
                   >
                     <option id="form-widgets-containers-novalue"
                             value=""
@@ -164,6 +167,9 @@
                           id="${widget_id}"
                           name="${widget_name}"
                           size="1"
+                          tal:attributes="
+                            autofocus python: True if doctypes else False;
+                          "
                   >
                     <option id="form-widgets-doctypes-novalue"
                             value=""
