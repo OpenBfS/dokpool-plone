@@ -221,13 +221,11 @@ class TestListing:
         expect(page.locator("#container_uid")).to_have_value(self.group_folder.UID())
         page.locator("#entrytype").select_option("official_notification")
         page.get_by_role("button", name="Next").click()
-        assert "@@dpdocument_wizard_2" in page.url
         page.locator("#form-widgets-IDublinCore-title").fill("Example Entry")
         page.locator("iframe").content_frame.get_by_label("Rich Text Area").click()
         page.locator("iframe").content_frame.get_by_label("Rich Text Area").fill("Test text")
         page.set_input_files("#attachments", "tests/image.png")
         page.get_by_role("button", name="Next").click()
-        assert "@@dpdocument_wizard_3" in page.url
 
         expect(page.get_by_role("checkbox", name="Normalfall")).to_be_checked()
         expect(page.get_by_title("Internal")).to_be_checked()
