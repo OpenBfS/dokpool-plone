@@ -12,7 +12,7 @@
 
     <metal:content-core fill-slot="main">
 
-      <form class="bg-light mx-3 my-3 rowlike pat-formunloadalert pat-formautofocus pat-validation enableFormTabbing"
+      <form class="pat-inject bg-light mx-3 my-3 rowlike pat-formunloadalert pat-formautofocus pat-validation enableFormTabbing"
             id="form"
             enctype="multipart/form-data"
             method="post"
@@ -100,6 +100,7 @@
                           id="${widget_id}"
                           name="${widget_name}"
                           size="1"
+                          data-pat-inject="trigger: #container_uid; source: #formfield-entrytype; target: #formfield-entrytype"
                   >
                     <option id="form-widgets-containers-novalue"
                             value=""
