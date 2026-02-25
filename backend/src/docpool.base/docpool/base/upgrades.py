@@ -93,5 +93,12 @@ def to_1014_single_scenario_per_dpdocument(context=None):
         obj.scenario = scns[0] if scns else None
         del obj.scenarios
         obj._p_changed = 1
+        obj.reindexObject(idxs=["scenario"])
     if multiple:
         raise ValueError(f"Aborting upgrade step: {multiple} documents assigned to multiple scenarios.")
+
+
+def to_1014_update_elan_scenario_index(context=None):
+    log.info("Update ELAN scenario index")
+    portal_setup = api.portal.get_tool("portal_setup")
+    loadMigrationProfile(portal_setup, "profile-docpool.elan:to_1001")

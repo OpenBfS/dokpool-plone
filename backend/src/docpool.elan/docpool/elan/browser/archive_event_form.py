@@ -261,7 +261,7 @@ class ArchiveAndClose(BrowserView):
         # Now do some repairs
         moved_obj.scenario = None
         moved_obj.setModificationDate(mdate)
-        moved_obj.reindexObject(idxs=["modified", "review_state", "scenarios"])
+        moved_obj.reindexObject(idxs=["modified", "review_state", "scenario"])
 
     def _copy_to_archive(self, target_folder_obj, obj):
         logger.info(
@@ -294,7 +294,7 @@ class ArchiveAndClose(BrowserView):
                 api.content.transition(copied_obj, to_state=old_state)
 
         copied_obj.setModificationDate(mdate)
-        copied_obj.reindexObject(idxs=["modified", "review_state", "scenarios"])
+        copied_obj.reindexObject(idxs=["modified", "review_state", "scenario"])
 
         # Cleanup original DPDocument
         # 1. Remove current scenario
@@ -310,7 +310,7 @@ class ArchiveAndClose(BrowserView):
                     ILocalBehaviorSupport(obj).local_behaviors = list(set(apps))
                 except Exception as e:
                     log_exc(e)
-        obj.reindexObject(idxs=["apps_supported", "scenarios"])
+        obj.reindexObject(idxs=["apps_supported", "scenario"])
 
     def _getDocumentsForScenario(self, **kwargs):
         """
@@ -319,7 +319,7 @@ class ArchiveAndClose(BrowserView):
         """
         args = {
             "portal_type": "DPDocument",
-            "scenarios": self.context.UID(),
+            "scenario": self.context.UID(),
             "sort_on": "sortable_title",
         }
         args.update(kwargs)

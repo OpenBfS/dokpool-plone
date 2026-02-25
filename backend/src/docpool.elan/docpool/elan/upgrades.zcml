@@ -13,6 +13,14 @@
       directory="profiles/to_1000"
       />
 
+  <genericsetup:registerProfile
+      name="to_1001"
+      title="Upgrade profile for docpool.elan"
+      description=""
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      directory="profiles/to_1001"
+      />
+
   <genericsetup:upgradeSteps
       profile="docpool.elan:default"
       source="0.0.7"
