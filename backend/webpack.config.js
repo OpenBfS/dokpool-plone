@@ -148,15 +148,6 @@ module.exports = () => {
   // to be loaded immediately to avoid flash of unstyled content.
   config.plugins.push(new MiniCssExtractPlugin());
   config.module.rules.push({
-    test: /docpool\.scss$/,
-    use: [
-      MiniCssExtractPlugin.loader,
-      "css-loader",
-      "postcss-loader",
-      "sass-loader",
-    ],
-  });
-  config.module.rules.push({
     test: /barceloneta\.scss$/,
     use: [
       MiniCssExtractPlugin.loader,
