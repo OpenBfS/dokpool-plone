@@ -92,9 +92,9 @@
         />
 
     <genericsetup:upgradeStep
-      title="Convert 'created_by', 'modified_by', 'transferred_by' fields to tupel"
-      handler="docpool.base.upgrades.to_3000_convert_tupel"
-    />
+        title="Convert 'created_by', 'modified_by', 'transferred_by' fields to tupel"
+        handler="docpool.base.upgrades.to_3000_convert_tupel"
+        />
 
   </genericsetup:upgradeSteps>
 

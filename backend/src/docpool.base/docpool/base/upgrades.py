@@ -239,6 +239,7 @@ def to_3000_convert_tupel(context=None):
     convert_userinfo()
     log.info("Done")
 
+
 def create_doctype_structure(log_remains=False):
     rename_mapping = {}
     for item in DOCTYPES:
