@@ -29,14 +29,12 @@
                 <span tal:define="
                         mi python:scenario.modInfo(show_created=True);
                         date python:mi[0];
-                        uinfo python:mi[1];
+                        uinfo python:context.formatUserInfo(mi[1]);
                       ">
                   <tal:var replace="uinfo" />
-                  <i>
-                    <br />
-                    <tal:var replace="python:toLocalizedTime(date, long_format=1)" />
-                    (<tal:var i18n:translate="">LT</tal:var>)
-                  </i>
+                  <br />
+                  <tal:var replace="python:toLocalizedTime(date, long_format=1)" />
+                  (<tal:var i18n:translate="">LT</tal:var>)
                 </span>
               </td>
               <td tal:define="

@@ -95,10 +95,13 @@ class IAppSpecificTransfer(Interface):
 
 @provider(IFormFieldProvider)
 class ITransferable(model.Schema):
-    transferred_by = schema.TextLine(
+    transferred_by = schema.Tuple(
         title=_("label_dpdocument_transferred_by", default="Transferred by"),
         description=_("description_dpdocument_transferred_by", default=""),
         required=False,
+        value_type=schema.TextLine(required=False),
+        min_length=3,
+        max_length=3,
     )
     directives.omitted("transferred_by")
     read_permission(transferred_by="docpool.transfers.AccessTransfers")
@@ -232,7 +235,7 @@ class Transferable(FlexibleView):
         catalog = api.portal.get_tool("portal_catalog")
         scenarios_index = catalog._catalog.getIndex("scenarios")
         timestamp = datetime.now()
-        userinfo_string = self.context._getUserInfoString(plain=True)
+        userinfo = self.context._getUserInfoString()
         dto = self.context.docTypeObj()
 
         def error_message(esd_to_title, msg):
@@ -286,12 +289,12 @@ class Transferable(FlexibleView):
 
             # 3) Add transfer information to the copies.
             my_copy.transferred = timestamp
-            my_copy.transferred_by = userinfo_string
+            my_copy.transferred_by = userinfo
 
             # 4) Add entry to sender log.
             log_entry = dict(
                 timestamp=timestamp,
-                user=userinfo_string,
+                user=userinfo,
                 esd_title=esd_to_title,
                 transferfolder_uid=transfer_folder.UID(),
             )
@@ -323,7 +326,7 @@ class Transferable(FlexibleView):
             # 8) Add entry to receiver log.
             log_entry = dict(
                 timestamp=timestamp,
-                user=userinfo_string,
+                user=userinfo,
                 esd_title=transfer_folder.getSendingESD().Title(),
             )
             for app_transfer in app_transfers:

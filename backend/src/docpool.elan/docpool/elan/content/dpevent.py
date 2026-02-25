@@ -327,7 +327,7 @@ def addLogEntry(obj):
         alerting_status = safe_text(alerting_status_vocabulary.getTerm(obj.AlertingStatus).title)
     entry = {}
     entry["Date"] = api.portal.get_localized_time(datetime.datetime.now(), long_format=1)
-    entry["User"] = obj._getUserInfoString()
+    entry["User"] = obj.formatUserInfo(obj._getUserInfoString())
     entry["Status"] = obj.Status
     entry["EventType"] = obj.EventType
     entry["Operation mode"] = modes

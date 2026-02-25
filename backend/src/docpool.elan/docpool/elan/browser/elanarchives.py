@@ -40,7 +40,7 @@ class ELANArchivesView(BrowserView):
         if not fullname:
             return username
         if primary_group:
-            return fullname + f" <i>{primary_group}</i>"
+            return fullname + f" {primary_group}"
         return fullname
 
     def deleted_archives(self):

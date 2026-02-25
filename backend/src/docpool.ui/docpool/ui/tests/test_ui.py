@@ -70,7 +70,7 @@ class TestUIFeatures(unittest.TestCase):
             local_behaviors=["elan"],
             scenarios=getScenariosForCurrentUser(),
         )
-        self.assertEqual(self.entry.created_by, "user1 (Bund) <i>Group1 (Bund)</i>")
+        self.assertEqual(self.entry.created_by, ("user1", "user1 (Bund)", "Group1 (Bund)"))
         # add attachments
         filename = os.path.join(os.path.dirname(__file__), "image.png")
         with open(filename, "rb") as f:
@@ -124,7 +124,7 @@ class TestUIFeatures(unittest.TestCase):
         # Test data
         data = listing_item_view.dpdocument
         self.assertEqual(data["state_title"], "Private")
-        self.assertEqual(data["modified_by_group"], "<i>Group1 (Bund)</i>")
+        self.assertEqual(data["modified_by_group"], "Group1 (Bund)")
         self.assertEqual(data["modified_by_user"], "user1 (Bund)")
         self.assertEqual(data["available_transitions"][0]["id"], "publish")
 

@@ -12,8 +12,8 @@
                ttext python:' - ' + ttext[3:-4];
                toLocalizedTime nocall: context/@@plone/toLocalizedTime;
              ">
-      <i><span tal:replace="python:ticker.modified_by or ticker.created_by"></span>
-        <span tal:replace="python: toLocalizedTime(ticker.modified(), long_format=1)"></span><span tal:replace="python:' '"></span><tal:var i18n:translate="">LT</tal:var>:</i>
+      <span tal:replace="python:ticker.formatUserInfo(ticker.modified_by or ticker.created_by)"></span>
+      <span tal:replace="python: toLocalizedTime(ticker.modified(), long_format=1)"></span><span tal:replace="python:' '"></span><tal:var i18n:translate="">LT</tal:var>:
       <span tal:replace="structure ttext"></span>
     </tal:def>
   </aside>

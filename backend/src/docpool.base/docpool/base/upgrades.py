@@ -1,3 +1,5 @@
+from docpool.base.behaviors.transferable import ITransferable
+from docpool.base.content.contentbase import IContentBase
 from docpool.base.content.documentpool import APPLICATIONS_KEY
 from docpool.base.content.simplefolder import ISimpleFolder
 from docpool.base.setuphandlers import create_session_stuff
@@ -52,6 +54,60 @@ OLD_OBJ_MAPPING = {
         "/dokpool/brandenburg/archive/imis-uebung-berlin-brandenburg-202010_27-11-2020/content/Groups/bb_landeslabor_bbb/trinkwasser-2020-10.07",
     ],
 }
+
+
+def _normalize_userinfo_tuple(value, obj=None):
+    if value is None:
+        log.info(f"Object has no value: {obj.absolute_url()}")
+        return None
+    # Already done - return value
+    if isinstance(value, tuple) and len(value) == 3:
+        return value
+    if isinstance(value, str):
+        # Variant 1: Name with land and group in <i>
+        # 'Firstname Lastname (Bund) <i>Radiologisches Lagezentrum (Bund)</i>'
+        if "<i>" in value:
+            text = value.split("<i>")
+            fullname = text[0].strip()
+            group = text[1].split("</i>")[0]
+            log.info("Variant 1: Fullname: {} Group: {} ".format(fullname, group))
+            return ("", fullname, group)
+        else:
+            if "(" in value and ")" in value:
+                split_index = value.index(")") + 1
+                fullname = value[:split_index].strip()
+                group = value[split_index:].strip()
+                if group == "":
+                    # Variant 3: Name with land NO group
+                    # 'Firstname Lastname (Thüringen)'
+                    log.info("Variant 3: Fullname: {}".format(fullname))
+                    return ("", fullname, "")
+                # Variant 2: Name with land follwed by group
+                # 'Firstname Lastname (Thüringen) Transfers'
+                log.info("Variant 2: Fullname: {} Group: {} ".format(fullname, group))
+                return ("", fullname, group)
+            # Variant 4: Only Name
+            fullname = value.strip()
+            log.info("Variant 4: Fullname: {} ".format(fullname))
+            return ("", fullname, "")
+
+
+def _upgrade_userinfo_fields(obj):
+    changed = False
+    for field in ("created_by", "modified_by", "transferred_by"):
+        if not hasattr(obj, field):
+            continue
+        value = getattr(obj, field, None)
+        if value is None:
+            continue
+        normalized = _normalize_userinfo_tuple(value, obj)
+        if normalized is None or normalized == value:
+            continue
+        setattr(obj, field, normalized)
+        changed = True
+    if changed:
+        obj._p_changed = 1
+    return changed
 
 
 def to_1010(context=None):
@@ -176,6 +232,8 @@ def to_3000(context=None):
         for rel in [rel for rel in relation_catalog.findRelations(query)]:
             relation_catalog.unindex(rel)
 
+    log.info("Convert userinfo")
+    convert_userinfo()
     log.info("Done")
 
 
@@ -458,3 +516,20 @@ def enable_elan_for_all_docpools():
             createELANUsers(obj)
             createELANGroups(obj)
             setELANLocalRoles(obj)
+
+
+def convert_userinfo(context=None):
+    updated = 0
+    checked = 0
+    seen = set()
+
+    all_brains = api.content.find(object_provides=(ITransferable.__identifier__, IContentBase.__identifier__))
+    for brain in all_brains:
+        obj = brain.getObject()
+        key = brain.UID or brain.getPath()
+        seen.add(key)
+        checked += 1
+        if _upgrade_userinfo_fields(obj):
+            updated += 1
+
+    log.info("Converted userinfo fields to tuples: updated %s of %s objects", updated, checked)

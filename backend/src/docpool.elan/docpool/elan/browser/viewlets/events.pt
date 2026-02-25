@@ -1,7 +1,4 @@
 <tal:block i18n:domain="docpool.elan">
-  <tal:if tal:condition="view/available|nothing">
-    <div metal:use-macro="context/@@event.macros/macros/scenario_table"></div>
-  </tal:if>
   <tal:if condition="context/@@is/archive|nothing">
     <tal:def define="
                archive context/myELANArchive|nothing;

@@ -288,10 +288,11 @@ class Item(BrowserView):
         portal_workflow = api.portal.get_tool("portal_workflow")
         available_transitions = portal_workflow.getTransitionsFor(obj)
 
+        modified_by_user = ""
+        modified_by_group = ""
         if userinfo := obj.modified_by or obj.created_by:
-            userinfo = userinfo.replace("<i>", "--separator--<i>", 1)
-            modified_by_user = userinfo.split("--separator--")[0].strip()
-            modified_by_group = userinfo.split("--separator--")[1] if "--separator--" in userinfo else ""
+            modified_by_user = userinfo[1]
+            modified_by_group = userinfo[2]
 
         show_transfer_action = False
         if api.user.has_permission("Docpool: Send Content", obj=obj):
