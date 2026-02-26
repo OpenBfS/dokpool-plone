@@ -227,7 +227,7 @@ class TestListing:
         page.set_input_files("#attachments", "tests/image.png")
         page.get_by_role("button", name="Next").click()
 
-        expect(page.get_by_role("checkbox", name="Normalfall")).to_be_checked()
+        expect(page.get_by_role("radio", name="Normalfall")).to_be_checked()
         expect(page.get_by_title("Internal")).to_be_checked()
         expect(page.get_by_title("Published")).not_to_be_checked()
         page.get_by_title("Published").click()
