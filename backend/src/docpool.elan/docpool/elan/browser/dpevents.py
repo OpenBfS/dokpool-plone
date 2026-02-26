@@ -15,7 +15,7 @@ class DPEventsView(BrowserView):
         contentarea = aq_get(self.context, "content")
         args = {
             "portal_type": "DPDocument",
-            "scenarios": dpevent.UID(),
+            "scenario": dpevent.UID(),
         }
         return len(api.content.find(context=contentarea, **args))
 

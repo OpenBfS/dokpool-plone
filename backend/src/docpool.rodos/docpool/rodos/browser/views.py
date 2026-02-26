@@ -41,8 +41,8 @@ class AssignToElanEvent(BrowserView):
         if not form.get("form.button.submit"):
             return self.index()
 
-        self.event_uids = form.get("dpevent", [])
-        if not self.event_uids:
+        self.event_uid = form.get("dpevent")
+        if not self.event_uid:
             msg = _("You need to select an ELAN Event.")
             api.portal.show_message(msg, self.request)
             return self.request.response.redirect(obj.absolute_url())
@@ -54,7 +54,7 @@ class AssignToElanEvent(BrowserView):
         adapted.local_behaviors = list(set(apps))
 
         # Assign to event
-        obj.doc_extension(ELAN_APP).scenarios = self.event_uids
+        obj.doc_extension(ELAN_APP).scenario = self.event_uid
         obj.update_modified()
 
         msg = _("Assigned to ELAN event")

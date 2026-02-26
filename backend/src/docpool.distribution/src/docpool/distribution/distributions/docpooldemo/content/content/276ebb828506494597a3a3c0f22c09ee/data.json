@@ -39,10 +39,7 @@
   ],
   "review_state": "published",
   "rights": null,
-  "scenarios": [
-    "e4b194cb504e47989098926df9cef057"
-  ],
-  "scenarios_to_keep": [],
+  "scenario": "e4b194cb504e47989098926df9cef057",
   "subjects": [],
   "text": {
     "content-type": "text/html",

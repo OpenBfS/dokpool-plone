@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-02-18 10:20+0000\n"
+"POT-Creation-Date: 2026-02-18 14:03+0000\n"
 "PO-Revision-Date: 2025-05-19 17:02+0200\n"
 "Last-Translator: Philip Bauer <bauer@starzel.de>\n"
 "Language-Team: BfS <elan@bfs.de>\n"
@@ -501,7 +501,7 @@ msgid "description_doctype_contentcategory"
 msgstr ""
 
 #: docpool.elan/docpool/elan/behaviors/elandocument.py
-msgid "description_dpdocument_scenarios"
+msgid "description_dpdocument_scenario"
 msgstr ""
 
 #. Default: "Content of message to IMIS-Users. This text is being displayed and can be overwritten. Status of Alerting has to be \"initialized\" to send it."
@@ -547,9 +547,9 @@ msgstr ""
 msgid "label_doctype_contentcategory"
 msgstr ""
 
-#. Default: "Belongs to scenarios"
+#. Default: "Belongs to scenario"
 #: docpool.elan/docpool/elan/behaviors/elandocument.py
-msgid "label_dpdocument_scenarios"
+msgid "label_dpdocument_scenario"
 msgstr ""
 
 #. Default: "Status of Alerting"

@@ -407,7 +407,7 @@ class TestDocTypes(unittest.TestCase):
             docType="weather_conditions_and_forecast",
             text=RichTextValue("<p>Text</p>", "text/html", "text/x-html-safe"),
             local_behaviors=["elan", "doksys"],
-            scenarios=[event_uid],
+            scenario=event_uid,
         )
         api.content.transition(obj=new, transition="publish")
         modified(new)

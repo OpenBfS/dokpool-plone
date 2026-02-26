@@ -5,8 +5,8 @@
     >
 
   <adapter
-      factory=".indexer.scenarios_indexer"
-      name="scenarios"
+      factory=".indexer.scenario_indexer"
+      name="scenario"
       />
 
   <subscriber handler=".dpevent.eventAdded" />
