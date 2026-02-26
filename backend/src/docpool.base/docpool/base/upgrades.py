@@ -441,7 +441,7 @@ def create_doctype_structure(log_remains=False):
         for brain in api.content.find(
             context=content_area,
             portal_type="DPDocument",
-            scenarios=event_uids,
+            scenario=event_uids,
             dp_type="radiological_situation_report",
             sort_on="path",
         ):

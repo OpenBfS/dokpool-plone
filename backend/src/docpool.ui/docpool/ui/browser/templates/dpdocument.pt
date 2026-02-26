@@ -148,7 +148,7 @@
 
               <div class="field mb-2"
                    tal:define="
-                     widget python: view.widgets.get('IELANDocument.scenarios');
+                     widget python: view.widgets.get('IELANDocument.scenario');
                    "
                    tal:condition="python: widget"
               >
