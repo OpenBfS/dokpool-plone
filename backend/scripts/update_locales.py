@@ -67,7 +67,7 @@ def update_lang(domain, pot, locale_path, lang):
 def update_pkg(pkg):
     try:
         locale_path = pathlib.Path(pkg_resources.resource_filename(pkg, "locales"))
-    except TypeError:  # no locales directory in this package
+    except (ModuleNotFoundError, TypeError):  # no locales directory in this package
         return
 
     domain = pkg
