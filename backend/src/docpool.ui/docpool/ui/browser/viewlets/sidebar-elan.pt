@@ -1,5 +1,5 @@
 
-<li class="nav-item w-100"
+<li class="nav-item"
     tal:define="
       icons python:context.restrictedTraverse('@@iconresolver');
     "

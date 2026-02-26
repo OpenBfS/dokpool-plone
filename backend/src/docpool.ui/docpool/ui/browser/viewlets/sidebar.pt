@@ -1,16 +1,16 @@
-<div class="sidebar d-flex flex-column align-items-center"
+<div class="sidebar align-items-center"
      tal:define="
        icons python:context.restrictedTraverse('@@iconresolver');
      "
      tal:condition="python:not context.restrictedTraverse('@@plone_portal_state').anonymous()"
 >
 
-  <nav class="w-100 d-flex flex-column align-items-center">
-    <ul class="nav nav-pills flex-column align-items-center w-100">
+  <nav class="w-100 align-items-center">
+    <ul class="nav nav-pills d-flex flex-row flex-xl-column align-items-center w-100">
 
       <tal:appspecific replace="structure provider:docpool.sidebar.appspecific.manager"/>
 
-      <li class="nav-item w-100">
+      <li class="nav-item">
         <a class="nav-link d-flex flex-column align-items-center justify-content-center text-decoration-none"
            tal:attributes="
              href string:${view/base_url}/@@listing;
@@ -24,7 +24,7 @@
         </a>
       </li>
 
-      <li class="nav-item w-100">
+      <li class="nav-item">
         <a class="nav-link d-flex flex-column align-items-center justify-content-center text-decoration-none"
            href="#"
            tal:attributes="
@@ -38,7 +38,7 @@
         </a>
       </li>
 
-      <li class="nav-item w-100">
+      <li class="nav-item">
         <a class="nav-link d-flex flex-column align-items-center justify-content-center text-decoration-none"
            href="#"
         >
@@ -49,7 +49,7 @@
         </a>
       </li>
 
-      <li class="nav-item w-100">
+      <li class="nav-item">
         <a class="nav-link d-flex flex-column align-items-center justify-content-center text-decoration-none"
            href="#"
         >
@@ -62,7 +62,7 @@
     </ul>
   </nav>
 
-  <div class="mt-auto w-100 border-top pt-3"
+  <div class="d-none d-xl-block mt-auto w-100 border-top pt-3"
        tal:define="
          local_time python: view.get_local_time();
          utc_time python: view.get_utc_time();

@@ -2,22 +2,30 @@
   --sidebar-width: 113px;
 }
 
-.sidebar {
-  width: 113px;
-  min-width: var(--sidebar-width);
-  background-color: #f3f3f3;
-  box-shadow: 4px 0 4px rgba(0, 0, 0, 0.1);
-  position: fixed;
-  top: 74px;
-  left: var(--plone-toolbar-width-collapsed);
-  bottom: 0;
-  height: 100%;
-  border-right: none;
-  z-index: 991;
-}
 
 body.plone-toolbar-left-expanded .sidebar {
   left: var(--plone-toolbar-width);
+}
+
+@include media-breakpoint-up(xl) {
+  .outer-wrapper {
+    padding-left: var(--sidebar-width);
+  }
+  .sidebar {
+    width: 113px;
+    min-width: var(--sidebar-width);
+    background-color: #f3f3f3;
+    box-shadow: 4px 0 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 74px;
+    left: var(--plone-toolbar-width-collapsed);
+    bottom: 0;
+    height: 100%;
+    border-right: none;
+    z-index: 991;
+  }
+
+
 }
 
 .sidebar .nav {
@@ -88,6 +96,7 @@ body.plone-toolbar-left-expanded .sidebar {
     margin: 0 10px;
     width: auto;
   }
+
   .nav-link:hover {
     background-color: #c3dce7;
   }
