@@ -250,7 +250,7 @@ class DPDocumentWizard(ContextlessWizard):
             mapping={"doktype": new.docTypeObj().title, "title": new.title},
         )
         api.portal.show_message(msg, self.request)
-        return self.request.response.redirect(self.context.absolute_url() + "/@@listing")
+        return self.request.response.redirect(self.context.absolute_url())
 
     def get_widget(self, name):
         if not self.add_form:

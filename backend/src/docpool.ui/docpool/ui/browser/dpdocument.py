@@ -56,7 +56,7 @@ class DPDocumentView(DefaultView):
 
     def getDocpoolListingPath(self):
         dp = getDocumentPoolSite(self.context)
-        path = "/".join(dp.getPhysicalPath()) + "/@@listing"
+        path = "/".join(dp.getPhysicalPath())
         return path
 
 
@@ -84,7 +84,7 @@ class DPDocumentDeleteConfirmationFormUI(DeleteConfirmationForm):
 
         listing_url = prepare_came_from_link(self.request)
         if listing_url:
-            self.request.response.redirect(listing_url + "/@@listing")
+            self.request.response.redirect(listing_url)
         else:
             self.request.response.redirect(self.context.absolute_url())
 
@@ -93,7 +93,7 @@ class DPDocumentDeleteConfirmationFormUI(DeleteConfirmationForm):
 
         listing_url = prepare_came_from_link(self.request)
         if listing_url:
-            self.request.response.redirect(listing_url + "/@@listing")
+            self.request.response.redirect(listing_url)
         else:
             self.request.response.redirect(self.context.absolute_url())
 

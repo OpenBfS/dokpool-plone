@@ -72,7 +72,7 @@ class PortalHeader(ViewletBase):
                 current_dp_id == dp_id and "content" in physical_path and "archive" not in physical_path
             )
             url = (self.context if keep_context else dp).absolute_url()
-            params = "" if keep_context else "&redirect_to=/@@listing"
+            params = "" if keep_context else "&redirect_to="
             yield dict(
                 dptitle=dp.title,
                 selected=dp_id == current_dp_id,
@@ -107,7 +107,7 @@ class EventSwitcherViewlet(EventSwitcherMixin, ViewletBase):
                 (url == (vurl := f"{self.dp_url}{val}")) or url.startswith(f"{vurl}/")
                 for val in [
                     "/esd",
-                    "/@@listing",
+                    "/",
                     "/config/dtypes",
                 ]
             )

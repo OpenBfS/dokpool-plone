@@ -228,7 +228,7 @@ class DPDocumentEditForm(EditForm):
 
         listing_url = prepare_came_from_link(self.request)
         if listing_url:
-            self.request.response.redirect(listing_url + "/@@listing")
+            self.request.response.redirect(listing_url)
         else:
             self.request.response.redirect(self.context.absolute_url())
 
@@ -236,7 +236,7 @@ class DPDocumentEditForm(EditForm):
     def handle_cancel(self, action):
         listing_url = prepare_came_from_link(self.request)
         if listing_url:
-            self.request.response.redirect(listing_url + "/@@listing")
+            self.request.response.redirect(listing_url)
         else:
             self.request.response.redirect(self.context.absolute_url())
 

@@ -5,7 +5,7 @@
 >
   <!-- Event button -->
   <a class="nav-btn event-card event-switcher-detail d-flex align-items-center px-3 text-decoration-none ${python: view.active}"
-     href="${python: view.dp_url}/@@listing"
+     href="${python: view.dp_url}"
   >
     <div tal:define="
            scenario python: view.selected_scenario;

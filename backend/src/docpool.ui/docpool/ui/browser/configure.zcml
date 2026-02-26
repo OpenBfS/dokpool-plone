@@ -34,6 +34,51 @@
       />
 
   <browser:page
+      name="view"
+      for="docpool.base.interfaces.IDocumentPool"
+      class=".listing.Listing"
+      template="templates/listing.pt"
+      permission="zope.Public"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
+  <browser:page
+      name="view"
+      for="docpool.base.interfaces.IFolderBase"
+      class=".listing.Listing"
+      template="templates/listing.pt"
+      permission="zope.Public"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
+  <browser:page
+      name="view"
+      for="docpool.base.content.groups.IGroups"
+      class=".listing.Listing"
+      template="templates/listing.pt"
+      permission="zope.Public"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
+  <browser:page
+      name="view"
+      for="docpool.base.content.users.IUsers"
+      class=".listing.Listing"
+      template="templates/listing.pt"
+      permission="zope.Public"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
+  <browser:page
+      name="view"
+      for="docpool.elan.content.elanarchive.IELANArchive"
+      class=".listing.Listing"
+      template="templates/listing.pt"
+      permission="zope.Public"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
+  <browser:page
       name="listing-item"
       for="*"
       class=".listing.Item"
