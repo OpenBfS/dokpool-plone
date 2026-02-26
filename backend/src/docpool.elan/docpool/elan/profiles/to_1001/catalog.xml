@@ -9,4 +9,9 @@
     <indexed_attr value="scenario" />
   </index>
 
+  <index meta_type="KeywordIndex"
+         name="scenarios"
+         remove="true"
+  />
+
 </object>

@@ -44,10 +44,7 @@
   ],
   "review_state": "private",
   "rights": null,
-  "scenarios": [
-    "0bb243d1c586477794bebc59aa172f7c"
-  ],
-  "scenarios_to_keep": [],
+  "scenario": "0bb243d1c586477794bebc59aa172f7c",
   "subjects": [],
   "text": {
     "content-type": "text/html",

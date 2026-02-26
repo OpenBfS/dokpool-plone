@@ -4,6 +4,11 @@ Changelog
 2.6.0 (unreleased)
 ------------------
 
+Changed:
+
+- ELAN documents can be associated with at most one scenario (#6430)
+  [tlotze]
+
 
 2.5.0 (2026-02-16)
 ------------------

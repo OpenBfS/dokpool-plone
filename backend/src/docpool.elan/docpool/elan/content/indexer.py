@@ -4,7 +4,7 @@ from plone.indexer import indexer
 
 
 @indexer(IDPDocument)
-def scenarios_indexer(obj):
+def scenario_indexer(obj):
     try:
         return obj.doc_extension(ELAN_APP).scenarioIndex()
     except BaseException:

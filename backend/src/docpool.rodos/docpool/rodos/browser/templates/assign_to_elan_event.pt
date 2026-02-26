@@ -40,7 +40,7 @@
                        "
                 >
                   <input class="form-check-input"
-                         name="dpevent:list"
+                         name="dpevent"
                          type="checkbox"
                          tal:attributes="
                            value python: dpevent.UID;

@@ -2,6 +2,7 @@ from Acquisition import aq_inner
 from docpool.base import DocpoolMessageFactory as _
 from docpool.base.browser.flexible_view import FlexibleView
 from docpool.base.browser.forms import EditForm
+from docpool.base.content.archiving import IArchiving
 from docpool.base.content.dpdocument import IDPDocument
 from docpool.ui.utils import prepare_came_from_link
 from plone import api
@@ -213,6 +214,9 @@ class DPDocumentEditForm(EditForm):
         super().updateWidgets()
         if not api.user.has_permission("Docpool: Change docType for DPDocument", obj=self.context):
             self.widgets["docType"].mode = "display"
+        if IArchiving(self.context).is_archive:
+            del self.widgets["IELANDocument.scenario"]
+            self.fields["IELANDocument.scenario"].field.required = False
 
         # Pass it into hidden input in dpdocument-edit.pt so we can use it in the buttonHandler
         if "came_from" in self.request:

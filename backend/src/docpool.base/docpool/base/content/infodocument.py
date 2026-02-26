@@ -36,6 +36,3 @@ class InfoDocument(DPDocument):
 
     def uploadsAllowed(self):
         return True
-
-    def getScenarios(self):
-        return []
