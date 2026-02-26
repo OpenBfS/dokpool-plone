@@ -543,7 +543,7 @@ msgstr "Archivieren"
 msgid "label_doctype_contentcategory"
 msgstr "Kategorie für diese Eintragsart"
 
-#. Default: "Belongs to scenarios"
+#. Default: "Belongs to scenario"
 #: docpool.elan/docpool/elan/behaviors/elandocument.py
 msgid "label_dpdocument_scenario"
 msgstr "Gehört zu folgendem Ereignis"

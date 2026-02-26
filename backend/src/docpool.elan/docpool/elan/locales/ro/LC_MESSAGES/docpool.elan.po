@@ -547,7 +547,7 @@ msgstr ""
 msgid "label_doctype_contentcategory"
 msgstr ""
 
-#. Default: "Belongs to scenarios"
+#. Default: "Belongs to scenario"
 #: docpool.elan/docpool/elan/behaviors/elandocument.py
 msgid "label_dpdocument_scenario"
 msgstr ""
