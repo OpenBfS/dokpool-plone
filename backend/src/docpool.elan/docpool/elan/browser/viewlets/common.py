@@ -37,7 +37,7 @@ class EventViewlet(ViewletBase):
         contentarea = aq_get(dpevent, "content")
         args = {
             "portal_type": "DPDocument",
-            "scenarios": dpevent.UID(),
+            "scenario": dpevent.UID(),
         }
         return len(api.content.find(context=contentarea, **args))
 

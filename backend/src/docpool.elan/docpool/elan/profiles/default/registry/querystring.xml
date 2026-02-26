@@ -5,7 +5,7 @@
 
   <record field="description"
           interface="plone.app.querystring.interfaces.IQueryField"
-          name="plone.app.querystring.field.scenarios.description"
+          name="plone.app.querystring.field.scenario.description"
   >
     <field type="plone.registry.field.Text">
       <title>Description</title>
@@ -14,7 +14,7 @@
   </record>
   <record field="enabled"
           interface="plone.app.querystring.interfaces.IQueryField"
-          name="plone.app.querystring.field.scenarios.enabled"
+          name="plone.app.querystring.field.scenario.enabled"
   >
     <field type="plone.registry.field.Bool">
       <title>Enabled</title>
@@ -23,7 +23,7 @@
   </record>
   <record field="group"
           interface="plone.app.querystring.interfaces.IQueryField"
-          name="plone.app.querystring.field.scenarios.group"
+          name="plone.app.querystring.field.scenario.group"
   >
     <field type="plone.registry.field.TextLine">
       <title>Group</title>
@@ -32,7 +32,7 @@
   </record>
   <record field="operations"
           interface="plone.app.querystring.interfaces.IQueryField"
-          name="plone.app.querystring.field.scenarios.operations"
+          name="plone.app.querystring.field.scenario.operations"
   >
     <field type="plone.registry.field.List">
       <title>Operations</title>
@@ -47,7 +47,7 @@
   </record>
   <record field="sortable"
           interface="plone.app.querystring.interfaces.IQueryField"
-          name="plone.app.querystring.field.scenarios.sortable"
+          name="plone.app.querystring.field.scenario.sortable"
   >
     <field type="plone.registry.field.Bool">
       <title>Sortable</title>
@@ -56,7 +56,7 @@
   </record>
   <record field="title"
           interface="plone.app.querystring.interfaces.IQueryField"
-          name="plone.app.querystring.field.scenarios.title"
+          name="plone.app.querystring.field.scenario.title"
   >
     <field type="plone.registry.field.TextLine">
       <title>Title</title>
@@ -65,7 +65,7 @@
   </record>
   <record field="vocabulary"
           interface="plone.app.querystring.interfaces.IQueryField"
-          name="plone.app.querystring.field.scenarios.vocabulary"
+          name="plone.app.querystring.field.scenario.vocabulary"
   >
     <field type="plone.registry.field.TextLine">
       <title>Vocabulary</title>
@@ -141,15 +141,6 @@
       <title>Vocabulary</title>
     </field>
     <value>docpool.base.vocabularies.DocumentTypes</value>
-  </record>
-  <record field="description"
-          interface="plone.app.querystring.interfaces.IQueryField"
-          name="plone.app.querystring.field.scenarios.description"
-  >
-    <field type="plone.registry.field.Text">
-      <title>Description</title>
-    </field>
-    <value>Scenario categorization</value>
   </record>
   <record field="description"
           interface="plone.app.querystring.interfaces.IQueryField"

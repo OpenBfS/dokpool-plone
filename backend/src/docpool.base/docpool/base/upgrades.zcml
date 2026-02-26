@@ -73,4 +73,19 @@
         />
   </genericsetup:upgradeSteps>
 
+  <genericsetup:upgradeSteps
+      profile="docpool.base:default"
+      source="1013"
+      destination="1014"
+      >
+    <genericsetup:upgradeStep
+        title="Update ELAN scenario index"
+        handler="docpool.base.upgrades.to_1014_update_elan_scenario_index"
+        />
+    <genericsetup:upgradeStep
+        title="Turn DPDocument's scenarios attribute into single-valued scenario attribute."
+        handler="docpool.base.upgrades.to_1014_single_scenario_per_dpdocument"
+        />
+  </genericsetup:upgradeSteps>
+
 </configure>

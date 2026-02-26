@@ -28,8 +28,7 @@
   "modified_by": "User Ministerium (Bund) <i>Bundesministerium (Bund)</i>",
   "review_state": "published",
   "rights": null,
-  "scenarios": [],
-  "scenarios_to_keep": [],
+  "scenario": null,
   "subjects": [],
   "text": {
     "content-type": "text/html",

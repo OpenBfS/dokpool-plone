@@ -1,6 +1,7 @@
 from Acquisition import aq_inner
 from docpool.base.browser.flexible_view import FlexibleView
 from docpool.base.browser.forms import EditForm
+from docpool.base.content.archiving import IArchiving
 from docpool.base.content.dpdocument import IDPDocument
 from plone import api
 from plone.app.content.browser.file import FileUploadView as BaseFileUploadView
@@ -217,6 +218,9 @@ class DPDocumentEditForm(EditForm):
         super().updateWidgets()
         if not api.user.has_permission("Docpool: Change docType for DPDocument", obj=self.context):
             self.widgets["docType"].mode = "display"
+        if IArchiving(self.context).is_archive:
+            del self.widgets["IELANDocument.scenario"]
+            self.fields["IELANDocument.scenario"].field.required = False
 
 
 EditView = layout.wrap_form(DPDocumentEditForm)

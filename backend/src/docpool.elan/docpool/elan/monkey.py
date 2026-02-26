@@ -25,9 +25,9 @@ def searchResults(self, REQUEST=None, **kw):
         isArchive = rqurl.find("/archive/") > -1
         if not isArchive:
             if scns:
-                kw["scenarios"] = scns
+                kw["scenario"] = scns
             else:  # If we don't have a filter
-                kw["scenarios"] = ["dontfindanything"]
+                kw["scenario"] = ["dontfindanything"]
     return self.original_searchResults(REQUEST, **kw)
 
 

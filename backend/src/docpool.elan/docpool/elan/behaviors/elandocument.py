@@ -17,7 +17,7 @@ from plone.autoform.directives import write_permission
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.base.utils import safe_text
 from Products.DCWorkflow.interfaces import IAfterTransitionEvent
-from z3c.form.browser.checkbox import CheckBoxFieldWidget
+from z3c.form.browser.radio import RadioFieldWidget
 from zope import schema
 from zope.component import adapter
 from zope.interface import provider
@@ -28,7 +28,7 @@ elan_only = app_only_decorator(ELAN_APP)
 
 
 @provider(IContextAwareDefaultFactory)
-def initializeScenarios(context):
+def initializeScenario(context):
     query = {
         "portal_type": "DPEvent",
         "UID": getScenariosForCurrentUser(),
@@ -37,30 +37,23 @@ def initializeScenarios(context):
     if getattr(context, "dpSearchPath", None):
         query["path"] = context.dpSearchPath()
     scenarios = api.content.find(**query)
-    return [scen.UID for scen in scenarios]
+    return scenarios[0].UID if scenarios else None
 
 
 @provider(IFormFieldProvider)
 class IELANDocument(IDocumentExtension):
     """ """
 
-    scenarios = schema.List(
-        title=_("label_dpdocument_scenarios", default="Belongs to scenarios"),
-        description=_("description_dpdocument_scenarios", default=""),
+    scenario = schema.Choice(
+        title=_("label_dpdocument_scenario", default="Belongs to scenario"),
+        description=_("description_dpdocument_scenario", default=""),
         required=True,
-        value_type=schema.Choice(source="docpool.elan.vocabularies.Events"),
-        defaultFactory=initializeScenarios,
+        source="docpool.elan.vocabularies.Events",
+        defaultFactory=initializeScenario,
     )
-    read_permission(scenarios="docpool.elan.AccessELAN")
-    write_permission(scenarios="docpool.elan.AccessELAN")
-    directives.widget(scenarios=CheckBoxFieldWidget)
-
-    scenarios_to_keep = schema.List(
-        required=False,
-        value_type=schema.TextLine(),
-    )
-    read_permission(scenarios_to_keep="docpool.elan.AccessELAN")
-    directives.mode(scenarios_to_keep="hidden")
+    read_permission(scenario="docpool.elan.AccessELAN")
+    write_permission(scenario="docpool.elan.AccessELAN")
+    directives.widget(scenario=RadioFieldWidget)
 
 
 class ELANDocument(FlexibleView):
@@ -88,71 +81,42 @@ class ELANDocument(FlexibleView):
 
     @property
     @elan_only
-    def scenarios(self):
+    def scenario(self):
         # Dexterity overrides __getattr__ to return a default, which is not what we want. hasattr() just calls
         # getattr() so it wouldn't be any help.
         try:
-            return self.context.aq_base.__getattribute__("scenarios")
+            return self.context.aq_base.__getattribute__("scenario")
         except AttributeError:
-            return []
+            return None
 
-    @scenarios.setter
+    @scenario.setter
     @elan_only
-    def scenarios(self, value):
-        scenarios_to_keep = self.request.form.get(
-            "form.widgets.IELANDocument.scenarios_to_keep", ""
-        ).splitlines()
-        new_scenarios = scenarios_to_keep + value
-        if not new_scenarios:
-            return
+    def scenario(self, value):
         context = aq_inner(self.context)
-        context.scenarios = new_scenarios
+        if value != self.scenario:
+            context.scenario = value
 
-    @property
-    def scenarios_to_keep(self):
-        """Inactive scenarios that should be kept referenced when editing.
-
-        There is the feature in editing an ELAN document to hide inactive scenarios from
-        the selection of scenarios that may be referenced. By the mechanisms of how
-        forms work, this would result in actually removing inactive scenarios from the
-        selection. So we need to transport information about these through the edit form
-        and count them in when storing the edited form data.
-        """
-        return [s.UID() for s in self.myScenarioObjects() if s.Status != "active"]
-
-    @scenarios_to_keep.setter
-    def scenarios_to_keep(self, value):
-        pass
-
-    def myScenarioObjects(self):
-        """Return DPEvent objects associated with this document."""
+    def scenarioIndex(self):
         # We can not use the catalog (and therefore, plone.api.content.get()) here since
         # this is used in a indexer and during clear & rebuild no Events would be found.
         # The path of events is assumed to be <docpool>/contentconfig/scen
         # This implicitly filters for events present in the document's docpool but then,
         # other events than those should not be associated with the document anyway.
-        results = []
-        if not (scns := self.scenarios):
-            return results
+        if not (scn := self.scenario):
+            return
+
         docpool = getDocumentPoolSite(self.context)
-        if scen := docpool.unrestrictedTraverse("contentconfig/scen", None):
-            results = [i for i in scen.contentValues({"portal_type": "DPEvent"}) if i.UID() in scns]
-        return results
+        if not (scen := docpool.unrestrictedTraverse("contentconfig/scen", None)):
+            return
 
-    def scenarioIndex(self):
-        """ """
-        scens = self.myScenarioObjects()
-        res = [s.UID() for s in scens if api.content.get_state(s) == "published"]
-        return res
+        for candidate in scen.contentValues({"portal_type": "DPEvent"}):
+            if candidate.UID() == scn and api.content.get_state(candidate) == "published":
+                return [scn]
 
-    def getScenarioNames(self):
+    def getScenarioName(self):
         """ """
-        # Uniquify titles: While scenarios are UIDs and thus unique, they may
-        # refer to events with the same title, most commonly in the case of
-        # partly archived events.
-        scns = api.content.find(UID=self.scenarios)
-        titles = list({brain.Title for brain in scns})
-        return titles
+        if self.scenario and (scn := api.content.get(UID=self.scenario)):
+            return scn.Title
 
     def cat_convert(self):
         """ """

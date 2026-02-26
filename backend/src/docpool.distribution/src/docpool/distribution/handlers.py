@@ -33,7 +33,7 @@ def post_handler(distribution: Distribution, site: PloneSite, answers: dict) -> 
             "mdate",
             "apps_supported",
             "changed",
-            "scenarios",
+            "scenario",
             "category",
         ],
         REQUEST=None,
