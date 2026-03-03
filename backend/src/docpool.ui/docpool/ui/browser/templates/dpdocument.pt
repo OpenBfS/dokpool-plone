@@ -12,11 +12,7 @@
 >
 
   <body>
-    <metal:body fill-slot="body"
-                tal:define="
-                  apps python: view.apps();
-                "
-    >
+    <metal:body fill-slot="body">
 
       <div id="header">
       </div>
@@ -130,7 +126,7 @@
 
           <div class="col-sm-4">
 
-            <tal:elan condition="python: 'elan' in apps">
+            <tal:elan condition="python: 'elan' in context.local_behaviors">
 
               <div class="field mb-2 doc_metadata"
                    tal:define="

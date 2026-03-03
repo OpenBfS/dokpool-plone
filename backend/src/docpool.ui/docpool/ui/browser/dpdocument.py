@@ -1,4 +1,3 @@
-from docpool.base.appregistry import APP_REGISTRY
 from docpool.base.browser.dpdocument import DPDocumentEditForm
 from docpool.base.utils import getDocumentPoolSite
 from docpool.ui import _
@@ -22,13 +21,6 @@ class DPDocumentView(DefaultView):
             return self.download_attachments()
 
         return super().__call__()
-
-    def apps(self):
-        results = {}
-        for app in APP_REGISTRY:
-            if app in self.context.local_behaviors:
-                results[app] = self.context.doc_extension(app)
-        return results
 
     def download_attachments(self):
         """Creates a zip file containing all attachments and returns it for download."""
