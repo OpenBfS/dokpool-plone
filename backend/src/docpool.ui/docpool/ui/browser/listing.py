@@ -91,6 +91,7 @@ class Listing(BrowserView):
         }
         self.sort_on = form.get("sort_on") or "newest"
         sort_on_option = self.sort_on_options.get(self.sort_on) or self.sort_on_options["newest"]
+        self.bypass_scenario_filter = form.get("bypass_scenario_filter", False)
         self.query["sort_on"] = sort_on_option[0]
         self.query["sort_order"] = sort_on_option[1]
 
@@ -99,15 +100,15 @@ class Listing(BrowserView):
         if self.searchable_text:
             self.query["SearchableText"] = munge_search_term(self.searchable_text)
 
-        # Filter by APP
+        # Always filter by APP
         dp_app_state = api.content.get_view("dp_app_state", self.context, self.request)
         self.active_apps = dp_app_state.appsActivatedByCurrentUser()
         self.active_apps.extend([BASE_APP, TRANSFERS_APP])
         self.base_query["apps_supported"] = self.active_apps
 
-        # Filter by DPEvent
+        # Filter by DPEvent unless disabled, not in ELAN or in Archive
         if (
-            not self.folder_listing
+            not self.bypass_scenario_filter
             and ELAN_APP in self.active_apps
             and not IArchiving(self.context).is_archive
         ):
@@ -247,6 +248,11 @@ class Listing(BrowserView):
         brains = catalog(**query)
         uids = [brain.UID for brain in brains]
         modified = max(brain.modified for brain in brains) if brains else None
+
+        self.count_without_scenario_filter = None
+        if not self.bypass_scenario_filter:
+            query.pop("scenario", None)
+            self.count_without_scenario_filter = len(catalog(**query)) - len(brains)
 
         if self.limit > 0:
             uids = uids[: self.limit]
