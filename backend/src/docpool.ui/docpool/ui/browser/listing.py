@@ -9,7 +9,7 @@ from docpool.base.content.dpdocument import IDPDocument
 from docpool.base.utils import get_content_area
 from docpool.base.utils import get_current_state_title
 from docpool.elan.config import ELAN_APP
-from docpool.elan.utils import getScenariosForCurrentUser
+from docpool.elan.utils import get_scenario_for_current_user
 from docpool.ui import _
 from plone import api
 from plone.i18n.normalizer.interfaces import IIDNormalizer
@@ -111,8 +111,8 @@ class Listing(BrowserView):
             and ELAN_APP in self.active_apps
             and not IArchiving(self.context).is_archive
         ):
-            if event := getScenariosForCurrentUser():
-                self.base_query["scenarios"] = event
+            if event := get_scenario_for_current_user():
+                self.base_query["scenario"] = event
 
         # Filter by Category
         self.selected_subcategories = form.get("selected_subcategories") or []
