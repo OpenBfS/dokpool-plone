@@ -1,6 +1,6 @@
 from docpool.api.browser.setup import add_user
 from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
-from docpool.elan.utils import getScenariosForCurrentUser
+from docpool.elan.utils import get_scenario_for_current_user
 from playwright.sync_api import expect
 from plone import api
 from plone.app.testing import login
@@ -51,7 +51,7 @@ class TestListing:
             description="foo",
             docType="weather_conditions_and_forecast",
             local_behaviors=["elan"],
-            scenarios=getScenariosForCurrentUser(),
+            scenario=get_scenario_for_current_user(),
         )
         assert self.entry.created_by == ("user1", "user1 (Bund)", "Group1 (Bund)")
 
@@ -63,7 +63,7 @@ class TestListing:
             description="foo",
             docType="staff_note",
             local_behaviors=["elan"],
-            scenarios=getScenariosForCurrentUser(),
+            scenario=get_scenario_for_current_user(),
         )
         assert self.entry.created_by == ("user1", "user1 (Bund)", "Group1 (Bund)")
         # add attachments

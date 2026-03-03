@@ -1,6 +1,6 @@
 from docpool.api.browser.setup import add_user
 from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
-from docpool.elan.utils import getScenariosForCurrentUser
+from docpool.elan.utils import get_scenario_for_current_user
 from docpool.ui.testing import DOCPOOL_UI_FUNCTIONAL_TESTING
 from docpool.ui.testing import DOCPOOL_UI_INTEGRATION_TESTING
 from plone import api
@@ -30,7 +30,7 @@ class TestUI(unittest.TestCase):
     def test_listing_find_on_empty_docpool(self):
         listing_view = api.content.get_view("listing", self.portal, self.request)
         # Nothing found - no UIDs and no modified date
-        self.assertEqual(listing_view.find(), ([], None, []))
+        self.assertEqual(listing_view.find(), ([], None))
 
 
 class TestUIFeatures(unittest.TestCase):
@@ -68,7 +68,7 @@ class TestUIFeatures(unittest.TestCase):
             description="foo",
             docType="weather_conditions_and_forecast",
             local_behaviors=["elan"],
-            scenarios=getScenariosForCurrentUser(),
+            scenario=get_scenario_for_current_user(),
         )
         self.assertEqual(self.entry.created_by, ("user1", "user1 (Bund)", "Group1 (Bund)"))
         # add attachments
@@ -94,7 +94,7 @@ class TestUIFeatures(unittest.TestCase):
     def test_listing_view_with_entries(self):
         listing_view = api.content.get_view("listing", self.group_folder, self.request)
         # One item is found
-        self.assertEqual(listing_view.find(), ([self.entry.UID()], self.entry.modified(), []))
+        self.assertEqual(listing_view.find(), ([self.entry.UID()], self.entry.modified()))
 
         # render listing view
         html = listing_view()
@@ -134,7 +134,6 @@ class TestUIFeatures(unittest.TestCase):
 
     def test_dpdocument_view(self):
         dpdocument_view = api.content.get_view("view", self.entry, self.request)
-        self.assertEqual(list(dpdocument_view.apps().keys()), ["elan"])
         html = dpdocument_view()
         self.assertIn("<h1>A Weatherinfo</h1>", html)
 
@@ -156,7 +155,7 @@ class TestUIFeatures(unittest.TestCase):
 
     def test_time_filter(self):
         listing_view = api.content.get_view("listing", self.group_folder, self.request)
-        uids, _, _ = listing_view.find()
+        uids, _ = listing_view.find()
         self.assertEqual(len(uids), 1)
 
         # create entry
@@ -167,22 +166,22 @@ class TestUIFeatures(unittest.TestCase):
             description="foo",
             docType="weather_conditions_and_forecast",
             local_behaviors=["elan"],
-            scenarios=getScenariosForCurrentUser(),
+            scenario=get_scenario_for_current_user(),
         )
-        uids, _, _ = listing_view.find()
+        uids, _ = listing_view.find()
         self.assertEqual(len(uids), 2)
 
         self.request.form["startdate"] = (datetime.date.today() - datetime.timedelta(days=3)).isoformat()
-        uids, _, _ = listing_view.find()
+        uids, _ = listing_view.find()
         self.assertEqual(len(uids), 2)
 
         self.request.form["enddate"] = (datetime.date.today() - datetime.timedelta(days=1)).isoformat()
-        uids, _, _ = listing_view.find()
+        uids, _ = listing_view.find()
         self.assertEqual(len(uids), 0)
 
         # change creation-date of entry2
         older_date = datetime.datetime.now() - datetime.timedelta(days=2)
         entry.creation_date = datify(older_date)
         entry.reindexObject()
-        uids, _, _ = listing_view.find()
+        uids, _ = listing_view.find()
         self.assertEqual(len(uids), 1)
