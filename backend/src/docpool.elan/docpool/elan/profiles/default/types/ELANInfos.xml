@@ -28,9 +28,6 @@
     <element value="InfoDocument" />
 
 
-    <element value="InfoFolder" />
-
-
   </property>
   <!-- schema interface -->
   <property name="schema">docpool.elan.content.elaninfos.IELANInfos</property>

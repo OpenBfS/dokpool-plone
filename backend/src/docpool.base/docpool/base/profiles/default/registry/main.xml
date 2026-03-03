@@ -35,7 +35,6 @@
       <element>Groups</element>
       <element>GroupFolder</element>
       <element>UserFolder</element>
-      <element>InfoFolder</element>
       <element>SimpleFolder</element>
       <element>DashboardsConfig</element>
       <element>Dashboard</element>
