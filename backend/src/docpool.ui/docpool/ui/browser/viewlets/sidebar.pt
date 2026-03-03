@@ -62,46 +62,5 @@
     </ul>
   </nav>
 
-  <div class="d-none d-xl-block mt-auto w-100 border-top pt-3"
-       tal:define="
-         local_time python: view.get_local_time();
-         utc_time python: view.get_utc_time();
-         jst_time python: view.get_jst_time();
-       "
-  >
-    <table class="table table-borderless mb-0 sidebar-tz-table">
-      <tbody>
-        <tr>
-          <td class="sidebar-tz text-primary"
-              i18n:translate=""
-          >ME(S)Z</td>
-          <td class="sidebar-tz text-primary"
-              datetime="${python: local_time}"
-          >
-          ${python: local_time.strftime('%d.%m.%Y %H:%M')}
-          </td>
-        </tr>
-        <tr>
-          <td class="sidebar-tz text-secondary"
-              i18n:translate=""
-          >UTC</td>
-          <td class="sidebar-tz text-secondary"
-              datetime="${python: utc_time}"
-          >
-          ${python: utc_time.strftime('%d.%m.%Y %H:%M')}
-          </td>
-        </tr>
-        <tr>
-          <td class="sidebar-tz text-secondary"
-              i18n:translate=""
-          >JST</td>
-          <td class="sidebar-tz text-secondary"
-              datetime="${python: jst_time}"
-          >
-          ${python: jst_time.strftime('%d.%m.%Y %H:%M')}
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+
 </div>

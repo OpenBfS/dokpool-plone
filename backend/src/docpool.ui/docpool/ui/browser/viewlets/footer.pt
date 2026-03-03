@@ -1,23 +1,66 @@
 <div class="container-fluid">
-  <div class="d-flex align-items-center justify-content-end gap-3 py-2 ps-4 pe-3">
-    <a class="text-decoration-none text-brand small-footnote"
-       href="https://www.bfs.de/DE/service/datenschutz/datenschutz_node.html"
-    >Datenschutz</a>
-    <div class="vr d-none d-sm-block"></div>
-    <a class="text-decoration-none text-brand small-footnote"
-       href="/contact-info"
-    >Kontakt</a>
-    <div class="vr d-none d-sm-block"></div>
-    <a class="text-decoration-none text-brand small-footnote"
-       href="https://www.bfs.de/DE/service/impressum/impressum_node.html"
-    >Impressum</a>
-    <div class="vr d-none d-sm-block"></div>
-    <a class="text-decoration-none text-brand small-footnote"
-       href='https://www.bfs.de/DE/service/barrierefreiheit/barrierefreiheit_node.html"'
-    >Barrierefreiheit</a>
-    <div class="vr d-none d-sm-block"></div>
-    <a class="text-decoration-none small-footnote mb-0"
-       href="https://www.bfs.de"
-    >&copy; Bundesamt f&uuml;r Strahlenschutz</a>
-  </div>
+
+  <table class="d-none d-xl-block table table-borderless mb-0 footer-tz-table">
+    <tbody tal:define="
+             local_time python: view.get_local_time();
+             utc_time python: view.get_utc_time();
+             jst_time python: view.get_jst_time();
+           ">
+      <tr>
+        <td class="sidebar-tz text-primary"
+            i18n:translate=""
+        >ME(S)Z
+        </td>
+        <td class="sidebar-tz text-primary"
+            datetime="${python: local_time}"
+        >
+          ${python: local_time.strftime('%H:%M')}
+        </td>
+      </tr>
+      <tr>
+        <td class="sidebar-tz text-secondary"
+            i18n:translate=""
+        >UTC
+        </td>
+        <td class="sidebar-tz text-secondary"
+            datetime="${python: utc_time}"
+        >
+          ${python: utc_time.strftime('%H:%M')}
+        </td>
+      </tr>
+      <tr>
+        <td class="sidebar-tz text-secondary"
+            i18n:translate=""
+        >JST
+        </td>
+        <td class="sidebar-tz text-secondary"
+            datetime="${python: jst_time}"
+        >
+          ${python: jst_time.strftime('%H:%M')}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="d-flex align-items-center justify-content-end gap-3 py-2 ps-4 pe-3">
+  <a class="text-decoration-none text-brand small-footnote"
+     href="https://www.bfs.de/DE/service/datenschutz/datenschutz_node.html"
+  >Datenschutz</a>
+  <div class="vr d-none d-sm-block"></div>
+  <a class="text-decoration-none text-brand small-footnote"
+     href="/contact-info"
+  >Kontakt</a>
+  <div class="vr d-none d-sm-block"></div>
+  <a class="text-decoration-none text-brand small-footnote"
+     href="https://www.bfs.de/DE/service/impressum/impressum_node.html"
+  >Impressum</a>
+  <div class="vr d-none d-sm-block"></div>
+  <a class="text-decoration-none text-brand small-footnote"
+     href='https://www.bfs.de/DE/service/barrierefreiheit/barrierefreiheit_node.html"'
+  >Barrierefreiheit</a>
+  <div class="vr d-none d-sm-block"></div>
+  <a class="text-decoration-none small-footnote mb-0"
+     href="https://www.bfs.de"
+  >&copy; Bundesamt f&uuml;r Strahlenschutz</a>
 </div>
