@@ -5,7 +5,7 @@ from docpool.base.content.archiving import IArchiving
 from docpool.base.utils import get_content_area
 from docpool.base.utils import getAllowedDocumentTypes
 from docpool.base.utils import getDocumentPoolSite
-from docpool.elan.utils import getScenariosForCurrentUser
+from docpool.elan.utils import get_scenario_for_current_user
 from docpool.ui import _
 from docpool.ui.utils import extract_data
 from plone import api
@@ -419,7 +419,7 @@ class DPDocumentWizard(ContextlessWizard):
         query = {
             "context": getDocumentPoolSite(self.context),
             "portal_type": "DPEvent",
-            "UID": getScenariosForCurrentUser(),
+            "UID": get_scenario_for_current_user(),
             "Status": "active",
         }
         default_scenarios = api.content.find(**query)
