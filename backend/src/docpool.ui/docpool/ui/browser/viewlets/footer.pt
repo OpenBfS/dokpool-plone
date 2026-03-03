@@ -1,7 +1,7 @@
 <div class="container-fluid">
 
   <table class="d-none d-xl-block table table-borderless mb-0 footer-tz-table"
-     tal:condition="python:not context.restrictedTraverse('@@plone_portal_state').anonymous()"
+         tal:condition="python:not context.restrictedTraverse('@@plone_portal_state').anonymous()"
   >
     <tbody tal:define="
              local_time python: view.get_local_time();
