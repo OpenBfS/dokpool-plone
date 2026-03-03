@@ -22,7 +22,7 @@
   "id": "imis-infos",
   "is_folderish": true,
   "language": "##DEFAULT##",
-  "layout": "tabular_view",
+  "layout": "view",
   "local_behaviors": [
     "doksys"
   ],

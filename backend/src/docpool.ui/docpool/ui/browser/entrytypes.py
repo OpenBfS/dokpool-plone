@@ -5,7 +5,7 @@ from docpool.base.content.archiving import IArchiving
 from docpool.base.utils import get_content_area
 from docpool.base.utils import getDocumentPoolSite
 from docpool.elan.config import ELAN_APP
-from docpool.elan.utils import getScenariosForCurrentUser
+from docpool.elan.utils import get_scenario_for_current_user
 from plone import api
 from Products.Five.browser import BrowserView
 
@@ -43,11 +43,11 @@ class EntryTypes(BrowserView):
         self.active_apps.extend([BASE_APP, TRANSFERS_APP])
 
         # Filter by DPEvent (ELAN only)
-        self.scenarios = None
+        self.scenario = None
         if not self.is_archive and ELAN_APP in self.active_apps:
             # This filters out archived entries unless the context is in an archive
-            if event := getScenariosForCurrentUser():
-                self.scenarios = event
+            if event := get_scenario_for_current_user():
+                self.scenario = event
 
         # Find categories
         config = aq_get(self.context, "config")
@@ -99,8 +99,8 @@ class EntryTypes(BrowserView):
             "apps_supported": self.active_apps,
             "path": self.content_area_path,
         }
-        if self.scenarios:
-            query["scenarios"] = self.scenarios
+        if self.scenario:
+            query["scenario"] = self.scenario
 
         # Filter by Subcategory
         query["subcategory"] = extra

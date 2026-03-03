@@ -17,7 +17,7 @@
   "id": "Members",
   "is_folderish": true,
   "language": "##DEFAULT##",
-  "layout": "tabular_view",
+  "layout": "view",
   "lock": {},
   "modified": "2025-11-19T12:10:30+00:00",
   "review_state": "published",

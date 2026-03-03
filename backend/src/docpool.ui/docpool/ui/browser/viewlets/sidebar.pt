@@ -13,7 +13,7 @@
       <li class="nav-item">
         <a class="nav-link d-flex flex-column align-items-center justify-content-center text-decoration-none"
            tal:attributes="
-             href string:${view/base_url}/@@listing;
+             href string:${view/base_url};
            "
         >
 

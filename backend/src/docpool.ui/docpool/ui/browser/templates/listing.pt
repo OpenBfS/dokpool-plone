@@ -9,6 +9,8 @@
   <metal:content fill-slot="content-core"
                  tal:define="
                    items python: view.items;
+                   folder_uids python: view.folder_uids;
+                   other_uids python: view.other_uids;
                  "
   >
     <div class="mx-0 my-0 p-1 border-bottom"
@@ -22,12 +24,44 @@
       >
         <div class="d-flex flex-wrap justify-content-end">
 
-          <div class="mx-3 my-0 py-2 me-auto">
+          <div class="mx-3 my-0 py-2"
+               tal:attributes="
+                 class python: 'mx-3 my-0 py-2' if view.folder_listing else 'mx-3 my-0 py-2 me-auto';
+               "
+          >
             <span tal:replace="python: len(items)"></span>
             <span i18n:translate="">Entries</span>
           </div>
 
-          <div class="m-1 dropdown">
+          <div class="mx-3 my-0 py-2 me-auto"
+               tal:condition="python: view.folder_listing"
+          >
+            <div class="form-check form-switch">
+              <input class="form-check-input"
+                     id="bypass_scenario_filter"
+                     name="bypass_scenario_filter"
+                     onchange="this.form.submit()"
+                     role="switch"
+                     type="checkbox"
+                     tal:attributes="
+                       checked python: view.bypass_scenario_filter;
+                     "
+              />
+              <label class="form-check-label"
+                     for="bypass_scenario_filter"
+              >
+                <tal:count condition="python: not view.bypass_scenario_filter">
+                  <span tal:content="python: view.count_without_scenario_filter"></span>
+                  <span i18n:translate="">more entries for other events</span>
+                </tal:count>
+                <tal:totalcount condition="python: view.bypass_scenario_filter">
+                  <span i18n:translate="">for all events</span>
+                </tal:totalcount>
+              </label>
+            </div>
+          </div>
+
+          <div class="mx-1 my-0 mt-1 dropdown">
             <button class="btn btn-light dropdown-toggle"
                     aria-expanded="false"
                     type="button"
@@ -218,6 +252,7 @@
                  selected_groups python: view.selected_groups;
                  groups python: view.groups;
                "
+               tal:condition="python: not view.folder_listing"
           >
             <button class="btn btn-light dropdown-toggle"
                     aria-expanded="false"
@@ -356,7 +391,7 @@
            data-items python: view.json_items;
          "
     >
-      <tal:block tal:repeat="item python: items">
+      <tal:block tal:repeat="item python: folder_uids + other_uids + items">
         <a class="pat-inject list-item-inject-link"
            data-pat-inject="trigger: autoload-visible; delay: 50; target: self"
            tal:content="python: '@@listing-item?uid='+ item"

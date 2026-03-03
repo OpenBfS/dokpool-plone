@@ -12,7 +12,7 @@ class IInfoDocument(model.Schema, IDPDocument):
     directives.mode(docType="hidden")
     docType = schema.Choice(
         required=True,
-        source="docpool.base.vocabularies.DocumentTypes",
+        values=["infodoc"],
         default="infodoc",
     )
 
@@ -24,9 +24,6 @@ class InfoDocument(DPDocument):
     def dp_type(self):
         return "General"
 
-    def category(self):
-        return []
-
     def docTypeObj(self):
         return None
 
@@ -36,3 +33,9 @@ class InfoDocument(DPDocument):
 
     def uploadsAllowed(self):
         return True
+
+    def category(self):
+        return None
+
+    def subcategory(self):
+        return None

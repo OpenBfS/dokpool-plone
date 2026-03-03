@@ -1,44 +1,20 @@
 from Acquisition import aq_get
 from copy import copy
-from docpool.base.behaviors.transferable import ITransferable
-from docpool.base.behaviors.utils import allowed_targets
 from docpool.base.config import BASE_APP
+from docpool.base.config import FOLDER_TYPES
+from docpool.base.config import OTHER_TYPES
 from docpool.base.config import TRANSFERS_APP
 from docpool.base.content.archiving import IArchiving
-from docpool.base.content.dpdocument import IDPDocument
 from docpool.base.utils import get_content_area
-from docpool.base.utils import get_current_state_title
 from docpool.elan.config import ELAN_APP
-from docpool.elan.utils import getScenariosForCurrentUser
+from docpool.elan.utils import get_scenario_for_current_user
 from docpool.ui import _
 from plone import api
-from plone.i18n.normalizer.interfaces import IIDNormalizer
 from Products.CMFPlone.browser.search import munge_search_term
 from Products.Five.browser import BrowserView
-from zope.component import queryUtility
 
 import datetime
 import json
-
-
-TRANSITION_ICON_MAPPING = {
-    "publish": "eye",
-    "reject_second": "box-arrow-in-left",
-    "reject_to_authority": "box-arrow-in-left",
-    "reject_to_bfs": "box-arrow-in-left",
-    "reject_to_npp_operator": "box-arrow-in-left",
-    "reject": "box-arrow-in-left",
-    "retract_for_revision": "box-arrow-in-left",
-    "retract_to_authority": "box-arrow-in-left",
-    "retract_to_bfs": "box-arrow-in-left",
-    "retract_to_npp_operator": "box-arrow-in-left",
-    "retract": "eye-slash",
-    "submit_authority": "arrow-right",
-    "submit_bfs": "arrow-right",
-    "submit_bmu": "arrow-right",
-    "submit_second": "arrow-right",
-    "submit": "arrow-right",
-}
 
 
 class Listing(BrowserView):
@@ -56,6 +32,7 @@ class Listing(BrowserView):
 
     def find(self, limit=0):
         form = self.request.form
+        self.folder_listing = self.context.portal_type in FOLDER_TYPES
 
         # base_query is the query for results without manual filtering
         self.base_query = {
@@ -75,6 +52,7 @@ class Listing(BrowserView):
         }
         self.sort_on = form.get("sort_on") or "newest"
         sort_on_option = self.sort_on_options.get(self.sort_on) or self.sort_on_options["newest"]
+        self.bypass_scenario_filter = form.get("bypass_scenario_filter", False)
         self.query["sort_on"] = sort_on_option[0]
         self.query["sort_order"] = sort_on_option[1]
 
@@ -83,17 +61,20 @@ class Listing(BrowserView):
         if self.searchable_text:
             self.query["SearchableText"] = munge_search_term(self.searchable_text)
 
-        # Filter by APP
+        # Always filter by APP
         dp_app_state = api.content.get_view("dp_app_state", self.context, self.request)
         self.active_apps = dp_app_state.appsActivatedByCurrentUser()
         self.active_apps.extend([BASE_APP, TRANSFERS_APP])
         self.base_query["apps_supported"] = self.active_apps
 
-        # Filter by DPEvent (ELAN only)
-        if ELAN_APP in self.active_apps and not IArchiving(self.context).is_archive:
-            # This filters out archived entries unless the context is in an archive
-            if event := getScenariosForCurrentUser():
-                self.base_query["scenarios"] = event
+        # Filter by DPEvent unless disabled, not in ELAN or in Archive
+        if (
+            not self.bypass_scenario_filter
+            and ELAN_APP in self.active_apps
+            and not IArchiving(self.context).is_archive
+        ):
+            if event := get_scenario_for_current_user():
+                self.base_query["scenario"] = event
 
         # Filter by Category
         self.selected_subcategories = form.get("selected_subcategories") or []
@@ -181,11 +162,18 @@ class Listing(BrowserView):
         # Filter by context
         # TODO: Handle listing in content-area (which is a folder-listing)
         # TODO: Remove implicit default filtering on path + /content in docpool.elan.monkey
-        content_area = get_content_area(self.context)
-        if content_area:
-            self.base_query["path"] = "/".join(content_area.getPhysicalPath())
+        if self.folder_listing:
+            content_area = self.context
+            self.base_query["path"] = {
+                "query": "/".join(content_area.getPhysicalPath()),
+                "depth": 1,
+            }
         else:
-            self.base_query["path"] = "/".join(self.context.getPhysicalPath())
+            content_area = get_content_area(self.context)
+            if content_area:
+                self.base_query["path"] = "/".join(content_area.getPhysicalPath())
+            else:
+                self.base_query["path"] = "/".join(self.context.getPhysicalPath())
 
         # Prepare review_state filter options (query needs to be complete)
         for state in review_state_filter_config:
@@ -222,8 +210,34 @@ class Listing(BrowserView):
         uids = [brain.UID for brain in brains]
         modified = max(brain.modified for brain in brains) if brains else None
 
+        self.count_without_scenario_filter = None
+        if not self.bypass_scenario_filter:
+            query.pop("scenario", None)
+            self.count_without_scenario_filter = len(catalog(**query)) - len(brains)
+
         if self.limit > 0:
             uids = uids[: self.limit]
+
+        self.folder_uids = []
+        self.other_uids = []
+        if self.folder_listing:
+            # Add folders to the listing
+            folder_query = {
+                "portal_type": FOLDER_TYPES,
+                "path": query["path"],
+                "sort_on": "getObjPositionInParent",
+            }
+            folder_brains = catalog(**folder_query)
+            self.folder_uids = [brain.UID for brain in folder_brains]
+
+            # Add other content to the listing
+            other_query = {
+                "portal_type": OTHER_TYPES,
+                "path": query["path"],
+                "sort_on": "getObjPositionInParent",
+            }
+            brains = catalog(**other_query)
+            self.other_uids = [brain.UID for brain in brains]
 
         return uids, modified
 
@@ -272,73 +286,3 @@ def extract_time(value):
         return datetime.datetime.strptime(value, "%H:%M")
     except:
         pass
-
-
-class Item(BrowserView):
-    def __call__(self, uid=None):
-        obj = api.content.get(UID=uid) if uid else self.context
-        if not IDPDocument.providedBy(obj):
-            return
-
-        review_state = api.content.get_state(obj)
-        review_state_title = get_current_state_title(obj, review_state)
-
-        idnormalizer = queryUtility(IIDNormalizer)
-        state_class = f"state-{idnormalizer.normalize(review_state)}"
-        portal_workflow = api.portal.get_tool("portal_workflow")
-        available_transitions = portal_workflow.getTransitionsFor(obj)
-
-        modified_by_user = ""
-        modified_by_group = ""
-        if userinfo := obj.modified_by or obj.created_by:
-            modified_by_user = userinfo[1]
-            modified_by_group = userinfo[2]
-
-        show_transfer_action = False
-        if api.user.has_permission("Docpool: Send Content", obj=obj):
-            try:
-                adapted = ITransferable(obj)
-            except TypeError:
-                pass
-            else:
-                if adapted.transferable() and allowed_targets(obj):
-                    show_transfer_action = True
-
-        icon_name = "question"  # Unknown type as fallback
-        doctype_title = obj.docType  # id of initially selected DocType as fallback
-        if docTypeObj := obj.docTypeObj():
-            icon_name = docTypeObj.icon_name
-            doctype_title = docTypeObj.title
-
-        iconresolver = self.context.restrictedTraverse("@@iconresolver")
-        attachments = api.content.get_view("contentlisting", obj, self.request)(portal_type=["Image", "File"])
-
-        self.dpdocument = {
-            "date": obj.mdate,
-            "title": obj.title,
-            "id": obj.id,
-            "description": obj.description,
-            "review_state": review_state,
-            "state_title": review_state_title,
-            "state_class": state_class,
-            "available_transitions": available_transitions,
-            "uid": uid,
-            "doctype": obj.docType,
-            "doctype_title": doctype_title,
-            "doctype_icon_url": iconresolver.url(icon_name),
-            "url": obj.absolute_url(),
-            "path": obj.absolute_url_path(),
-            "modified_by_user": modified_by_user,
-            "modified_by_group": modified_by_group,
-            "show_transfer_action": show_transfer_action,
-            "attachments": attachments,
-        }
-        return self.index()
-
-    def transition_icon(self, transition_id):
-        return TRANSITION_ICON_MAPPING.get(transition_id, "arrow-right")
-
-    def mimetype_name(self, content_type):
-        mtr = api.portal.get_tool("mimetypes_registry")
-        mimetypes = mtr.lookup(content_type)
-        return mimetypes[0].name() if mimetypes else content_type.split("/")[-1]

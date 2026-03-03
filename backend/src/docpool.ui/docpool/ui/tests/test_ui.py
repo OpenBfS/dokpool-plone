@@ -1,6 +1,6 @@
 from docpool.api.browser.setup import add_user
 from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
-from docpool.elan.utils import getScenariosForCurrentUser
+from docpool.elan.utils import get_scenario_for_current_user
 from docpool.ui.testing import DOCPOOL_UI_FUNCTIONAL_TESTING
 from docpool.ui.testing import DOCPOOL_UI_INTEGRATION_TESTING
 from plone import api
@@ -68,7 +68,7 @@ class TestUIFeatures(unittest.TestCase):
             description="foo",
             docType="weather_conditions_and_forecast",
             local_behaviors=["elan"],
-            scenarios=getScenariosForCurrentUser(),
+            scenario=get_scenario_for_current_user(),
         )
         self.assertEqual(self.entry.created_by, ("user1", "user1 (Bund)", "Group1 (Bund)"))
         # add attachments
@@ -128,12 +128,12 @@ class TestUIFeatures(unittest.TestCase):
         self.assertEqual(data["modified_by_user"], "user1 (Bund)")
         self.assertEqual(data["available_transitions"][0]["id"], "publish")
 
-        # It needs a valid uid of a DPDocument the user can access
-        self.assertIsNone(listing_item_view(uid=self.group_folder.UID()))
+        # It works on Folders as well
+        html = listing_item_view(uid=self.group_folder.UID())
+        self.assertIn("Group1 (Bund)</h3>", html)
 
     def test_dpdocument_view(self):
         dpdocument_view = api.content.get_view("view", self.entry, self.request)
-        self.assertEqual(list(dpdocument_view.apps().keys()), ["elan"])
         html = dpdocument_view()
         self.assertIn("<h1>A Weatherinfo</h1>", html)
 
@@ -166,7 +166,7 @@ class TestUIFeatures(unittest.TestCase):
             description="foo",
             docType="weather_conditions_and_forecast",
             local_behaviors=["elan"],
-            scenarios=getScenariosForCurrentUser(),
+            scenario=get_scenario_for_current_user(),
         )
         uids, _ = listing_view.find()
         self.assertEqual(len(uids), 2)

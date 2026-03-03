@@ -34,9 +34,81 @@
       />
 
   <browser:page
+      name="view"
+      for="docpool.base.interfaces.IDocumentPool"
+      class=".listing.Listing"
+      template="templates/listing.pt"
+      permission="zope.Public"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
+  <browser:page
+      name="view"
+      for="docpool.base.interfaces.IFolderBase"
+      class=".listing.Listing"
+      template="templates/listing.pt"
+      permission="zope.Public"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
+  <browser:page
+      name="view"
+      for="docpool.base.content.groups.IGroups"
+      class=".listing.Listing"
+      template="templates/listing.pt"
+      permission="zope.Public"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
+  <browser:page
+      name="view"
+      for="docpool.base.content.users.IUsers"
+      class=".listing.Listing"
+      template="templates/listing.pt"
+      permission="zope.Public"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
+  <browser:page
+      name="view"
+      for="docpool.elan.content.elaninfos.IELANInfos"
+      class=".listing.Listing"
+      template="templates/listing.pt"
+      permission="zope.Public"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
+  <browser:page
+      name="view"
+      for="docpool.base.content.infofolder.IInfoFolder"
+      class=".listing.Listing"
+      template="templates/listing.pt"
+      permission="zope.Public"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
+  <browser:page
+      name="view"
+      for="plone.app.contenttypes.interfaces.IFolder"
+      class=".listing.Listing"
+      template="templates/listing.pt"
+      permission="zope.Public"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
+  <browser:page
+      name="view"
+      for="docpool.elan.content.elanarchive.IELANArchive"
+      class=".listing.Listing"
+      template="templates/listing.pt"
+      permission="zope.Public"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
+  <browser:page
       name="listing-item"
       for="*"
-      class=".listing.Item"
+      class=".listing_item.Item"
       template="templates/listing-item.pt"
       permission="zope.Public"
       layer="docpool.ui.interfaces.IUITheme"

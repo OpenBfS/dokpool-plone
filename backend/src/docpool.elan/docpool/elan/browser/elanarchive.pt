@@ -12,7 +12,7 @@
     <metal:content-core fill-slot="content-core">
       <metal:content-core define-macro="content-core">
         <tal:redirect define="
-                        dummy python:request.RESPONSE.redirect(context.absolute_url()+'/@@listing');
+                        dummy python:request.RESPONSE.redirect(context.absolute_url());
                       " />
       </metal:content-core>
     </metal:content-core>

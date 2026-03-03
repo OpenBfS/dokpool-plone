@@ -17,7 +17,7 @@
   "id": "Groups",
   "is_folderish": true,
   "language": "##DEFAULT##",
-  "layout": "tabular_view",
+  "layout": "view",
   "lock": {},
   "modified": "2026-02-07T12:24:13+00:00",
   "review_state": "published",

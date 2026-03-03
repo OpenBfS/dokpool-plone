@@ -5,7 +5,7 @@ from docpool.base.content.archiving import IArchiving
 from docpool.base.utils import get_content_area
 from docpool.base.utils import getAllowedDocumentTypes
 from docpool.base.utils import getDocumentPoolSite
-from docpool.elan.utils import getScenariosForCurrentUser
+from docpool.elan.utils import get_scenario_for_current_user
 from docpool.ui import _
 from docpool.ui.utils import extract_data
 from plone import api
@@ -24,6 +24,19 @@ import time
 
 
 logger = logging.getLogger(__name__)
+
+FOLDER_TYPES = [
+    "Users",
+    "UserFolder",
+    "ContentArea",
+    "Groups",
+    "GroupFolder",
+    "PrivateFolder",
+    "SimpleFolder",
+    "ReviewFolder",
+    "CollaborationFolder",
+    "InfoFolder",
+]
 
 
 class ContextlessWizard(BrowserView):
@@ -191,12 +204,14 @@ class DPDocumentWizard(ContextlessWizard):
         if container_uid:
             self.container_title = container.title
             if entrytype_id := self.data.get("entrytype", None):
-                brains = api.content.find(
-                    context=self.context, portal_type="DocType", id=entrytype_id, unrestricted=True
-                )
-                entrytype = brains[0]._unrestrictedGetObject()
-                self.entrytype_title = entrytype.title
-                self.entrytype_icon = entrytype.icon_name
+                config = aq_get(self.context, "config", None)
+                if config or config.portal_type != "DPConfig":
+                    brains = api.content.find(
+                        context=config, portal_type="DocType", id=entrytype_id, unrestricted=True
+                    )
+                    entrytype = brains[0]._unrestrictedGetObject()
+                    self.entrytype_title = entrytype.title
+                    self.entrytype_icon = entrytype.icon_name
 
         # Render form
         if self.form.get("form.buttons.continue", None) is None:
@@ -235,7 +250,7 @@ class DPDocumentWizard(ContextlessWizard):
             mapping={"doktype": new.docTypeObj().title, "title": new.title},
         )
         api.portal.show_message(msg, self.request)
-        return self.request.response.redirect(self.context.absolute_url() + "/@@listing")
+        return self.request.response.redirect(self.context.absolute_url())
 
     def get_widget(self, name):
         if not self.add_form:
@@ -304,6 +319,9 @@ class DPDocumentWizard(ContextlessWizard):
             if item := self.check_tree(obj):
                 tree.append(item)
         flat = [i for i in self.flatten(tree)]
+        self.container_uid = None
+        if self.context.portal_type in FOLDER_TYPES and self.context.UID() in [i["uid"] for i in flat]:
+            self.container_uid = self.context.UID()
         return flat
 
     def flatten(self, items):
@@ -351,7 +369,11 @@ class DPDocumentWizard(ContextlessWizard):
         container_uid = self.data.get("container_uid") or self.form.get("container_uid")
         if not container_uid:
             all_containers = self.containers()
-            if len(all_containers) == 1:
+            if self.context.portal_type in FOLDER_TYPES and self.context.UID() in [
+                i["uid"] for i in all_containers
+            ]:
+                container_uid = self.context.UID()
+            elif len(all_containers) == 1:
                 container_uid = all_containers[0]["uid"]
         if not container_uid:
             return []
@@ -397,7 +419,7 @@ class DPDocumentWizard(ContextlessWizard):
         query = {
             "context": getDocumentPoolSite(self.context),
             "portal_type": "DPEvent",
-            "UID": getScenariosForCurrentUser(),
+            "UID": get_scenario_for_current_user(),
             "Status": "active",
         }
         default_scenarios = api.content.find(**query)
