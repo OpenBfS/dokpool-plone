@@ -108,7 +108,7 @@
   <browser:page
       name="listing-item"
       for="*"
-      class=".listing.Item"
+      class=".listing_item.Item"
       template="templates/listing-item.pt"
       permission="zope.Public"
       layer="docpool.ui.interfaces.IUITheme"

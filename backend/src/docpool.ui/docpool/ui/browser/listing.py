@@ -1,69 +1,30 @@
 from Acquisition import aq_get
 from copy import copy
-from docpool.base.behaviors.transferable import ITransferable
-from docpool.base.behaviors.utils import allowed_targets
 from docpool.base.config import BASE_APP
+from docpool.base.config import FOLDER_TYPES
+from docpool.base.config import OTHER_TYPES
 from docpool.base.config import TRANSFERS_APP
 from docpool.base.content.archiving import IArchiving
-from docpool.base.content.dpdocument import IDPDocument
 from docpool.base.utils import get_content_area
-from docpool.base.utils import get_current_state_title
 from docpool.elan.config import ELAN_APP
 from docpool.elan.utils import get_scenario_for_current_user
 from docpool.ui import _
 from plone import api
-from plone.i18n.normalizer.interfaces import IIDNormalizer
 from Products.CMFPlone.browser.search import munge_search_term
 from Products.Five.browser import BrowserView
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from zope.component import queryUtility
 
 import datetime
 import json
-
-
-TRANSITION_ICON_MAPPING = {
-    "publish": "eye",
-    "reject_second": "box-arrow-in-left",
-    "reject_to_authority": "box-arrow-in-left",
-    "reject_to_bfs": "box-arrow-in-left",
-    "reject_to_npp_operator": "box-arrow-in-left",
-    "reject": "box-arrow-in-left",
-    "retract_for_revision": "box-arrow-in-left",
-    "retract_to_authority": "box-arrow-in-left",
-    "retract_to_bfs": "box-arrow-in-left",
-    "retract_to_npp_operator": "box-arrow-in-left",
-    "retract": "eye-slash",
-    "submit_authority": "arrow-right",
-    "submit_bfs": "arrow-right",
-    "submit_bmu": "arrow-right",
-    "submit_second": "arrow-right",
-    "submit": "arrow-right",
-}
-
-FOLDER_TYPES = [
-    "Users",
-    "UserFolder",
-    "ContentArea",
-    "Groups",
-    "GroupFolder",
-    "PrivateFolder",
-    "SimpleFolder",
-    "ReviewFolder",
-    "CollaborationFolder",
-    "InfoFolder",
-]
 
 
 class Listing(BrowserView):
     """Example view called from template"""
 
     def __call__(self, limit=0):
-        uids, modified, folder_uids = self.find(limit)
+        uids, modified = self.find(limit)
 
         # Mod-Date dazu und hash über udis & mod-date
         self.items = uids
-        self.folders = folder_uids
         self.is_archive = IArchiving(self.context).is_archive
         self.json_items = json.dumps(uids)
         self.modified = json.dumps(modified.timeTime()) if modified else None
@@ -257,7 +218,8 @@ class Listing(BrowserView):
         if self.limit > 0:
             uids = uids[: self.limit]
 
-        folder_uids = []
+        self.folder_uids = []
+        self.other_uids = []
         if self.folder_listing:
             # Add folders to the listing
             folder_query = {
@@ -266,9 +228,18 @@ class Listing(BrowserView):
                 "sort_on": "getObjPositionInParent",
             }
             folder_brains = catalog(**folder_query)
-            folder_uids = [brain.UID for brain in folder_brains]
+            self.folder_uids = [brain.UID for brain in folder_brains]
 
-        return uids, modified, folder_uids
+            # Add other content to the listing
+            other_query = {
+                "portal_type": OTHER_TYPES,
+                "path": query["path"],
+                "sort_on": "getObjPositionInParent",
+            }
+            brains = catalog(**other_query)
+            self.other_uids = [brain.UID for brain in brains]
+
+        return uids, modified
 
     def count_options(self, extra, query=None):
         if not query:
@@ -315,108 +286,3 @@ def extract_time(value):
         return datetime.datetime.strptime(value, "%H:%M")
     except:
         pass
-
-
-class Item(BrowserView):
-    template = ViewPageTemplateFile("templates/listing-item.pt")
-    template_folder = ViewPageTemplateFile("templates/listing-folder.pt")
-
-    def __call__(self, uid=None):
-        obj = api.content.get(UID=uid) if uid else self.context
-
-        if IDPDocument.providedBy(obj):
-            return self.prepare_entry(obj)
-        if obj.portal_type in FOLDER_TYPES:
-            return self.prepare_folder(obj)
-
-    def prepare_entry(self, obj):
-        review_state = api.content.get_state(obj)
-        review_state_title = get_current_state_title(obj, review_state)
-
-        idnormalizer = queryUtility(IIDNormalizer)
-        state_class = f"state-{idnormalizer.normalize(review_state)}"
-        portal_workflow = api.portal.get_tool("portal_workflow")
-        available_transitions = portal_workflow.getTransitionsFor(obj)
-
-        modified_by_user = ""
-        modified_by_group = ""
-        if userinfo := obj.modified_by or obj.created_by:
-            modified_by_user = userinfo[1]
-            modified_by_group = userinfo[2]
-
-        show_transfer_action = False
-        if api.user.has_permission("Docpool: Send Content", obj=obj):
-            try:
-                adapted = ITransferable(obj)
-            except TypeError:
-                pass
-            else:
-                if adapted.transferable() and allowed_targets(obj):
-                    show_transfer_action = True
-
-        icon_name = "question"  # Unknown type as fallback
-        doctype_title = obj.docType  # id of initially selected DocType as fallback
-        if docTypeObj := obj.docTypeObj():
-            icon_name = docTypeObj.icon_name
-            doctype_title = docTypeObj.title
-
-        iconresolver = self.context.restrictedTraverse("@@iconresolver")
-        attachments = api.content.get_view("contentlisting", obj, self.request)(portal_type=["Image", "File"])
-
-        self.dpdocument = {
-            "date": obj.mdate,
-            "title": obj.title,
-            "id": obj.id,
-            "description": obj.description,
-            "review_state": review_state,
-            "state_title": review_state_title,
-            "state_class": state_class,
-            "available_transitions": available_transitions,
-            "uid": obj.UID(),
-            "doctype": obj.docType,
-            "doctype_title": doctype_title,
-            "doctype_icon_url": iconresolver.url(icon_name),
-            "url": obj.absolute_url(),
-            "path": obj.absolute_url_path(),
-            "modified_by_user": modified_by_user,
-            "modified_by_group": modified_by_group,
-            "show_transfer_action": show_transfer_action,
-            "attachments": attachments,
-        }
-        return self.index()
-
-    def transition_icon(self, transition_id):
-        return TRANSITION_ICON_MAPPING.get(transition_id, "arrow-right")
-
-    def mimetype_name(self, content_type):
-        mtr = api.portal.get_tool("mimetypes_registry")
-        mimetypes = mtr.lookup(content_type)
-        return mimetypes[0].name() if mimetypes else content_type.split("/")[-1]
-
-    def prepare_folder(self, obj):
-        modified_by_user = ""
-        modified_by_group = ""
-        if userinfo := getattr(obj, "modified_by", None) or getattr(obj, "created_by", None):
-            modified_by_user = userinfo[1]
-            modified_by_group = userinfo[2]
-
-        iconresolver = self.context.restrictedTraverse("@@iconresolver")
-        icon_name = "folder"
-        count = len(obj.contentItems())
-        self.folder = {
-            "date": getattr(obj, "mdate", None),
-            "title": obj.title,
-            "id": obj.id,
-            "description": obj.description,
-            "doctype": obj.portal_type,
-            "doctype_title": obj.portal_type,
-            "doctype_icon_url": iconresolver.url(icon_name),
-            "uid": obj.UID(),
-            "icon": iconresolver.url(icon_name),
-            "url": obj.absolute_url(),
-            "path": obj.absolute_url_path(),
-            "modified_by_user": modified_by_user,
-            "modified_by_group": modified_by_group,
-            "count": count,
-        }
-        return self.template_folder()
