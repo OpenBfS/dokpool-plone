@@ -71,6 +71,33 @@
 
   <browser:page
       name="view"
+      for="docpool.elan.content.elaninfos.IELANInfos"
+      class=".listing.Listing"
+      template="templates/listing.pt"
+      permission="zope.Public"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
+  <browser:page
+      name="view"
+      for="docpool.base.content.infofolder.IInfoFolder"
+      class=".listing.Listing"
+      template="templates/listing.pt"
+      permission="zope.Public"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
+  <browser:page
+      name="view"
+      for="plone.app.contenttypes.interfaces.IFolder"
+      class=".listing.Listing"
+      template="templates/listing.pt"
+      permission="zope.Public"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
+  <browser:page
+      name="view"
       for="docpool.elan.content.elanarchive.IELANArchive"
       class=".listing.Listing"
       template="templates/listing.pt"
