@@ -283,7 +283,7 @@
                      i18n:attributes="placeholder"
                      i18n:translate=""
               />
-              <button class="btn border-light-subtle btn-light"
+              <button class="btn border-light-subtle btn-light btn-icon"
                       type="submit"
               >
                 <tal:icon tal:replace="structure python:icons.tag('search', tag_alt='Search')" />
@@ -292,7 +292,7 @@
           </div>
 
           <div class="m-1 me-3 dropdown">
-            <button class="btn btn-light dropdown-toggle"
+            <button class="btn btn-light btn-icon dropdown-toggle"
                     aria-expanded="false"
                     title="Sorting"
                     type="button"
@@ -326,7 +326,7 @@
           </div>
 
           <div class="m-1">
-            <a class="btn btn-light"
+            <a class="btn btn-light btn-icon"
                href="javascript:this.print();"
                title="Print"
                i18n:attributes="title"
@@ -338,7 +338,7 @@
           <div class="ms-1 my-1"
                tal:condition="python: not view.is_archive"
           >
-            <a class="btn btn-light"
+            <a class="btn btn-light btn-icon"
                href="${python: context.absolute_url()}/@@dpdocument_wizard_1"
                title="Add entry"
                i18n:attributes="title"

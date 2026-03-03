@@ -3,7 +3,6 @@
 
 // Barceloneta and Bootstrap import are using --load-path=node_modules
 
-// Roboto is not included in this template and therefore we disable the setup here.
 $enable-roboto-webfont: false !default;
 
 // 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
@@ -94,8 +93,5 @@ $enable-roboto-webfont: false !default;
 
 @import "../../../../../../node_modules/@plone/plonetheme-barceloneta-base/scss/print";
 
-// @import "@plone/plonetheme-barceloneta-base/scss/roboto-webfont";
-
 // 9. Add additional custom code here
-// Its an extra css file, as we dont need it in the backend
-//@import "../docpool";
+@import "../docpool";

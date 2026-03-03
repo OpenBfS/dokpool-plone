@@ -2,22 +2,30 @@
   --sidebar-width: 113px;
 }
 
-.sidebar {
-  width: 113px;
-  min-width: var(--sidebar-width);
-  background-color: #f3f3f3;
-  box-shadow: 4px 0 4px rgba(0, 0, 0, 0.1);
-  position: fixed;
-  top: 74px;
-  left: var(--plone-toolbar-width-collapsed);
-  bottom: 0;
-  height: 100%;
-  border-right: none;
-  z-index: 991;
-}
 
 body.plone-toolbar-left-expanded .sidebar {
   left: var(--plone-toolbar-width);
+}
+
+@include media-breakpoint-up(xl) {
+  .outer-wrapper {
+    padding-left: var(--sidebar-width);
+  }
+  .sidebar {
+    width: 113px;
+    min-width: var(--sidebar-width);
+    background-color: #f3f3f3;
+    box-shadow: 4px 0 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 74px;
+    left: var(--plone-toolbar-width-collapsed);
+    bottom: 0;
+    height: 100%;
+    border-right: none;
+    z-index: 991;
+  }
+
+
 }
 
 .sidebar .nav {
@@ -32,7 +40,7 @@ body.plone-toolbar-left-expanded .sidebar {
 }
 
 .sidebar .nav-link .label {
-  font-size: 10px;
+  font-size: var(--dp-font-body);
   line-height: 1.2;
   color: var(--bs-primary);
 }
@@ -62,10 +70,6 @@ body.plone-toolbar-left-expanded .sidebar {
   font-size: 8px;
 }
 
-.sidebar-tz {
-  font-size: 0.5rem; /* ~8px visual density as per design */
-}
-
 /* Tweak the thin divider look in footer */
 .sidebar-desktop .border-top {
   border-top-color: #e1e6eb !important;
@@ -88,6 +92,7 @@ body.plone-toolbar-left-expanded .sidebar {
     margin: 0 10px;
     width: auto;
   }
+
   .nav-link:hover {
     background-color: #c3dce7;
   }

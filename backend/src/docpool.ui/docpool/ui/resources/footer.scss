@@ -1,0 +1,28 @@
+
+body.plone-toolbar-left-expanded .footer-tz-table {
+  left: var(--plone-toolbar-width);
+}
+
+.footer-tz-table {
+  position: fixed;
+  left: var(--plone-toolbar-width-collapsed);
+  right: 16px;
+  bottom: 16px;
+  z-index: 1000;
+  width: fit-content;
+  padding-left: 20px;
+   tr:first-child td {
+    border-top: 1px solid var(--bs-gray-dark);
+    padding-top: 10px;
+  }
+  tr td {
+    background-color: transparent;
+    font-size: 12px;
+    padding: 0;
+
+    .text-primary {
+      color: var(--bs-primary) !important;
+    }
+  }
+}
+
