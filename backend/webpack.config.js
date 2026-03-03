@@ -19,10 +19,6 @@ module.exports = () => {
         __dirname,
         "./src/docpool.ui/docpool/ui/resources/barceloneta/barceloneta.scss",
       ),
-      docpool: path.resolve(
-        __dirname,
-        "./src/docpool.ui/docpool/ui/resources/docpool.scss",
-      ),
       "docpool.theme.min": path.resolve(
         __dirname,
         "./src/docpool.theme/docpool/theme/resources/index.js",
@@ -144,8 +140,8 @@ module.exports = () => {
     }),
   );
 
-  // Compile our docpool styling and bootstrap separate from the other files,
-  // to be loaded immediately to avoid flash of unstyled content.
+  // docpool.ui SCSS is combined into the single barceloneta.scss file
+  // So we can use the vars/mixin from barceloneta.scss in the docpool.ui scss
   config.plugins.push(new MiniCssExtractPlugin());
   config.module.rules.push({
     test: /barceloneta\.scss$/,
