@@ -9,7 +9,8 @@
   <metal:content fill-slot="content-core"
                  tal:define="
                    items python: view.items;
-                   folders python: view.folders;
+                   folder_uids python: view.folder_uids;
+                   other_uids python: view.other_uids;
                  "
   >
     <div class="mx-0 my-0 p-1 border-bottom"
@@ -390,7 +391,7 @@
            data-items python: view.json_items;
          "
     >
-      <tal:block tal:repeat="item python: folders + items">
+      <tal:block tal:repeat="item python: folder_uids + other_uids + items">
         <a class="pat-inject list-item-inject-link"
            data-pat-inject="trigger: autoload-visible; delay: 50; target: self"
            tal:content="python: '@@listing-item?uid='+ item"

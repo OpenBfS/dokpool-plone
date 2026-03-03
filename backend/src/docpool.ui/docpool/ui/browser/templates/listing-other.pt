@@ -1,0 +1,154 @@
+<div class="listing-item d-flex align-items-center border-bottom position-relative"
+     tal:define="
+       portal_state context/@@plone_portal_state;
+       plone_view nocall:context/@@plone;
+       toLocalizedTime nocall:plone_view/toLocalizedTime;
+       portal_url portal_state/portal_url;
+       data python: view.folder;
+       doctype python: data['doctype'];
+       icons python:context.restrictedTraverse('@@iconresolver');
+       token context/@@authenticator/token;
+       came_from request/URL;
+     "
+     i18n:domain="docpool.base"
+>
+  <a class="pat-inject list-item-link stretched-link"
+     href="#"
+     data-pat-inject="trigger: default; source: #portal-column-content; target: #content-core; history: record"
+     tal:attributes="
+       href python: data['url'];
+       title python:data['doctype_title'];
+     "
+  >
+    <span class="visually-hidden">Stretched link to details view</span></a>
+  <div class="text-center px-1 dateinfo flex-shrink-0">
+    <div tal:content="python: toLocalizedTime(data['date'], time_only=1)">15:45</div>
+    <div class="text-muted small"
+         tal:content="python: toLocalizedTime(data['date'], long_format=0)"
+    >16.12.2021
+    </div>
+  </div>
+
+  <div class="me-3 doctype-box flex-shrink-0">
+    <div class="h-100 doktype-icon-container px-3 pt-3 pb-3">
+      <img class="doktype-icon p-1"
+           alt="Type"
+           src="doctype"
+           tal:attributes="
+             alt python: doctype;
+             title python:data['doctype_title'];
+             src python:data['doctype_icon_url'];
+           "
+      />
+    </div>
+  </div>
+
+  <div class="flex-fill text-box">
+
+    <h3 class="mb-0"
+        tal:content="python: data['title']"
+    ></h3>
+    <div class="description text-muted text-truncate"
+         tal:content="python: data['description']"
+    >
+      Description
+    </div>
+  </div>
+
+  <!-- Creator Column -->
+  <div class="dp-document-creator py-3 px-2 d-none d-xl-block"
+       style="width: 158px;"
+  >
+    <div class="d-flex flex-column">
+      <span class="text-small text-gray-darker text-truncate"
+            tal:content="structure python: data['modified_by_user']"
+      >Max Mustermann (Bund)</span>
+      <span class="text-small text-gray-dark text-truncate"
+            tal:content="structure python: data['modified_by_group']"
+      >Messzentrale BfS (Bund)</span>
+    </div>
+  </div>
+
+  <div class="mx-3 dp-document-dropdown position-relative d-flex align-items-center justify-content-center">
+    <div class="dropdown">
+      <a class="btn btn-light text-bg-secondary btn-sm"
+         aria-expanded="false"
+         href="#"
+         role="button"
+         data-bs-toggle="dropdown"
+      >
+        &#8942;
+      </a>
+      <ul class="dropdown-menu pe-2 shadow">
+        <li>
+          <input name="came_from"
+                 type="hidden"
+                 tal:condition="came_from|nothing"
+                 tal:attributes="
+                   value came_from;
+                 "
+          />
+          <a class="dropdown-item d-flex gap-2 align-items-center pat-inject"
+             href="#"
+             data-pat-inject="trigger: default; source: #portal-column-content; target: #content-core; history: record"
+             tal:attributes="
+               href python: f'{data['url']}/@@edit?_authenticator={token}&amp;came_from={came_from}';
+             "
+          >
+            <img src="${python:icons.url('pencil')}" />
+            <span tal:omit-tag=""
+                  i18n:domain="plone"
+                  i18n:translate=""
+            >Edit</span>
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item d-flex gap-2 align-items-center"
+             href="#"
+             tal:attributes="
+               href python: f'{data['url']}/@@edit?_authenticator={token}';
+             "
+          >
+            <img src="${python:icons.url('star')}" />
+            <span tal:omit-tag=""
+                  i18n:domain="plone"
+                  i18n:translate=""
+            >Mark as Favorite</span>
+            (TODO)
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item d-flex gap-2 align-items-center pat-inject"
+             href="#"
+             data-pat-inject="trigger: default; source: #portal-column-content; target: #content-core; history: record"
+             tal:attributes="
+               href python: f'{data['url']}/@@delete_confirmation?_authenticator={token}&came_from={came_from}';
+             "
+          >
+            <img src="${python:icons.url('trash')}" />
+            <span tal:omit-tag=""
+                  i18n:domain="plone"
+                  i18n:translate=""
+            >Delete</span>
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item d-flex gap-2 align-items-center"
+             href="#"
+             tal:attributes="
+               href python: f'{data['url']}';
+             "
+          >
+            <img src="${python:icons.url('scissors')}" />
+            <span tal:omit-tag=""
+                  i18n:domain="plone"
+                  i18n:translate=""
+            >Cut</span>
+            (TODO)
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+</div>

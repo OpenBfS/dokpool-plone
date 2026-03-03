@@ -1,6 +1,8 @@
 from docpool.base.behaviors.transferable import ITransferable
 from docpool.base.behaviors.utils import allowed_targets
 from docpool.base.config import FOLDER_TYPES
+from docpool.base.config import OTHER_TYPES
+from docpool.base.content.dpdocument import IDPDocument
 from docpool.base.utils import get_current_state_title
 from docpool.ui import _
 from plone import api
@@ -33,6 +35,7 @@ TRANSITION_ICON_MAPPING = {
 class Item(BrowserView):
     template = ViewPageTemplateFile("templates/listing-item.pt")
     template_folder = ViewPageTemplateFile("templates/listing-folder.pt")
+    template_other = ViewPageTemplateFile("templates/listing-other.pt")
 
     def __call__(self, uid=None):
         obj = api.content.get(UID=uid) if uid else self.context
@@ -134,3 +137,29 @@ class Item(BrowserView):
             "count": count,
         }
         return self.template_folder()
+
+    def prepare_other(self, obj):
+        modified_by_user = ""
+        modified_by_group = ""
+        if userinfo := getattr(obj, "modified_by", None) or getattr(obj, "created_by", None):
+            modified_by_user = userinfo[1]
+            modified_by_group = userinfo[2]
+
+        iconresolver = self.context.restrictedTraverse("@@iconresolver")
+        icon_name = "document"
+        self.folder = {
+            "date": getattr(obj, "mdate", None),
+            "title": obj.title,
+            "id": obj.id,
+            "description": obj.description,
+            "doctype": obj.portal_type,
+            "doctype_title": obj.portal_type,
+            "doctype_icon_url": iconresolver.url(icon_name),
+            "uid": obj.UID(),
+            "icon": iconresolver.url(icon_name),
+            "url": obj.absolute_url(),
+            "path": obj.absolute_url_path(),
+            "modified_by_user": modified_by_user,
+            "modified_by_group": modified_by_group,
+        }
+        return self.template_other()
