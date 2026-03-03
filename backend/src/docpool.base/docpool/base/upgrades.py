@@ -24,6 +24,13 @@ OLD_OBJ_MAPPING = {
     "measurement_strategy": [
         "/dokpool/bund/archive/uebung-core-2021_31-12-2021-12-17/content/Transfers/dokumente-aus-ni/messstrategie",
         "/dokpool/niedersachsen/content/Groups/ni_e-ni-nlwkn/messstrategie",
+        "/hamburg/content/Transfers/dokumente-aus-bund/elan-praxistag-exercise-messstrategie-zum-rlb-1-des-bundes-exercise",
+        "/hessen/content/Transfers/dokumente-aus-bund/elan-praxistag-exercise-messstrategie-zum-rlb-1-des-bundes-exercise",
+        "/hessen/content/Transfers/dokumente-aus-bund/uebung-messstrategie-als-anlage-zum-6-rlb-10-45-uhr-uebung",
+        "/mecklenburg-vorpommern/content/Transfers/dokumente-aus-bund/elan-praxistag-exercise-messstrategie-zum-rlb-1-des-bundes-exercise",
+        "/mecklenburg-vorpommern/content/Transfers/dokumente-aus-bund/uebung-messstrategie-als-anlage-zum-6-rlb-10-45-uhr-uebung",
+        "/nordrhein-westfalen/content/Transfers/dokumente-aus-bund/elan-praxistag-exercise-messstrategie-zum-rlb-1-des-bundes-exercise",
+        "/rheinland-pfalz/content/Transfers/dokumente-aus-bund/elan-praxistag-exercise-messstrategie-zum-rlb-1-des-bundes-exercise",
     ],
     "measurement_recommendation": [
         "/dokpool/schleswig-holstein/content/Groups/sh_e-sh-melund/kfue/automatisch/teil-g2/b71a1312-944c-4dd1-839e-0aa910aa4d69",
@@ -32,9 +39,20 @@ OLD_OBJ_MAPPING = {
     "additional_event_information": [
         "/dokpool/schleswig-holstein/archive/stabstraining-umweltministerium-sh-11-03-25_30-07/content/Groups/sh_e-sh-melund/seekarte",
     ],
+    "official_notification": [
+        "/thueringen/content/Transfers/dokumente-aus-bund/0afd0522-1f15-429e-b377-f59cf2f93d98",
+        "/thueringen/content/Transfers/dokumente-aus-bund/81eb5caf-ee00-43e6-b0d5-6702a461a8a8",
+        "/thueringen/content/Transfers/dokumente-aus-bund/a68a9d8a-16ba-4b27-9523-bd0591c17d15",
+        "/thueringen/content/Transfers/dokumente-aus-bund/e5c73cea-97d4-4093-8adb-ba4aa6667b2a",
+        "/thueringen/content/Transfers/dokumente-aus-bund/iaea-usie-meldung-ru-event-notice-form-enf-version-1-und-2",
+        "/thueringen/content/Transfers/dokumente-aus-bund/iaea-usie-meldung-ukr-event-notice-form-enf-no-273-und-274",
+        "/thueringen/content/Transfers/dokumente-aus-bund/uebung-relevantes-ereignis-an-einer-kerntechnischen-referenzanlage-in-ringhals-schweden",
+    ],
     "other_entry": [
         "/dokpool/niedersachsen/archive/imis-aufbauschulung-q2-2025-1_29-07-2025-12-43/content/Groups/ni_e-ni-nlwkn/einsatzkarte",
         "/dokpool/schleswig-holstein/content/Groups/sh_e-sh-melund/kfue/automatisch/teil-g3/7626f52a-5e2e-440e-8471-cda28ef25a04",
+        "/uebungen/content/Groups/ueb_bfs_uebteam/drehbuch-zur-core-uebung",
+        "/uebungen/content/Groups/ueb_bfs_uebteam/kurzbericht",
     ],
     "mresult_air_external_radiation": [
         "/dokpool/bund/content/Groups/bund_e-messzentrale-bfs/mobile-messungen/automatisch/91ae0e4e-f096-4c76-abe6-1e950c8c344f",
