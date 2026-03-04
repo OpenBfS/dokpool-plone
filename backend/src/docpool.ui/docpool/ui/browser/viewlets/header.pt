@@ -1,11 +1,11 @@
 <header class="app-header border-bottom"
         id="portal-header"
-        tal:define="
-          icons python:context.restrictedTraverse('@@iconresolver');
-          auth_token context/@@authenticator/token;
-        "
-        tal:condition="python:not context.restrictedTraverse('@@plone_portal_state').anonymous()"
-        i18n:domain="docpool.ui"
+   tal:define="
+  icons python:context.restrictedTraverse('@@iconresolver');
+  auth_token context/@@authenticator/token;
+  "
+   tal:condition="python:not context.restrictedTraverse('@@plone_portal_state').anonymous()"
+   i18n:domain="docpool.ui"
 >
   <div class="container-fluid px-0">
     <div class="d-flex align-items-stretch">
@@ -14,14 +14,14 @@
         <a class="text-decoration-none d-flex flex-column align-items-start justify-content-center"
            accesskey="1"
            tal:attributes="
-             href string:${view/navigation_root_url};
-             title string:DocPool;
-           "
+          href string:${view/navigation_root_url};
+          title string:DocPool;
+          "
            i18n:attributes="title"
            i18n:domain="docpool.elan"
         >
           <img src="${python: view.site_url}/${python: view.app_logo}"
-               tal:condition="python: view.app_logo"
+             tal:condition="python: view.app_logo"
           />
         </a>
         <div class="d-flex align-items-center gap-1 small text-primary fw-light">
@@ -32,18 +32,18 @@
           >
             <span tal:condition="python: view.dp is not None">${python: view.dp.title}</span>
             <span tal:condition="python: view.dp is None"
-                  i18n:translate=""
+               i18n:translate=""
             >Docpools</span>
-            <tal:icon replace="structure python:icons.tag('chevron-down', tag_class='ms-1')" />
+            <tal:icon replace="structure python:icons.tag('chevron-down', tag_class='ms-1')"/>
           </button>
 
           <ul class="dropdown-menu menu-config-dropdown app-dropdown-menu">
             <li class="dropdown-item d-table-row ${python: 'selected' if item['selected'] else ''}"
-                tal:repeat="item python: view.apps_menu()"
+               tal:repeat="item python: view.apps_menu()"
             >
               <div class="d-table-cell border-bottom small">${item/dptitle}</div>
               <div class="d-table-cell border-bottom"
-                   tal:repeat="app python:item['apps']"
+                 tal:repeat="app python:item['apps']"
               >
                 <a class="border-start small text-primary"
                    href="${app/url}"
@@ -58,65 +58,88 @@
 
       <!-- Middle: Event pill/button area with switcher and main nav buttons -->
       <div class="d-flex align-items-stretch flex-grow-1">
-        <nav class="d-flex align-items-stretch">
+        <nav class="navbar navbar-expand-lg d-flex align-items-stretch flex-grow-1 fixed-top">
+          <div class="container-fluid w-100">
 
-          <tal:headernav replace="structure provider:docpool.headernav.manager" />
+            <button class="navbar-toggler" type="button"
+                    data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasNavbar"
+                    aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
 
-          <!-- Main navigation buttons -->
-          <a class="nav-btn d-flex flex-column justify-content-center px-4 border-end text-decoration-none ${python: view.active['groups']}"
-             href="${python: view.groups_folder_url}"
-             tal:condition="python: view.groups_folder_url"
-          >
+              <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
+                   aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                  <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Offcanvas</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                  <div class="navbar-nav">
+                    <tal:headernav replace="structure provider:docpool.headernav.manager"/>
+                    <!-- Main navigation buttons -->
+                    <a
+                      class="nav-link nav-btn d-flex flex-column justify-content-center px-4 border-end text-decoration-none ${python: view.active['groups']}"
+                      href="${python: view.groups_folder_url}"
+                       tal:condition="python: view.groups_folder_url"
+                    >
             <span class="small text-primary mb-n1"
-                  i18n:translate=""
+               i18n:translate=""
             >My group folders</span>
-          </a>
-          <a class="nav-btn d-flex flex-column justify-content-center px-4 border-end text-decoration-none ${python: view.active['emergency']}"
-             href="${python: view.emergency_info_url}"
-             tal:condition="python: view.emergency_info_url"
-          >
+                    </a>
+                    <a
+                      class="nav-link nav-btn d-flex flex-column justify-content-center px-4 border-end text-decoration-none ${python: view.active['emergency']}"
+                      href="${python: view.emergency_info_url}"
+                       tal:condition="python: view.emergency_info_url"
+                    >
             <span class="small text-primary mb-n1"
-                  i18n:translate=""
+               i18n:translate=""
             >Emergency documents</span>
-          </a>
+                    </a>
+
+
+                    <!-- Right: Icons -->
+                    <div class="nav-link d-flex align-items-center ms-auto gap-2 px-3">
+                      <button class="btn btn-icon collapsed me-3"
+                              aria-expanded="false"
+                              aria-label="Suche"
+                              data-bs-target="#portal-searchbox"
+                              data-bs-toggle="collapse"
+                      >
+                        <tal:icon tal:replace="structure python:icons.tag('search', tag_class='me-2')" />
+                      </button>
+                      <button class="btn btn-icon"
+                              aria-label="Barrierefreiheit"
+                      >
+                        <tal:icon tal:replace="structure python:icons.tag('universal-access', tag_class='me-2')" />
+                      </button>
+                      <button class="btn btn-icon"
+                              aria-label="Systemmeldung"
+                      >
+                        <tal:icon tal:replace="structure python:icons.tag('exclamation-triangle-fill', tag_class='me-2')" />
+                      </button>
+
+                      <tal:info tal:replace="structure context/@@info-dropdown">
+                        Info dropdown
+                      </tal:info>
+
+                      <tal:info tal:replace="structure context/@@config-dropdown">
+                        Config dropdown
+                      </tal:info>
+
+                      <tal:info tal:replace="structure context/@@user-dropdown">
+                        User dropdown
+                      </tal:info>
+
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
         </nav>
       </div>
 
-      <!-- Right: Icons -->
-      <div class="d-flex align-items-center ms-auto gap-2 px-3">
-        <button class="btn btn-icon collapsed me-3"
-                aria-expanded="false"
-                aria-label="Suche"
-                data-bs-target="#portal-searchbox"
-                data-bs-toggle="collapse"
-        >
-          <tal:icon tal:replace="structure python:icons.tag('search', tag_class='me-2')" />
-        </button>
-        <button class="btn btn-icon"
-                aria-label="Barrierefreiheit"
-        >
-          <tal:icon tal:replace="structure python:icons.tag('universal-access', tag_class='me-2')" />
-        </button>
-        <button class="btn btn-icon"
-                aria-label="Systemmeldung"
-        >
-          <tal:icon tal:replace="structure python:icons.tag('exclamation-triangle-fill', tag_class='me-2')" />
-        </button>
 
-        <tal:info tal:replace="structure context/@@info-dropdown">
-          Info dropdown
-        </tal:info>
-
-        <tal:info tal:replace="structure context/@@config-dropdown">
-          Config dropdown
-        </tal:info>
-
-        <tal:info tal:replace="structure context/@@user-dropdown">
-          User dropdown
-        </tal:info>
-
-
-      </div>
     </div>
   </div>
 </header>

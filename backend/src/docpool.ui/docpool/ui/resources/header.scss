@@ -1,3 +1,16 @@
+
+body.plone-toolbar-left-expanded .offcanvas.offcanvas-end {
+  @include media-breakpoint-down(lg) {
+    padding-left: var(--plone-toolbar-width);
+  }
+}
+
+.offcanvas.offcanvas-end {
+  @include media-breakpoint-down(lg) {
+    padding-left: var(--plone-toolbar-width-collapsed);
+  }
+}
+
 .app-header {
   background-color: #ffffff;
 }
@@ -46,7 +59,6 @@
   background-color: var(--bs-light-blue);
   border-bottom: 2px solid var(--bs-primary);
 }
-
 .event-switcher,
 .event-card {
   height: 72px;
