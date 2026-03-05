@@ -103,7 +103,6 @@ build_image:
     - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
     - make build-image-ci
   rules:
-    - if: '$CI_COMMIT_BRANCH == "remove-shell-runner-gitlab"'
     - if: '$CI_COMMIT_BRANCH == "develop"'
     - if: '$CI_COMMIT_BRANCH == "gui"'
     - if: '$NIGHTLY_UPDATE == "True"'
