@@ -211,7 +211,7 @@ coverage: ## generate test-coverage report
 # Build Docker images
 .PHONY: build-image
 build-image:  ## Build Docker Images
-	@docker buildx build --provenance=false --tag $(IMAGE_NAME):$(IMAGE_TAG) --file Dockerfile --build-arg PLONE_VERSION=$(PLONE_VERSION) --build-arg GIT_COMMIT=$(CI_COMMIT_SHORT_SHA) .
+	@docker buildx build --tag $(IMAGE_NAME):$(IMAGE_TAG) --file Dockerfile --build-arg PLONE_VERSION=$(PLONE_VERSION) --build-arg GIT_COMMIT=$(CI_COMMIT_SHORT_SHA) .
 
 .PHONY: build-image-ci
 build-image-ci: build-image ## Build Docker Image
