@@ -11,6 +11,9 @@ variables:
   # For the client, it tells the Docker client which Docker Unix socket to connect to.
   DOCKER_HOST: "unix:///runner/services/docker/docker.sock"
 
+services:
+  - docker:28.0.1-dind
+
 cache:
   paths:
     - ${PIP_CACHE_DIR}
