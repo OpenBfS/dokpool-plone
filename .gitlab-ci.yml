@@ -1,5 +1,4 @@
-# Official Python Image
-image: python:3.13.3-bullseye
+image: plone/server-builder:6.1.4
 
 # Change pip's cache directory to be inside the project directory since we can
 # only cache local items.
@@ -7,12 +6,11 @@ variables:
   PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache"
   UV_CACHE_DIR: "$HOME/.cache/uv"
   PLONE_VERSION: "6.1.4"
+  # This variable is shared by both the DinD service and Docker client.
+  # For the service, it will instruct DinD to create `docker.sock` here.
+  # For the client, it tells the Docker client which Docker Unix socket to connect to.
+  DOCKER_HOST: "unix:///runner/services/docker/docker.sock"
 
-# Pip's cache doesn't store the python packages
-# https://pip.pypa.io/en/stable/reference/pip_install/#caching
-#
-# If you want to also cache the installed packages, you have to install
-# them in a virtualenv and cache it as well.
 cache:
   paths:
     - ${PIP_CACHE_DIR}
@@ -85,24 +83,25 @@ acceptance_tests:
 
 build_image:
   tags:
-    - shell
+    - dind
   stage: build
   script:
+    - apt update && apt install -y docker.io
     # build docker
     # https://stackoverflow.com/questions/76654491/invalid-tag-missing-manifest-digest-when-exporting-nx-docker-image-to-gitlab-do
     - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
     - cd backend
-    # On the shell-runner we only have 3.7 and don't need anything newer for now.
-    - sed -i'' -e 's/PYTHON_VERSION_MIN=3\.11/PYTHON_VERSION_MIN=3.7/g' Makefile
     - make build-image-ci
   rules:
+    - if: '$CI_COMMIT_BRANCH == "remove-shell-runner-gitlab"'
     - if: '$CI_COMMIT_BRANCH == "develop"'
     - if: '$CI_COMMIT_BRANCH == "gui"'
     - if: '$NIGHTLY_UPDATE == "True"'
 
 deploy_gui:
+  image: plone/curlimages/curl:8.18.0
   tags:
-    - shell
+    - docker
   stage: deploy
   script:
     - curl --data-urlencode "" https://rundeck.portknox.info/api/16/job/ed75e90b-641c-43f2-b5a1-adcbf654a25f/run?authtoken=$authtoken
