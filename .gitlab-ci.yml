@@ -82,11 +82,19 @@ acceptance_tests:
       - screenshots/
 
 build_image:
+  image: plone/server-builder:$PLONE_VERSION
   tags:
     - dind
   stage: build
   script:
-    - apt update && apt install -y docker.io
+    - apt update
+    # LDAP client dependencies
+    - apt-get install -y --no-install-recommends libsasl2-dev libldap2-dev libssl-dev curl docker.io
+    # build
+    - cd backend
+    - export VIRTUAL_ENV=$(pwd)
+    - pip install --upgrade pip
+    - pip install uv
     # build docker
     # https://stackoverflow.com/questions/76654491/invalid-tag-missing-manifest-digest-when-exporting-nx-docker-image-to-gitlab-do
     - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
