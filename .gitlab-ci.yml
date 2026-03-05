@@ -99,7 +99,7 @@ build_image:
     - if: '$NIGHTLY_UPDATE == "True"'
 
 deploy_gui:
-  image: plone/curlimages/curl:8.18.0
+  image: curlimages/curl:8.18.0
   tags:
     - docker
   stage: deploy
