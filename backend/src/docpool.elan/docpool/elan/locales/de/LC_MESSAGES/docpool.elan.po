@@ -176,7 +176,7 @@ msgstr "Gelöscht"
 
 #: docpool.elan/docpool/elan/browser/elanarchives.pt
 msgid "Deleted Archives"
-msgstr "Gelösche Archive"
+msgstr "Gelöschte Archive"
 
 #: docpool.elan/docpool/elan/browser/archive_event_form.pt
 msgid "Depending on the number of entries in this event this can take an hour or longer."
