@@ -71,6 +71,24 @@
 
   <browser:page
       name="view"
+      for="docpool.base.content.dptransfersarea.IDPTransfersArea"
+      class=".listing.Listing"
+      template="templates/listing.pt"
+      permission="zope.Public"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
+  <browser:page
+      name="view"
+      for="docpool.base.content.dptransferfolder.IDPTransferFolder"
+      class=".listing.Listing"
+      template="templates/listing.pt"
+      permission="zope.Public"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
+  <browser:page
+      name="view"
       for="docpool.elan.content.elaninfos.IELANInfos"
       class=".listing.Listing"
       template="templates/listing.pt"

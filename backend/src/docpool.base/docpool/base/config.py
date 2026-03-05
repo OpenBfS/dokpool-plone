@@ -19,6 +19,8 @@ FOLDER_TYPES = [
     "InfoFolder",
     "ELANInfos",
     "Folder",
+    "DPTransfersArea",
+    "DPTransferFolder",
 ]
 
 # These types are listed in Folder-Types as

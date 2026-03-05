@@ -9,6 +9,7 @@ from five.intid.intid import addIntIdSubscriber
 from plone import api
 from plone.app.upgrade.utils import loadMigrationProfile
 from plone.base.utils import get_installer
+from plone.dexterity.interfaces import IDexterityFTI
 from Products.CMFPlone.controlpanel.events import handleConfigurationChangedEvent
 from Products.ZCatalog.ProgressHandler import ZLogHandler
 from zc.relation.interfaces import ICatalog
@@ -249,6 +250,13 @@ def to_3000(context=None):
         query = {"from_attribute": relationship}
         for rel in [rel for rel in relation_catalog.findRelations(query)]:
             relation_catalog.unindex(rel)
+
+    for changed_type in ["DPTransfersArea", "DPTransferFolder", "Groups", "InfoFolder", "Users", "ELANInfos"]:
+        fti = getUtility(IDexterityFTI, name=changed_type)
+        fti.default_view = "view"
+        for brain in api.content.find(portal_type=changed_type, sort_on="path"):
+            obj = brain.getObject()
+            obj.setLayout("view")
 
 
 def to_3000_convert_tupel(context=None):
