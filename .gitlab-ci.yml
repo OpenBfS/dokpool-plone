@@ -98,7 +98,6 @@ build_image:
     # build docker
     # https://stackoverflow.com/questions/76654491/invalid-tag-missing-manifest-digest-when-exporting-nx-docker-image-to-gitlab-do
     - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
-    - cd backend
     - make build-image-ci
   rules:
     - if: '$CI_COMMIT_BRANCH == "remove-shell-runner-gitlab"'
