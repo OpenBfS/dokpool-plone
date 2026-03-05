@@ -239,6 +239,7 @@ def to_3000(context=None):
             "apps_supported",
             "object_provides",
             "allowedRolesAndUsers",
+            "group",
         ],
         REQUEST=None,
         pghandler=pghandler,
