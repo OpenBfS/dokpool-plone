@@ -7,32 +7,32 @@ BASE_APP = "base"
 TRANSFERS_APP = "transfers"
 
 FOLDER_TYPES = [
-    "Users",
-    "UserFolder",
-    "ContentArea",
-    "Groups",
-    "GroupFolder",
-    "PrivateFolder",
-    "SimpleFolder",
-    "ReviewFolder",
     "CollaborationFolder",
-    "InfoFolder",
+    "ContentArea",
+    "DPTransferFolder",
+    "DPTransfersArea",
     "ELANInfos",
     "Folder",
-    "DPTransfersArea",
-    "DPTransferFolder",
+    "GroupFolder",
+    "Groups",
+    "InfoFolder",
+    "PrivateFolder",
+    "ReviewFolder",
+    "SimpleFolder",
+    "UserFolder",
+    "Users",
 ]
 
 # These types are listed in Folder-Types as
 OTHER_TYPES = [
+    "Collection",
     "Document",
+    "Event",
     "File",
     "Image",
-    "Collection",
-    "Link",
-    "News Item",
-    "Event",
     "InfoDocument",
     "InfoLink",
+    "Link",
+    "News Item",
     "Text",
 ]
