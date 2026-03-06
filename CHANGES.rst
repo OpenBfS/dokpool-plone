@@ -9,6 +9,9 @@ Changed:
 - ELAN documents can be associated with at most one scenario (#6430)
   [tlotze]
 
+- Modernize build piplene from shell docker build to dind builds (#6301)
+  [slindner]
+
 
 2.5.0 (2026-02-16)
 ------------------
