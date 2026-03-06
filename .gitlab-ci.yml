@@ -1,4 +1,4 @@
-image: plone/server-builder:6.0.13
+image: plone/server-builder:6.1.4
 
 variables:
   PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache"
