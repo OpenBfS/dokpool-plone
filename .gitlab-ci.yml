@@ -1,25 +1,16 @@
-# Official Python Image
-image: python:3.13.3-bullseye
+image: plone/server-builder:6.0.13
 
-# Change pip's cache directory to be inside the project directory since we can
-# only cache local items.
 variables:
   PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache"
   UV_CACHE_DIR: "$HOME/.cache/uv"
   PLONE_VERSION: "6.1.4"
+  DOCKER_HOST: "unix:///runner/services/docker/docker.sock"
 
-# Pip's cache doesn't store the python packages
-# https://pip.pypa.io/en/stable/reference/pip_install/#caching
-#
-# If you want to also cache the installed packages, you have to install
-# them in a virtualenv and cache it as well.
 cache:
   paths:
     - ${PIP_CACHE_DIR}
     - ${UV_CACHE_DIR}
 
-# Set execution order: first run jobs on 'test' stage on parallel
-# then run jobs on 'report' stage
 stages:
   - test
   - build
@@ -66,23 +57,30 @@ unit_tests:
 
 build_image:
   tags:
-    - shell
+    - dind
   stage: build
+  services:
+    - docker:28.0.1-dind
   script:
+    - apt update
+    - # LDAP client dependencies
+    - apt-get install -y --no-install-recommends libsasl2-dev libldap2-dev libssl-dev curl docker.io
     # build docker
     # https://stackoverflow.com/questions/76654491/invalid-tag-missing-manifest-digest-when-exporting-nx-docker-image-to-gitlab-do
     - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
     - cd backend
-    # On the shell-runner we only have 3.7 and don't need anything newer for now.
-    - sed -i'' -e 's/PYTHON_VERSION_MIN=3\.11/PYTHON_VERSION_MIN=3.7/g' Makefile
+    - export VIRTUAL_ENV=$(pwd)
+    - pip install --upgrade pip
+    - pip install uv
     - make build-image-ci
   rules:
     - if: '$CI_COMMIT_BRANCH == "develop"'
     - if: '$NIGHTLY_UPDATE == "True"'
 
 deploy_review:
+  image: curlimages/curl:8.18.0
   tags:
-    - shell
+    - docker
   stage: deploy
   script:
     - curl --data-urlencode "" https://rundeck.portknox.info/api/16/job/18b65c46-4159-43ea-9989-7dc433fbccb0/run?authtoken=$authtoken
