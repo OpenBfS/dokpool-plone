@@ -85,7 +85,7 @@ body {
   padding: 0.3rem;
 
   p.small {
-    font-size: 0.6rem;
+    font-size: var(--dp-font-small);
     line-height: 1.2em;
   }
 
