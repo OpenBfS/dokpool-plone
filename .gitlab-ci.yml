@@ -11,8 +11,6 @@ variables:
   # For the client, it tells the Docker client which Docker Unix socket to connect to.
   DOCKER_HOST: "unix:///runner/services/docker/docker.sock"
 
-services:
-  - docker:28.0.1-dind
 
 cache:
   paths:
@@ -88,6 +86,8 @@ build_image:
   image: plone/server-builder:$PLONE_VERSION
   tags:
     - dind
+  services:
+    - docker:28.0.1-dind
   stage: build
   script:
     - apt update
