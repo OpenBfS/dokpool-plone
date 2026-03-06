@@ -63,7 +63,7 @@ build_image:
     - docker:28.0.1-dind
   script:
     - apt update
-    - # LDAP client dependencies
+    # LDAP client dependencies
     - apt-get install -y --no-install-recommends libsasl2-dev libldap2-dev libssl-dev curl docker.io
     # build docker
     # https://stackoverflow.com/questions/76654491/invalid-tag-missing-manifest-digest-when-exporting-nx-docker-image-to-gitlab-do
