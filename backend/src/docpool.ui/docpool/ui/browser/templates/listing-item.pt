@@ -10,7 +10,7 @@
        token context/@@authenticator/token;
        came_from request/URL;
      "
-     i18n:domain="docpool.base"
+     i18n:domain="docpool.ui"
 >
   <a class="pat-inject list-item-link stretched-link"
      href="#"
@@ -46,6 +46,7 @@
          title="${python: data['state_title']}"
          tal:content="python: data['state_title']"
          i18n:attributes="title"
+         i18n:domain="docpool.base"
          i18n:translate=""
       >Review state</p>
     </div>
@@ -183,7 +184,6 @@
           >
             <img src="${python:icons.url('star')}" />
             <span tal:omit-tag=""
-                  i18n:domain="plone"
                   i18n:translate=""
             >Mark as Favorite</span>
             (TODO)
@@ -203,10 +203,12 @@
                "
             >
               <img src="${python:icons.url(icon_name)}" />
-              <span tal:omit-tag=""
+              <span tal:content="python: transition['name']"
+                    tal:omit-tag=""
+                    i18n:domain="docpool.base"
                     i18n:translate=""
-              >
-                ${python: transition['name']}</span></a>
+              ></span>
+            </a>
           </li>
         </tal:transitions>
         <li>
@@ -218,7 +220,6 @@
           >
             <img src="${python:icons.url('download')}" />
             <span tal:omit-tag=""
-                  i18n:domain="plone"
                   i18n:translate=""
             >Download all attachments</span>
           </a>
@@ -233,6 +234,7 @@
           >
             <img src="${python:icons.url('box-arrow-up-right')}" />
             <span tal:omit-tag=""
+                  i18n:domain="docpool.base"
                   i18n:translate=""
             >Transfer</span>
 

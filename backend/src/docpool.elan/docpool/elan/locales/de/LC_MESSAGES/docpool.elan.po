@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-02-18 14:03+0000\n"
+"POT-Creation-Date: 2026-03-06 15:28+0000\n"
 "PO-Revision-Date: 2026-02-18 14:20+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -263,7 +263,6 @@ msgid "Exercise"
 msgstr "Übung"
 
 #: docpool.elan/docpool/elan/browser/elan_macros.pt
-#: docpool.elan/docpool/elan/browser/event_macros.pt
 msgid "Filter"
 msgstr "Filter"
 
@@ -295,10 +294,6 @@ msgstr "Ort"
 msgid "Metadata"
 msgstr "Metadaten"
 
-#: docpool.elan/docpool/elan/browser/event_macros.pt
-msgid "Number of entries"
-msgstr "Anzahl der Einträge"
-
 #: docpool.elan/docpool/elan/browser/dpevent.pt
 #: docpool.elan/docpool/elan/content/dpevent.py
 msgid "Operation mode"
@@ -319,10 +314,6 @@ msgstr "Übersicht"
 #: docpool.elan/docpool/elan/browser/dpevent.pt
 msgid "Phase"
 msgstr "Szenario & Phase"
-
-#: docpool.elan/docpool/elan/browser/event_macros.pt
-msgid "Please select at least one scenario!"
-msgstr "Bitte wählen Sie mindestens ein Ereignis!"
 
 #: docpool.elan/docpool/elan/browser/i18ndummy.pt
 msgid "Purge"
@@ -492,10 +483,6 @@ msgstr "durch"
 msgid "closed"
 msgstr "Geschlossen"
 
-#: docpool.elan/docpool/elan/behaviors/elandoctype.py
-msgid "description_doctype_contentcategory"
-msgstr ""
-
 #: docpool.elan/docpool/elan/behaviors/elandocument.py
 msgid "description_dpdocument_scenario"
 msgstr ""
@@ -537,11 +524,6 @@ msgstr "Inaktiv"
 #: docpool.elan/docpool/elan/browser/archive_event_form.pt
 msgid "label_archive"
 msgstr "Archivieren"
-
-#. Default: "Choose category for this type "
-#: docpool.elan/docpool/elan/behaviors/elandoctype.py
-msgid "label_doctype_contentcategory"
-msgstr "Kategorie für diese Eintragsart"
 
 #. Default: "Belongs to scenario"
 #: docpool.elan/docpool/elan/behaviors/elandocument.py
@@ -600,7 +582,7 @@ msgstr "privat"
 
 #: docpool.elan/docpool/elan/browser/i18ndummy.pt
 msgid "published"
-msgstr "Veröffentlicht"
+msgstr "Öffentlich"
 
 #: docpool.elan/docpool/elan/browser/i18ndummy.pt
 msgid "snapshot_confirm_msg"

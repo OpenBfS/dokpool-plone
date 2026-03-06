@@ -338,7 +338,7 @@ msgstr "Veröffentlichen"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "Published"
-msgstr "Veröffentlicht"
+msgstr "Öffentlich"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "Published BMUKN"
@@ -1038,7 +1038,7 @@ msgstr ""
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "published - Show document"
-msgstr "veröffentlicht - Klicken, um den Eintrag anzuzeigen"
+msgstr "öffentlich - Klicken, um den Eintrag anzuzeigen"
 
 #: docpool.base/docpool/base/vocabularies.py
 msgid "read/write"

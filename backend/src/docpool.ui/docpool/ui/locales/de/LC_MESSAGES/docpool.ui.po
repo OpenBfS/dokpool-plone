@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-02-25 11:46+0000\n"
+"POT-Creation-Date: 2026-03-06 15:37+0000\n"
 "PO-Revision-Date: 2025-11-24 12:24+0100\n"
 "Last-Translator: Thomas Lotze <lotze@starzel.de>\n"
 "Language-Team: German <translation-team-de@lists.sourceforge.net>\n"
@@ -89,6 +89,14 @@ msgstr "Löschen"
 msgid "Docpools"
 msgstr ""
 
+#: docpool.ui/docpool/ui/browser/templates/listing-item.pt
+msgid "Download all attachments"
+msgstr "Alle Anhänge herunterladen"
+
+#: docpool.ui/docpool/ui/browser/viewlets/header.pt
+msgid "Emergency documents"
+msgstr "Dokumente Notfallschutz"
+
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
 msgid "Entries"
 msgstr "Einträge"
@@ -116,6 +124,14 @@ msgstr "Gruppe"
 #: docpool.ui/docpool/ui/browser/wizard.py
 msgid "Internal"
 msgstr "Gruppenintern"
+
+#: docpool.ui/docpool/ui/browser/templates/listing-item.pt
+msgid "Mark as Favorite"
+msgstr "Als Favorit markieren"
+
+#: docpool.ui/docpool/ui/browser/viewlets/header.pt
+msgid "My group folders"
+msgstr "Meine Gruppenordner"
 
 #: docpool.ui/docpool/ui/browser/listing.py
 msgid "Newest first"
@@ -210,10 +226,18 @@ msgstr ""
 msgid "attachments"
 msgstr "Dokumente"
 
+#: docpool.ui/docpool/ui/browser/templates/listing.pt
+msgid "for all events"
+msgstr "für alle Ereignisse"
+
 #. Default: "Cancel"
 #: docpool.ui/docpool/ui/browser/dpdocument.py
 msgid "label_cancel"
 msgstr "Abbrechen"
+
+#: docpool.ui/docpool/ui/browser/templates/listing.pt
+msgid "more entries for other events"
+msgstr "weitere für andere Ereignisse"
 
 #. Default: "There was an error processing the form!"
 #: docpool.ui/docpool/ui/browser/wizard.py

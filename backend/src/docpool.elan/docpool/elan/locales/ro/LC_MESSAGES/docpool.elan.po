@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-02-18 14:03+0000\n"
+"POT-Creation-Date: 2026-03-06 15:28+0000\n"
 "PO-Revision-Date: 2025-05-19 17:02+0200\n"
 "Last-Translator: Philip Bauer <bauer@starzel.de>\n"
 "Language-Team: BfS <elan@bfs.de>\n"
@@ -267,7 +267,6 @@ msgid "Exercise"
 msgstr ""
 
 #: docpool.elan/docpool/elan/browser/elan_macros.pt
-#: docpool.elan/docpool/elan/browser/event_macros.pt
 msgid "Filter"
 msgstr ""
 
@@ -299,10 +298,6 @@ msgstr ""
 msgid "Metadata"
 msgstr ""
 
-#: docpool.elan/docpool/elan/browser/event_macros.pt
-msgid "Number of entries"
-msgstr ""
-
 #: docpool.elan/docpool/elan/browser/dpevent.pt
 #: docpool.elan/docpool/elan/content/dpevent.py
 msgid "Operation mode"
@@ -322,10 +317,6 @@ msgstr ""
 
 #: docpool.elan/docpool/elan/browser/dpevent.pt
 msgid "Phase"
-msgstr ""
-
-#: docpool.elan/docpool/elan/browser/event_macros.pt
-msgid "Please select at least one scenario!"
 msgstr ""
 
 #: docpool.elan/docpool/elan/browser/i18ndummy.pt
@@ -496,10 +487,6 @@ msgstr ""
 msgid "closed"
 msgstr ""
 
-#: docpool.elan/docpool/elan/behaviors/elandoctype.py
-msgid "description_doctype_contentcategory"
-msgstr ""
-
 #: docpool.elan/docpool/elan/behaviors/elandocument.py
 msgid "description_dpdocument_scenario"
 msgstr ""
@@ -540,11 +527,6 @@ msgstr ""
 #. Default: "Archive"
 #: docpool.elan/docpool/elan/browser/archive_event_form.pt
 msgid "label_archive"
-msgstr ""
-
-#. Default: "Choose category for this type "
-#: docpool.elan/docpool/elan/behaviors/elandoctype.py
-msgid "label_doctype_contentcategory"
 msgstr ""
 
 #. Default: "Belongs to scenario"
