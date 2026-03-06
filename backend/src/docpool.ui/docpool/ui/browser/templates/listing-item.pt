@@ -30,16 +30,8 @@
   </div>
 
   <div class="me-3 doctype-box flex-shrink-0">
-    <div class="h-100 doktype-icon-container px-3 pt-2 pb-1">
-      <img class="doktype-icon p-1"
-           alt="Type"
-           src="doctype"
-           tal:attributes="
-             alt python: doctype;
-             title python:data['doctype_title'];
-             src python:data['doctype_icon_url'];
-           "
-      />
+    <div class="h-100 text-center doktype-icon-container px-3 pt-2 pb-1">
+      <tal:icon tal:replace="structure python:icons.tag(data['doctype_icon_name'], tag_class='entrytype ' + data['doctype_icon_name'], tag_alt=data['doctype_title'])" />
     </div>
     <div class="card-body review-state ${python:data['state_class']}">
       <p class="card-text text-center small"

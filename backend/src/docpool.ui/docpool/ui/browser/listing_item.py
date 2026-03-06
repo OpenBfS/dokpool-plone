@@ -89,6 +89,7 @@ class Item(BrowserView):
             "uid": obj.UID(),
             "doctype": obj.docType,
             "doctype_title": doctype_title,
+            "doctype_icon_name": icon_name,
             "doctype_icon_url": iconresolver.url(icon_name),
             "url": obj.absolute_url(),
             "path": obj.absolute_url_path(),

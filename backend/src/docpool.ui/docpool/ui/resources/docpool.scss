@@ -81,12 +81,6 @@ body {
   }
 }
 
-img.doktype-icon {
-  width: 100%;
-  filter: invert(24%) sepia(6%) saturate(3251%) hue-rotate(170deg)
-    brightness(97%) contrast(93%);
-}
-
 .card-body.review-state {
   padding: 0.3rem;
 
@@ -177,6 +171,17 @@ img.doktype-icon {
 
       .doktype-icon-container {
         background-color: var(--bs-gray-light);
+        padding: 10px 0px 6px 0;
+
+        .plone-icon.entrytype {
+          width: 40px;
+          height: 40px;
+          fill: var(--bs-primary);
+
+          path {
+            fill: var(--bs-primary);
+          }
+        }
       }
     }
 
