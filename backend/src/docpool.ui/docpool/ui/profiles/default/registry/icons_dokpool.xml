@@ -14,4 +14,19 @@
     </field>
     <value key="resource">++plone++docpoolui/icons/dokpool-wrench.svg</value>
   </record>
+
+  <record name="plone.icon.radiological_situation_report">
+    <field type="plone.registry.field.TextLine">
+      <title>Radiological Situation Report</title>
+    </field>
+    <value key="resource">++plone++docpoolui/icons/radiological_situation_report.svg</value>
+  </record>
+
+  <record name="plone.icon.official_notification">
+    <field type="plone.registry.field.TextLine">
+      <title>Official Notification</title>
+    </field>
+    <value key="resource">++plone++docpoolui/icons/official_notification.svg</value>
+  </record>
+
 </registry>

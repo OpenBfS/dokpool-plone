@@ -14,7 +14,7 @@
   "description": "Meldung \u00fcber den Eintritt eines \u00fcberregionalen oder regionalen Notfalls oder eines Ereignisses, das zu einem solchen Notfall f\u00fchren kann, im Rahmen der gesetzlichen Alarmierungspflicht; sowie Folgemeldungen.",
   "exportimport.constrains": {},
   "exportimport.conversation": [],
-  "icon_name": "radioactive",
+  "icon_name": "official_notification",
   "id": "official_notification",
   "imgPattern": null,
   "is_folderish": true,

@@ -10,7 +10,7 @@
   "description": "",
   "exportimport.constrains": {},
   "exportimport.conversation": [],
-  "icon_name": "bookmark",
+  "icon_name": "official_notification",
   "id": "official_notifications",
   "is_folderish": true,
   "language": "##DEFAULT##",

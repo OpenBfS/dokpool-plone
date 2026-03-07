@@ -14,7 +14,7 @@
   "description": "Radiologisches Lagebild (RLB) gem\u00e4\u00df ANoPl Bund.",
   "exportimport.constrains": {},
   "exportimport.conversation": [],
-  "icon_name": "radioactive",
+  "icon_name": "radiological_situation_report",
   "id": "radiological_situation_report_draft",
   "imgPattern": null,
   "is_folderish": true,
