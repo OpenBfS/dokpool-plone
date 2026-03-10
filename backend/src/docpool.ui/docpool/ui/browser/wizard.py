@@ -361,7 +361,12 @@ class DPDocumentWizard(ContextlessWizard):
                 continue
             if allowed and doctype_brain.id not in allowed:
                 continue
-            addable.append(doctype_brain)
+            addable.append({
+                "id": doctype_brain.id,
+                "title": doctype_brain.Title,
+                "description": doctype_brain.Description,
+                "icon": doctype_brain.getObject().icon_name,
+            })
         return addable
 
     def doctypes(self):

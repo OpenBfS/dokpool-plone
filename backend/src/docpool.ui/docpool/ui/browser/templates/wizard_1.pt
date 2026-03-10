@@ -163,29 +163,40 @@
                        class python:error and 'wizard-field field error' or 'wizard-field field';
                      "
                 >
-                  <select class="select-widget required choice-field form-select"
-                          id="${widget_id}"
-                          name="${widget_name}"
-                          size="1"
-                          tal:attributes="
-                            autofocus python: True if doctypes else False;
-                          "
+                  <div class="form-check mb-3"
+                       tal:repeat="item python: doctypes"
                   >
-                    <option id="form-widgets-doctypes-novalue"
-                            value=""
-                            tal:condition="python:len(doctypes) > 1"
-                            i18n:translate=""
-                    >Select a Entrytype</option>
-                    <option id="${python:item.id}"
-                            value="${python:item.id}"
-                            tal:repeat="item doctypes"
-                            tal:content="python:item.Title"
-                            tal:attributes="
-                              selected python:item.id == widget_value;
-                            "
+                    <input class="form-check-input"
+                           name="${widget_name}"
+                           type="radio"
+                           value="${python: item['id']}"
+                           tal:define="
+                             first_item repeat/item/start;
+                             has_value python:True if widget_value else False;
+                           "
+                           tal:attributes="
+                             checked python:item['id'] == widget_value if has_value else first_item;
+                             title python: item['title'];
+                             id python: item['id'];
+                           "
+                           i18n:attributes="title"
+                    />
+                    <label class="form-check-label"
+                           tal:attributes="
+                             for python: item['id'];
+                           "
                     >
-                    </option>
-                  </select>
+                      <tal:icon tal:replace="structure python:icons.tag(item['icon'], tag_class='entrytype')" />
+                      <span tal:content="python: item['title']"
+                            i18n:translate=""
+                      ></span><br />
+                      <span class="small"
+                            tal:content="python: item['description']"
+                            i18n:translate=""
+                      ></span>
+                    </label>
+                  </div>
+
                 </div>
               </div>
             </div>
