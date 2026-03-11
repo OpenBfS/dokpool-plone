@@ -4,6 +4,7 @@ from AccessControl.SecurityManagement import setSecurityManager
 from AccessControl.users import UnrestrictedUser as BaseUnrestrictedUser
 from Acquisition import aq_get
 from Acquisition import aq_inner
+from docpool.base.content.places import IPlaces
 from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
 from docpool.base.marker import IAppActiveMarker
 from functools import wraps
@@ -205,10 +206,7 @@ def _cutPaste(source_obj, target_folder_obj, unique=False):
 
 def getDocumentPoolSite(context):
     """ """
-    if getattr(context, "myDocumentPool", None) is not None:
-        return context.myDocumentPool()
-    else:
-        return api.portal.get()
+    return dp if (dp := IPlaces(context).document_pool) is not None else api.portal.get()
 
 
 class UnrestrictedUser(BaseUnrestrictedUser):
@@ -312,7 +310,7 @@ def setApplicationsForCurrentUser(self, apps):
     @return:
     """
     user = api.user.get_current()
-    #    id = self.myDocumentPool().getId()
+    #    id = IPlaces(self).document_pool.getId()
     # get currently activated apps
     #    current = user.getProperty("apps", default=[])
     #    new = []
@@ -396,7 +394,7 @@ def is_admin_on_dokpool(context):
 
 
 def is_contentadmin(context):
-    if not hasattr(context, "myDocumentPool"):
+    if IPlaces(context).document_pool is None:
         return False
     if is_admin(context):
         return True

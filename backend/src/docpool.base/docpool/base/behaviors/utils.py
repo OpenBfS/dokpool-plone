@@ -1,5 +1,6 @@
 from docpool.base.content.doctype import DocType
 from docpool.base.content.dptransferfolder import IDPTransferFolder
+from docpool.base.content.places import IPlaces
 from operator import itemgetter
 from plone import api
 
@@ -15,7 +16,7 @@ def allowed_targets(context):
     from docpool.base.behaviors.transferable import ITransferable
 
     try:
-        esd = context.myDocumentPool()
+        esd = IPlaces(context).document_pool
     except AttributeError:
         return []
 
@@ -41,7 +42,7 @@ def allowed_targets(context):
         permission = obj.doctype_permission(dt_id)
         if permission != "block":
             from_to_title = obj.from_to_title()
-            target_docpool = obj.myDocumentPool()
+            target_docpool = IPlaces(obj).document_pool
             targets.append({
                 "uid": brain.UID,
                 "from_to_title": from_to_title,

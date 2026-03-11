@@ -2,6 +2,7 @@ from AccessControl.SecurityInfo import allow_class
 from AccessControl.SecurityInfo import allow_module
 from Acquisition import aq_inner
 from docpool.base.content.archiving import IArchiving
+from docpool.base.content.places import IPlaces
 from docpool.elan import DocpoolMessageFactory as _
 from plone.app.portlets.portlets import base
 from plone.memoize.instance import memoize
@@ -76,11 +77,11 @@ class Renderer(base.Renderer):
         if url.startswith("http"):
             # External links
             return url
-        if getattr(self.context, "myDocumentPool", None) is None:
+        if (dp := IPlaces(self.context).document_pool) is None:
             # We're not within a dokpool
             print(url)
             return url
-        dp_url = self.context.myDocumentPool().absolute_url()
+        dp_url = dp.absolute_url()
         return f"{dp_url}/{url}"
 
     @memoize

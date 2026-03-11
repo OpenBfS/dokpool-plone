@@ -131,10 +131,6 @@ class DocumentPool(Container):
         dp_app_state = getMultiAdapter((self, self.REQUEST), name="dp_app_state")
         return dp_app_state.isCurrentlyActive(APP)
 
-    def myDocumentPool(self):
-        """ """
-        return self
-
 
 @adapter(IDocumentPool, IObjectAddedEvent)
 def docPoolAdded(obj, event=None):

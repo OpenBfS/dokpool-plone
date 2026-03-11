@@ -11,6 +11,7 @@ from docpool.base.browser.flexible_view import FlexibleView
 from docpool.base.config import TRANSFERS_APP
 from docpool.base.content.archiving import IArchiving
 from docpool.base.content.dpdocument import IDPDocument
+from docpool.base.content.places import IPlaces
 from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
 from docpool.base.marker import IImportingMarker
 from docpool.base.utils import _copyPaste
@@ -247,7 +248,7 @@ class Transferable(FlexibleView):
         def do_target(target):
             # 1) Determine target transfer folder object.
             transfer_folder = api.content.get(UID=target)
-            esd_to_title = transfer_folder.myDocumentPool().Title()
+            esd_to_title = (dp := IPlaces(transfer_folder).document_pool).Title()
 
             # Check permissions:
             # a) Is my DocType accepted (defaults to handling of unknown DocTypes)?
@@ -259,7 +260,7 @@ class Transferable(FlexibleView):
             app_transfers = []
             apps_to_remove = set()
             for app in (lbs := ILocalBehaviorSupport(self.context)).local_behaviors:
-                if app not in transfer_folder.myDocumentPool().supportedApps:
+                if app not in dp.supportedApps:
                     apps_to_remove.add(app)
                 app_transfer = queryMultiAdapter(
                     (self.context, transfer_folder), IAppSpecificTransfer, name=app

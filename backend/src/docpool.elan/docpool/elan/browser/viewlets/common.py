@@ -1,6 +1,7 @@
 from AccessControl.SecurityInfo import allow_module
 from Acquisition import aq_get
 from docpool.base.content.archiving import IArchiving
+from docpool.base.content.places import IPlaces
 from docpool.elan.config import ELAN_APP
 from docpool.elan.utils import getOpenScenarios
 from docpool.elan.utils import getScenariosForCurrentUser
@@ -22,7 +23,7 @@ class ELANViewlet(ViewletBase):
 
     @property
     def available(self):
-        return hasattr(self.context, "myDocumentPool") and self.isSupported()
+        return IPlaces(self.context).document_pool is not None and self.isSupported()
 
 
 # TODO Remove once the new GUI is finished
@@ -35,6 +36,7 @@ class EventViewlet(ELANViewlet):
         scs = getScenariosForCurrentUser()
         possible_uids = {s[0] for s in self.scenarios}
         self.selected_scenarios = [s for s in scs if s in possible_uids]
+        self.archive_url = IPlaces(self.context).document_pool.archive.absolute_url()
 
     def number_of_entries(self, dpevent):
         contentarea = aq_get(dpevent, "content")

@@ -1,5 +1,6 @@
 from docpool.base.content.infofolder import IInfoFolder
 from docpool.base.content.infofolder import InfoFolder
+from docpool.base.content.places import IPlaces
 from docpool.base.marker import IImportingMarker
 from docpool.elan.config import ELAN_APP
 from plone.supermodel import model
@@ -29,7 +30,7 @@ def infosAdded(obj, event=None):
         return
 
     self = obj
-    esd = self.myDocumentPool()
+    esd = IPlaces(self).document_pool
     prefix = esd.prefix or esd.getId()
     prefix = str(prefix)
     self.manage_setLocalRoles("%s_ContentAdministrators" % prefix, ["ContentAdmin"])

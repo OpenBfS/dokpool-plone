@@ -2,6 +2,7 @@ from Acquisition import aq_inner
 from docpool.base import DocpoolMessageFactory as _
 from docpool.base.appregistry import appName
 from docpool.base.behaviors.utils import allowed_targets
+from docpool.base.content.places import IPlaces
 from plone.autoform.directives import widget
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.supermodel import model
@@ -76,9 +77,7 @@ class TransfersType:
 
     @automaticTransferTargets.setter
     def automaticTransferTargets(self, value):
-        try:
-            self.context.myDocumentPool()
-        except AttributeError:
+        if IPlaces(self.context).document_pool is None:
             return
 
         context = aq_inner(self.context)

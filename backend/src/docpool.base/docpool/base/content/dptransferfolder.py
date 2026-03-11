@@ -7,6 +7,7 @@ from docpool.base.content.doctype import IDocType
 from docpool.base.content.documentpool import IDocumentPool
 from docpool.base.content.folderbase import FolderBase
 from docpool.base.content.folderbase import IFolderBase
+from docpool.base.content.places import IPlaces
 from docpool.base.marker import IImportingMarker
 from docpool.base.utils import execute_under_special_role
 from docpool.base.utils import queryForObject
@@ -100,7 +101,7 @@ class DPTransferFolder(FolderBase):
     def from_to_title(self):
         sending_esd = self.getSendingESD()
         from_title = sending_esd.Title() if sending_esd else "N/A"
-        to_title = self.myDocumentPool().Title()
+        to_title = IPlaces(self).documentpPool.Title()
         return f"{from_title} --> {to_title} ({self.title})"
 
     def acceptsDT(self, dt_id):
@@ -146,9 +147,9 @@ class DPTransferFolder(FolderBase):
 
             prefix = esd.myPrefix()
             esd_members = "%s_Senders" % prefix
-            self.myDocumentPool().manage_setLocalRoles(esd_members, ["Reader"])
-            self.myDocumentPool().reindexObject()
-            self.myDocumentPool().reindexObjectSecurity()
+            (dp := IPlaces(self).document_pool).manage_setLocalRoles(esd_members, ["Reader"])
+            dp.reindexObject()
+            dp.reindexObjectSecurity()
 
         execute_under_special_role(self, "Manager", grantRead)
 
@@ -160,9 +161,9 @@ class DPTransferFolder(FolderBase):
             if esd:
                 prefix = esd.myPrefix()
                 esd_members = "%s_Senders" % prefix
-                self.myDocumentPool().manage_delLocalRoles([esd_members])
-                self.myDocumentPool().reindexObject()
-                self.myDocumentPool().reindexObjectSecurity()
+                (dp := IPlaces(self).document_pool).manage_delLocalRoles([esd_members])
+                dp.reindexObject()
+                dp.reindexObjectSecurity()
 
         execute_under_special_role(self, "Manager", revokeRead)
 
@@ -229,9 +230,7 @@ def deleted(obj, event=None):
 
 
 def transfer_folders_for(obj):
-    try:
-        esd = obj.myDocumentPool()
-    except AttributeError:
+    if (esd := IPlaces(obj).document_pool) is None:
         return []
 
     brains = api.content.find(path=esd.dpSearchPath(), object_provides=IDPTransferFolder.__identifier__)

@@ -9,6 +9,7 @@ from docpool.base.content.archiving import IArchiving
 from docpool.base.content.doctype import IDocType
 from docpool.base.content.dptransferfolder import IDPTransferFolder
 from docpool.base.content.groupfolder import IGroupFolder
+from docpool.base.content.places import IPlaces
 from docpool.base.utils import getAllowedDocumentTypesForGroup
 from docpool.base.utils import getDocumentPoolSite
 from plone import api
@@ -165,8 +166,8 @@ class DocumentPoolVocabulary:
 
     def __call__(self, context, raw=False):
         my_uid = None
-        if getattr(context, "myDocumentPool", None) is not None:
-            my_uid = context.myDocumentPool().UID()
+        if (dp := IPlaces(context).document_pool) is not None:
+            my_uid = dp.UID()
 
         site = getSite()
         cat = getToolByName(site, "portal_catalog", None)
@@ -284,7 +285,8 @@ def TransferTargetsVocabularyFactory(context=None):
     targets = (brain.getObject() for brain in brains)
     items = [
         (
-            f"{t.from_to_title()} ({', '.join(appName(app) for app in t.myDocumentPool().supportedApps)})",
+            f"{t.from_to_title()} "
+            f"({', '.join(appName(app) for app in IPlaces(t).document_pool.supportedApps)})",
             t.UID(),
         )
         for t in targets

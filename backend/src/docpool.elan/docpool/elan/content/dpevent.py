@@ -3,6 +3,7 @@ from docpool.base.content.archiving import IArchiving
 from docpool.base.content.contentbase import ContentBase
 from docpool.base.content.contentbase import IContentBase
 from docpool.base.content.documentpool import IDocumentPool
+from docpool.base.content.places import IPlaces
 from docpool.base.marker import IImportingMarker
 from docpool.elan import DocpoolMessageFactory as _
 from docpool.elan.config import ELAN_APP
@@ -238,7 +239,7 @@ class DPEvent(Container, ContentBase):
         :return:"""
         if not self.Journals:
             return
-        docpool = self.myDocumentPool()
+        docpool = IPlaces(self).document_pool
         prefix = docpool.prefix or docpool.getId()
         for index, title in enumerate(self.Journals, start=1):
             title = title.strip()

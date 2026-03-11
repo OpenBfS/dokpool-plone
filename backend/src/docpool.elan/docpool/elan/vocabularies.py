@@ -1,4 +1,5 @@
 from AccessControl.SecurityInfo import allow_module
+from docpool.base.content.places import IPlaces
 from docpool.base.utils import getDocumentPoolSite
 from docpool.elan import DocpoolMessageFactory as _
 from plone import api
@@ -21,8 +22,8 @@ class EventVocabulary:
             "portal_type": "DPEvent",
             "dp_type": "active",
         }
-        if getattr(context, "myDocumentPool", None) is not None:
-            query["path"] = "/".join(context.myDocumentPool().getPhysicalPath()) + "/contentconfig"
+        if (dp := IPlaces(context).document_pool) is not None:
+            query["path"] = "/".join(dp.getPhysicalPath()) + "/contentconfig"
         items = sorted((t.Title, t.UID) for t in api.content.find(**query))
         items = [SimpleTerm(i[1], i[1], i[0]) for i in items]
         return SimpleVocabulary(items)
