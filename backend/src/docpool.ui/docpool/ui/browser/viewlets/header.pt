@@ -75,7 +75,7 @@
                   <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
-                  <div class="navbar-nav">
+                  <div class="navbar-nav w-100 d-flex">
                     <tal:headernav replace="structure provider:docpool.headernav.manager"/>
                     <!-- Main navigation buttons -->
                     <a
