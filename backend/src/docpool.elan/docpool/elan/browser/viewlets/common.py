@@ -15,10 +15,7 @@ allow_module("docpool.elan.browser.viewlets")
 allow_module("docpool.elan.browser.viewlets.common")
 
 
-# TODO Remove once the new GUI is finished
-class EventViewlet(ViewletBase):
-    index = ViewPageTemplateFile("events.pt")
-
+class ELANViewlet(ViewletBase):
     def isSupported(self):
         dp_app_state = getMultiAdapter((self.context, self.request), name="dp_app_state")
         return dp_app_state.isCurrentlyActive(ELAN_APP)
@@ -26,6 +23,11 @@ class EventViewlet(ViewletBase):
     @property
     def available(self):
         return hasattr(self.context, "myDocumentPool") and self.isSupported()
+
+
+# TODO Remove once the new GUI is finished
+class EventViewlet(ELANViewlet):
+    index = ViewPageTemplateFile("events.pt")
 
     def update(self):
         scs = getOpenScenarios(self.context)
@@ -43,22 +45,12 @@ class EventViewlet(ViewletBase):
         return len(api.content.find(context=contentarea, **args))
 
 
-class ELANViewlet(ViewletBase):
-    def isSupported(self):
-        dp_app_state = getMultiAdapter((self.context, self.request), name="dp_app_state")
-        return dp_app_state.isCurrentlyActive(ELAN_APP)
-
-
 class TickerViewlet(ELANViewlet):
     index = ViewPageTemplateFile("ticker.pt")
 
     @property
     def available(self):
-        return (
-            not IArchiving(self.context).is_archive
-            and hasattr(self.context, "myDocumentPool")
-            and self.isSupported()
-        )
+        return not IArchiving(self.context).is_archive and super().available
 
     def ticker(self):
         # Contentconfig not not accessible to Reader role but we need to access the ticker
