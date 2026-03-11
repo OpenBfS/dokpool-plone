@@ -61,7 +61,7 @@
         <nav class="navbar navbar-expand-lg d-flex align-items-stretch flex-grow-1 fixed-top">
           <div class="container-fluid w-100">
 
-            <button class="navbar-toggler"
+            <button class="navbar-toggler ms-auto"
                     aria-controls="offcanvasNavbar"
                     aria-label="Toggle navigation"
                     type="button"
