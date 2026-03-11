@@ -1,0 +1,30 @@
+<tal:header-accessibility-dropdown tal:define="
+                                     icons python:context.restrictedTraverse('@@iconresolver');
+                                   ">
+
+  <button class="btn btn-icon"
+          aria-label="Accessibility"
+          type="button"
+          data-bs-toggle="dropdown"
+  >
+    <tal:icon tal:replace="structure python:icons.tag('universal-access', tag_class='me-2')" />
+  </button>
+  <div class="dropdown-menu dropdown-menu-end menu-accessibility-dropdown">
+    <!-- Header: Accessibility -->
+    <div class="px-3 py-3 bg-light">
+      <div class="h5 fw-bold mb-0 text-graublau-dunkel2">Accessibility</div>
+    </div>
+
+    <!-- Menu list -->
+    <ul class="list-group list-group-flush">
+      <!-- Accessibility Info -->
+      <li class="list-group-item d-flex align-items-center justify-content-between py-3 list-item-compact">
+        <div class="d-flex align-items-center gap-3">
+          <tal:icon tal:replace="structure python:icons.tag('universal-access', tag_class='me-2')" />
+          <span class="text-graublau-dunkel1 small">Accessibility</span>
+        </div>
+        <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
+      </li>
+    </ul>
+  </div>
+</tal:header-accessibility-dropdown>

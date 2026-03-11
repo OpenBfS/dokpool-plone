@@ -109,7 +109,7 @@
 
 
                   <!-- Right: Icons -->
-                  <div class="nav-link d-flex align-items-center ms-auto gap-2 px-3">
+                  <div class="nav-link right-icons d-flex align-items-center ms-auto gap-2 px-3">
                     <button class="btn btn-icon collapsed me-3"
                             aria-expanded="false"
                             aria-label="Suche"

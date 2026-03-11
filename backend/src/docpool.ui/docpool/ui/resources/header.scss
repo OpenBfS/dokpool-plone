@@ -179,3 +179,12 @@ body.plone-toolbar-left-expanded {
 .text-primary {
   color: var(--bs-primary) !important;
 }
+
+.right-icons .dropdown-menu li {
+  background-color: transparent;
+    color: var(--bs-dropdown-link-color);
+  a,  {
+    padding: unset;
+    display: unset;
+  }
+}
