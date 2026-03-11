@@ -58,65 +58,95 @@
 
       <!-- Middle: Event pill/button area with switcher and main nav buttons -->
       <div class="d-flex align-items-stretch flex-grow-1">
-        <nav class="d-flex align-items-stretch">
+        <nav class="navbar navbar-expand-lg d-flex align-items-stretch flex-grow-1 fixed-top">
+          <div class="container-fluid w-100">
 
-          <tal:headernav replace="structure provider:docpool.headernav.manager" />
+            <button class="navbar-toggler ms-auto"
+                    aria-controls="offcanvasNavbar"
+                    aria-label="Toggle navigation"
+                    type="button"
+                    data-bs-target="#offcanvasNavbar"
+                    data-bs-toggle="offcanvas"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
 
-          <!-- Main navigation buttons -->
-          <a class="nav-btn d-flex flex-column justify-content-center px-4 border-end text-decoration-none ${python: view.active['groups']}"
-             href="${python: view.groups_folder_url}"
-             tal:condition="python: view.groups_folder_url"
-          >
-            <span class="small text-primary mb-n1"
-                  i18n:translate=""
-            >My group folders</span>
-          </a>
-          <a class="nav-btn d-flex flex-column justify-content-center px-4 border-end text-decoration-none ${python: view.active['emergency']}"
-             href="${python: view.emergency_info_url}"
-             tal:condition="python: view.emergency_info_url"
-          >
-            <span class="small text-primary mb-n1"
-                  i18n:translate=""
-            >Emergency documents</span>
-          </a>
+            <div class="offcanvas offcanvas-end"
+                 id="offcanvasNavbar"
+                 aria-labelledby="offcanvasNavbarLabel"
+                 tabindex="-1"
+            >
+              <div class="offcanvas-header">
+                <h5 class="offcanvas-title"
+                    id="offcanvasNavbarLabel"
+                >Offcanvas</h5>
+                <button class="btn-close"
+                        aria-label="Close"
+                        type="button"
+                        data-bs-dismiss="offcanvas"
+                ></button>
+              </div>
+              <div class="offcanvas-body">
+                <div class="navbar-nav w-100 d-flex">
+                  <tal:headernav replace="structure provider:docpool.headernav.manager" />
+                  <!-- Main navigation buttons -->
+                  <a class="nav-link nav-btn d-flex flex-column justify-content-center px-4 border-end text-decoration-none ${python: view.active['groups']}"
+                     href="${python: view.groups_folder_url}"
+                     tal:condition="python: view.groups_folder_url"
+                  >
+                    <span class="small text-primary mb-n1"
+                          i18n:translate=""
+                    >My group folders</span>
+                  </a>
+                  <a class="nav-link nav-btn d-flex flex-column justify-content-center px-4 border-end text-decoration-none ${python: view.active['emergency']}"
+                     href="${python: view.emergency_info_url}"
+                     tal:condition="python: view.emergency_info_url"
+                  >
+                    <span class="small text-primary mb-n1"
+                          i18n:translate=""
+                    >Emergency documents</span>
+                  </a>
+
+
+                  <!-- Right: Icons -->
+                  <div class="nav-link right-icons d-flex align-items-center ms-auto gap-2 px-3">
+                    <button class="btn btn-icon collapsed me-3"
+                            aria-expanded="false"
+                            aria-label="Suche"
+                            data-bs-target="#portal-searchbox"
+                            data-bs-toggle="collapse"
+                    >
+                      <tal:icon tal:replace="structure python:icons.tag('search', tag_class='me-2')" />
+                    </button>
+                    <tal:accessibility tal:replace="structure context/@@accessibility-dropdown">
+                        Accessibility dropdown
+                    </tal:accessibility>
+
+                    <tal:systemmessages tal:replace="structure context/@@system-messages-dropdown">
+                        System messages dropdown
+                    </tal:systemmessages>
+
+                    <tal:info tal:replace="structure context/@@info-dropdown">
+                        Info dropdown
+                    </tal:info>
+
+                    <tal:info tal:replace="structure context/@@config-dropdown">
+                        Config dropdown
+                    </tal:info>
+
+                    <tal:info tal:replace="structure context/@@user-dropdown">
+                        User dropdown
+                    </tal:info>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </nav>
       </div>
 
-      <!-- Right: Icons -->
-      <div class="d-flex align-items-center ms-auto gap-2 px-3">
-        <button class="btn btn-icon collapsed me-3"
-                aria-expanded="false"
-                aria-label="Suche"
-                data-bs-target="#portal-searchbox"
-                data-bs-toggle="collapse"
-        >
-          <tal:icon tal:replace="structure python:icons.tag('search', tag_class='me-2')" />
-        </button>
-        <button class="btn btn-icon"
-                aria-label="Barrierefreiheit"
-        >
-          <tal:icon tal:replace="structure python:icons.tag('universal-access', tag_class='me-2')" />
-        </button>
-        <button class="btn btn-icon"
-                aria-label="Systemmeldung"
-        >
-          <tal:icon tal:replace="structure python:icons.tag('exclamation-triangle-fill', tag_class='me-2')" />
-        </button>
 
-        <tal:info tal:replace="structure context/@@info-dropdown">
-          Info dropdown
-        </tal:info>
-
-        <tal:info tal:replace="structure context/@@config-dropdown">
-          Config dropdown
-        </tal:info>
-
-        <tal:info tal:replace="structure context/@@user-dropdown">
-          User dropdown
-        </tal:info>
-
-
-      </div>
     </div>
   </div>
 </header>

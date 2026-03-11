@@ -9,9 +9,9 @@
   >
     <tal:icon tal:replace="structure python:icons.tag('info-circle-fill', tag_class='me-2')" />
   </button>
-  <div class="dropdown-menu menu-info-dropdown">
+  <ul class="dropdown-menu dropdown-menu-end menu-info-dropdown">
     <!-- Header: Softwareversion -->
-    <div class="px-3 py-3 bg-light">
+    <li class="px-3 py-3 bg-light">
       <small class="d-block text-graublau-dunkel2">Softwareversion</small>
       <div class="h5 fw-bold mb-0 text-graublau-dunkel2">${view/get_dokpool_version}</div>
       <tal:debug tal:condition="python: view.available()">
@@ -38,45 +38,39 @@
                i18n:translate=""
             >Git Branch</a></span></p>
       </tal:debug>
-    </div>
+    </li>
 
     <!-- Menu list -->
-    <ul class="list-group list-group-flush">
-      <!-- Release Info -->
-      <li class="list-group-item d-flex align-items-center justify-content-between py-3 list-item-compact">
-        <div class="d-flex align-items-center gap-3">
-          <tal:icon tal:replace="structure python:icons.tag('info-circle', tag_class='me-2')" />
-          <span class="text-graublau-dunkel1 small">Release Info</span>
-        </div>
-        <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
-      </li>
+    <!-- Release Info -->
+    <li class="dropdown-item d-flex align-items-center justify-content-between py-3 list-item-compact">
+      <div class="d-flex align-items-center gap-3">
+        <tal:icon tal:replace="structure python:icons.tag('info-circle', tag_class='me-2')" />
+        <a class="text-graublau-dunkel1 small">Release Info</a>
+      </div>
+    </li>
 
-      <!-- Barrierefreiheit -->
-      <li class="list-group-item d-flex align-items-center justify-content-between py-3 list-item-compact">
-        <div class="d-flex align-items-center gap-3">
-          <tal:icon tal:replace="structure python:icons.tag('universal-access', tag_class='me-2')" />
-          <span class="text-graublau-dunkel1 small">Barrierefreiheit</span>
-        </div>
-        <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
-      </li>
+    <!-- Accessibility -->
+    <li class="dropdown-item d-flex align-items-center justify-content-between py-3 list-item-compact">
+      <div class="d-flex align-items-center gap-3">
+        <tal:icon tal:replace="structure python:icons.tag('universal-access', tag_class='me-2')" />
+        <a class="text-graublau-dunkel1 small">Accessibility</a>
+      </div>
+    </li>
 
-      <!-- Hilfe -->
-      <li class="list-group-item d-flex align-items-center justify-content-between py-3 list-item-compact">
-        <div class="d-flex align-items-center gap-3">
-          <tal:icon tal:replace="structure python:icons.tag('question-square', tag_class='me-2')" />
-          <span class="text-graublau-dunkel1 small">Hilfe</span>
-        </div>
-        <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
-      </li>
+    <!-- Hilfe -->
+    <li class="dropdown-item d-flex align-items-center justify-content-between py-3 list-item-compact">
+      <div class="d-flex align-items-center gap-3">
+        <tal:icon tal:replace="structure python:icons.tag('question-square', tag_class='me-2')" />
+        <a class="text-graublau-dunkel1 small">Hilfe</a>
+      </div>
+    </li>
 
-      <!-- Impressum -->
-      <li class="list-group-item d-flex align-items-center justify-content-between py-3 list-item-compact">
-        <div class="d-flex align-items-center gap-3">
-          <tal:icon tal:replace="structure python:icons.tag('info-circle', tag_class='me-2')" />
-          <span class="text-graublau-dunkel1 small">Impressum</span>
-        </div>
-        <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
-      </li>
-    </ul>
-  </div>
+    <!-- Impressum -->
+    <li class="dropdown-item d-flex align-items-center justify-content-between py-3 list-item-compact">
+      <div class="d-flex align-items-center gap-3">
+        <tal:icon tal:replace="structure python:icons.tag('info-circle', tag_class='me-2')" />
+        <a class="text-graublau-dunkel1 small">Impressum</a>
+      </div>
+    </li>
+  </ul>
 </tal:header-info-dropdown>

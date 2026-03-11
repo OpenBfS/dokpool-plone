@@ -6,11 +6,11 @@
 >
 
   <nav class="w-100 align-items-center">
-    <ul class="nav nav-pills d-flex flex-row flex-xl-column align-items-center w-100">
+    <ul class="nav nav-pills d-flex flex-row flex-nowrap flex-xl-column align-items-center w-100">
 
       <tal:appspecific replace="structure provider:docpool.sidebar.appspecific.manager" />
 
-      <li class="nav-item">
+      <li class="nav-item flex-fill">
         <a class="nav-link d-flex flex-column align-items-center justify-content-center text-decoration-none"
            tal:attributes="
              href string:${view/base_url};
@@ -24,7 +24,7 @@
         </a>
       </li>
 
-      <li class="nav-item">
+      <li class="nav-item flex-fill">
         <a class="nav-link d-flex flex-column align-items-center justify-content-center text-decoration-none"
            href="#"
            tal:attributes="
@@ -38,7 +38,7 @@
         </a>
       </li>
 
-      <li class="nav-item">
+      <li class="nav-item flex-fill">
         <a class="nav-link d-flex flex-column align-items-center justify-content-center text-decoration-none"
            href="#"
         >
@@ -49,7 +49,7 @@
         </a>
       </li>
 
-      <li class="nav-item">
+      <li class="nav-item flex-fill">
         <a class="nav-link d-flex flex-column align-items-center justify-content-center text-decoration-none"
            href="#"
         >

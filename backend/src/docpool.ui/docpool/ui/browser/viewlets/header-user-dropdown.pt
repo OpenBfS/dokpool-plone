@@ -10,7 +10,7 @@
     <tal:icon tal:replace="structure python:icons.tag('person-fill', tag_class='me-2')" />
   </button>
 
-  <ul class="dropdown-menu menu-user-dropdown">
+  <ul class="dropdown-menu dropdown-menu-end menu-user-dropdown">
     <li class="dropdown-item">
       <span i18n:domain="docpool.base"
             i18n:translate=""

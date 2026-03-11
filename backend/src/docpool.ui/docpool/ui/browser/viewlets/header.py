@@ -234,6 +234,14 @@ class ConfigDropdown(BrowserView):
     pass
 
 
+class SystemMessagesDropdown(BrowserView):
+    pass
+
+
+class AccessibilityDropdown(BrowserView):
+    pass
+
+
 def getApplicationDocPoolsForCurrentUser(context, request):
     """
     Determine all DocPools and their applications that the user has access to.

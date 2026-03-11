@@ -38,18 +38,12 @@
          "
     >
       <div class="icon-column">
-        <a class="pat-plone-modal"
-           href="${scenario_url}"
-           data-pat-plone-modal='{"templateOptions": {"classDialog": "modal-dialog modal-xl"}}'
-        >
+        <a href="${scenario_url}">
           <tal:icon replace="structure python:icons.tag('info-circle', tag_class='')" />
         </a>
       </div>
       <div class="icon-column">
-        <a class="pat-plone-modal"
-           href="${scenario_url}/@@edit"
-           data-pat-plone-modal='{"templateOptions": {"classDialog": "modal-dialog modal-xl"}}'
-        >
+        <a href="${scenario_url}/@@edit">
           <tal:icon replace="structure python:icons.tag('pencil', tag_class='')" />
         </a>
       </div>

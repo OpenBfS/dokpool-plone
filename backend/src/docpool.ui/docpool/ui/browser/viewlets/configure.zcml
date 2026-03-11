@@ -33,6 +33,24 @@
       />
 
   <browser:page
+      name="system-messages-dropdown"
+      for="*"
+      class=".header.SystemMessagesDropdown"
+      template="header-system-messages-dropdown.pt"
+      permission="zope.Public"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
+  <browser:page
+      name="accessibility-dropdown"
+      for="*"
+      class=".header.AccessibilityDropdown"
+      template="header-accessibility-dropdown.pt"
+      permission="zope.Public"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
+  <browser:page
       name="user-dropdown"
       for="*"
       class=".header.UserDropdown"
