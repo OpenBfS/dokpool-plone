@@ -14,7 +14,7 @@ describe("pat-update-notification", function () {
         await events.await_pattern_init(instance);
 
         expect(el.innerHTML.trim()).toBe(
-            `<p>hello ${instance.options.exampleOption}, this is pattern ${instance.name} speaking.</p>`,
+            `<p>hello ${instance.options.exampleOption}, this is pattern ${instance.name} speaking.</p>`
         );
     });
     it("is initialized correctly with options from attribute", async function () {
@@ -28,7 +28,7 @@ describe("pat-update-notification", function () {
         await events.await_pattern_init(instance);
 
         expect(el.innerHTML.trim()).toBe(
-            `<p>hello World, this is pattern ${instance.name} speaking.</p>`,
+            `<p>hello World, this is pattern ${instance.name} speaking.</p>`
         );
     });
 });

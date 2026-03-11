@@ -127,6 +127,21 @@ body.plone-toolbar-left-expanded {
     margin-top: calc((var(--bs-dropdown-item-padding-y) + 10px) * -1);
     margin-bottom: calc((var(--bs-dropdown-item-padding-y) + 10px) * -1);
   }
+
+  li.dropdown-item {
+    display: flex;
+    background-color: transparent;
+    color: var(--bs-dropdown-link-color);
+
+    a {
+      padding: unset;
+
+      &:hover {
+        background-color: transparent !important;
+      }
+    }
+
+  }
 }
 
 .menu-config-dropdown .selected {

@@ -42,7 +42,7 @@ class Pattern extends BasePattern {
                 .then((response) => {
                     if (!response.ok) {
                         throw new Error(
-                            `HTTP Error: ${response.status} ${response.statusText}`,
+                            `HTTP Error: ${response.status} ${response.statusText}`
                         );
                     }
                     return response.json();
@@ -82,7 +82,7 @@ class Pattern extends BasePattern {
                         '            <button\n id="refresh-data-btn"' +
                         '              class="btn btn-link ">' +
                         "              Jetzt aktualisieren\n" +
-                        "            </button>\n</p>",
+                        "            </button>\n</p>"
                 );
                 document
                     .getElementById("refresh-data-btn")
