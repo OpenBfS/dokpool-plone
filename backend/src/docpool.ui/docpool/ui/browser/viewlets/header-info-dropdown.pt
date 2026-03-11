@@ -51,11 +51,11 @@
         <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
       </li>
 
-      <!-- Barrierefreiheit -->
+      <!-- Accessibility -->
       <li class="list-group-item d-flex align-items-center justify-content-between py-3 list-item-compact">
         <div class="d-flex align-items-center gap-3">
           <tal:icon tal:replace="structure python:icons.tag('universal-access', tag_class='me-2')" />
-          <span class="text-graublau-dunkel1 small">Barrierefreiheit</span>
+          <span class="text-graublau-dunkel1 small">Accessibility</span>
         </div>
         <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
       </li>

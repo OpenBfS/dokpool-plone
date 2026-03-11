@@ -33,19 +33,19 @@
       />
 
   <browser:page
-      name="systemmeldung-dropdown"
+      name="system-messages-dropdown"
       for="*"
-      class=".header.SystemmeldungDropdown"
-      template="header-systemmeldung-dropdown.pt"
+      class=".header.SystemMessagesDropdown"
+      template="header-system-messages-dropdown.pt"
       permission="zope.Public"
       layer="docpool.ui.interfaces.IUITheme"
       />
 
   <browser:page
-      name="barrierefreiheit-dropdown"
+      name="accessibility-dropdown"
       for="*"
-      class=".header.BarrierefreiheitDropdown"
-      template="header-barrierefreiheit-dropdown.pt"
+      class=".header.AccessibilityDropdown"
+      template="header-accessibility-dropdown.pt"
       permission="zope.Public"
       layer="docpool.ui.interfaces.IUITheme"
       />

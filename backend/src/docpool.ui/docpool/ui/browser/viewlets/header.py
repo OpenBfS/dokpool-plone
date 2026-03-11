@@ -234,11 +234,11 @@ class ConfigDropdown(BrowserView):
     pass
 
 
-class SystemmeldungDropdown(BrowserView):
+class SystemMessagesDropdown(BrowserView):
     pass
 
 
-class BarrierefreiheitDropdown(BrowserView):
+class AccessibilityDropdown(BrowserView):
     pass
 
 

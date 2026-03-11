@@ -118,13 +118,13 @@
                     >
                       <tal:icon tal:replace="structure python:icons.tag('search', tag_class='me-2')" />
                     </button>
-                    <tal:barrierefreiheit tal:replace="structure context/@@barrierefreiheit-dropdown">
-                        Barrierefreiheit dropdown
-                    </tal:barrierefreiheit>
+                    <tal:accessibility tal:replace="structure context/@@accessibility-dropdown">
+                        Accessibility dropdown
+                    </tal:accessibility>
 
-                    <tal:systemmeldung tal:replace="structure context/@@systemmeldung-dropdown">
-                        Systemmeldung dropdown
-                    </tal:systemmeldung>
+                    <tal:systemmessages tal:replace="structure context/@@system-messages-dropdown">
+                        System messages dropdown
+                    </tal:systemmessages>
 
                     <tal:info tal:replace="structure context/@@info-dropdown">
                         Info dropdown
