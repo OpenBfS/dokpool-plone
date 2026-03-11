@@ -118,16 +118,13 @@
                     >
                       <tal:icon tal:replace="structure python:icons.tag('search', tag_class='me-2')" />
                     </button>
-                    <button class="btn btn-icon"
-                            aria-label="Barrierefreiheit"
-                    >
-                      <tal:icon tal:replace="structure python:icons.tag('universal-access', tag_class='me-2')" />
-                    </button>
-                    <button class="btn btn-icon"
-                            aria-label="Systemmeldung"
-                    >
-                      <tal:icon tal:replace="structure python:icons.tag('exclamation-triangle-fill', tag_class='me-2')" />
-                    </button>
+                    <tal:barrierefreiheit tal:replace="structure context/@@barrierefreiheit-dropdown">
+                        Barrierefreiheit dropdown
+                    </tal:barrierefreiheit>
+
+                    <tal:systemmeldung tal:replace="structure context/@@systemmeldung-dropdown">
+                        Systemmeldung dropdown
+                    </tal:systemmeldung>
 
                     <tal:info tal:replace="structure context/@@info-dropdown">
                         Info dropdown

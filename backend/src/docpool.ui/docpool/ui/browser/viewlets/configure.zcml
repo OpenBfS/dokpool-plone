@@ -33,6 +33,24 @@
       />
 
   <browser:page
+      name="systemmeldung-dropdown"
+      for="*"
+      class=".header.SystemmeldungDropdown"
+      template="header-systemmeldung-dropdown.pt"
+      permission="zope.Public"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
+  <browser:page
+      name="barrierefreiheit-dropdown"
+      for="*"
+      class=".header.BarrierefreiheitDropdown"
+      template="header-barrierefreiheit-dropdown.pt"
+      permission="zope.Public"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
+  <browser:page
       name="user-dropdown"
       for="*"
       class=".header.UserDropdown"
