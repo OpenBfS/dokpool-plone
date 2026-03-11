@@ -9,7 +9,7 @@
   >
     <tal:icon tal:replace="structure python:icons.tag('info-circle-fill', tag_class='me-2')" />
   </button>
-  <div class="dropdown-menu menu-info-dropdown">
+  <div class="dropdown-menu dropdown-menu-end menu-info-dropdown">
     <!-- Header: Softwareversion -->
     <div class="px-3 py-3 bg-light">
       <small class="d-block text-graublau-dunkel2">Softwareversion</small>
