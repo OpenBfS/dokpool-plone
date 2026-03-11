@@ -371,6 +371,18 @@
           </div>
 
           <div class="ms-1 my-1"
+               tal:condition="python: view.folder_listing and not view.is_archive"
+          >
+            <a class="btn btn-light btn-icon"
+               href="${python: context.absolute_url()}/@@folder_wizard"
+               title="Add folder"
+               i18n:attributes="title"
+            >
+              <tal:icon tal:replace="structure python:icons.tag('folder-plus')" />
+            </a>
+          </div>
+
+          <div class="ms-1 my-1"
                tal:condition="python: not view.is_archive"
           >
             <a class="btn btn-light btn-icon"

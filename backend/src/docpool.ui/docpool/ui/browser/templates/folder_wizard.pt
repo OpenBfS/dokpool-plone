@@ -1,0 +1,178 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      lang="en"
+      metal:use-macro="context/@@main_template/macros/master"
+      xml:lang="en"
+      i18n:domain="docpool.ui"
+>
+
+  <body>
+
+    <metal:content-core fill-slot="main">
+
+      <form class="bg-light mx-3 my-3 rowlike pat-formunloadalert pat-formautofocus pat-validation enableFormTabbing"
+            id="form"
+            enctype="multipart/form-data"
+            method="post"
+            tal:define="
+              errors view/errors;
+              form python:view.form;
+              foldertypes python: view.foldertypes;
+            "
+            tal:attributes="
+              action request/URL;
+            "
+      >
+
+        <span tal:replace="structure context/@@authenticator/authenticator"></span>
+        <input name="session_name"
+               type="hidden"
+               value=""
+               tal:attributes="
+                 value python:view.session_name;
+               "
+        />
+
+        <div class="row">
+          <div class="col-12 p-3">
+            <h1>
+              <span i18n:translate="">Create new</span>
+              <span tal:content="python: view.portal_type_title"
+                    i18n:domain="docpool.base"
+                    i18n:translate=""
+              ></span>
+            </h1>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-9 bg-white px-3">
+
+            <!-- FolderType -->
+            <div tal:define="
+                   widget_name string:foldertype;
+                   widget_id python:widget_name.replace('.', '-');
+                   widget_value python:form.get(widget_name);
+                   error python:errors.get(widget_name);
+                   css_class python:f'mb-3 field fieldname-form.widgets.{widget_name} widget-mode-input';
+                   css_class python: css_class + ' error' if error else css_class;
+                 "
+                 tal:condition="python: len(foldertypes) > 1"
+                 tal:attributes="
+                   class python: css_class;
+                   id python: f'formfield-{widget_id}';
+                 "
+            >
+              <!-- Data -->
+              <div class="mb-2 wizard-field-label">
+                <label for="${widget_name}">
+                  <span tal:attributes="
+                          class python:view.is_required(widget_name);
+                        "
+                        i18n:translate=""
+                  >Folder Type</span>
+                </label>
+                <p class=""
+                   tal:condition="python: not foldertypes"
+                   i18n:translate=""
+                >
+                    Please select a container first
+                </p>
+                <div class="form-text"></div>
+                <div class="error-msg"
+                     tal:condition="error"
+                ><span tal:replace="error"></span></div>
+                <div class="wizard-field field"
+                     tal:condition="python: foldertypes"
+                     tal:attributes="
+                       class python:error and 'wizard-field field error' or 'wizard-field field';
+                     "
+                >
+                  <div class="form-check mb-3"
+                       tal:repeat="item python: foldertypes"
+                  >
+                    <input class="form-check-input"
+                           name="${widget_name}"
+                           type="radio"
+                           value="${python: item.getId()}"
+                           tal:define="
+                             first_item repeat/item/start;
+                             has_value python:True if widget_value else False;
+                           "
+                           tal:attributes="
+                             checked python:item.getId() == widget_value if has_value else first_item;
+                             title python: item.title;
+                             id python: item.getId();
+                           "
+                           i18n:attributes="title"
+                    />
+                    <label class="form-check-label"
+                           tal:attributes="
+                             for python: item.getId();
+                           "
+                    >
+                      <tal:icon tal:replace="structure python:icons.tag('folder')" />
+                      <span tal:content="python: item.title"
+                            i18n:domain="docpool.base"
+                            i18n:translate=""
+                      ></span>
+                    </label>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+            <tal:block tal:define="
+                         widget python:view.get_widget('IDublinCore.title');
+                       "
+                       tal:condition="python: widget"
+            >
+              <tal:widget tal:replace="structure widget/@@ploneform-render-widget" />
+            </tal:block>
+
+          </div>
+
+          <div class="col-3 p-3">
+            <p>
+              <span i18n:translate="">Ablageort</span>
+            </p>
+            <tal:icon tal:replace="structure python:icons.tag('folder')" />
+            <p tal:content="python: context.title"
+               i18n:translate=""
+            >
+              Ein Ordner
+            </p>
+          </div>
+
+
+        </div>
+
+        <div class="row">
+          <div class="col-12 p-3 text-end">
+
+
+            <button class="btn btn-secondary me-3"
+                    formnovalidate="formnovalidate"
+                    name="form.buttons.cancel"
+                    type="submit"
+                    i18n:translate=""
+            >Cancel</button>
+            <button class="btn btn-primary"
+                    name="form.buttons.continue"
+                    type="submit"
+                    i18n:translate=""
+            >Next</button>
+
+          </div>
+        </div>
+
+
+      </form>
+
+    </metal:content-core>
+
+  </body>
+</html>

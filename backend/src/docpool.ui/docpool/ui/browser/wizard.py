@@ -11,10 +11,13 @@ from docpool.ui.utils import extract_data
 from plone import api
 from plone.app.dexterity.interfaces import IDXFileFactory
 from plone.app.textfield.value import RichTextValue
+from plone.base.interfaces import IConstrainTypes
+from plone.dexterity.interfaces import IDexterityFTI
 from plone.memoize.view import memoize
 from Products.CMFPlacefulWorkflow.PlacefulWorkflowTool import WorkflowPolicyConfig_id
 from Products.Five import BrowserView
 from z3c.form.interfaces import NO_VALUE
+from zope.component import getUtility
 from zope.interface import Invalid
 from zope.schema import ValidationError
 from ZPublisher.HTTPRequest import FileUpload
@@ -149,6 +152,15 @@ class ContextlessWizard(BrowserView):
             return "required"
         return ""
 
+    def get_widget(self, name):
+        if not self.add_form:
+            return
+        if widget := self.add_form.widgets.get(name):
+            return widget
+        for group in self.add_form.groups:
+            if widget := group.widgets.get(name):
+                return widget
+
 
 class DPDocumentWizard(ContextlessWizard):
     """Wizard for DPDocuments."""
@@ -251,15 +263,6 @@ class DPDocumentWizard(ContextlessWizard):
         )
         api.portal.show_message(msg, self.request)
         return self.request.response.redirect(self.context.absolute_url())
-
-    def get_widget(self, name):
-        if not self.add_form:
-            return
-        if widget := self.add_form.widgets.get(name):
-            return widget
-        for group in self.add_form.groups:
-            if widget := group.widgets.get(name):
-                return widget
 
     def create_item(self):
         """Create the content from the data"""
@@ -365,7 +368,7 @@ class DPDocumentWizard(ContextlessWizard):
                 "id": doctype_brain.id,
                 "title": doctype_brain.Title,
                 "description": doctype_brain.Description,
-                "icon": doctype_brain.getObject().icon_name,
+                "icon": doctype_brain._unrestrictedGetObject().icon_name,
             })
         return addable
 
@@ -446,6 +449,103 @@ class DPDocumentWizard(ContextlessWizard):
 
         if wf_id:
             return workflow_tool.getWorkflowById(wf_id)
+
+
+class FolderWizard(ContextlessWizard):
+    total_steps = 1
+    portal_type = "Folder"  # is defined by constrains
+    required_for_1 = []
+    required_for_next = "required_for_1"
+
+    def __call__(self):
+        # Button handlers
+        if self.form.get("form.buttons.cancel", None) is not None:
+            return self.request.response.redirect(self.context.absolute_url())
+
+        # Prepare addable types
+        container = self.context
+        container_fti = getUtility(IDexterityFTI, name=container.portal_type)
+        constrains = IConstrainTypes(container, None)
+        self.foldertypes = []
+        self.add_form = None
+        if constrains:
+            allowed_types = constrains.getImmediatelyAddableTypes()
+        # check which folder_type we can add here
+        for portal_type in FOLDER_TYPES:
+            if constrains and portal_type not in allowed_types:
+                continue
+            fti = getUtility(IDexterityFTI, name=portal_type)
+            if not fti.isConstructionAllowed(container):
+                continue
+            if not container_fti.allowType(portal_type):
+                continue
+            self.foldertypes.append(fti)
+
+        if not self.foldertypes:
+            api.portal.show_message(_("You cannot add any folders"), self.request)
+            return self.request.response.redirect(self.context.absolute_url())
+
+        self.portal_type = self.foldertypes[0].getId()
+        self.portal_type_title = self.foldertypes[0].title
+
+        if "foldertype" in self.data:
+            # does this make sense?
+            self.portal_type = self.data["foldertype"]
+            fti = getUtility(IDexterityFTI, name=self.portal_type)
+            self.portal_type_title = fti.title
+
+        self.add_form = AddForm(container, self.request)
+        self.add_form.portal_type = self.portal_type
+        self.add_form.update()
+        self.add_form.updateWidgets()
+
+        # Render form
+        if self.form.get("form.buttons.continue", None) is None:
+            return self.template()
+
+        # Validation using schema fields
+        data, errors = self.extract_data()
+
+        self.data.update(data)
+
+        self.errors.update(errors)
+        self.run_custom_validation()
+
+        if self.errors:
+            (
+                api.portal.show_message(
+                    _(
+                        "there_was_an_error_processing_the_form",
+                        default="There was an error processing the form!",
+                    ),
+                    self.request,
+                    type="error",
+                ),
+            )
+            logger.info(self.errors)
+            return self.template()
+
+        if "foldertype" in self.data:
+            self.portal_type = self.data["foldertype"]
+            fti = getUtility(IDexterityFTI, name=self.portal_type)
+            self.portal_type_title = fti.title
+
+        new = self.create_item()
+        msg = _(
+            "Created ${portal_type} '${title}'",
+            mapping={"portal_type": self.portal_type_title, "title": new.title},
+        )
+        api.portal.show_message(msg, self.request)
+        return self.request.response.redirect(self.context.absolute_url())
+
+    def create_item(self):
+        new = api.content.create(
+            container=self.context,
+            type=self.portal_type,
+            title=self.data["form.widgets.IDublinCore.title"],
+            safe_id=True,
+        )
+        return new
 
 
 def transform_fileupload(value):

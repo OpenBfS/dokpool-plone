@@ -232,6 +232,15 @@
       />
 
   <browser:page
+      name="folder_wizard"
+      for="*"
+      class=".wizard.FolderWizard"
+      template="templates/folder_wizard.pt"
+      permission="zope2.View"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
+  <browser:page
       name="entrytypes"
       for="*"
       class=".entrytypes.EntryTypes"
