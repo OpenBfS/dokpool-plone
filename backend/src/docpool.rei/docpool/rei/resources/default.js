@@ -32,7 +32,7 @@ $(function () {
             if (!isOpen) {
               $("#faceted_table .metatitle").click();
             }
-          }
+          },
         );
         // Open all metainfos
         $("#z3ctabel-toggles .z3ctable-toggle-metadata").on(
@@ -45,9 +45,9 @@ $(function () {
             if (!isOpen) {
               $("#faceted_table .metadata").click();
             }
-          }
+          },
         );
-      }
+      },
     );
   }
 });

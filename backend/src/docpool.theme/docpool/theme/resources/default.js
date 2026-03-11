@@ -32,7 +32,7 @@ if (isAnonymous != null) {
 // Imports the scss non-admins and Users that are not a ContentAdministrators group
 // css-class is set in docpool.theme.layout.DocpoolBodyClasses
 const isAdminOrContentAdmin = document.querySelector(
-  "body.user-is-admin-or-contentadmin"
+  "body.user-is-admin-or-contentadmin",
 );
 if (isAdminOrContentAdmin == null) {
   import("./docpool_styles/nonadmin.scss");
@@ -91,6 +91,6 @@ $(function () {
 // Add eventlistener for spinner
 jQuery(document).on("click", ".activate-spinner", function () {
   $("#visual-portal-wrapper").append(
-    '<div id="portal-spinner"><div class="spinner-border" role="status"><span class="visually-hidden">Please wait...</span></div></div>'
+    '<div id="portal-spinner"><div class="spinner-border" role="status"><span class="visually-hidden">Please wait...</span></div></div>',
   );
 });
