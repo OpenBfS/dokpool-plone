@@ -15,6 +15,11 @@ class IPlaces(Interface):
     document_pool_path = Attribute("Absolute path to document pool")
     document_pool = Attribute("Document pool")
 
+    content_id = Attribute("Id of content area")
+    content_path = Attribute("Relative path to content area")
+    content = Attribute("Content area")
+    in_content = Attribute("Is context inside a content area?")
+
 
 @adapter(Interface)
 @implementer(IPlaces)
@@ -32,3 +37,20 @@ class PlacesAPI:
     @property
     def document_pool_path(self):
         return "/".join(dp.getPhysicalPath()) if (dp := self.document_pool) is not None else None
+
+    content_id = "content"
+
+    @property
+    def content_path(self):
+        return "/".join((dpp, self.content_id)) if (dpp := self.document_pool_path) is not None else None
+
+    @property
+    def content(self):
+        return dp[self.content_id] if (dp := self.document_pool) is not None else None
+
+    @property
+    def in_content(self):
+        obj = self.context
+        while obj is not None and obj.portal_type != "ContentArea":
+            obj = ILocation(obj).__parent__
+        return obj is not None
