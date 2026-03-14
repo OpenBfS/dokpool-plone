@@ -12,6 +12,7 @@ class IPlaces(Interface):
     The context may be None.
     """
 
+    document_pool_path = Attribute("Absolute path to document pool")
     document_pool = Attribute("Document pool")
 
 
@@ -27,3 +28,7 @@ class PlacesAPI:
         while obj is not None and obj.portal_type != "DocumentPool":
             obj = ILocation(obj).__parent__
         return obj
+
+    @property
+    def document_pool_path(self):
+        return "/".join(dp.getPhysicalPath()) if (dp := self.document_pool) is not None else None
