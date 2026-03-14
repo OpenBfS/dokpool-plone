@@ -5,7 +5,7 @@ from docpool.base.config import FOLDER_TYPES
 from docpool.base.config import OTHER_TYPES
 from docpool.base.config import TRANSFERS_APP
 from docpool.base.content.archiving import IArchiving
-from docpool.base.utils import get_content_area
+from docpool.base.content.places import IPlaces
 from docpool.elan.config import ELAN_APP
 from docpool.elan.utils import get_scenario_for_current_user
 from docpool.ui import _
@@ -169,11 +169,8 @@ class Listing(BrowserView):
                 "depth": 1,
             }
         else:
-            content_area = get_content_area(self.context)
-            if content_area:
-                self.base_query["path"] = "/".join(content_area.getPhysicalPath())
-            else:
-                self.base_query["path"] = "/".join(self.context.getPhysicalPath())
+            content_area = IPlaces(self.context).content
+            self.base_query["path"] = "/".join((content_area or self.context).getPhysicalPath())
 
         # Prepare review_state filter options (query needs to be complete)
         for state in review_state_filter_config:

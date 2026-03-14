@@ -3,7 +3,6 @@ from docpool.base.config import BASE_APP
 from docpool.base.config import TRANSFERS_APP
 from docpool.base.content.archiving import IArchiving
 from docpool.base.content.places import IPlaces
-from docpool.base.utils import get_content_area
 from docpool.base.utils import getGroupsForCurrentUser
 from docpool.elan.config import ELAN_APP
 from docpool.rei.config import REI_APP
@@ -265,8 +264,7 @@ def getFoldersForCurrentUser(context):
 
     user = api.user.get_current()
 
-    content_area = get_content_area(context)
-    if not content_area:
+    if (content_area := IPlaces(context).content) is None:
         return
 
     groups = getGroupsForCurrentUser(content_area, sort_on="getObjPositionInParent")

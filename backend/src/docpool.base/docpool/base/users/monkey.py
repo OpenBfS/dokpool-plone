@@ -1,8 +1,8 @@
 from AccessControl import getSecurityManager
 from Acquisition import aq_inner
 from docpool.base.content.documentpool import IDocumentPool
+from docpool.base.content.places import IPlaces
 from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
-from docpool.base.utils import get_content_area
 from logging import getLogger
 from plone import api
 from plone.app.users.browser import userdatapanel
@@ -147,7 +147,7 @@ def removeGroup(self, group_id, REQUEST=None):
         if len(result) == 1:
             try:
                 esd = result[0].getObject()
-                context = get_content_area(esd)
+                context = IPlaces(esd).content
             except KeyError:
                 pass
     if base_hasattr(context, "Groups"):

@@ -2,7 +2,7 @@ from AccessControl import Unauthorized
 from Acquisition import aq_get
 from docpool.base.browser.dpdocument import AddForm
 from docpool.base.content.archiving import IArchiving
-from docpool.base.utils import get_content_area
+from docpool.base.content.places import IPlaces
 from docpool.base.utils import getAllowedDocumentTypes
 from docpool.base.utils import getDocumentPoolSite
 from docpool.elan.utils import get_scenario_for_current_user
@@ -309,7 +309,7 @@ class DPDocumentWizard(ContextlessWizard):
     def containers(self):
         """All containers (uid, title, level) where the user can add entries."""
         brains = api.content.find(
-            context=get_content_area(self.context),
+            context=IPlaces(self.context).content,
             portal_type="GroupFolder",
             sort_on="sortable_title",
             apps_supported=self.app,

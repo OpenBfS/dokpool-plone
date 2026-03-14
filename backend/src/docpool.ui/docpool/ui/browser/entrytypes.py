@@ -2,7 +2,7 @@ from Acquisition import aq_get
 from docpool.base.config import BASE_APP
 from docpool.base.config import TRANSFERS_APP
 from docpool.base.content.archiving import IArchiving
-from docpool.base.utils import get_content_area
+from docpool.base.content.places import IPlaces
 from docpool.base.utils import getDocumentPoolSite
 from docpool.elan.config import ELAN_APP
 from docpool.elan.utils import get_scenario_for_current_user
@@ -30,12 +30,10 @@ class EntryTypes(BrowserView):
         listing_url = f"{self.search_context.absolute_url()}/@@listing"
 
         # Prepare query-parameters for count_options
-        content_area = get_content_area(self.search_context)
-        if content_area:
-            self.content_area_path = "/".join(content_area.getPhysicalPath())
-        else:
-            # Is this fallback needed?
-            self.content_area_path = "/".join(self.context.getPhysicalPath())
+        # Is the fallback needed?
+        self.content_area_path = IPlaces(self.search_context).content_path or "/".join(
+            self.context.getPhysicalPath()
+        )
 
         # Prepare filter by APP
         dp_app_state = api.content.get_view("dp_app_state", self.context, self.request)

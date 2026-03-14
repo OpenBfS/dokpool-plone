@@ -2,7 +2,6 @@ from AccessControl import getSecurityManager
 from AccessControl.SecurityManagement import newSecurityManager
 from AccessControl.SecurityManagement import setSecurityManager
 from AccessControl.users import UnrestrictedUser as BaseUnrestrictedUser
-from Acquisition import aq_get
 from Acquisition import aq_inner
 from docpool.base.content.places import IPlaces
 from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
@@ -123,20 +122,10 @@ def getAllowedDocumentTypesForGroup(self):
     return res
 
 
-def get_content_area(obj):
-    """Acquire the nearest ContentArea"""
-    if obj.portal_type == "ContentArea":
-        return obj
-
-    if content_area := aq_get(obj, "content", None):
-        if content_area.portal_type == "ContentArea":
-            return content_area
-
-
 def getGroupsForCurrentUser(obj, sort_on="path"):
     """Return groups that can create content based on GroupFolders visible to the logged-in user."""
     results = []
-    content_area = get_content_area(obj)
+    content_area = IPlaces(obj).content
 
     gtool = getToolByName(obj, "portal_groups")
     for brain in api.content.find(context=content_area, portal_type="GroupFolder", sort_on=sort_on):
