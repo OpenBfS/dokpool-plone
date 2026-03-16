@@ -31,6 +31,10 @@ class TestListing:
 
     def setup_content(self):
         add_user(self.docpool, "user1", ["group1"], enabled_apps=["elan"])
+        from docpool.api.browser.setup import add_group
+
+        add_group(self.docpool, "group2")
+        api.group.add_user(groupname="bund_group2", username="user1")
         content = self.docpool["content"]
         assert content.keys() == ["Transfers", "Members", "Groups"]
         assert "user1" in content["Members"]
@@ -38,8 +42,11 @@ class TestListing:
 
         # assign app to groupfolder to make is show up in navigation (#5434)
         self.group_folder = content["Groups"]["bund_group1"]
+        self.group_folder2 = content["Groups"]["bund_group2"]
         ILocalBehaviorSupport(self.group_folder).local_behaviors = ["elan"]
+        ILocalBehaviorSupport(self.group_folder2).local_behaviors = ["elan"]
         self.group_folder.reindexObject(idxs=["apps_supported"])
+        self.group_folder2.reindexObject(idxs=["apps_supported"])
         logout()
         login(self.portal, "user1")
 
@@ -218,7 +225,7 @@ class TestListing:
         page = self.page
         page.goto(f"{self.plone_url}/bund/setActiveApp?app=elan")
         page.goto(f"{self.plone_url}/bund/@@dpdocument_wizard_1")
-        expect(page.locator("#container_uid")).to_have_value(self.group_folder.UID())
+        page.locator("#container_uid").select_option(self.group_folder.UID())
         page.locator("input#official_notification").click()
         page.get_by_role("button", name="Next").click()
         page.locator("#form-widgets-IDublinCore-title").fill("Example Entry")

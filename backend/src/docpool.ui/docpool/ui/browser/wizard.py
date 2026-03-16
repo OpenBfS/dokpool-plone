@@ -204,13 +204,16 @@ class DPDocumentWizard(ContextlessWizard):
 
         # We can only populate fiels and widgets for the add-form once we have the container
         self.add_form = None
-        container_uid = self.data.get("container_uid") or self.form.get("container_uid")
+        self.container_uid = None
+        container_uid = self.form.get("container_uid") or self.data.get("container_uid")
         if container_uid:
+            self.container_uid = container_uid
             container = api.content.get(UID=container_uid)
-            self.add_form = AddForm(container, self.request)
-            self.add_form.portal_type = self.portal_type
-            self.add_form.update()
-            self.add_form.updateWidgets()
+            if self.portal_type in [i.id for i in container.allowedContentTypes()]:
+                self.add_form = AddForm(container, self.request)
+                self.add_form.portal_type = self.portal_type
+                self.add_form.update()
+                self.add_form.updateWidgets()
 
         # Prepare some data for display on the form
         if container_uid:
@@ -321,20 +324,14 @@ class DPDocumentWizard(ContextlessWizard):
             obj = brain.getObject()
             if item := self.check_tree(obj):
                 tree.append(item)
-        flat = [i for i in self.flatten(tree)]
-        self.container_uid = None
+
+        # prune all nodes if it and all descendants have no allowed types
+        pruned_tree = filter_items(tree)
+        flat = [i for i in flatten(pruned_tree)]
+
         if self.context.portal_type in FOLDER_TYPES and self.context.UID() in [i["uid"] for i in flat]:
             self.container_uid = self.context.UID()
         return flat
-
-    def flatten(self, items):
-        """Flatten a list of nested dicts."""
-        for item in items:
-            children = item.pop("children", None)
-            yield item
-            if children:
-                for child in self.flatten(children):
-                    yield child
 
     def check_tree(self, obj, level=0):
         """Walk a directory tree and return data about containers where a user can add."""
@@ -348,17 +345,24 @@ class DPDocumentWizard(ContextlessWizard):
             ],
             "apps_supported": self.app,
         }
-        if self.entries_the_user_can_add(obj):
-            data = {"uid": obj.UID(), "title": obj.title, "level": level}
-            data["children"] = [self.check_tree(child, level=level + 1) for child in obj.contentValues(query)]
-            return data
+        children = [i.getObject() for i in obj.restrictedTraverse("contentlisting")(**query)]
+        data = {
+            "uid": obj.UID(),
+            "title": obj.title,
+            "level": level,
+            "allowed": self.entries_the_user_can_add(obj),
+            "children": [self.check_tree(child, level=level + 1) for child in children],
+        }
+        return data
 
     def entries_the_user_can_add(self, container):
         """Brains of DocTypes that the current user can add to a given container."""
-        if not api.user.has_permission("Add portal content", obj=container):
-            return
-        allowed = container.allowedDocTypes
         addable = []
+        if self.portal_type not in [i.id for i in container.allowedContentTypes()]:
+            return addable
+        if not api.user.has_permission("Add portal content", obj=container):
+            return addable
+        allowed = container.allowedDocTypes
         for doctype_brain in getAllowedDocumentTypes(container):
             if self.app not in doctype_brain.apps_supported:
                 continue
@@ -371,22 +375,6 @@ class DPDocumentWizard(ContextlessWizard):
                 "icon": doctype_brain._unrestrictedGetObject().icon_name,
             })
         return addable
-
-    def doctypes(self):
-        """DocTypes that the user is allowed to create in the form given the uid of a container."""
-        container_uid = self.data.get("container_uid") or self.form.get("container_uid")
-        if not container_uid:
-            all_containers = self.containers()
-            if self.context.portal_type in FOLDER_TYPES and self.context.UID() in [
-                i["uid"] for i in all_containers
-            ]:
-                container_uid = self.context.UID()
-            elif len(all_containers) == 1:
-                container_uid = all_containers[0]["uid"]
-        if not container_uid:
-            return []
-        container = api.content.get(UID=container_uid)
-        return self.entries_the_user_can_add(container)
 
     def scenarios(self):
         vocabulary = api.portal.get_vocabulary(
@@ -449,6 +437,37 @@ class DPDocumentWizard(ContextlessWizard):
 
         if wf_id:
             return workflow_tool.getWorkflowById(wf_id)
+
+
+def filter_items(items):
+    result = []
+    append = result.append
+    for item in items:
+        children = item.get("children")
+        allowed = item.get("allowed", [])
+        # Recursively filter children if they exist
+        if children:
+            filtered_children = filter_items(children)
+        else:
+            filtered_children = []
+        # Skip node if it and all descendants are disallowed
+        if not allowed and not filtered_children:
+            continue
+        # Only copy dict if node survives
+        new_item = item.copy()
+        new_item["children"] = filtered_children
+        append(new_item)
+    return result
+
+
+def flatten(items):
+    """Flatten a list of nested dicts."""
+    for item in [i for i in items if i]:
+        children = item.pop("children", None)
+        yield item
+        if children:
+            for child in flatten(children):
+                yield child
 
 
 class FolderWizard(ContextlessWizard):

@@ -19,7 +19,10 @@
             tal:define="
               errors view/errors;
               form python:view.form;
-              doctypes python: view.doctypes();
+              containers python: view.containers();
+              container_uid python: form.get('container_uid') or view.container_uid;
+              container python: [i for i in containers if container_uid == i['uid']][0] if container_uid else None;
+              doctypes python: container['allowed'] if container else [];
             "
             tal:attributes="
               action request/URL;
@@ -89,9 +92,6 @@
                      tal:condition="error"
                 ><span tal:replace="error"></span></div>
                 <div class="wizard-field field"
-                     tal:define="
-                       containers python: view.containers();
-                     "
                      tal:attributes="
                        class python:error and 'wizard-field field error' or 'wizard-field field';
                      "
@@ -116,6 +116,7 @@
                             tal:content="python:item['level'] * '&emsp;' + '&#128194; ' + item['title']"
                             tal:attributes="
                               selected python:item['uid'] == widget_value;
+                              disabled python:not item['allowed'];
                             "
                     >
                     </option>
