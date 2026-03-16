@@ -1,3 +1,4 @@
+from Acquisition import aq_base
 from zope.component import adapter
 from zope.interface import Attribute
 from zope.interface import implementer
@@ -21,6 +22,12 @@ class IPlaces(Interface):
     in_content = Attribute("Is context inside a content area?")
 
 
+def container_with_portal_type(obj, portal_type):
+    while obj is not None and getattr(aq_base(obj), "portal_type", None) != portal_type:
+        obj = ILocation(obj).__parent__
+    return obj
+
+
 @adapter(Interface)
 @implementer(IPlaces)
 class PlacesAPI:
@@ -29,10 +36,7 @@ class PlacesAPI:
 
     @property
     def document_pool(self):
-        obj = self.context
-        while obj is not None and obj.portal_type != "DocumentPool":
-            obj = ILocation(obj).__parent__
-        return obj
+        return container_with_portal_type(self.context, "DocumentPool")
 
     @property
     def document_pool_path(self):
@@ -50,7 +54,4 @@ class PlacesAPI:
 
     @property
     def in_content(self):
-        obj = self.context
-        while obj is not None and obj.portal_type != "ContentArea":
-            obj = ILocation(obj).__parent__
-        return obj is not None
+        return container_with_portal_type(self.context, "ContentArea") is not None
