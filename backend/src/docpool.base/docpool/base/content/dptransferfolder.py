@@ -101,7 +101,7 @@ class DPTransferFolder(FolderBase):
     def from_to_title(self):
         sending_esd = self.getSendingESD()
         from_title = sending_esd.Title() if sending_esd else "N/A"
-        to_title = IPlaces(self).documentpPool.Title()
+        to_title = IPlaces(self).document_pool.Title()
         return f"{from_title} --> {to_title} ({self.title})"
 
     def acceptsDT(self, dt_id):
