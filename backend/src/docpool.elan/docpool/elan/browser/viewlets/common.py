@@ -36,7 +36,7 @@ class EventViewlet(ELANViewlet):
         scs = getScenariosForCurrentUser()
         possible_uids = {s[0] for s in self.scenarios}
         self.selected_scenarios = [s for s in scs if s in possible_uids]
-        self.archive_url = IPlaces(self.context).document_pool.archive.absolute_url()
+        self.archive_url = IPlaces(self.context).document_pool.archive.absolute_url() if "archive" in self.context.getPhysicalPath() else None
 
     def number_of_entries(self, dpevent):
         contentarea = aq_get(dpevent, "content")
