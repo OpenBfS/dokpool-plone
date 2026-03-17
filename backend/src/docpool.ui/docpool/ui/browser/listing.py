@@ -160,7 +160,6 @@ class Listing(BrowserView):
             self.query["review_state"] = filtered_by_review_states
 
         # Filter by context
-        # TODO: Handle listing in content-area (which is a folder-listing)
         # TODO: Remove implicit default filtering on path + /content in docpool.elan.monkey
         if self.folder_listing:
             content_area = self.context
@@ -218,23 +217,40 @@ class Listing(BrowserView):
         self.folder_uids = []
         self.other_uids = []
         if self.folder_listing:
-            # Add folders to the listing
-            folder_query = {
-                "portal_type": FOLDER_TYPES,
-                "path": query["path"],
-                "sort_on": "getObjPositionInParent",
-            }
-            folder_brains = catalog(**folder_query)
-            self.folder_uids = [brain.UID for brain in folder_brains]
+            if self.context.portal_type == "Groups":
+                # Logic stolen from content-area navigation in getFoldersForCurrentUser
+                # TODO: Replace or improve when adding folder-navigation
+                gtool = api.portal.get_tool("portal_groups")
+                folder_query = {
+                    "portal_type": "GroupFolder",
+                    "sort_on": "getObjPositionInParent",
+                }
+                for brain in api.content.find(context=self.context, **folder_query):
+                    try:
+                        grp = gtool.getGroupById(brain.id)
+                        etypes = grp.getProperty("allowedDocTypes", [])
+                        if etypes:
+                            self.folder_uids.append(brain.UID)
+                    except Exception:
+                        pass
+            else:
+                # All folders we should show in the listing
+                folder_query = {
+                    "portal_type": FOLDER_TYPES,
+                    "path": query["path"],
+                    "sort_on": "getObjPositionInParent",
+                    "active_apps": self.active_apps,
+                }
+                self.folder_uids = [brain.UID for brain in catalog(**folder_query)]
 
-            # Add other content to the listing
+            # Find other content for the listing
             other_query = {
                 "portal_type": OTHER_TYPES,
                 "path": query["path"],
                 "sort_on": "getObjPositionInParent",
+                "active_apps": self.active_apps,
             }
-            brains = catalog(**other_query)
-            self.other_uids = [brain.UID for brain in brains]
+            self.other_uids = [brain.UID for brain in catalog(**other_query)]
 
         return uids, modified
 
