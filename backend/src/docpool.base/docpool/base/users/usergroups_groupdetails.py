@@ -1,6 +1,5 @@
 from Acquisition import aq_inner
 from plone.base import PloneMessageFactory as PMF
-from plone.base.utils import base_hasattr
 from plone.protect import CheckAuthenticator
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.controlpanel.browser.usergroups_groupdetails import GroupDetailsControlPanel as GDCP
@@ -45,8 +44,7 @@ class GroupDetailsControlPanel(GDCP):
                 # Automatically change id and titel with prefix
                 # when we are inside a DocumentPool
                 props = {"title": title, "description": description}
-                if base_hasattr(self.context, "myDocumentPool"):
-                    dp = self.context
+                if (dp := self.context).portal_type == "DocumentPool":
                     prefix = dp.prefix or dp.getId()
                     dp_title = dp.Title()
                     addname = f"{prefix}_{addname}"

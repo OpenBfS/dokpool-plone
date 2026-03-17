@@ -1,6 +1,7 @@
 from docpool.base.behaviors.transferable import IAppSpecificTransfer
 from docpool.base.content.dpdocument import IDPDocument
 from docpool.base.content.dptransferfolder import IDPTransferFolder
+from docpool.base.content.places import IPlaces
 from docpool.base.utils import _copyPaste
 from docpool.elan.behaviors.elandocument import IELANDocument
 from docpool.elan.config import ELAN_APP
@@ -18,7 +19,7 @@ class ELANSpecificTransfer:
         self.original = original
         self.transfer_folder = transfer_folder
         self.elanobj = IELANDocument(self.original, None)
-        self.have_elan = ELAN_APP in self.transfer_folder.myDocumentPool().supportedApps
+        self.have_elan = ELAN_APP in IPlaces(self.transfer_folder).document_pool.supportedApps
 
     def assert_allowed(self):
         return
@@ -41,7 +42,7 @@ class ELANSpecificTransfer:
         if not self.elanobj.scenario:
             return
 
-        self.copy_scenario = ensureScenarioInTarget(self.elanobj.scenario, copy.myDocumentPool())
+        self.copy_scenario = ensureScenarioInTarget(self.elanobj.scenario, IPlaces(copy).document_pool)
         if self.copy_scenario:
             elan_copy.scenario = self.copy_scenario.UID()
 

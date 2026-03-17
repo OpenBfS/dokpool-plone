@@ -33,7 +33,7 @@
           <a class="btn btn-primary"
              href=""
              tal:attributes="
-               href python:context.myDocumentPool().archive.absolute_url();
+               href python:view.archive_url;
              "
              i18n:translate=""
           >All Archives</a>

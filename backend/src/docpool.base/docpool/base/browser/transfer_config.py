@@ -1,5 +1,6 @@
 from docpool.base import DocpoolMessageFactory as _
 from docpool.base.behaviors.transferstype import ITransfersType
+from docpool.base.content.places import IPlaces
 from plone import api
 from plone.autoform import directives
 from plone.autoform.form import AutoExtensibleForm
@@ -113,4 +114,4 @@ class TransferConfigView(AutoExtensibleForm, form.Form):
 
     @button.buttonAndHandler(_("label_cancel", default="Cancel"), name="cancel")
     def handle_cancel(self, action):
-        return self.request.response.redirect(self.context.myDocumentPool().absolute_url())
+        return self.request.response.redirect(IPlaces(self.context).document_pool.absolute_url())

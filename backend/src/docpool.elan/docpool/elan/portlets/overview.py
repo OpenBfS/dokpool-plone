@@ -1,6 +1,7 @@
 from Acquisition import aq_chain
 from Acquisition import aq_inner
 from docpool.base.content.archiving import IArchiving
+from docpool.base.content.places import IPlaces
 from docpool.elan import DocpoolMessageFactory as _
 from docpool.elan.utils import getScenariosForCurrentUser
 from plone import api
@@ -40,7 +41,7 @@ class Renderer(base.Renderer):
         return [o for o in self._specialObjects() if o.id not in ("recent", "overview")]
 
     def _specialObjects(self):
-        if getattr(self.context, "myDocumentPool", None) is None:
+        if (dp := IPlaces(self.context).document_pool) is None:
             # Not within a docpool
             return
 
@@ -65,7 +66,6 @@ class Renderer(base.Renderer):
 
         # Get the active journals for this scenario and document pool
         scenarios = getScenariosForCurrentUser()
-        dp = self.context.myDocumentPool()
         # User could select more than one scenario
         for brain in api.content.find(
             context=dp,

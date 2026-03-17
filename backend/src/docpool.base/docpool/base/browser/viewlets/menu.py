@@ -2,7 +2,7 @@ from docpool.base.appregistry import appName
 from docpool.base.config import BASE_APP
 from docpool.base.config import TRANSFERS_APP
 from docpool.base.content.archiving import IArchiving
-from docpool.base.utils import get_content_area
+from docpool.base.content.places import IPlaces
 from docpool.base.utils import getGroupsForCurrentUser
 from docpool.elan.config import ELAN_APP
 from docpool.rei.config import REI_APP
@@ -12,7 +12,6 @@ from plone.app.layout.navigation.interfaces import INavtreeStrategy
 from plone.app.layout.navigation.navtree import buildFolderTree
 from plone.app.layout.viewlets import common
 from plone.base.i18nl10n import utranslate
-from plone.base.utils import safe_hasattr
 from plone.memoize.view import memoize
 from Products.CMFPlone.browser.navtree import DefaultNavtreeStrategy
 from Products.CMFPlone.browser.navtree import SitemapQueryBuilder
@@ -197,9 +196,9 @@ class GlobalSectionsViewlet(common.GlobalSectionsViewlet):
             self.recurse_folder(child, path, tree)
 
     def navtree_add_transfer_config(self, tree):
-        if not safe_hasattr(self.context, "myDocumentPool"):
+        if (dp := IPlaces(self.context).document_pool) is None:
             return
-        dp = self.context.myDocumentPool()
+
         config_path = f"{self.navtree_path}/config"
         tree[config_path].append(
             dict(
@@ -230,10 +229,7 @@ def getApplicationDocPoolsForCurrentUser(context):
     dp_app_state = getMultiAdapter((context, request), name="dp_app_state")
     active_apps = dp_app_state.appsActivatedByCurrentUser()
     current_app = active_apps[0] if active_apps else None
-
-    current_dp = None
-    if safe_hasattr(context, "myDocumentPool"):
-        current_dp = context.myDocumentPool()
+    current_dp = IPlaces(context).document_pool
 
     dps = (dp.getObject() for dp in api.content.find(portal_type="DocumentPool"))
     ordering = api.portal.get().getOrdering()
@@ -268,8 +264,7 @@ def getFoldersForCurrentUser(context):
 
     user = api.user.get_current()
 
-    content_area = get_content_area(context)
-    if not content_area:
+    if (content_area := IPlaces(context).content) is None:
         return
 
     groups = getGroupsForCurrentUser(content_area, sort_on="getObjPositionInParent")

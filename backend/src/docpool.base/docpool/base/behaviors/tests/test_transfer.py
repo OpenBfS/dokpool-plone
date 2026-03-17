@@ -2,6 +2,7 @@ from docpool.base.behaviors.transferable import IAppSpecificTransfer
 from docpool.base.behaviors.transferable import ITransferable
 from docpool.base.content.dpdocument import IDPDocument
 from docpool.base.content.dptransferfolder import IDPTransferFolder
+from docpool.base.content.places import IPlaces
 from docpool.base.testing import DOCPOOL_TRANSFER_FUNCTIONAL_TESTING
 from plone import api
 from zope.component import getGlobalSiteManager
@@ -28,7 +29,7 @@ class TestAppSpecificTransfer:
             self.original,
             self.transfer_folder,
             copy,
-            "testapp" in self.transfer_folder.myDocumentPool().supportedApps,
+            "testapp" in IPlaces(self.transfer_folder).document_pool.supportedApps,
         ))
 
     def receiver_log_entry(self):

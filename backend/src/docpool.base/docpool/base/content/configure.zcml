@@ -73,5 +73,6 @@
 
   <adapter factory=".dpdocument.DeserializeFromJsonDPDocument" />
   <adapter factory=".dpdocument.SerializeToJsonDPDocument" />
+  <adapter factory=".places.PlacesAPI" />
 
 </configure>

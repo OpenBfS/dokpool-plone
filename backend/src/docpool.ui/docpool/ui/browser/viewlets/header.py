@@ -1,12 +1,12 @@
 from App.config import getConfiguration
 from docpool.base.appregistry import appLogo as appLogo
 from docpool.base.appregistry import appName
+from docpool.base.content.places import IPlaces
 from docpool.elan.utils import get_scenario_for_current_user
 from docpool.elan.utils import getOpenScenarios
 from importlib.metadata import distribution
 from plone import api
 from plone.app.layout.viewlets.common import ViewletBase
-from plone.base.utils import safe_hasattr
 from Products.Five.browser import BrowserView
 from zope.viewlet.interfaces import IViewletManager
 
@@ -91,10 +91,8 @@ class PortalHeader(ViewletBase):
 class EventSwitcherViewlet(EventSwitcherMixin, ViewletBase):
     def update(self):
         super().update()
-        try:
-            self.dp = self.context.myDocumentPool()
-        except AttributeError:
-            self.dp = None
+        self.dp = IPlaces(self.context).document_pool
+        if self.dp is None:
             return
 
         self.dp_url = self.dp.absolute_url()
@@ -117,7 +115,7 @@ class EventSwitcherViewlet(EventSwitcherMixin, ViewletBase):
 
 class EventSwitcherDropdown(EventSwitcherMixin, BrowserView):
     def __call__(self):
-        self.dp_url = self.context.myDocumentPool().absolute_url()
+        self.dp_url = IPlaces(self.context).document_pool.absolute_url()
 
         scenarios_by_uid, selected_uid = self.set_scenario_attributes()
         self.scenarios = []
@@ -249,10 +247,7 @@ def getApplicationDocPoolsForCurrentUser(context, request):
     dp_app_state = api.content.get_view("dp_app_state", context, request)
     active_apps = dp_app_state.appsActivatedByCurrentUser()
     current_app = active_apps[0] if active_apps else None
-
-    current_dp = None
-    if safe_hasattr(context, "myDocumentPool"):
-        current_dp = context.myDocumentPool()
+    current_dp = IPlaces(context).document_pool
 
     dps = (dp.getObject() for dp in api.content.find(portal_type="DocumentPool"))
     ordering = api.portal.get().getOrdering()

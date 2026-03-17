@@ -9,7 +9,6 @@ from plone.app.layout.navigation.navtree import buildFolderTree
 from plone.app.portlets.portlets import navigation
 from plone.memoize.instance import memoize
 from Products.CMFPlone.browser.navtree import NavtreeQueryBuilder
-from Products.CMFPlone.utils import base_hasattr
 from zope.component import getMultiAdapter
 
 
@@ -38,8 +37,8 @@ class Renderer(navigation.Renderer):
         return ft
 
     def navigation_root(self):
-        if base_hasattr(self.context, "myDocumentPool"):
-            return self.context.myDocumentPool()
+        if self.context.portal_type == "DocumentPool":
+            return self.context
         return self.getNavRoot()
 
 

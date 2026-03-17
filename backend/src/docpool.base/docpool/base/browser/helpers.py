@@ -1,8 +1,10 @@
 from docpool.base import DocpoolMessageFactory as _
 from docpool.base.content.dpdocument import IDPDocument
+from docpool.base.content.places import IPlaces
 from docpool.base.utils import activateAppFilter
 from docpool.base.utils import get_current_state_title
 from docpool.base.utils import get_docpool_for_user
+from docpool.base.utils import getDocumentPoolSite
 from docpool.base.utils import is_admin
 from docpool.base.utils import is_admin_on_dokpool
 from docpool.base.utils import is_contentadmin
@@ -48,10 +50,7 @@ class RootRedirectView(BrowserView):
 
 class DocPoolURL(BrowserView):
     def __call__(self):
-        if (dp := getattr(self.context, "myDocumentPool", None)) is not None:
-            return dp().absolute_url()
-        else:
-            return self.context.portal_url()
+        return getDocumentPoolSite(self.context).absolute_url()
 
 
 class ActivateAppFilter(BrowserView):
@@ -73,7 +72,7 @@ class SetActiveApp(BrowserView):
         setApplicationsForCurrentUser(context, [app])
         activateAppFilter(context, True)
         absurl = (
-            context.myDocumentPool().absolute_url() + redirect_to
+            IPlaces(context).document_pool.absolute_url() + redirect_to
             if (redirect_to := self.request.get("redirect_to"))
             else context.absolute_url()
         )
