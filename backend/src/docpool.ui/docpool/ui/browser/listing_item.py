@@ -1,7 +1,10 @@
 from docpool.base.behaviors.transferable import ITransferable
 from docpool.base.behaviors.utils import allowed_targets
 from docpool.base.config import FOLDER_TYPES
+from docpool.base.content.archiving import IArchiving
 from docpool.base.utils import get_current_state_title
+from docpool.elan.config import ELAN_APP
+from docpool.elan.utils import get_scenario_for_current_user
 from plone import api
 from plone.i18n.normalizer.interfaces import IIDNormalizer
 from Products.Five.browser import BrowserView
@@ -117,7 +120,7 @@ class Item(BrowserView):
 
         iconresolver = self.context.restrictedTraverse("@@iconresolver")
         icon_name = "folder"
-        count = len(obj.contentItems())
+        count = self.count_options(obj)
         self.folder = {
             "date": getattr(obj, "mdate", None),
             "title": obj.title,
@@ -161,3 +164,25 @@ class Item(BrowserView):
             "modified_by_group": modified_by_group,
         }
         return self.template_other()
+
+    def count_options(self, obj, query=None):
+        base_query = {
+            "portal_type": ["DPDocument", "InfoDocument"],
+            "path": {"query": obj.absolute_url_path(), "depth": -1},
+        }
+        # Filter by app
+        dp_app_state = api.content.get_view("dp_app_state", self.context, self.request)
+        self.active_apps = dp_app_state.appsActivatedByCurrentUser()
+        base_query["apps_supported"] = self.active_apps
+
+        # Filter by Event if ELAN, not in Archive and not disabled
+        if (
+            ELAN_APP in self.active_apps
+            and "bypass_scenario_filter=on" not in self.request.get("HTTP_REFERER", "")
+            and not IArchiving(obj).is_archive
+        ):
+            if event := get_scenario_for_current_user():
+                base_query["scenario"] = event
+
+        brains = api.content.find(**base_query)
+        return len(brains) or None
