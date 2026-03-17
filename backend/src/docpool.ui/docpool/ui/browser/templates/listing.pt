@@ -11,6 +11,7 @@
                    items python: view.items;
                    folder_uids python: view.folder_uids;
                    other_uids python: view.other_uids;
+                   show_scenario_filter_switch python: 'elan' in view.active_apps and view.folder_listing;
                  "
   >
     <div class="mx-0 my-0 p-1 border-bottom"
@@ -26,7 +27,7 @@
 
           <div class="mx-3 my-0 py-2"
                tal:attributes="
-                 class python: 'mx-3 my-0 py-2' if view.folder_listing else 'mx-3 my-0 py-2 me-auto';
+                 class python: 'mx-3 my-0 py-2' if show_scenario_filter_switch else 'mx-3 my-0 py-2 me-auto';
                "
           >
             <span tal:replace="python: len(items)"></span>
@@ -34,7 +35,7 @@
           </div>
 
           <div class="mx-3 my-0 py-2 me-auto"
-               tal:condition="python: view.folder_listing"
+               tal:condition="python: show_scenario_filter_switch"
           >
             <div class="form-check form-switch">
               <input class="form-check-input"
