@@ -18,9 +18,13 @@ body.plone-toolbar-left-expanded {
 }
 
 #portal-searchbox.offcanvas-top {
-  --bs-offcanvas-height: auto;
+  --bs-offcanvas-height: 33vh;
+  max-height: 33vh;
+  overflow-y: auto;
 
+  @include media-breakpoint-down(lg) {
     padding-left: var(--plone-toolbar-width-collapsed);
+  }
 }
 
 .app-header {
