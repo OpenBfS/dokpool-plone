@@ -6,13 +6,12 @@
      i18n:domain="plone"
 >
 
-  <form class="d-flex ${python: view.livesearch and 'pat-livesearch'} ${python: view.show_images and 'show_images'}"
+  <form class="d-flex ${python: view.show_images and 'show_images'}"
         id="searchGadget_form"
         action="@@search"
         role="search"
         tal:attributes="
           action string:${navigation_root_url}/@@search;
-          data-pat-livesearch string:ajaxUrl:${navigation_root_url}/@@ajax-search;
         "
   >
 
