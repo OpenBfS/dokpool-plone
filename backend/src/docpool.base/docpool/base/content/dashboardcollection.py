@@ -170,7 +170,7 @@ class DashboardCollection(Collection):
                 # First implicit filter: the user has select scenario(s) as a filter
                 # This is THE modification: append the implicit criterion for the scenario(s)
                 value.append({
-                    "i": "scenarios",
+                    "i": "scenario",
                     "o": "plone.app.querystring.operation.selection.is",
                     "v": uss if (uss := getScenariosForCurrentUser()) else ["dontfindanything"],
                 })
