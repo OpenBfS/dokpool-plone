@@ -5,12 +5,22 @@ body.plone-toolbar-left-expanded {
       padding-left: var(--plone-toolbar-width);
     }
   }
+
+  #portal-searchbox.offcanvas-top {
+      padding-left: var(--plone-toolbar-width);
+  }
 }
 
 .offcanvas.offcanvas-end {
   @include media-breakpoint-down(lg) {
     padding-left: var(--plone-toolbar-width-collapsed);
   }
+}
+
+#portal-searchbox.offcanvas-top {
+  --bs-offcanvas-height: auto;
+
+    padding-left: var(--plone-toolbar-width-collapsed);
 }
 
 .app-header {

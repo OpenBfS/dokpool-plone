@@ -1,61 +1,76 @@
-<div class="d-flex flex-column position-relative collapse"
+<div class="offcanvas offcanvas-top"
      id="portal-searchbox"
+     aria-labelledby="portal-searchbox-label"
+     tabindex="-1"
      tal:define="
        navigation_root_url view/navigation_root_url;
      "
      i18n:domain="plone"
 >
+  <div class="offcanvas-header">
+    <h2 class="offcanvas-title h6 mb-0"
+        id="portal-searchbox-label"
+        i18n:translate="label_search"
+    >Search</h2>
+    <button class="btn-close"
+            aria-label="Close"
+            type="button"
+            data-bs-dismiss="offcanvas"
+    ></button>
+  </div>
 
-  <form class="d-flex ${python: view.livesearch and 'pat-livesearch'} ${python: view.show_images and 'show_images'}"
-        id="searchGadget_form"
-        action="@@search"
-        role="search"
-        tal:attributes="
-          action string:${navigation_root_url}/@@search;
-          data-pat-livesearch string:ajaxUrl:${navigation_root_url}/@@ajax-search;
-        "
-  >
+  <div class="offcanvas-body pt-0">
+    <form class="d-flex flex-column flex-sm-row gap-2 ${python: view.livesearch and 'pat-livesearch'} ${python: view.show_images and 'show_images'}"
+          id="searchGadget_form"
+          action="@@search"
+          role="search"
+          tal:attributes="
+            action string:${navigation_root_url}/@@search;
+            data-pat-livesearch string:ajaxUrl:${navigation_root_url}/@@ajax-search;
+          "
+    >
 
-    <label class="hiddenStructure"
-           for="searchGadget"
-           i18n:translate="text_search"
-    >Search Site</label>
+      <label class="hiddenStructure"
+             for="searchGadget"
+             i18n:translate="text_search"
+      >Search Site</label>
 
-    <input class="searchField form-control me-2"
-           id="searchGadget"
-           name="SearchableText"
-           placeholder="Search Site"
-           size="18"
-           title="Search Site"
-           type="text"
-           value=""
-           tal:attributes="
-             value request/form/SearchableText|nothing;
-           "
-           i18n:attributes="title title_search_site;
+      <input class="searchField form-control"
+             id="searchGadget"
+             name="SearchableText"
+             placeholder="Search Site"
+             size="18"
+             title="Search Site"
+             type="text"
+             value=""
+             tal:attributes="
+               value request/form/SearchableText|nothing;
+             "
+             i18n:attributes="title title_search_site;
                         placeholder title_search_site"
-    />
+      />
 
-    <button class="searchButton btn btn-outline-primary"
-            type="submit"
-            i18n:translate="label_search"
-    >
-      Search
-    </button>
-
-    <div class="hiddenStructure"
-         id="portal-advanced-search"
-    >
-      <a href="#"
-         tal:attributes="
-           href string:${navigation_root_url}/@@search;
-         "
-         i18n:translate="label_advanced_search"
+      <button class="searchButton btn btn-outline-primary"
+              type="submit"
+              i18n:translate="label_search"
       >
-          Advanced Search&hellip;
-      </a>
-    </div>
+        Search
+      </button>
 
-  </form>
+      <div class="hiddenStructure"
+           id="portal-advanced-search"
+      >
+        <a href="#"
+           tal:attributes="
+             href string:${navigation_root_url}/@@search;
+           "
+           i18n:translate="label_advanced_search"
+        >
+            Advanced Search&hellip;
+        </a>
+      </div>
+
+    </form>
+  </div>
 
 </div>

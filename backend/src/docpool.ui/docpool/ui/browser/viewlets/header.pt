@@ -110,11 +110,12 @@
 
                   <!-- Right: Icons -->
                   <div class="nav-link right-icons d-flex align-items-center ms-auto gap-2 px-3">
-                    <button class="btn btn-icon collapsed me-3"
-                            aria-expanded="false"
+                    <button class="btn btn-icon me-3"
                             aria-label="Suche"
+                            aria-controls="portal-searchbox"
+                            type="button"
                             data-bs-target="#portal-searchbox"
-                            data-bs-toggle="collapse"
+                            data-bs-toggle="offcanvas"
                     >
                       <tal:icon tal:replace="structure python:icons.tag('search', tag_class='me-2')" />
                     </button>
