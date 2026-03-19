@@ -61,7 +61,17 @@
         <nav class="navbar navbar-expand-lg d-flex align-items-stretch flex-grow-1 fixed-top">
           <div class="container-fluid w-100">
 
-            <button class="navbar-toggler ms-auto"
+            <button class="btn btn-icon d-lg-none ms-auto"
+                    aria-controls="portal-searchbox"
+                    aria-label="Suche"
+                    type="button"
+                    data-bs-target="#portal-searchbox"
+                    data-bs-toggle="offcanvas"
+            >
+              <tal:icon tal:replace="structure python:icons.tag('search')" />
+            </button>
+
+            <button class="navbar-toggler ms-2"
                     aria-controls="offcanvasNavbar"
                     aria-label="Toggle navigation"
                     type="button"
@@ -110,11 +120,12 @@
 
                   <!-- Right: Icons -->
                   <div class="nav-link right-icons d-flex align-items-center ms-auto gap-2 px-3">
-                    <button class="btn btn-icon collapsed me-3"
-                            aria-expanded="false"
+                    <button class="btn btn-icon me-3"
+                            aria-controls="portal-searchbox"
                             aria-label="Suche"
+                            type="button"
                             data-bs-target="#portal-searchbox"
-                            data-bs-toggle="collapse"
+                            data-bs-toggle="offcanvas"
                     >
                       <tal:icon tal:replace="structure python:icons.tag('search', tag_class='me-2')" />
                     </button>

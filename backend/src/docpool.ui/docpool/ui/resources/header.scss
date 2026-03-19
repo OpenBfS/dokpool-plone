@@ -5,11 +5,24 @@ body.plone-toolbar-left-expanded {
       padding-left: var(--plone-toolbar-width);
     }
   }
+
+  #portal-searchbox.offcanvas-top {
+      padding-left: var(--plone-toolbar-width);
+  }
 }
 
-.offcanvas.offcanvas-end {
-  @include media-breakpoint-down(lg) {
-    padding-left: var(--plone-toolbar-width-collapsed);
+body.plone-toolbar-left {
+
+  .offcanvas.offcanvas-end {
+    @include media-breakpoint-down(md) {
+      padding-left: var(--plone-toolbar-width-collapsed);
+    }
+  }
+
+  #portal-searchbox.offcanvas-top {
+    @include media-breakpoint-down(md) {
+      padding-left: var(--plone-toolbar-width-collapsed);
+    }
   }
 }
 
@@ -182,8 +195,9 @@ body.plone-toolbar-left-expanded {
 
 .right-icons .dropdown-menu li {
   background-color: transparent;
-    color: var(--bs-dropdown-link-color);
-  a,  {
+  color: var(--bs-dropdown-link-color);
+
+  a, {
     padding: unset;
     display: unset;
   }
