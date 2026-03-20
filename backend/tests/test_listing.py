@@ -16,6 +16,7 @@ import os
 import pytest
 import re
 import transaction
+from pathlib import Path
 
 
 class TestListing:
@@ -114,6 +115,9 @@ class TestListing:
         dp_without_images.get_by_role("button", name="⋮").click()
         dp_without_images.locator("#workflow-transition-publish").click()
         status_msg = page.locator(".statusmessage-info").first
+        screenshot_dir = Path("screenshots")
+        screenshot_dir.mkdir(parents=True, exist_ok=True)
+        page.screenshot(path=str(screenshot_dir / "acceptance-test-screenshot.png"), full_page=True)
         expect(status_msg).to_contain_text(
             " Info: New review state for A Weatherinfo without images: Published"
         )
