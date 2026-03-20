@@ -34,7 +34,7 @@
             <span i18n:translate="">Entries</span>
           </div>
 
-          <div class="mx-3 my-0 py-2 me-auto"
+          <div class="mx-3 my-0 py-2 me-auto d-none d-lg-block"
                tal:condition="python: show_scenario_filter_switch"
           >
             <div class="form-check form-switch">
@@ -62,7 +62,7 @@
             </div>
           </div>
 
-          <div class="mx-1 my-0 mt-1 dropdown">
+          <div class="mx-1 my-0 mt-1 dropdown d-none d-lg-block">
             <button class="btn btn-light dropdown-toggle"
                     aria-expanded="false"
                     type="button"
@@ -140,7 +140,7 @@
             </div>
           </div>
 
-          <div class="m-1 dropdown"
+          <div class="m-1 dropdowni d-none d-lg-block"
                tal:define="
                  selected_subcategories python: view.selected_subcategories;
                  categories python: view.doctype_categories;
@@ -201,7 +201,7 @@
             </div>
           </div>
 
-          <div class="m-1 dropdown"
+          <div class="m-1 dropdown d-none d-lg-block"
                tal:define="
                  selected_review_states python: view.selected_review_states;
                "
@@ -248,7 +248,7 @@
             </div>
           </div>
 
-          <div class="m-1 dropdown"
+          <div class="m-1 dropdown d-none d-lg-block"
                tal:define="
                  selected_groups python: view.selected_groups;
                  groups python: view.groups;
