@@ -1,6 +1,7 @@
 from docpool.api.browser.setup import add_user
 from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
 from docpool.elan.utils import get_scenario_for_current_user
+from pathlib import Path
 from playwright.sync_api import expect
 from plone import api
 from plone.app.testing import login
@@ -16,7 +17,6 @@ import os
 import pytest
 import re
 import transaction
-from pathlib import Path
 
 
 class TestListing:

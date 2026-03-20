@@ -29,14 +29,16 @@ class DocpoolUiLayer(PloneSandboxLayer):
         import eea.facetednavigation
         import plone.patternslib
         import plone.restapi
+        import z3c.jbot
 
+        self.loadZCML(package=z3c.jbot)
         self.loadZCML(package=plone.restapi)
         self.loadZCML(package=docpool.base)
         self.loadZCML(package=docpool.elan)
-        self.loadZCML(package=docpool.ui)
         self.loadZCML(package=eea.facetednavigation)
         self.loadZCML(package=collective.impersonate)
         self.loadZCML(package=plone.patternslib)
+        self.loadZCML(package=docpool.ui)
 
     def setUpPloneSite(self, portal):
         setup_sdm(portal)
