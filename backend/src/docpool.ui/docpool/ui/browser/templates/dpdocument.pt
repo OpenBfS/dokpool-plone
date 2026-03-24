@@ -14,12 +14,9 @@
   <body>
     <metal:body fill-slot="body">
 
-      <div id="header">
-      </div>
-
       <div id="content">
 
-        <div class="dp-document-header row mx-3 my-3 p-1 border-bottom">
+        <div class="dp-document-header row mx-0 my-0 p-1 border-bottom">
           <div class="col-sm-6">
             <h1 tal:content="python: context.title"></h1>
           </div>
@@ -100,7 +97,7 @@
           </div>
         </div>
 
-        <div class="row">
+        <div class="row mx-3 my-3">
           <div class="col-sm-8">
 
             <div tal:condition="python: getattr(context.aq_base, 'description')">

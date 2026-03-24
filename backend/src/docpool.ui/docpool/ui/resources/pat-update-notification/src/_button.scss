@@ -31,7 +31,7 @@
     padding-top: 0;
     padding-left: 1em;
     padding-right: 1em;
-    font-size: 0.98em;
+    font-size: var(--dp-font-body);
 
     &:active,
     &.active {

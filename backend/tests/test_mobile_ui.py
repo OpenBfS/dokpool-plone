@@ -35,7 +35,7 @@ class TestMobileUI:
         # Set mobile viewport
         page.set_viewport_size({"width": 375, "height": 667})
         page.goto(f"{self.plone_url}")
-        search_button = page.locator('.mobile-search-btn')
+        search_button = page.locator(".mobile-search-btn")
         expect(search_button).to_be_visible()
         search_button.click()
         # Check that search input is visible

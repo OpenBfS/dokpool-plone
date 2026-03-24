@@ -22,9 +22,9 @@ $plone-default-revised-color: #d4d4d4;
   --bs-warning: #fed86c; /* Gelb Main */
   --bs-light: #e1e6eb; /* Graublau Hell3 */
   --bs-light-blue: #c3dce7; /* Hellblau(Hell2) */
-  --bs-btn-font-size: 0.75rem;
-// Bootstrap default:
-// $font-size-base:              1rem !default; // Assumes the browser default, typically `16px`
+  --bs-btn-font-size: var(--dp-font-small);
+  // Bootstrap default:
+  // $font-size-base: 1rem !default; // Assumes the browser default, typically `16px`
   --dp-font-title: 1rem; /* 16px */
   --dp-font-body: 0.85rem; /* 13px */
   --dp-font-small: 0.75rem; /* 12px */
@@ -334,14 +334,14 @@ span.badge.visibility-option-private {
   color: #fff !important;
   background-color: $plone-default-private-color;
   padding: 0.8em 1.6em;
-  font-size: 0.8em;
+  font-size: var(--dp-font-body);
 }
 
 span.badge.visibility-option-published {
   color: #fff !important;
   background-color: $plone-default-published-color;
   padding: 0.8em 1.6em;
-  font-size: 0.8em;
+  font-size: var(--dp-font-body);
 }
 
 .wizard-field svg.entrytype {
