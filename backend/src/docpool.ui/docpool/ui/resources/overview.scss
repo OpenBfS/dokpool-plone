@@ -53,7 +53,7 @@
 .fact-row dt {
   margin: 0;
   color: var(--bs-secondary);
-  font-size: 0.656rem;
+  font-size: var(--dp-font-body);
   font-weight: 400;
   line-height: 1.2;
 }
@@ -61,7 +61,7 @@
 .fact-row dd {
   margin: 0;
   color: var(--bs-dark);
-  font-size: 0.656rem;
+  font-size: var(--dp-font-body);
   line-height: 1.2;
 }
 
@@ -73,7 +73,7 @@
   border-radius: 0 0.75rem 0.75rem 0;
   background: var(--bs-warning);
   color: #121212;
-  font-size: 0.656rem;
+  font-size: var(--dp-font-body);
 }
 
 .highlight-value {
@@ -81,7 +81,7 @@
   background: #de1bf4;
   color: #121212;
   padding: 0.25rem 0.5rem;
-  font-size: 0.75rem;
+  font-size: var(--dp-font-small);
   line-height: 1;
 }
 
@@ -106,7 +106,7 @@
   align-items: center;
   justify-content: center;
   color: var(--bs-primary);
-  font-size: 0.75rem;
+  font-size: var(--dp-font-small);
   min-height: 1rem;
 }
 
@@ -115,7 +115,7 @@
   border-radius: 0;
   background-color: var(--bs-primary);
   color: #fff;
-  font-size: 0.5rem;
+  font-size: var(--dp-font-small);
   font-weight: 700;
   text-transform: none;
 }
@@ -173,7 +173,7 @@
 
 .tile-link {
   color: var(--bs-primary);
-  font-size: 0.875rem;
+  font-size: var(--dp-font-body);
   text-decoration: underline;
 }
 
@@ -187,7 +187,7 @@
   border-radius: 999px;
   background: var(--bs-light-border);
   color: var(--bs-primary);
-  font-size: 0.625rem;
+  font-size: var(--dp-font-small);
 }
 
 @media (max-width: 1199.98px) {

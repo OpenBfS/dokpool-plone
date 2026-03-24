@@ -17,7 +17,7 @@ body.plone-toolbar-left-expanded .footer-tz-table {
   }
   tr td {
     background-color: transparent;
-    font-size: 12px;
+    font-size: var(--dp-font-small);
     padding: 0;
 
     .text-primary {
@@ -25,4 +25,3 @@ body.plone-toolbar-left-expanded .footer-tz-table {
     }
   }
 }
-

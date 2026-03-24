@@ -79,7 +79,7 @@ body.plone-toolbar-left-expanded .sidebar {
 
 .sidebar .zones p {
   margin-bottom: 0;
-  font-size: 8px;
+  font-size: var(--dp-font-small);
 }
 
 /* Tweak the thin divider look in footer */
