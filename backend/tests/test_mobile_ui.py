@@ -44,3 +44,22 @@ class TestMobileUI:
         page.locator(".dp-search-dismiss").click()
         # Searchbox should be hidden or collapsed
         expect(search_input).not_to_be_visible()
+
+    def test_mobile_scroll_top_button(self):
+        """Test that mobile scroll-to-top button is shown only when needed and works."""
+        page = self.page
+        page.set_viewport_size({"width": 375, "height": 667})
+        page.goto(f"{self.plone_url}")
+
+        button = page.locator(".mobile-scroll-top-button")
+        expect(button).to_be_hidden()
+
+        # Ensure the page can scroll on small test fixtures.
+        page.evaluate("document.body.style.minHeight = '3000px'")
+        page.evaluate("window.scrollTo(0, 500)")
+        page.wait_for_function("window.scrollY > 240")
+        expect(button).to_be_visible()
+
+        button.click()
+        page.wait_for_function("window.scrollY <= 5")
+        expect(button).to_be_hidden()
