@@ -1,6 +1,7 @@
 from docpool.api.browser.setup import add_user
 from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
 from docpool.elan.utils import get_scenario_for_current_user
+from pathlib import Path
 from playwright.sync_api import expect
 from plone import api
 from plone.app.testing import login
@@ -114,6 +115,9 @@ class TestListing:
         dp_without_images.get_by_role("button", name="⋮").click()
         dp_without_images.locator("#workflow-transition-publish").click()
         status_msg = page.locator(".statusmessage-info").first
+        screenshot_dir = Path("screenshots")
+        screenshot_dir.mkdir(parents=True, exist_ok=True)
+        page.screenshot(path=str(screenshot_dir / "acceptance-test-screenshot.png"), full_page=True)
         expect(status_msg).to_contain_text(
             " Info: New review state for A Weatherinfo without images: Published"
         )
