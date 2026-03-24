@@ -119,7 +119,7 @@
 
 
                   <!-- Right: Icons -->
-                  <div class="nav-link right-icons d-flex align-items-center ms-auto gap-2 px-3">
+                  <div class="nav-link right-icons d-none d-lg-flex align-items-center ms-auto gap-2 px-3">
                     <button class="btn btn-icon me-3 search-btn"
                             aria-controls="portal-searchbox"
                             aria-label="Suche"
@@ -149,6 +149,77 @@
                         User dropdown
                     </tal:info>
 
+                  </div>
+
+                  <div class="d-lg-none w-100 mobile-settings-infos">
+                    <h6 class="mobile-settings-infos-title">Einstellungen &amp; Infos</h6>
+                    <ul class="mobile-settings-infos-list">
+                      <li>
+                        <a class="mobile-settings-link"
+                           href="#"
+                        >
+                          <span class="mobile-settings-icon">
+                            <tal:icon tal:replace="structure python:icons.tag('universal-access')" />
+                          </span>
+                          <span class="mobile-settings-label">Barrierefreiheit</span>
+                          <span class="mobile-settings-chevron">
+                            <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
+                          </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a class="mobile-settings-link"
+                           href="#"
+                        >
+                          <span class="mobile-settings-icon">
+                            <tal:icon tal:replace="structure python:icons.tag('info-circle-fill')" />
+                          </span>
+                          <span class="mobile-settings-label">Infos</span>
+                          <span class="mobile-settings-chevron">
+                            <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
+                          </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a class="mobile-settings-link"
+                           href="#"
+                        >
+                          <span class="mobile-settings-icon">
+                            <tal:icon tal:replace="structure python:icons.tag('exclamation-triangle-fill')" />
+                          </span>
+                          <span class="mobile-settings-label">Systemmeldungen</span>
+                          <span class="mobile-settings-chevron">
+                            <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
+                          </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a class="mobile-settings-link"
+                           href="#"
+                        >
+                          <span class="mobile-settings-icon">
+                            <tal:icon tal:replace="structure python:icons.tag('wrench')" />
+                          </span>
+                          <span class="mobile-settings-label">Konfiguration</span>
+                          <span class="mobile-settings-chevron">
+                            <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
+                          </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a class="mobile-settings-link"
+                           href="#"
+                        >
+                          <span class="mobile-settings-icon">
+                            <tal:icon tal:replace="structure python:icons.tag('person-fill')" />
+                          </span>
+                          <span class="mobile-settings-label">Benutzereinstellungen</span>
+                          <span class="mobile-settings-chevron">
+                            <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
+                          </span>
+                        </a>
+                      </li>
+                    </ul>
                   </div>
                 </div>
               </div>

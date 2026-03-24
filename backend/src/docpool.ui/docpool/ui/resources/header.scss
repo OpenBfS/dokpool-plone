@@ -202,3 +202,55 @@ body.plone-toolbar-left {
     display: unset;
   }
 }
+
+#offcanvasNavbar {
+  .mobile-settings-infos {
+    margin-top: 0.75rem;
+  }
+
+  .mobile-settings-infos-title {
+    color: #5f7895;
+    font-size: var(--dp-font-title);
+    font-weight: 400;
+    padding: 0.75rem 1rem 0.5rem;
+    border-top: 1px solid #d9e1ea;
+  }
+
+  .mobile-settings-infos-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      border-top: 1px solid #d9e1ea;
+    }
+  }
+
+  .mobile-settings-link {
+    display: flex;
+    align-items: center;
+    color: #344f6d;
+    text-decoration: none;
+    padding: 1rem;
+    min-height: 58px;
+  }
+
+  .mobile-settings-icon {
+    width: 2rem;
+    text-align: center;
+    margin-right: 0.75rem;
+    font-size: var(--dp-font-title);
+    color: #344f6d;
+  }
+
+  .mobile-settings-label {
+    font-size: var(--dp-font-title);
+  }
+
+  .mobile-settings-chevron {
+    margin-left: auto;
+    color: #5f7895;
+    font-size: var(--dp-font-title);
+    line-height: 1;
+  }
+}

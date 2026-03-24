@@ -169,10 +169,12 @@
 
       <button class="mobile-scroll-top-button"
               aria-label="Nach oben scrollen"
-              type="button"
               hidden
+              type="button"
       >
-        <span class="mobile-scroll-top-button__icon" aria-hidden="true"></span>
+        <span class="mobile-scroll-top-button__icon"
+              aria-hidden="true"
+        ></span>
       </button>
 
       <footer class="border-top"
