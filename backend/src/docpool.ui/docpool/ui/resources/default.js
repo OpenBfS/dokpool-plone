@@ -3,6 +3,39 @@ import "bootstrap";
 import("./pat-update-notification/index.js");
 import registry from "@patternslib/patternslib/src/core/registry";
 
+const MOBILE_SCROLL_TOP_BREAKPOINT = 991;
+const MOBILE_SCROLL_TOP_OFFSET = 240;
+
+function setupMobileScrollTopButton() {
+  const button = document.querySelector(".mobile-scroll-top-button");
+  if (!button) return;
+
+  const updateVisibility = () => {
+    const isMobile = window.innerWidth <= MOBILE_SCROLL_TOP_BREAKPOINT;
+    const shouldShow = isMobile && window.scrollY > MOBILE_SCROLL_TOP_OFFSET;
+    button.hidden = !shouldShow;
+    button.classList.toggle("is-visible", shouldShow);
+  };
+
+  button.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  });
+
+  window.addEventListener("scroll", updateVisibility, { passive: true });
+  window.addEventListener("resize", updateVisibility);
+  document.addEventListener("patterns-injected-delayed", updateVisibility);
+  updateVisibility();
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", setupMobileScrollTopButton);
+} else {
+  setupMobileScrollTopButton();
+}
+
 // After inject this code sets the back link to listing and populates next/prev links
 document.addEventListener("patterns-injected-delayed", (e) => {
   if (!(e.target instanceof Element)) return;

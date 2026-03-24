@@ -57,6 +57,51 @@ body {
   flex-direction: column;
 }
 
+.mobile-scroll-top-button {
+  position: fixed;
+  right: 1.4rem;
+  bottom: 5.4rem;
+  width: 3.95rem;
+  height: 3.95rem;
+  border: 0;
+  border-radius: 50%;
+  background-color: #324d6a;
+  box-shadow: 0 12px 24px rgba(15, 34, 55, 0.28);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(0.7rem);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 1040;
+
+  &.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+  }
+
+  .mobile-scroll-top-button__icon {
+    width: 0.85rem;
+    height: 0.85rem;
+    border-top: 2px solid currentColor;
+    border-left: 2px solid currentColor;
+    transform: rotate(45deg) translate(1px, 1px);
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .mobile-scroll-top-button {
+    display: none;
+  }
+}
+
 
 
 .filter-form-container {

@@ -167,6 +167,14 @@
 
       </div>
 
+      <button class="mobile-scroll-top-button"
+              aria-label="Nach oben scrollen"
+              type="button"
+              hidden
+      >
+        <span class="mobile-scroll-top-button__icon" aria-hidden="true"></span>
+      </button>
+
       <footer class="border-top"
               id="portal-footer"
               i18n:domain="plone"
