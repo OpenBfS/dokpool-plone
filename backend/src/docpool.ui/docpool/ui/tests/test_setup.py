@@ -35,10 +35,10 @@ class TestSetup(unittest.TestCase):
     def test_debug_viewlet(self):
         self.request["URL"] = "http://nohost/plone/view"
         self.request["PARENTS"][0] = self.portal
-        info_dropdown_view = self.portal.restrictedTraverse("@@info-dropdown")
-        self.assertTrue(info_dropdown_view.available())
-        html = info_dropdown_view()
+        info_content_view = self.portal.restrictedTraverse("@@info-content")
+        self.assertTrue(info_content_view.available())
+        html = info_content_view()
         self.assertNotIn("Not detected", html)
         api.portal.set_registry_record(name="docpool.show_debug_info", value=False)
         # We disable the viewlet to test its availability
-        self.assertFalse(info_dropdown_view.available())
+        self.assertFalse(info_content_view.available())
