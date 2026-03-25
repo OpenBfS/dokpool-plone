@@ -4,17 +4,21 @@
 >
   <body>
     <metal:desktop-navigation define-macro="desktop_navigation">
-      <tal:headernav replace="structure provider:docpool.headernav.manager" />
-
-      <!-- Main navigation buttons -->
-      <a class="nav-link nav-btn d-flex flex-column justify-content-center px-4 border-end text-decoration-none ${python: view.active['groups']}"
-         href="${python: view.groups_folder_url}"
-         tal:condition="python: view.groups_folder_url"
+      <div class="d-none d-lg-flex align-items-stretch"
+           id="header-primary-shortcuts"
       >
-        <span class="small text-primary mb-n1"
-              i18n:translate=""
-        >My group folders</span>
-      </a>
+        <tal:headernav replace="structure provider:docpool.headernav.manager" />
+
+        <!-- Main navigation buttons -->
+        <a class="nav-link nav-btn d-flex flex-column justify-content-center px-4 border-end text-decoration-none ${python: view.active['groups']}"
+           href="${python: view.groups_folder_url}"
+           tal:condition="python: view.groups_folder_url"
+        >
+          <span class="small text-primary mb-n1"
+                i18n:translate=""
+          >My group folders</span>
+        </a>
+      </div>
       <a class="nav-link nav-btn d-flex flex-column justify-content-center px-4 border-end text-decoration-none ${python: view.active['emergency']}"
          href="${python: view.emergency_info_url}"
          tal:condition="python: view.emergency_info_url"
@@ -67,6 +71,31 @@
                aria-labelledby="mobile-settings-main-tab-trigger"
                role="tabpanel"
           >
+            <div class="mobile-settings-primary-shortcuts d-flex align-items-stretch"
+                 tal:condition="python: view.dp_url"
+            >
+              <a class="nav-btn event-card event-switcher-detail d-flex align-items-center px-3 text-decoration-none"
+                 href="${python: view.dp_url}"
+              >
+                <div class="text-primary small"
+                     i18n:translate=""
+                >Select scenario</div>
+              </a>
+              <a class="nav-button event-switcher d-flex align-items-center justify-content-center border-end text-decoration-none text-primary"
+                 aria-label="Event switcher"
+                 href="${python: context.absolute_url()}/@@event-switcher-dropdown"
+              >
+                <tal:icon tal:replace="structure python:icons.tag('chevron-down', tag_class='')" />
+              </a>
+              <a class="nav-link nav-btn d-flex flex-column justify-content-center px-4 border-end text-decoration-none ${python: view.active['groups']}"
+                 href="${python: view.groups_folder_url}"
+                 tal:condition="python: view.groups_folder_url"
+              >
+                <span class="small text-primary mb-n1"
+                      i18n:translate=""
+                >My group folders</span>
+              </a>
+            </div>
             <h6 class="mobile-settings-infos-title">Einstellungen &amp; Infos</h6>
             <div class="nav flex-column nav-pills mobile-settings-nav"
                  id="mobile-settings-nav"
