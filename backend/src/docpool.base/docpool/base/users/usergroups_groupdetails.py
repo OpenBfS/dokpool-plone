@@ -23,7 +23,7 @@ class GroupDetailsControlPanel(GDCP):
 
         self.request.set("grouproles", self.group.getRoles() if self.group else [])
 
-        submitted = self.request.form.get("form.submitted", False)
+        submitted = self.request.form.get("form.submitted") and self.request.form.get("form.button.Save")
         if submitted:
             CheckAuthenticator(self.request)
 
