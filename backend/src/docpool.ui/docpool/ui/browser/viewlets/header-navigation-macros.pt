@@ -74,9 +74,9 @@
             <h6 class="mobile-settings-infos-title">Ereignisauswahl</h6>
 
             <div tal:define="
-              scenario python: view.selected_scenario;
-              "
-               tal:condition="python: scenario is not None"
+                   scenario python: view.selected_scenario;
+                 "
+                 tal:condition="python: scenario is not None"
             >
               <div class="mobile-event-selected-row"
                    tal:define="
@@ -110,28 +110,28 @@
               </div>
             </div>
 
-              <button class="mobile-settings-link nav-link mobile-event-list-link"
-                      type="button"
-              >
-                <span class="mobile-settings-icon">
-                  <span class="badge rounded-pill bg-secondary">4</span>
-                </span>
-                <span class="mobile-settings-label">weitere aktive Ereignisse</span>
-                <span class="mobile-settings-chevron">
-                  <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
-                </span>
-              </button>
-              <a class="mobile-settings-link nav-link mobile-event-list-link"
-                 href="${python: view.dp_url}/archive"
-              >
-                <span class="mobile-settings-icon">
-                  <tal:icon tal:replace="structure python:icons.tag('archive-fill')" />
-                </span>
-                <span class="mobile-settings-label">Archivierte Ereignisse</span>
-                <span class="mobile-settings-chevron">
-                  <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
-                </span>
-              </a>
+            <button class="mobile-settings-link nav-link mobile-event-list-link"
+                    type="button"
+            >
+              <span class="mobile-settings-icon">
+                <span class="badge rounded-pill bg-secondary">4</span>
+              </span>
+              <span class="mobile-settings-label">weitere aktive Ereignisse</span>
+              <span class="mobile-settings-chevron">
+                <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
+              </span>
+            </button>
+            <a class="mobile-settings-link nav-link mobile-event-list-link"
+               href="${python: view.dp_url}/archive"
+            >
+              <span class="mobile-settings-icon">
+                <tal:icon tal:replace="structure python:icons.tag('archive-fill')" />
+              </span>
+              <span class="mobile-settings-label">Archivierte Ereignisse</span>
+              <span class="mobile-settings-chevron">
+                <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
+              </span>
+            </a>
             <div class="mobile-event-add-wrap">
               <a class="btn btn-light mobile-event-add-btn"
                  href="${python: view.dp_url}/contentconfig/++add++DPEvents"
@@ -141,6 +141,28 @@
                       i18n:translate=""
                 >Neues Ereignis anlegen</span>
               </a>
+            </div>
+            <div class="mobile-placeholder-shortcuts"
+                 aria-label="Platzhalter-Schnellzugriffe"
+            >
+              <div class="mobile-placeholder-link">
+                <span class="mobile-placeholder-icon">
+                  <tal:icon tal:replace="structure python:icons.tag('folder-fill')" />
+                </span>
+                <span class="mobile-placeholder-label">Meine Gruppenordner</span>
+                <span class="mobile-placeholder-chevron">
+                  <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
+                </span>
+              </div>
+              <div class="mobile-placeholder-link">
+                <span class="mobile-placeholder-icon">
+                  <tal:icon tal:replace="structure python:icons.tag('file-earmark-richtext-fill')" />
+                </span>
+                <span class="mobile-placeholder-label">Dokumente Notfallschutz</span>
+                <span class="mobile-placeholder-chevron">
+                  <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
+                </span>
+              </div>
             </div>
             <h6 class="mobile-settings-infos-title">Einstellungen &amp; Infos</h6>
             <div class="nav flex-column nav-pills mobile-settings-nav"
