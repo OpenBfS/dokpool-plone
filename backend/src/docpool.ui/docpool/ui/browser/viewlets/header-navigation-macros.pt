@@ -78,25 +78,39 @@
               "
                tal:condition="python: scenario is not None"
             >
-              <div class="text-primary text-truncate">${scenario/Title}</div>
-              <div class="d-flex align-items-center gap-3 mt-1">
-                <span class="badge bg-warning text-dark tag-badge small">${scenario/event_type_title}</span>
-                <span class="small text-primary">${scenario/operation_mode_title}</span>
-              </div>
-
-              <div class="icon-column">
-                <a href="">
-                  <tal:icon replace="structure python:icons.tag('info-circle', tag_class='')"/>
-                </a>
-              </div>
-              <div class="icon-column">
-                <a href="">
-                  <tal:icon replace="structure python:icons.tag('pencil', tag_class='')"/>
-                </a>
+              <div class="mobile-event-selected-row"
+                   tal:define="
+                     scenario_url python: scenario.absolute_url();
+                   "
+              >
+                <div class="mobile-event-selected-main">
+                  <div class="mobile-event-selected-check icon-column">
+                    <tal:icon replace="structure python:icons.tag('check-lg', tag_class='')" />
+                  </div>
+                  <div class="mobile-event-selected-content">
+                    <div class="text-primary text-truncate fw-bold">${scenario/Title}</div>
+                    <div class="d-flex align-items-center gap-3 mt-1">
+                      <span class="badge bg-warning text-dark tag-badge small">${scenario/event_type_title}</span>
+                      <span class="small text-primary">${scenario/operation_mode_title}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="mobile-event-selected-actions">
+                  <div class="icon-column">
+                    <a href="${scenario_url}/@@edit">
+                      <tal:icon replace="structure python:icons.tag('pencil', tag_class='')" />
+                    </a>
+                  </div>
+                  <div class="icon-column">
+                    <a href="${scenario_url}">
+                      <tal:icon replace="structure python:icons.tag('info-circle', tag_class='')" />
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
 
-              <button class="mobile-settings-link nav-link"
+              <button class="mobile-settings-link nav-link mobile-event-list-link"
                       type="button"
               >
                 <span class="mobile-settings-icon">
@@ -107,8 +121,8 @@
                   <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
                 </span>
               </button>
-              <button class="mobile-settings-link nav-link"
-                      type="button"
+              <a class="mobile-settings-link nav-link mobile-event-list-link"
+                 href="${python: view.dp_url}/archive"
               >
                 <span class="mobile-settings-icon">
                   <tal:icon tal:replace="structure python:icons.tag('archive-fill')" />
@@ -117,7 +131,17 @@
                 <span class="mobile-settings-chevron">
                   <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
                 </span>
-              </button>
+              </a>
+            <div class="mobile-event-add-wrap">
+              <a class="btn btn-light mobile-event-add-btn"
+                 href="${python: view.dp_url}/contentconfig/++add++DPEvents"
+              >
+                <tal:icon replace="structure python:icons.tag('plus-circle', tag_class='icon-with-text')" />
+                <span class="small"
+                      i18n:translate=""
+                >Neues Ereignis anlegen</span>
+              </a>
+            </div>
             <h6 class="mobile-settings-infos-title">Einstellungen &amp; Infos</h6>
             <div class="nav flex-column nav-pills mobile-settings-nav"
                  id="mobile-settings-nav"
