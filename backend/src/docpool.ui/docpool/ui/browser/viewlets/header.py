@@ -28,12 +28,13 @@ class EventSwitcherMixin:
         return scenarios_by_uid, selected_uid
 
 
-class PortalHeader(ViewletBase):
+class PortalHeader(EventSwitcherMixin, ViewletBase):
     def update(self):
         super().update()
         self.dp, self.app, self.dp_apps = getApplicationDocPoolsForCurrentUser(self.context, self.request)
         self.dp_url = self.dp.absolute_url() if self.dp else None
         self.app_logo = appLogo(self.app) if self.app else None
+        self.set_scenario_attributes()
 
         try:
             self.groups_folder_url = self.dp["content"]["Groups"].absolute_url()

@@ -71,31 +71,53 @@
                aria-labelledby="mobile-settings-main-tab-trigger"
                role="tabpanel"
           >
-            <div class="mobile-settings-primary-shortcuts d-flex align-items-stretch"
-                 tal:condition="python: view.dp_url"
+            <h6 class="mobile-settings-infos-title">Ereignisauswahl</h6>
+
+            <div tal:define="
+              scenario python: view.selected_scenario;
+              "
+               tal:condition="python: scenario is not None"
             >
-              <a class="nav-btn event-card event-switcher-detail d-flex align-items-center px-3 text-decoration-none"
-                 href="${python: view.dp_url}"
-              >
-                <div class="text-primary small"
-                     i18n:translate=""
-                >Select scenario</div>
-              </a>
-              <a class="nav-button event-switcher d-flex align-items-center justify-content-center border-end text-decoration-none text-primary"
-                 aria-label="Event switcher"
-                 href="${python: context.absolute_url()}/@@event-switcher-dropdown"
-              >
-                <tal:icon tal:replace="structure python:icons.tag('chevron-down', tag_class='')" />
-              </a>
-              <a class="nav-link nav-btn d-flex flex-column justify-content-center px-4 border-end text-decoration-none ${python: view.active['groups']}"
-                 href="${python: view.groups_folder_url}"
-                 tal:condition="python: view.groups_folder_url"
-              >
-                <span class="small text-primary mb-n1"
-                      i18n:translate=""
-                >My group folders</span>
-              </a>
+              <div class="text-primary text-truncate">${scenario/Title}</div>
+              <div class="d-flex align-items-center gap-3 mt-1">
+                <span class="badge bg-warning text-dark tag-badge small">${scenario/event_type_title}</span>
+                <span class="small text-primary">${scenario/operation_mode_title}</span>
+              </div>
+
+              <div class="icon-column">
+                <a href="">
+                  <tal:icon replace="structure python:icons.tag('info-circle', tag_class='')"/>
+                </a>
+              </div>
+              <div class="icon-column">
+                <a href="">
+                  <tal:icon replace="structure python:icons.tag('pencil', tag_class='')"/>
+                </a>
+              </div>
             </div>
+
+              <button class="mobile-settings-link nav-link"
+                      type="button"
+              >
+                <span class="mobile-settings-icon">
+                  <span class="badge rounded-pill bg-secondary">4</span>
+                </span>
+                <span class="mobile-settings-label">weitere aktive Ereignisse</span>
+                <span class="mobile-settings-chevron">
+                  <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
+                </span>
+              </button>
+              <button class="mobile-settings-link nav-link"
+                      type="button"
+              >
+                <span class="mobile-settings-icon">
+                  <tal:icon tal:replace="structure python:icons.tag('archive-fill')" />
+                </span>
+                <span class="mobile-settings-label">Archivierte Ereignisse</span>
+                <span class="mobile-settings-chevron">
+                  <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
+                </span>
+              </button>
             <h6 class="mobile-settings-infos-title">Einstellungen &amp; Infos</h6>
             <div class="nav flex-column nav-pills mobile-settings-nav"
                  id="mobile-settings-nav"
