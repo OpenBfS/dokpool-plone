@@ -23,10 +23,10 @@
       />
 
   <browser:page
-      name="event-switcher-content"
+      name="event-switcher-dropdown"
       for="*"
       class=".header.EventSwitcherDropdown"
-      template="header-event-switcher-content.pt"
+      template="header-event-switcher-dropdown.pt"
       permission="zope.Public"
       layer="docpool.ui.interfaces.IUITheme"
       />
