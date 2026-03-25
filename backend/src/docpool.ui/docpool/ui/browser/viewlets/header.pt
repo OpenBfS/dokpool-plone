@@ -98,12 +98,8 @@
               </div>
               <div class="offcanvas-body">
                 <div class="navbar-nav w-100 d-flex">
-                  <metal:desktop-navigation
-                      use-macro="context/@@header.macros/macros/desktop_navigation"
-                  />
-                  <metal:mobile-navigation
-                      use-macro="context/@@header.macros/macros/mobile_navigation"
-                  />
+                  <metal:desktop-navigation use-macro="context/@@header.macros/macros/desktop_navigation" />
+                  <metal:mobile-navigation use-macro="context/@@header.macros/macros/mobile_navigation" />
                 </div>
               </div>
             </div>

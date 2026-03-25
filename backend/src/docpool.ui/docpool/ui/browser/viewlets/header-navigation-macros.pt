@@ -35,23 +35,23 @@
         >
           <tal:icon tal:replace="structure python:icons.tag('search', tag_class='me-2')" />
         </button>
-        <tal:accessibility tal:replace="structure context/@@accessibility-dropdown">
+        <tal:accessibility tal:replace="structure context/@@accessibility-content">
             Accessibility dropdown
         </tal:accessibility>
 
-        <tal:systemmessages tal:replace="structure context/@@system-messages-dropdown">
+        <tal:systemmessages tal:replace="structure context/@@system-messages-content">
             System messages dropdown
         </tal:systemmessages>
 
-        <tal:info tal:replace="structure context/@@info-dropdown">
+        <tal:info tal:replace="structure context/@@info-content">
             Info dropdown
         </tal:info>
 
-        <tal:info tal:replace="structure context/@@config-dropdown">
+        <tal:info tal:replace="structure context/@@config-content">
             Config dropdown
         </tal:info>
 
-        <tal:info tal:replace="structure context/@@user-dropdown">
+        <tal:info tal:replace="structure context/@@user-content">
             User dropdown
         </tal:info>
       </div>
@@ -188,7 +188,7 @@
               </span>
             </button>
             <div class="mobile-settings-pane-content">
-              <tal:accessibility-mobile tal:replace="structure context/@@accessibility-dropdown">
+              <tal:accessibility-mobile tal:replace="structure context/@@accessibility-content">
                   Accessibility dropdown
               </tal:accessibility-mobile>
             </div>
@@ -212,7 +212,7 @@
               </span>
             </button>
             <div class="mobile-settings-pane-content">
-              <tal:info-mobile tal:replace="structure context/@@info-dropdown">
+              <tal:info-mobile tal:replace="structure context/@@info-content">
                   Info dropdown
               </tal:info-mobile>
             </div>
@@ -236,7 +236,7 @@
               </span>
             </button>
             <div class="mobile-settings-pane-content">
-              <tal:systemmessages-mobile tal:replace="structure context/@@system-messages-dropdown">
+              <tal:systemmessages-mobile tal:replace="structure context/@@system-messages-content">
                   System messages dropdown
               </tal:systemmessages-mobile>
             </div>
@@ -260,7 +260,7 @@
               </span>
             </button>
             <div class="mobile-settings-pane-content">
-              <tal:config-mobile tal:replace="structure context/@@config-dropdown">
+              <tal:config-mobile tal:replace="structure context/@@config-content">
                   Config dropdown
               </tal:config-mobile>
             </div>
@@ -284,7 +284,7 @@
               </span>
             </button>
             <div class="mobile-settings-pane-content">
-              <tal:user-mobile tal:replace="structure context/@@user-dropdown">
+              <tal:user-mobile tal:replace="structure context/@@user-content">
                   User dropdown
               </tal:user-mobile>
             </div>
