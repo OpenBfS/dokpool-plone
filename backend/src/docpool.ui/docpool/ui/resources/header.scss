@@ -214,25 +214,29 @@ body.plone-toolbar-left {
     font-weight: 400;
     padding: 0.75rem 1rem 0.5rem;
     border-top: 1px solid #d9e1ea;
+    margin-bottom: 0;
   }
 
-  .mobile-settings-infos-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-
-    li {
-      border-top: 1px solid #d9e1ea;
-    }
-  }
-
-  .mobile-settings-link {
+  .mobile-settings-nav .mobile-settings-link,
+  .mobile-settings-back-link {
+    width: 100%;
     display: flex;
     align-items: center;
     color: #344f6d;
     text-decoration: none;
+    text-align: left;
+    background: transparent;
+    border: 0;
+    border-top: 1px solid #d9e1ea;
+    border-radius: 0;
     padding: 1rem;
     min-height: 58px;
+  }
+
+  .mobile-settings-nav .mobile-settings-link.active,
+  .mobile-settings-nav .mobile-settings-link.show {
+    color: #344f6d;
+    background-color: transparent;
   }
 
   .mobile-settings-icon {
@@ -252,5 +256,74 @@ body.plone-toolbar-left {
     color: #5f7895;
     font-size: var(--dp-font-title);
     line-height: 1;
+  }
+
+  .mobile-settings-back-link {
+    border-bottom: 1px solid #d9e1ea;
+  }
+
+  .mobile-settings-back-label {
+    color: #5f7895;
+    font-size: var(--dp-font-body);
+  }
+
+  .mobile-settings-back-icon,
+  .mobile-settings-back-chevron {
+    color: #5f7895;
+    font-size: var(--dp-font-title);
+    line-height: 1;
+  }
+
+  .mobile-settings-back-icon {
+    margin-right: 0.75rem;
+  }
+
+  .mobile-settings-back-chevron {
+    margin-left: auto;
+  }
+
+  .mobile-settings-pane-content {
+    .btn.btn-icon {
+      display: none;
+    }
+
+    .dropdown-menu {
+      display: block;
+      position: static;
+      inset: auto;
+      float: none;
+      transform: none;
+      min-width: 0;
+      width: 100%;
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
+      margin: 0;
+      padding: 0;
+      background-color: transparent;
+    }
+
+    .dropdown-menu .dropdown-item,
+    .dropdown-menu .list-group-item,
+    .dropdown-menu > li {
+      border-top: 1px solid #d9e1ea;
+      border-radius: 0;
+      margin: 0;
+    }
+
+    .dropdown-menu .dropdown-item:first-child,
+    .dropdown-menu .list-group-item:first-child,
+    .dropdown-menu > li:first-child {
+      border-top: 0;
+    }
+
+    .dropdown-menu .list-group {
+      border-radius: 0;
+    }
+
+    .dropdown-menu .px-3.py-3.bg-light {
+      background-color: #fff !important;
+      border-bottom: 1px solid #d9e1ea;
+    }
   }
 }

@@ -30,10 +30,40 @@ function setupMobileScrollTopButton() {
   updateVisibility();
 }
 
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", setupMobileScrollTopButton);
-} else {
+function setupMobileOffcanvasSettingsNavigation() {
+  const offcanvasNavbar = document.getElementById("offcanvasNavbar");
+  const mainTabTrigger = document.getElementById(
+    "mobile-settings-main-tab-trigger",
+  );
+  if (!offcanvasNavbar || !mainTabTrigger) return;
+
+  if (offcanvasNavbar.dataset.mobileSettingsResetBound === "1") {
+    return;
+  }
+  offcanvasNavbar.dataset.mobileSettingsResetBound = "1";
+
+  offcanvasNavbar.addEventListener("hidden.bs.offcanvas", () => {
+    mainTabTrigger.click();
+  });
+
+  offcanvasNavbar
+    .querySelectorAll("[data-mobile-settings-back='true']")
+    .forEach((button) => {
+      button.addEventListener("click", () => {
+        mainTabTrigger.click();
+      });
+    });
+}
+
+function setupHeaderMobileUi() {
   setupMobileScrollTopButton();
+  setupMobileOffcanvasSettingsNavigation();
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", setupHeaderMobileUi);
+} else {
+  setupHeaderMobileUi();
 }
 
 // After inject this code sets the back link to listing and populates next/prev links

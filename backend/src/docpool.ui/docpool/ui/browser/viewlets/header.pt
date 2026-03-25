@@ -152,74 +152,237 @@
                   </div>
 
                   <div class="d-lg-none w-100 mobile-settings-infos">
-                    <h6 class="mobile-settings-infos-title">Einstellungen &amp; Infos</h6>
-                    <ul class="mobile-settings-infos-list">
-                      <li>
-                        <a class="mobile-settings-link"
-                           href="#"
+                    <div class="tab-content mobile-settings-tab-content"
+                         id="mobile-settings-tab-content"
+                    >
+                      <div class="tab-pane fade show active"
+                           id="mobile-settings-pane-main"
+                           aria-labelledby="mobile-settings-main-tab-trigger"
+                           role="tabpanel"
+                      >
+                        <h6 class="mobile-settings-infos-title">Einstellungen &amp; Infos</h6>
+                        <div class="nav flex-column nav-pills mobile-settings-nav"
+                             id="mobile-settings-nav"
+                             aria-orientation="vertical"
+                             role="tablist"
                         >
-                          <span class="mobile-settings-icon">
-                            <tal:icon tal:replace="structure python:icons.tag('universal-access')" />
+                          <button class="mobile-settings-link nav-link d-none active"
+                                  id="mobile-settings-main-tab-trigger"
+                                  aria-controls="mobile-settings-pane-main"
+                                  aria-selected="true"
+                                  role="tab"
+                                  type="button"
+                                  data-bs-target="#mobile-settings-pane-main"
+                                  data-bs-toggle="pill"
+                          ></button>
+                          <button class="mobile-settings-link nav-link"
+                                  id="mobile-settings-tab-accessibility"
+                                  aria-controls="mobile-settings-pane-accessibility"
+                                  aria-selected="false"
+                                  role="tab"
+                                  type="button"
+                                  data-bs-target="#mobile-settings-pane-accessibility"
+                                  data-bs-toggle="pill"
+                          >
+                            <span class="mobile-settings-icon">
+                              <tal:icon tal:replace="structure python:icons.tag('universal-access')" />
+                            </span>
+                            <span class="mobile-settings-label">Barrierefreiheit</span>
+                            <span class="mobile-settings-chevron">
+                              <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
+                            </span>
+                          </button>
+                          <button class="mobile-settings-link nav-link"
+                                  id="mobile-settings-tab-info"
+                                  aria-controls="mobile-settings-pane-info"
+                                  aria-selected="false"
+                                  role="tab"
+                                  type="button"
+                                  data-bs-target="#mobile-settings-pane-info"
+                                  data-bs-toggle="pill"
+                          >
+                            <span class="mobile-settings-icon">
+                              <tal:icon tal:replace="structure python:icons.tag('info-circle-fill')" />
+                            </span>
+                            <span class="mobile-settings-label">Infos</span>
+                            <span class="mobile-settings-chevron">
+                              <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
+                            </span>
+                          </button>
+                          <button class="mobile-settings-link nav-link"
+                                  id="mobile-settings-tab-system-messages"
+                                  aria-controls="mobile-settings-pane-system-messages"
+                                  aria-selected="false"
+                                  role="tab"
+                                  type="button"
+                                  data-bs-target="#mobile-settings-pane-system-messages"
+                                  data-bs-toggle="pill"
+                          >
+                            <span class="mobile-settings-icon">
+                              <tal:icon tal:replace="structure python:icons.tag('exclamation-triangle-fill')" />
+                            </span>
+                            <span class="mobile-settings-label">Systemmeldungen</span>
+                            <span class="mobile-settings-chevron">
+                              <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
+                            </span>
+                          </button>
+                          <button class="mobile-settings-link nav-link"
+                                  id="mobile-settings-tab-config"
+                                  aria-controls="mobile-settings-pane-config"
+                                  aria-selected="false"
+                                  role="tab"
+                                  type="button"
+                                  data-bs-target="#mobile-settings-pane-config"
+                                  data-bs-toggle="pill"
+                          >
+                            <span class="mobile-settings-icon">
+                              <tal:icon tal:replace="structure python:icons.tag('wrench')" />
+                            </span>
+                            <span class="mobile-settings-label">Konfiguration</span>
+                            <span class="mobile-settings-chevron">
+                              <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
+                            </span>
+                          </button>
+                          <button class="mobile-settings-link nav-link"
+                                  id="mobile-settings-tab-user"
+                                  aria-controls="mobile-settings-pane-user"
+                                  aria-selected="false"
+                                  role="tab"
+                                  type="button"
+                                  data-bs-target="#mobile-settings-pane-user"
+                                  data-bs-toggle="pill"
+                          >
+                            <span class="mobile-settings-icon">
+                              <tal:icon tal:replace="structure python:icons.tag('person-fill')" />
+                            </span>
+                            <span class="mobile-settings-label">Benutzereinstellungen</span>
+                            <span class="mobile-settings-chevron">
+                              <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
+                            </span>
+                          </button>
+                        </div>
+                      </div>
+
+                      <div class="tab-pane fade mobile-settings-pane"
+                           id="mobile-settings-pane-accessibility"
+                           aria-labelledby="mobile-settings-tab-accessibility"
+                           role="tabpanel"
+                      >
+                        <button class="mobile-settings-back-link"
+                                type="button"
+                                data-mobile-settings-back="true"
+                        >
+                          <span class="mobile-settings-back-icon">
+                            <tal:icon tal:replace="structure python:icons.tag('chevron-left')" />
                           </span>
-                          <span class="mobile-settings-label">Barrierefreiheit</span>
-                          <span class="mobile-settings-chevron">
+                          <span class="mobile-settings-back-label">Hauptmen&uuml;</span>
+                          <span class="mobile-settings-back-chevron">
                             <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
                           </span>
-                        </a>
-                      </li>
-                      <li>
-                        <a class="mobile-settings-link"
-                           href="#"
+                        </button>
+                        <div class="mobile-settings-pane-content">
+                          <tal:accessibility-mobile tal:replace="structure context/@@accessibility-dropdown">
+                              Accessibility dropdown
+                          </tal:accessibility-mobile>
+                        </div>
+                      </div>
+
+                      <div class="tab-pane fade mobile-settings-pane"
+                           id="mobile-settings-pane-info"
+                           aria-labelledby="mobile-settings-tab-info"
+                           role="tabpanel"
+                      >
+                        <button class="mobile-settings-back-link"
+                                type="button"
+                                data-mobile-settings-back="true"
                         >
-                          <span class="mobile-settings-icon">
-                            <tal:icon tal:replace="structure python:icons.tag('info-circle-fill')" />
+                          <span class="mobile-settings-back-icon">
+                            <tal:icon tal:replace="structure python:icons.tag('chevron-left')" />
                           </span>
-                          <span class="mobile-settings-label">Infos</span>
-                          <span class="mobile-settings-chevron">
+                          <span class="mobile-settings-back-label">Hauptmen&uuml;</span>
+                          <span class="mobile-settings-back-chevron">
                             <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
                           </span>
-                        </a>
-                      </li>
-                      <li>
-                        <a class="mobile-settings-link"
-                           href="#"
+                        </button>
+                        <div class="mobile-settings-pane-content">
+                          <tal:info-mobile tal:replace="structure context/@@info-dropdown">
+                              Info dropdown
+                          </tal:info-mobile>
+                        </div>
+                      </div>
+
+                      <div class="tab-pane fade mobile-settings-pane"
+                           id="mobile-settings-pane-system-messages"
+                           aria-labelledby="mobile-settings-tab-system-messages"
+                           role="tabpanel"
+                      >
+                        <button class="mobile-settings-back-link"
+                                type="button"
+                                data-mobile-settings-back="true"
                         >
-                          <span class="mobile-settings-icon">
-                            <tal:icon tal:replace="structure python:icons.tag('exclamation-triangle-fill')" />
+                          <span class="mobile-settings-back-icon">
+                            <tal:icon tal:replace="structure python:icons.tag('chevron-left')" />
                           </span>
-                          <span class="mobile-settings-label">Systemmeldungen</span>
-                          <span class="mobile-settings-chevron">
+                          <span class="mobile-settings-back-label">Hauptmen&uuml;</span>
+                          <span class="mobile-settings-back-chevron">
                             <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
                           </span>
-                        </a>
-                      </li>
-                      <li>
-                        <a class="mobile-settings-link"
-                           href="#"
+                        </button>
+                        <div class="mobile-settings-pane-content">
+                          <tal:systemmessages-mobile tal:replace="structure context/@@system-messages-dropdown">
+                              System messages dropdown
+                          </tal:systemmessages-mobile>
+                        </div>
+                      </div>
+
+                      <div class="tab-pane fade mobile-settings-pane"
+                           id="mobile-settings-pane-config"
+                           aria-labelledby="mobile-settings-tab-config"
+                           role="tabpanel"
+                      >
+                        <button class="mobile-settings-back-link"
+                                type="button"
+                                data-mobile-settings-back="true"
                         >
-                          <span class="mobile-settings-icon">
-                            <tal:icon tal:replace="structure python:icons.tag('wrench')" />
+                          <span class="mobile-settings-back-icon">
+                            <tal:icon tal:replace="structure python:icons.tag('chevron-left')" />
                           </span>
-                          <span class="mobile-settings-label">Konfiguration</span>
-                          <span class="mobile-settings-chevron">
+                          <span class="mobile-settings-back-label">Hauptmen&uuml;</span>
+                          <span class="mobile-settings-back-chevron">
                             <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
                           </span>
-                        </a>
-                      </li>
-                      <li>
-                        <a class="mobile-settings-link"
-                           href="#"
+                        </button>
+                        <div class="mobile-settings-pane-content">
+                          <tal:config-mobile tal:replace="structure context/@@config-dropdown">
+                              Config dropdown
+                          </tal:config-mobile>
+                        </div>
+                      </div>
+
+                      <div class="tab-pane fade mobile-settings-pane"
+                           id="mobile-settings-pane-user"
+                           aria-labelledby="mobile-settings-tab-user"
+                           role="tabpanel"
+                      >
+                        <button class="mobile-settings-back-link"
+                                type="button"
+                                data-mobile-settings-back="true"
                         >
-                          <span class="mobile-settings-icon">
-                            <tal:icon tal:replace="structure python:icons.tag('person-fill')" />
+                          <span class="mobile-settings-back-icon">
+                            <tal:icon tal:replace="structure python:icons.tag('chevron-left')" />
                           </span>
-                          <span class="mobile-settings-label">Benutzereinstellungen</span>
-                          <span class="mobile-settings-chevron">
+                          <span class="mobile-settings-back-label">Hauptmen&uuml;</span>
+                          <span class="mobile-settings-back-chevron">
                             <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
                           </span>
-                        </a>
-                      </li>
-                    </ul>
+                        </button>
+                        <div class="mobile-settings-pane-content">
+                          <tal:user-mobile tal:replace="structure context/@@user-dropdown">
+                              User dropdown
+                          </tal:user-mobile>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
