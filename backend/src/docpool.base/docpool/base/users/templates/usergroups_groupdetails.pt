@@ -278,7 +278,7 @@
                                               select_variable python:property.get('select_variable','');
                                               select_value python:select_variable and path('context/%s' %select_variable) or [];
                                             "
-                                            tal:condition="python:type in ('selection', 'multiple selection')"
+                                            tal:condition="python:type in ('selection', 'multiple selection') and property['id'] != 'allowedDocTypes'"
                             >
 
                               <select class="form-select"
@@ -331,6 +331,10 @@
                               </select>
 
                             </tal:selections>
+
+                            <tal:doctypes condition="python:property['id'] == 'allowedDocTypes'"
+                                          content="structure python:view.doctypes_widget.render()"
+                            />
 
                           </div>
 

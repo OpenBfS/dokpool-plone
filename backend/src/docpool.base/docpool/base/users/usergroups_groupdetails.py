@@ -1,10 +1,44 @@
 from Acquisition import aq_inner
+from Acquisition import ImplicitAcquisitionWrapper
+from docpool.base import DocpoolMessageFactory as _
+from docpool.base.vocabularies import DocTypeVocabularyFactory
+from plone.app.z3cform.widgets.orderedselect import OrderedSelectFieldWidget
 from plone.base import PloneMessageFactory as PMF
 from plone.base.utils import base_hasattr
 from plone.protect import CheckAuthenticator
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.controlpanel.browser.usergroups_groupdetails import GroupDetailsControlPanel as GDCP
 from Products.statusmessages.interfaces import IStatusMessage
+from z3c.form.interfaces import IContextAware
+from zope import schema
+from zope.interface import alsoProvides
+from zope.interface import implementer
+from zope.interface import Interface
+from zope.interface import provider
+from zope.schema.interfaces import IContextSourceBinder
+
+
+@provider(IContextSourceBinder)
+def possible_doctypes(context):
+    return DocTypeVocabularyFactory(context, ids=True)
+
+
+class IGroupDetails(Interface):
+    allowedDocTypes = schema.List(
+        title=_("heading_allowed_doctypes", default="Allowed document types"),
+        description=_(
+            "description_allowed_doctypes",
+            default="Allowed document types for this group.",
+        ),
+        required=True,
+        missing_value=[],
+        value_type=schema.Choice(source=possible_doctypes),
+    )
+
+
+@implementer(IGroupDetails)
+class GroupProxy:
+    allowedDocTypes = None
 
 
 class GroupDetailsControlPanel(GDCP):
@@ -22,6 +56,8 @@ class GroupDetailsControlPanel(GDCP):
             self.grouptitle = self.group.getGroupTitleOrName()
 
         self.request.set("grouproles", self.group.getRoles() if self.group else [])
+
+        self.setup_allowed_doctypes_widget()
 
         submitted = self.request.form.get("form.submitted") and self.request.form.get("form.button.Save")
         if submitted:
@@ -116,3 +152,12 @@ class GroupDetailsControlPanel(GDCP):
                 return ""
 
         return self.index()
+
+    def setup_allowed_doctypes_widget(self):
+        group_proxy = ImplicitAcquisitionWrapper(GroupProxy(), self.context)
+        group_proxy.allowedDocTypes = self.group.getProperty("allowedDocTypes")
+        field = IGroupDetails["allowedDocTypes"].bind(group_proxy)
+        self.doctypes_widget = OrderedSelectFieldWidget(field, self.request)
+        alsoProvides(self.doctypes_widget, IContextAware)
+        self.doctypes_widget.context = group_proxy
+        self.doctypes_widget.update()

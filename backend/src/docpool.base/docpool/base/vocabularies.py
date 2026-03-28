@@ -111,7 +111,7 @@ DocumentTypesVocabularyFactory = DocumentTypesVocabulary()
 
 
 @provider(IVocabularyFactory)
-def DocTypeVocabularyFactory(context=None, raw=False):
+def DocTypeVocabularyFactory(context=None, raw=False, ids=False):
     """ """
     esd = getDocumentPoolSite(context)
     path = "/".join(esd.getPhysicalPath()) + "/config"
@@ -123,6 +123,9 @@ def DocTypeVocabularyFactory(context=None, raw=False):
     if raw:
         brains = api.content.find(**query)
         return [(brain.getId, brain.Title) for brain in brains]
+    if ids:
+        brains = api.content.find(**query)
+        return SimpleVocabulary([SimpleTerm(brain.getId, brain.getId, brain.Title) for brain in brains])
     return StaticCatalogVocabulary(query, title_template="{brain.Title}")
 
 

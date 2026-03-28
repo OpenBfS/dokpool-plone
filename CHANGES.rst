@@ -12,7 +12,7 @@ Changed:
 - Modernize build piplene from shell docker build to dind builds (#6301)
   [slindner]
 
-- Add Cancel button to group details form (#6475)
+- Add Cancel button and better doctypes widget to group details form (#6475)
   [tlotze]
 
 

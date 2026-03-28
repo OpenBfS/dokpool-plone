@@ -61,5 +61,7 @@ def setMemberProperties(self, mapping, **kw):
 
 # XXX PropertyManagers expect methods called to provide options for select variables to
 # be available as an object attribute. Should be modernised some day.
+# re #6475: Can we get rid of possibleDocTypes now that we use the in-and-out widget on the groupdetails page
+# in the application UI?
 GroupDataTool.possibleDocTypes = possibleDocTypes
 GroupDataTool.possibleDocumentPools = possibleDocumentPools
