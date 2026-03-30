@@ -12,6 +12,9 @@ Changed:
 - Modernize build piplene from shell docker build to dind builds (#6301)
   [slindner]
 
+- Add Cancel button and better doctypes widget to group details form (#6475)
+  [tlotze]
+
 
 2.5.0 (2026-02-16)
 ------------------

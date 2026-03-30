@@ -278,7 +278,7 @@
                                               select_variable python:property.get('select_variable','');
                                               select_value python:select_variable and path('context/%s' %select_variable) or [];
                                             "
-                                            tal:condition="python:type in ('selection', 'multiple selection')"
+                                            tal:condition="python:type in ('selection', 'multiple selection') and property['id'] != 'allowedDocTypes'"
                             >
 
                               <select class="form-select"
@@ -332,6 +332,10 @@
 
                             </tal:selections>
 
+                            <tal:doctypes condition="python:property['id'] == 'allowedDocTypes'"
+                                          content="structure python:view.doctypes_widget.render()"
+                            />
+
                           </div>
 
                         </div>
@@ -350,6 +354,14 @@
                             i18n:attributes="value label_save;"
                             i18n:translate=""
                     >Save</button>
+                    <button class="btn btn-secondary"
+                            formnovalidate="formnovalidate"
+                            name="form.button.Cancel"
+                            type="submit"
+                            value="Cancel"
+                            i18n:attributes="value label_cancel;"
+                            i18n:translate=""
+                    >Cancel</button>
                   </tal:dp>
                 </fieldset>
 
