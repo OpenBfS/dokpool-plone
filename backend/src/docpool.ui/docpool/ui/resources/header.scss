@@ -225,6 +225,18 @@ body.plone-toolbar-left {
 
   .mobile-offcanvas-close {
     color: #344f6d;
+    margin-left: auto;
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 2.5rem;
+
+    svg {
+        height: 2em;;
+    }
   }
 
   .mobile-settings-infos {
