@@ -32,6 +32,15 @@
       />
 
   <browser:page
+      name="event-switcher-mobile-content"
+      for="*"
+      class=".header.EventSwitcherDropdown"
+      template="header-event-switcher-mobile-content.pt"
+      permission="zope.Public"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
+  <browser:page
       name="info-content"
       for="*"
       class=".header.InfoDropdown"
