@@ -31,7 +31,9 @@
       </div>
     </div>
     <div class="mobile-event-row-actions"
-         tal:define="scenario_url python: item['scenario'].absolute_url();"
+         tal:define="
+           scenario_url python: item['scenario'].absolute_url();
+         "
     >
       <a href="${scenario_url}/@@edit">
         <tal:icon replace="structure python:icons.tag('pencil', tag_class='')" />
@@ -66,7 +68,9 @@
       </div>
     </div>
     <div class="mobile-event-row-actions"
-         tal:define="scenario_url python: item['scenario'].absolute_url();"
+         tal:define="
+           scenario_url python: item['scenario'].absolute_url();
+         "
     >
       <a href="${scenario_url}/@@edit">
         <tal:icon replace="structure python:icons.tag('pencil', tag_class='')" />

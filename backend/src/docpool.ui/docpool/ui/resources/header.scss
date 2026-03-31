@@ -244,6 +244,9 @@ body.plone-toolbar-left {
   .offcanvas-body{
     padding:0;
   }
+  #mobile-settings-pane-main {
+    border-top: 1px solid #d9e1ea;
+  }
 
   .mobile-settings-infos {
     margin-top: 0;
@@ -291,7 +294,7 @@ body.plone-toolbar-left {
     font-size: var(--dp-font-title);
     font-weight: 400;
     padding: 0.75rem 1rem 0.5rem;
-    border-top: 1px solid #d9e1ea;
+        border-bottom: 1px solid #d9e1ea;
     margin-bottom: 0;
   }
 
@@ -338,11 +341,13 @@ body.plone-toolbar-left {
 
   .mobile-event-add-wrap {
     padding: 0.6rem 1rem 0.5rem;
+  border-bottom: 1px solid #d9e1ea;
   }
 
   .mobile-event-add-btn {
     width: 100%;
     text-align: left;
+    font-size: var(--dp-font-title);
     color: #344f6d;
     background-color: #d2d9e1;
     border-color: #d2d9e1;
@@ -456,14 +461,7 @@ body.plone-toolbar-left {
     align-items: center;
     color: #344f6d;
     background-color: #fff;
-    border: 1px solid #d9e1ea;
-    border-radius: 0.35rem;
-    padding: 0.95rem 0.9rem;
     min-height: 58px;
-  }
-
-  .mobile-placeholder-link + .mobile-placeholder-link {
-    margin-top: 0.625rem;
   }
 
   .mobile-placeholder-icon {
@@ -485,6 +483,16 @@ body.plone-toolbar-left {
     line-height: 1;
   }
 
+   .mobile-settings-nav {
+     #mobile-settings-tab-accessibility,
+     #mobile-settings-tab-info,
+     #mobile-settings-tab-system-messages,
+     #mobile-settings-tab-config,
+     #mobile-settings-tab-user {
+       border-bottom: 1px solid #d9e1ea;
+     }
+  }
+
   .mobile-settings-nav .mobile-settings-link,
   .mobile-settings-back-link {
     width: 100%;
@@ -495,7 +503,6 @@ body.plone-toolbar-left {
     text-align: left;
     background: transparent;
     border: 0;
-    border-top: 1px solid #d9e1ea;
     border-radius: 0;
     padding: 1rem;
     min-height: 58px;
