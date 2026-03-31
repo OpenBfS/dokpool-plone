@@ -26,6 +26,7 @@ class TestMobileUI:
         menu_toggle.click()
         expect(offcanvas).to_be_visible()
         close_button = page.locator("#offcanvasNavbar button.btn-close")
+        page.screenshot(path="screenshots/mobile-menu-open.png")
         expect(close_button).to_be_visible()
         close_button.click()
 
