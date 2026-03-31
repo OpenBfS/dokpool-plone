@@ -3,7 +3,7 @@ from plone.app.layout.viewlets.common import ViewletBase
 import datetime
 
 
-class PortalFooter(ViewletBase):
+class TimezoneTableMixin:
     def get_local_time(self):
         return datetime.datetime.now()
 
@@ -12,3 +12,7 @@ class PortalFooter(ViewletBase):
 
     def get_jst_time(self):
         return datetime.datetime.now(datetime.UTC) + datetime.timedelta(hours=8)
+
+
+class PortalFooter(TimezoneTableMixin, ViewletBase):
+    pass

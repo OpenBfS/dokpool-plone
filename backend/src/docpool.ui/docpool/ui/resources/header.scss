@@ -204,11 +204,13 @@ body.plone-toolbar-left {
 }
 
 #offcanvasNavbar {
+  background: #fff;
   .mobile-offcanvas-header {
     border-bottom: 1px solid #d9e1ea;
     box-shadow: 0 2px 8px rgba(30, 56, 89, 0.08);
     min-height: 72px;
   }
+
 
   .mobile-offcanvas-logo {
     height: 16px;
@@ -239,8 +241,49 @@ body.plone-toolbar-left {
     }
   }
 
+  .offcanvas-body{
+    padding:0;
+  }
+
   .mobile-settings-infos {
-    margin-top: 0.75rem;
+    margin-top: 0;
+  }
+
+  .footer-tz-table-mobile {
+    position: static;
+    inset: auto;
+    z-index: auto;
+    margin: 10px;
+    padding: 0.75rem 1rem;
+
+    tr:first-child td {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    td {
+      border: 0;
+      background-color: transparent;
+      font-size: var(--dp-font-small);
+      line-height: 1.35;
+      padding: 0;
+      color: #93a7bb;
+    }
+
+    td.text-primary {
+      color: #6e86a1 !important;
+      font-weight: 400;
+    }
+
+    td.text-secondary {
+      color: #93a7bb !important;
+    }
+
+    .tz-offset {
+      min-width: 3ch;
+      padding-left: 1rem;
+      white-space: nowrap;
+    }
   }
 
   .mobile-settings-infos-title {

@@ -63,6 +63,49 @@
 
     <metal:mobile-navigation define-macro="mobile_navigation">
       <div class="d-lg-none w-100 mobile-settings-infos">
+        <table class="table table-borderless mb-0 footer-tz-table footer-tz-table-mobile"
+               tal:define="
+                 local_time python: view.get_local_time();
+                 utc_time python: view.get_utc_time();
+                 jst_time python: view.get_jst_time();
+               "
+        >
+          <tbody>
+            <tr>
+              <td class="sidebar-tz text-primary"
+                  i18n:translate=""
+              >ME(S)Z</td>
+              <td class="sidebar-tz text-primary"
+                  datetime="${python: local_time}"
+              >
+                ${python: local_time.strftime('%H:%M')}
+              </td>
+              <td class="sidebar-tz tz-offset"></td>
+            </tr>
+            <tr>
+              <td class="sidebar-tz text-secondary"
+                  i18n:translate=""
+              >UTC</td>
+              <td class="sidebar-tz text-secondary"
+                  datetime="${python: utc_time}"
+              >
+                ${python: utc_time.strftime('%H:%M')}
+              </td>
+              <td class="sidebar-tz text-secondary tz-offset">-2h</td>
+            </tr>
+            <tr>
+              <td class="sidebar-tz text-secondary"
+                  i18n:translate=""
+              >JST</td>
+              <td class="sidebar-tz text-secondary"
+                  datetime="${python: jst_time}"
+              >
+                ${python: jst_time.strftime('%H:%M')}
+              </td>
+              <td class="sidebar-tz text-secondary tz-offset">+8h</td>
+            </tr>
+          </tbody>
+        </table>
         <div class="tab-content mobile-settings-tab-content"
              id="mobile-settings-tab-content"
         >
