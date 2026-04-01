@@ -1,7 +1,8 @@
 <div class="dropdown"
      tal:define="
        icons python:context.restrictedTraverse('@@iconresolver');
-     ">
+     "
+>
 
   <button class="btn btn-icon"
           aria-label="Accessibility"

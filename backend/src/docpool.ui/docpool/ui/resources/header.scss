@@ -214,6 +214,126 @@ body.plone-toolbar-left {
   flex: 0 0 auto;
 }
 
+.menu-system-messages-dropdown {
+  position: static;
+  margin: 0;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  padding: 0;
+  border: 1px solid #d9e1ea;
+  border-radius: 0;
+  background-color: #f2f5f8;
+  box-shadow: 0 0.35rem 0.9rem rgba(22, 46, 72, 0.16);
+  z-index: 1080;
+  overflow: hidden;
+
+  li {
+    list-style: none;
+  }
+
+  .system-messages-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    min-height: 68px;
+    padding: 0 1.25rem;
+    border-bottom: 1px solid #d9e1ea;
+  }
+
+  .system-messages-counter {
+    width: 1.25rem;
+    height: 1.25rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background-color: #d6dee6;
+    color: #35516f;
+    font-size: 0.7rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .system-messages-title {
+    color: #5f7895;
+    font-size: 1rem;
+    line-height: 1.2;
+  }
+
+  .system-message-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 106px 74px;
+    align-items: stretch;
+    border-bottom: 1px solid #d9e1ea;
+    background-color: #f2f5f8;
+  }
+
+  .system-message-row:last-child {
+    border-bottom: 0;
+  }
+
+  .system-message-main {
+    display: grid;
+    grid-template-columns: 1.1rem minmax(0, 1fr);
+    gap: 0.9rem;
+    padding: 0.95rem 1.25rem;
+    min-width: 0;
+    color: #35516f;
+  }
+
+  .system-message-icon {
+    color: #35516f;
+    line-height: 1;
+    padding-top: 0.08rem;
+  }
+
+  .system-message-text {
+    font-size: 1rem;
+    line-height: 1.35;
+    color: #35516f;
+    min-width: 0;
+  }
+
+  .system-message-text p {
+    margin: 0 0 0.85rem 0;
+  }
+
+  .system-message-text p:last-child {
+    margin-bottom: 0;
+  }
+
+  .system-message-date,
+  .system-message-time {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 0.95rem;
+    border-left: 1px solid #d9e1ea;
+    color: #486481;
+    font-size: 0.95rem;
+    line-height: 1.3;
+    white-space: nowrap;
+  }
+}
+
+  .menu-system-messages-dropdown {
+    position: fixed !important;
+    inset: 72px 0.75rem auto 0.75rem !important;
+    width: auto !important;
+    max-width: none !important;
+    transform: none !important;
+    max-height: calc(100vh - 84px);
+    overflow-y: auto;
+  }
+
+  body.plone-toolbar-left-expanded {
+    .menu-system-messages-dropdown {
+      padding-left: var(--plone-toolbar-width);
+    }
+  }
+
+
 .menu-user-dropdown {
   .user-menu-header-item {
     padding: 0;

@@ -1,29 +1,70 @@
 <div class="dropdown"
      tal:define="
        icons python:context.restrictedTraverse('@@iconresolver');
-     ">
+     "
+>
 
   <button class="btn btn-icon"
           aria-label="System messages"
           type="button"
+          data-bs-display="static"
           data-bs-toggle="dropdown"
   >
     <tal:icon tal:replace="structure python:icons.tag('exclamation-triangle-fill', tag_class='me-2')" />
   </button>
-  <div class="dropdown-menu dropdown-menu-end menu-system-messages-dropdown">
-    <!-- Header: System messages -->
-    <div class="px-3 py-3 bg-light">
-      <div class="h5 fw-bold mb-0 text-graublau-dunkel2">System messages</div>
-    </div>
+  <ul class="dropdown-menu menu-system-messages-dropdown">
+    <li class="system-messages-header">
+      <span class="system-messages-counter">3</span>
+      <span class="system-messages-title">Systemmeldungen</span>
+    </li>
 
-    <!-- Menu list -->
-    <ul class="list-group list-group-flush">
-      <!-- Placeholder content -->
-      <li class="list-group-item d-flex align-items-center justify-content-between py-3 list-item-compact">
-        <div class="d-flex align-items-center gap-3">
-          <span class="text-graublau-dunkel1 small">No new messages</span>
+    <li class="system-message-row">
+      <div class="system-message-main">
+        <span class="system-message-icon">
+          <tal:icon tal:replace="structure python:icons.tag('exclamation-triangle-fill')" />
+        </span>
+        <div class="system-message-text">Serverausfall im Lagezentrum XYZ</div>
+      </div>
+      <div class="system-message-date">21.05.2024</div>
+      <div class="system-message-time">09:11</div>
+    </li>
+
+    <li class="system-message-row">
+      <div class="system-message-main">
+        <span class="system-message-icon">
+          <tal:icon tal:replace="structure python:icons.tag('exclamation-triangle-fill')" />
+        </span>
+        <div class="system-message-text">
+          <p>
+            Dies ist ein extralanger Meldungstext. Dies ist ein extralanger Meldungstext.Dies ist ein extralanger
+            Meldungstext. Dies ist ein extralanger Meldungstext. Dies ist ein extralanger Meldungstext. Dies ist ein
+            extralanger Meldungstext.Dies ist ein extralanger Meldungstext. Dies ist ein extralanger Meldungstext.
+            Dies ist ein extralanger Meldungstext.Dies ist ein extralanger Meldungstext. Dies ist ein extralanger
+            Meldungstext.Dies ist ein extralanger Meldungstext. Dies ist ein extralanger Meldungstext.
+          </p>
+          <p>
+            Dies ist ein extralanger Meldungstext. Dies ist ein extralanger Meldungstext. Dies ist ein extralanger
+            Meldungstext.Dies ist ein extralanger Meldungstext. Dies ist ein extralanger Meldungstext.Dies ist ein
+            extralanger Meldungstext.
+          </p>
         </div>
-      </li>
-    </ul>
-  </div>
+      </div>
+      <div class="system-message-date">21.05.2024</div>
+      <div class="system-message-time">09:11</div>
+    </li>
+
+    <li class="system-message-row">
+      <div class="system-message-main">
+        <span class="system-message-icon">
+          <tal:icon tal:replace="structure python:icons.tag('exclamation-triangle-fill')" />
+        </span>
+        <div class="system-message-text">
+          Serverausfall im Dies ist ein extralanger Meldungstext. Dies ist ein extralanger Meldungstext.Dies ist ein
+          extralanger MeldungstextLagezentrum XYZ
+        </div>
+      </div>
+      <div class="system-message-date">21.05.2024</div>
+      <div class="system-message-time">09:11</div>
+    </li>
+  </ul>
 </div>

@@ -3,7 +3,8 @@
        icons python:context.restrictedTraverse('@@iconresolver');
        dp_url context/@@dp_url;
        portal_url context/@@plone_portal_state/portal_url;
-     ">
+     "
+>
   <button class="btn btn-icon"
           aria-label="Benutzer"
           type="button"
@@ -20,12 +21,12 @@
       >
         <span class="user-menu-kicker">angemeldet als</span>
         <div>
-        <strong class="user-menu-name"
-                tal:content="python: view.user_name()"
-        >Username</strong>
-        <span class="user-menu-arrow">
-          <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
-        </span>
+          <strong class="user-menu-name"
+                  tal:content="python: view.user_name()"
+          >Username</strong>
+          <span class="user-menu-arrow">
+            <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
+          </span>
         </div>
       </a>
     </li>
