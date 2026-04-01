@@ -17,7 +17,7 @@ class TestMobileUI:
         page = self.page
         # Set mobile viewport
         page.set_viewport_size({"width": 375, "height": 667})
-        page.goto(f"{self.plone_url}")
+        page.goto(f"{self.plone_url}/bund")
         # Check that offcanvas menu exists but is not visible initially
         offcanvas = page.locator("#offcanvasNavbar")
         expect(offcanvas).to_be_attached()
@@ -35,7 +35,7 @@ class TestMobileUI:
         page = self.page
         # Set mobile viewport
         page.set_viewport_size({"width": 375, "height": 667})
-        page.goto(f"{self.plone_url}")
+        page.goto(f"{self.plone_url}/bund")
         search_button = page.locator(".mobile-search-btn")
         expect(search_button).to_be_visible()
         search_button.click()
@@ -50,7 +50,7 @@ class TestMobileUI:
         """Test that mobile scroll-to-top button is shown only when needed and works."""
         page = self.page
         page.set_viewport_size({"width": 375, "height": 667})
-        page.goto(f"{self.plone_url}")
+        page.goto(f"{self.plone_url}/bund")
 
         button = page.locator(".mobile-scroll-top-button")
         expect(button).to_be_hidden()
