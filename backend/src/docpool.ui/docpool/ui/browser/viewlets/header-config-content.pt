@@ -13,7 +13,7 @@
     <tal:icon tal:replace="structure python:icons.tag('wrench', tag_class='me-2')" />
   </button>
 
-  <ul class="dropdown-menu dropdown-menu-end menu-config-dropdown">
+  <ul class="dropdown-menu dropdown-menu-end menu-config-dropdown menu-utility-dropdown">
     <li class="dropdown-item user-menu-action-item">
       <tal:icon tal:replace="structure python:icons.tag('pencil', tag_class='user-menu-row-icon')" />
       <a class="user-menu-link"

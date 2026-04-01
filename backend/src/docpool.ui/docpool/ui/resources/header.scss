@@ -169,8 +169,7 @@ body.plone-toolbar-left {
   background-color: var(--bs-light-blue);
 }
 
-.menu-user-dropdown,
-.menu-config-dropdown {
+.menu-utility-dropdown {
   width: 15.2rem;
   padding: 0;
   border: 0;
@@ -199,26 +198,16 @@ body.plone-toolbar-left {
   }
 }
 
-.menu-user-dropdown .user-menu-link,
-.menu-config-dropdown .user-menu-link {
-  color: #35516f;
+.menu-utility-dropdown .user-menu-link {
   text-decoration: none;
   line-height: 1.2;
 }
 
-.menu-user-dropdown .user-menu-action-item:hover,
-.menu-config-dropdown .user-menu-action-item:hover {
+.menu-utility-dropdown .user-menu-action-item:hover {
   background-color: #e6ecf2;
 }
 
-.menu-user-dropdown .user-menu-action-item a:hover,
-.menu-config-dropdown .user-menu-action-item a:hover {
-  color: #35516f;
-  text-decoration: none;
-}
-
-.menu-user-dropdown .user-menu-row-icon,
-.menu-config-dropdown .user-menu-row-icon {
+.menu-utility-dropdown .user-menu-row-icon {
   width: 1rem;
   height: 1rem;
   color: #486481;
