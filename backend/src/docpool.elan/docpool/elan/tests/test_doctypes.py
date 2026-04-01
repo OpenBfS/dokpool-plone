@@ -412,7 +412,7 @@ class TestDocTypes(unittest.TestCase):
         api.content.transition(obj=new, transition="publish")
         modified(new)
         # Test setting event/scenario
-        scenarios = {b.UID: False for b in api.content.find(portal_type="DPEvent", id="routinemode")}
+        scenarios = {b.UID: False for b in api.content.find(portal_type="DPEvent")}
         scenarios[event_uid] = True
         setScenariosForCurrentUser(scenarios=scenarios)
         scenarios = getScenariosForCurrentUser()
