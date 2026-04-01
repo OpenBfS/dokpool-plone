@@ -1,11 +1,13 @@
-<tal:header-config-dropdown tal:define="
-                              icons python:context.restrictedTraverse('@@iconresolver');
-                              dp_url context/@@dp_url;
-                            "
-                            i18n:domain="docpool.base"
+<div class="dropdown"
+     tal:define="
+       icons python:context.restrictedTraverse('@@iconresolver');
+       dp_url context/@@dp_url;
+     "
+     i18n:domain="docpool.base"
 >
   <button class="btn btn-icon"
           aria-label="Config"
+          type="button"
           data-bs-toggle="dropdown"
   >
     <tal:icon tal:replace="structure python:icons.tag('wrench', tag_class='me-2')" />
@@ -51,4 +53,4 @@
       >Edit Ticker</a>
     </li>
   </ul>
-</tal:header-config-dropdown>
+</div>

@@ -1,10 +1,12 @@
-<tal:header-user-dropdown tal:define="
-                            icons python:context.restrictedTraverse('@@iconresolver');
-                            dp_url context/@@dp_url;
-                            portal_url context/@@plone_portal_state/portal_url;
-                          ">
+<div class="dropdown"
+     tal:define="
+       icons python:context.restrictedTraverse('@@iconresolver');
+       dp_url context/@@dp_url;
+       portal_url context/@@plone_portal_state/portal_url;
+     ">
   <button class="btn btn-icon"
           aria-label="Benutzer"
+          type="button"
           data-bs-toggle="dropdown"
   >
     <tal:icon tal:replace="structure python:icons.tag('person-fill', tag_class='me-2')" />
@@ -41,4 +43,4 @@
       >Logout</a>
     </li>
   </ul>
-</tal:header-user-dropdown>
+</div>

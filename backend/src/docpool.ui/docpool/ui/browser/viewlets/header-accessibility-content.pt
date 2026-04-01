@@ -1,6 +1,7 @@
-<tal:header-accessibility-dropdown tal:define="
-                                     icons python:context.restrictedTraverse('@@iconresolver');
-                                   ">
+<div class="dropdown"
+     tal:define="
+       icons python:context.restrictedTraverse('@@iconresolver');
+     ">
 
   <button class="btn btn-icon"
           aria-label="Accessibility"
@@ -27,4 +28,4 @@
       </li>
     </ul>
   </div>
-</tal:header-accessibility-dropdown>
+</div>
