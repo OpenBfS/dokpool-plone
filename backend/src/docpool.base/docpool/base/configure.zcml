@@ -282,4 +282,7 @@
 
   <subscriber handler=".traversal.app_active_after_traversal_subscriber" />
 
+  <subscriber handler=".preview.generate_preview_image_on_add" />
+  <subscriber handler=".preview.generate_preview_image_on_modified" />
+
 </configure>
