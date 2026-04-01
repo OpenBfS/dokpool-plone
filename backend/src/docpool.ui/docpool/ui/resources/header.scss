@@ -169,7 +169,8 @@ body.plone-toolbar-left {
   background-color: var(--bs-light-blue);
 }
 
-.menu-user-dropdown {
+.menu-user-dropdown,
+.menu-config-dropdown {
   width: 15.2rem;
   padding: 0;
   border: 0;
@@ -177,13 +178,16 @@ body.plone-toolbar-left {
   background-color: #eef2f6;
   box-shadow: none;
 
+  &.show {
+    box-shadow: 0 0.35rem 0.9rem rgba(22, 46, 72, 0.16);
+  }
+
   .dropdown-item {
     display: flex;
     align-items: center;
     gap: 0.65rem;
     margin: 0;
     padding: 0.8rem 1rem;
-    border-top: 1px solid #d9e1ea;
     border-radius: 0;
     background-color: transparent;
     color: #344f6d;
@@ -193,7 +197,35 @@ body.plone-toolbar-left {
     border-top: 0;
     padding: 0.8rem 1rem;
   }
+}
 
+.menu-user-dropdown .user-menu-link,
+.menu-config-dropdown .user-menu-link {
+  color: #35516f;
+  text-decoration: none;
+  line-height: 1.2;
+}
+
+.menu-user-dropdown .user-menu-action-item:hover,
+.menu-config-dropdown .user-menu-action-item:hover {
+  background-color: #e6ecf2;
+}
+
+.menu-user-dropdown .user-menu-action-item a:hover,
+.menu-config-dropdown .user-menu-action-item a:hover {
+  color: #35516f;
+  text-decoration: none;
+}
+
+.menu-user-dropdown .user-menu-row-icon,
+.menu-config-dropdown .user-menu-row-icon {
+  width: 1rem;
+  height: 1rem;
+  color: #486481;
+  flex: 0 0 auto;
+}
+
+.menu-user-dropdown {
   .user-menu-header-item {
     padding: 0;
     border-bottom: 1px solid #d9e1ea;
@@ -232,27 +264,6 @@ body.plone-toolbar-left {
     color: #5f7895;
   }
 
-  .user-menu-row-icon {
-    width: 1rem;
-    height: 1rem;
-    color: #486481;
-    flex: 0 0 auto;
-  }
-
-  .user-menu-link {
-    color: #35516f;
-    text-decoration: none;
-    line-height: 1.2;
-  }
-
-  .user-menu-action-item:hover {
-    background-color: #e6ecf2;
-  }
-
-  .user-menu-action-item a:hover {
-    color: #35516f;
-    text-decoration: none;
-  }
 }
 
 .icon-with-text {
