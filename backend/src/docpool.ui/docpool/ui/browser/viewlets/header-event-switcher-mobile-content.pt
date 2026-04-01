@@ -1,91 +1,93 @@
-<ul class="dropdown-menu menu-config-dropdown mobile-event-dropdown-menu"
-    tal:define="
-      icons python:context.restrictedTraverse('@@iconresolver');
-      auth_token context/@@authenticator/token;
-      active_items python:[item for item in view.scenarios if item['scenario'].Status == 'active'];
-      inactive_items python:[item for item in view.scenarios if item['scenario'].Status == 'inactive'];
-    "
-    i18n:domain="docpool.ui"
->
-  <li class="mobile-event-section-heading"
-      tal:condition="python: active_items"
-  >Aktive Ereignisse</li>
-  <li class="dropdown-item mobile-event-row"
-      tal:repeat="item python: active_items"
+<tal:condition condition="python: view.dp is not None">
+  <ul class="dropdown-menu menu-config-dropdown mobile-event-dropdown-menu"
+      tal:define="
+        icons python:context.restrictedTraverse('@@iconresolver');
+        auth_token context/@@authenticator/token;
+        active_items python:[item for item in view.scenarios if item['scenario'].Status == 'active'];
+        inactive_items python:[item for item in view.scenarios if item['scenario'].Status == 'inactive'];
+      "
+      i18n:domain="docpool.ui"
   >
-    <div class="mobile-event-row-main"
-         tal:define="
-           scenario python:item['scenario'];
-           badge_class python:'tag-badge-event-' + ((scenario.EventType or 'unknown').lower());
-         "
+    <li class="mobile-event-section-heading"
+        tal:condition="python: active_items"
+    >Aktive Ereignisse</li>
+    <li class="dropdown-item mobile-event-row"
+        tal:repeat="item python: active_items"
     >
-      <a class="mobile-event-title-link"
-         href="${python:
-                      f'{context.absolute_url()}/@@select_scenario?scenario={scenario.UID()}&amp;_authenticator={auth_token}'}"
+      <div class="mobile-event-row-main"
+           tal:define="
+             scenario python:item['scenario'];
+             badge_class python:'tag-badge-event-' + ((scenario.EventType or 'unknown').lower());
+           "
       >
-        ${scenario/Title}
-      </a>
-      <div class="mobile-event-row-meta">
-        <span class="badge tag-badge small ${badge_class}">${scenario/event_type_title}</span>
-        <span class="small text-primary">${scenario/operation_mode_title}</span>
-      </div>
-    </div>
-    <div class="mobile-event-row-actions"
-         tal:define="
-           scenario_url python: item['scenario'].absolute_url();
-         "
-    >
-      <a href="${scenario_url}/@@edit">
-        <tal:icon replace="structure python:icons.tag('pencil', tag_class='')" />
-      </a>
-      <a href="${scenario_url}">
-        <tal:icon replace="structure python:icons.tag('info-circle', tag_class='')" />
-      </a>
-    </div>
-  </li>
-
-  <li class="mobile-event-section-heading"
-      tal:condition="python: inactive_items"
-  >Inaktive Ereignisse</li>
-  <li class="dropdown-item mobile-event-row"
-      tal:repeat="item python: inactive_items"
-  >
-    <div class="mobile-event-row-main"
-         tal:define="
-           scenario python:item['scenario'];
-           badge_class python:'tag-badge-event-' + ((scenario.EventType or 'unknown').lower());
-         "
-    >
-      <a class="mobile-event-title-link"
-         href="${python:
+        <a class="mobile-event-title-link"
+           href="${python:
                       f'{context.absolute_url()}/@@select_scenario?scenario={scenario.UID()}&amp;_authenticator={auth_token}'}"
-      >
+        >
         ${scenario/Title}
-      </a>
-      <div class="mobile-event-row-meta">
-        <span class="badge tag-badge small ${badge_class}">${scenario/event_type_title}</span>
-        <span class="small text-primary">${scenario/operation_mode_title}</span>
+        </a>
+        <div class="mobile-event-row-meta">
+          <span class="badge tag-badge small ${badge_class}">${scenario/event_type_title}</span>
+          <span class="small text-primary">${scenario/operation_mode_title}</span>
+        </div>
       </div>
-    </div>
-    <div class="mobile-event-row-actions"
-         tal:define="
-           scenario_url python: item['scenario'].absolute_url();
-         "
-    >
-      <a href="${scenario_url}/@@edit">
-        <tal:icon replace="structure python:icons.tag('pencil', tag_class='')" />
-      </a>
-      <a href="${scenario_url}">
-        <tal:icon replace="structure python:icons.tag('info-circle', tag_class='')" />
-      </a>
-    </div>
-  </li>
+      <div class="mobile-event-row-actions"
+           tal:define="
+             scenario_url python: item['scenario'].absolute_url();
+           "
+      >
+        <a href="${scenario_url}/@@edit">
+          <tal:icon replace="structure python:icons.tag('pencil', tag_class='')" />
+        </a>
+        <a href="${scenario_url}">
+          <tal:icon replace="structure python:icons.tag('info-circle', tag_class='')" />
+        </a>
+      </div>
+    </li>
 
-  <li class="dropdown-item mobile-event-row"
-      tal:condition="python: not active_items and not inactive_items"
-  >
-    <div class="mobile-event-row-main">
-      <div class="mobile-event-title-link">Keine Ereignisse verf&uuml;gbar</div>
-    </div>
-  </li>
-</ul>
+    <li class="mobile-event-section-heading"
+        tal:condition="python: inactive_items"
+    >Inaktive Ereignisse</li>
+    <li class="dropdown-item mobile-event-row"
+        tal:repeat="item python: inactive_items"
+    >
+      <div class="mobile-event-row-main"
+           tal:define="
+             scenario python:item['scenario'];
+             badge_class python:'tag-badge-event-' + ((scenario.EventType or 'unknown').lower());
+           "
+      >
+        <a class="mobile-event-title-link"
+           href="${python:
+                      f'{context.absolute_url()}/@@select_scenario?scenario={scenario.UID()}&amp;_authenticator={auth_token}'}"
+        >
+        ${scenario/Title}
+        </a>
+        <div class="mobile-event-row-meta">
+          <span class="badge tag-badge small ${badge_class}">${scenario/event_type_title}</span>
+          <span class="small text-primary">${scenario/operation_mode_title}</span>
+        </div>
+      </div>
+      <div class="mobile-event-row-actions"
+           tal:define="
+             scenario_url python: item['scenario'].absolute_url();
+           "
+      >
+        <a href="${scenario_url}/@@edit">
+          <tal:icon replace="structure python:icons.tag('pencil', tag_class='')" />
+        </a>
+        <a href="${scenario_url}">
+          <tal:icon replace="structure python:icons.tag('info-circle', tag_class='')" />
+        </a>
+      </div>
+    </li>
+
+    <li class="dropdown-item mobile-event-row"
+        tal:condition="python: not active_items and not inactive_items"
+    >
+      <div class="mobile-event-row-main">
+        <div class="mobile-event-title-link">Keine Ereignisse verf&uuml;gbar</div>
+      </div>
+    </li>
+  </ul>
+</tal:condition>

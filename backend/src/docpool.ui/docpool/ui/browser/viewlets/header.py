@@ -117,7 +117,12 @@ class EventSwitcherViewlet(EventSwitcherMixin, ViewletBase):
 
 class EventSwitcherDropdown(EventSwitcherMixin, BrowserView):
     def __call__(self):
-        self.dp_url = IPlaces(self.context).document_pool.absolute_url()
+
+        self.dp = IPlaces(self.context).document_pool
+        if self.dp is None:
+            return
+
+        self.dp_url = self.dp.absolute_url()
 
         scenarios_by_uid, selected_uid = self.set_scenario_attributes()
         self.scenarios = []
