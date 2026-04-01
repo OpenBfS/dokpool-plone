@@ -4,6 +4,7 @@ from docpool.base.appregistry import appName
 from docpool.base.content.places import IPlaces
 from docpool.elan.utils import get_scenario_for_current_user
 from docpool.elan.utils import getOpenScenarios
+from docpool.ui.browser.viewlets.footer import TimezoneTableMixin
 from importlib.metadata import distribution
 from plone import api
 from plone.app.layout.viewlets.common import ViewletBase
@@ -28,12 +29,13 @@ class EventSwitcherMixin:
         return scenarios_by_uid, selected_uid
 
 
-class PortalHeader(ViewletBase):
+class PortalHeader(EventSwitcherMixin, TimezoneTableMixin, ViewletBase):
     def update(self):
         super().update()
         self.dp, self.app, self.dp_apps = getApplicationDocPoolsForCurrentUser(self.context, self.request)
         self.dp_url = self.dp.absolute_url() if self.dp else None
         self.app_logo = appLogo(self.app) if self.app else None
+        self.set_scenario_attributes()
 
         try:
             self.groups_folder_url = self.dp["content"]["Groups"].absolute_url()
@@ -115,7 +117,12 @@ class EventSwitcherViewlet(EventSwitcherMixin, ViewletBase):
 
 class EventSwitcherDropdown(EventSwitcherMixin, BrowserView):
     def __call__(self):
-        self.dp_url = IPlaces(self.context).document_pool.absolute_url()
+
+        self.dp = IPlaces(self.context).document_pool
+        if self.dp is None:
+            return
+
+        self.dp_url = self.dp.absolute_url()
 
         scenarios_by_uid, selected_uid = self.set_scenario_attributes()
         self.scenarios = []

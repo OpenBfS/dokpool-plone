@@ -1,0 +1,510 @@
+<html xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      i18n:domain="docpool.ui"
+>
+  <body>
+    <metal:desktop-navigation define-macro="desktop_navigation">
+      <div class="d-none d-lg-flex align-items-stretch"
+           id="header-primary-shortcuts"
+      >
+        <tal:headernav replace="structure provider:docpool.headernav.manager" />
+
+        <!-- Main navigation buttons -->
+        <a class="nav-link nav-btn d-flex flex-column justify-content-center px-4 border-end text-decoration-none ${python: view.active['groups']}"
+           href="${python: view.groups_folder_url}"
+           tal:condition="python: view.groups_folder_url"
+        >
+          <span class="small text-primary mb-n1"
+                i18n:translate=""
+          >My group folders</span>
+        </a>
+      </div>
+      <a class="nav-link nav-btn d-flex flex-column justify-content-center px-4 border-end text-decoration-none ${python: view.active['emergency']}"
+         href="${python: view.emergency_info_url}"
+         tal:condition="python: view.emergency_info_url"
+      >
+        <span class="small text-primary mb-n1"
+              i18n:translate=""
+        >Emergency documents</span>
+      </a>
+
+      <!-- Right: Icons -->
+      <div class="nav-link right-icons d-none d-lg-flex align-items-center ms-auto gap-2 px-3">
+        <button class="btn btn-icon me-3 search-btn"
+                aria-controls="portal-searchbox"
+                aria-label="Suche"
+                type="button"
+                data-bs-target="#portal-searchbox"
+                data-bs-toggle="offcanvas"
+        >
+          <tal:icon tal:replace="structure python:icons.tag('search', tag_class='me-2')" />
+        </button>
+        <tal:accessibility tal:replace="structure context/@@accessibility-content">
+            Accessibility dropdown
+        </tal:accessibility>
+
+        <tal:systemmessages tal:replace="structure context/@@system-messages-content">
+            System messages dropdown
+        </tal:systemmessages>
+
+        <tal:info tal:replace="structure context/@@info-content">
+            Info dropdown
+        </tal:info>
+
+        <tal:info tal:replace="structure context/@@config-content">
+            Config dropdown
+        </tal:info>
+
+        <tal:info tal:replace="structure context/@@user-content">
+            User dropdown
+        </tal:info>
+      </div>
+    </metal:desktop-navigation>
+
+    <metal:mobile-navigation define-macro="mobile_navigation">
+      <div class="d-lg-none w-100 mobile-settings-infos">
+        <table class="table table-borderless mb-0 footer-tz-table footer-tz-table-mobile"
+               tal:define="
+                 local_time python: view.get_local_time();
+                 utc_time python: view.get_utc_time();
+                 jst_time python: view.get_jst_time();
+               "
+        >
+          <tbody>
+            <tr>
+              <td class="sidebar-tz text-primary"
+                  i18n:translate=""
+              >ME(S)Z</td>
+              <td class="sidebar-tz text-primary"
+                  datetime="${python: local_time}"
+              >
+                ${python: local_time.strftime('%H:%M')}
+              </td>
+              <td class="sidebar-tz tz-offset"></td>
+            </tr>
+            <tr>
+              <td class="sidebar-tz text-secondary"
+                  i18n:translate=""
+              >UTC</td>
+              <td class="sidebar-tz text-secondary"
+                  datetime="${python: utc_time}"
+              >
+                ${python: utc_time.strftime('%H:%M')}
+              </td>
+              <td class="sidebar-tz text-secondary tz-offset">-2h</td>
+            </tr>
+            <tr>
+              <td class="sidebar-tz text-secondary"
+                  i18n:translate=""
+              >JST</td>
+              <td class="sidebar-tz text-secondary"
+                  datetime="${python: jst_time}"
+              >
+                ${python: jst_time.strftime('%H:%M')}
+              </td>
+              <td class="sidebar-tz text-secondary tz-offset">+8h</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="tab-content mobile-settings-tab-content"
+             id="mobile-settings-tab-content"
+        >
+          <div class="tab-pane fade show active"
+               id="mobile-settings-pane-main"
+               aria-labelledby="mobile-settings-main-tab-trigger"
+               role="tabpanel"
+          >
+            <h6 class="mobile-settings-infos-title">Ereignisauswahl</h6>
+
+            <div tal:define="
+                   scenario python: view.selected_scenario;
+                 "
+                 tal:condition="python: scenario is not None"
+            >
+              <div class="mobile-event-selected-row"
+                   tal:define="
+                     scenario_url python: scenario.absolute_url();
+                   "
+              >
+                <div class="mobile-event-selected-main">
+                  <div class="mobile-event-selected-check icon-column">
+                    <tal:icon replace="structure python:icons.tag('check-lg', tag_class='')" />
+                  </div>
+                  <div class="mobile-event-selected-content">
+                    <div class="text-primary text-truncate fw-bold">${scenario/Title}</div>
+                    <div class="d-flex align-items-center gap-3 mt-1">
+                      <span class="badge bg-warning text-dark tag-badge small">${scenario/event_type_title}</span>
+                      <span class="small text-primary">${scenario/operation_mode_title}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="mobile-event-selected-actions">
+                  <div class="icon-column">
+                    <a href="${scenario_url}/@@edit">
+                      <tal:icon replace="structure python:icons.tag('pencil', tag_class='')" />
+                    </a>
+                  </div>
+                  <div class="icon-column">
+                    <a href="${scenario_url}">
+                      <tal:icon replace="structure python:icons.tag('info-circle', tag_class='')" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mobile-settings-tablist"
+                 id="mobile-settings-nav"
+                 aria-orientation="vertical"
+                 role="tablist"
+            >
+              <div class="mobile-settings-nav mobile-events-nav">
+                <button class="mobile-settings-link nav-link d-none active"
+                        id="mobile-settings-main-tab-trigger"
+                        aria-controls="mobile-settings-pane-main"
+                        aria-selected="true"
+                        role="tab"
+                        type="button"
+                        data-bs-target="#mobile-settings-pane-main"
+                        data-bs-toggle="pill"
+                ></button>
+                <button class="mobile-settings-link nav-link mobile-event-list-link"
+                        id="mobile-settings-tab-active-events"
+                        aria-controls="mobile-settings-pane-active-events"
+                        aria-selected="false"
+                        role="tab"
+                        type="button"
+                        data-bs-target="#mobile-settings-pane-active-events"
+                        data-bs-toggle="pill"
+                >
+                  <span class="mobile-settings-icon">
+                    <span class="badge rounded-pill bg-secondary">4</span>
+                  </span>
+                  <span class="mobile-settings-label">weitere aktive Ereignisse</span>
+                  <span class="mobile-settings-chevron">
+                    <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
+                  </span>
+                </button>
+                <button class="mobile-settings-link nav-link mobile-event-list-link"
+                        id="mobile-settings-tab-archived-events"
+                        aria-controls="mobile-settings-pane-archived-events"
+                        aria-selected="false"
+                        role="tab"
+                        type="button"
+                        data-bs-target="#mobile-settings-pane-archived-events"
+                        data-bs-toggle="pill"
+                >
+                  <span class="mobile-settings-icon">
+                    <tal:icon tal:replace="structure python:icons.tag('archive-fill')" />
+                  </span>
+                  <span class="mobile-settings-label">Archivierte Ereignisse</span>
+                  <span class="mobile-settings-chevron">
+                    <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
+                  </span>
+                </button>
+              </div>
+              <div class="mobile-event-add-wrap">
+                <a class="btn btn-light mobile-event-add-btn"
+                   href="${python: view.dp_url}/contentconfig/++add++DPEvents"
+                >
+                  <tal:icon replace="structure python:icons.tag('plus-circle', tag_class='icon-with-text')" />
+                  <span class="small"
+                        i18n:translate=""
+                  >Neues Ereignis anlegen</span>
+                </a>
+              </div>
+              <div class="mobile-placeholder-shortcuts"
+                   aria-label="Platzhalter-Schnellzugriffe"
+              >
+                <div class="mobile-placeholder-link">
+                  <span class="mobile-placeholder-icon">
+                    <tal:icon tal:replace="structure python:icons.tag('folder-fill')" />
+                  </span>
+                  <span class="mobile-placeholder-label">Meine Gruppenordner</span>
+                  <span class="mobile-placeholder-chevron">
+                    <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
+                  </span>
+                </div>
+                <div class="mobile-placeholder-link">
+                  <span class="mobile-placeholder-icon">
+                    <tal:icon tal:replace="structure python:icons.tag('file-earmark-richtext-fill')" />
+                  </span>
+                  <span class="mobile-placeholder-label">Dokumente Notfallschutz</span>
+                  <span class="mobile-placeholder-chevron">
+                    <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
+                  </span>
+                </div>
+              </div>
+              <h6 class="mobile-settings-infos-title">Einstellungen &amp; Infos</h6>
+              <div class="mobile-settings-nav">
+                <button class="mobile-settings-link nav-link"
+                        id="mobile-settings-tab-accessibility"
+                        aria-controls="mobile-settings-pane-accessibility"
+                        aria-selected="false"
+                        role="tab"
+                        type="button"
+                        data-bs-target="#mobile-settings-pane-accessibility"
+                        data-bs-toggle="pill"
+                >
+                  <span class="mobile-settings-icon">
+                    <tal:icon tal:replace="structure python:icons.tag('universal-access')" />
+                  </span>
+                  <span class="mobile-settings-label">Barrierefreiheit</span>
+                  <span class="mobile-settings-chevron">
+                    <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
+                  </span>
+                </button>
+                <button class="mobile-settings-link nav-link"
+                        id="mobile-settings-tab-info"
+                        aria-controls="mobile-settings-pane-info"
+                        aria-selected="false"
+                        role="tab"
+                        type="button"
+                        data-bs-target="#mobile-settings-pane-info"
+                        data-bs-toggle="pill"
+                >
+                  <span class="mobile-settings-icon">
+                    <tal:icon tal:replace="structure python:icons.tag('info-circle-fill')" />
+                  </span>
+                  <span class="mobile-settings-label">Infos</span>
+                  <span class="mobile-settings-chevron">
+                    <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
+                  </span>
+                </button>
+                <button class="mobile-settings-link nav-link"
+                        id="mobile-settings-tab-system-messages"
+                        aria-controls="mobile-settings-pane-system-messages"
+                        aria-selected="false"
+                        role="tab"
+                        type="button"
+                        data-bs-target="#mobile-settings-pane-system-messages"
+                        data-bs-toggle="pill"
+                >
+                  <span class="mobile-settings-icon">
+                    <tal:icon tal:replace="structure python:icons.tag('exclamation-triangle-fill')" />
+                  </span>
+                  <span class="mobile-settings-label">Systemmeldungen</span>
+                  <span class="mobile-settings-chevron">
+                    <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
+                  </span>
+                </button>
+                <button class="mobile-settings-link nav-link"
+                        id="mobile-settings-tab-config"
+                        aria-controls="mobile-settings-pane-config"
+                        aria-selected="false"
+                        role="tab"
+                        type="button"
+                        data-bs-target="#mobile-settings-pane-config"
+                        data-bs-toggle="pill"
+                >
+                  <span class="mobile-settings-icon">
+                    <tal:icon tal:replace="structure python:icons.tag('wrench')" />
+                  </span>
+                  <span class="mobile-settings-label">Konfiguration</span>
+                  <span class="mobile-settings-chevron">
+                    <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
+                  </span>
+                </button>
+                <button class="mobile-settings-link nav-link"
+                        id="mobile-settings-tab-user"
+                        aria-controls="mobile-settings-pane-user"
+                        aria-selected="false"
+                        role="tab"
+                        type="button"
+                        data-bs-target="#mobile-settings-pane-user"
+                        data-bs-toggle="pill"
+                >
+                  <span class="mobile-settings-icon">
+                    <tal:icon tal:replace="structure python:icons.tag('person-fill')" />
+                  </span>
+                  <span class="mobile-settings-label">Benutzereinstellungen</span>
+                  <span class="mobile-settings-chevron">
+                    <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-pane fade mobile-settings-pane"
+               id="mobile-settings-pane-active-events"
+               aria-labelledby="mobile-settings-tab-active-events"
+               role="tabpanel"
+          >
+            <button class="mobile-settings-back-link"
+                    type="button"
+                    data-mobile-settings-back="true"
+            >
+              <span class="mobile-settings-back-icon">
+                <tal:icon tal:replace="structure python:icons.tag('chevron-left')" />
+              </span>
+              <span class="mobile-settings-back-label">Hauptmen&uuml;</span>
+              <span class="mobile-settings-back-chevron">
+                <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
+              </span>
+            </button>
+            <div class="mobile-settings-pane-content">
+              <tal:event-switcher-mobile tal:replace="structure context/@@event-switcher-mobile-content">
+                  Event switcher dropdown
+              </tal:event-switcher-mobile>
+            </div>
+          </div>
+
+          <div class="tab-pane fade mobile-settings-pane"
+               id="mobile-settings-pane-archived-events"
+               aria-labelledby="mobile-settings-tab-archived-events"
+               role="tabpanel"
+          >
+            <button class="mobile-settings-back-link"
+                    type="button"
+                    data-mobile-settings-back="true"
+            >
+              <span class="mobile-settings-back-icon">
+                <tal:icon tal:replace="structure python:icons.tag('chevron-left')" />
+              </span>
+              <span class="mobile-settings-back-label">Hauptmen&uuml;</span>
+              <span class="mobile-settings-back-chevron">
+                <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
+              </span>
+            </button>
+            <div class="mobile-settings-pane-content">
+              <div class="nav flex-column nav-pills mobile-settings-nav">
+                <a class="mobile-settings-link nav-link"
+                   href="${python: view.dp_url}/archive"
+                >
+                  <span class="mobile-settings-icon">
+                    <tal:icon tal:replace="structure python:icons.tag('archive-fill')" />
+                  </span>
+                  <span class="mobile-settings-label">Zum Archiv wechseln</span>
+                  <span class="mobile-settings-chevron">
+                    <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-pane fade mobile-settings-pane"
+               id="mobile-settings-pane-accessibility"
+               aria-labelledby="mobile-settings-tab-accessibility"
+               role="tabpanel"
+          >
+            <button class="mobile-settings-back-link"
+                    type="button"
+                    data-mobile-settings-back="true"
+            >
+              <span class="mobile-settings-back-icon">
+                <tal:icon tal:replace="structure python:icons.tag('chevron-left')" />
+              </span>
+              <span class="mobile-settings-back-label">Hauptmen&uuml;</span>
+              <span class="mobile-settings-back-chevron">
+                <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
+              </span>
+            </button>
+            <div class="mobile-settings-pane-content">
+              <tal:accessibility-mobile tal:replace="structure context/@@accessibility-content">
+                  Accessibility dropdown
+              </tal:accessibility-mobile>
+            </div>
+          </div>
+
+          <div class="tab-pane fade mobile-settings-pane"
+               id="mobile-settings-pane-info"
+               aria-labelledby="mobile-settings-tab-info"
+               role="tabpanel"
+          >
+            <button class="mobile-settings-back-link"
+                    type="button"
+                    data-mobile-settings-back="true"
+            >
+              <span class="mobile-settings-back-icon">
+                <tal:icon tal:replace="structure python:icons.tag('chevron-left')" />
+              </span>
+              <span class="mobile-settings-back-label">Hauptmen&uuml;</span>
+              <span class="mobile-settings-back-chevron">
+                <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
+              </span>
+            </button>
+            <div class="mobile-settings-pane-content">
+              <tal:info-mobile tal:replace="structure context/@@info-content">
+                  Info dropdown
+              </tal:info-mobile>
+            </div>
+          </div>
+
+          <div class="tab-pane fade mobile-settings-pane"
+               id="mobile-settings-pane-system-messages"
+               aria-labelledby="mobile-settings-tab-system-messages"
+               role="tabpanel"
+          >
+            <button class="mobile-settings-back-link"
+                    type="button"
+                    data-mobile-settings-back="true"
+            >
+              <span class="mobile-settings-back-icon">
+                <tal:icon tal:replace="structure python:icons.tag('chevron-left')" />
+              </span>
+              <span class="mobile-settings-back-label">Hauptmen&uuml;</span>
+              <span class="mobile-settings-back-chevron">
+                <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
+              </span>
+            </button>
+            <div class="mobile-settings-pane-content">
+              <tal:systemmessages-mobile tal:replace="structure context/@@system-messages-content">
+                  System messages dropdown
+              </tal:systemmessages-mobile>
+            </div>
+          </div>
+
+          <div class="tab-pane fade mobile-settings-pane"
+               id="mobile-settings-pane-config"
+               aria-labelledby="mobile-settings-tab-config"
+               role="tabpanel"
+          >
+            <button class="mobile-settings-back-link"
+                    type="button"
+                    data-mobile-settings-back="true"
+            >
+              <span class="mobile-settings-back-icon">
+                <tal:icon tal:replace="structure python:icons.tag('chevron-left')" />
+              </span>
+              <span class="mobile-settings-back-label">Hauptmen&uuml;</span>
+              <span class="mobile-settings-back-chevron">
+                <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
+              </span>
+            </button>
+            <div class="mobile-settings-pane-content">
+              <tal:config-mobile tal:replace="structure context/@@config-content">
+                  Config dropdown
+              </tal:config-mobile>
+            </div>
+          </div>
+
+          <div class="tab-pane fade mobile-settings-pane"
+               id="mobile-settings-pane-user"
+               aria-labelledby="mobile-settings-tab-user"
+               role="tabpanel"
+          >
+            <button class="mobile-settings-back-link"
+                    type="button"
+                    data-mobile-settings-back="true"
+            >
+              <span class="mobile-settings-back-icon">
+                <tal:icon tal:replace="structure python:icons.tag('chevron-left')" />
+              </span>
+              <span class="mobile-settings-back-label">Hauptmen&uuml;</span>
+              <span class="mobile-settings-back-chevron">
+                <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
+              </span>
+            </button>
+            <div class="mobile-settings-pane-content">
+              <tal:user-mobile tal:replace="structure context/@@user-content">
+                  User dropdown
+              </tal:user-mobile>
+            </div>
+          </div>
+        </div>
+      </div>
+    </metal:mobile-navigation>
+  </body>
+</html>

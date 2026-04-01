@@ -15,6 +15,14 @@
       />
 
   <browser:page
+      name="header.macros"
+      for="*"
+      template="header-navigation-macros.pt"
+      permission="zope2.View"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
+  <browser:page
       name="event-switcher-dropdown"
       for="*"
       class=".header.EventSwitcherDropdown"
@@ -24,46 +32,55 @@
       />
 
   <browser:page
-      name="info-dropdown"
+      name="event-switcher-mobile-content"
+      for="*"
+      class=".header.EventSwitcherDropdown"
+      template="header-event-switcher-mobile-content.pt"
+      permission="zope.Public"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
+  <browser:page
+      name="info-content"
       for="*"
       class=".header.InfoDropdown"
-      template="header-info-dropdown.pt"
+      template="header-info-content.pt"
       permission="zope.Public"
       layer="docpool.ui.interfaces.IUITheme"
       />
 
   <browser:page
-      name="system-messages-dropdown"
+      name="system-messages-content"
       for="*"
       class=".header.SystemMessagesDropdown"
-      template="header-system-messages-dropdown.pt"
+      template="header-system-messages-content.pt"
       permission="zope.Public"
       layer="docpool.ui.interfaces.IUITheme"
       />
 
   <browser:page
-      name="accessibility-dropdown"
+      name="accessibility-content"
       for="*"
       class=".header.AccessibilityDropdown"
-      template="header-accessibility-dropdown.pt"
+      template="header-accessibility-content.pt"
       permission="zope.Public"
       layer="docpool.ui.interfaces.IUITheme"
       />
 
   <browser:page
-      name="user-dropdown"
+      name="user-content"
       for="*"
       class=".header.UserDropdown"
-      template="header-user-dropdown.pt"
+      template="header-user-content.pt"
       permission="zope.Public"
       layer="docpool.ui.interfaces.IUITheme"
       />
 
   <browser:page
-      name="config-dropdown"
+      name="config-content"
       for="*"
       class=".header.ConfigDropdown"
-      template="header-config-dropdown.pt"
+      template="header-config-content.pt"
       permission="zope.Public"
       layer="docpool.ui.interfaces.IUITheme"
       />

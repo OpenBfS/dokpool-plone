@@ -86,141 +86,30 @@
                  aria-labelledby="offcanvasNavbarLabel"
                  tabindex="-1"
             >
-              <div class="offcanvas-header">
-                <h5 class="offcanvas-title"
+              <div class="offcanvas-header mobile-offcanvas-header">
+                <h5 class="offcanvas-title d-flex align-items-center gap-2"
                     id="offcanvasNavbarLabel"
-                >Offcanvas</h5>
-                <button class="btn-close"
+                >
+                  <img class="mobile-offcanvas-logo"
+                       src="${python: view.site_url}/${python: view.app_logo}"
+                       tal:condition="python: view.app_logo"
+                  />
+                  <span class="mobile-offcanvas-app text-uppercase"
+                        tal:condition="python: view.dp is not None"
+                  >${python: view.dp.title}</span>
+                </h5>
+                <button class="btn btn-icon mobile-offcanvas-close"
                         aria-label="Close"
                         type="button"
                         data-bs-dismiss="offcanvas"
-                ></button>
+                >
+                  <tal:icon tal:replace="structure python:icons.tag('x')" />
+                </button>
               </div>
               <div class="offcanvas-body">
                 <div class="navbar-nav w-100 d-flex">
-                  <tal:headernav replace="structure provider:docpool.headernav.manager" />
-                  <!-- Main navigation buttons -->
-                  <a class="nav-link nav-btn d-flex flex-column justify-content-center px-4 border-end text-decoration-none ${python: view.active['groups']}"
-                     href="${python: view.groups_folder_url}"
-                     tal:condition="python: view.groups_folder_url"
-                  >
-                    <span class="small text-primary mb-n1"
-                          i18n:translate=""
-                    >My group folders</span>
-                  </a>
-                  <a class="nav-link nav-btn d-flex flex-column justify-content-center px-4 border-end text-decoration-none ${python: view.active['emergency']}"
-                     href="${python: view.emergency_info_url}"
-                     tal:condition="python: view.emergency_info_url"
-                  >
-                    <span class="small text-primary mb-n1"
-                          i18n:translate=""
-                    >Emergency documents</span>
-                  </a>
-
-
-                  <!-- Right: Icons -->
-                  <div class="nav-link right-icons d-none d-lg-flex align-items-center ms-auto gap-2 px-3">
-                    <button class="btn btn-icon me-3 search-btn"
-                            aria-controls="portal-searchbox"
-                            aria-label="Suche"
-                            type="button"
-                            data-bs-target="#portal-searchbox"
-                            data-bs-toggle="offcanvas"
-                    >
-                      <tal:icon tal:replace="structure python:icons.tag('search', tag_class='me-2')" />
-                    </button>
-                    <tal:accessibility tal:replace="structure context/@@accessibility-dropdown">
-                        Accessibility dropdown
-                    </tal:accessibility>
-
-                    <tal:systemmessages tal:replace="structure context/@@system-messages-dropdown">
-                        System messages dropdown
-                    </tal:systemmessages>
-
-                    <tal:info tal:replace="structure context/@@info-dropdown">
-                        Info dropdown
-                    </tal:info>
-
-                    <tal:info tal:replace="structure context/@@config-dropdown">
-                        Config dropdown
-                    </tal:info>
-
-                    <tal:info tal:replace="structure context/@@user-dropdown">
-                        User dropdown
-                    </tal:info>
-
-                  </div>
-
-                  <div class="d-lg-none w-100 mobile-settings-infos">
-                    <h6 class="mobile-settings-infos-title">Einstellungen &amp; Infos</h6>
-                    <ul class="mobile-settings-infos-list">
-                      <li>
-                        <a class="mobile-settings-link"
-                           href="#"
-                        >
-                          <span class="mobile-settings-icon">
-                            <tal:icon tal:replace="structure python:icons.tag('universal-access')" />
-                          </span>
-                          <span class="mobile-settings-label">Barrierefreiheit</span>
-                          <span class="mobile-settings-chevron">
-                            <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
-                          </span>
-                        </a>
-                      </li>
-                      <li>
-                        <a class="mobile-settings-link"
-                           href="#"
-                        >
-                          <span class="mobile-settings-icon">
-                            <tal:icon tal:replace="structure python:icons.tag('info-circle-fill')" />
-                          </span>
-                          <span class="mobile-settings-label">Infos</span>
-                          <span class="mobile-settings-chevron">
-                            <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
-                          </span>
-                        </a>
-                      </li>
-                      <li>
-                        <a class="mobile-settings-link"
-                           href="#"
-                        >
-                          <span class="mobile-settings-icon">
-                            <tal:icon tal:replace="structure python:icons.tag('exclamation-triangle-fill')" />
-                          </span>
-                          <span class="mobile-settings-label">Systemmeldungen</span>
-                          <span class="mobile-settings-chevron">
-                            <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
-                          </span>
-                        </a>
-                      </li>
-                      <li>
-                        <a class="mobile-settings-link"
-                           href="#"
-                        >
-                          <span class="mobile-settings-icon">
-                            <tal:icon tal:replace="structure python:icons.tag('wrench')" />
-                          </span>
-                          <span class="mobile-settings-label">Konfiguration</span>
-                          <span class="mobile-settings-chevron">
-                            <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
-                          </span>
-                        </a>
-                      </li>
-                      <li>
-                        <a class="mobile-settings-link"
-                           href="#"
-                        >
-                          <span class="mobile-settings-icon">
-                            <tal:icon tal:replace="structure python:icons.tag('person-fill')" />
-                          </span>
-                          <span class="mobile-settings-label">Benutzereinstellungen</span>
-                          <span class="mobile-settings-chevron">
-                            <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
-                          </span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
+                  <metal:desktop-navigation use-macro="context/@@header.macros/macros/desktop_navigation" />
+                  <metal:mobile-navigation use-macro="context/@@header.macros/macros/mobile_navigation" />
                 </div>
               </div>
             </div>
