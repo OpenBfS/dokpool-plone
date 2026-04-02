@@ -96,6 +96,11 @@
         handler="docpool.base.upgrades.to_3000_convert_tupel"
         />
 
+    <genericsetup:upgradeStep
+        title="Generate previews for pdfs"
+        handler="docpool.base.upgrades.to_3000_generate_previews"
+        />
+
   </genericsetup:upgradeSteps>
 
 </configure>

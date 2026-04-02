@@ -2,6 +2,7 @@ from docpool.base.behaviors.transferable import ITransferable
 from docpool.base.content.contentbase import IContentBase
 from docpool.base.content.documentpool import APPLICATIONS_KEY
 from docpool.base.content.simplefolder import ISimpleFolder
+from docpool.base.preview import generate_preview_image
 from docpool.base.setuphandlers import create_session_stuff
 from docpool.base.utils import getDocumentPoolSite
 from docpool.config.general.elan import DOCTYPES
@@ -563,3 +564,14 @@ def convert_userinfo(context=None):
             updated += 1
 
     log.info("Converted userinfo fields to tuples: updated %s of %s objects", updated, checked)
+
+
+def to_3000_generate_previews(context=None):
+    brains = api.content.find(portal_type="File", sort_on="path")
+    for index, brain in enumerate(brains, start=1):
+        if not index % 50:
+            log.info("Creating previews: %s of %s", index, len(brains))
+        try:
+            generate_preview_image(brain.getObject())
+        except:
+            log.info("Could not generate preview for %s", brain.getURL(), exc_info=True)
