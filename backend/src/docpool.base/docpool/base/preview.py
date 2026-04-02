@@ -2,10 +2,12 @@ from BTrees.OOBTree import OOBTree
 from distutils.spawn import find_executable
 from logging import getLogger
 from pathlib import Path
+from plone import api
 from plone.app.contenttypes.interfaces import IFile
 from plone.namedfile.file import NamedBlobImage
 from plone.scale.scale import scaleImage
 from tempfile import TemporaryDirectory
+from ZODB.DemoStorage import DemoStorage
 from zope.annotation import IAnnotations
 from zope.component import adapter
 from zope.lifecycleevent.interfaces import IObjectAddedEvent
@@ -122,9 +124,12 @@ def generate_preview_image(obj):
     connection = obj._p_jar
     connection.setstate(obj.file._blob)
     db = connection.db()
-    relative_blob_path = db.storage.fshelper.layout.getBlobFilePath(
-        obj.file._blob._p_oid, obj.file._blob._p_serial
-    )
+    if isinstance(db.storage, DemoStorage) or api.env.test_mode():
+        # Handle different blobstorage during tests
+        fshelper = db.storage.changes.fshelper
+    else:
+        fshelper = db.storage.fshelper
+    relative_blob_path = fshelper.layout.getBlobFilePath(obj.file._blob._p_oid, obj.file._blob._p_serial)
 
     # Check that there is no preview already
     if previews["relative_blob_path"] == relative_blob_path:
@@ -133,7 +138,7 @@ def generate_preview_image(obj):
         return
 
     # Send blob-path to subprocess to generate preview image
-    blob_path = Path(db.storage.fshelper.base_dir) / Path(relative_blob_path)
+    blob_path = Path(fshelper.base_dir) / Path(relative_blob_path)
     data = pdf2jpg.convert(blob_path)
     mode = "scale"
     parameters = {"quality": QUALITY}
