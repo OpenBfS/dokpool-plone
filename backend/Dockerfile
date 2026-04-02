@@ -82,7 +82,7 @@ COPY --chown=500:500 templates/temp_storage.conf /app/etc/zope.conf.d/temp_stora
 RUN <<EOT
     set -e
     apt update
-    apt install -y --no-install-recommends ghostscript
+    apt install -y --no-install-recommends ghostscript poppler-utils
 EOT
 
 # Compile our mo files
