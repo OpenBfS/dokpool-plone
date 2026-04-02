@@ -1,6 +1,8 @@
-<tal:header-info-dropdown tal:define="
-                            icons python:context.restrictedTraverse('@@iconresolver');
-                          ">
+<div class="dropdown"
+     tal:define="
+       icons python:context.restrictedTraverse('@@iconresolver');
+     "
+>
 
   <button class="btn btn-icon"
           aria-label="Info"
@@ -9,7 +11,7 @@
   >
     <tal:icon tal:replace="structure python:icons.tag('info-circle-fill', tag_class='me-2')" />
   </button>
-  <ul class="dropdown-menu dropdown-menu-end menu-info-dropdown">
+  <ul class="dropdown-menu dropdown-menu-end menu-info-dropdown menu-utility-dropdown">
     <!-- Header: Softwareversion -->
     <li class="px-3 py-3 bg-light">
       <small class="d-block text-graublau-dunkel2">Softwareversion</small>
@@ -42,35 +44,27 @@
 
     <!-- Menu list -->
     <!-- Release Info -->
-    <li class="dropdown-item d-flex align-items-center justify-content-between py-3 list-item-compact">
-      <div class="d-flex align-items-center gap-3">
-        <tal:icon tal:replace="structure python:icons.tag('info-circle', tag_class='me-2')" />
-        <a class="text-graublau-dunkel1 small">Release Info</a>
-      </div>
+    <li class="dropdown-item user-menu-action-item">
+      <tal:icon tal:replace="structure python:icons.tag('info-circle', tag_class='user-menu-row-icon')" />
+      <a class="user-menu-link">Release Info</a>
     </li>
 
     <!-- Accessibility -->
-    <li class="dropdown-item d-flex align-items-center justify-content-between py-3 list-item-compact">
-      <div class="d-flex align-items-center gap-3">
-        <tal:icon tal:replace="structure python:icons.tag('universal-access', tag_class='me-2')" />
-        <a class="text-graublau-dunkel1 small">Accessibility</a>
-      </div>
+    <li class="dropdown-item user-menu-action-item">
+      <tal:icon tal:replace="structure python:icons.tag('universal-access', tag_class='user-menu-row-icon')" />
+      <a class="user-menu-link">Accessibility</a>
     </li>
 
     <!-- Hilfe -->
-    <li class="dropdown-item d-flex align-items-center justify-content-between py-3 list-item-compact">
-      <div class="d-flex align-items-center gap-3">
-        <tal:icon tal:replace="structure python:icons.tag('question-square', tag_class='me-2')" />
-        <a class="text-graublau-dunkel1 small">Hilfe</a>
-      </div>
+    <li class="dropdown-item user-menu-action-item">
+      <tal:icon tal:replace="structure python:icons.tag('question-square', tag_class='user-menu-row-icon')" />
+      <a class="user-menu-link">Hilfe</a>
     </li>
 
     <!-- Impressum -->
-    <li class="dropdown-item d-flex align-items-center justify-content-between py-3 list-item-compact">
-      <div class="d-flex align-items-center gap-3">
-        <tal:icon tal:replace="structure python:icons.tag('info-circle', tag_class='me-2')" />
-        <a class="text-graublau-dunkel1 small">Impressum</a>
-      </div>
+    <li class="dropdown-item user-menu-action-item">
+      <tal:icon tal:replace="structure python:icons.tag('info-circle', tag_class='user-menu-row-icon')" />
+      <a class="user-menu-link">Impressum</a>
     </li>
   </ul>
-</tal:header-info-dropdown>
+</div>

@@ -1,54 +1,64 @@
-<tal:header-config-dropdown tal:define="
-                              icons python:context.restrictedTraverse('@@iconresolver');
-                              dp_url context/@@dp_url;
-                            "
-                            i18n:domain="docpool.base"
+<div class="dropdown"
+     tal:define="
+       icons python:context.restrictedTraverse('@@iconresolver');
+       dp_url context/@@dp_url;
+     "
+     i18n:domain="docpool.base"
 >
   <button class="btn btn-icon"
           aria-label="Config"
+          type="button"
           data-bs-toggle="dropdown"
   >
     <tal:icon tal:replace="structure python:icons.tag('wrench', tag_class='me-2')" />
   </button>
 
-  <ul class="dropdown-menu dropdown-menu-end menu-config-dropdown">
-    <li class="dropdown-item">
-      <tal:icon tal:replace="structure python:icons.tag('pencil', tag_class='me-2')" />
-      <a href="${dp_url}/contentconfig/scen"
+  <ul class="dropdown-menu dropdown-menu-end menu-config-dropdown menu-utility-dropdown">
+    <li class="dropdown-item user-menu-action-item">
+      <tal:icon tal:replace="structure python:icons.tag('pencil', tag_class='user-menu-row-icon')" />
+      <a class="user-menu-link"
+         href="${dp_url}/contentconfig/scen"
          i18n:domain="docpool.elan"
          i18n:translate=""
       >Edit Scenarios</a>
     </li>
-    <li class="dropdown-item">
-      <tal:icon tal:replace="structure python:icons.tag('archive', tag_class='me-2')" />
-      <a href="${dp_url}/archive"
+    <li class="dropdown-item user-menu-action-item">
+      <tal:icon tal:replace="structure python:icons.tag('archive', tag_class='user-menu-row-icon')" />
+      <a class="user-menu-link"
+         href="${dp_url}/archive"
          i18n:domain="docpool.elan"
          i18n:translate=""
       >Edit Archives</a>
     </li>
-    <li class="dropdown-item">
-      <tal:icon tal:replace="structure python:icons.tag('diagram-3', tag_class='me-2')" />
-      <a href="${dp_url}/config/dtypes"
+    <li class="dropdown-item user-menu-action-item">
+      <tal:icon tal:replace="structure python:icons.tag('diagram-3', tag_class='user-menu-row-icon')" />
+      <a class="user-menu-link"
+         href="${dp_url}/config/dtypes"
          i18n:translate=""
       >Eintragsarten</a>
     </li>
-    <li class="dropdown-item">
-      <tal:icon tal:replace="structure python:icons.tag('people', tag_class='me-2')" />
-      <a href="${dp_url}/@@usergroup-userprefs"
+    <li class="dropdown-item user-menu-action-item">
+      <tal:icon tal:replace="structure python:icons.tag('people', tag_class='user-menu-row-icon')" />
+      <a class="user-menu-link"
+         href="${dp_url}/@@usergroup-userprefs"
          i18n:translate=""
       >User Management</a>
     </li>
-    <li class="dropdown-item">
-      <a href="${dp_url}/contentconfig/ticker/deleteTicker"
+    <li class="dropdown-item user-menu-action-item">
+      <tal:icon tal:replace="structure python:icons.tag('x-circle', tag_class='user-menu-row-icon')" />
+      <a class="user-menu-link"
+         href="${dp_url}/contentconfig/ticker/deleteTicker"
          i18n:domain="docpool.elan"
          i18n:translate=""
       >Delete Ticker</a>
     </li>
-    <li class="dropdown-item">
-      <a href="${dp_url}/contentconfig/ticker/edit"
+    <li class="dropdown-item user-menu-action-item">
+      <tal:icon tal:replace="structure python:icons.tag('pencil-square', tag_class='user-menu-row-icon')" />
+      <a class="user-menu-link"
+         href="${dp_url}/contentconfig/ticker/edit"
          i18n:domain="docpool.elan"
          i18n:translate=""
       >Edit Ticker</a>
     </li>
   </ul>
-</tal:header-config-dropdown>
+</div>

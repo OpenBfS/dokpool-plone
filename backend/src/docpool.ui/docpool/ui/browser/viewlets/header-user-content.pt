@@ -1,44 +1,70 @@
-<tal:header-user-dropdown tal:define="
-                            icons python:context.restrictedTraverse('@@iconresolver');
-                            dp_url context/@@dp_url;
-                            portal_url context/@@plone_portal_state/portal_url;
-                          ">
+<div class="dropdown"
+     tal:define="
+       icons python:context.restrictedTraverse('@@iconresolver');
+       dp_url context/@@dp_url;
+       portal_url context/@@plone_portal_state/portal_url;
+     "
+>
   <button class="btn btn-icon"
           aria-label="Benutzer"
+          type="button"
           data-bs-toggle="dropdown"
   >
     <tal:icon tal:replace="structure python:icons.tag('person-fill', tag_class='me-2')" />
   </button>
 
-  <ul class="dropdown-menu dropdown-menu-end menu-user-dropdown">
-    <li class="dropdown-item">
-      <span i18n:domain="docpool.base"
-            i18n:translate=""
-      >Logged in as</span><br />
-      <strong class="fs-5"
-              tal:content="python: view.user_name()"
-      >Username</strong>
+  <ul class="dropdown-menu dropdown-menu-end menu-user-dropdown menu-utility-dropdown">
+    <li class="dropdown-item user-menu-header-item">
+
+      <a class="user-menu-profile-link"
+         href="${portal_url}/@@user-preferences"
+      >
+        <span class="user-menu-kicker">angemeldet als</span>
+        <div>
+          <strong class="user-menu-name"
+                  tal:content="python: view.user_name()"
+          >Username</strong>
+          <span class="user-menu-arrow">
+            <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
+          </span>
+        </div>
+      </a>
     </li>
-    <li class="dropdown-item">
-      <tal:icon tal:replace="structure python:icons.tag('key', tag_class='me-2')" />
-      <a href="${dp_url}/@@change-password"
+    <li class="dropdown-item user-menu-action-item">
+      <tal:icon tal:replace="structure python:icons.tag('key', tag_class='user-menu-row-icon')" />
+      <a class="user-menu-link"
+         href="${dp_url}/@@change-password"
          i18n:domain="plone"
          i18n:translate=""
       >Change Password</a>
     </li>
-    <li class="dropdown-item">
-      <tal:icon tal:replace="structure python:icons.tag('people', tag_class='me-2')" />
-      <a href="${dp_url}/@@impersonate"
+    <li class="dropdown-item user-menu-action-item">
+      <tal:icon tal:replace="structure python:icons.tag('star', tag_class='user-menu-row-icon')" />
+      <a class="user-menu-link"
+         href="${dp_url}/overview"
+      >Meine Favoriten</a>
+    </li>
+    <li class="dropdown-item user-menu-action-item">
+      <tal:icon tal:replace="structure python:icons.tag('wrench', tag_class='user-menu-row-icon')" />
+      <a class="user-menu-link"
+         href="${portal_url}/@@user-preferences"
+      >Spracheinstellungen</a>
+    </li>
+    <li class="dropdown-item user-menu-action-item">
+      <tal:icon tal:replace="structure python:icons.tag('person', tag_class='user-menu-row-icon')" />
+      <a class="user-menu-link"
+         href="${dp_url}/@@impersonate"
          i18n:domain="plone"
          i18n:translate=""
       >Impersonate</a>
     </li>
-    <li class="dropdown-item">
-      <tal:icon tal:replace="structure python:icons.tag('door-open', tag_class='me-2')" />
-      <a href="${portal_url}/logout"
+    <li class="dropdown-item user-menu-action-item">
+      <tal:icon tal:replace="structure python:icons.tag('door-open', tag_class='user-menu-row-icon')" />
+      <a class="user-menu-link"
+         href="${portal_url}/logout"
          i18n:domain="plone"
          i18n:translate=""
       >Logout</a>
     </li>
   </ul>
-</tal:header-user-dropdown>
+</div>
