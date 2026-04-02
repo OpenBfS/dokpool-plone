@@ -12,6 +12,7 @@ from zope.lifecycleevent.interfaces import IObjectModifiedEvent
 
 import datetime
 import subprocess
+import transaction
 
 
 logger = getLogger(__name__)
@@ -89,12 +90,17 @@ def generate_preview_image(obj):
     # if IImportingMarker.providedBy(getRequest()):
     #     return
 
-    # 1. Check if parent is DPDocument and obj has a file
-    if obj.__parent__.portal_type != "DPDocument":
-        return
-    if not obj.file:
+    # Check if parent is DPDocument and the File has a file
+    if obj.__parent__.portal_type != "DPDocument" or not obj.file:
         return
 
+    # Check if we can generate preview from this mime_type
+    mime_type = obj.file.contentType
+    if mime_type not in ALLOWED:
+        # We only support pdf for now
+        return
+
+    # Initialize or get existing previews
     annotations = IAnnotations(obj)
     previews = annotations.get(ANNOTATION_KEY, None)
     if previews is None:
@@ -103,14 +109,11 @@ def generate_preview_image(obj):
         previews["relative_blob_path"] = None
         annotations[ANNOTATION_KEY] = previews
 
-    mime_type = obj.file.contentType
+    if not obj.file._blob._p_oid:
+        # This only works when the file was already saved!
+        # TODO: Maybe use async instead.
+        transaction.commit()
 
-    # 2. Check if we can generate preview from this mime_type
-    if mime_type not in ALLOWED:
-        # We only support pdf for now
-        return
-
-    # 3. Check that there is no preview already
     connection = obj._p_jar
     connection.setstate(obj.file._blob)
     db = connection.db()
@@ -118,11 +121,12 @@ def generate_preview_image(obj):
         obj.file._blob._p_oid, obj.file._blob._p_serial
     )
 
+    # Check that there is no preview already
     if previews["relative_blob_path"] == relative_blob_path:
         # File is unchanged, keep existing preview
         return
 
-    # 4. Send blob-path to too to generate preview image
+    # Send blob-path to subprocess to generate preview image
     blob_path = Path(db.storage.fshelper.base_dir) / Path(relative_blob_path)
     data = pdf2jpg.convert(blob_path)
     image = NamedBlobImage(data, contentType="image/jpg", filename="preview.jpg")
@@ -132,6 +136,7 @@ def generate_preview_image(obj):
     img_600 = image
     img_1200 = image
 
+    # Save previews as annotation
     previews["1200"] = img_1200
     previews["600"] = img_600
     previews["200"] = img_200
