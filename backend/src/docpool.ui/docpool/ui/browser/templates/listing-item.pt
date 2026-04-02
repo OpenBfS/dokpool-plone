@@ -93,52 +93,54 @@
             </div>
           </div>
           <div class="preview-tile position-relative rounded-1"
-               tal:condition="python: item.portal_type == 'File'"
-          >
-            <a href=""
-               target="_blank"
                tal:define="
                  mimetype python: item.getObject().content_type().split('/')[-1];
                  is_pdf python: mimetype == 'pdf';
                  href python: item.getURL();
                "
-               tal:attributes="
-                 href python: item.getURL();
-               "
+               tal:condition="python: item.portal_type == 'File'"
+          >
+            <div class="d-flex align-items-center justify-content-center h-100 bg-dark-subtle"
+                 tal:condition="python: not is_pdf"
             >
-              <div class="d-flex align-items-center justify-content-center h-100 bg-dark-subtle"
-                  tal:condition="python: not is_pdf">
-                <span class="text-gray-main bg-body-secondary p-1 rounded-1"
-                      tal:content="python: item.getObject().content_type().split('/')[-1].upper()"
-                >XLS</span>
-                <div class="position-absolute bottom-0 end-0 bg-light px-2 rounded-top-start rounded-bottom-end"
-                     tal:condition="python: plus_number"
-                >
-                  <span class="-small text-gray-darker"
-                        tal:content="python: '+' + str(plus_number)"
-                  >+3</span>
-                </div>
-              </div>
-              <div class="d-flex align-items-center justify-content-center h-100 bg-dark-subtle"
-                   tal:condition="python: is_pdf"
+              <span class="text-gray-main bg-body-secondary p-1 rounded-1"
+                    tal:content="python: item.getObject().content_type().split('/')[-1].upper()"
+              >XLS</span>
+              <div class="position-absolute bottom-0 end-0 bg-light px-2 rounded-top-start rounded-bottom-end"
+                   tal:condition="python: plus_number"
               >
-                <a class="pat-gallery"
-                  href=""
-                  tal:attributes="
-                    href python: item.getURL() + '/@@preview?scale=1200';
-                  "
-                >
-                  <img class="w-100 h-100 object-fit-cover"
-                      tal:attributes="
-                        src python: item.getURL() + '/@@preview?scale=200';
-                        alt python: item.title;
-                        title python: item.title;
-                      "
-                  />
-                </a>
-
+                <span class="-small text-gray-darker"
+                      tal:content="python: '+' + str(plus_number)"
+                >+3</span>
               </div>
-            </a>
+            </div>
+            <div class="d-flex align-items-center justify-content-center h-100 bg-dark-subtle"
+                 tal:condition="python: is_pdf"
+            >
+              <a class="pat-gallery"
+                 href=""
+                 tal:attributes="
+                   href python: item.getURL() + '/@@preview?scale=great';
+                 "
+              >
+                <img class="w-100 object-fit-contain border"
+                     style="height: 64px"
+                     tal:attributes="
+                       src python: item.getURL() + '/@@preview?scale=mini';
+                       alt python: item.getObject().content_type().split('/')[-1].upper();
+                       title python: item.title;
+                     "
+                />
+              </a>
+              <div class="position-absolute bottom-0 end-0 bg-light px-2 rounded-top-start rounded-bottom-end"
+                   tal:condition="python: plus_number"
+              >
+                <span class="small text-gray-darker"
+                      tal:content="python: '+' + str(plus_number)"
+                >+3</span>
+              </div>
+
+            </div>
           </div>
         </tal:item>
       </tal:items>
@@ -291,4 +293,3 @@
   </div>
 
 </div>
-

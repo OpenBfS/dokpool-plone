@@ -32,7 +32,17 @@
             </a>
           </tal:image>
           <tal:file condition="python: not is_image">
-            <p class="placeholder"></p>
+            <a class="gallery-item"
+               tal:attributes="
+                 href python: item.getURL() + '/@@preview';
+               "
+            >
+              <img class="rounded mx-auto d-block"
+                   tal:attributes="
+                     src python: item.getURL() + '/@@preview?scale=teaser';
+                   "
+              />
+            </a>
           </tal:file>
           <p tal:content="python: item.title">Title</p>
           <p tal:content="python: item.description">Description.</p>
