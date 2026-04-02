@@ -71,10 +71,6 @@ if not pdf2jpg.pdftocairo_path:
     logger.error(
         "No `pdftocairo` (from `poppler-utils`) command in your PATH. Preview generation will not work."
     )
-if not pdf2jpg.pdfinfo_path:
-    logger.error(
-        "No `pdfinfo` (from `poppler-utils`) command in your PATH. Preview generation will not work."
-    )
 
 
 @adapter(IFile, IObjectAddedEvent)

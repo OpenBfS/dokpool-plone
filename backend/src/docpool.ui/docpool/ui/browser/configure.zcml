@@ -259,7 +259,7 @@
       />
 
   <browser:page
-      name="file_preview_image"
+      name="preview"
       for="plone.app.contenttypes.interfaces.IFile"
       class=".preview.Preview"
       permission="zope2.View"
