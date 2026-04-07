@@ -11,7 +11,6 @@ variables:
   # For the client, it tells the Docker client which Docker Unix socket to connect to.
   DOCKER_HOST: "unix:///runner/services/docker/docker.sock"
 
-
 cache:
   paths:
     - ${PIP_CACHE_DIR}
@@ -51,7 +50,7 @@ unit_tests:
   script:
     - apt update
     # LDAP client dependencies
-    - apt-get install -y --no-install-recommends libsasl2-dev libldap2-dev libssl-dev curl
+    - apt-get install -y --no-install-recommends libsasl2-dev libldap2-dev libssl-dev curl poppler-utils
     # build
     - cd backend
 
@@ -71,6 +70,7 @@ acceptance_tests:
     - dind
   stage: test
   script:
+    - apt-get install -y poppler-utils
     - cd backend
     - pip install --upgrade pip
     - pip install uv
@@ -93,7 +93,7 @@ build_image:
   script:
     - apt update
     # LDAP client dependencies
-    - apt-get install -y --no-install-recommends libsasl2-dev libldap2-dev libssl-dev curl docker.io
+    - apt-get install -y --no-install-recommends libsasl2-dev libldap2-dev libssl-dev curl poppler-utils docker.io
     # build
     - cd backend
     - export VIRTUAL_ENV=$(pwd)

@@ -9,6 +9,7 @@ from plone.app.testing import logout
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
 from plone.dexterity.utils import datify
+from plone.namedfile.file import NamedBlobFile
 from plone.namedfile.file import NamedBlobImage
 
 import datetime
@@ -74,21 +75,24 @@ class TestUIFeatures(unittest.TestCase):
         # add attachments
         filename = os.path.join(os.path.dirname(__file__), "image.png")
         with open(filename, "rb") as f:
-            FILE_DATA = f.read()
-
+            IMAGE_DATA = f.read()
         api.content.create(
             container=self.entry,
             type="Image",
             title="Some Image",
             description="foo",
-            image=NamedBlobImage(data=FILE_DATA, filename="image.png"),
+            image=NamedBlobImage(data=IMAGE_DATA, filename="image.png"),
         )
+
+        filename = os.path.join(os.path.dirname(__file__), "file.pdf")
+        with open(filename, "rb") as f:
+            FILE_DATA = f.read()
         api.content.create(
             container=self.entry,
-            type="Image",
-            title="Another Image",
+            type="File",
+            title="Some File",
             description="bar",
-            image=NamedBlobImage(data=FILE_DATA, filename="image2.png"),
+            file=NamedBlobFile(data=FILE_DATA, filename="file.pdf"),
         )
 
     def test_listing_view_with_entries(self):
@@ -146,12 +150,12 @@ class TestUIFeatures(unittest.TestCase):
     def test_attachments_list_view(self):
         attachments_list_view = api.content.get_view("attachments_list", self.entry, self.request)
         html = attachments_list_view()
-        self.assertIn(f"{self.entry['another-image'].absolute_url()}/@@download", html)
+        self.assertIn(f"{self.entry['some-file'].absolute_url()}/@@download", html)
 
     def test_attachments_grid_view(self):
         attachments_grid_view = api.content.get_view("attachments_grid", self.entry, self.request)
         html = attachments_grid_view()
-        self.assertIn(f"{self.entry['another-image'].absolute_url()}/@@download", html)
+        self.assertIn(f"{self.entry['some-file'].absolute_url()}/@@preview", html)
 
     def test_time_filter(self):
         listing_view = api.content.get_view("listing", self.group_folder, self.request)

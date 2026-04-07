@@ -11,6 +11,7 @@ from plone.app.testing import SITE_OWNER_NAME
 from plone.app.testing import SITE_OWNER_PASSWORD
 from plone.app.testing import TEST_USER_ID
 from plone.app.testing import TEST_USER_NAME
+from plone.namedfile.file import NamedBlobFile
 from plone.namedfile.file import NamedBlobImage
 
 import os
@@ -77,21 +78,24 @@ class TestListing:
         # add attachments
         filename = os.path.join(os.path.dirname(__file__), "image.png")
         with open(filename, "rb") as f:
-            FILE_DATA = f.read()
-
+            IMAGE_DATA = f.read()
         api.content.create(
             container=self.entry,
             type="Image",
             title="Some Image",
             description="foo",
-            image=NamedBlobImage(data=FILE_DATA, filename="image.png"),
+            image=NamedBlobImage(data=IMAGE_DATA, filename="image.png"),
         )
+
+        filename = os.path.join(os.path.dirname(__file__), "file.pdf")
+        with open(filename, "rb") as f:
+            FILE_DATA = f.read()
         api.content.create(
             container=self.entry,
-            type="Image",
-            title="Another Image",
+            type="File",
+            title="Some File",
             description="bar",
-            image=NamedBlobImage(data=FILE_DATA, filename="image2.png"),
+            file=NamedBlobFile(data=FILE_DATA, filename="file.pdf"),
         )
         transaction.commit()
 
@@ -235,7 +239,7 @@ class TestListing:
         page.locator("#form-widgets-IDublinCore-title").fill("Example Entry")
         page.locator("iframe").content_frame.get_by_label("Rich Text Area").click()
         page.locator("iframe").content_frame.get_by_label("Rich Text Area").fill("Test text")
-        page.set_input_files("#attachments", "tests/image.png")
+        page.set_input_files("#attachments", ["tests/image.png", "tests/file.pdf"])
         page.get_by_role("button", name="Next").click()
 
         expect(page.get_by_role("radio", name="Normalfall")).to_be_checked()

@@ -258,4 +258,12 @@
       layer="docpool.ui.interfaces.IUITheme"
       />
 
+  <browser:page
+      name="preview"
+      for="plone.app.contenttypes.interfaces.IFile"
+      class=".preview.Preview"
+      permission="zope2.View"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
 </configure>

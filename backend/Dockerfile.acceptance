@@ -10,9 +10,9 @@ ARG PLONE_VERSION
 
 WORKDIR /app
 
-# Node.js installieren
+# Node.js und pdftocairo installieren
 RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
- && apt-get install -y nodejs \
+ && apt-get install -y nodejs poppler-utils \
  && apt-get clean && rm -rf /var/lib/apt/lists/
 
  RUN pip install --upgrade pip \
