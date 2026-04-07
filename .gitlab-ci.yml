@@ -111,7 +111,9 @@ build_image:
 
 coverage_merge:
   stage: test
-  image: python:3.11
+  image: python:3.12
+  tags:
+    - dind
   needs:
     - unit_tests
     - acceptance_tests
