@@ -37,7 +37,7 @@
                 data-bs-target="#portal-searchbox"
                 data-bs-toggle="offcanvas"
         >
-          <tal:icon tal:replace="structure python:icons.tag('search', tag_class='me-2')" />
+          <tal:icon tal:replace="structure python:icons.tag('search')" />
         </button>
         <tal:accessibility tal:replace="structure context/@@accessibility-content">
             Accessibility dropdown

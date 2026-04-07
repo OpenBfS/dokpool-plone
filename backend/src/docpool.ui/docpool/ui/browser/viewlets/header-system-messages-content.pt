@@ -10,7 +10,7 @@
           data-bs-display="static"
           data-bs-toggle="dropdown"
   >
-    <tal:icon tal:replace="structure python:icons.tag('exclamation-triangle-fill', tag_class='me-2')" />
+    <tal:icon tal:replace="structure python:icons.tag('exclamation-triangle-fill')" />
   </button>
   <ul class="dropdown-menu menu-system-messages-dropdown">
     <li class="system-messages-header">

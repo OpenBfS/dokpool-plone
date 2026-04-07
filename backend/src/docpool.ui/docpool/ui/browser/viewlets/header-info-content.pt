@@ -9,7 +9,7 @@
           type="button"
           data-bs-toggle="dropdown"
   >
-    <tal:icon tal:replace="structure python:icons.tag('info-circle-fill', tag_class='me-2')" />
+    <tal:icon tal:replace="structure python:icons.tag('info-circle-fill')" />
   </button>
   <ul class="dropdown-menu dropdown-menu-end menu-info-dropdown menu-utility-dropdown">
     <!-- Header: Softwareversion -->

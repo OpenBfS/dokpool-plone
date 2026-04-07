@@ -10,7 +10,7 @@
           type="button"
           data-bs-toggle="dropdown"
   >
-    <tal:icon tal:replace="structure python:icons.tag('wrench', tag_class='me-2')" />
+    <tal:icon tal:replace="structure python:icons.tag('wrench')" />
   </button>
 
   <ul class="dropdown-menu dropdown-menu-end menu-config-dropdown menu-utility-dropdown">

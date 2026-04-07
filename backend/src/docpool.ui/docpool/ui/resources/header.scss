@@ -317,21 +317,21 @@ body.plone-toolbar-left {
   }
 }
 
-  .menu-system-messages-dropdown {
-    position: fixed !important;
-    inset: 72px 0.75rem auto 0.75rem !important;
-    width: auto !important;
-    max-width: none !important;
-    transform: none !important;
-    max-height: calc(100vh - 84px);
-    overflow-y: auto;
-  }
+.menu-system-messages-dropdown {
+  position: fixed !important;
+  inset: 72px 0.75rem auto 0.75rem !important;
+  width: auto !important;
+  max-width: none !important;
+  transform: none !important;
+  max-height: calc(100vh - 84px);
+  overflow-y: auto;
+}
 
-  body.plone-toolbar-left-expanded {
-    .menu-system-messages-dropdown {
-      padding-left: var(--plone-toolbar-width);
-    }
+body.plone-toolbar-left-expanded {
+  .menu-system-messages-dropdown {
+    padding-left: var(--plone-toolbar-width);
   }
+}
 
 
 .menu-user-dropdown {

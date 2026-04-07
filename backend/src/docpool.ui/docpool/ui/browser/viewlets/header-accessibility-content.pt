@@ -9,7 +9,7 @@
           type="button"
           data-bs-toggle="dropdown"
   >
-    <tal:icon tal:replace="structure python:icons.tag('universal-access', tag_class='me-2')" />
+    <tal:icon tal:replace="structure python:icons.tag('universal-access')" />
   </button>
   <ul class="dropdown-menu dropdown-menu-end menu-accessibility-dropdown menu-utility-dropdown">
     <li class="dropdown-item user-menu-action-item">
