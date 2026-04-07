@@ -125,7 +125,9 @@ coverage_merge:
     - ls -lah
     - coverage combine
     - coverage xml
-    - coverage report
+    - coverage report --precision=3
+    - coverage html
+
   coverage: '/TOTAL\s+\d+\s+\d+\s+\d+\s+\d+\s+(\d+(?:\.\d+)?)%/'
   artifacts:
     paths:
