@@ -230,12 +230,12 @@ build-image-ci: build-image ## Build Docker Image
 
 # Update acceptance base Docker images
 # Needed for Plone or deps updates
-.PHONY: acceptance-updade-image
-update-acceptance-image:  ## Build Docker Images
+.PHONY: acceptance-update-image
+acceptance-update-image:  ## Build Docker Images
 	@DOCKER_BUILDKIT=1 docker build . -t $(IMAGE_NAME):acceptance -f Dockerfile.acceptance --build-arg PLONE_VERSION=$(PLONE_VERSION)
 
 .PHONY: acceptance-push-ci
-build-image-ci: acceptance-push-ci ## Build Docker Image
+acceptance-push-ci: acceptance-update-image ## Build Docker Image
 	@docker push $(IMAGE_NAME):acceptance
 
 # Theme and Webpack stuff
