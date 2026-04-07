@@ -59,10 +59,10 @@ unit_tests:
     - pip install uv
     - make install
     - make coverage
-  coverage: '/TOTAL\s+\d+\s+\d+\s+\d+\s+\d+\s+(\d+(?:\.\d+)?)%/'
   artifacts:
     paths:
       - backend/htmlcov/
+      - backend/.coverage
 
 acceptance_tests:
   image: git.starzel.de:5050/bfs/dokpool:acceptance
@@ -77,11 +77,12 @@ acceptance_tests:
     - npm ci
     - make build-ui
     - make install-acceptance
-    - make test-acceptance
+    - make coverage-acceptance
   artifacts:
     when: always
     paths:
       - backend/screenshots/
+      - backend/.coverage.acceptance
 
 build_image:
   image: plone/server-builder:$PLONE_VERSION
@@ -107,6 +108,25 @@ build_image:
     - if: '$CI_COMMIT_BRANCH == "develop"'
     - if: '$CI_COMMIT_BRANCH == "gui"'
     - if: '$NIGHTLY_UPDATE == "True"'
+
+coverage_merge:
+  stage: test
+  image: python:3.11
+  needs:
+    - unit_tests
+    - acceptance_tests
+  script:
+    - pip install coverage
+    - mkdir cov
+    - cp backend/.coverage* cov/ || true
+    - cd cov
+    - coverage combine
+    - coverage xml
+    - coverage report
+  coverage: '/TOTAL\s+\d+\s+\d+\s+\d+\s+\d+\s+(\d+(?:\.\d+)?)%/'
+  artifacts:
+    paths:
+      - cov/coverage.xml
 
 deploy_gui:
   image: curlimages/curl:8.18.0

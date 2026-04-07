@@ -188,13 +188,21 @@ install-acceptance: $(VENV_FOLDER) ## run e2e tests
 test-acceptance: $(VENV_FOLDER) ## run e2e tests
 	@uv run pytest tests/
 
-.PHONY: coverage
-coverage: ## generate test-coverage report
+# E2E Tests
+.PHONY: coverage-acceptance
+coverage-acceptance: $(VENV_FOLDER) ## run e2e tests
 	@uv pip install coverage
 	@echo "$(GREEN)==> Erasing old coverage results$(RESET)"
 	@uv run coverage erase
 	@echo "$(GREEN)==> Running test coverage analysis for playwright tests...$(RESET)"
 	@uv run coverage run -p --source=src $(BIN_FOLDER)/pytest tests/
+	mv .coverage .coverage.acceptance
+
+.PHONY: coverage
+coverage: ## generate test-coverage report
+	@uv pip install coverage
+	@echo "$(GREEN)==> Erasing old coverage results$(RESET)"
+	@uv run coverage erase
 	@echo "$(GREEN)==> Running test coverage analysis for all packages...$(RESET)"
 	@uv run coverage run -p --source=src $(BIN_FOLDER)/zope-testrunner --auto-color --auto-progress \
 	--test-path src/docpool.api/src \
