@@ -1,11 +1,11 @@
 from BTrees.OOBTree import OOBTree
-from distutils.spawn import find_executable
 from logging import getLogger
 from pathlib import Path
 from plone import api
 from plone.app.contenttypes.interfaces import IFile
 from plone.namedfile.file import NamedBlobImage
 from plone.scale.scale import scaleImage
+from shutil import which
 from tempfile import TemporaryDirectory
 from ZODB.DemoStorage import DemoStorage
 from zope.annotation import IAnnotations
@@ -38,7 +38,7 @@ class PDF2JPGSubProcess:
     Convert first page of a pdf to an jpg
     """
 
-    pdftocairo_path = find_executable("pdftocairo")
+    pdftocairo_path = which("pdftocairo")
 
     def convert(self, input_path):
         with TemporaryDirectory(prefix="docpool") as tmpdir:
