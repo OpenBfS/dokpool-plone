@@ -3,7 +3,7 @@
 # TODO Automate the build process
 # For now its build locally and pushed to our registry
 ARG PYTHON_VERSION=3.12
-ARG PLONE_VERSION=6.1.2
+ARG PLONE_VERSION=6.1.4
 FROM plone/server-builder:${PLONE_VERSION} AS builder
 
 ARG PLONE_VERSION
