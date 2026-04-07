@@ -122,6 +122,7 @@ coverage_merge:
     - mkdir cov
     - cp backend/.coverage* cov/ || true
     - cd cov
+    - ls -lah
     - coverage combine
     - coverage xml
     - coverage report
