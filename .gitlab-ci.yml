@@ -124,6 +124,7 @@ coverage_merge:
     - cd cov
     - ls -lah
     - coverage combine
+    - ls -lah
     - coverage xml
     - coverage report --precision=3
     - coverage html
