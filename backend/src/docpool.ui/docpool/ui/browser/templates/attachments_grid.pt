@@ -49,7 +49,7 @@
           <a href=""
              title="download"
              tal:attributes="
-               href python: item.getURL() + '/@@download';
+               href python: item.getURL();
              "
              i18n:attributes="title"
           ><img src="${python:icons.url('download')}" /></a>
