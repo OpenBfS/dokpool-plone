@@ -196,6 +196,7 @@ coverage-acceptance: $(VENV_FOLDER) ## run e2e tests
 	@uv run coverage erase
 	@echo "$(GREEN)==> Running test coverage analysis for playwright tests...$(RESET)"
 	@uv run coverage run -p --source=src $(BIN_FOLDER)/pytest tests/
+	@uv run coverage combine
 	mv .coverage .coverage.acceptance
 
 .PHONY: coverage
@@ -226,6 +227,16 @@ build-image:  ## Build Docker Images
 .PHONY: build-image-ci
 build-image-ci: build-image ## Build Docker Image
 	@docker push $(IMAGE_NAME):$(IMAGE_TAG)
+
+# Update acceptance base Docker images
+# Needed for Plone or deps updates
+.PHONY: acceptance-updade-image
+update-acceptance-image:  ## Build Docker Images
+	@DOCKER_BUILDKIT=1 docker build . -t $(IMAGE_NAME):acceptance -f Dockerfile.acceptance --build-arg PLONE_VERSION=$(PLONE_VERSION)
+
+.PHONY: acceptance-push-ci
+build-image-ci: acceptance-push-ci ## Build Docker Image
+	@docker push $(IMAGE_NAME):acceptance
 
 # Theme and Webpack stuff
 # uivars
