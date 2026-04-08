@@ -1,11 +1,11 @@
-<header class="app-header border-bottom"
-        id="portal-header"
-        tal:define="
-          icons python:context.restrictedTraverse('@@iconresolver');
-          auth_token context/@@authenticator/token;
-        "
-        tal:condition="python:not context.restrictedTraverse('@@plone_portal_state').anonymous()"
-        i18n:domain="docpool.ui"
+<div class="app-header border-bottom"
+     id="docpool-header"
+     tal:define="
+       icons python:context.restrictedTraverse('@@iconresolver');
+       auth_token context/@@authenticator/token;
+     "
+     tal:condition="python:not context.restrictedTraverse('@@plone_portal_state').anonymous()"
+     i18n:domain="docpool.ui"
 >
   <div class="container-fluid px-0">
     <div class="d-flex align-items-stretch">
@@ -120,4 +120,4 @@
 
     </div>
   </div>
-</header>
+</div>
