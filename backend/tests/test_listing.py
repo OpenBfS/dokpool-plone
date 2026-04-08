@@ -56,7 +56,7 @@ class TestListing:
         self.entry = api.content.create(
             container=self.group_folder,
             type="DPDocument",
-            title="A Weatherinfo without images",
+            title="Weatherinfo without images",
             description="foo",
             docType="weather_conditions_and_forecast",
             local_behaviors=["elan"],
@@ -68,7 +68,7 @@ class TestListing:
         self.entry = api.content.create(
             container=self.group_folder,
             type="DPDocument",
-            title="A Staff Note",
+            title="Staff Note",
             description="foo",
             docType="staff_note",
             local_behaviors=["elan"],
@@ -113,7 +113,7 @@ class TestListing:
         items = page.locator("#listing .listing-item")
         expect(items).to_have_count(2)
         # Tests if the DPDocument (without images) exists
-        dp_without_images = page.locator("#listing .listing-item", has_text="A Weatherinfo without images")
+        dp_without_images = page.locator("#listing .listing-item", has_text="Weatherinfo without images")
         expect(dp_without_images).to_have_count(1)
         # Publish the DPDocument
         dp_without_images.get_by_role("button", name="⋮").click()
@@ -123,7 +123,7 @@ class TestListing:
         screenshot_dir.mkdir(parents=True, exist_ok=True)
         page.screenshot(path=str(screenshot_dir / "acceptance-test-screenshot.png"), full_page=True)
         expect(status_msg).to_contain_text(
-            " Info: New review state for A Weatherinfo without images: Published"
+            " Info: New review state for Weatherinfo without images: Published"
         )
 
     def test_dropdown_edit(self):
@@ -134,7 +134,7 @@ class TestListing:
         items = page.locator("#listing .listing-item")
         expect(items).to_have_count(2)
         # Tests if the DPDocument (without images) exists
-        dp_without_images = page.locator("#listing .listing-item", has_text="A Weatherinfo without images")
+        dp_without_images = page.locator("#listing .listing-item", has_text="Weatherinfo without images")
         dp_without_images.get_by_role("button", name="⋮").click()
         page.locator(".dropdown").get_by_role("link", name="Edit", exact=True).click()
         page.get_by_role("textbox", name="Title •").click()
@@ -157,7 +157,7 @@ class TestListing:
         items = page.locator("#listing .listing-item")
         expect(items).to_have_count(2)
         # Tests if the DPDocument (without images) exists
-        dp_without_images = page.locator("#listing .listing-item", has_text="A Weatherinfo without images")
+        dp_without_images = page.locator("#listing .listing-item", has_text="Weatherinfo without images")
         dp_without_images.get_by_role("button", name="⋮").click()
         page.locator(".dropdown").get_by_role("link", name="Delete", exact=True).click()
         page.get_by_role("button", name="Delete").click()
@@ -177,6 +177,7 @@ class TestListing:
         # Wait for item actions to get injected
         page.wait_for_selector(".actions .list-group")
         expect(page.locator(".actions .list-group")).to_have_count(1)
+        page.pause()
         metadata = page.locator(".doc_metadata div").last
         expect(metadata).to_contain_text("Stabsmitteilung (Mitteilungen der Stäbe)")
         # Go back to listing
