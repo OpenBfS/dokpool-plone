@@ -12,7 +12,7 @@ class TestMobileUI:
         self.page = playwright_page_factory(username=SITE_OWNER_NAME, password=SITE_OWNER_PASSWORD)
         self.plone_url = self.portal.absolute_url()
 
-    def test_mobile_menu_open_close(self):
+    def test_mobile_nav_switch_event(self):
         """Test that mobile menu can be opened and closed in mobile viewport"""
         page = self.page
         # Set mobile viewport
