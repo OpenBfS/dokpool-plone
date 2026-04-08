@@ -11,6 +11,7 @@
                    items python: view.items;
                    folder_uids python: view.folder_uids;
                    other_uids python: view.other_uids;
+                   icons python: context.restrictedTraverse('@@iconresolver');
                    show_scenario_filter_switch python: 'elan' in view.active_apps and view.folder_listing;
                  "
   >
@@ -350,7 +351,7 @@
             </div>
           </div>
 
-          <div class="m-1 me-3 dropdown">
+          <div class="m-1 me-3 dropdown d-none d-lg-block">
             <button class="btn btn-light btn-icon dropdown-toggle"
                     aria-expanded="false"
                     title="Sorting"
@@ -419,9 +420,10 @@
           </div>
         </div>
       </form>
-    </div>
 
-    <div class="mx-3 my-3"
+      <metal:mobile-listing-filter use-macro="context/@@listing.macros/macros/mobile_listing_filter" />
+
+      <div class="mx-3 my-3"
          tal:condition="python: 'journal_title' in view.filters and view.show_add_form"
     >
       <form class="add-form"
@@ -465,21 +467,21 @@
 
 
     <div class="mx-3 my-3"
-         id="listing"
-         tal:attributes="
-           data-items python: view.json_items;
-         "
-    >
-      <tal:block tal:repeat="item python: folder_uids + other_uids + items">
-        <a class="pat-inject list-item-inject-link"
-           data-pat-inject="trigger: autoload-visible; delay: 50; target: self"
-           tal:content="python: '@@listing-item?uid='+ item"
+           id="listing"
            tal:attributes="
-             href python: '@@listing-item?uid='+ item;
+             data-items python: view.json_items;
            "
-        >
-        </a>
-      </tal:block>
-    </div>
-  </metal:content>
+      >
+        <tal:block tal:repeat="item python: folder_uids + other_uids + items">
+          <a class="pat-inject list-item-inject-link"
+             data-pat-inject="trigger: autoload-visible; delay: 50; target: self"
+             tal:content="python: '@@listing-item?uid='+ item"
+             tal:attributes="
+               href python: '@@listing-item?uid='+ item;
+             "
+          >
+          </a>
+        </tal:block>
+      </div>
+    </div></metal:content>
 </html>

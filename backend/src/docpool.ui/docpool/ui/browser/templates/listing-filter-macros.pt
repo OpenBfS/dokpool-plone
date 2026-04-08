@@ -1,0 +1,498 @@
+<metal:mobile-listing-filter define-macro="mobile_listing_filter">
+  <div class="dropdown d-lg-none listing-mobile-filter-dropdown"
+       id="listingMobileFiltersDropdown"
+  >
+    <button class="btn btn-light btn-icon dropdown-toggle listing-mobile-filter-toggle"
+            id="listingMobileFiltersToggle"
+            aria-controls="listingMobileFilters"
+            aria-expanded="false"
+            title="Filter"
+            type="button"
+            data-bs-auto-close="outside"
+            data-bs-toggle="dropdown"
+            i18n:attributes="title"
+    >
+      <tal:icon tal:replace="structure python:icons.tag('funnel')" />
+    </button>
+    <div class="dropdown-menu dropdown-menu-end listing-mobile-filters-dropdown-panel"
+         id="listingMobileFilters"
+         aria-labelledby="listingMobileFiltersToggle"
+    >
+      <div class="mobile-listing-dropdown-header">
+        <h5 class="offcanvas-title"
+            id="listingMobileFiltersLabel"
+            i18n:translate=""
+        >Filter</h5>
+      </div>
+      <div class="mobile-listing-dropdown-body">
+        <form class="mobile-filter-form"
+              method="GET"
+        >
+          <input name="searchable_text"
+                 type="hidden"
+                 tal:attributes="
+                   value python: view.searchable_text or '';
+                 "
+          />
+          <div class="tab-content mobile-listing-tab-content"
+               id="mobile-listing-tab-content"
+          >
+            <div class="tab-pane fade show active"
+                 id="mobile-listing-pane-main"
+                 aria-labelledby="mobile-listing-main-tab-trigger"
+                 role="tabpanel"
+            >
+              <div class="mobile-listing-tablist"
+                   id="mobile-listing-nav"
+                   aria-orientation="vertical"
+                   role="tablist"
+              >
+                <button class="mobile-listing-nav-link nav-link d-none active"
+                        id="mobile-listing-main-tab-trigger"
+                        aria-controls="mobile-listing-pane-main"
+                        aria-selected="true"
+                        role="tab"
+                        type="button"
+                        data-bs-target="#mobile-listing-pane-main"
+                        data-bs-toggle="pill"
+                ></button>
+
+                <button class="mobile-listing-nav-link nav-link"
+                        id="mobile-listing-tab-time"
+                        aria-controls="mobile-listing-pane-time"
+                        aria-selected="false"
+                        role="tab"
+                        type="button"
+                        data-bs-target="#mobile-listing-pane-time"
+                        data-bs-toggle="pill"
+                >
+                  <span class="mobile-listing-nav-label">Zeit [ME(S)Z]</span>
+                  <span class="mobile-listing-nav-chevron">
+                    <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
+                  </span>
+                </button>
+
+                <button class="mobile-listing-nav-link nav-link"
+                        id="mobile-listing-tab-entrytype"
+                        aria-controls="mobile-listing-pane-entrytype"
+                        aria-selected="false"
+                        role="tab"
+                        type="button"
+                        data-bs-target="#mobile-listing-pane-entrytype"
+                        data-bs-toggle="pill"
+                >
+                  <span class="mobile-listing-nav-label">Eintragsart</span>
+                  <span class="mobile-listing-nav-chevron">
+                    <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
+                  </span>
+                </button>
+
+                <button class="mobile-listing-nav-link nav-link"
+                        id="mobile-listing-tab-visibility"
+                        aria-controls="mobile-listing-pane-visibility"
+                        aria-selected="false"
+                        role="tab"
+                        type="button"
+                        data-bs-target="#mobile-listing-pane-visibility"
+                        data-bs-toggle="pill"
+                >
+                  <span class="mobile-listing-nav-label">Sichtbarkeit</span>
+                  <span class="mobile-listing-nav-chevron">
+                    <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
+                  </span>
+                </button>
+
+                <button class="mobile-listing-nav-link nav-link"
+                        id="mobile-listing-tab-group"
+                        aria-controls="mobile-listing-pane-group"
+                        aria-selected="false"
+                        role="tab"
+                        type="button"
+                        data-bs-target="#mobile-listing-pane-group"
+                        data-bs-toggle="pill"
+                        tal:condition="python: not view.folder_listing"
+                >
+                  <span class="mobile-listing-nav-label">Gruppe</span>
+                  <span class="mobile-listing-nav-chevron">
+                    <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
+                  </span>
+                </button>
+
+                <button class="mobile-listing-nav-link nav-link"
+                        id="mobile-listing-tab-sorting"
+                        aria-controls="mobile-listing-pane-sorting"
+                        aria-selected="false"
+                        role="tab"
+                        type="button"
+                        data-bs-target="#mobile-listing-pane-sorting"
+                        data-bs-toggle="pill"
+                >
+                  <span class="mobile-listing-nav-label">Sortierung</span>
+                  <span class="mobile-listing-nav-chevron">
+                    <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
+                  </span>
+                </button>
+
+                <button class="mobile-listing-nav-link nav-link"
+                        id="mobile-listing-tab-scenario"
+                        aria-controls="mobile-listing-pane-scenario"
+                        aria-selected="false"
+                        role="tab"
+                        type="button"
+                        data-bs-target="#mobile-listing-pane-scenario"
+                        data-bs-toggle="pill"
+                        tal:condition="python: show_scenario_filter_switch"
+                >
+                  <span class="mobile-listing-nav-label">Ereignisse</span>
+                  <span class="mobile-listing-nav-chevron">
+                    <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
+                  </span>
+                </button>
+              </div>
+            </div>
+
+            <div class="tab-pane fade mobile-listing-pane"
+                 id="mobile-listing-pane-time"
+                 aria-labelledby="mobile-listing-tab-time"
+                 role="tabpanel"
+            >
+              <button class="mobile-listing-back-link"
+                      type="button"
+                      data-mobile-listing-back="true"
+              >
+                <span class="mobile-listing-back-icon">
+                  <tal:icon tal:replace="structure python:icons.tag('chevron-left')" />
+                </span>
+                <span class="mobile-listing-back-label">Filter</span>
+              </button>
+              <div class="mobile-listing-filter-section">
+                <h6 class="mobile-listing-filter-title"
+                    i18n:translate=""
+                >Time [ME(S)Z]</h6>
+                <label class="form-label"
+                       for="mobile-startdate"
+                       i18n:translate=""
+                >
+                Created since
+                </label>
+                <div class="d-flex justify-content-between mb-2">
+                  <div>
+                    <input class="form-control"
+                           id="mobile-startdate"
+                           name="startdate"
+                           type="date"
+                           value="${python: view.startdate}"
+                    />
+                  </div>
+                  <div>
+                    <input class="form-control"
+                           id="mobile-starttime"
+                           name="starttime"
+                           type="time"
+                           value="${python: view.starttime}"
+                    />
+                  </div>
+                </div>
+                <label class="form-label"
+                       for="mobile-enddate"
+                       i18n:translate=""
+                >
+                Created until
+                </label>
+                <div class="d-flex justify-content-between mb-1">
+                  <div>
+                    <input class="form-control"
+                           id="mobile-enddate"
+                           name="enddate"
+                           type="date"
+                           value="${python: view.enddate}"
+                    />
+                  </div>
+                  <div>
+                    <input class="form-control"
+                           id="mobile-endtime"
+                           name="endtime"
+                           type="time"
+                           value="${python: view.endtime}"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="tab-pane fade mobile-listing-pane"
+                 id="mobile-listing-pane-entrytype"
+                 aria-labelledby="mobile-listing-tab-entrytype"
+                 role="tabpanel"
+                 tal:define="
+                   selected_subcategories python: view.selected_subcategories;
+                   categories python: view.doctype_categories;
+                 "
+            >
+              <button class="mobile-listing-back-link"
+                      type="button"
+                      data-mobile-listing-back="true"
+              >
+                <span class="mobile-listing-back-icon">
+                  <tal:icon tal:replace="structure python:icons.tag('chevron-left')" />
+                </span>
+                <span class="mobile-listing-back-label">Filter</span>
+              </button>
+              <div class="mobile-listing-filter-section">
+                <h6 class="mobile-listing-filter-title"
+                    i18n:translate=""
+                >Entrytype</h6>
+                <div class="mobile-listing-filter-options pat-checklist">
+                  <div class="form-check"
+                       tal:condition="python: len(categories) > 1"
+                  ><label><input class="form-check-input toggle-all"
+                             type="checkbox"
+                      /><span i18n:domain="docpool.base"
+                            i18n:translate="label_toggle"
+                      >Toggle all</span></label></div>
+                  <tal:category tal:repeat="category python: categories">
+                    <strong tal:content="python: category"></strong>
+                    <tal:subcategory tal:repeat="subcategory python: categories[category]">
+                      <div class="form-check">
+                        <input class="form-check-input"
+                               id="${python: 'mobile-selected_subcategories-' + subcategory.replace(' ', '')}"
+                               name="selected_subcategories:list"
+                               type="checkbox"
+                               value="${python: subcategory}"
+                               tal:attributes="
+                                 checked python: subcategory in selected_subcategories;
+                                 disabled python: not categories[category][subcategory]['count'] and 'disabled';
+                               "
+                        />
+                        <label class="form-check-label"
+                               for="${python: 'mobile-selected_subcategories-' + subcategory.replace(' ', '')}"
+                        >
+                          <span tal:replace="python: subcategory"></span>
+                          <span class="badge rounded-pill text-bg-secondary"
+                                tal:condition="python:categories[category][subcategory]['count']"
+                                tal:content="python:categories[category][subcategory]['count']"
+                          ></span>
+                        </label>
+                      </div>
+                    </tal:subcategory>
+                  </tal:category>
+                </div>
+              </div>
+            </div>
+
+            <div class="tab-pane fade mobile-listing-pane"
+                 id="mobile-listing-pane-visibility"
+                 aria-labelledby="mobile-listing-tab-visibility"
+                 role="tabpanel"
+                 tal:define="
+                   selected_review_states python: view.selected_review_states;
+                 "
+            >
+              <button class="mobile-listing-back-link"
+                      type="button"
+                      data-mobile-listing-back="true"
+              >
+                <span class="mobile-listing-back-icon">
+                  <tal:icon tal:replace="structure python:icons.tag('chevron-left')" />
+                </span>
+                <span class="mobile-listing-back-label">Filter</span>
+              </button>
+              <div class="mobile-listing-filter-section">
+                <h6 class="mobile-listing-filter-title"
+                    i18n:translate=""
+                >Visibility</h6>
+                <div class="mobile-listing-filter-options">
+                  <tal:doctypes tal:repeat="review_state python: view.review_states">
+                    <div class="form-check">
+                      <input class="form-check-input"
+                             id="${python: 'mobile-review_states-' + review_state}"
+                             name="review_states:list"
+                             type="checkbox"
+                             value="${python: review_state}"
+                             tal:attributes="
+                               checked python: review_state in selected_review_states;
+                               disabled python: not view.review_states[review_state]['count'] and 'disabled';
+                             "
+                      />
+                      <label class="form-check-label"
+                             for="${python: 'mobile-review_states-' + review_state}"
+                      >
+                        <span tal:replace="python: view.review_states[review_state]['title']"
+                              i18n:translate=""
+                        ></span>
+                        <span class="badge rounded-pill text-bg-secondary"
+                              tal:content="python:view.review_states[review_state]['count']"
+                        ></span>
+                      </label>
+                    </div>
+                  </tal:doctypes>
+                </div>
+              </div>
+            </div>
+
+            <div class="tab-pane fade mobile-listing-pane"
+                 id="mobile-listing-pane-group"
+                 aria-labelledby="mobile-listing-tab-group"
+                 role="tabpanel"
+                 tal:define="
+                   selected_groups python: view.selected_groups;
+                   groups python: view.groups;
+                 "
+                 tal:condition="python: not view.folder_listing"
+            >
+              <button class="mobile-listing-back-link"
+                      type="button"
+                      data-mobile-listing-back="true"
+              >
+                <span class="mobile-listing-back-icon">
+                  <tal:icon tal:replace="structure python:icons.tag('chevron-left')" />
+                </span>
+                <span class="mobile-listing-back-label">Filter</span>
+              </button>
+              <div class="mobile-listing-filter-section">
+                <h6 class="mobile-listing-filter-title"
+                    i18n:translate=""
+                >Group</h6>
+                <div class="mobile-listing-filter-options pat-checklist">
+                  <div class="form-check"
+                       tal:condition="python: len(groups) > 5"
+                  ><label><input class="form-check-input toggle-all"
+                             type="checkbox"
+                      /><span i18n:domain="docpool.base"
+                            i18n:translate="label_toggle"
+                      >Toggle all</span></label></div>
+                  <tal:groups tal:repeat="group python: groups">
+                    <div class="form-check">
+                      <input class="form-check-input"
+                             id="${python: 'mobile-selected_groups-' + group}"
+                             name="selected_groups:list"
+                             type="checkbox"
+                             value="${python: group}"
+                             tal:attributes="
+                               checked python: group in selected_groups;
+                               disabled python: not groups[group]['count'] and 'disabled';
+                             "
+                      />
+                      <label class="form-check-label"
+                             for="${python: 'mobile-selected_groups-' + group}"
+                      >
+                        <span tal:replace="python: groups[group]['title']"></span>
+                        <span class="badge rounded-pill text-bg-secondary"
+                              tal:condition="python:groups[group]['count']"
+                              tal:content="python:groups[group]['count']"
+                        ></span>
+                      </label>
+                    </div>
+                  </tal:groups>
+                </div>
+              </div>
+            </div>
+
+            <div class="tab-pane fade mobile-listing-pane"
+                 id="mobile-listing-pane-sorting"
+                 aria-labelledby="mobile-listing-tab-sorting"
+                 role="tabpanel"
+            >
+              <button class="mobile-listing-back-link"
+                      type="button"
+                      data-mobile-listing-back="true"
+              >
+                <span class="mobile-listing-back-icon">
+                  <tal:icon tal:replace="structure python:icons.tag('chevron-left')" />
+                </span>
+                <span class="mobile-listing-back-label">Filter</span>
+              </button>
+              <div class="mobile-listing-filter-section">
+                <h6 class="mobile-listing-filter-title"
+                    i18n:translate=""
+                >Sorting</h6>
+                <div class="mobile-listing-filter-options">
+                  <div class="form-check"
+                       tal:repeat="sort_on python: view.sort_on_options"
+                  >
+                    <input class="form-check-input"
+                           id="${python: 'mobile-sort-' + sort_on}"
+                           name="sort_on"
+                           type="radio"
+                           value="${python: sort_on}"
+                           tal:attributes="
+                             checked python: view.sort_on == sort_on;
+                           "
+                    />
+                    <label class="form-check-label text-nowrap"
+                           for="${python: 'mobile-sort-' + sort_on}"
+                    >
+                  ${python: view.sort_on_options[sort_on][2]}
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="tab-pane fade mobile-listing-pane"
+                 id="mobile-listing-pane-scenario"
+                 aria-labelledby="mobile-listing-tab-scenario"
+                 role="tabpanel"
+                 tal:condition="python: show_scenario_filter_switch"
+            >
+              <button class="mobile-listing-back-link"
+                      type="button"
+                      data-mobile-listing-back="true"
+              >
+                <span class="mobile-listing-back-icon">
+                  <tal:icon tal:replace="structure python:icons.tag('chevron-left')" />
+                </span>
+                <span class="mobile-listing-back-label">Filter</span>
+              </button>
+              <div class="mobile-listing-filter-section">
+                <h6 class="mobile-listing-filter-title">Ereignisse</h6>
+                <div class="form-check form-switch">
+                  <input class="form-check-input"
+                         id="mobile-bypass_scenario_filter"
+                         name="bypass_scenario_filter"
+                         role="switch"
+                         type="checkbox"
+                         tal:attributes="
+                           checked python: view.bypass_scenario_filter;
+                         "
+                  />
+                  <label class="form-check-label"
+                         for="mobile-bypass_scenario_filter"
+                  >
+                    <tal:count condition="python: not view.bypass_scenario_filter">
+                      <span tal:content="python: view.count_without_scenario_filter"></span>
+                      <span i18n:translate="">more entries for other events</span>
+                    </tal:count>
+                    <tal:totalcount condition="python: view.bypass_scenario_filter">
+                      <span i18n:translate="">for all events</span>
+                    </tal:totalcount>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mobile-listing-filter-actions d-flex justify-content-between gap-2">
+            <button class="btn btn-outline-secondary"
+                    formnovalidate="formnovalidate"
+                    name="form.button.Reset"
+                    type="submit"
+                    value="Reset"
+                    i18n:domain="zope"
+                    i18n:translate="reset-button"
+            >Reset
+            </button>
+            <button class="btn btn-primary"
+                    formnovalidate="formnovalidate"
+                    type="submit"
+                    value="submit"
+                    i18n:domain="plone"
+                    i18n:translate=""
+            >Filter
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</metal:mobile-listing-filter>
