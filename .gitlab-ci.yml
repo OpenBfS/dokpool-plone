@@ -123,7 +123,7 @@ coverage_merge:
     - cp backend/.coverage* cov/ || true
     - cd cov
     - ls -lah
-    - coverage combine
+    - coverage combine .coverage.unit .coverage.acceptance
     - ls -lah
     - coverage xml
     - coverage report --precision=3

@@ -216,6 +216,7 @@ coverage: ## generate test-coverage report
 	|| exit 1
 	@echo "$(GREEN)==> Creating test coverage report$(RESET)"
 	@uv run coverage combine
+	mv .coverage .coverage.unit
 
 # Build Docker images
 .PHONY: build-image
