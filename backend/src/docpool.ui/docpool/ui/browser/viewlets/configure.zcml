@@ -14,6 +14,14 @@
       layer="docpool.ui.interfaces.IUITheme"
       />
 
+  <browser:viewlet
+      name="plone.searchbox"
+      manager="plone.app.layout.viewlets.interfaces.IPortalTop"
+      class="plone.app.layout.viewlets.common.SearchBoxViewlet"
+      permission="zope2.View"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
   <browser:page
       name="header.macros"
       for="*"

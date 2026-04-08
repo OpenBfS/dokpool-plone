@@ -10,7 +10,13 @@
           skinname="*"
   >
     <viewlet name="plone.logo" />
+    <viewlet name="plone.searchbox" />
   </hidden>
+  <order manager="plone.portaltop"
+         skinname="*"
+  >
+    <viewlet name="plone.searchbox" />
+  </order>
   <hidden manager="plone.belowcontent"
           skinname="*"
   >
