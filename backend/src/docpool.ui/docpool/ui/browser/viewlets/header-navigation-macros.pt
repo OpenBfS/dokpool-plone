@@ -4,7 +4,7 @@
 >
   <body>
     <metal:desktop-navigation define-macro="desktop_navigation">
-      <div class="d-none d-lg-flex align-items-stretch"
+      <div class="d-none d-lg-flex align-items-stretch flex-grow-1 w-100 desktop-settings-infos"
            id="header-primary-shortcuts"
       >
         <tal:headernav replace="structure provider:docpool.headernav.manager" />
@@ -18,46 +18,46 @@
                 i18n:translate=""
           >My group folders</span>
         </a>
-      </div>
-      <a class="nav-link nav-btn d-flex flex-column justify-content-center px-4 border-end text-decoration-none ${python: view.active['emergency']}"
-         href="${python: view.emergency_info_url}"
-         tal:condition="python: view.emergency_info_url"
-      >
-        <span class="small text-primary mb-n1"
-              i18n:translate=""
-        >Emergency documents</span>
-      </a>
-
-      <!-- Right: Icons -->
-      <div class="nav-link right-icons d-none d-lg-flex align-items-center ms-auto gap-2 px-3">
-        <button class="btn btn-icon me-3 search-btn"
-                aria-controls="portal-searchbox"
-                aria-label="Suche"
-                type="button"
-                data-bs-target="#portal-searchbox"
-                data-bs-toggle="offcanvas"
+        <a class="nav-link nav-btn d-flex flex-column justify-content-center px-4 border-end text-decoration-none ${python: view.active['emergency']}"
+           href="${python: view.emergency_info_url}"
+           tal:condition="python: view.emergency_info_url"
         >
-          <tal:icon tal:replace="structure python:icons.tag('search')" />
-        </button>
-        <tal:accessibility tal:replace="structure context/@@accessibility-content">
+          <span class="small text-primary mb-n1"
+                i18n:translate=""
+          >Emergency documents</span>
+        </a>
+
+        <!-- Right: Icons -->
+        <div class="nav-link right-icons d-none d-lg-flex align-items-center ms-auto gap-2 px-3">
+          <button class="btn btn-icon me-3 search-btn"
+                  aria-controls="portal-searchbox"
+                  aria-label="Suche"
+                  type="button"
+                  data-bs-target="#portal-searchbox"
+                  data-bs-toggle="offcanvas"
+          >
+            <tal:icon tal:replace="structure python:icons.tag('search')" />
+          </button>
+          <tal:accessibility tal:replace="structure context/@@accessibility-content">
             Accessibility dropdown
-        </tal:accessibility>
+          </tal:accessibility>
 
-        <tal:systemmessages tal:replace="structure context/@@system-messages-content">
+          <tal:systemmessages tal:replace="structure context/@@system-messages-content">
             System messages dropdown
-        </tal:systemmessages>
+          </tal:systemmessages>
 
-        <tal:info tal:replace="structure context/@@info-content">
+          <tal:info tal:replace="structure context/@@info-content">
             Info dropdown
-        </tal:info>
+          </tal:info>
 
-        <tal:info tal:replace="structure context/@@config-content">
+          <tal:info tal:replace="structure context/@@config-content">
             Config dropdown
-        </tal:info>
+          </tal:info>
 
-        <tal:info tal:replace="structure context/@@user-content">
+          <tal:info tal:replace="structure context/@@user-content">
             User dropdown
-        </tal:info>
+          </tal:info>
+        </div>
       </div>
     </metal:desktop-navigation>
 
