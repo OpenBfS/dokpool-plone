@@ -61,8 +61,7 @@ unit_tests:
     - make coverage
   artifacts:
     paths:
-      - backend/htmlcov/
-      - backend/.coverage
+      - backend/.coverage.unit
 
 acceptance_tests:
   image: git.starzel.de:5050/bfs/dokpool:acceptance
