@@ -15,11 +15,11 @@
     >
       <tal:block tal:repeat="item python: view.journals">
         <a class="list-item-link"
-            tal:attributes="
-              href python: '{}/@@journalentries?selected_groups={}'.format(context.absolute_url(), item['group_uid']);
-            "
+           tal:attributes="
+             href python: '{}/@@journalentries?selected_groups={}&amp;journal_title={}&amp;journal_folder_uid={}'.format(context.absolute_url(), item['group_uid'], item['title'], item['uid']);
+           "
         >
-        <div class="listing-item d-flex align-items-center border-bottom position-relative">
+          <div class="listing-item d-flex align-items-center border-bottom position-relative">
             <div class="py-3 px-2 flex-fill text-box">
               <h3 class="mb-0"
                   tal:content="python: item['title']"
@@ -27,11 +27,15 @@
             </div>
 
             <div class="py-3 px-2">
-              <span class="small" tal:content="python: item['last_entry']">09. April 2026, 18:55</span>
+              <span class="small"
+                    tal:content="python: item['last_entry']"
+              >09. April 2026, 18:55</span>
             </div>
 
             <div class="py-3 px-3">
-              <span class="badge rounded-pill text-bg-secondary" tal:content="python: item['count']">15</span>
+              <span class="badge rounded-pill text-bg-secondary"
+                    tal:content="python: item['count']"
+              >15</span>
             </div>
 
             <div class="py-3 px-3 border-start">

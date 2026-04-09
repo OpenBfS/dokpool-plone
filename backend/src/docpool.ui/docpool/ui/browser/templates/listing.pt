@@ -27,7 +27,22 @@
       >
         <div class="d-flex flex-wrap justify-content-end">
 
+          <div class="mx-3 my-0 py-1 me-auto"
+               tal:condition="python: 'journal_title' in view.filters"
+          >
+            <a class="btn btn-light btn-icon me-2"
+               href="@@journals"
+            >
+              <img src="${python:icons.url('chevron-left')}" />
+              <span class="small"
+                    i18n:translate="back"
+              >Zur&uuml;ck</span>
+            </a>
+            <strong tal:content="python: view.journal_title"></strong>
+          </div>
+
           <div class="mx-3 my-0 py-2"
+               tal:condition="python: 'entries' in view.filters"
                tal:attributes="
                  class python: 'mx-3 my-0 py-2' if show_scenario_filter_switch else 'mx-3 my-0 py-2 me-auto';
                "
@@ -405,6 +420,47 @@
         </div>
       </form>
     </div>
+
+    <div class="mx-3 my-3"
+         tal:condition="python: 'journal_title' in view.filters"
+    >
+      <form class="add-form"
+            action=""
+            method="GET"
+      >
+        <div class="d-flex flex-wrap">
+          <div class="me-3 flex-fill">
+            <textarea class="form-control"
+                      id="journalentry-text"
+                      name="journalentry-text"
+                      placeholder="New journal entry"
+                      rows="2"
+            ></textarea>
+            <input name="journal_title"
+                   type="hidden"
+                   value="${python:request.get('journal_title')}"
+            />
+            <input name="journal_folder_uid"
+                   type="hidden"
+                   value="${python:request.get('journal_folder_uid')}"
+            />
+            <input name="selected_groups"
+                   type="hidden"
+                   value="${python:request.get('selected_groups')}"
+            />
+          </div>
+          <div>
+            <button class="btn btn-secondary me-1 mt-1"
+                    style="font-size: 1.5rem"
+                    title="Add journal entry"
+                    type="submit"
+                    i18n:attributes="placeholder"
+            ><tal:icon tal:replace="structure python:icons.tag('send')" /></button>
+          </div>
+        </div>
+      </form>
+    </div>
+
 
     <div class="mx-3 my-3"
          id="listing"

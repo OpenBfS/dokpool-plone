@@ -641,7 +641,7 @@ DOCTYPES = [
         "id": "journalentry",
         "old_ids": [],
         "behaviors": ["elan"],
-        "description": "TODO...",
+        "description": "",
         "icon": "journal",
         "subcategory": "Tagebuch",
         "subcategory_id": "journal",

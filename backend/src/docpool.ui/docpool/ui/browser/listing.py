@@ -21,6 +21,7 @@ class Listing(BrowserView):
     """Example view called from template"""
 
     filters = [
+        "entries",
         "date",
         "entrytype",
         "visibility",
