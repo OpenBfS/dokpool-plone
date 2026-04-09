@@ -7,6 +7,8 @@ from docpool.base.content.doctype import IDocType
 from docpool.base.content.extendable import Extendable
 from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
 from docpool.base.marker import IImportingMarker
+from docpool.base.marker import IJournalContainerMarker
+from docpool.base.marker import IJournalEntryMarker
 from docpool.base.pdfconversion import get_images
 from docpool.base.pdfconversion import metadata
 from docpool.base.pdfconversion import pdfobj
@@ -49,6 +51,7 @@ from zope.globalrequest import getRequest
 from zope.interface import alsoProvides
 from zope.interface import implementer
 from zope.interface import Interface
+from zope.lifecycleevent.interfaces import IObjectAddedEvent
 from zope.schema.interfaces import ValidationError
 
 import re
@@ -535,6 +538,10 @@ class DPDocument(Container, Extendable, ContentBase):
         if doctype and IDocType.providedBy(doctype):
             return doctype.subcategory()
 
+    def is_journalentry(self):
+        # Why would we need that?
+        return IJournalContainerMarker.providedBy(self.__parent__)
+
 
 @adapter(IDPDocument, IContainerModifiedEvent)
 def updateContainerModified(obj, event=None):
@@ -544,6 +551,16 @@ def updateContainerModified(obj, event=None):
     if not IArchiving(obj).is_archive:
         obj.update_modified()
         obj.reindexObject()  # New fulltext maybe needed
+
+
+@adapter(IDPDocument, IObjectAddedEvent)
+def mark_journalentry(obj, event=None):
+    if IArchiving(obj).is_archive:
+        return
+    if IImportingMarker.providedBy(getRequest()):
+        return
+    if IJournalContainerMarker.providedBy(event.newParent):
+        alsoProvides(obj, IJournalEntryMarker)
 
 
 @adapter(IDPDocument, Interface)

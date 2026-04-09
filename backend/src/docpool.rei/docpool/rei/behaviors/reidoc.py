@@ -286,7 +286,9 @@ def set_title(obj, event=None):
     if IImportingMarker.providedBy(getRequest()):
         return []
 
-    # Only if it is a IREIDoc.
+    # Only if it really is a IREIDoc. TODO: Why is this necessary?
+    if "rei" not in getattr(obj.aq_base, "local_behaviors", []):
+        return
     try:
         adapted = IREIDoc(obj)
     except Exception:

@@ -18,6 +18,8 @@ MARKER_INTERFACES_TO_EXPORT = [
     "eea.facetednavigation.settings.interfaces.IHidePloneLeftColumn",
     "eea.facetednavigation.settings.interfaces.IHidePloneRightColumn",
     "docpool.base.events.IDocumentPoolUndeleteable",
+    "docpool.base.marker.IJournalContainerMarker",
+    "docpool.base.marker.IJournalEntryMarker",
 ]
 
 ANNOTATIONS_TO_EXPORT = [

@@ -34,6 +34,24 @@
       />
 
   <browser:page
+      name="journalentries"
+      for="*"
+      class=".journal.JournalEntries"
+      template="templates/listing.pt"
+      permission="zope.Public"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
+  <browser:page
+      name="journals"
+      for="*"
+      class=".journal.Journals"
+      template="templates/journals.pt"
+      permission="zope.Public"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
+  <browser:page
       name="view"
       for="docpool.base.interfaces.IDocumentPool"
       class=".listing.Listing"

@@ -410,3 +410,16 @@ body.template-dpdocument_wizard_1.injecting-content #formfield-entrytype {
 body.template-dpdocument_wizard_1.injecting-content #formfield-entrytype .spinner-border {
   display: block;
 }
+
+#listing.journals {
+  & > a {
+    min-height: auto;
+  }
+  & > a:hover {
+    background-color: #eee;
+  }
+  .small {
+    font-size: var(--dp-font-small);
+    color: #324d6a;
+  }
+}
