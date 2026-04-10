@@ -8,7 +8,9 @@ from docpool.ui.browser.listing import Listing
 from logging import getLogger
 from plone import api
 from plone.app.textfield.value import RichTextValue
+from plone.dexterity.interfaces import IDexterityFTI
 from Products.Five.browser import BrowserView
+from zope.component import getUtility
 
 
 logger = getLogger(__name__)
@@ -22,10 +24,21 @@ class JournalEntries(Listing):
     ]
 
     def update(self):
-        self.query["subcategory"] = ["Journal"]
+        self.query["dp_type"] = ["journalentry"]
+
         self.journal_title = self.request.form.get("journal_title", False)
         journal_folder_uid = self.request.form.get("journal_folder_uid")
         journal_folder = api.content.get(UID=journal_folder_uid) if journal_folder_uid else None
+        fti = getUtility(IDexterityFTI, name="DPDocument")
+        can_add_journalentries = (
+            "DPDocument" in [i.id for i in journal_folder.allowedContentTypes()]
+            and api.user.has_permission("Add portal content", obj=journal_folder)
+            and fti.isConstructionAllowed(journal_folder)
+        )
+        self.show_add_form = False
+        if self.base_query.get("scenario", None) and can_add_journalentries:
+            self.show_add_form = True
+
         if journal_folder and (text := self.request.form.get("journalentry-text", "").strip()):
             new = api.content.create(
                 container=journal_folder,

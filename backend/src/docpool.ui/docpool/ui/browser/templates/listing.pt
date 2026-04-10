@@ -422,7 +422,7 @@
     </div>
 
     <div class="mx-3 my-3"
-         tal:condition="python: 'journal_title' in view.filters"
+         tal:condition="python: 'journal_title' in view.filters and view.show_add_form"
     >
       <form class="add-form"
             action=""
