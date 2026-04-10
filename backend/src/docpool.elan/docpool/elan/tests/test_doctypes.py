@@ -1,5 +1,10 @@
 from docpool.base.browser.dpdocument import DPDocumentView
+from docpool.base.marker import IJournalContainerMarker
+from docpool.base.marker import IJournalEntryMarker
+from docpool.base.users.usergroups_groupdetails import create_journalfolder
+from docpool.base.utils import possibleDocTypes
 from docpool.elan.testing import DOCPOOL_EVENT_FUNCTIONAL_TESTING
+from docpool.elan.utils import get_scenario_for_current_user
 from docpool.elan.utils import getScenariosForCurrentUser
 from docpool.elan.utils import setScenariosForCurrentUser
 from plone import api
@@ -58,6 +63,7 @@ class TestDocTypes(unittest.TestCase):
                 "doksysdok",
                 "forecast_spread_dose_contamination",
                 "information_for_the_public",
+                "journalentry",
                 "measurement_recommendation",
                 "measurement_strategy",
                 "media_report",
@@ -137,6 +143,7 @@ class TestDocTypes(unittest.TestCase):
                 "doksysdok",
                 "forecast_spread_dose_contamination",
                 "information_for_the_public",
+                "journalentry",
                 "measurement_recommendation",
                 "measurement_strategy",
                 "media_report",
@@ -226,6 +233,7 @@ class TestDocTypes(unittest.TestCase):
                 "rei_report",
                 "mresult_air_near_ground",
                 "mresult_pharmaceuticals",
+                "journalentry",
                 "measurement_recommendation",
                 "weather_conditions_and_forecast",
                 "doksysdok",
@@ -485,3 +493,38 @@ class TestDocTypes(unittest.TestCase):
         doctype.allow_discussion_on_dpdocument = True
         view_html = view()
         self.assertIn("pat-discussion", view_html)
+
+    def test_journalentry_in_available_doctypes(self):
+        docpool = self.portal["test_docpool"]
+        self.assertIn("journalentry|Tagebucheintrag", possibleDocTypes(docpool))
+
+    def test_allow_journalentry_creates_journal_folder(self):
+        docpool = self.portal["test_docpool"]
+        groups = docpool["content"]["Groups"]
+        folder = groups["test_docpool_ContentAdministrators"]
+
+        # Allow docType for Group and User
+        api.group.add_user(groupname="test_docpool_ContentAdministrators", username=TEST_USER_NAME)
+        group = folder.getGroupOfFolder()
+
+        # Pretend we modified the group using the form
+        group.setGroupProperties({"allowedDocTypes": ["weather_conditions_and_forecast", "journalentry"]})
+        create_journalfolder(docpool, group)
+
+        journal_folder = folder["journal"]
+        self.assertEqual(journal_folder.portal_type, "SimpleFolder")
+        self.assertTrue(IJournalContainerMarker.providedBy(journal_folder))
+        self.assertIn("journalentry", journal_folder.allowedDocTypes)
+        self.assertNotIn("journalentry", folder.allowedDocTypes)
+        self.assertIn("weather_conditions_and_forecast", folder.allowedDocTypes)
+
+        journalentry = api.content.create(
+            container=journal_folder,
+            type="DPDocument",
+            title="Some Document",
+            description="foo",
+            docType="journalentry",
+            local_behaviors=["elan"],
+            scenario=get_scenario_for_current_user(),
+        )
+        self.assertTrue(IJournalEntryMarker.providedBy(journalentry))
