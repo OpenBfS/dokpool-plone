@@ -944,13 +944,14 @@
     },
     {
       "allowedDocTypes": [
-        "official_notification",
+        "additional_event_information",
         "information_for_the_public",
+        "official_notification",
         "forecast_spread_dose_contamination",
         "radiological_situation_report",
-        "weather_conditions_and_forecast",
-        "additional_event_information",
-        "staff_note"
+        "staff_note",
+        "journalentry",
+        "weather_conditions_and_forecast"
       ],
       "description": "",
       "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",

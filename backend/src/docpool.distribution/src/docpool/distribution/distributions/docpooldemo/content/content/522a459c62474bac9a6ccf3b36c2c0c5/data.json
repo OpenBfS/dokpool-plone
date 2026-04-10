@@ -1,0 +1,59 @@
+{
+  "@id": "/bund/content/Groups/bund_behoerde/journal",
+  "@type": "SimpleFolder",
+  "UID": "522a459c62474bac9a6ccf3b36c2c0c5",
+  "allow_discussion": null,
+  "allowedDocTypes": [
+    "journalentry"
+  ],
+  "contributors": [],
+  "created": "2026-04-10T18:28:17+00:00",
+  "created_by": [
+    "admin",
+    "admin",
+    "Bundesbeh\u00f6rde (Bund)"
+  ],
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.marker_interfaces": [
+    "docpool.base.marker.IJournalContainerMarker"
+  ],
+  "id": "journal",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "local_behaviors": [
+    "elan"
+  ],
+  "lock": {},
+  "mdate": "2026-04-10T20:28:17",
+  "modified": "2026-04-10T18:28:17+00:00",
+  "modified_by": null,
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Tagebuch Bundesbeh\u00f6rde (Bund)",
+  "type_title": "Simple Folder",
+  "version": "current",
+  "wdate": "2026-04-10T20:28:17",
+  "workflow_history": {
+    "dp_folder_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2026-04-10T18:28:17+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}
