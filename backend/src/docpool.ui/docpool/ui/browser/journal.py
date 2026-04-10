@@ -85,8 +85,8 @@ class Journals(BrowserView):
 
         if len(self.journals) == 1:
             item = self.journals[0]
-            url = "{}/@@journalentries?selected_groups={}&amp;journal_title={}&amp;journal_folder_uid={}".format(
-                self.context.absolute_url(), item["uid"], item["title"], item["uid"]
+            url = "{}/@@journalentries?selected_groups={}&journal_title={}&journal_folder_uid={}".format(
+                self.context.absolute_url(), item["group_uid"], item["title"], item["uid"]
             )
             return self.request.response.redirect(url)
 
