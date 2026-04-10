@@ -73,9 +73,13 @@ class TestJournal:
         # We are redirected to the only available journal
         url = f"/bund/@@journalentries?selected_groups={self.group_folder.UID()}&journal_title=Tagebuch%20Group%201&journal_folder_uid={self.journal_folder.UID()}"
         assert page.url.endswith(url)
+        items = page.locator("#listing .listing-item")
+        expect(items).to_have_count(0)
 
         page.get_by_role("textbox", name="New journal entry").fill("Ein neuer Tagebucheintrag")
         page.get_by_role("button", name="Add journal entry").click()
+        items = page.locator("#listing .listing-item")
+        expect(items).to_have_count(1)
 
         transaction.commit()
         assert len(self.journal_folder.keys()) == 1
