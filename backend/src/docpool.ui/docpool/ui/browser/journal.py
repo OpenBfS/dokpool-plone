@@ -55,7 +55,20 @@ class JournalEntries(Listing):
 class Journals(BrowserView):
     def __call__(self):
         # SimpleFolders with id 'journal' that I can see and have 'journalentry' in allowedDocTypes
-        self.journals = []
+        self.journals = self.get_journals()
+
+        if len(self.journals) == 1:
+            item = self.journals[0]
+            url = "{}/@@journalentries?selected_groups={}&journal_title={}&journal_folder_uid={}".format(
+                self.context.absolute_url(), item["group_uid"], item["title"], item["uid"]
+            )
+            return self.request.response.redirect(url)
+
+        return self.index()
+
+    def get_journals(self):
+        # SimpleFolders with id 'journal' that I can see and have 'journalentry' in allowedDocTypes
+        journals = []
         base_query = {
             "portal_type": "DPDocument",
             "object_provides": IJournalEntryMarker.__identifier__,
@@ -94,13 +107,5 @@ class Journals(BrowserView):
                 "group_uid": obj.__parent__.UID(),
                 "last_entry": newest,
             }
-            self.journals.append(data)
-
-        if len(self.journals) == 1:
-            item = self.journals[0]
-            url = "{}/@@journalentries?selected_groups={}&journal_title={}&journal_folder_uid={}".format(
-                self.context.absolute_url(), item["group_uid"], item["title"], item["uid"]
-            )
-            return self.request.response.redirect(url)
-
-        return self.index()
+            journals.append(data)
+        return journals

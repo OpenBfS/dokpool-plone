@@ -41,6 +41,7 @@
       <li class="nav-item flex-fill">
         <a class="nav-link d-flex flex-column align-items-center justify-content-center text-decoration-none"
            href="#"
+           tal:condition="python: view.show_journals()"
            tal:attributes="
              href string:${view/base_url}/@@journals;
            "
