@@ -20,6 +20,10 @@ def allowed_targets(context):
     except AttributeError:
         return []
 
+    if not esd:
+        # We're not inside a docpool
+        return []
+
     if isinstance(context, DocType):
         dto = context
     else:
