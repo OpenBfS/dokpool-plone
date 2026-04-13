@@ -82,7 +82,9 @@ class TestJournal:
         expect(items).to_have_count(1)
 
         transaction.commit()
-        assert len(self.journal_folder.keys()) == 1
+        assert self.journal_folder.keys() == [".wf_policy_config", "ein-neuer-tagebucheintrag"]
+        assert self.journal_folder[".wf_policy_config"].workflow_policy_in == "dp-private-folder"
+        assert self.journal_folder[".wf_policy_config"].workflow_policy_below == "dp-private-folder"
         entry = self.journal_folder["ein-neuer-tagebucheintrag"]
         assert entry.portal_type == "DPDocument"
         assert IJournalEntryMarker.providedBy(entry)
