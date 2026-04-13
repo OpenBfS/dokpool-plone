@@ -216,6 +216,7 @@ class DPDocumentWizard(ContextlessWizard):
                     entrytype = brains[0]._unrestrictedGetObject()
                     self.entrytype_title = entrytype.title
                     self.entrytype_icon = entrytype.icon_name
+                    self.can_have_attachments = entrytype.allowUploads
 
         # Render form
         if self.form.get("form.buttons.continue", None) is None:
