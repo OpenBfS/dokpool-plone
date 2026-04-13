@@ -430,11 +430,13 @@
       >
         <div class="d-flex flex-wrap">
           <div class="me-3 flex-fill">
-            <textarea class="form-control"
+            <textarea class="pat-tinymce form-control"
                       id="journalentry-text"
                       name="journalentry-text"
                       placeholder="New journal entry"
-                      rows="2"
+                      tal:attributes="
+                        data-pat-tinymce python: view.tinymce_settings();
+                      "
             ></textarea>
             <input name="journal_title"
                    type="hidden"

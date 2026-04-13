@@ -8,9 +8,12 @@ from docpool.ui.browser.listing import Listing
 from logging import getLogger
 from plone import api
 from plone.app.textfield.value import RichTextValue
+from plone.app.z3cform.widgets.richtext import get_tinymce_options
 from plone.dexterity.interfaces import IDexterityFTI
 from Products.Five.browser import BrowserView
 from zope.component import getUtility
+
+import json
 
 
 logger = getLogger(__name__)
@@ -28,28 +31,38 @@ class JournalEntries(Listing):
 
         self.journal_title = self.request.form.get("journal_title", False)
         journal_folder_uid = self.request.form.get("journal_folder_uid")
-        journal_folder = api.content.get(UID=journal_folder_uid) if journal_folder_uid else None
+        self.journal_folder = api.content.get(UID=journal_folder_uid) if journal_folder_uid else None
         fti = getUtility(IDexterityFTI, name="DPDocument")
         can_add_journalentries = (
-            "DPDocument" in [i.id for i in journal_folder.allowedContentTypes()]
-            and api.user.has_permission("Add portal content", obj=journal_folder)
-            and fti.isConstructionAllowed(journal_folder)
+            "DPDocument" in [i.id for i in self.journal_folder.allowedContentTypes()]
+            and api.user.has_permission("Add portal content", obj=self.journal_folder)
+            and fti.isConstructionAllowed(self.journal_folder)
         )
         self.show_add_form = False
         if self.base_query.get("scenario", None) and can_add_journalentries:
             self.show_add_form = True
 
-        if journal_folder and (text := self.request.form.get("journalentry-text", "").strip()):
+        if self.journal_folder and (text := self.request.form.get("journalentry-text", "").strip()):
+            portal_transforms = api.portal.get_tool("portal_transforms")
+            plain_text = portal_transforms.convert("html_to_text", text).getData().strip()
+            plone_view = api.content.get_view("plone", self.context, self.request)
+            title = plone_view.cropText(plain_text, 60)
             new = api.content.create(
-                container=journal_folder,
+                container=self.journal_folder,
                 type="DPDocument",
-                title=text,
+                title=title,
                 text=RichTextValue(text, "text/html", "text/x-html-safe"),
                 docType="journalentry",
                 local_behaviors=["elan"],
                 scenario=self.base_query["scenario"],
             )
             logger.info("Created new Journalentry %s", new.absolute_url())
+
+    def tinymce_settings(self):
+        settings = get_tinymce_options(context=self.journal_folder, field=None, request=self.request)
+        # TODO: Strip down TinyMCE to a useful minimum
+        # settings["inline"] = True
+        return json.dumps(settings)
 
 
 class Journals(BrowserView):
