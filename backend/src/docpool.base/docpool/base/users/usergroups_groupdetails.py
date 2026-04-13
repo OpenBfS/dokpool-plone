@@ -208,6 +208,16 @@ def create_journalfolder(context, group):
         ILocalBehaviorSupport(journal_folder).local_behaviors = ["elan"]
         journal_folder.allowedDocTypes = ["journalentry"]
 
+        # Enable placeful workflow
+        placeful_wf = api.portal.get_tool("portal_placeful_workflow")
+        journal_folder.manage_addProduct["CMFPlacefulWorkflow"].manage_addWorkflowPolicyConfig()
+        config = placeful_wf.getWorkflowPolicyConfig(journal_folder)
+        policy_name = "dp-private-folder"
+        config.setPolicyIn(policy=policy_name, update_security=False)
+        config.setPolicyBelow(policy=policy_name, update_security=False)
+        journal_folder.reindexObject()
+        journal_folder.reindexObjectSecurity()
+
         # Make sure that journalentry is only allowed here
         if group_folder.allowedDocTypes and "journalentry" in group_folder.allowedDocTypes:
             # remove journalentry from gf
