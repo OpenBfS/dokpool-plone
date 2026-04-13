@@ -349,9 +349,8 @@ class DPDocumentWizard(ContextlessWizard):
         """Brains of DocTypes that the current user can add to a given container."""
         addable = []
         if IJournalContainerMarker.providedBy(container):
-            # Ignore Journal Containers?
-            # return addable
-            pass
+            # Ignore Journal Containers
+            return addable
         if self.portal_type not in [i.id for i in container.allowedContentTypes()]:
             return addable
         if not api.user.has_permission("Add portal content", obj=container):
