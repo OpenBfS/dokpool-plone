@@ -395,3 +395,18 @@ span.badge.visibility-option-published {
   height: 1.5em;
   vertical-align: top;
 }
+
+body.template-dpdocument_wizard_1 #formfield-entrytype .spinner-border {
+  display: none
+}
+
+body.template-dpdocument_wizard_1.injecting-content #formfield-entrytype {
+  .wizard-field,
+  p {
+    display: none
+  }
+}
+
+body.template-dpdocument_wizard_1.injecting-content #formfield-entrytype .spinner-border {
+  display: block;
+}

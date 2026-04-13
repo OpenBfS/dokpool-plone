@@ -148,13 +148,18 @@
                         i18n:translate=""
                   >Entrytype</span>
                 </label>
+                <div class="form-text"></div>
+                <div class="spinner-border"
+                     role="status"
+                >
+                  <span class="visually-hidden">Loading...</span>
+                </div>
                 <p class=""
                    tal:condition="python: not doctypes"
                    i18n:translate=""
                 >
                     Please select a container first
                 </p>
-                <div class="form-text"></div>
                 <div class="error-msg"
                      tal:condition="error"
                 ><span tal:replace="error"></span></div>
