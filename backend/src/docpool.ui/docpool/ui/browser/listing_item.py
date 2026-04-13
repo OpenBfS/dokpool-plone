@@ -2,6 +2,7 @@ from docpool.base.behaviors.transferable import ITransferable
 from docpool.base.behaviors.utils import allowed_targets
 from docpool.base.config import FOLDER_TYPES
 from docpool.base.content.archiving import IArchiving
+from docpool.base.marker import IJournalEntryMarker
 from docpool.base.utils import get_current_state_title
 from docpool.elan.config import ELAN_APP
 from docpool.elan.utils import get_scenario_for_current_user
@@ -80,9 +81,14 @@ class Item(BrowserView):
         iconresolver = self.context.restrictedTraverse("@@iconresolver")
         attachments = api.content.get_view("contentlisting", obj, self.request)(portal_type=["Image", "File"])
 
+        text = obj.title
+        if IJournalEntryMarker.providedBy(obj):
+            text = obj.text.output_relative_to(obj)
+
         self.dpdocument = {
             "date": obj.mdate,
             "title": obj.title,
+            "text": text,
             "id": obj.id,
             "description": obj.description,
             "review_state": review_state,
