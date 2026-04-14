@@ -586,17 +586,17 @@ class DeserializeFromJsonDPDocument(DeserializeFromJson):
             self.mark_field_as_changed(ILocalBehaviorSupport, self.name)
 
 
+class IAppSpecificSerializeToJsonDPDocument(Interface):
+    def augment(result):
+        pass
+
+
 @adapter(IDPDocument, Interface)
 class SerializeToJsonDPDocument(SerializeFolderToJson):
     def __call__(self, version=None, include_items=True):
-        """Add id of scenario to json used for data-transfer with BW (#5999)."""
         result = super().__call__(version=version, include_items=include_items)
-
-        if scenario := result.get("scenario"):
-            uid = scenario["token"] if isinstance(scenario, dict) else scenario
-            if brains := api.content.find(UID=uid):
-                # The list is left from when scenarios itself was a list. We keep it for the time being
-                # since this interfaces with external systems. XXX #6447: Is this actually necessary?
-                result["scenario_ids"] = [brains[0].id]
-
+        for app in ILocalBehaviorSupport(self.context).local_behaviors:
+            app_serializer = queryAdapter(self.context, IAppSpecificSerializeToJsonDPDocument, name=app)
+            if app_serializer is not None:
+                result = app_serializer.augment(result)
         return result

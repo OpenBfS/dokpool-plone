@@ -300,16 +300,18 @@ class ArchiveAndClose(BrowserView):
         # 1. Remove current scenario
         obj.scenario = None
 
-        # 2. Remove elan behavior if there are no other events but other behaviors
-        if obj.scenario is None:
-            apps = ILocalBehaviorSupport(obj).local_behaviors
-            if len(apps) > 1:
-                # There are others --> only remove ELAN behavior
-                try:
-                    apps.remove(ELAN_APP)
-                    ILocalBehaviorSupport(obj).local_behaviors = list(set(apps))
-                except Exception as e:
-                    log_exc(e)
+        # 2. Remove elan behavior altogether if there are other behaviors
+        apps = ILocalBehaviorSupport(obj).local_behaviors
+        if len(apps) > 1:
+            # There are others --> only remove ELAN behavior
+            try:
+                apps.remove(ELAN_APP)
+                ILocalBehaviorSupport(obj).local_behaviors = list(set(apps))
+            except Exception as e:
+                log_exc(e)
+            else:
+                del obj.scenario
+
         obj.reindexObject(idxs=["apps_supported", "scenario"])
 
     def _getDocumentsForScenario(self, **kwargs):

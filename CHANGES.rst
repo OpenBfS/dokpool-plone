@@ -9,6 +9,15 @@ Changed:
 - ELAN documents can be associated with at most one scenario (#6430)
   [tlotze]
 
+- Modernize build piplene from shell docker build to dind builds (#6301)
+  [slindner]
+
+- Add Cancel button and better doctypes widget to group details form (#6475)
+  [tlotze]
+
+- Move scenario_ids serializer to docpool.elan (#6447)
+  [tlotze]
+
 
 2.5.0 (2026-02-16)
 ------------------

@@ -156,7 +156,7 @@ msgstr "Kernkraftwerk"
 
 #: docpool.elan/docpool/elan/profiles/default/registry/querystring.xml
 msgid "Date of last user action"
-msgstr "Zeitpunkt der letzten Nutzeraktion"
+msgstr "Zeitpunkt der letzten Benutzeraktion"
 
 #: docpool.elan/docpool/elan/browser/dpevent.pt
 msgid "Date/User"
@@ -409,7 +409,7 @@ msgstr "Der Ortsbezug eines Inhalts"
 
 #: docpool.elan/docpool/elan/profiles/default/registry/querystring.xml
 msgid "The time and date an item was last modified by a user"
-msgstr "Zeitpunkt der letzten Änderung durch einen Nutzer"
+msgstr "Zeitpunkt der letzten Änderung durch einen Benutzer"
 
 #: docpool.elan/docpool/elan/browser/archive_event_form.pt
 msgid "This event is already being archived by"

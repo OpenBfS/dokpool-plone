@@ -1,7 +1,5 @@
 image: plone/server-builder:6.1.4
 
-# Change pip's cache directory to be inside the project directory since we can
-# only cache local items.
 variables:
   PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache"
   UV_CACHE_DIR: "$HOME/.cache/uv"
@@ -16,8 +14,6 @@ cache:
     - ${PIP_CACHE_DIR}
     - ${UV_CACHE_DIR}
 
-# Set execution order: first run jobs on 'test' stage on parallel
-# then run jobs on 'report' stage
 stages:
   - test
   - build
