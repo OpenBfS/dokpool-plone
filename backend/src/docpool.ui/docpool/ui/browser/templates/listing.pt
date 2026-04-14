@@ -26,7 +26,7 @@
       <form class="filter-form"
             method="GET"
       >
-        <div class="d-flex flex-wrap justify-content-end">
+        <div class="d-flex flex-wrap justify-content-start justify-content-lg-end">
 
           <div class="mx-3 my-0 py-1 me-auto"
                tal:condition="python: 'journal_title' in view.filters"
@@ -45,7 +45,7 @@
           <div class="mx-3 my-0 py-2"
                tal:condition="python: 'entries' in view.filters"
                tal:attributes="
-                 class python: 'mx-3 my-0 py-2' if show_scenario_filter_switch else 'mx-3 my-0 py-2 me-auto';
+                 class python: 'mx-3 my-0 py-2 d-none d-lg-block' if show_scenario_filter_switch else 'mx-3 my-0 py-2 me-auto d-none d-lg-block';
                "
           >
             <span tal:replace="python: len(items)"></span>
@@ -343,7 +343,7 @@
                      i18n:attributes="placeholder"
                      i18n:translate=""
               />
-              <button class="btn border-light-subtle btn-light btn-icon"
+              <button class="btn border-light-subtle btn-light btn-icon d-none d-lg-block"
                       type="submit"
               >
                 <tal:icon tal:replace="structure python:icons.tag('search', tag_alt='Search')" />
@@ -386,7 +386,7 @@
           </div>
 
           <div class="m-1">
-            <a class="btn btn-light btn-icon"
+            <a class="btn btn-light btn-icon d-none d-lg-block"
                href="javascript:this.print();"
                title="Print"
                i18n:attributes="title"
@@ -395,7 +395,7 @@
             </a>
           </div>
 
-          <div class="ms-1 my-1"
+          <div class="ms-1 my-1 d-none d-lg-block"
                tal:condition="python: view.folder_listing and not view.is_archive"
           >
             <a class="btn btn-light btn-icon"
@@ -410,7 +410,7 @@
           <div class="ms-1 my-1"
                tal:condition="python: not view.is_archive"
           >
-            <a class="btn btn-light btn-icon"
+            <a class="btn btn-light btn-icon d-none d-lg-block"
                href="${python: context.absolute_url()}/@@dpdocument_wizard_1"
                title="Add entry"
                i18n:attributes="title"

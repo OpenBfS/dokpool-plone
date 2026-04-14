@@ -1,64 +1,65 @@
 <metal:mobile-listing-filter define-macro="mobile_listing_filter">
-  <div class="dropdown d-lg-none listing-mobile-filter-dropdown"
-       id="listingMobileFiltersDropdown"
-  >
-    <button class="btn btn-light btn-icon dropdown-toggle listing-mobile-filter-toggle"
-            id="listingMobileFiltersToggle"
-            aria-controls="listingMobileFilters"
-            aria-expanded="false"
-            title="Filter"
-            type="button"
-            data-bs-auto-close="outside"
-            data-bs-display="static"
-            data-bs-toggle="dropdown"
-            i18n:attributes="title"
+  <div class="d-lg-none listing-mobile-filter-dropdown mt-1">
+    <div class="dropdown"
+         id="listingMobileFiltersDropdown"
     >
-      <span class="listing-mobile-filter-toggle-icon">
-        <tal:icon tal:replace="structure python:icons.tag('funnel')" />
-      </span>
-    </button>
-    <div class="dropdown-menu listing-mobile-filters-dropdown-panel"
-         id="listingMobileFilters"
-         aria-labelledby="listingMobileFiltersToggle"
-    >
-      <div class="mobile-listing-dropdown-header">
-        <h5 class="offcanvas-title"
-            id="listingMobileFiltersLabel"
-            i18n:translate=""
-        >Filter</h5>
-      </div>
-      <div class="mobile-listing-dropdown-body">
-        <form class="mobile-filter-form"
-              method="GET"
-        >
-          <input name="searchable_text"
-                 type="hidden"
-                 tal:attributes="
-                   value python: view.searchable_text or '';
-                 "
-          />
-          <div class="tab-content mobile-listing-tab-content"
-               id="mobile-listing-tab-content"
+      <button class="btn btn-light btn-icon dropdown-toggle listing-mobile-filter-toggle d-block d-lg-none"
+              id="listingMobileFiltersToggle"
+              aria-controls="listingMobileFilters"
+              aria-expanded="false"
+              title="Filter"
+              type="button"
+              data-bs-auto-close="outside"
+              data-bs-display="static"
+              data-bs-toggle="dropdown"
+              i18n:attributes="title"
+      >
+        <span class="listing-mobile-filter-toggle-icon">
+          <tal:icon tal:replace="structure python:icons.tag('funnel')" />
+        </span>
+      </button>
+      <div class="dropdown-menu listing-mobile-filters-dropdown-panel"
+           id="listingMobileFilters"
+           aria-labelledby="listingMobileFiltersToggle"
+      >
+        <div class="mobile-listing-dropdown-header">
+          <h5 class="offcanvas-title"
+              id="listingMobileFiltersLabel"
+              i18n:translate=""
+          >Filter</h5>
+        </div>
+        <div class="mobile-listing-dropdown-body">
+          <form class="mobile-filter-form"
+                method="GET"
           >
-            <div class="tab-pane fade show active"
-                 id="mobile-listing-pane-main"
-                 aria-labelledby="mobile-listing-main-tab-trigger"
-                 role="tabpanel"
+            <input name="searchable_text"
+                   type="hidden"
+                   tal:attributes="
+                     value python: view.searchable_text or '';
+                   "
+            />
+            <div class="tab-content mobile-listing-tab-content"
+                 id="mobile-listing-tab-content"
             >
-              <div class="mobile-listing-tablist"
-                   id="mobile-listing-nav"
-                   aria-orientation="vertical"
-                   role="tablist"
+              <div class="tab-pane fade show active"
+                   id="mobile-listing-pane-main"
+                   aria-labelledby="mobile-listing-main-tab-trigger"
+                   role="tabpanel"
               >
-                <button class="mobile-listing-nav-link nav-link d-none active"
-                        id="mobile-listing-main-tab-trigger"
-                        aria-controls="mobile-listing-pane-main"
-                        aria-selected="true"
-                        role="tab"
-                        type="button"
-                        data-bs-target="#mobile-listing-pane-main"
-                        data-bs-toggle="pill"
-                ></button>
+                <div class="mobile-listing-tablist"
+                     id="mobile-listing-nav"
+                     aria-orientation="vertical"
+                     role="tablist"
+                >
+                  <button class="mobile-listing-nav-link nav-link d-none active"
+                          id="mobile-listing-main-tab-trigger"
+                          aria-controls="mobile-listing-pane-main"
+                          aria-selected="true"
+                          role="tab"
+                          type="button"
+                          data-bs-target="#mobile-listing-pane-main"
+                          data-bs-toggle="pill"
+                  ></button>
 
                 <button class="mobile-listing-nav-link nav-link"
                         id="mobile-listing-tab-time"
@@ -494,7 +495,63 @@
             >Filter
             </button>
           </div>
-        </form>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="dropdown listing-mobile-actions-dropdown">
+      <button class="btn btn-light btn-icon dropdown-toggle listing-mobile-filter-toggle listing-mobile-actions-toggle d-block d-lg-none"
+              id="listingMobileActionsToggle"
+              aria-controls="listingMobileActions"
+              aria-expanded="false"
+              title="More actions"
+              type="button"
+              data-bs-auto-close="outside"
+              data-bs-display="static"
+              data-bs-toggle="dropdown"
+              i18n:attributes="title"
+      >
+        <span class="listing-mobile-filter-toggle-icon">
+          <tal:icon tal:replace="structure python:icons.tag('three-dots-vertical')" />
+        </span>
+      </button>
+      <div class="dropdown-menu dropdown-menu-end listing-mobile-actions-dropdown-panel"
+           id="listingMobileActions"
+           aria-labelledby="listingMobileActionsToggle"
+      >
+        <a class="dropdown-item"
+           href="javascript:this.print();"
+        >
+          <span class="listing-mobile-actions-item-icon">
+            <tal:icon tal:replace="structure python:icons.tag('printer')" />
+          </span>
+          <span class="listing-mobile-actions-item-label"
+                i18n:translate=""
+          >Print</span>
+        </a>
+        <a class="dropdown-item"
+           href="${python: context.absolute_url()}/@@folder_wizard"
+           tal:condition="python: view.folder_listing and not view.is_archive"
+        >
+          <span class="listing-mobile-actions-item-icon">
+            <tal:icon tal:replace="structure python:icons.tag('folder-plus')" />
+          </span>
+          <span class="listing-mobile-actions-item-label"
+                i18n:translate=""
+          >Add folder</span>
+        </a>
+        <a class="dropdown-item"
+           href="${python: context.absolute_url()}/@@dpdocument_wizard_1"
+           tal:condition="python: not view.is_archive"
+        >
+          <span class="listing-mobile-actions-item-icon">
+            <tal:icon tal:replace="structure python:icons.tag('plus-circle')" />
+          </span>
+          <span class="listing-mobile-actions-item-label"
+                i18n:translate=""
+          >Add entry</span>
+        </a>
       </div>
     </div>
   </div>
