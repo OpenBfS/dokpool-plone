@@ -3,6 +3,8 @@ from Acquisition import aq_inner
 from datetime import datetime
 from docpool.base.browser.flexible_view import FlexibleView
 from docpool.base.content.doctype import IDocType
+from docpool.base.content.dpdocument import IAppSpecificSerializeToJsonDPDocument
+from docpool.base.content.dpdocument import IDPDocument
 from docpool.base.interfaces import IDocumentExtension
 from docpool.base.utils import app_only_decorator
 from docpool.base.utils import getDocumentPoolSite
@@ -20,6 +22,8 @@ from Products.DCWorkflow.interfaces import IAfterTransitionEvent
 from z3c.form.browser.radio import RadioFieldWidget
 from zope import schema
 from zope.component import adapter
+from zope.interface import implementer
+from zope.interface import named
 from zope.interface import provider
 from zope.schema.interfaces import IContextAwareDefaultFactory
 
@@ -173,3 +177,18 @@ def set_transition_mdate(event):
     except TypeError:
         return
     event.object.mdate = datetime.now()
+
+
+@adapter(IDPDocument)
+@implementer(IAppSpecificSerializeToJsonDPDocument)
+@named(ELAN_APP)
+class ELANSpecificSerializeToJsonDPDocument:
+    def augment(self, result):
+        """Add id of scenario to json used for data-transfer with BW (#5999)."""
+        if scenario := result.get("scenario"):
+            uid = scenario["token"] if isinstance(scenario, dict) else scenario
+            if brains := api.content.find(UID=uid):
+                # The list is left from when scenarios itself was a list. We keep it for the time being
+                # since this interfaces with external systems. See #6447.
+                result["scenario_ids"] = [brains[0].id]
+        return result
