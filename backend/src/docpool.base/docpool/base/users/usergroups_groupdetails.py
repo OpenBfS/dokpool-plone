@@ -163,7 +163,7 @@ class GroupDetailsControlPanel(GDCP):
 
     def setup_allowed_doctypes_widget(self):
         group_proxy = ImplicitAcquisitionWrapper(GroupProxy(), self.context)
-        group_proxy.allowedDocTypes = self.group.getProperty("allowedDocTypes")
+        group_proxy.allowedDocTypes = self.group.getProperty("allowedDocTypes") if self.group else []
         field = IGroupDetails["allowedDocTypes"].bind(group_proxy)
         self.doctypes_widget = OrderedSelectFieldWidget(field, self.request)
         alsoProvides(self.doctypes_widget, IContextAware)
