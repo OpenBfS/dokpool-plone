@@ -9,12 +9,15 @@
             title="Filter"
             type="button"
             data-bs-auto-close="outside"
+            data-bs-display="static"
             data-bs-toggle="dropdown"
             i18n:attributes="title"
     >
-      <tal:icon tal:replace="structure python:icons.tag('funnel')" />
+      <span class="listing-mobile-filter-toggle-icon">
+        <tal:icon tal:replace="structure python:icons.tag('funnel')" />
+      </span>
     </button>
-    <div class="dropdown-menu dropdown-menu-end listing-mobile-filters-dropdown-panel"
+    <div class="dropdown-menu listing-mobile-filters-dropdown-panel"
          id="listingMobileFilters"
          aria-labelledby="listingMobileFiltersToggle"
     >
