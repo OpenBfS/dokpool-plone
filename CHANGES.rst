@@ -15,6 +15,9 @@ Changed:
 - Add Cancel button and better doctypes widget to group details form (#6475)
   [tlotze]
 
+- Move scenario_ids serializer to docpool.elan (#6447)
+  [tlotze]
+
 
 2.5.0 (2026-02-16)
 ------------------

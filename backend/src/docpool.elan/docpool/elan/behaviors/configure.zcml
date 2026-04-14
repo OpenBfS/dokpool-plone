@@ -31,5 +31,6 @@
       />
 
   <subscriber handler=".elandocument.set_transition_mdate" />
+  <adapter factory=".elandocument.ELANSpecificSerializeToJsonDPDocument" />
 
 </configure>
