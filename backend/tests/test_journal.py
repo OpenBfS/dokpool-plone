@@ -67,18 +67,22 @@ class TestJournal:
 
     def test_one_journal(self):
         page = self.page
-        page.goto(f"{self.plone_url}/bund/setActiveApp?app=elan")
-        page.get_by_role("link", name="Protokoll").click()
+        page.goto(f"{self.plone_url}/bund/@@journals")
+        items = page.locator(".journals .listing-item")
+        expect(items).to_have_count(1)
+        page.get_by_role("link", name="Tagebuch Group 1").click()
 
-        # We are redirected to the only available journal
+        # We see the journal
         url = f"/bund/@@journalentries?selected_groups={self.group_folder.UID()}&journal_title=Tagebuch%20Group%201&journal_folder_uid={self.journal_folder.UID()}"
         assert page.url.endswith(url)
-        items = page.locator("#listing .listing-item")
+        items = page.get_by_role("link", name="Stretched link to details view", exact=True)
         expect(items).to_have_count(0)
 
-        page.get_by_role("textbox", name="New journal entry").fill("Ein neuer Tagebucheintrag")
+        page.locator('iframe[title="Rich Text Area"]').content_frame.get_by_label("Rich Text Area").fill(
+            "Ein neuer Tagebucheintrag"
+        )
         page.get_by_role("button", name="Add journal entry").click()
-        items = page.locator("#listing .listing-item")
+        items = page.get_by_role("link", name="Stretched link to details view", exact=True)
         expect(items).to_have_count(1)
 
         transaction.commit()
@@ -87,4 +91,6 @@ class TestJournal:
         assert self.journal_folder[".wf_policy_config"].workflow_policy_below == "dp-private-folder"
         entry = self.journal_folder["ein-neuer-tagebucheintrag"]
         assert entry.portal_type == "DPDocument"
+        assert entry.title == "Ein neuer Tagebucheintrag"
+        assert entry.text.raw == "<p>Ein neuer Tagebucheintrag</p>"
         assert IJournalEntryMarker.providedBy(entry)
