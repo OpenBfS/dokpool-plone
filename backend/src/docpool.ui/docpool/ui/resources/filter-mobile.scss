@@ -112,6 +112,7 @@ body.plone-toolbar-left {
   padding: 0;
   right: -50px;
   width: 100vw;
+  box-shadow: 0 0.35rem 0.9rem rgba(22, 46, 72, 0.16);
 
   &[data-bs-popper] {
     margin-top: 0.6rem !important;
@@ -171,8 +172,7 @@ body.plone-toolbar-left {
   .mobile-listing-back-link {
     align-items: center;
     background: #fff;
-    border: 1px solid #d9e1ea;
-    border-radius: 0.4rem;
+    border: unset !important;
     color: #5f7895;
     display: flex;
     gap: 0.4rem;
@@ -188,8 +188,6 @@ body.plone-toolbar-left {
 
   .mobile-listing-filter-section {
     background: #fff;
-    border: 1px solid #d9e1ea;
-    border-radius: 0.4rem;
     margin-bottom: 0.75rem;
     padding: 0.75rem;
   }
@@ -220,13 +218,17 @@ body.plone-toolbar-left {
   }
 
   .mobile-listing-filter-actions {
-    background: #f3f6fa;
     border-top: 1px solid #d9e1ea;
+    display: none;
     margin: 0;
     padding: 0.75rem;
     position: sticky;
     bottom: 0;
     z-index: 2;
+  }
+
+  .mobile-listing-pane.active ~ .mobile-listing-filter-actions {
+    display: flex;
   }
 
   .mobile-listing-filter-actions .btn {

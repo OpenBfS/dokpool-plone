@@ -25,6 +25,9 @@
     >
       <form class="filter-form"
             method="GET"
+            tal:attributes="
+              action request/ACTUAL_URL;
+            "
       >
         <div class="d-flex flex-wrap justify-content-start justify-content-lg-end">
 
@@ -141,14 +144,11 @@
                   />
                 </div>
               </div>
-              <button class="btn btn-outline-secondary mt-2"
-                      formnovalidate="formnovalidate"
-                      name="form.button.Reset"
-                      type="submit"
-                      value="Reset"
-                      i18n:domain="zope"
-                      i18n:translate="reset-button"
-              >Reset</button>
+              <a class="btn btn-outline-secondary mt-2"
+                 href="${request/ACTUAL_URL}"
+                 i18n:domain="zope"
+                 i18n:translate="reset-button"
+              >Reset</a>
               <button class="btn btn-primary mt-2"
                       formnovalidate="formnovalidate"
                       type="submit"
