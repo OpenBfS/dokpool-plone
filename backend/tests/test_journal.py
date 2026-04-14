@@ -38,11 +38,12 @@ class TestJournal:
         page.get_by_role("link", name="Add New Group").click()
         page.get_by_role("textbox", name="Name •").fill("group1")
         page.get_by_role("textbox", name="Title").fill("Group 1")
-        page.get_by_role("listbox").select_option([
+        page.locator("#allowedDocTypes-from").select_option([
             "official_notification",
             "radiological_situation_report",
             "journalentry",
         ])
+        page.get_by_role("button", name="→").click()
         page.get_by_role("button", name="Save").click()
 
         transaction.commit()
@@ -78,10 +79,12 @@ class TestJournal:
         items = page.get_by_role("link", name="Stretched link to details view", exact=True)
         expect(items).to_have_count(0)
 
+        page.wait_for_selector('iframe[title="Rich Text Area"]')
         page.locator('iframe[title="Rich Text Area"]').content_frame.get_by_label("Rich Text Area").fill(
             "Ein neuer Tagebucheintrag"
         )
         page.get_by_role("button", name="Add journal entry").click()
+        page.wait_for_selector("#listing .listing-item")
         items = page.get_by_role("link", name="Stretched link to details view", exact=True)
         expect(items).to_have_count(1)
 
