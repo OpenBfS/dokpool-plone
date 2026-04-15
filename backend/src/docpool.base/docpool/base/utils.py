@@ -10,11 +10,13 @@ from functools import wraps
 from plone import api
 from plone.api.exc import CannotGetPortalError
 from plone.base.utils import base_hasattr
+from plone.memoize import request
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.log import log_exc
 from Products.CMFPlone.utils import parent
 from zope.component import getMultiAdapter
 from zope.component import queryUtility
+from zope.globalrequest import getRequest
 
 import logging
 import re
@@ -73,7 +75,7 @@ def is_in_dp_folder(context, *subpaths):
     return False
 
 
-def getAllowedDocumentTypes(self):
+def getAllowedDocumentTypes(obj):
     """
     Determine the document types allowed for the current user in the current context.
 
@@ -81,16 +83,17 @@ def getAllowedDocumentTypes(self):
     Otherwise, take the union of the allowed documents for each of the user's groups.
 
     """
-    types_by_group = {group["id"]: group["etypes"] for group in getGroupsForCurrentUser(self)}
+    content_area = IPlaces(obj).content
+    types_by_group = {group["id"]: group["etypes"] for group in getGroupsForCurrentUser(content_area)}
 
     try:
-        folder = self.myGroupFolder()
+        folder = obj.myGroupFolder()
     except AttributeError:
         tids = list(set().union(*types_by_group.values()))
     else:
         tids = types_by_group.get(folder.id, [])
 
-    esd = getDocumentPoolSite(self)
+    esd = getDocumentPoolSite(obj)
     res = api.content.find(
         path="/".join(esd.getPhysicalPath()) + "/config",
         portal_type="DocType",
@@ -123,6 +126,15 @@ def getAllowedDocumentTypesForGroup(self):
 
 
 def getGroupsForCurrentUser(obj, sort_on="path"):
+    return _getGroupsForCurrentUser(obj, sort_on=sort_on, request=getRequest())
+
+
+def request_cache_key(fun, obj, sort_on="path", request=None):
+    return (obj.UID(), sort_on)
+
+
+@request.cache(get_key=request_cache_key, get_request="request")
+def _getGroupsForCurrentUser(obj, sort_on="path", request=None):
     """Return groups that can create content based on GroupFolders visible to the logged-in user."""
     results = []
     content_area = IPlaces(obj).content
