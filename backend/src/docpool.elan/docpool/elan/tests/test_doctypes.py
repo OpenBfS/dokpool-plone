@@ -300,6 +300,9 @@ class TestDocTypes(unittest.TestCase):
         logout()
         login(self.portal, "foo")
 
+        # Invalidate request-cache for getAllowedDocumentTypes
+        del self.request.__annotations__
+
         # now this user can add dpdocument using all doctypes
         allowed = getAllowedDocumentTypes(folder)
         self.assertEqual({i.id for i in allowed}, set(doctypes_ids))
@@ -373,6 +376,9 @@ class TestDocTypes(unittest.TestCase):
         # Only admins can change/move doktypes
         logout()
         login(self.portal, TEST_USER_NAME)
+
+        # Invalidate request-cache for getAllowedDocumentTypes
+        del self.request.__annotations__
 
         # Change the Category of this item by moving it to a different DocTypeSubCategory
         weatherinfo_template = api.content.move(
