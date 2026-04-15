@@ -267,3 +267,29 @@ class TestListing:
         # Sync to check in Plone
         transaction.commit()
         assert api.content.get_state(self.group_folder["example-entry"]) == "published"
+
+    def test_filter_reset(self):
+        page = self.page
+        page.goto(f"{self.plone_url}/bund/setActiveApp?app=elan")
+        page.goto(f"{self.plone_url}/bund/listing")
+        # 1. Prüfen, dass beide Items da sind
+        expect(page.locator("#listing .listing-item")).to_have_count(2)
+        # 2. Filter öffnen (z.B. Entrytype)
+        page.get_by_role("button", name="Entrytype").click()
+        # 3. Einen Filter auswählen
+        page.get_by_role("checkbox", name="Wetterlage und -prognosen").click()
+        page.get_by_role("button", name="Filter").click()
+        # 4. Ergebnis prüfen
+        expect(page.locator(".listing-item")).to_have_count(1)
+        expect(page.get_by_text("Weatherinfo")).to_be_visible()
+        expect(page.get_by_text("Staff Note")).not_to_be_visible()
+        # 5. Filter nochmal öffnen
+        page.get_by_role("button", name="Entrytype").click()
+        # 6. Reset durchführen
+        page.pause()
+        reset_button = page.get_by_role("link", name="Reset")
+        reset_button.click()
+        # 7. Prüfen, dass wieder beide Items da sind
+        expect(page.locator("#listing .listing-item")).to_have_count(2)
+        expect(page.get_by_text("Weatherinfo")).to_be_visible()
+        expect(page.get_by_text("Staff Note")).to_be_visible()
