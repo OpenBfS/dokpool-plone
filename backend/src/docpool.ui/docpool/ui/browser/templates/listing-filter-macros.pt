@@ -208,7 +208,7 @@
                         i18n:translate=""
                     >Time [ME(S)Z]</h6>
                     <a class="btn btn-sm btn-outline-secondary"
-                       href="${request/ACTUAL_URL}"
+                       href="${python: view.reset_url(['startdate', 'starttime', 'enddate', 'endtime'])}"
                        i18n:domain="zope"
                        i18n:translate="reset-button"
                     >Reset</a>
@@ -288,7 +288,7 @@
                         i18n:translate=""
                     >Entrytype</h6>
                     <a class="btn btn-sm btn-outline-secondary"
-                       href="${request/ACTUAL_URL}"
+                       href="${python: view.reset_url('selected_subcategories')}"
                        i18n:domain="zope"
                        i18n:translate="reset-button"
                     >Reset</a>
@@ -354,7 +354,7 @@
                         i18n:translate=""
                     >Visibility</h6>
                     <a class="btn btn-sm btn-outline-secondary"
-                       href="${request/ACTUAL_URL}"
+                       href="${python: view.reset_url('review_states')}"
                        i18n:domain="zope"
                        i18n:translate="reset-button"
                     >Reset</a>
@@ -413,7 +413,7 @@
                         i18n:translate=""
                     >Group</h6>
                     <a class="btn btn-sm btn-outline-secondary"
-                       href="${request/ACTUAL_URL}"
+                       href="${python: view.reset_url('selected_groups')}"
                        i18n:domain="zope"
                        i18n:translate="reset-button"
                     >Reset</a>
@@ -473,7 +473,7 @@
                         i18n:translate=""
                     >Sorting</h6>
                     <a class="btn btn-sm btn-outline-secondary"
-                       href="${request/ACTUAL_URL}"
+                       href="${python: view.reset_url('sort_on')}"
                        i18n:domain="zope"
                        i18n:translate="reset-button"
                     >Reset</a>
@@ -517,7 +517,14 @@
                   <span class="mobile-listing-back-label">Filter</span>
                 </button>
                 <div class="mobile-listing-filter-section">
-                  <h6 class="mobile-listing-filter-title">Ereignisse</h6>
+                  <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h6 class="mobile-listing-filter-title mb-0">Ereignisse</h6>
+                    <a class="btn btn-sm btn-outline-secondary"
+                       href="${python: view.reset_url('bypass_scenario_filter')}"
+                       i18n:domain="zope"
+                       i18n:translate="reset-button"
+                    >Reset</a>
+                  </div>
                   <div class="form-check form-switch">
                     <input class="form-check-input"
                            id="mobile-bypass_scenario_filter"
@@ -543,12 +550,6 @@
                 </div>
               </div>
               <div class="mobile-listing-filter-actions justify-content-between gap-2">
-                <a class="btn btn-outline-secondary"
-                   href="${request/ACTUAL_URL}"
-                   i18n:domain="zope"
-                   i18n:translate="reset-button"
-                >Reset
-                </a>
                 <button class="btn btn-primary"
                         formnovalidate="formnovalidate"
                         type="submit"

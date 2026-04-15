@@ -151,7 +151,7 @@
                 </div>
               </div>
               <a class="btn btn-outline-secondary mt-2"
-                 href="${request/ACTUAL_URL}"
+                 href="${python: view.reset_url(['startdate', 'starttime', 'enddate', 'endtime'])}"
                  i18n:domain="zope"
                  i18n:translate="reset-button"
               >Reset</a>
@@ -224,7 +224,7 @@
               </tal:category>
               <div class="sticky-bottom bg-white py-2 d-flex justify-content-between gap-2">
                 <a class="btn btn-outline-secondary"
-                   href="${request/ACTUAL_URL}"
+                   href="${python: view.reset_url('selected_subcategories')}"
                    i18n:domain="zope"
                    i18n:translate="reset-button"
                 >Reset</a>
@@ -283,7 +283,7 @@
               </tal:doctypes>
               <div class="d-flex justify-content-between gap-2 mt-1">
                 <a class="btn btn-outline-secondary"
-                   href="${request/ACTUAL_URL}"
+                   href="${python: view.reset_url('review_states')}"
                    i18n:domain="zope"
                    i18n:translate="reset-button"
                 >Reset</a>
@@ -349,7 +349,7 @@
               </tal:groups>
               <div class="sticky-bottom bg-white py-2 d-flex justify-content-between gap-2">
                 <a class="btn btn-outline-secondary"
-                   href="${request/ACTUAL_URL}"
+                   href="${python: view.reset_url('selected_groups')}"
                    i18n:domain="zope"
                    i18n:translate="reset-button"
                 >Reset</a>
