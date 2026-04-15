@@ -2,8 +2,17 @@
   <div class="d-lg-none listing-mobile-filter-dropdown mt-1">
     <div class="dropdown"
          id="listingMobileFiltersDropdown"
+         tal:define="
+           is_time_active python: view.startdate or view.starttime or view.enddate or view.endtime;
+           is_entrytype_active python: view.selected_subcategories;
+           is_visibility_active python: view.selected_review_states;
+           is_group_active python: view.selected_groups;
+           is_sorting_active python: view.sort_on != list(view.sort_on_options.keys())[0];
+           is_scenario_active python: view.bypass_scenario_filter;
+           is_any_active python: is_time_active or is_entrytype_active or is_visibility_active or is_group_active or is_sorting_active or is_scenario_active;
+         "
     >
-      <button class="btn btn-light btn-icon dropdown-toggle listing-mobile-filter-toggle d-block d-lg-none"
+      <button class="btn btn-icon dropdown-toggle listing-mobile-filter-toggle d-block d-lg-none"
               id="listingMobileFiltersToggle"
               aria-controls="listingMobileFilters"
               aria-expanded="false"
@@ -12,6 +21,9 @@
               data-bs-auto-close="outside"
               data-bs-display="static"
               data-bs-toggle="dropdown"
+              tal:attributes="
+                class python: 'btn btn-icon dropdown-toggle listing-mobile-filter-toggle d-block d-lg-none ' + (is_any_active and 'btn-primary' or 'btn-light');
+              "
               i18n:attributes="title"
       >
         <span class="listing-mobile-filter-toggle-icon">
@@ -72,6 +84,9 @@
                           type="button"
                           data-bs-target="#mobile-listing-pane-time"
                           data-bs-toggle="pill"
+                          tal:attributes="
+                            class python: 'mobile-listing-nav-link nav-link ' + (is_time_active and 'active-filter' or '');
+                          "
                   >
                     <span class="mobile-listing-nav-label">Zeit [ME(S)Z]</span>
                     <span class="mobile-listing-nav-chevron">
@@ -87,6 +102,9 @@
                           type="button"
                           data-bs-target="#mobile-listing-pane-entrytype"
                           data-bs-toggle="pill"
+                          tal:attributes="
+                            class python: 'mobile-listing-nav-link nav-link ' + (is_entrytype_active and 'active-filter' or '');
+                          "
                   >
                     <span class="mobile-listing-nav-label">Eintragsart</span>
                     <span class="mobile-listing-nav-chevron">
@@ -102,6 +120,9 @@
                           type="button"
                           data-bs-target="#mobile-listing-pane-visibility"
                           data-bs-toggle="pill"
+                          tal:attributes="
+                            class python: 'mobile-listing-nav-link nav-link ' + (is_visibility_active and 'active-filter' or '');
+                          "
                   >
                     <span class="mobile-listing-nav-label">Sichtbarkeit</span>
                     <span class="mobile-listing-nav-chevron">
@@ -118,6 +139,9 @@
                           data-bs-target="#mobile-listing-pane-group"
                           data-bs-toggle="pill"
                           tal:condition="python: not view.folder_listing"
+                          tal:attributes="
+                            class python: 'mobile-listing-nav-link nav-link ' + (is_group_active and 'active-filter' or '');
+                          "
                   >
                     <span class="mobile-listing-nav-label">Gruppe</span>
                     <span class="mobile-listing-nav-chevron">
@@ -133,6 +157,9 @@
                           type="button"
                           data-bs-target="#mobile-listing-pane-sorting"
                           data-bs-toggle="pill"
+                          tal:attributes="
+                            class python: 'mobile-listing-nav-link nav-link ' + (is_sorting_active and 'active-filter' or '');
+                          "
                   >
                     <span class="mobile-listing-nav-label">Sortierung</span>
                     <span class="mobile-listing-nav-chevron">
@@ -149,6 +176,9 @@
                           data-bs-target="#mobile-listing-pane-scenario"
                           data-bs-toggle="pill"
                           tal:condition="python: show_scenario_filter_switch"
+                          tal:attributes="
+                            class python: 'mobile-listing-nav-link nav-link ' + (is_scenario_active and 'active-filter' or '');
+                          "
                   >
                     <span class="mobile-listing-nav-label">Ereignisse</span>
                     <span class="mobile-listing-nav-chevron">
@@ -173,9 +203,16 @@
                   <span class="mobile-listing-back-label">Filter</span>
                 </button>
                 <div class="mobile-listing-filter-section">
-                  <h6 class="mobile-listing-filter-title"
-                      i18n:translate=""
-                  >Time [ME(S)Z]</h6>
+                  <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h6 class="mobile-listing-filter-title mb-0"
+                        i18n:translate=""
+                    >Time [ME(S)Z]</h6>
+                    <a class="btn btn-sm btn-outline-secondary"
+                       href="${request/ACTUAL_URL}"
+                       i18n:domain="zope"
+                       i18n:translate="reset-button"
+                    >Reset</a>
+                  </div>
                   <label class="form-label"
                          for="mobile-startdate"
                          i18n:translate=""
@@ -246,9 +283,16 @@
                   <span class="mobile-listing-back-label">Filter</span>
                 </button>
                 <div class="mobile-listing-filter-section">
-                  <h6 class="mobile-listing-filter-title"
-                      i18n:translate=""
-                  >Entrytype</h6>
+                  <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h6 class="mobile-listing-filter-title mb-0"
+                        i18n:translate=""
+                    >Entrytype</h6>
+                    <a class="btn btn-sm btn-outline-secondary"
+                       href="${request/ACTUAL_URL}"
+                       i18n:domain="zope"
+                       i18n:translate="reset-button"
+                    >Reset</a>
+                  </div>
                   <div class="mobile-listing-filter-options pat-checklist">
                     <div class="form-check"
                          tal:condition="python: len(categories) > 1"
@@ -305,9 +349,16 @@
                   <span class="mobile-listing-back-label">Filter</span>
                 </button>
                 <div class="mobile-listing-filter-section">
-                  <h6 class="mobile-listing-filter-title"
-                      i18n:translate=""
-                  >Visibility</h6>
+                  <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h6 class="mobile-listing-filter-title mb-0"
+                        i18n:translate=""
+                    >Visibility</h6>
+                    <a class="btn btn-sm btn-outline-secondary"
+                       href="${request/ACTUAL_URL}"
+                       i18n:domain="zope"
+                       i18n:translate="reset-button"
+                    >Reset</a>
+                  </div>
                   <div class="mobile-listing-filter-options">
                     <tal:doctypes tal:repeat="review_state python: view.review_states">
                       <div class="form-check">
@@ -357,9 +408,16 @@
                   <span class="mobile-listing-back-label">Filter</span>
                 </button>
                 <div class="mobile-listing-filter-section">
-                  <h6 class="mobile-listing-filter-title"
-                      i18n:translate=""
-                  >Group</h6>
+                  <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h6 class="mobile-listing-filter-title mb-0"
+                        i18n:translate=""
+                    >Group</h6>
+                    <a class="btn btn-sm btn-outline-secondary"
+                       href="${request/ACTUAL_URL}"
+                       i18n:domain="zope"
+                       i18n:translate="reset-button"
+                    >Reset</a>
+                  </div>
                   <div class="mobile-listing-filter-options pat-checklist">
                     <div class="form-check"
                          tal:condition="python: len(groups) > 5"
@@ -410,9 +468,16 @@
                   <span class="mobile-listing-back-label">Filter</span>
                 </button>
                 <div class="mobile-listing-filter-section">
-                  <h6 class="mobile-listing-filter-title"
-                      i18n:translate=""
-                  >Sorting</h6>
+                  <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h6 class="mobile-listing-filter-title mb-0"
+                        i18n:translate=""
+                    >Sorting</h6>
+                    <a class="btn btn-sm btn-outline-secondary"
+                       href="${request/ACTUAL_URL}"
+                       i18n:domain="zope"
+                       i18n:translate="reset-button"
+                    >Reset</a>
+                  </div>
                   <div class="mobile-listing-filter-options">
                     <div class="form-check"
                          tal:repeat="sort_on python: view.sort_on_options"

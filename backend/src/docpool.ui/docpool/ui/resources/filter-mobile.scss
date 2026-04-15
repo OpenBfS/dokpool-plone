@@ -156,6 +156,11 @@ body.plone-toolbar-left {
     text-align: left;
     width: 100%;
 
+    &.active-filter {
+      background-color: #eef4f8;
+      font-weight: bold;
+    }
+
     &:last-child {
       border-bottom: 0;
     }

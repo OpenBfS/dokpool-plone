@@ -84,6 +84,9 @@
           </div>
 
           <div class="mx-1 my-0 mt-1 dropdown d-none d-lg-block"
+               tal:define="
+                 is_active python: view.startdate or view.starttime or view.enddate or view.endtime;
+               "
                tal:condition="python: 'date' in view.filters"
           >
             <button class="btn btn-light dropdown-toggle"
@@ -91,6 +94,9 @@
                     type="button"
                     data-bs-auto-close="outside"
                     data-bs-toggle="dropdown"
+                    tal:attributes="
+                      class python: 'btn dropdown-toggle ' + (is_active and 'show' or 'btn-light');
+                    "
                     i18n:translate=""
             >
             Time [ME(S)Z]
@@ -164,14 +170,18 @@
                tal:define="
                  selected_subcategories python: view.selected_subcategories;
                  categories python: view.doctype_categories;
+                 is_active python: selected_subcategories;
                "
                tal:condition="python: 'entrytype' in view.filters"
           >
-            <button class="btn btn-light dropdown-toggle"
+            <button class="btn dropdown-toggle"
                     aria-expanded="false"
                     type="button"
                     data-bs-auto-close="outside"
                     data-bs-toggle="dropdown"
+                    tal:attributes="
+                      class python: 'btn dropdown-toggle ' + (is_active and 'show' or 'btn-light');
+                    "
                     i18n:translate=""
             >
           Entrytype
@@ -212,7 +222,12 @@
                   </div>
                 </tal:subcategory>
               </tal:category>
-              <div class="sticky-bottom bg-white py-2">
+              <div class="sticky-bottom bg-white py-2 d-flex justify-content-between gap-2">
+                <a class="btn btn-outline-secondary"
+                   href="${request/ACTUAL_URL}"
+                   i18n:domain="zope"
+                   i18n:translate="reset-button"
+                >Reset</a>
                 <button class="btn btn-primary"
                         type="submit"
                         i18n:domain="plone"
@@ -225,14 +240,18 @@
           <div class="m-1 dropdown d-none d-lg-block"
                tal:define="
                  selected_review_states python: view.selected_review_states;
+                 is_active python: selected_review_states;
                "
                tal:condition="python: 'visibility' in view.filters"
           >
-            <button class="btn btn-light dropdown-toggle"
+            <button class="btn dropdown-toggle"
                     aria-expanded="false"
                     type="button"
                     data-bs-auto-close="outside"
                     data-bs-toggle="dropdown"
+                    tal:attributes="
+                      class python: 'btn dropdown-toggle ' + (is_active and 'show' or 'btn-light');
+                    "
                     i18n:translate=""
             >
                 Visibility
@@ -262,11 +281,18 @@
                   </label>
                 </div>
               </tal:doctypes>
-              <button class="btn btn-primary mt-1"
-                      type="submit"
-                      i18n:domain="plone"
-                      i18n:translate=""
-              >Filter</button>
+              <div class="d-flex justify-content-between gap-2 mt-1">
+                <a class="btn btn-outline-secondary"
+                   href="${request/ACTUAL_URL}"
+                   i18n:domain="zope"
+                   i18n:translate="reset-button"
+                >Reset</a>
+                <button class="btn btn-primary"
+                        type="submit"
+                        i18n:domain="plone"
+                        i18n:translate=""
+                >Filter</button>
+              </div>
             </div>
           </div>
 
@@ -274,14 +300,18 @@
                tal:define="
                  selected_groups python: view.selected_groups;
                  groups python: view.groups;
+                 is_active python: selected_groups;
                "
                tal:condition="python: not view.folder_listing and 'group' in view.filters"
           >
-            <button class="btn btn-light dropdown-toggle"
+            <button class="btn dropdown-toggle"
                     aria-expanded="false"
                     type="button"
                     data-bs-auto-close="outside"
                     data-bs-toggle="dropdown"
+                    tal:attributes="
+                      class python: 'btn dropdown-toggle ' + (is_active and 'show' or 'btn-light');
+                    "
                     i18n:translate=""
             >
           Group
@@ -317,7 +347,12 @@
                   </label>
                 </div>
               </tal:groups>
-              <div class="sticky-bottom bg-white py-2">
+              <div class="sticky-bottom bg-white py-2 d-flex justify-content-between gap-2">
+                <a class="btn btn-outline-secondary"
+                   href="${request/ACTUAL_URL}"
+                   i18n:domain="zope"
+                   i18n:translate="reset-button"
+                >Reset</a>
                 <button class="btn btn-primary"
                         type="submit"
                         i18n:domain="plone"
@@ -326,11 +361,14 @@
               </div>
             </div>
           </div>
-
           <div class="m-1"
                tal:condition="python: 'text' in view.filters"
           >
-            <div class="input-group">
+            <div class="input-group"
+                 tal:define="
+                   is_active python: view.searchable_text;
+                 "
+            >
               <input class="form-control"
                      aria-label="Search"
                      autocomplete="off"
@@ -339,25 +377,36 @@
                      type="text"
                      tal:attributes="
                        value python: view.searchable_text or nothing;
+                       class python: 'form-control ' + (is_active and 'border-primary' or '');
                      "
                      i18n:attributes="placeholder"
                      i18n:translate=""
               />
               <button class="btn border-light-subtle btn-light btn-icon d-none d-lg-block"
                       type="submit"
+                      tal:attributes="
+                        class python: 'btn btn-icon d-none d-lg-block ' + (is_active and 'btn-primary' or 'btn-light border-light-subtle');
+                      "
               >
                 <tal:icon tal:replace="structure python:icons.tag('search', tag_alt='Search')" />
               </button>
             </div>
           </div>
 
-          <div class="m-1 me-3 dropdown d-none d-lg-block">
-            <button class="btn btn-light btn-icon dropdown-toggle"
+          <div class="m-1 me-3 dropdown d-none d-lg-block"
+               tal:define="
+                 is_active python: view.sort_on != list(view.sort_on_options.keys())[0];
+               "
+          >
+            <button class="btn btn-icon dropdown-toggle"
                     aria-expanded="false"
                     title="Sorting"
                     type="button"
                     data-bs-auto-close="outside"
                     data-bs-toggle="dropdown"
+                    tal:attributes="
+                      class python: 'btn btn-icon dropdown-toggle ' + (is_active and 'btn-primary' or 'btn-light');
+                    "
                     i18n:attributes="title"
             >
               <tal:icon tal:replace="structure python:icons.tag('sort-down')" />
