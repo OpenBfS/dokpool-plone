@@ -636,6 +636,19 @@ DOCTYPES = [
         "category": "Ereignis",
         "category_id": "incident",
     },
+    {
+        "title": "Tagebucheintrag",
+        "id": "journalentry",
+        "old_ids": [],
+        "behaviors": ["elan"],
+        "description": "",
+        "icon": "journal",
+        "subcategory": "Tagebuch",
+        "subcategory_id": "journal",
+        "subcategory_icon": "journal",
+        "category": "Ereignis",
+        "category_id": "incident",
+    },
     # These two only exist in bayern!
     {
         "title": "Radiologisches Lagebild Entwurf",

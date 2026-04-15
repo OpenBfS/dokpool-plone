@@ -1,7 +1,11 @@
 from Acquisition import aq_inner
 from Acquisition import ImplicitAcquisitionWrapper
 from docpool.base import DocpoolMessageFactory as _
+from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
+from docpool.base.marker import IJournalContainerMarker
 from docpool.base.vocabularies import DocTypeVocabularyFactory
+from logging import getLogger
+from plone import api
 from plone.app.z3cform.widgets.orderedselect import OrderedSelectFieldWidget
 from plone.base import PloneMessageFactory as PMF
 from plone.protect import CheckAuthenticator
@@ -15,6 +19,8 @@ from zope.interface import implementer
 from zope.interface import Interface
 from zope.interface import provider
 from zope.schema.interfaces import IContextSourceBinder
+
+logger = getLogger(__name__)
 
 
 @provider(IContextSourceBinder)
@@ -140,6 +146,10 @@ class GroupDetailsControlPanel(GDCP):
                 # exist
                 self.group.setGroupProperties(processed)
 
+            if "journalentry" in processed.get("allowedDocTypes", []):
+                # make sure that group has a folder for journal entries
+                create_journalfolder(context, self.group)
+
             IStatusMessage(self.request).add(msg, type=(self.group and "info") or "error")
             if self.group and not self.groupname:
                 target_url = "{}/{}".format(
@@ -159,3 +169,61 @@ class GroupDetailsControlPanel(GDCP):
         alsoProvides(self.doctypes_widget, IContextAware)
         self.doctypes_widget.context = group_proxy
         self.doctypes_widget.update()
+
+
+def create_journalfolder(context, group):
+    if context.portal_type != "DocumentPool":
+        return
+    try:
+        group_folder = context["content"]["Groups"][group.id]
+    except KeyError:
+        logger.error("Could not find group folder for %s", group.id)
+        return
+
+    if journal_folder := group_folder.get("journal", None):
+        # Check if existing journal folder has correct settings.
+        if journal_folder.portal_type != "SimpleFolder":
+            logger.error("Journal folder is not a SimpleFolder but %s", journal_folder.portal_type)
+            return
+        if not IJournalContainerMarker.providedBy(journal_folder):
+            logger.error("IJournalContainerMarker not provided by Journal folder")
+            return
+        if journal_folder.local_behaviors != ["elan"]:
+            logger.error("Journal folder is not elan")
+            return
+        if journal_folder.allowedDocTypes != ["journalentry"]:
+            logger.error("Journal does not allow journalentry but %s", journal_folder.allowedDocTypes)
+            return
+
+    else:
+        title = "Tagebuch " + group.getProperty("title")
+        journal_folder = api.content.create(
+            container=group_folder,
+            type="SimpleFolder",
+            title=title,
+            id="journal",
+        )
+        # apply marker interface
+        alsoProvides(journal_folder, IJournalContainerMarker)
+        ILocalBehaviorSupport(journal_folder).local_behaviors = ["elan"]
+        journal_folder.allowedDocTypes = ["journalentry"]
+
+        # Enable placeful workflow
+        placeful_wf = api.portal.get_tool("portal_placeful_workflow")
+        journal_folder.manage_addProduct["CMFPlacefulWorkflow"].manage_addWorkflowPolicyConfig()
+        config = placeful_wf.getWorkflowPolicyConfig(journal_folder)
+        policy_name = "dp-private-folder"
+        config.setPolicyIn(policy=policy_name, update_security=False)
+        config.setPolicyBelow(policy=policy_name, update_security=False)
+        journal_folder.reindexObject()
+        journal_folder.reindexObjectSecurity()
+
+        # Make sure that journalentry is only allowed here
+        if group_folder.allowedDocTypes and "journalentry" in group_folder.allowedDocTypes:
+            # remove journalentry from gf
+            group_folder.allowedDocTypes.remove("journalentry")
+        elif not group_folder.allowedDocTypes:
+            # allow all types except journalentry
+            all_allowed = [i for i in group.getProperty("allowedDocTypes", [])]
+            all_allowed.remove("journalentry")
+            group_folder.allowedDocTypes = all_allowed

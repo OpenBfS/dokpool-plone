@@ -41,6 +41,10 @@
       <li class="nav-item flex-fill">
         <a class="nav-link d-flex flex-column align-items-center justify-content-center text-decoration-none"
            href="#"
+           tal:condition="python: view.show_journals()"
+           tal:attributes="
+             href string:${view/base_url}/@@journals;
+           "
         >
           <span class="icon-24 d-flex align-items-center justify-content-center mb-2">
             <tal:icon tal:replace="structure python:icons.tag('book-half', tag_class='me-0')" />

@@ -3,7 +3,15 @@
   "@type": "GroupFolder",
   "UID": "9c3189972461497c9ccdae8f520e27b4",
   "allow_discussion": null,
-  "allowedDocTypes": null,
+  "allowedDocTypes": [
+    "additional_event_information",
+    "information_for_the_public",
+    "official_notification",
+    "forecast_spread_dose_contamination",
+    "radiological_situation_report",
+    "staff_note",
+    "weather_conditions_and_forecast"
+  ],
   "contributors": [],
   "created": "2025-09-23T11:51:04+00:00",
   "created_by": [

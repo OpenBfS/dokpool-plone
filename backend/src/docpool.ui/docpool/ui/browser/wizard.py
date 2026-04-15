@@ -1,8 +1,10 @@
 from AccessControl import Unauthorized
 from Acquisition import aq_get
 from docpool.base.browser.dpdocument import AddForm
+from docpool.base.config import FOLDER_TYPES
 from docpool.base.content.archiving import IArchiving
 from docpool.base.content.places import IPlaces
+from docpool.base.marker import IJournalContainerMarker
 from docpool.base.utils import getAllowedDocumentTypes
 from docpool.base.utils import getDocumentPoolSite
 from docpool.elan.utils import get_scenario_for_current_user
@@ -27,19 +29,6 @@ import time
 
 
 logger = logging.getLogger(__name__)
-
-FOLDER_TYPES = [
-    "Users",
-    "UserFolder",
-    "ContentArea",
-    "Groups",
-    "GroupFolder",
-    "PrivateFolder",
-    "SimpleFolder",
-    "ReviewFolder",
-    "CollaborationFolder",
-    "InfoFolder",
-]
 
 
 class ContextlessWizard(BrowserView):
@@ -227,6 +216,7 @@ class DPDocumentWizard(ContextlessWizard):
                     entrytype = brains[0]._unrestrictedGetObject()
                     self.entrytype_title = entrytype.title
                     self.entrytype_icon = entrytype.icon_name
+                    self.can_have_attachments = entrytype.allowUploads
 
         # Render form
         if self.form.get("form.buttons.continue", None) is None:
@@ -358,6 +348,9 @@ class DPDocumentWizard(ContextlessWizard):
     def entries_the_user_can_add(self, container):
         """Brains of DocTypes that the current user can add to a given container."""
         addable = []
+        if IJournalContainerMarker.providedBy(container):
+            # Ignore Journal Containers
+            return addable
         if self.portal_type not in [i.id for i in container.allowedContentTypes()]:
             return addable
         if not api.user.has_permission("Add portal content", obj=container):
@@ -488,6 +481,7 @@ class FolderWizard(ContextlessWizard):
         self.foldertypes = []
         self.add_form = None
         if constrains:
+            # TODO: Ask if we should use getLocallyAllowedTypes instead
             allowed_types = constrains.getImmediatelyAddableTypes()
         # check which folder_type we can add here
         for portal_type in FOLDER_TYPES:

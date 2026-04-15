@@ -1,0 +1,49 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      metal:use-macro="context/@@main_template/macros/master"
+      xml:lang="en"
+      i18n:domain="docpool.ui"
+>
+  <metal:content fill-slot="content-core">
+
+    <metal:empty_title fill-slot="content-title" />
+
+    <div class="mx-3 my-3 border-top journals"
+         id="listing"
+    >
+      <tal:block tal:repeat="item python: view.journals">
+        <a class="list-item-link"
+           tal:attributes="
+             href python: '{}/@@journalentries?selected_groups={}&amp;journal_title={}&amp;journal_folder_uid={}'.format(context.absolute_url(), item['group_uid'], item['title'], item['uid']);
+           "
+        >
+          <div class="listing-item d-flex align-items-center border-bottom position-relative">
+            <div class="py-3 px-2 flex-fill text-box">
+              <h3 class="mb-0"
+                  tal:content="python: item['title']"
+              >Tagebuch Ministerium (Bund)</h3>
+            </div>
+
+            <div class="py-3 px-2">
+              <span class="small"
+                    tal:content="python: item['last_entry']"
+              >09. April 2026, 18:55</span>
+            </div>
+
+            <div class="py-3 px-3">
+              <span class="badge rounded-pill text-bg-secondary"
+                    tal:content="python: item['count']"
+              >15</span>
+            </div>
+
+            <div class="py-3 px-3 border-start">
+              <img src="${python:icons.url('chevron-right')}" />
+            </div>
+          </div>
+        </a>
+      </tal:block>
+    </div>
+  </metal:content>
+</html>

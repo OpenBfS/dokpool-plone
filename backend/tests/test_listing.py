@@ -199,7 +199,6 @@ class TestListing:
             page.locator("label").filter(has_text="Mitteilungen der Stäbe").locator("span")
         ).to_contain_text("1")
         page.get_by_role("checkbox", name="Wetterlage und -prognosen").click()
-        # page.pause()
         page.get_by_role("button", name="Filter").click()
         expect(page.locator(".listing-item")).to_have_count(1)
 

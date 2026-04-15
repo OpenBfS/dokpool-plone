@@ -285,4 +285,7 @@
   <subscriber handler=".preview.generate_preview_image_on_add" />
   <subscriber handler=".preview.generate_preview_image_on_modified" />
 
+  <interface interface=".marker.IJournalContainerMarker" />
+  <interface interface=".marker.IJournalEntryMarker" />
+
 </configure>

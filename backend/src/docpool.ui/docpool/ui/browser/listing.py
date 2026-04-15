@@ -20,6 +20,15 @@ import json
 class Listing(BrowserView):
     """Example view called from template"""
 
+    filters = [
+        "entries",
+        "date",
+        "entrytype",
+        "visibility",
+        "group",
+        "text",
+    ]
+
     def __call__(self, limit=0):
         uids, modified = self.find(limit)
 
@@ -172,18 +181,22 @@ class Listing(BrowserView):
             self.base_query["path"] = "/".join((content_area or self.context).getPhysicalPath())
 
         # Prepare review_state filter options (query needs to be complete)
-        for state in review_state_filter_config:
-            count = self.count_options({"review_state": review_state_filter_config[state]["review_states"]})
-            review_state_filter_config[state]["count"] = count
-        self.review_states = review_state_filter_config
+        if "visibility" in self.filters:
+            for state in review_state_filter_config:
+                count = self.count_options({
+                    "review_state": review_state_filter_config[state]["review_states"]
+                })
+                review_state_filter_config[state]["count"] = count
+            self.review_states = review_state_filter_config
 
         # Prepare Entrytypes filter options (query needs to be complete)
-        self.doctype_categories = self.doctype_options()
+        # breakpoint()
+        self.doctype_categories = self.doctype_options() if "entrytype" in self.filters else []
 
         # Prepare Group filter options (query needs to be complete)
         self.groups = {}
         # TODO: Check if we need UserFolder in some context
-        if content_area:
+        if "group" in self.filters and content_area:
             group_query = {
                 "portal_type": ["DPTransferFolder", "GroupFolder"],
                 "unrestricted": True,  # Readers have no access to the group folders.
@@ -199,6 +212,9 @@ class Listing(BrowserView):
                     self.groups[brain.UID]["count"] = count
 
         catalog = api.portal.get_tool("portal_catalog")
+
+        # Hook to override
+        self.update()
 
         # Merge base query with and manual filters for real results
         query = self.base_query | self.query
@@ -285,6 +301,10 @@ class Listing(BrowserView):
                     count = self.count_options({"subcategory": brain.subcategory})
                     results[brain.category][brain.subcategory] = {"count": count}
         return {k: v for k, v in results.items() if v}
+
+    def update(self):
+        # Allow overriding queries
+        return
 
 
 def extract_date(value):

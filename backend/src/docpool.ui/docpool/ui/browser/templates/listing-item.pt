@@ -47,7 +47,7 @@
   <div class="flex-fill text-box">
 
     <h3 class="mb-0"
-        tal:content="python: data['title']"
+        tal:content="structure python: data['text']"
     ></h3>
     <div class="description text-muted text-truncate"
          tal:content="python: data['description']"
