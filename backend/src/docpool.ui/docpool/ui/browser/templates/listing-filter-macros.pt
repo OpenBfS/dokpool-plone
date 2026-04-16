@@ -362,6 +362,7 @@
                    tal:define="
                      selected_review_states python: view.selected_review_states;
                    "
+                   tal:condition="python: 'visibility' in view.filters"
               >
                 <button class="mobile-listing-back-link"
                         type="button"

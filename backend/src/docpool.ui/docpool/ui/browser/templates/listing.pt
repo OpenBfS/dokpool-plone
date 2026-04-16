@@ -473,49 +473,49 @@
       <metal:mobile-listing-filter use-macro="context/@@listing.macros/macros/mobile_listing_filter" />
 
       <div class="mx-3 my-3"
-         tal:condition="python: 'journal_title' in view.filters and view.show_add_form"
-    >
-      <form class="add-form"
-            action=""
-            method="GET"
+           tal:condition="python: 'journal_title' in view.filters and view.show_add_form"
       >
-        <div class="d-flex flex-wrap">
-          <div class="me-3 flex-fill">
-            <textarea class="pat-tinymce form-control"
-                      id="journalentry-text"
-                      name="journalentry-text"
-                      placeholder="New journal entry"
-                      tal:attributes="
-                        data-pat-tinymce python: view.tinymce_settings();
-                      "
-            ></textarea>
-            <input name="journal_title"
-                   type="hidden"
-                   value="${python:request.get('journal_title')}"
-            />
-            <input name="journal_folder_uid"
-                   type="hidden"
-                   value="${python:request.get('journal_folder_uid')}"
-            />
-            <input name="selected_groups"
-                   type="hidden"
-                   value="${python:request.get('selected_groups')}"
-            />
+        <form class="add-form"
+              action=""
+              method="GET"
+        >
+          <div class="d-flex flex-wrap">
+            <div class="me-3 flex-fill">
+              <textarea class="pat-tinymce form-control"
+                        id="journalentry-text"
+                        name="journalentry-text"
+                        placeholder="New journal entry"
+                        tal:attributes="
+                          data-pat-tinymce python: view.tinymce_settings();
+                        "
+              ></textarea>
+              <input name="journal_title"
+                     type="hidden"
+                     value="${python:request.get('journal_title')}"
+              />
+              <input name="journal_folder_uid"
+                     type="hidden"
+                     value="${python:request.get('journal_folder_uid')}"
+              />
+              <input name="selected_groups"
+                     type="hidden"
+                     value="${python:request.get('selected_groups')}"
+              />
+            </div>
+            <div>
+              <button class="btn btn-secondary me-1 mt-1"
+                      style="font-size: 1.5rem"
+                      title="Add journal entry"
+                      type="submit"
+                      i18n:attributes="placeholder"
+              ><tal:icon tal:replace="structure python:icons.tag('send')" /></button>
+            </div>
           </div>
-          <div>
-            <button class="btn btn-secondary me-1 mt-1"
-                    style="font-size: 1.5rem"
-                    title="Add journal entry"
-                    type="submit"
-                    i18n:attributes="placeholder"
-            ><tal:icon tal:replace="structure python:icons.tag('send')" /></button>
-          </div>
-        </div>
-      </form>
-    </div>
+        </form>
+      </div>
 
 
-    <div class="mx-3 my-3"
+      <div class="mx-3 my-3"
            id="listing"
            tal:attributes="
              data-items python: view.json_items;
