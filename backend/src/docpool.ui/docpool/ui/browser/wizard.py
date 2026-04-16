@@ -26,6 +26,7 @@ from ZPublisher.HTTPRequest import FileUpload
 
 import logging
 import time
+import uuid
 
 
 logger = logging.getLogger(__name__)
@@ -86,8 +87,6 @@ class ContextlessWizard(BrowserView):
                 continue
             name = name.split("form.widgets.")[-1]
             value = self.data.get(name, NO_VALUE)
-            if value is NO_VALUE:
-                return
             try:
                 self.validate_custom_field(name, value)
             except (Invalid, ValidationError) as e:
@@ -217,6 +216,18 @@ class DPDocumentWizard(ContextlessWizard):
                     self.entrytype_title = entrytype.title
                     self.entrytype_icon = entrytype.icon_name
                     self.can_have_attachments = entrytype.allowUploads
+
+                    # Where we can override/adapt widgets since the add-form and target-type is known
+                    if not self.can_have_attachments:
+                        # Set text as required
+                        self.add_form.widgets["text"].required = True
+
+                    if entrytype_id == "rei_report":
+                        # REI-Reports need no title, it is set automatically after creation
+                        title = self.add_form.widgets["IDublinCore.title"]
+                        if not title.value:
+                            title.value = str(uuid.uuid4())
+                        title.mode = "hidden"
 
         # Render form
         if self.form.get("form.buttons.continue", None) is None:
@@ -430,6 +441,16 @@ class DPDocumentWizard(ContextlessWizard):
 
         if wf_id:
             return workflow_tool.getWorkflowById(wf_id)
+
+    def validate_attachments(self, name, value):
+        # If we are in step 2 check that we either have text or a attachment
+        # This only called if you can upload attachments. Otherwise text is required.
+        if self.current_step != "2":
+            return
+        text = self.data["form.widgets.text"].raw.strip() if self.data["form.widgets.text"] else None
+        if not value and not text:
+            msg = _("Please add either text or a document!")
+            raise ValidationError(msg)
 
 
 def filter_items(items):

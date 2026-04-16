@@ -90,7 +90,7 @@ class IDPDocument(IContentBase):
         title=_("label_dpdocument_text", default="Text"),
         description=_("description_dpdocument_text", default=""),
         defaultFactory=default_text,
-        required=True,
+        required=False,
     )
 
 

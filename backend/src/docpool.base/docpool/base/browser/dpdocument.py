@@ -4,6 +4,7 @@ from docpool.base.browser.flexible_view import FlexibleView
 from docpool.base.browser.forms import EditForm
 from docpool.base.content.archiving import IArchiving
 from docpool.base.content.dpdocument import IDPDocument
+from docpool.base.content.places import IPlaces
 from docpool.ui.utils import prepare_came_from_link
 from plone import api
 from plone.app.content.browser.file import FileUploadView as BaseFileUploadView
@@ -198,7 +199,30 @@ class AddForm(add.DefaultAddForm):
 
     def updateWidgets(self):
         super().updateWidgets()
-        if "reireport" in self.request.get("form.widgets.docType", []):
+        # This is only valid for the default add-form which should not be available for normal users
+        # Normal users use the wizard which does the same changes in a different way.
+        # In the wizard the field is called 'entrytype', so this is skipped
+        doctype = self.request.get("form.widgets.docType", None)
+        if not doctype:
+            return
+
+        dp = IPlaces(self.context).document_pool
+        brains = api.content.find(context=dp, portal_type="DocType", id=doctype)
+        if not brains:
+            return
+
+        doctype_object = brains[0].getObject()
+        # if the doctype does not allow attachments, text is required!
+        if not doctype_object.allowUploads:
+            self.widgets["text"].required = True
+
+        if doctype == ["journalentry"]:
+            title = self.widgets["IDublinCore.title"]
+            if not title.value:
+                title.value = str(uuid.uuid4())
+            title.mode = "hidden"
+
+        if doctype == ["rei_report"]:
             title = self.widgets["IDublinCore.title"]
             if not title.value:
                 title.value = str(uuid.uuid4())
