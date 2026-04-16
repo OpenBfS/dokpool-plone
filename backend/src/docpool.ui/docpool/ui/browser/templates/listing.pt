@@ -11,6 +11,7 @@
                    items python: view.items;
                    folder_uids python: view.folder_uids;
                    other_uids python: view.other_uids;
+                   icons python: context.restrictedTraverse('@@iconresolver');
                    show_scenario_filter_switch python: 'elan' in view.active_apps and view.folder_listing;
                  "
   >
@@ -24,8 +25,11 @@
     >
       <form class="filter-form"
             method="GET"
+            tal:attributes="
+              action request/ACTUAL_URL;
+            "
       >
-        <div class="d-flex flex-wrap justify-content-end">
+        <div class="d-flex flex-wrap justify-content-start justify-content-lg-end">
 
           <div class="mx-3 my-0 py-1 me-auto"
                tal:condition="python: 'journal_title' in view.filters"
@@ -44,7 +48,7 @@
           <div class="mx-3 my-0 py-2"
                tal:condition="python: 'entries' in view.filters"
                tal:attributes="
-                 class python: 'mx-3 my-0 py-2' if show_scenario_filter_switch else 'mx-3 my-0 py-2 me-auto';
+                 class python: 'mx-3 my-0 py-2 d-none d-lg-block' if show_scenario_filter_switch else 'mx-3 my-0 py-2 me-auto d-none d-lg-block';
                "
           >
             <span tal:replace="python: len(items)"></span>
@@ -80,6 +84,9 @@
           </div>
 
           <div class="mx-1 my-0 mt-1 dropdown d-none d-lg-block"
+               tal:define="
+                 is_active python: view.startdate or view.starttime or view.enddate or view.endtime;
+               "
                tal:condition="python: 'date' in view.filters"
           >
             <button class="btn btn-light dropdown-toggle"
@@ -87,6 +94,9 @@
                     type="button"
                     data-bs-auto-close="outside"
                     data-bs-toggle="dropdown"
+                    tal:attributes="
+                      class python: 'btn dropdown-toggle ' + (is_active and 'show' or 'btn-light');
+                    "
                     i18n:translate=""
             >
             Time [ME(S)Z]
@@ -140,14 +150,11 @@
                   />
                 </div>
               </div>
-              <button class="btn btn-outline-secondary mt-2"
-                      formnovalidate="formnovalidate"
-                      name="form.button.Reset"
-                      type="submit"
-                      value="Reset"
-                      i18n:domain="zope"
-                      i18n:translate="reset-button"
-              >Reset</button>
+              <a class="btn btn-outline-secondary mt-2"
+                 href="${python: view.reset_url(['startdate', 'starttime', 'enddate', 'endtime'])}"
+                 i18n:domain="zope"
+                 i18n:translate="reset-button"
+              >Reset</a>
               <button class="btn btn-primary mt-2"
                       formnovalidate="formnovalidate"
                       type="submit"
@@ -163,14 +170,18 @@
                tal:define="
                  selected_subcategories python: view.selected_subcategories;
                  categories python: view.doctype_categories;
+                 is_active python: selected_subcategories;
                "
                tal:condition="python: 'entrytype' in view.filters"
           >
-            <button class="btn btn-light dropdown-toggle"
+            <button class="btn dropdown-toggle"
                     aria-expanded="false"
                     type="button"
                     data-bs-auto-close="outside"
                     data-bs-toggle="dropdown"
+                    tal:attributes="
+                      class python: 'btn dropdown-toggle ' + (is_active and 'show' or 'btn-light');
+                    "
                     i18n:translate=""
             >
           Entrytype
@@ -211,7 +222,12 @@
                   </div>
                 </tal:subcategory>
               </tal:category>
-              <div class="sticky-bottom bg-white py-2">
+              <div class="sticky-bottom bg-white py-2 d-flex justify-content-between gap-2">
+                <a class="btn btn-outline-secondary"
+                   href="${python: view.reset_url('selected_subcategories')}"
+                   i18n:domain="zope"
+                   i18n:translate="reset-button"
+                >Reset</a>
                 <button class="btn btn-primary"
                         type="submit"
                         i18n:domain="plone"
@@ -224,14 +240,18 @@
           <div class="m-1 dropdown d-none d-lg-block"
                tal:define="
                  selected_review_states python: view.selected_review_states;
+                 is_active python: selected_review_states;
                "
                tal:condition="python: 'visibility' in view.filters"
           >
-            <button class="btn btn-light dropdown-toggle"
+            <button class="btn dropdown-toggle"
                     aria-expanded="false"
                     type="button"
                     data-bs-auto-close="outside"
                     data-bs-toggle="dropdown"
+                    tal:attributes="
+                      class python: 'btn dropdown-toggle ' + (is_active and 'show' or 'btn-light');
+                    "
                     i18n:translate=""
             >
                 Visibility
@@ -261,11 +281,18 @@
                   </label>
                 </div>
               </tal:doctypes>
-              <button class="btn btn-primary mt-1"
-                      type="submit"
-                      i18n:domain="plone"
-                      i18n:translate=""
-              >Filter</button>
+              <div class="d-flex justify-content-between gap-2 mt-1">
+                <a class="btn btn-outline-secondary"
+                   href="${python: view.reset_url('review_states')}"
+                   i18n:domain="zope"
+                   i18n:translate="reset-button"
+                >Reset</a>
+                <button class="btn btn-primary"
+                        type="submit"
+                        i18n:domain="plone"
+                        i18n:translate=""
+                >Filter</button>
+              </div>
             </div>
           </div>
 
@@ -273,14 +300,18 @@
                tal:define="
                  selected_groups python: view.selected_groups;
                  groups python: view.groups;
+                 is_active python: selected_groups;
                "
                tal:condition="python: not view.folder_listing and 'group' in view.filters"
           >
-            <button class="btn btn-light dropdown-toggle"
+            <button class="btn dropdown-toggle"
                     aria-expanded="false"
                     type="button"
                     data-bs-auto-close="outside"
                     data-bs-toggle="dropdown"
+                    tal:attributes="
+                      class python: 'btn dropdown-toggle ' + (is_active and 'show' or 'btn-light');
+                    "
                     i18n:translate=""
             >
           Group
@@ -316,7 +347,12 @@
                   </label>
                 </div>
               </tal:groups>
-              <div class="sticky-bottom bg-white py-2">
+              <div class="sticky-bottom bg-white py-2 d-flex justify-content-between gap-2">
+                <a class="btn btn-outline-secondary"
+                   href="${python: view.reset_url('selected_groups')}"
+                   i18n:domain="zope"
+                   i18n:translate="reset-button"
+                >Reset</a>
                 <button class="btn btn-primary"
                         type="submit"
                         i18n:domain="plone"
@@ -325,11 +361,14 @@
               </div>
             </div>
           </div>
-
           <div class="m-1"
                tal:condition="python: 'text' in view.filters"
           >
-            <div class="input-group">
+            <div class="input-group"
+                 tal:define="
+                   is_active python: view.searchable_text;
+                 "
+            >
               <input class="form-control"
                      aria-label="Search"
                      autocomplete="off"
@@ -338,25 +377,36 @@
                      type="text"
                      tal:attributes="
                        value python: view.searchable_text or nothing;
+                       class python: 'form-control ' + (is_active and 'border-primary' or '');
                      "
                      i18n:attributes="placeholder"
                      i18n:translate=""
               />
-              <button class="btn border-light-subtle btn-light btn-icon"
+              <button class="btn border-light-subtle btn-light btn-icon d-none d-lg-block"
                       type="submit"
+                      tal:attributes="
+                        class python: 'btn btn-icon d-none d-lg-block ' + (is_active and 'btn-primary' or 'btn-light border-light-subtle');
+                      "
               >
                 <tal:icon tal:replace="structure python:icons.tag('search', tag_alt='Search')" />
               </button>
             </div>
           </div>
 
-          <div class="m-1 me-3 dropdown">
-            <button class="btn btn-light btn-icon dropdown-toggle"
+          <div class="m-1 me-3 dropdown d-none d-lg-block"
+               tal:define="
+                 is_active python: view.sort_on != list(view.sort_on_options.keys())[0];
+               "
+          >
+            <button class="btn btn-icon dropdown-toggle"
                     aria-expanded="false"
                     title="Sorting"
                     type="button"
                     data-bs-auto-close="outside"
                     data-bs-toggle="dropdown"
+                    tal:attributes="
+                      class python: 'btn btn-icon dropdown-toggle ' + (is_active and 'btn-primary' or 'btn-light');
+                    "
                     i18n:attributes="title"
             >
               <tal:icon tal:replace="structure python:icons.tag('sort-down')" />
@@ -385,7 +435,7 @@
           </div>
 
           <div class="m-1">
-            <a class="btn btn-light btn-icon"
+            <a class="btn btn-light btn-icon d-none d-lg-block"
                href="javascript:this.print();"
                title="Print"
                i18n:attributes="title"
@@ -394,7 +444,7 @@
             </a>
           </div>
 
-          <div class="ms-1 my-1"
+          <div class="ms-1 my-1 d-none d-lg-block"
                tal:condition="python: view.folder_listing and not view.is_archive"
           >
             <a class="btn btn-light btn-icon"
@@ -409,7 +459,7 @@
           <div class="ms-1 my-1"
                tal:condition="python: not view.is_archive"
           >
-            <a class="btn btn-light btn-icon"
+            <a class="btn btn-light btn-icon d-none d-lg-block"
                href="${python: context.absolute_url()}/@@dpdocument_wizard_1"
                title="Add entry"
                i18n:attributes="title"
@@ -419,67 +469,68 @@
           </div>
         </div>
       </form>
-    </div>
 
-    <div class="mx-3 my-3"
-         tal:condition="python: 'journal_title' in view.filters and view.show_add_form"
-    >
-      <form class="add-form"
-            action=""
-            method="GET"
+      <metal:mobile-listing-filter use-macro="context/@@listing.macros/macros/mobile_listing_filter" />
+
+      <div class="mx-3 my-3"
+           tal:condition="python: 'journal_title' in view.filters and view.show_add_form"
       >
-        <div class="d-flex flex-wrap">
-          <div class="me-3 flex-fill">
-            <textarea class="pat-tinymce form-control"
-                      id="journalentry-text"
-                      name="journalentry-text"
-                      placeholder="New journal entry"
-                      tal:attributes="
-                        data-pat-tinymce python: view.tinymce_settings();
-                      "
-            ></textarea>
-            <input name="journal_title"
-                   type="hidden"
-                   value="${python:request.get('journal_title')}"
-            />
-            <input name="journal_folder_uid"
-                   type="hidden"
-                   value="${python:request.get('journal_folder_uid')}"
-            />
-            <input name="selected_groups"
-                   type="hidden"
-                   value="${python:request.get('selected_groups')}"
-            />
-          </div>
-          <div>
-            <button class="btn btn-secondary me-1 mt-1"
-                    style="font-size: 1.5rem"
-                    title="Add journal entry"
-                    type="submit"
-                    i18n:attributes="placeholder"
-            ><tal:icon tal:replace="structure python:icons.tag('send')" /></button>
-          </div>
-        </div>
-      </form>
-    </div>
-
-
-    <div class="mx-3 my-3"
-         id="listing"
-         tal:attributes="
-           data-items python: view.json_items;
-         "
-    >
-      <tal:block tal:repeat="item python: folder_uids + other_uids + items">
-        <a class="pat-inject list-item-inject-link"
-           data-pat-inject="trigger: autoload-visible; delay: 50; target: self"
-           tal:content="python: '@@listing-item?uid='+ item"
-           tal:attributes="
-             href python: '@@listing-item?uid='+ item;
-           "
+        <form class="add-form"
+              action=""
+              method="GET"
         >
-        </a>
-      </tal:block>
-    </div>
-  </metal:content>
+          <div class="d-flex flex-wrap">
+            <div class="me-3 flex-fill">
+              <textarea class="pat-tinymce form-control"
+                        id="journalentry-text"
+                        name="journalentry-text"
+                        placeholder="New journal entry"
+                        tal:attributes="
+                          data-pat-tinymce python: view.tinymce_settings();
+                        "
+              ></textarea>
+              <input name="journal_title"
+                     type="hidden"
+                     value="${python:request.get('journal_title')}"
+              />
+              <input name="journal_folder_uid"
+                     type="hidden"
+                     value="${python:request.get('journal_folder_uid')}"
+              />
+              <input name="selected_groups"
+                     type="hidden"
+                     value="${python:request.get('selected_groups')}"
+              />
+            </div>
+            <div>
+              <button class="btn btn-secondary me-1 mt-1"
+                      style="font-size: 1.5rem"
+                      title="Add journal entry"
+                      type="submit"
+                      i18n:attributes="placeholder"
+              ><tal:icon tal:replace="structure python:icons.tag('send')" /></button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+
+      <div class="mx-3 my-3"
+           id="listing"
+           tal:attributes="
+             data-items python: view.json_items;
+           "
+      >
+        <tal:block tal:repeat="item python: folder_uids + other_uids + items">
+          <a class="pat-inject list-item-inject-link"
+             data-pat-inject="trigger: autoload-visible; delay: 50; target: self"
+             tal:content="python: '@@listing-item?uid='+ item"
+             tal:attributes="
+               href python: '@@listing-item?uid='+ item;
+             "
+          >
+          </a>
+        </tal:block>
+      </div>
+    </div></metal:content>
 </html>

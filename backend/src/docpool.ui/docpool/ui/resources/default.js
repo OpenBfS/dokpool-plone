@@ -55,9 +55,42 @@ function setupMobileOffcanvasSettingsNavigation() {
     });
 }
 
+function setupListingMobileFilters() {
+  const dropdown = document.getElementById("listingMobileFiltersDropdown");
+  if (!dropdown) return;
+  const mainTabTrigger = document.getElementById(
+    "mobile-listing-main-tab-trigger",
+  );
+
+  if (dropdown.dataset.mobileListingFiltersBound === "1") {
+    return;
+  }
+  dropdown.dataset.mobileListingFiltersBound = "1";
+  const backButtons = dropdown.querySelectorAll(
+    "[data-mobile-listing-back='true']",
+  );
+
+  const resetToMainPane = () => {
+    if (mainTabTrigger) {
+      mainTabTrigger.click();
+    }
+  };
+
+  backButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      resetToMainPane();
+    });
+  });
+
+  dropdown.addEventListener("hidden.bs.dropdown", () => {
+    resetToMainPane();
+  });
+}
+
 function setupHeaderMobileUi() {
   setupMobileScrollTopButton();
   setupMobileOffcanvasSettingsNavigation();
+  setupListingMobileFilters();
 }
 
 if (document.readyState === "loading") {

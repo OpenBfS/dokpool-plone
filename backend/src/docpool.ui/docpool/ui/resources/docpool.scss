@@ -4,6 +4,7 @@
 @import "footer";
 @import "search";
 @import "navbar-mobile";
+@import "filter-mobile";
 
 $plone-default-private-color: #b74d48;
 $plone-default-pending-color: #e5bc4a;
@@ -178,6 +179,7 @@ body {
   position: sticky;
   top: 72px;
   z-index: 900;
+  overflow: visible;
 
   .dropdown-menu {
     max-height: 60vh;

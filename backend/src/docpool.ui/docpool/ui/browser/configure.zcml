@@ -34,6 +34,14 @@
       />
 
   <browser:page
+      name="listing.macros"
+      for="*"
+      template="templates/listing-filter-macros.pt"
+      permission="zope2.View"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
+  <browser:page
       name="journalentries"
       for="*"
       class=".journal.JournalEntries"

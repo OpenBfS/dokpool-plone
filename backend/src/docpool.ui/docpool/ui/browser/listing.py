@@ -270,6 +270,29 @@ class Listing(BrowserView):
 
         return uids, modified
 
+    def reset_url(self, remove=None):
+        """Build reset url with some params removed."""
+        if not remove:
+            return self.request.ACTUAL_URL
+        if isinstance(remove, str):
+            remove = [remove]
+        form = copy(self.request.form)
+        for r in remove:
+            form.pop(r, None)
+
+        query = []
+        for k, v in form.items():
+            if isinstance(v, list):
+                for item in v:
+                    query.append(f"{k}:list={item}")
+            else:
+                query.append(f"{k}={v}")
+
+        if not query:
+            return self.request.ACTUAL_URL
+
+        return f"{self.request.ACTUAL_URL}?{'&'.join(query)}"
+
     def count_options(self, extra, query=None):
         if not query:
             query = self.query | self.base_query
