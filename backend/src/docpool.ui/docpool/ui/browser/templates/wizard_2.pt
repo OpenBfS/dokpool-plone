@@ -104,7 +104,7 @@
                     >Attachments</span>
                   </label>
                 </div>
-                <div class="error-msg"
+                <div class="error-msg invalid-feedback"
                      tal:condition="error"
                 ><span tal:replace="error"></span></div>
                 <div class="wizard-field field"
@@ -117,6 +117,9 @@
                          multiple
                          name="attachments"
                          type="file"
+                         tal:attributes="
+                           class python: 'is-invalid form-control' if error else 'form-control';
+                         "
                   />
                 </div>
               </div>
