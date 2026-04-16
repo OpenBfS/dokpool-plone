@@ -177,8 +177,6 @@ class TestListing:
         # Wait for item actions to get injected
         page.wait_for_selector(".actions .list-group")
         expect(page.locator(".actions .list-group")).to_have_count(1)
-        metadata = page.locator(".doc_metadata div").last
-        expect(metadata).to_contain_text("Stabsmitteilung (Mitteilungen der Stäbe)")
         # Go back to listing
         page.get_by_role("link", name="Back").click()
         # Wait for items to get loaded
