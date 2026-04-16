@@ -19,6 +19,7 @@ class ELANSpecificTransfer:
         self.transfer_folder = transfer_folder
         self.elanobj = IELANDocument(self.original, None)
         self.have_elan = ELAN_APP in self.transfer_folder.myDocumentPool().supportedApps
+        self.copy_scenario = None
 
     def assert_allowed(self):
         return
@@ -46,7 +47,7 @@ class ELANSpecificTransfer:
             elan_copy.scenario = self.copy_scenario.UID()
 
     def receiver_log_entry(self):
-        if not self.have_elan:
+        if not self.have_elan or self.copy_scenario is None:
             return {}
         return dict(scenario_id=self.copy_scenario.getId())
 

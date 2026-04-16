@@ -19,6 +19,12 @@ Changed:
   [tlotze]
 
 
+Fixed:
+
+- Handle an edge case where transfer logs would break
+  [tlotze]
+
+
 2.5.0 (2026-02-16)
 ------------------
 
