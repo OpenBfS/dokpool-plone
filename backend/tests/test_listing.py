@@ -286,10 +286,48 @@ class TestListing:
         # 5. Filter nochmal öffnen
         page.get_by_role("button", name="Entrytype").click()
         # 6. Reset durchführen
-        page.pause()
         reset_button = page.get_by_role("link", name="Reset")
         reset_button.click()
         # 7. Prüfen, dass wieder beide Items da sind
+        expect(page.locator("#listing .listing-item")).to_have_count(2)
+        expect(page.get_by_text("Weatherinfo")).to_be_visible()
+        expect(page.get_by_text("Staff Note")).to_be_visible()
+
+    def test_filter_reset_mobile(self):
+        page = self.page
+        # Set viewport to mobile size
+        page.set_viewport_size({"width": 375, "height": 667})
+        page.goto(f"{self.plone_url}/bund/setActiveApp?app=elan")
+        page.goto(f"{self.plone_url}/bund/listing")
+
+        expect(page.locator("#listing .listing-item")).to_have_count(2)
+
+        # Mobile Filter öffnen
+        page.locator("#listingMobileFiltersToggle").click()
+
+        # Sektion "Eintragsart" öffnen
+        page.locator("#mobile-listing-tab-entrytype").click()
+        page.get_by_role("checkbox", name="Wetterlage und -prognosen").check()
+        page.locator("#mobile-listing-pane-entrytype button[type='submit']").click()
+
+        # Ergebnis prüfen
+        expect(page.locator(".listing-item")).to_have_count(1)
+        expect(page.get_by_text("Weatherinfo")).to_be_visible()
+        expect(page.get_by_text("Staff Note")).not_to_be_visible()
+
+        # Reset durchführen
+        page.locator("#listingMobileFiltersToggle").click()
+        page.locator("#mobile-listing-tab-entrytype").click()
+        section_reset_button = page.locator(
+            "#mobile-listing-pane-entrytype a.btn-outline-secondary", has_text="Reset"
+        )
+        expect(section_reset_button).to_be_visible()
+        href = section_reset_button.get_attribute("href")
+        # Es sollte kein selected_subcategories mehr enthalten sein
+        assert "selected_subcategories" not in href
+        section_reset_button.click()
+
+        # Prüfen, dass wieder beide Items da sind
         expect(page.locator("#listing .listing-item")).to_have_count(2)
         expect(page.get_by_text("Weatherinfo")).to_be_visible()
         expect(page.get_by_text("Staff Note")).to_be_visible()
