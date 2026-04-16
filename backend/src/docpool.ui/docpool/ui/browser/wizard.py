@@ -330,7 +330,11 @@ class DPDocumentWizard(ContextlessWizard):
         pruned_tree = filter_items(tree)
         flat = [i for i in flatten(pruned_tree)]
 
-        if self.context.portal_type in FOLDER_TYPES and self.context.UID() in [i["uid"] for i in flat]:
+        if len(flat) == 1:
+            # We only have one possible target-container, so we pre-select it
+            self.container_uid = flat[0]["uid"]
+        elif self.context.portal_type in FOLDER_TYPES and self.context.UID() in [i["uid"] for i in flat]:
+            # We are in a folder and by default by default select that
             self.container_uid = self.context.UID()
         return flat
 
