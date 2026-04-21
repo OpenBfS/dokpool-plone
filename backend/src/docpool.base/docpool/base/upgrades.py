@@ -89,14 +89,13 @@ def to_1014_single_scenario_per_dpdocument(context=None):
         if len(scns) > 1:
             multiple += 1
             scn_lines = [f"    {s} {'/'.join(api.content.get(UID=s).getPhysicalPath())}" for s in scns]
-            log.warn(f"Multiple scenarios for {brain.getPath()}:\n{'\n'.join(scn_lines)}")
-            continue
+            log.warning(f"Multiple scenarios for {brain.getPath()}:\n{'\n'.join(scn_lines)}")
         obj.scenario = scns[0] if scns else None
         del obj.scenarios
         obj._p_changed = 1
         obj.reindexObject(idxs=["scenario"])
     if multiple:
-        log.warn(f"Need manual clean-up: {multiple} documents assigned to multiple scenarios.")
+        log.warning(f"Need manual clean-up: {multiple} documents assigned to multiple scenarios.")
 
 
 def to_1014_update_elan_scenario_index(context=None):
