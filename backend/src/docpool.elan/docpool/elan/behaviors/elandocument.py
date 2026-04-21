@@ -187,11 +187,12 @@ class ELANSpecificSerializeToJsonDPDocument:
         self.context = context
 
     def augment(self, result):
-        """Add id of scenario to json used for data-transfer with BW (#5999)."""
-        if scenario := result.get("scenario"):
+        """Add id of scenario to json used for data-transfer with BW (#5999). Keep lists (#6447)."""
+        if "scenario" in result:
+            # The lists are left from when there was a list-valued scenarios attribute. We keep them for the
+            # time being since this interfaces with external systems. See #6447.
+            result["scenarios"] = [scenario := result["scenario"]]
             uid = scenario["token"] if isinstance(scenario, dict) else scenario
             if brains := api.content.find(UID=uid):
-                # The list is left from when scenarios itself was a list. We keep it for the time being
-                # since this interfaces with external systems. See #6447.
                 result["scenario_ids"] = [brains[0].id]
         return result
