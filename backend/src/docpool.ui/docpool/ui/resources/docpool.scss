@@ -232,8 +232,15 @@ body {
 
   @include media-breakpoint-down(md) {
     .dp-listing-search {
-      min-width: 100%;
-      max-width: 100%;
+      min-width: calc(100% - 5rem);
+      max-width: calc(100% - 5rem);
+    }
+  }
+
+  @include media-breakpoint-down(lg) {
+    .dp-listing-search {
+      margin-left: auto;
+      margin-right: 5rem;
     }
   }
 }

@@ -408,7 +408,7 @@
                     data-bs-auto-close="outside"
                     data-bs-toggle="dropdown"
                     tal:attributes="
-                      class python: 'btn btn-icon dropdown-toggle ' + (is_active and 'btn-primary' or 'btn-light');
+                      class python: 'btn btn-icon dropdown-toggle btn-light ' + (is_active and 'active' or '');
                     "
                     i18n:attributes="title"
             >
