@@ -361,15 +361,20 @@
               </div>
             </div>
           </div>
-          <div class="m-1"
+          <div class="m-1 dp-listing-search"
+               tal:define="
+                 is_active python: view.searchable_text;
+               "
                tal:condition="python: 'text' in view.filters"
           >
-            <div class="input-group"
-                 tal:define="
-                   is_active python: view.searchable_text;
-                 "
-            >
-              <input class="form-control"
+            <div class="input-group">
+              <span class="input-group-text bg-body text-primary border-end-0"
+                    aria-hidden="true"
+              >
+                <tal:icon tal:replace="structure python:icons.tag('search')" />
+              </span>
+
+              <input class="form-control border-start-0"
                      aria-label="Search"
                      autocomplete="off"
                      name="searchable_text"
@@ -377,19 +382,17 @@
                      type="text"
                      tal:attributes="
                        value python: view.searchable_text or nothing;
-                       class python: 'form-control ' + (is_active and 'border-primary' or '');
+                       class python: 'form-control border-start-0 ' + (is_active and 'border-primary' or '');
                      "
                      i18n:attributes="placeholder"
                      i18n:translate=""
               />
-              <button class="btn border-light-subtle btn-light btn-icon d-none d-lg-block"
-                      type="submit"
-                      tal:attributes="
-                        class python: 'btn btn-icon d-none d-lg-block ' + (is_active and 'btn-primary' or 'btn-light border-light-subtle');
-                      "
-              >
-                <tal:icon tal:replace="structure python:icons.tag('search', tag_alt='Search')" />
-              </button>
+
+              <a class="btn btn-light border border-start-0 dp-search-reset"
+                 href="${python: view.reset_url('searchable_text')}"
+                 title="Reset search"
+                 i18n:attributes="title"
+              >&times;</a>
             </div>
           </div>
 

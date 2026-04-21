@@ -106,7 +106,6 @@ body {
 }
 
 
-
 .filter-form-container {
   margin-bottom: 20px;
   padding: 10px;
@@ -184,6 +183,58 @@ body {
   .dropdown-menu {
     max-height: 60vh;
     overflow-y: scroll;
+  }
+
+  .dp-listing-search {
+    flex: 0 1 13rem;
+    min-width: 9rem;
+    max-width: 21rem;
+
+    .input-group {
+      > .input-group-text,
+      > .form-control,
+      > .dp-search-reset {
+        height: 32px;
+      }
+    }
+
+    .input-group-text {
+      border-color: var(--bs-border-color);
+    }
+
+    .form-control {
+      border-color: var(--bs-border-color);
+      color: var(--bs-primary);
+      font-size: var(--dp-font-small);
+
+      &:focus {
+        box-shadow: none;
+        background-color: unset;
+        border-color: var(--bs-border-color);
+        outline: 0;
+      }
+    }
+
+    .dp-search-reset {
+      display: none;
+      --bs-btn-color: var(--bs-primary);
+      --bs-btn-hover-color: var(--bs-primary);
+      --bs-btn-border-color: var(--bs-border-color);
+      --bs-btn-hover-bg: var(--bs-light);
+      --bs-btn-hover-border-color: var(--bs-border-color);
+    }
+
+    .form-control:not(:placeholder-shown) ~ .dp-search-reset {
+      display: inline-flex;
+      align-items: center;
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    .dp-listing-search {
+      min-width: 100%;
+      max-width: 100%;
+    }
   }
 }
 
@@ -417,9 +468,11 @@ body.template-dpdocument_wizard_1.injecting-content #formfield-entrytype .spinne
   & > a {
     min-height: auto;
   }
+
   & > a:hover {
     background-color: #e7f1f6;
   }
+
   .small {
     font-size: var(--dp-font-small);
     color: #324d6a;
