@@ -765,9 +765,10 @@ def to_3000_refactor_journals(self):
                 )
                 if "/archive/" not in journal_path:
                     new_entry.scenario = old_journal.__parent__.UID()
-                    new_entry.reindexObject(idxs=["scenario"])
                 new_entry.creation_date = entry.created
                 new_entry.modification_date = entry.modified
+                new_entry.mdate = entry.modified
+                new_entry.reindexObject()
             log.info(
                 "Migrated %s entries to %s", len(journal_folder.contentIds()), journal_folder.absolute_url()
             )
@@ -796,7 +797,7 @@ def to_3000_refactor_journals(self):
             if part in group.id:
                 # find groupfolders and delete them
                 log.info("Deleting group and GroupFolder for %s", group.id)
-                for brain in api.content.find(portal_type="GroupFolder", id=group.id):
+                for brain in api.content.find(portal_type="GroupFolder", id=group.id, sort_on="path"):
                     api.content.delete(brain.getObject())
                 # Delete group
                 api.group.delete(group=group)
