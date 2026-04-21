@@ -1,4 +1,5 @@
 from docpool.base.behaviors.transferable import ITransferable
+from docpool.base.config import JOURNALENTRY_ID
 from docpool.base.content.contentbase import IContentBase
 from docpool.base.content.documentpool import APPLICATIONS_KEY
 from docpool.base.content.simplefolder import ISimpleFolder
@@ -10,6 +11,7 @@ from five.intid.intid import addIntIdSubscriber
 from plone import api
 from plone.app.upgrade.utils import loadMigrationProfile
 from plone.base.utils import get_installer
+from plone.base.utils import unrestricted_construct_instance
 from plone.dexterity.interfaces import IDexterityFTI
 from Products.CMFPlone.controlpanel.events import handleConfigurationChangedEvent
 from Products.ZCatalog.ProgressHandler import ZLogHandler
@@ -575,3 +577,235 @@ def to_3000_generate_previews(context=None):
             generate_preview_image(brain.getObject())
         except:
             log.info("Could not generate preview for %s", brain.getURL(), exc_info=True)
+
+
+GROUP_JOURNAL_MAPPING = {
+    "sl_lua": ["/dokpool/saarland/contentconfig/scen/schulung-elan-praxistag-bfs-laender-2025-12/journal3"],
+    "rp_umwmin": [
+        "/dokpool/rheinland-pfalz/contentconfig/scen/schulung-elan-praxistag-bfs-laender-2025-12/journal4",
+        "/dokpool/rheinland-pfalz/contentconfig/scen/catex22-uebung-cattenom/journal4",
+    ],
+    "by_rs-lfu": [
+        "/dokpool/bayern/contentconfig/scen/uebung-muebb-26-uebung-uebung-muebb-26-uebung/journal1",
+        "/dokpool/bayern/archive/20240919_uebung_s12_muenchen_17-11-2025-14-50/20240919_uebung_s12_muenchen/journal1",
+        "/dokpool/bayern/archive/uebung-18-11-2024_17-11-2025-14-52/uebung-18-11.2024/journal1",
+        "/dokpool/bayern/archive/uebung-23-11-2023_17-11-2025-14-49/uebung-23-11.2023/journal1",
+        "/dokpool/bayern/archive/uebung-25-09-2025_17-11-2025-14-54/uebung-25-09.2025/journal1",
+        "/dokpool/bayern/archive/uebung-core-06-07-2022_28-10-2022-08-22/uebung-core-06-07.2022/journal1",
+        "/dokpool/bayern/archive/uebung-radiologischer-stab-by-ist-einsatzbereit_17/uebung-radiologischer-stab-by-ist-einsatzbereit/journal1",
+    ],
+    "bw_e-umbw": [
+        "/dokpool/baden-wuerttemberg/archive/imis-aufbauschulung-q2-2025-1_05-03-2026-14-52/imis-aufbauschulung-q2-2025-1/journal4",
+        "/dokpool/baden-wuerttemberg/contentconfig/scen/mein-ereignis/journal3",
+        "/dokpool/baden-wuerttemberg/contentconfig/scen/uebung-muebb-26-uebung-uebung-muebb-26-uebung/journal4",
+        "/dokpool/baden-wuerttemberg/contentconfig/scen/mein-ereignis/journal1",
+    ],
+    "bund_e-ssk": [
+        "/dokpool/bund/archive/imis-dokpool-elan-schulung-ssk-krisenstab/schulung-imis-dokpool-elan-schulung-ssk-krisenstab-am-26-06-2024-13-30-16-00-uhr/journal3",
+        "/dokpool/bund/archive/uebung-core-2021_31-12-2021-12-17/uebung-core-2021/journal3",
+    ],
+    "bund_e-lagezentrum-bfs": [
+        "/dokpool/bund/contentconfig/scen/moduluebung-stab-l-und-m/journal1",
+        "/dokpool/bund/contentconfig/scen/uebung-muebb-26-uebung-uebung-muebb-26-uebung/journal1",
+        "/dokpool/bund/archive/austauschtest-mit-eld-baden-wuerttemberg_28-03-2023/austauschtest-mit-eld-baden-wuerttemberg-testdokumente-gkn/journal1",
+        "/dokpool/bund/archive/bfs-moduluebung-fachstaebe-und-pb_02-07-2025-11-50/bfs-moduluebung-fachstaebe-und-pb/journal1",
+        "/dokpool/bund/archive/catex22-uebung-cattenom_22-05-2022-17-48/catex22-uebung-cattenom/journal1",
+        "/dokpool/bund/archive/chinon_13-06-2025-23-53/chinon/journal1",
+        "/dokpool/bund/archive/core-24_21-11-2024-10-43/core-24/journal1",
+        "/dokpool/bund/archive/gnu-2022-tyche_03-08-2023-17-47/gnu-2022-tyche/journal1",
+        "/dokpool/bund/archive/gnu-stylos_28-11-2019-15-50/gnu-stylos/journal1",
+        "/dokpool/bund/archive/imis-aufbauschulung-q2-2025-1_13-06-2025-10-30/imis-aufbauschulung-q2-2025-1/journal1",
+        "/dokpool/bund/archive/imis-aufbauschulung-q2-2025_13-06-2025-10-34/imis-aufbauschulung-q2-2025/journal1",
+        "/dokpool/bund/archive/imis-uebung-berlin-brandenburg-2020-10/moduluebungen-zur-lagebilderstellung-ab-juli-2020/journal1",
+        "/dokpool/bund/archive/imis-uebung_2025-10_05-12-2025-14-21/imis-uebung_2025-10/journal1",
+        "/dokpool/bund/archive/informationen-zur-radiologischen-lage-in-der/informationen-zur-radiologischen-lage-in-der-ukraine/journal1",
+        "/dokpool/bund/archive/moduluebung-21-05-2021_22-05-2021-13-05/moduluebung-21-05.2021/journal1",
+        "/dokpool/bund/archive/moduluebung-230323_31-03-2023-14-54/moduluebung-230323/journal1",
+        "/dokpool/bund/archive/moduluebung-stab-l-mai-23_31-05-2023-16-56/moduluebung-stab-l-mai-23/journal1",
+        "/dokpool/bund/archive/moduluebung-stab-l-und-m_11-12-2023-08-22/moduluebung-stab-l-und-m/journal1",
+        "/dokpool/bund/archive/moduluebung-stab-l-und-m_14-02-2024-09-42/moduluebung-stab-l-und-m/journal1",
+        "/dokpool/bund/archive/moduluebung-stab-l_30-06-2023-13-32/moduluebung-stab-l/journal1",
+        "/dokpool/bund/archive/schulung-elan-praxistag-bfs-laender-2025-12_23-01/schulung-elan-praxistag-bfs-laender-2025-12/journal1",
+        "/dokpool/bund/archive/site-area-emergency-olkiluoto-2-finnland_12-12/site-area-emergency-olkiluoto-2-finnland/journal1",
+        "/dokpool/bund/archive/uebung-convex3-cernavoda-1_02-07-2025-12-44/uebung-convex3-cernavoda-1/journal1",
+        "/dokpool/bund/archive/uebung-core-06-07-2022_28-07-2022-16-59/uebung-core-06-07.2022/journal1",
+        "/dokpool/bund/archive/uebung-core-2019_18-06-2019-12-13/uebung-core-2021/journal1",
+        "/dokpool/bund/archive/uebung-core-2021_31-12-2021-12-17/uebung-core-2021/journal1",
+        "/dokpool/bund/archive/uebung-ecurex-2024-gasexplosion-mit-kobalt-60/uebung-ecurex-2024-gasexplosion-mit-kobalt-60-freisetzung/journal1",
+        "/dokpool/bund/archive/unfall-im-kernkraftwerk-emsland_26-01-2021-08-38/unfall-im-kernkraftwerk-emsland/journal1",
+        "/dokpool/bund/archive/voruebung-zur-core-2024_01-10-2024-13-12/voruebung-zur-core-2024/journal1",
+        "/dokpool/bund/archive/voruebungen-zur-core21/voruebungen-zur-core21/journal1",
+        "/dokpool/bund/archive/waldbraende-bei-tschernobyl-04-04-2020_21-06-2020/waldbraende-bei-tschernobyl-04-04-2020/journal1",
+        "/dokpool/bund/archive/gnu-stylos_28-11-2019-15-50/gnu-stylos/journal2",
+        "/dokpool/bund/archive/uebung-forschungsreaktor-garching_06-02-2020-09-15/uebung-forschungsreaktor-garching/journal2",
+    ],
+    "bund_e-koordination-mobile-messdienste": [
+        "/dokpool/bund/archive/moduluebung-21-05-2021_22-05-2021-13-05/moduluebung-21-05.2021/journal4"
+    ],
+    "bb_e-lavg": [
+        "/dokpool/brandenburg/contentconfig/scen/schulung-elan-praxistag-bfs-laender-2025-12/journal1"
+    ],
+}
+
+
+def to_3000_refactor_journals(self):
+    from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
+    from docpool.base.marker import IJournalContainerMarker
+    from docpool.base.users.usergroups_groupdetails import create_journalfolder
+    from elan.journal.adapters import IJournalEntryContainer
+    from plone.app.textfield import RichTextValue
+    from plone.base.utils import check_id
+    from plone.i18n.normalizer.interfaces import IIDNormalizer
+    from zope.component import queryUtility
+    from zope.globalrequest import getRequest
+    from zope.interface import alsoProvides
+
+    portal_transforms = api.portal.get_tool("portal_transforms")
+    portal = api.portal.get()
+    plone_view = portal.restrictedTraverse("@@plone")
+    idnormalizer = queryUtility(IIDNormalizer)
+
+    for group_id, journals in GROUP_JOURNAL_MAPPING.items():
+        # find all relevant groups and enable journalentry for them
+        group = api.group.get(group_id)
+        docpool = api.content.get(path="/".join(journals[0].split("/")[:3]))
+        if not docpool or docpool.portal_type != "DocumentPool":
+            breakpoint()
+
+        old_allowed_types = group.getProperty("allowedDocTypes", [])
+        new_allowed_types = list(set(old_allowed_types + [JOURNALENTRY_ID]))
+        group.setGroupProperties({"allowedDocTypes": new_allowed_types})
+        create_journalfolder(docpool, group)
+
+        # brains = api.content.find(portal_type="GroupFolder", id=group_id)
+        # if len(brains) != 1:
+        #     breakpoint()
+        # groupfolder = brains[0].getObject()
+
+        for journal_path in journals:
+            old_journal = api.content.get(path=journal_path)
+            if not old_journal:
+                log.info("Could not find journal at %s", journal_path)
+                continue
+            if "/archive/" in journal_path:
+                # find group-folder in archive
+                archive_path = "/".join(journal_path.split("/")[:-2])
+                archive = api.content.get(path=archive_path)
+                group_folder = archive["content"]["Groups"].get(group_id)
+                if not group_folder:
+                    log.info(
+                        "Could not find group folder %s at %s",
+                        group_id,
+                        archive["content"]["Groups"].absolute_url(),
+                    )
+                    # create missing group-folder
+                    group_folder = api.content.create(
+                        container=archive["content"]["Groups"],
+                        type="GroupFolder",
+                        id=group_id,
+                        title=group.getProperty("title"),
+                    )
+                    log.info(
+                        "Created new group folder %s at %s", group_folder.title, group_folder.absolute_url()
+                    )
+                if not group_folder.get("journal"):
+                    # Create a new journal_folder
+                    title = "Tagebuch " + group.getProperty("title")
+                    # ignore constrains
+                    journal_folder = unrestricted_construct_instance(
+                        "SimpleFolder",
+                        group_folder,
+                        "journal",
+                        title=title,
+                    )
+                    alsoProvides(journal_folder, IJournalContainerMarker)
+                    ILocalBehaviorSupport(journal_folder).local_behaviors = ["elan"]
+                    journal_folder.allowedDocTypes = [JOURNALENTRY_ID]
+
+                    # Enable placeful workflow
+                    placeful_wf = api.portal.get_tool("portal_placeful_workflow")
+                    journal_folder.manage_addProduct["CMFPlacefulWorkflow"].manage_addWorkflowPolicyConfig()
+                    config = placeful_wf.getWorkflowPolicyConfig(journal_folder)
+                    policy_name = "dp-private-folder"
+                    config.setPolicyIn(policy=policy_name, update_security=False)
+                    config.setPolicyBelow(policy=policy_name, update_security=False)
+                    journal_folder.reindexObject()
+                    journal_folder.reindexObjectSecurity()
+                else:
+                    journal_folder = group_folder["journal"]
+            else:
+                journal_folder = docpool["content"]["Groups"][group.id]["journal"]
+
+            # invalidate cache for flush getAllowedDocumentTypes!
+            request = getRequest()
+            IAnnotations(request).pop("plone.memoize", None)
+
+            log.info("Migrating old journal %s", old_journal.absolute_url())
+            for entry in IJournalEntryContainer(old_journal):
+                if not entry:
+                    # There may be empty entries in the annotation
+                    continue
+                text = entry.text
+                plain_text = (
+                    portal_transforms.convert("html_to_text", text).getData().replace("*", "").strip()
+                )
+                if not plain_text:
+                    continue
+                title = plone_view.cropText(plain_text, 60)
+                name = idnormalizer.normalize(title)
+                if name in journal_folder:
+                    idx = 1
+                    while idx <= 100:
+                        new_name = f"{name}-{idx}"
+                        if new_name not in journal_folder:
+                            name = new_name
+                            break
+                        idx += 1
+                new_entry = unrestricted_construct_instance(
+                    type_name="DPDocument",
+                    container=journal_folder,
+                    id=name,
+                    title=title,
+                    docType=JOURNALENTRY_ID,
+                    text=RichTextValue(text, "text/html", "text/x-html-safe"),
+                    creators=(entry.creator,),
+                    local_behaviors=["elan"],
+                )
+                if "/archive/" not in journal_path:
+                    new_entry.scenario = old_journal.__parent__.UID()
+                    new_entry.reindexObject(idxs=["scenario"])
+                new_entry.creation_date = entry.created
+                new_entry.modification_date = entry.modified
+            log.info(
+                "Migrated %s entries to %s", len(journal_folder.contentIds()), journal_folder.absolute_url()
+            )
+
+    # Delete all old journals
+    for brain in api.content.find(portal_type="Journal"):
+        obj = brain.getObject()
+        log.info("Deleting old journal %s", obj.absolute_url())
+        api.content.delete(obj)
+
+    # delete all journal groups
+    groups_to_delete = [
+        "_Journal1_Editors",
+        "_Journal2_Editors",
+        "_Journal3_Editors",
+        "_Journal4_Editors",
+        "_Journal5_Editors",
+        "_Journal1_Readers",
+        "_Journal2_Readers",
+        "_Journal3_Readers",
+        "_Journal4_Readers",
+        "_Journal5_Readers",
+    ]
+    for group in api.group.get_groups():
+        for part in groups_to_delete:
+            if part in group.id:
+                # find groupfolders and delete them
+                log.info("Deleting group and GroupFolder for %s", group.id)
+                for brain in api.content.find(portal_type="GroupFolder", id=group.id):
+                    api.content.delete(brain.getObject())
+                # Delete group
+                api.group.delete(group=group)
+                break
