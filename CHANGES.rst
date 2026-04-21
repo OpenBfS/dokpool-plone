@@ -24,6 +24,9 @@ Fixed:
 - Handle an edge case where transfer logs would break
   [tlotze]
 
+- Missed a change of index to filter on when switching to single scenario per document (#6487)
+  [tlotze]
+
 
 2.5.0 (2026-02-16)
 ------------------

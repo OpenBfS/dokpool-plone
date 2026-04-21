@@ -167,34 +167,21 @@ class DashboardCollection(Collection):
             # Not in the archive:
             value = list(value[:])  # Otherwise we change the stored query!
             if not IArchiving(self).is_archive:
-                # First implicit filter: the user has select scenario(s) as a
-                # filter
-                uss = getScenariosForCurrentUser()
-                if uss:
-                    # This is THE modification: append the implicit criterion
-                    # for the scenario(s)
-                    value.append({
-                        "i": "scenarios",
-                        "o": "plone.app.querystring.operation.selection.is",
-                        "v": uss,
-                    })
-                else:  # If nothing selected, don't show results!
-                    value.append({
-                        "i": "scenarios",
-                        "o": "plone.app.querystring.operation.selection.is",
-                        "v": ["dontfindanything"],
-                    })
-                    # print value
+                # First implicit filter: the user has select scenario(s) as a filter
+                # This is THE modification: append the implicit criterion for the scenario(s)
+                value.append({
+                    "i": "scenario",
+                    "o": "plone.app.querystring.operation.selection.is",
+                    "v": uss if (uss := getScenariosForCurrentUser()) else ["dontfindanything"],
+                })
             # Second implicit filter: the user has selected categories as a filter
             # Used for the chronological overview
-            if self.isOverview():
-                usc = getCategoriesForCurrentUser()
-                if usc:
-                    value.append({
-                        "i": "category",
-                        "o": "plone.app.querystring.operation.selection.is",
-                        "v": usc,
-                    })
+            if self.isOverview() and (usc := getCategoriesForCurrentUser()):
+                value.append({
+                    "i": "category",
+                    "o": "plone.app.querystring.operation.selection.is",
+                    "v": usc,
+                })
 
             # Third implicit filter: only results with ELAN support are wanted.
             value.append({
