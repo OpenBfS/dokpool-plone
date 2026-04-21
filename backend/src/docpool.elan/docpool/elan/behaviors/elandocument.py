@@ -183,6 +183,9 @@ def set_transition_mdate(event):
 @implementer(IAppSpecificSerializeToJsonDPDocument)
 @named(ELAN_APP)
 class ELANSpecificSerializeToJsonDPDocument:
+    def __init__(self, context):
+        self.context = context
+
     def augment(self, result):
         """Add id of scenario to json used for data-transfer with BW (#5999)."""
         if scenario := result.get("scenario"):
