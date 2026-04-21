@@ -654,7 +654,6 @@ def to_3000_refactor_journals(self):
     from docpool.base.users.usergroups_groupdetails import create_journalfolder
     from elan.journal.adapters import IJournalEntryContainer
     from plone.app.textfield import RichTextValue
-    from plone.base.utils import check_id
     from plone.i18n.normalizer.interfaces import IIDNormalizer
     from zope.component import queryUtility
     from zope.globalrequest import getRequest
@@ -669,18 +668,11 @@ def to_3000_refactor_journals(self):
         # find all relevant groups and enable journalentry for them
         group = api.group.get(group_id)
         docpool = api.content.get(path="/".join(journals[0].split("/")[:3]))
-        if not docpool or docpool.portal_type != "DocumentPool":
-            breakpoint()
 
         old_allowed_types = group.getProperty("allowedDocTypes", [])
         new_allowed_types = list(set(old_allowed_types + [JOURNALENTRY_ID]))
         group.setGroupProperties({"allowedDocTypes": new_allowed_types})
         create_journalfolder(docpool, group)
-
-        # brains = api.content.find(portal_type="GroupFolder", id=group_id)
-        # if len(brains) != 1:
-        #     breakpoint()
-        # groupfolder = brains[0].getObject()
 
         for journal_path in journals:
             old_journal = api.content.get(path=journal_path)
