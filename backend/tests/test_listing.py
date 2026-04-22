@@ -291,6 +291,28 @@ class TestListing:
         expect(page.get_by_text("Weatherinfo")).to_be_visible()
         expect(page.get_by_text("Staff Note")).to_be_visible()
 
+    def test_filter_reset_icon_desktop(self):
+        page = self.page
+        page.goto(f"{self.plone_url}/bund/setActiveApp?app=elan")
+        page.goto(f"{self.plone_url}/bund/listing")
+
+        expect(page.locator("#listing .listing-item")).to_have_count(2)
+        page.get_by_role("button", name="Entrytype").click()
+        page.get_by_role("checkbox", name="Wetterlage und -prognosen").click()
+        page.get_by_role("button", name="Filter").click()
+
+        expect(page.locator(".listing-item")).to_have_count(1)
+        assert "selected_subcategories" in page.url
+
+        reset_icon = page.get_by_role("button", name="Entrytype").locator(".dp-filter-reset-icon")
+        expect(reset_icon).to_be_visible()
+        reset_icon.click()
+
+        expect(page.locator("#listing .listing-item")).to_have_count(2)
+        expect(page.get_by_text("Weatherinfo")).to_be_visible()
+        expect(page.get_by_text("Staff Note")).to_be_visible()
+        assert "selected_subcategories" not in page.url
+
     def test_filter_reset_mobile(self):
         page = self.page
         # Set viewport to mobile size
