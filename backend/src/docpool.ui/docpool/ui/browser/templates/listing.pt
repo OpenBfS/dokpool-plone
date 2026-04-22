@@ -85,7 +85,7 @@
 
           <div class="mx-1 my-0 mt-1 dropdown d-none d-lg-block"
                tal:define="
-                 is_active python: view.startdate or view.starttime or view.enddate or view.endtime;
+                 is_selected python: view.startdate or view.starttime or view.enddate or view.endtime;
                "
                tal:condition="python: 'date' in view.filters"
           >
@@ -95,7 +95,7 @@
                     data-bs-auto-close="outside"
                     data-bs-toggle="dropdown"
                     tal:attributes="
-                      class python: 'btn dropdown-toggle ' + (is_active and 'show' or 'btn-light');
+                      class python: 'btn dropdown-toggle ' + (is_selected and 'selected' or 'btn-light');
                     "
                     i18n:translate=""
             >
@@ -180,7 +180,7 @@
                tal:define="
                  selected_subcategories python: view.selected_subcategories;
                  categories python: view.doctype_categories;
-                 is_active python: selected_subcategories;
+                 is_selected python: selected_subcategories;
                "
                tal:condition="python: 'entrytype' in view.filters"
           >
@@ -190,7 +190,7 @@
                     data-bs-auto-close="outside"
                     data-bs-toggle="dropdown"
                     tal:attributes="
-                      class python: 'btn dropdown-toggle ' + (is_active and 'show' or 'btn-light');
+                      class python: 'btn dropdown-toggle ' + (is_selected and 'selected' or 'btn-light');
                     "
                     i18n:translate=""
             >
@@ -258,7 +258,7 @@
           <div class="m-1 dropdown d-none d-lg-block"
                tal:define="
                  selected_review_states python: view.selected_review_states;
-                 is_active python: selected_review_states;
+                 is_selected python: selected_review_states;
                "
                tal:condition="python: 'visibility' in view.filters"
           >
@@ -268,7 +268,7 @@
                     data-bs-auto-close="outside"
                     data-bs-toggle="dropdown"
                     tal:attributes="
-                      class python: 'btn dropdown-toggle ' + (is_active and 'show' or 'btn-light');
+                      class python: 'btn dropdown-toggle ' + (is_selected and 'selected' or 'btn-light');
                     "
                     i18n:translate=""
             >
@@ -326,7 +326,7 @@
                tal:define="
                  selected_groups python: view.selected_groups;
                  groups python: view.groups;
-                 is_active python: selected_groups;
+                 is_selected python: selected_groups;
                "
                tal:condition="python: not view.folder_listing and 'group' in view.filters"
           >
@@ -336,7 +336,7 @@
                     data-bs-auto-close="outside"
                     data-bs-toggle="dropdown"
                     tal:attributes="
-                      class python: 'btn dropdown-toggle ' + (is_active and 'show' or 'btn-light');
+                      class python: 'btn dropdown-toggle ' + (is_selected and 'selected' or 'btn-light');
                     "
                     i18n:translate=""
             >
@@ -397,7 +397,7 @@
           </div>
           <div class="m-1 dp-listing-search"
                tal:define="
-                 is_active python: view.searchable_text;
+                 is_selected python: view.searchable_text;
                "
                tal:condition="python: 'text' in view.filters"
           >
@@ -416,7 +416,7 @@
                      type="text"
                      tal:attributes="
                        value python: view.searchable_text or nothing;
-                       class python: 'form-control border-start-0 ' + (is_active and 'border-primary' or '');
+                       class python: 'form-control border-start-0 ' + (is_selected and 'border-primary' or '');
                      "
                      i18n:attributes="placeholder"
                      i18n:translate=""
@@ -432,7 +432,7 @@
 
           <div class="m-1 me-3 dropdown d-none d-lg-block"
                tal:define="
-                 is_active python: view.sort_on != list(view.sort_on_options.keys())[0];
+                 is_selected python: view.sort_on != list(view.sort_on_options.keys())[0];
                "
           >
             <button class="btn btn-icon dropdown-toggle"
@@ -442,7 +442,7 @@
                     data-bs-auto-close="outside"
                     data-bs-toggle="dropdown"
                     tal:attributes="
-                      class python: 'btn btn-icon dropdown-toggle btn-light ' + (is_active and 'active' or '');
+                      class python: 'btn btn-icon dropdown-toggle btn-light ' + (is_selected and 'active' or '');
                     "
                     i18n:attributes="title"
             >

@@ -35,10 +35,6 @@ $plone-default-revised-color: #d4d4d4;
 
 .btn {
   font-size: var(--dp-font-small);
-  --bs-btn-border-radius: 0;
-  --bs-btn-border-radius-sm: 0;
-  --bs-btn-border-radius-lg: 0;
-  border-radius: 0;
 }
 
 .btn-icon {
@@ -95,6 +91,12 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+// Hide article header for now
+header h1,
+#content header {
+  display: none;
 }
 
 .mobile-scroll-top-button {
@@ -217,6 +219,10 @@ body {
   z-index: 900;
   overflow: visible;
 
+  .selected {
+    background-color: var(--bs-btn-active-bg);
+  }
+
   .dropdown-menu {
     max-height: 60vh;
     overflow-y: scroll;
@@ -296,6 +302,8 @@ body {
   .listing-item {
     position: relative;
     z-index: 1;
+
+
 
     &:has(.dropdown-menu.show) {
       z-index: 1050;
@@ -421,14 +429,6 @@ div.pat-modal {
 // Temp Stuff
 #portal-mainnavigation {
   display: none;
-}
-
-body.template-listing,
-body.template-entrytypes {
-  header h1,
-  #content header {
-    display: none;
-  }
 }
 
 body.template-listing .autotoc-nav,
