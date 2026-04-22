@@ -84,6 +84,8 @@ class TestJournal:
             "Ein neuer Tagebucheintrag"
         )
         page.get_by_role("button", name="Add journal entry").click()
+        inject_links = page.locator("#listing .list-item-inject-link")
+        expect(inject_links).to_have_count(1)
         page.wait_for_selector("#listing .listing-item")
         items = page.get_by_role("link", name="Stretched link to details view", exact=True)
         expect(items).to_have_count(1)
