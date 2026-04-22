@@ -1,6 +1,8 @@
 from Acquisition import aq_inner
 from Acquisition import ImplicitAcquisitionWrapper
 from docpool.base import DocpoolMessageFactory as _
+from docpool.base.config import JOURNAL_FOLDER_ID
+from docpool.base.config import JOURNALENTRY_ID
 from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
 from docpool.base.marker import IJournalContainerMarker
 from docpool.base.vocabularies import DocTypeVocabularyFactory
@@ -8,6 +10,7 @@ from logging import getLogger
 from plone import api
 from plone.app.z3cform.widgets.orderedselect import OrderedSelectFieldWidget
 from plone.base import PloneMessageFactory as PMF
+from plone.base.utils import unrestricted_construct_instance
 from plone.protect import CheckAuthenticator
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.controlpanel.browser.usergroups_groupdetails import GroupDetailsControlPanel as GDCP
@@ -147,7 +150,7 @@ class GroupDetailsControlPanel(GDCP):
                 # exist
                 self.group.setGroupProperties(processed)
 
-            if "journalentry" in processed.get("allowedDocTypes", []):
+            if JOURNALENTRY_ID in processed.get("allowedDocTypes", []):
                 # make sure that group has a folder for journal entries
                 create_journalfolder(context, self.group)
 
@@ -181,7 +184,7 @@ def create_journalfolder(context, group):
         logger.error("Could not find group folder for %s", group.id)
         return
 
-    if journal_folder := group_folder.get("journal", None):
+    if journal_folder := group_folder.get(JOURNAL_FOLDER_ID, None):
         # Check if existing journal folder has correct settings.
         if journal_folder.portal_type != "SimpleFolder":
             logger.error("Journal folder is not a SimpleFolder but %s", journal_folder.portal_type)
@@ -192,22 +195,23 @@ def create_journalfolder(context, group):
         if journal_folder.local_behaviors != ["elan"]:
             logger.error("Journal folder is not elan")
             return
-        if journal_folder.allowedDocTypes != ["journalentry"]:
+        if journal_folder.allowedDocTypes != [JOURNALENTRY_ID]:
             logger.error("Journal does not allow journalentry but %s", journal_folder.allowedDocTypes)
             return
 
     else:
         title = "Tagebuch " + group.getProperty("title")
-        journal_folder = api.content.create(
-            container=group_folder,
-            type="SimpleFolder",
+        # ignore constrains
+        journal_folder = unrestricted_construct_instance(
+            "SimpleFolder",
+            group_folder,
+            JOURNAL_FOLDER_ID,
             title=title,
-            id="journal",
         )
         # apply marker interface
         alsoProvides(journal_folder, IJournalContainerMarker)
         ILocalBehaviorSupport(journal_folder).local_behaviors = ["elan"]
-        journal_folder.allowedDocTypes = ["journalentry"]
+        journal_folder.allowedDocTypes = [JOURNALENTRY_ID]
 
         # Enable placeful workflow
         placeful_wf = api.portal.get_tool("portal_placeful_workflow")
@@ -220,11 +224,11 @@ def create_journalfolder(context, group):
         journal_folder.reindexObjectSecurity()
 
         # Make sure that journalentry is only allowed here
-        if group_folder.allowedDocTypes and "journalentry" in group_folder.allowedDocTypes:
+        if group_folder.allowedDocTypes and JOURNALENTRY_ID in group_folder.allowedDocTypes:
             # remove journalentry from gf
-            group_folder.allowedDocTypes.remove("journalentry")
+            group_folder.allowedDocTypes.remove(JOURNALENTRY_ID)
         elif not group_folder.allowedDocTypes:
             # allow all types except journalentry
             all_allowed = [i for i in group.getProperty("allowedDocTypes", [])]
-            all_allowed.remove("journalentry")
+            all_allowed.remove(JOURNALENTRY_ID)
             group_folder.allowedDocTypes = all_allowed
