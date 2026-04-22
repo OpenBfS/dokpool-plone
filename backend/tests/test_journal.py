@@ -86,7 +86,9 @@ class TestJournal:
         page.get_by_role("button", name="Add journal entry").click()
         inject_links = page.locator("#listing .list-item-inject-link")
         expect(inject_links).to_have_count(1)
-        page.wait_for_selector("#listing .listing-item")
+        # Inject happens if visible
+        inject_links.first.scroll_into_view_if_needed()
+        expect(page.locator("#listing .listing-item")).to_have_count(1)
         items = page.get_by_role("link", name="Stretched link to details view", exact=True)
         expect(items).to_have_count(1)
 
