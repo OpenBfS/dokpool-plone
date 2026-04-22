@@ -103,11 +103,11 @@
                     role="button"
                     tabindex="0"
                     title="Reset filter"
-                 tal:condition="python: is_selected"
-                 tal:attributes="
-                data-filter-reset-url python: view.reset_url(['startdate', 'starttime', 'enddate', 'endtime']);
-                "
-                 i18n:attributes="title"
+                    tal:condition="python: is_selected"
+                    tal:attributes="
+                      data-filter-reset-url python: view.reset_url(['startdate', 'starttime', 'enddate', 'endtime']);
+                    "
+                    i18n:attributes="title"
               >
                 <tal:icon tal:replace="structure python:icons.tag('x-circle-fill')" />
               </span>
