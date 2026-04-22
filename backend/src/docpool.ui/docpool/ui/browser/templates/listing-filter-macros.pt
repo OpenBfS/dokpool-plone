@@ -22,7 +22,7 @@
               data-bs-display="static"
               data-bs-toggle="dropdown"
               tal:attributes="
-                class python: 'btn btn-icon dropdown-toggle listing-mobile-filter-toggle d-block d-lg-none ' + (is_any_active and 'selected' or 'btn-light');
+                class python: 'btn btn-icon dropdown-toggle listing-mobile-filter-toggle d-block d-lg-none ' + (is_any_active and 'selected' or 'btn-secondary');
               "
               i18n:attributes="title"
       >
@@ -663,7 +663,7 @@
     </div>
 
     <div class="dropdown listing-mobile-actions-dropdown">
-      <button class="btn btn-light btn-icon dropdown-toggle listing-mobile-filter-toggle listing-mobile-actions-toggle d-block d-lg-none"
+      <button class="btn btn-secondary btn-icon dropdown-toggle listing-mobile-filter-toggle listing-mobile-actions-toggle d-block d-lg-none"
               id="listingMobileActionsToggle"
               aria-controls="listingMobileActions"
               aria-expanded="false"

@@ -11,7 +11,7 @@
         (${python: len(items)})</label>
     </div>
     <div>
-      <a class="btn btn-light"
+      <a class="btn btn-secondary"
          tal:attributes="
            href python: context.absolute_url() + '?download_attachments=1';
          "
@@ -22,7 +22,7 @@
       <div class="btn-group"
            role="group"
       >
-        <a class="btn btn-light pat-inject pat-switch attachments-switcher active"
+        <a class="btn btn-secondary pat-inject pat-switch attachments-switcher active"
            id="attachments_grid"
            href="@@attachments_grid"
            type="button"
@@ -32,7 +32,7 @@
              href python: context.absolute_url() + '/@@attachments_grid';
            "
         ><img src="${python:icons.url('grid')}" /></a>
-        <a class="btn btn-light pat-inject pat-switch attachments-switcher"
+        <a class="btn btn-secondary pat-inject pat-switch attachments-switcher"
            id="attachments_list"
            href="@@attachments_list"
            type="button"

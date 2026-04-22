@@ -204,7 +204,7 @@
                 </button>
               </div>
               <div class="mobile-event-add-wrap">
-                <a class="btn btn-light mobile-event-add-btn"
+                <a class="btn btn-secondary mobile-event-add-btn"
                    href="${python: view.dp_url}/contentconfig/++add++DPEvents"
                 >
                   <tal:icon replace="structure python:icons.tag('plus-circle', tag_class='icon-with-text')" />

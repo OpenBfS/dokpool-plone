@@ -34,7 +34,7 @@
           <div class="mx-3 my-0 py-1 me-auto"
                tal:condition="python: 'journal_title' in view.filters"
           >
-            <a class="btn btn-light btn-icon me-2"
+            <a class="btn btn-secondary btn-icon me-2"
                href="@@journals"
             >
               <img src="${python:icons.url('chevron-left')}" />
@@ -89,13 +89,13 @@
                "
                tal:condition="python: 'date' in view.filters"
           >
-            <button class="btn btn-light dropdown-toggle"
+            <button class="btn btn-secondary dropdown-toggle"
                     aria-expanded="false"
                     type="button"
                     data-bs-auto-close="outside"
                     data-bs-toggle="dropdown"
                     tal:attributes="
-                      class python: 'btn dropdown-toggle ' + (is_selected and 'selected' or 'btn-light');
+                      class python: 'btn dropdown-toggle ' + (is_selected and 'selected' or 'btn-secondary');
                     "
                     i18n:translate=""
             >
@@ -203,7 +203,7 @@
                     data-bs-auto-close="outside"
                     data-bs-toggle="dropdown"
                     tal:attributes="
-                      class python: 'btn dropdown-toggle ' + (is_selected and 'selected' or 'btn-light');
+                      class python: 'btn dropdown-toggle ' + (is_selected and 'selected' or 'btn-secondary');
                     "
                     i18n:translate=""
             >
@@ -293,7 +293,7 @@
                     data-bs-auto-close="outside"
                     data-bs-toggle="dropdown"
                     tal:attributes="
-                      class python: 'btn dropdown-toggle ' + (is_selected and 'selected' or 'btn-light');
+                      class python: 'btn dropdown-toggle ' + (is_selected and 'selected' or 'btn-secondary');
                     "
                     i18n:translate=""
             >
@@ -373,7 +373,7 @@
                     data-bs-auto-close="outside"
                     data-bs-toggle="dropdown"
                     tal:attributes="
-                      class python: 'btn dropdown-toggle ' + (is_selected and 'selected' or 'btn-light');
+                      class python: 'btn dropdown-toggle ' + (is_selected and 'selected' or 'btn-secondary');
                     "
                     i18n:translate=""
             >
@@ -471,7 +471,7 @@
                      i18n:translate=""
               />
 
-              <a class="btn btn-light border border-start-0 dp-search-reset"
+              <a class="btn btn-secondary border border-start-0 dp-search-reset"
                  href="${python: view.reset_url('searchable_text')}"
                  title="Reset search"
                  i18n:attributes="title"
@@ -491,7 +491,7 @@
                     data-bs-auto-close="outside"
                     data-bs-toggle="dropdown"
                     tal:attributes="
-                      class python: 'btn btn-icon dropdown-toggle btn-light ' + (is_selected and 'active' or '');
+                      class python: 'btn btn-icon dropdown-toggle btn-secondary ' + (is_selected and 'active' or '');
                     "
                     i18n:attributes="title"
             >
@@ -521,7 +521,7 @@
           </div>
 
           <div class="m-1">
-            <a class="btn btn-light btn-icon d-none d-lg-block"
+            <a class="btn btn-secondary btn-icon d-none d-lg-block"
                href="javascript:this.print();"
                title="Print"
                i18n:attributes="title"
@@ -533,7 +533,7 @@
           <div class="ms-1 my-1 d-none d-lg-block"
                tal:condition="python: view.folder_listing and not view.is_archive"
           >
-            <a class="btn btn-light btn-icon"
+            <a class="btn btn-secondary btn-icon"
                href="${python: context.absolute_url()}/@@folder_wizard"
                title="Add folder"
                i18n:attributes="title"
@@ -545,7 +545,7 @@
           <div class="ms-1 my-1"
                tal:condition="python: not view.is_archive"
           >
-            <a class="btn btn-light btn-icon d-none d-lg-block"
+            <a class="btn btn-secondary btn-icon d-none d-lg-block"
                href="${python: context.absolute_url()}/@@dpdocument_wizard_1"
                title="Add entry"
                i18n:attributes="title"
