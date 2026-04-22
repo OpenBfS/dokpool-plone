@@ -1,4 +1,5 @@
 from docpool.base.behaviors.transferable import ITransferable
+from docpool.base.config import JOURNAL_FOLDER_ID
 from docpool.base.config import JOURNALENTRY_ID
 from docpool.base.content.contentbase import IContentBase
 from docpool.base.content.documentpool import APPLICATIONS_KEY
@@ -320,6 +321,7 @@ def create_doctype_structure(log_remains=False):
                     type="DocTypeSubCategory",
                     id=subcategory_id,
                     title=info["subcategory"],
+                    icon_name=info.get("subcategory_icon", "radioactive"),
                 )
 
         # Create DocTypes
@@ -366,6 +368,7 @@ def create_doctype_structure(log_remains=False):
                     id=info["id"],
                     title=info["title"],
                     description=info["description"],
+                    icon_name=info.get("icon", "radioactive"),
                     local_behaviors=local_behaviors,
                 )
 
@@ -700,14 +703,14 @@ def to_3000_refactor_journals(self):
                     log.info(
                         "Created new group folder %s at %s", group_folder.title, group_folder.absolute_url()
                     )
-                if not group_folder.get("journal"):
+                if not group_folder.get(JOURNAL_FOLDER_ID):
                     # Create a new journal_folder
                     title = "Tagebuch " + group.getProperty("title")
                     # ignore constrains
                     journal_folder = unrestricted_construct_instance(
                         "SimpleFolder",
                         group_folder,
-                        "journal",
+                        JOURNAL_FOLDER_ID,
                         title=title,
                     )
                     alsoProvides(journal_folder, IJournalContainerMarker)
@@ -724,9 +727,9 @@ def to_3000_refactor_journals(self):
                     journal_folder.reindexObject()
                     journal_folder.reindexObjectSecurity()
                 else:
-                    journal_folder = group_folder["journal"]
+                    journal_folder = group_folder[JOURNAL_FOLDER_ID]
             else:
-                journal_folder = docpool["content"]["Groups"][group.id]["journal"]
+                journal_folder = docpool["content"]["Groups"][group.id][JOURNAL_FOLDER_ID]
 
             # invalidate cache for flush getAllowedDocumentTypes!
             request = getRequest()
@@ -774,10 +777,15 @@ def to_3000_refactor_journals(self):
             )
 
     # Delete all old journals
+    handled_journals = [i for sublist in GROUP_JOURNAL_MAPPING.values() for i in sublist]
     for brain in api.content.find(portal_type="Journal"):
         obj = brain.getObject()
-        log.info("Deleting old journal %s", obj.absolute_url())
-        api.content.delete(obj)
+        has_entries = any(i for i in IJournalEntryContainer(obj) if i and i.text)
+        if has_entries and brain.getPath() not in handled_journals:
+            log.info("Keeping unhandled old journal with entries: %s", obj.absolute_url())
+        else:
+            log.info("Deleting old journal %s", obj.absolute_url())
+            api.content.delete(obj)
 
     # delete all journal groups
     groups_to_delete = [
