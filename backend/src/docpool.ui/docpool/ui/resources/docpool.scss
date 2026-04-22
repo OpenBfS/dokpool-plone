@@ -93,10 +93,13 @@ body {
   flex-direction: column;
 }
 
-// Hide article header for now
-header h1,
-#content header {
-  display: none;
+// Hide article header
+body.template-listing,
+body.template-entrytypes {
+  header h1,
+  #content header {
+    display: none;
+  }
 }
 
 .mobile-scroll-top-button {
@@ -231,6 +234,7 @@ header h1,
       svg {
         fill: var(--bs-btn-color);
       }
+
       &:hover {
         opacity: 1;
       }
@@ -322,7 +326,6 @@ header h1,
   .listing-item {
     position: relative;
     z-index: 1;
-
 
 
     &:has(.dropdown-menu.show) {
