@@ -1,3 +1,4 @@
+from docpool.base.config import JOURNALENTRY_ID
 from plone.app.layout.viewlets.common import ViewletBase
 
 
@@ -8,7 +9,7 @@ class Header(ViewletBase):
         """Check if the viewlet must be displayed; that is, if an image
         is been used and the context is not a journalentry.
         """
-        is_journalentry = self.request["PARENTS"][0].__name__ == "journalentry"
+        is_journalentry = self.request["PARENTS"][0].__name__ == JOURNALENTRY_ID
         try:
             image = self.context.image
         except BaseException:

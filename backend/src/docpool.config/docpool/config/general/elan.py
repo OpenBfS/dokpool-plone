@@ -1,3 +1,5 @@
+from docpool.base.config import JOURNAL_FOLDER_ID
+from docpool.base.config import JOURNALENTRY_ID
 from docpool.config.utils import CHILDREN
 from docpool.config.utils import createPloneObjects
 from docpool.config.utils import ID
@@ -638,13 +640,13 @@ DOCTYPES = [
     },
     {
         "title": "Tagebucheintrag",
-        "id": "journalentry",
+        "id": JOURNALENTRY_ID,
         "old_ids": [],
         "behaviors": ["elan"],
         "description": "",
         "icon": "journal",
         "subcategory": "Tagebuch",
-        "subcategory_id": "journal",
+        "subcategory_id": JOURNAL_FOLDER_ID,
         "subcategory_icon": "journal",
         "category": "Ereignis",
         "category_id": "incident",

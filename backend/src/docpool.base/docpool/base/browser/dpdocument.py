@@ -2,6 +2,7 @@ from Acquisition import aq_inner
 from docpool.base import DocpoolMessageFactory as _
 from docpool.base.browser.flexible_view import FlexibleView
 from docpool.base.browser.forms import EditForm
+from docpool.base.config import JOURNALENTRY_ID
 from docpool.base.content.archiving import IArchiving
 from docpool.base.content.dpdocument import IDPDocument
 from docpool.base.content.places import IPlaces
@@ -216,7 +217,7 @@ class AddForm(add.DefaultAddForm):
         if not doctype_object.allowUploads:
             self.widgets["text"].required = True
 
-        if doctype == ["journalentry"]:
+        if doctype == [JOURNALENTRY_ID]:
             title = self.widgets["IDublinCore.title"]
             if not title.value:
                 title.value = str(uuid.uuid4())
