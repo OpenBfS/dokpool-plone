@@ -1,4 +1,5 @@
 from Acquisition import aq_base
+from Acquisition import aq_get
 from zope.component import adapter
 from zope.interface import Attribute
 from zope.interface import implementer
@@ -43,15 +44,23 @@ class PlacesAPI:
         return "/".join(dp.getPhysicalPath()) if (dp := self.document_pool) is not None else None
 
     content_id = "content"
-
-    @property
-    def content_path(self):
-        return "/".join((dpp, self.content_id)) if (dpp := self.document_pool_path) is not None else None
+    content_type = "ContentArea"
 
     @property
     def content(self):
-        return dp[self.content_id] if (dp := self.document_pool) is not None else None
+        # XXX temporarily copied logic from old get_content_area
+        if self.context.portal_type == self.content_type:
+            return self.context
+
+        if content_area := aq_get(self.context, self.content_id, None):
+            if content_area.portal_type == self.content_type:
+                return content_area
+
+    @property
+    def content_path(self):
+        return "/".join(ca.getPhysicalPath()) if (ca := self.content) is not None else None
 
     @property
     def in_content(self):
-        return container_with_portal_type(self.context, "ContentArea") is not None
+        # XXX also look at id?
+        return container_with_portal_type(self.context, self.content_type) is not None
