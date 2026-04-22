@@ -258,7 +258,7 @@
                   <div class="sticky-bottom bg-white py-2 d-flex justify-content-between gap-2">
                     <a class="btn btn-secondary w-50"
                        href="${python: view.reset_url(['startdate', 'starttime', 'enddate', 'endtime'])}"
-                       i18n:domain="zope"
+                       i18n:domain="plone"
                        i18n:translate="reset-button"
                     >
                       <span class="me-1">
@@ -343,7 +343,7 @@
                   <div class="sticky-bottom bg-white py-2 d-flex justify-content-between gap-2">
                     <a class="btn btn-secondary w-50"
                        href="${python: view.reset_url('selected_subcategories')}"
-                       i18n:domain="zope"
+                       i18n:domain="plone"
                        i18n:translate="reset-button"
                     >
                       <span class="me-1">
@@ -419,7 +419,7 @@
                   <div class="sticky-bottom bg-white py-2 d-flex justify-content-between gap-2">
                     <a class="btn btn-secondary w-50"
                        href="${python: view.reset_url('review_states')}"
-                       i18n:domain="zope"
+                       i18n:domain="plone"
                        i18n:translate="reset-button"
                     >
                       <span class="me-1">
@@ -502,7 +502,7 @@
                   <div class="sticky-bottom bg-white py-2 d-flex justify-content-between gap-2">
                     <a class="btn btn-secondary w-50"
                        href="${python: view.reset_url('selected_groups')}"
-                       i18n:domain="zope"
+                       i18n:domain="plone"
                        i18n:translate="reset-button"
                     >
                       <span class="me-1">
@@ -567,7 +567,7 @@
                   <div class="sticky-bottom bg-white py-2 d-flex justify-content-between gap-2">
                     <a class="btn btn-secondary w-50"
                        href="${python: view.reset_url('sort_on')}"
-                       i18n:domain="zope"
+                       i18n:domain="plone"
                        i18n:translate="reset-button"
                     >
                       <span class="me-1">
@@ -633,7 +633,7 @@
                   <div class="sticky-bottom bg-white py-2 d-flex justify-content-between gap-2">
                     <a class="btn btn-secondary w-50"
                        href="${python: view.reset_url('bypass_scenario_filter')}"
-                       i18n:domain="zope"
+                       i18n:domain="plone"
                        i18n:translate="reset-button"
                     >
                       <span class="me-1">
