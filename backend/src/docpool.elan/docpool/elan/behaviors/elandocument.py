@@ -206,6 +206,7 @@ class ELANSpecificSerializeToJsonDPDocument:
         if (scenarios := data.get("scenarios", [])) is not None:
             data["scenario"] = scenarios[0] if scenarios else None
             if len(scenarios) > 1:
-                lines = [f"    {s} {'/'.join(api.content.get(UID=s).getPhysicalPath())}" for s in scenarios]
+                uids = [s["token"] if isinstance(s, dict) else s for s in scenarios]
+                lines = [f"    {s} {'/'.join(api.content.get(UID=s).getPhysicalPath())}" for s in uids]
                 log.warning(f"Multiple scenarios for {self.context.getPhysicalPath()}:\n{'\n'.join(lines)}")
         return data
