@@ -255,23 +255,29 @@
                       />
                     </div>
                   </div>
-                  <div class="d-flex justify-content-between align-items-center mb-2">
-
-                    <div class="d-flex gap-2">
-                      <a class="btn btn-sm btn-outline-secondary"
-                         href="${python: view.reset_url(['startdate', 'starttime', 'enddate', 'endtime'])}"
-                         i18n:domain="zope"
-                         i18n:translate="reset-button"
-                      >Reset</a>
-                      <button class="btn btn-sm btn-primary"
-                              formnovalidate="formnovalidate"
-                              type="submit"
-                              value="submit"
-                              i18n:domain="plone"
-                              i18n:translate=""
-                      >Filter
-                      </button>
-                    </div>
+                  <div class="sticky-bottom bg-white py-2 d-flex justify-content-between gap-2">
+                    <a class="btn btn-secondary w-50"
+                       href="${python: view.reset_url(['startdate', 'starttime', 'enddate', 'endtime'])}"
+                       i18n:domain="zope"
+                       i18n:translate="reset-button"
+                    >
+                      <span class="me-1">
+                        <tal:icon tal:replace="structure python:icons.tag('x-lg')" />
+                      </span>
+                      Reset
+                    </a>
+                    <button class="btn btn-primary w-50"
+                            formnovalidate="formnovalidate"
+                            type="submit"
+                            value="submit"
+                            i18n:domain="plone"
+                            i18n:translate=""
+                    >
+                      <span class="me-1">
+                        <tal:icon tal:replace="structure python:icons.tag('check-lg')" />
+                      </span>
+                      Filter anwenden
+                    </button>
                   </div>
                 </div>
               </div>
@@ -334,23 +340,29 @@
                       </tal:subcategory>
                     </tal:category>
                   </div>
-                  <div class="d-flex justify-content-between align-items-center mb-2">
-
-                    <div class="d-flex gap-2">
-                      <a class="btn btn-sm btn-outline-secondary"
-                         href="${python: view.reset_url('selected_subcategories')}"
-                         i18n:domain="zope"
-                         i18n:translate="reset-button"
-                      >Reset</a>
-                      <button class="btn btn-sm btn-primary"
-                              formnovalidate="formnovalidate"
-                              type="submit"
-                              value="submit"
-                              i18n:domain="plone"
-                              i18n:translate=""
-                      >Filter
-                      </button>
-                    </div>
+                  <div class="sticky-bottom bg-white py-2 d-flex justify-content-between gap-2">
+                    <a class="btn btn-secondary w-50"
+                       href="${python: view.reset_url('selected_subcategories')}"
+                       i18n:domain="zope"
+                       i18n:translate="reset-button"
+                    >
+                      <span class="me-1">
+                        <tal:icon tal:replace="structure python:icons.tag('x-lg')" />
+                      </span>
+                      Reset
+                    </a>
+                    <button class="btn btn-primary w-50"
+                            formnovalidate="formnovalidate"
+                            type="submit"
+                            value="submit"
+                            i18n:domain="plone"
+                            i18n:translate=""
+                    >
+                      <span class="me-1">
+                        <tal:icon tal:replace="structure python:icons.tag('check-lg')" />
+                      </span>
+                      Filter anwenden
+                    </button>
                   </div>
                 </div>
               </div>
@@ -404,23 +416,29 @@
                       </div>
                     </tal:doctypes>
                   </div>
-                  <div class="d-flex justify-content-between align-items-center mb-2">
-
-                    <div class="d-flex gap-2">
-                      <a class="btn btn-sm btn-outline-secondary"
-                         href="${python: view.reset_url('review_states')}"
-                         i18n:domain="zope"
-                         i18n:translate="reset-button"
-                      >Reset</a>
-                      <button class="btn btn-sm btn-primary"
-                              formnovalidate="formnovalidate"
-                              type="submit"
-                              value="submit"
-                              i18n:domain="plone"
-                              i18n:translate=""
-                      >Filter
-                      </button>
-                    </div>
+                  <div class="sticky-bottom bg-white py-2 d-flex justify-content-between gap-2">
+                    <a class="btn btn-secondary w-50"
+                       href="${python: view.reset_url('review_states')}"
+                       i18n:domain="zope"
+                       i18n:translate="reset-button"
+                    >
+                      <span class="me-1">
+                        <tal:icon tal:replace="structure python:icons.tag('x-lg')" />
+                      </span>
+                      Reset
+                    </a>
+                    <button class="btn btn-primary w-50"
+                            formnovalidate="formnovalidate"
+                            type="submit"
+                            value="submit"
+                            i18n:domain="plone"
+                            i18n:translate=""
+                    >
+                      <span class="me-1">
+                        <tal:icon tal:replace="structure python:icons.tag('check-lg')" />
+                      </span>
+                      Filter anwenden
+                    </button>
                   </div>
                 </div>
               </div>
@@ -481,23 +499,29 @@
                       </div>
                     </tal:groups>
                   </div>
-                  <div class="d-flex justify-content-between align-items-center mb-2">
-
-                    <div class="d-flex gap-2">
-                      <a class="btn btn-sm btn-outline-secondary"
-                         href="${python: view.reset_url('selected_groups')}"
-                         i18n:domain="zope"
-                         i18n:translate="reset-button"
-                      >Reset</a>
-                      <button class="btn btn-sm btn-primary"
-                              formnovalidate="formnovalidate"
-                              type="submit"
-                              value="submit"
-                              i18n:domain="plone"
-                              i18n:translate=""
-                      >Filter
-                      </button>
-                    </div>
+                  <div class="sticky-bottom bg-white py-2 d-flex justify-content-between gap-2">
+                    <a class="btn btn-secondary w-50"
+                       href="${python: view.reset_url('selected_groups')}"
+                       i18n:domain="zope"
+                       i18n:translate="reset-button"
+                    >
+                      <span class="me-1">
+                        <tal:icon tal:replace="structure python:icons.tag('x-lg')" />
+                      </span>
+                      Reset
+                    </a>
+                    <button class="btn btn-primary w-50"
+                            formnovalidate="formnovalidate"
+                            type="submit"
+                            value="submit"
+                            i18n:domain="plone"
+                            i18n:translate=""
+                    >
+                      <span class="me-1">
+                        <tal:icon tal:replace="structure python:icons.tag('check-lg')" />
+                      </span>
+                      Filter anwenden
+                    </button>
                   </div>
                 </div>
               </div>
@@ -540,23 +564,29 @@
                       </label>
                     </div>
                   </div>
-                  <div class="d-flex justify-content-between align-items-center mb-2">
-
-                    <div class="d-flex gap-2">
-                      <a class="btn btn-sm btn-outline-secondary"
-                         href="${python: view.reset_url('sort_on')}"
-                         i18n:domain="zope"
-                         i18n:translate="reset-button"
-                      >Reset</a>
-                      <button class="btn btn-sm btn-primary"
-                              formnovalidate="formnovalidate"
-                              type="submit"
-                              value="submit"
-                              i18n:domain="plone"
-                              i18n:translate=""
-                      >Filter
-                      </button>
-                    </div>
+                  <div class="sticky-bottom bg-white py-2 d-flex justify-content-between gap-2">
+                    <a class="btn btn-secondary w-50"
+                       href="${python: view.reset_url('sort_on')}"
+                       i18n:domain="zope"
+                       i18n:translate="reset-button"
+                    >
+                      <span class="me-1">
+                        <tal:icon tal:replace="structure python:icons.tag('x-lg')" />
+                      </span>
+                      Reset
+                    </a>
+                    <button class="btn btn-primary w-50"
+                            formnovalidate="formnovalidate"
+                            type="submit"
+                            value="submit"
+                            i18n:domain="plone"
+                            i18n:translate=""
+                    >
+                      <span class="me-1">
+                        <tal:icon tal:replace="structure python:icons.tag('check-lg')" />
+                      </span>
+                      Filter anwenden
+                    </button>
                   </div>
                 </div>
               </div>
@@ -600,22 +630,29 @@
                       </tal:totalcount>
                     </label>
                   </div>
-                  <div class="d-flex justify-content-between align-items-center mb-2">
-                    <div class="d-flex gap-2">
-                      <a class="btn btn-sm btn-outline-secondary"
-                         href="${python: view.reset_url('bypass_scenario_filter')}"
-                         i18n:domain="zope"
-                         i18n:translate="reset-button"
-                      >Reset</a>
-                      <button class="btn btn-sm btn-primary"
-                              formnovalidate="formnovalidate"
-                              type="submit"
-                              value="submit"
-                              i18n:domain="plone"
-                              i18n:translate=""
-                      >Filter
-                      </button>
-                    </div>
+                  <div class="sticky-bottom bg-white py-2 d-flex justify-content-between gap-2">
+                    <a class="btn btn-secondary w-50"
+                       href="${python: view.reset_url('bypass_scenario_filter')}"
+                       i18n:domain="zope"
+                       i18n:translate="reset-button"
+                    >
+                      <span class="me-1">
+                        <tal:icon tal:replace="structure python:icons.tag('x-lg')" />
+                      </span>
+                      Reset
+                    </a>
+                    <button class="btn btn-primary w-50"
+                            formnovalidate="formnovalidate"
+                            type="submit"
+                            value="submit"
+                            i18n:domain="plone"
+                            i18n:translate=""
+                    >
+                      <span class="me-1">
+                        <tal:icon tal:replace="structure python:icons.tag('check-lg')" />
+                      </span>
+                      Filter anwenden
+                    </button>
                   </div>
                 </div>
               </div>

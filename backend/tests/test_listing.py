@@ -339,7 +339,7 @@ class TestListing:
         page.locator("#listingMobileFiltersToggle").click()
         page.locator("#mobile-listing-tab-entrytype").click()
         section_reset_button = page.locator(
-            "#mobile-listing-pane-entrytype a.btn-outline-secondary", has_text="Reset"
+            "#mobile-listing-pane-entrytype a.btn-secondary", has_text="Reset"
         )
         expect(section_reset_button).to_be_visible()
         href = section_reset_button.get_attribute("href")
