@@ -6,6 +6,7 @@ import registry from "@patternslib/patternslib/src/core/registry";
 const MOBILE_SCROLL_TOP_BREAKPOINT = 991;
 const MOBILE_SCROLL_TOP_OFFSET = 240;
 
+// Initializes the mobile scroll-to-top button behavior.
 function setupMobileScrollTopButton() {
   const button = document.querySelector(".mobile-scroll-top-button");
   if (!button) return;
@@ -30,6 +31,7 @@ function setupMobileScrollTopButton() {
   updateVisibility();
 }
 
+// Initializes off-canvas settings navigation on mobile devices.
 function setupMobileOffcanvasSettingsNavigation() {
   const offcanvasNavbar = document.getElementById("offcanvasNavbar");
   const mainTabTrigger = document.getElementById(
@@ -55,6 +57,7 @@ function setupMobileOffcanvasSettingsNavigation() {
     });
 }
 
+// Initializes mobile filter controls on listing pages.
 function setupListingMobileFilters() {
   const dropdown = document.getElementById("listingMobileFiltersDropdown");
   if (!dropdown) return;
@@ -87,10 +90,46 @@ function setupListingMobileFilters() {
   });
 }
 
+// Initializes desktop listing filter reset interactions.
+function setupListingDesktopFilterResets() {
+  const listingFilters = document.getElementById("listing-filters");
+  if (!listingFilters) return;
+
+  if (listingFilters.dataset.desktopFilterResetBound === "1") {
+    return;
+  }
+  listingFilters.dataset.desktopFilterResetBound = "1";
+
+  const resetIcons = listingFilters.querySelectorAll("[data-filter-reset-url]");
+
+  resetIcons.forEach((resetIcon) => {
+    const navigateToResetUrl = () => {
+      const resetUrl = resetIcon.getAttribute("data-filter-reset-url");
+      if (resetUrl) {
+        window.location.href = resetUrl;
+      }
+    };
+
+    resetIcon.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      navigateToResetUrl();
+    });
+
+    resetIcon.addEventListener("keydown", (event) => {
+      if (!["Enter", " ", "Spacebar"].includes(event.key)) return;
+      event.preventDefault();
+      event.stopPropagation();
+      navigateToResetUrl();
+    });
+  });
+}
+
 function setupHeaderMobileUi() {
   setupMobileScrollTopButton();
   setupMobileOffcanvasSettingsNavigation();
   setupListingMobileFilters();
+  setupListingDesktopFilterResets();
 }
 
 if (document.readyState === "loading") {

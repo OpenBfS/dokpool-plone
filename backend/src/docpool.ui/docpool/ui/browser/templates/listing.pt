@@ -85,7 +85,7 @@
 
           <div class="mx-1 my-0 mt-1 dropdown d-none d-lg-block"
                tal:define="
-                 is_active python: view.startdate or view.starttime or view.enddate or view.endtime;
+                 is_selected python: view.startdate or view.starttime or view.enddate or view.endtime;
                "
                tal:condition="python: 'date' in view.filters"
           >
@@ -95,13 +95,26 @@
                     data-bs-auto-close="outside"
                     data-bs-toggle="dropdown"
                     tal:attributes="
-                      class python: 'btn dropdown-toggle ' + (is_active and 'show' or 'btn-light');
+                      class python: 'btn dropdown-toggle ' + (is_selected and 'selected' or 'btn-light');
                     "
                     i18n:translate=""
             >
-            Time [ME(S)Z]
+              <span class="dp-filter-reset-icon"
+                    role="button"
+                    tabindex="0"
+                    title="Reset filter"
+                    tal:condition="python: is_selected"
+                    tal:attributes="
+                      data-filter-reset-url python: view.reset_url(['startdate', 'starttime', 'enddate', 'endtime']);
+                    "
+                    i18n:attributes="title"
+              >
+                <tal:icon tal:replace="structure python:icons.tag('x-circle-fill')" />
+              </span>
+              <span>Time [ME(S)Z]</span>
+
             </button>
-            <div class="dropdown-menu p-2">
+            <div class="dropdown-menu pt-2 pb-0 px-2">
               <label class="form-label"
                      for="startdate"
                      i18n:translate=""
@@ -150,18 +163,28 @@
                   />
                 </div>
               </div>
-              <a class="btn btn-outline-secondary mt-2"
-                 href="${python: view.reset_url(['startdate', 'starttime', 'enddate', 'endtime'])}"
-                 i18n:domain="zope"
-                 i18n:translate="reset-button"
-              >Reset</a>
-              <button class="btn btn-primary mt-2"
-                      formnovalidate="formnovalidate"
-                      type="submit"
-                      value="submit"
-                      i18n:domain="plone"
-                      i18n:translate=""
-              >Filter</button>
+              <div class="sticky-bottom bg-white py-2 d-flex justify-content-between gap-2">
+                <a class="btn btn-secondary w-50"
+                   href="${python: view.reset_url(['startdate', 'starttime', 'enddate', 'endtime'])}"
+                   i18n:translate=""
+                >
+                  <span class="me-1">
+                    <tal:icon tal:replace="structure python:icons.tag('x-lg')" />
+                  </span>
+                  Reset
+                </a>
+                <button class="btn btn-primary w-50"
+                        formnovalidate="formnovalidate"
+                        type="submit"
+                        value="submit"
+                        i18n:translate=""
+                >
+                  <span class="me-1">
+                    <tal:icon tal:replace="structure python:icons.tag('check-lg')" />
+                  </span>
+                  Filter anwenden
+                </button>
+              </div>
 
             </div>
           </div>
@@ -170,7 +193,7 @@
                tal:define="
                  selected_subcategories python: view.selected_subcategories;
                  categories python: view.doctype_categories;
-                 is_active python: selected_subcategories;
+                 is_selected python: selected_subcategories;
                "
                tal:condition="python: 'entrytype' in view.filters"
           >
@@ -180,11 +203,23 @@
                     data-bs-auto-close="outside"
                     data-bs-toggle="dropdown"
                     tal:attributes="
-                      class python: 'btn dropdown-toggle ' + (is_active and 'show' or 'btn-light');
+                      class python: 'btn dropdown-toggle ' + (is_selected and 'selected' or 'btn-light');
                     "
                     i18n:translate=""
             >
-          Entrytype
+              <span class="dp-filter-reset-icon"
+                    role="button"
+                    tabindex="0"
+                    title="Reset filter"
+                    tal:condition="python: is_selected"
+                    tal:attributes="
+                      data-filter-reset-url python: view.reset_url('selected_subcategories');
+                    "
+                    i18n:attributes="title"
+              >
+                <tal:icon tal:replace="structure python:icons.tag('x-circle-fill')" />
+              </span>
+              <span>Entrytype</span>
             </button>
             <div class="dropdown-menu pt-2 pb-0 px-2 pat-checklist">
               <div class="form-check"
@@ -223,16 +258,24 @@
                 </tal:subcategory>
               </tal:category>
               <div class="sticky-bottom bg-white py-2 d-flex justify-content-between gap-2">
-                <a class="btn btn-outline-secondary"
+                <a class="btn btn-secondary w-50"
                    href="${python: view.reset_url('selected_subcategories')}"
-                   i18n:domain="zope"
-                   i18n:translate="reset-button"
-                >Reset</a>
-                <button class="btn btn-primary"
+                   i18n:translate=""
+                >
+                  <span class="me-1">
+                    <tal:icon tal:replace="structure python:icons.tag('x-lg')" />
+                  </span>
+                  Reset
+                </a>
+                <button class="btn btn-primary w-50"
                         type="submit"
-                        i18n:domain="plone"
                         i18n:translate=""
-                >Filter</button>
+                >
+                  <span class="me-1">
+                    <tal:icon tal:replace="structure python:icons.tag('check-lg')" />
+                  </span>
+                  Filter anwenden
+                </button>
               </div>
             </div>
           </div>
@@ -240,7 +283,7 @@
           <div class="m-1 dropdown d-none d-lg-block"
                tal:define="
                  selected_review_states python: view.selected_review_states;
-                 is_active python: selected_review_states;
+                 is_selected python: selected_review_states;
                "
                tal:condition="python: 'visibility' in view.filters"
           >
@@ -250,13 +293,25 @@
                     data-bs-auto-close="outside"
                     data-bs-toggle="dropdown"
                     tal:attributes="
-                      class python: 'btn dropdown-toggle ' + (is_active and 'show' or 'btn-light');
+                      class python: 'btn dropdown-toggle ' + (is_selected and 'selected' or 'btn-light');
                     "
                     i18n:translate=""
             >
-                Visibility
+              <span class="dp-filter-reset-icon"
+                    role="button"
+                    tabindex="0"
+                    title="Reset filter"
+                    tal:condition="python: is_selected"
+                    tal:attributes="
+                      data-filter-reset-url python: view.reset_url('review_states');
+                    "
+                    i18n:attributes="title"
+              >
+                <tal:icon tal:replace="structure python:icons.tag('x-circle-fill')" />
+              </span>
+              <span>Visibility</span>
             </button>
-            <div class="dropdown-menu p-2">
+            <div class="dropdown-menu pt-2 pb-0 px-2">
               <tal:doctypes tal:repeat="review_state python: view.review_states">
                 <div class="form-check">
                   <input class="form-check-input"
@@ -281,17 +336,25 @@
                   </label>
                 </div>
               </tal:doctypes>
-              <div class="d-flex justify-content-between gap-2 mt-1">
-                <a class="btn btn-outline-secondary"
+              <div class="sticky-bottom bg-white py-2 d-flex justify-content-between gap-2">
+                <a class="btn btn-secondary w-50"
                    href="${python: view.reset_url('review_states')}"
-                   i18n:domain="zope"
-                   i18n:translate="reset-button"
-                >Reset</a>
-                <button class="btn btn-primary"
+                   i18n:translate=""
+                >
+                  <span class="me-1">
+                    <tal:icon tal:replace="structure python:icons.tag('x-lg')" />
+                  </span>
+                  Reset
+                </a>
+                <button class="btn btn-primary w-50"
                         type="submit"
-                        i18n:domain="plone"
                         i18n:translate=""
-                >Filter</button>
+                >
+                  <span class="me-1">
+                    <tal:icon tal:replace="structure python:icons.tag('check-lg')" />
+                  </span>
+                  Filter anwenden
+                </button>
               </div>
             </div>
           </div>
@@ -300,7 +363,7 @@
                tal:define="
                  selected_groups python: view.selected_groups;
                  groups python: view.groups;
-                 is_active python: selected_groups;
+                 is_selected python: selected_groups;
                "
                tal:condition="python: not view.folder_listing and 'group' in view.filters"
           >
@@ -310,11 +373,23 @@
                     data-bs-auto-close="outside"
                     data-bs-toggle="dropdown"
                     tal:attributes="
-                      class python: 'btn dropdown-toggle ' + (is_active and 'show' or 'btn-light');
+                      class python: 'btn dropdown-toggle ' + (is_selected and 'selected' or 'btn-light');
                     "
                     i18n:translate=""
             >
-          Group
+              <span class="dp-filter-reset-icon"
+                    role="button"
+                    tabindex="0"
+                    title="Reset filter"
+                    tal:condition="python: is_selected"
+                    tal:attributes="
+                      data-filter-reset-url python: view.reset_url('selected_groups');
+                    "
+                    i18n:attributes="title"
+              >
+                <tal:icon tal:replace="structure python:icons.tag('x-circle-fill')" />
+              </span>
+              <span>Group</span>
             </button>
             <div class="dropdown-menu pt-2 pb-0 px-2 pat-checklist">
               <div class="form-check"
@@ -348,28 +423,41 @@
                 </div>
               </tal:groups>
               <div class="sticky-bottom bg-white py-2 d-flex justify-content-between gap-2">
-                <a class="btn btn-outline-secondary"
+                <a class="btn btn-secondary w-50"
                    href="${python: view.reset_url('selected_groups')}"
-                   i18n:domain="zope"
-                   i18n:translate="reset-button"
-                >Reset</a>
-                <button class="btn btn-primary"
+                   i18n:translate=""
+                >
+                  <span class="me-1">
+                    <tal:icon tal:replace="structure python:icons.tag('x-lg')" />
+                  </span>
+                  Reset
+                </a>
+                <button class="btn btn-primary w-50"
                         type="submit"
-                        i18n:domain="plone"
                         i18n:translate=""
-                >Filter</button>
+                >
+                  <span class="me-1">
+                    <tal:icon tal:replace="structure python:icons.tag('check-lg')" />
+                  </span>
+                  Filter anwenden
+                </button>
               </div>
             </div>
           </div>
-          <div class="m-1"
+          <div class="m-1 dp-listing-search"
+               tal:define="
+                 is_selected python: view.searchable_text;
+               "
                tal:condition="python: 'text' in view.filters"
           >
-            <div class="input-group"
-                 tal:define="
-                   is_active python: view.searchable_text;
-                 "
-            >
-              <input class="form-control"
+            <div class="input-group">
+              <span class="input-group-text bg-body text-primary border-end-0"
+                    aria-hidden="true"
+              >
+                <tal:icon tal:replace="structure python:icons.tag('search')" />
+              </span>
+
+              <input class="form-control border-start-0"
                      aria-label="Search"
                      autocomplete="off"
                      name="searchable_text"
@@ -377,25 +465,23 @@
                      type="text"
                      tal:attributes="
                        value python: view.searchable_text or nothing;
-                       class python: 'form-control ' + (is_active and 'border-primary' or '');
+                       class python: 'form-control border-start-0 ' + (is_selected and 'border-primary' or '');
                      "
                      i18n:attributes="placeholder"
                      i18n:translate=""
               />
-              <button class="btn border-light-subtle btn-light btn-icon d-none d-lg-block"
-                      type="submit"
-                      tal:attributes="
-                        class python: 'btn btn-icon d-none d-lg-block ' + (is_active and 'btn-primary' or 'btn-light border-light-subtle');
-                      "
-              >
-                <tal:icon tal:replace="structure python:icons.tag('search', tag_alt='Search')" />
-              </button>
+
+              <a class="btn btn-light border border-start-0 dp-search-reset"
+                 href="${python: view.reset_url('searchable_text')}"
+                 title="Reset search"
+                 i18n:attributes="title"
+              >&times;</a>
             </div>
           </div>
 
           <div class="m-1 me-3 dropdown d-none d-lg-block"
                tal:define="
-                 is_active python: view.sort_on != list(view.sort_on_options.keys())[0];
+                 is_selected python: view.sort_on != list(view.sort_on_options.keys())[0];
                "
           >
             <button class="btn btn-icon dropdown-toggle"
@@ -405,7 +491,7 @@
                     data-bs-auto-close="outside"
                     data-bs-toggle="dropdown"
                     tal:attributes="
-                      class python: 'btn btn-icon dropdown-toggle ' + (is_active and 'btn-primary' or 'btn-light');
+                      class python: 'btn btn-icon dropdown-toggle btn-light ' + (is_selected and 'active' or '');
                     "
                     i18n:attributes="title"
             >
