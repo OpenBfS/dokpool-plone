@@ -22,7 +22,7 @@
               data-bs-display="static"
               data-bs-toggle="dropdown"
               tal:attributes="
-                class python: 'btn btn-icon dropdown-toggle listing-mobile-filter-toggle d-block d-lg-none ' + (is_any_active and 'btn-primary' or 'btn-light');
+                class python: 'btn btn-icon dropdown-toggle listing-mobile-filter-toggle d-block d-lg-none ' + (is_any_active and 'selected' or 'btn-light');
               "
               i18n:attributes="title"
       >
