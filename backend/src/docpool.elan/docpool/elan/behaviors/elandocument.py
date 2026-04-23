@@ -27,6 +27,11 @@ from zope.interface import named
 from zope.interface import provider
 from zope.schema.interfaces import IContextAwareDefaultFactory
 
+import logging
+
+
+log = logging.getLogger(__name__)
+
 
 elan_only = app_only_decorator(ELAN_APP)
 
@@ -196,3 +201,12 @@ class ELANSpecificSerializeToJsonDPDocument:
             if brains := api.content.find(UID=uid):
                 result["scenario_ids"] = [brains[0].id]
         return result
+
+    def receive(self, data):
+        if "scenarios" in data:
+            data["scenario"] = (scenarios := data["scenarios"])[0]
+            if len(scenarios) > 1:
+                uids = [s["token"] if isinstance(s, dict) else s for s in scenarios]
+                lines = [f"    {s} {'/'.join(api.content.get(UID=s).getPhysicalPath())}" for s in uids]
+                log.warning(f"Multiple scenarios for {self.context.getPhysicalPath()}:\n{'\n'.join(lines)}")
+        return data
