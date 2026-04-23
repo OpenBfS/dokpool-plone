@@ -8983,6 +8983,9 @@
         "bund_ELANUsers": [
           "ELANUser"
         ],
+        "bund_EventEditors": [
+          "EventEditor"
+        ],
         "bund_Members": [
           "Reader"
         ],
