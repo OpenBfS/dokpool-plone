@@ -41,7 +41,7 @@
                 >
                   <input class="form-check-input"
                          name="dpevent"
-                         type="checkbox"
+                         type="radio"
                          tal:attributes="
                            value python: dpevent.UID;
                            title python: dpevent.Title;
