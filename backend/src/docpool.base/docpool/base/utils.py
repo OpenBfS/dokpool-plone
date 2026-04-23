@@ -388,7 +388,9 @@ def is_contentadmin(context):
     if is_admin(context):
         return True
     groups = api.user.get_current().getGroups()
-    return any("ContentAdministrators" in g for g in groups)
+    docpool = getDocumentPoolSite(context)
+    prefix = docpool.prefix or docpool.id
+    return any(f"{prefix}_ContentAdministrators" in g for g in groups)
 
 
 def is_individual(context):

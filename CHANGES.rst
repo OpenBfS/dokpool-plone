@@ -26,6 +26,8 @@ Fixed:
 
 - Missed a change of index to filter on when switching to single scenario per document (#6487)
   [tlotze]
+- Stop ContentAdmins from seeing actions in dokpools other than their own by fixing condition in is_contentadmin. (#6516)
+  [pbauer]
 
 
 2.5.0 (2026-02-16)
