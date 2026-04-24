@@ -65,12 +65,12 @@
 
       <dl class="doc_metadata">
         <tal:scns define="
-                    scns elanobj/getScenarioNames|nothing;
+                    scn elanobj/getScenarioName|nothing;
                   "
-                  condition="scns"
+                  condition="scn"
         >
           <dt i18n:translate="">Belongs to scenario:</dt>
-          <dd tal:content="python:', '.join(scns)"></dd>
+          <dd>${scn}</dd>
         </tal:scns>
         <tal:cat define="
                    cat elanobj/category;

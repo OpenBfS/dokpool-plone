@@ -1,22 +1,64 @@
 Changelog
 =========
 
+2.6.0 (2026-04-24)
+------------------
+
+Changed:
+
+- ELAN documents can be associated with at most one scenario. (#6430)
+  [tlotze]
+
+- Change doctypes widget in group properties form to OrderedSelectWidget. (#6475)
+  [tlotze]
+
+- Rename Nutzer to Benutzer. (#5757)
+  [pbauer]
+
+
+Fixed:
+
+- Handle an edge case where transfer logs would break.
+  [tlotze]
+
+- Stop ContentAdmins from seeing actions in dokpools other than their own by fixing condition in is_contentadmin. (#6516)
+  [pbauer]
+
+- Fix handling of unset doctypePermissions. (#5779)
+  [tlotze]
+
+- Edit/Add Events Actions: Check for local role instead of global role EventEditor. (#6516)
+  [pbauer]
+
+
+Technical:
+
+- Handle src checkouts that aren't installed in update_locales.py.
+  [tlotze]
+
+- Modernize build piplene from shell docker build to dind builds. (#6301)
+  [slindner]
+
+- Move scenario_ids serializer to docpool.elan. (#6447)
+  [tlotze]
+
+
 2.5.0 (2026-02-16)
 ------------------
 
 Changed:
 
-- Rename Messauftrag to Messempfehlung (#6281) 
+- Rename Messauftrag to Messempfehlung (#6281)
   [pbauer]
 
 - Rename Dokumentensammlung to Kategorie (#5751)
   [pbauer]
 
-- Rename Dokument to Eintrag (#5744) 
+- Rename Dokument to Eintrag (#5744)
   [pbauer]
 
 - Update demo content (#6237)
-  [pbauer] 
+  [pbauer]
 
 
 Fixed:
@@ -51,16 +93,16 @@ Fixed:
 - Add upgrade-step to set missing intids to all comments to fix deleting archives (#6374)
   [pbauer]
 
-- When using groups-overview in docpool, link to group- and usermanagement of that docpool (#6243) 
+- When using groups-overview in docpool, link to group- and usermanagement of that docpool (#6243)
   [pbauer]
 
-- Check if doctype is allowed before pasting DPDocuments (#5849) 
-  [pbauer] 
-
-- Only show current username in @@change-password (#5763) 
+- Check if doctype is allowed before pasting DPDocuments (#5849)
   [pbauer]
 
-- Set correct pdf and image patterns for demo-content (#6382) 
+- Only show current username in @@change-password (#5763)
+  [pbauer]
+
+- Set correct pdf and image patterns for demo-content (#6382)
   [pbauer]
 
 

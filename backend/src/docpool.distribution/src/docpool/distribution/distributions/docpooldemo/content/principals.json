@@ -715,9 +715,7 @@
       "principals": [
         "user-ministerium"
       ],
-      "roles": [
-        "EventEditor"
-      ],
+      "roles": [],
       "title": "Event Editors (Bund)"
     },
     {

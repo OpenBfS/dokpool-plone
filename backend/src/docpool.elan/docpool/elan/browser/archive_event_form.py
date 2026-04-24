@@ -149,7 +149,7 @@ class ArchiveAndClose(BrowserView):
         )
         for index, brain in enumerate(brains, start=1):
             obj = brain.getObject()
-            if self.context.UID() not in IELANDocument(obj).scenarios:
+            if self.context.UID() != IELANDocument(obj).scenario:
                 # If the object is not part of the current event, the index is wrong and we skip it
                 logger.info("Skipping %s since it is not part of the current event", obj.absolute_url())
                 continue
@@ -228,15 +228,9 @@ class ArchiveAndClose(BrowserView):
         return new
 
     def can_move(self, obj):
-        try:
-            scns = IELANDocument(obj).scenarios
-        except BaseException:
-            # Object could have lost its ELAN behavior but that means we can
-            # potentially delete it
-            scns = ["dummy"]
         # Ignore duplicates!
         apps = set(ILocalBehaviorSupport(obj).local_behaviors)
-        return bool(len(scns) == 1 and len(apps) == 1)
+        return len(apps) == 1
 
     def _move_to_archive(self, target_folder_obj, obj):
         logger.info(
@@ -265,9 +259,9 @@ class ArchiveAndClose(BrowserView):
                 api.content.transition(moved_obj, to_state=old_state)
 
         # Now do some repairs
-        moved_obj.scenarios = []
+        moved_obj.scenario = None
         moved_obj.setModificationDate(mdate)
-        moved_obj.reindexObject(idxs=["modified", "review_state", "scenarios"])
+        moved_obj.reindexObject(idxs=["modified", "review_state", "scenario"])
 
     def _copy_to_archive(self, target_folder_obj, obj):
         logger.info(
@@ -281,7 +275,7 @@ class ArchiveAndClose(BrowserView):
 
         # Now do some repairs
         mdate = obj.modified()
-        copied_obj.scenarios = []
+        copied_obj.scenario = None
 
         old_state = api.content.get_state(obj)
         new_state = api.content.get_state(copied_obj)
@@ -300,27 +294,25 @@ class ArchiveAndClose(BrowserView):
                 api.content.transition(copied_obj, to_state=old_state)
 
         copied_obj.setModificationDate(mdate)
-        copied_obj.reindexObject(idxs=["modified", "review_state", "scenarios"])
+        copied_obj.reindexObject(idxs=["modified", "review_state", "scenario"])
 
         # Cleanup original DPDocument
         # 1. Remove current scenario
-        scns = IELANDocument(obj).scenarios
-        # Drop duplicates
-        scns = list(set(scns))
-        scns.remove(self.context.UID())
-        obj.scenarios = scns
+        obj.scenario = None
 
-        # 2. Remove elan behavior if there are no other events but other behaviors
-        if not scns:
-            apps = ILocalBehaviorSupport(obj).local_behaviors
-            if len(apps) > 1:
-                # There are others --> only remove ELAN behavior
-                try:
-                    apps.remove(ELAN_APP)
-                    ILocalBehaviorSupport(obj).local_behaviors = list(set(apps))
-                except Exception as e:
-                    log_exc(e)
-        obj.reindexObject(idxs=["apps_supported", "scenarios"])
+        # 2. Remove elan behavior altogether if there are other behaviors
+        apps = ILocalBehaviorSupport(obj).local_behaviors
+        if len(apps) > 1:
+            # There are others --> only remove ELAN behavior
+            try:
+                apps.remove(ELAN_APP)
+                ILocalBehaviorSupport(obj).local_behaviors = list(set(apps))
+            except Exception as e:
+                log_exc(e)
+            else:
+                del obj.scenario
+
+        obj.reindexObject(idxs=["apps_supported", "scenario"])
 
     def _getDocumentsForScenario(self, **kwargs):
         """
@@ -329,7 +321,7 @@ class ArchiveAndClose(BrowserView):
         """
         args = {
             "portal_type": "DPDocument",
-            "scenarios": self.context.UID(),
+            "scenario": self.context.UID(),
             "sort_on": "sortable_title",
         }
         args.update(kwargs)
@@ -402,7 +394,7 @@ class Snapshot(ArchiveAndClose):
         )
         for index, brain in enumerate(brains, start=1):
             obj = brain.getObject()
-            if self.context.UID() not in IELANDocument(obj).scenarios:
+            if self.context.UID() != IELANDocument(obj).scenario:
                 # If the object is not part of the current event, the index is wrong and we skip it
                 logger.info("Skipping %s since it is not part of the current event", obj.absolute_url())
                 continue

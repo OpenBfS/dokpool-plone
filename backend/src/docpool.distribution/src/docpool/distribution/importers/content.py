@@ -28,7 +28,7 @@ SIMPLE_SETTER_FIELDS = {
     "ALL": [],
     "CollaborationFolder": ["allowedDocTypes", "allowedPartnerDocTypes"],
     "DocType": ["automaticTransferTargets"],
-    "DPDocument": ["scenarios", "OperationMode", "Origins"],
+    "DPDocument": ["scenario", "OperationMode", "Origins"],
     "DPEvent": ["Status"],
     "DPTransferFolder": ["sendingESD"],
     "Folder": ["nextPreviousEnabled"],
@@ -179,7 +179,7 @@ def global_obj_hook(item, obj):
         obj.transfer_sender_log = log
 
     if obj.portal_type == "DPTransferFolder":
-        if not obj.doctypePermissions:
+        if obj.doctypePermissions is None:
             obj.doctypePermissions = PersistentMapping()
 
     return obj

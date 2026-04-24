@@ -37,10 +37,7 @@
   "modified_by": "User BE (Berlin) <i>Landesministerium (Berlin)</i>",
   "review_state": "published",
   "rights": null,
-  "scenarios": [
-    "0bb1834242c24743b5aa1a1a8852c40d"
-  ],
-  "scenarios_to_keep": [],
+  "scenario": "0bb1834242c24743b5aa1a1a8852c40d",
   "subjects": [],
   "text": {
     "content-type": "text/html",

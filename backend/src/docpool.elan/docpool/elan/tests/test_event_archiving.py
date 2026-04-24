@@ -102,8 +102,8 @@ class TestDPEventArchivingWithBrowser(unittest.TestCase):
 
             # Link document to event using UID
             event_uid = self.test_event.UID()
-            document.scenarios = [event_uid]
-            document.reindexObject(idxs=["scenarios"])
+            document.scenario = event_uid
+            document.reindexObject(idxs=["scenario"])
 
             documents.append(document)
 
@@ -290,119 +290,6 @@ class TestDPEventArchivingWithBrowser(unittest.TestCase):
                 )
                 break  # Found at least one document with correct behavior
 
-    def test_archive_with_multi_event_documents(self):
-        """Test archiving where 20 documents are assigned to multiple events (should be copied, not moved)."""
-        # Create a second event for testing multi-event documents
-        second_event = api.content.create(
-            container=self.scenario_container,
-            type="DPEvent",
-            id="second_test_event",
-            title="Second Test Event",
-            description="Second event for multi-event document testing",
-        )
-
-        # Get the groups folder for document creation
-        groups_folder = self.test_docpool.content.Groups
-        group_folder = list(groups_folder.objectValues())[0]
-
-        # Allow docType for Group and User
-        api.group.add_user(groupname=group_folder.id, username=TEST_USER_NAME)
-        group = group_folder.getGroupOfFolder()
-        group.setGroupProperties({"allowedDocTypes": ["weatherinformation"]})
-
-        # Create 20 documents assigned to multiple events
-        multi_event_documents = []
-
-        for i in range(20):
-            document = api.content.create(
-                container=group_folder,
-                type="DPDocument",
-                id=f"multi_event_doc_{i}",
-                title=f"Multi-Event Document {i + 1}",
-                text=RichTextValue(f"<p>Multi-event content {i + 1}</p>", "text/html", "text/x-html-safe"),
-                docType="weatherinformation",
-            )
-
-            # Assign ELAN behavior
-            from docpool.base.localbehavior.localbehavior import LocalBehaviorSupport
-
-            adapter = LocalBehaviorSupport(document)
-            adapter.local_behaviors = ["elan"]
-
-            # Set different workflow states (about half published, half private)
-            if i % 2 == 0:
-                api.content.transition(obj=document, transition="publish")
-
-            # Assign to BOTH events (this should trigger copying instead of moving)
-            event1_uid = self.test_event.UID()
-            event2_uid = second_event.UID()
-            document.scenarios = [event1_uid, event2_uid]
-            document.reindexObject(idxs=["scenarios"])
-
-            multi_event_documents.append(document)
-
-        # Archive the first event (documents should be copied, not moved)
-        archive_view = self.test_event.restrictedTraverse("@@archiveAndClose")
-        # Render form first
-        archive_view()
-        # Submit form
-        self.layer["request"].form = {"form.button.submit": True}
-        archive_view()
-
-        # Check archive was created
-        archive_container = self.test_docpool.archive
-        archive_folders = [
-            obj for obj in archive_container.objectValues() if obj.portal_type == "ELANArchive"
-        ]
-
-        self.assertGreater(len(archive_folders), 0)
-
-        # Find archived documents (should be copies)
-        archive_folder = archive_folders[0]
-        archived_docs = []
-        if hasattr(archive_folder, "content") and hasattr(archive_folder.content, "Groups"):
-            groups_folder = archive_folder.content.Groups
-            for group_folder in groups_folder.objectValues():
-                for obj in group_folder.objectValues():
-                    if obj.portal_type == "DPDocument" and "multi_event_doc" in obj.getId():
-                        archived_docs.append(obj)
-
-        # Should have copies of all 20 multi-event documents
-        self.assertEqual(len(archived_docs), 20, "All 20 multi-event documents should be copied to archive")
-
-        # Verify original documents still exist (because they were copied, not moved)
-        original_docs_still_exist = 0
-        for doc in multi_event_documents:
-            try:
-                # Try to access the original document
-                doc.Title()  # This will raise an error if document was moved/deleted
-                original_docs_still_exist += 1
-            except:
-                pass
-
-        self.assertEqual(
-            original_docs_still_exist,
-            20,
-            "All original multi-event documents should still exist (copied, not moved)",
-        )
-
-        # Verify copied documents have scenarios field cleared
-        for archived_doc in archived_docs:
-            scenarios = getattr(archived_doc, "scenarios", [])
-            self.assertEqual(scenarios, [], "Archived documents should have empty scenarios")
-
-        # Verify original documents still have the second event assigned
-        for doc in multi_event_documents:
-            scenarios = getattr(doc, "scenarios", [])
-            self.assertIn(
-                second_event.UID(), scenarios, "Original documents should still be assigned to second event"
-            )
-            self.assertNotIn(
-                self.test_event.UID(),
-                scenarios,
-                "Original documents should have first event removed from scenarios",
-            )
-
     def test_archive_documents_workflow_state_preservation(self):
         """Test that documents in different workflow states maintain their states after archiving."""
         # Create additional documents with specific workflow states for detailed testing
@@ -444,8 +331,8 @@ class TestDPEventArchivingWithBrowser(unittest.TestCase):
 
                 # Link to event
                 event_uid = self.test_event.UID()
-                document.scenarios = [event_uid]
-                document.reindexObject(idxs=["scenarios"])
+                document.scenario = event_uid
+                document.reindexObject(idxs=["scenario"])
 
                 # Store for verification
                 original_state = api.content.get_state(document)
@@ -709,8 +596,8 @@ class TestDPEventArchivingEdgeCases(unittest.TestCase):
 
         # Link to event
         event_uid = test_event.UID()
-        plain_doc.scenarios = [event_uid]
-        plain_doc.reindexObject(idxs=["scenarios"])
+        plain_doc.scenario = event_uid
+        plain_doc.reindexObject(idxs=["scenario"])
 
         transaction.commit()
 

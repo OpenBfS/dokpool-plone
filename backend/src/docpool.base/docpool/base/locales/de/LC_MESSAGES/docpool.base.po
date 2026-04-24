@@ -381,7 +381,7 @@ msgstr "Revidiert"
 
 #: docpool.base/docpool/base/browser/sharing.py
 msgid "Search for user or group"
-msgstr "Nach Nutzern oder Gruppen suchen"
+msgstr "Nach Benutzern oder Gruppen suchen"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "Select a value ..."
@@ -525,15 +525,15 @@ msgstr ""
 
 #: docpool.base/docpool/base/profiles/default/types/UserFolder.xml
 msgid "User Folder"
-msgstr "Nutzerordner"
+msgstr "Benutzerordner"
 
 #: docpool.base/docpool/base/profiles/default/actions.xml
 msgid "User Management"
-msgstr "Nutzerverwaltung"
+msgstr "Benutzerverwaltung"
 
 #: docpool.base/docpool/base/profiles/default/types/Users.xml
 msgid "Users Area"
-msgstr "Nutzerbereich"
+msgstr "Benutzerbereich"
 
 #: docpool.base/docpool/base/profiles/default/types/CollaborationFolder.xml
 #: docpool.base/docpool/base/profiles/default/types/ContentArea.xml
@@ -699,7 +699,7 @@ msgstr ""
 #. Default: "Will be used to construct user and group names. If left blank, the id of the ESD will be used. "
 #: docpool.base/docpool/base/content/documentpool.py
 msgid "description_documentpool_prefix"
-msgstr "Wird genutzt, um Nutzer- und Gruppennamen zu bilden. Bleibt dieses Feld leer, wird der Kurzname des DokPools genutzt."
+msgstr "Wird genutzt, um Benutzer- und Gruppennamen zu bilden. Bleibt dieses Feld leer, wird der Kurzname des DokPools genutzt."
 
 #: docpool.base/docpool/base/content/documentpool.py
 msgid "description_documentpool_supportedapps"
@@ -846,7 +846,7 @@ msgstr "Erzeugt von"
 #. Default: "Date of last user action"
 #: docpool.base/docpool/base/content/contentbase.py
 msgid "label_contentbase_mdate"
-msgstr "Datum der letzten Nutzeraktion"
+msgstr "Datum der letzten Benutzeraktion"
 
 #. Default: "Modified by"
 #: docpool.base/docpool/base/content/contentbase.py
@@ -1026,7 +1026,7 @@ msgstr "Transferziele"
 #. Default: "Applications"
 #: docpool.base/docpool/base/users/personalpreferences.py
 msgid "label_user_apps"
-msgstr "Anwendungen des Nutzers"
+msgstr "Anwendungen des Benutzers"
 
 #. Default: "DocPool"
 #: docpool.base/docpool/base/users/userdataschema.py
