@@ -9,7 +9,7 @@ Changed:
 - ELAN documents can be associated with at most one scenario. (#6430)
   [tlotze]
 
-- Add Cancel button and better doctypes widget to group details form. (#6475)
+- Change doctypes widget in group properties form to OrderedSelectWidget. (#6475)
   [tlotze]
 
 - Rename Nutzer to Benutzer. (#5757)
