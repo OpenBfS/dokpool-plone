@@ -1,4 +1,5 @@
 from docpool.base.config import FOLDER_TYPES
+from docpool.base.config import JOURNALENTRY_ID
 from docpool.base.content.archiving import IArchiving
 from docpool.base.content.places import IPlaces
 from docpool.base.marker import IJournalContainerMarker
@@ -27,7 +28,7 @@ class JournalEntries(Listing):
     ]
 
     def update(self):
-        self.query["dp_type"] = ["journalentry"]
+        self.query["dp_type"] = [JOURNALENTRY_ID]
 
         self.journal_title = self.request.form.get("journal_title", False)
         journal_folder_uid = self.request.form.get("journal_folder_uid")
@@ -52,7 +53,7 @@ class JournalEntries(Listing):
                 type="DPDocument",
                 title=title,
                 text=RichTextValue(text, "text/html", "text/x-html-safe"),
-                docType="journalentry",
+                docType=JOURNALENTRY_ID,
                 local_behaviors=["elan"],
                 scenario=self.base_query["scenario"],
             )

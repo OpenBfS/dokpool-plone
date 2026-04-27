@@ -36,3 +36,6 @@ OTHER_TYPES = [
     "News Item",
     "Text",
 ]
+
+JOURNAL_FOLDER_ID = "journal"
+JOURNALENTRY_ID = "journalentry"
