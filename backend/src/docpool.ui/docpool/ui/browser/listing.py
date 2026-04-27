@@ -244,6 +244,7 @@ class Listing(BrowserView):
                 folder_query = {
                     "portal_type": "GroupFolder",
                     "sort_on": "getObjPositionInParent",
+                    "active_apps": self.active_apps,
                 }
                 for brain in api.content.find(context=self.context, **folder_query):
                     try:
