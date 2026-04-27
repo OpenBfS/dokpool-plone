@@ -12,7 +12,7 @@
                    folder_uids python: view.folder_uids;
                    other_uids python: view.other_uids;
                    icons python: context.restrictedTraverse('@@iconresolver');
-                   show_scenario_filter_switch python: 'elan' in view.active_apps and view.folder_listing;
+                   show_scenario_filter_switch python: view.show_scenario_filter_switch;
                  "
   >
 

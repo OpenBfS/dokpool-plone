@@ -85,6 +85,10 @@ class Listing(BrowserView):
             if event := get_scenario_for_current_user():
                 self.base_query["scenario"] = event
 
+        self.show_scenario_filter_switch = False
+        if self.folder_listing and ELAN_APP in self.active_apps and self.context.portal_type != "Groups":
+            self.show_scenario_filter_switch = True
+
         # Filter by Category
         self.selected_subcategories = form.get("selected_subcategories") or []
         if self.selected_subcategories:
