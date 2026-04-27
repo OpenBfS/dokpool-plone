@@ -34,7 +34,7 @@
                   <tal:var replace="uinfo" />
                   <br />
                   <em><tal:var replace="python:toLocalizedTime(date, long_format=1)" />
-                  (<tal:var i18n:translate="">LT</tal:var>)></em>
+                  (<tal:var i18n:translate="">LT</tal:var>)</em>
                 </span>
               </td>
               <td tal:define="

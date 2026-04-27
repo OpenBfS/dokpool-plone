@@ -123,10 +123,9 @@ class ContentBase:
         """ """
         cdate = self.CreationDate()
         mdate = self.mdate
-        cby = self.formatUserInfo(self.created_by)
-        mby = self.formatUserInfo(self.modified_by)
-
-        if (not any(mby)) or show_created:
+        mby = self.formatUserInfo(self.modified_by) if self.modified_by else None
+        cby = self.formatUserInfo(self.created_by) if self.created_by else None
+        if not mby or show_created:
             return cdate, cby
         else:
             return mdate, mby
