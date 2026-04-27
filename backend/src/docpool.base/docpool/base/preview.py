@@ -22,6 +22,8 @@ logger = getLogger(__name__)
 
 ANNOTATION_KEY = "docpool.preview_image"
 
+ALLOWED_TYPES = ["DPDocument", "InfoDocument"]
+
 ALLOWED = ["application/pdf"]
 
 SCALES = [
@@ -98,7 +100,7 @@ def generate_preview_image_on_modified(obj, event=None):
 def generate_preview_image(obj):
     """ """
     # Check if parent is DPDocument and the File has a file
-    if obj.__parent__.portal_type != "DPDocument" or not obj.file:
+    if obj.__parent__.portal_type not in ALLOWED_TYPES or not obj.file:
         return
 
     # Check if we can generate preview from this mime_type
