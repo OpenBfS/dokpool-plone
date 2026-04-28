@@ -54,6 +54,7 @@
             isRTL portal_state/is_rtl;
             sl python:plone_layout.have_portlets('plone.leftcolumn', view);
             sr python:plone_layout.have_portlets('plone.rightcolumn', view);
+            can_manage_portal python:checkPermission('Manage portal', context);
             body_class python:plone_layout.bodyClass(template, view);
           "
           tal:attributes="
@@ -63,7 +64,8 @@
           "
     >
 
-      <div tal:replace="structure provider:plone.toolbar"></div>
+      <div tal:condition="python:can_manage_portal"
+           tal:replace="structure provider:plone.toolbar"></div>
 
       <header class="sticky-top"
               id="portal-top"
