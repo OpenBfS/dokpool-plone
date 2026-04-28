@@ -16,12 +16,12 @@
   <include package=".viewlets" />
 
   <browser:page
-    name="plone_layout"
-    for="*"
-    class=".layout.DocpoolLayoutPolicy"
-    permission="zope2.View"
-    layer="docpool.ui.interfaces.IUITheme"
-  />
+      name="plone_layout"
+      for="*"
+      class=".layout.DocpoolLayoutPolicy"
+      permission="zope2.View"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
 
   <browser:page
       name="main_template"
