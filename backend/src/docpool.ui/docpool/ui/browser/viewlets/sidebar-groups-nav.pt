@@ -1,0 +1,23 @@
+<div class="sidebar align-items-center"
+     tal:condition="python:not context.restrictedTraverse('@@plone_portal_state').anonymous()"
+>
+
+  <nav class="w-100 align-items-center">
+    <ul class="nav nav-pills d-flex flex-row flex-nowrap flex-xl-column align-items-center w-100">
+
+
+      <li class="nav-item flex-fill">
+        <a class="nav-link d-flex flex-column align-items-center justify-content-center text-decoration-none"
+           tal:attributes="
+             href string:${view/base_url};
+           "
+        >
+
+          <span class="icon-24 d-flex align-items-center justify-content-center mb-2">
+          </span>
+          <span class="label text-center">Chronologie</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>

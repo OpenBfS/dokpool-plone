@@ -17,12 +17,14 @@ class ISidebarAppSpecificManager(IViewletManager):
 
 class SidebarViewlet(common.ViewletBase):
     index = ViewPageTemplateFile("sidebar.pt")
+    groups_nav = ViewPageTemplateFile("sidebar-groups-nav.pt")
 
     def render(self):
         # XXX Paths shouldn't be hard-coded. Maybe add a property to folders or introduce a behavior.
+        if is_in_dp_folder(self.context, "content/Groups"):
+            return self.groups_nav()
         if is_in_dp_folder(
             self.context,
-            "content/Groups",
             "content/Transfers",
             "hintergrundinfos-ns",
         ):
