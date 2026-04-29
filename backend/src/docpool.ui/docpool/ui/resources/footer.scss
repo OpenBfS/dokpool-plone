@@ -1,11 +1,15 @@
 
 body.plone-toolbar-left-expanded .footer-tz-table {
-  left: var(--plone-toolbar-width);
+  left: var(--plone-toolbar-width) !important;
+}
+
+body.plone-toolbar-left .footer-tz-table {
+  left: var(--plone-toolbar-width-collapsed);
 }
 
 .footer-tz-table {
   position: fixed;
-  left: var(--plone-toolbar-width-collapsed);
+  left: 0;
   right: 16px;
   bottom: 16px;
   z-index: 1000;

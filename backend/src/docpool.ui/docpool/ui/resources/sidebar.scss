@@ -4,7 +4,11 @@
 
 
 body.plone-toolbar-left-expanded .sidebar {
-  left: var(--plone-toolbar-width);
+  left: var(--plone-toolbar-width) !important;
+}
+
+body.plone-toolbar-left .sidebar {
+  left: var(--plone-toolbar-width-collapsed);
 }
 
 @include media-breakpoint-up(xl) {
@@ -18,7 +22,7 @@ body.plone-toolbar-left-expanded .sidebar {
     box-shadow: 4px 0 4px rgba(0, 0, 0, 0.1);
     position: fixed;
     top: 74px;
-    left: var(--plone-toolbar-width-collapsed);
+    left: 0;
     bottom: 0;
     height: 100%;
     border-right: none;
