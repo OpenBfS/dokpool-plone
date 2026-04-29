@@ -126,6 +126,7 @@ body.plone-toolbar-left-expanded .sidebar {
 .sidebar-groups-tree {
   padding: 0.4rem 0 1rem;
   color: var(--bs-primary);
+  background: transparent;
 
   .dp-group-link {
     min-height: 2.5rem;
@@ -157,5 +158,9 @@ body.plone-toolbar-left-expanded .sidebar {
   li.closed::before,
   li.open::before {
     color: var(--bs-primary);
+  }
+
+  .toggle {
+    margin-top: 7px;
   }
 }
