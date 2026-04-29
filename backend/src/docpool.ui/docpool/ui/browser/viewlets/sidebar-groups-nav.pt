@@ -1,23 +1,39 @@
-<div class="sidebar align-items-center"
+<div class="sidebar groups align-items-center"
+     tal:define="
+       groups_tree python: view.groups_tree;
+     "
      tal:condition="python:not context.restrictedTraverse('@@plone_portal_state').anonymous()"
 >
 
   <nav class="w-100 align-items-center">
-    <ul class="nav nav-pills d-flex flex-row flex-nowrap flex-xl-column align-items-center w-100">
+    <h2>Nav title</h2>
 
-
-      <li class="nav-item flex-fill">
-        <a class="nav-link d-flex flex-column align-items-center justify-content-center text-decoration-none"
-           tal:attributes="
-             href string:${view/base_url};
-           "
-        >
-
-          <span class="icon-24 d-flex align-items-center justify-content-center mb-2">
-          </span>
-          <span class="label text-center">Chronologie</span>
-        </a>
-      </li>
+    <ul class="sidebar-groups-tree pat-expandable twisties w-100"
+        tal:condition="groups_tree"
+    >
+      <tal:node tal:repeat="node groups_tree">
+        <metal:tree-node use-macro="template/macros/groups-tree-node" />
+      </tal:node>
     </ul>
   </nav>
+
+  <metal:groups-tree-node define-macro="groups-tree-node"
+                          tal:condition="exists:node"
+  >
+    <li tal:attributes="
+          class python: view.groups_tree_node_class(node);
+        ">
+      <a tal:content="python: node.get('Title')"
+         tal:attributes="
+           href python: node.get('getURL');
+           class python: view.groups_tree_link_class(node);
+         "
+      >Folder</a>
+      <ul tal:condition="python: node.get('children')">
+        <tal:child tal:repeat="node python: node.get('children')">
+          <metal:child-node use-macro="template/macros/groups-tree-node" />
+        </tal:child>
+      </ul>
+    </li>
+  </metal:groups-tree-node>
 </div>
