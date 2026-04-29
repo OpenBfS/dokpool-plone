@@ -89,6 +89,8 @@ class SidebarViewlet(common.ViewletBase):
     def groups_tree_node_class(self, node):
         # Mod for pat-expandable
         if node.get("children"):
+            if node.get("currentItem") or node.get("currentParent"):
+                return "folder open"
             return "folder closed"
         return "document"
 
