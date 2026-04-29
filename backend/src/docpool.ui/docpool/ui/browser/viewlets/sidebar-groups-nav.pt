@@ -5,8 +5,8 @@
      tal:condition="python:not context.restrictedTraverse('@@plone_portal_state').anonymous()"
 >
 
-  <nav class="w-100 align-items-center">
-    <h2>Nav title</h2>
+  <nav class="w-100 align-items-center h-100 overflow-auto">
+    <h2 class="visually-hidden">Nav title</h2>
 
     <ul class="sidebar-groups-tree pat-expandable twisties w-100"
         tal:condition="groups_tree"
@@ -23,10 +23,11 @@
     <li tal:attributes="
           class python: view.groups_tree_node_class(node);
         ">
-      <a tal:content="python: node.get('Title')"
+      <a class="dp-group-link d-block text-decoration-none text-primary"
+         tal:content="python: node.get('Title')"
          tal:attributes="
            href python: node.get('getURL');
-           class python: view.groups_tree_link_class(node);
+           class python: ' '.join(filter(None, ['dp-group-link', 'd-block', 'text-decoration-none', 'text-primary', view.groups_tree_link_class(node)]));
          "
       >Folder</a>
       <ul tal:condition="python: node.get('children')">

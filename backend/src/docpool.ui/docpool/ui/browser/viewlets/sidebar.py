@@ -94,9 +94,12 @@ class SidebarViewlet(common.ViewletBase):
 
     def groups_tree_link_class(self, node):
         # Mod for pat-expandable
+        classes = []
         if node.get("currentItem"):
-            return "current"
-        return None
+            classes.append("current")
+        if node.get("currentParent"):
+            classes.append("in-path")
+        return " ".join(classes) or None
 
     def show_journals(self):
         dp_app_state = api.content.get_view("dp_app_state", self.context, self.request)

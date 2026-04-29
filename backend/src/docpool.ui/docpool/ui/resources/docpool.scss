@@ -81,6 +81,10 @@ body {
   flex-direction: column;
 }
 
+article > header {
+  margin-bottom: auto;
+}
+
 // Hide article header
 body.template-listing,
 body.template-entrytypes {
