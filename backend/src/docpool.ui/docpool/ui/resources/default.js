@@ -1,4 +1,5 @@
 import "bootstrap";
+import "@patternslib/patternslib/src/pat/expandable-tree/expandable-tree.css";
 // Pat-update-notification
 import("./pat-update-notification/index.js");
 import registry from "@patternslib/patternslib/src/core/registry";

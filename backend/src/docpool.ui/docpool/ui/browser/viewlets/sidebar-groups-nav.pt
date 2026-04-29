@@ -1,0 +1,40 @@
+<div class="sidebar groups align-items-center"
+     tal:define="
+       groups_tree python: view.groups_tree;
+     "
+     tal:condition="python:not context.restrictedTraverse('@@plone_portal_state').anonymous()"
+>
+
+  <nav class="w-100 align-items-center h-100 overflow-auto">
+    <h2 class="visually-hidden">Nav title</h2>
+
+    <ul class="sidebar-groups-tree pat-expandable twisties w-100"
+        tal:condition="groups_tree"
+    >
+      <tal:node tal:repeat="node groups_tree">
+        <metal:tree-node use-macro="template/macros/groups-tree-node" />
+      </tal:node>
+    </ul>
+  </nav>
+
+  <metal:groups-tree-node define-macro="groups-tree-node"
+                          tal:condition="exists:node"
+  >
+    <li tal:attributes="
+          class python: view.groups_tree_node_class(node);
+        ">
+      <a class="dp-group-link d-block text-decoration-none text-primary"
+         tal:content="python: node.get('Title')"
+         tal:attributes="
+           href python: node.get('getURL');
+           class python: ' '.join(filter(None, ['dp-group-link', 'd-block', 'text-decoration-none', 'text-primary', view.groups_tree_link_class(node)]));
+         "
+      >Folder</a>
+      <ul tal:condition="python: node.get('children')">
+        <tal:child tal:repeat="node python: node.get('children')">
+          <metal:child-node use-macro="template/macros/groups-tree-node" />
+        </tal:child>
+      </ul>
+    </li>
+  </metal:groups-tree-node>
+</div>
