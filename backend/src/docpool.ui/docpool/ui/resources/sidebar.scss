@@ -1,5 +1,6 @@
 :root {
   --sidebar-width: 113px;
+  --sidebar-groups-width: 300px;
 }
 
 
@@ -11,6 +12,11 @@ body.plone-toolbar-left-expanded .sidebar {
   .outer-wrapper {
     padding-left: var(--sidebar-width);
   }
+
+  .outer-wrapper:has(.sidebar.groups) {
+    padding-left: var(--sidebar-groups-width);
+  }
+
   .sidebar {
     width: 113px;
     min-width: var(--sidebar-width);
@@ -24,14 +30,11 @@ body.plone-toolbar-left-expanded .sidebar {
     border-right: none;
     z-index: 991;
 
-    &.groups{
-      width: auto;
+    &.groups {
+      width: var(--sidebar-groups-width);
+      min-width: var(--sidebar-groups-width);
     }
-
   }
-
-
-
 }
 
 .sidebar .nav {
