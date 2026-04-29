@@ -23,7 +23,13 @@ body.plone-toolbar-left-expanded .sidebar {
     height: 100%;
     border-right: none;
     z-index: 991;
+
+    &.groups{
+      width: auto;
+    }
+
   }
+
 
 
 }
