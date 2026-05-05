@@ -242,11 +242,11 @@ class Listing(BrowserView):
                 # TODO: Replace or improve when adding folder-navigation
                 gtool = api.portal.get_tool("portal_groups")
                 folder_query = {
-                    "portal_type": "GroupFolder",
-                    "sort_on": "getObjPositionInParent",
+                    "portal_type": ["DPTransferFolder", "GroupFolder", "SimpleFolder"],
+                    "sort_on": ["portal_type", "sortable_title"],
                     "apps_supported": self.active_apps,
                 }
-                for brain in api.content.find(context=self.context, **folder_query):
+                for brain in api.content.find(context=self.context, depth=1, **folder_query):
                     try:
                         grp = gtool.getGroupById(brain.id)
                         etypes = grp.getProperty("allowedDocTypes", [])
