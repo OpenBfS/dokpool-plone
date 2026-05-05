@@ -94,6 +94,10 @@ body.template-entrytypes {
   }
 }
 
+.outer-wrapper {
+  background-color: #fafafa;
+}
+
 .mobile-scroll-top-button {
   position: fixed;
   right: 1.4rem;
@@ -305,6 +309,7 @@ body.template-entrytypes {
 }
 
 #listing {
+  border-top: 1px solid var(--bs-border-color);
   & > a {
     display: block;
     min-height: 80px;
@@ -464,9 +469,7 @@ body.portaltype-dpdocument.template-edit .autotoc-nav {
 }
 
 body.template-entrytypes {
-  .outer-wrapper {
-    background-color: #fafafa;
-  }
+
 
   .entrytypes .item {
     width: 25em;

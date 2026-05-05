@@ -3,7 +3,6 @@
   --sidebar-groups-width: 300px;
 }
 
-
 body.plone-toolbar-left-expanded .sidebar {
   left: var(--plone-toolbar-width) !important;
 }
@@ -22,7 +21,7 @@ body.plone-toolbar-left .sidebar {
   }
 
   .sidebar {
-    width: 113px;
+    width: 117px;
     min-width: var(--sidebar-width);
     background-color: #f3f3f3;
     box-shadow: 4px 0 4px rgba(0, 0, 0, 0.1);
@@ -37,8 +36,11 @@ body.plone-toolbar-left .sidebar {
     &.groups {
       width: var(--sidebar-groups-width);
       min-width: var(--sidebar-groups-width);
-      padding-top: 40px;
+      border-top: 1px solid var(--bs-border-color);
+      padding-top: 10px;
+      margin-top: 41px;
       padding-left: 15px;
+      padding-right: 15px;
     }
   }
 }
