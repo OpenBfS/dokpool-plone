@@ -36,6 +36,8 @@ body.plone-toolbar-left {
 
 .app-header {
   background-color: #ffffff;
+  border-bottom: 1px solid var(--bs-primary);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
 }
 
 .logo-block {

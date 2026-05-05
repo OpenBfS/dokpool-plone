@@ -1,9 +1,9 @@
+from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
+from docpool.elan.utils import get_scenario_for_current_user
 from groupsfolder_setup import GroupsFolderSetupMixin
 from playwright.sync_api import expect
 from plone import api
-from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
 from plone.app.testing import setRoles
-from docpool.elan.utils import get_scenario_for_current_user
 from plone.app.testing import SITE_OWNER_NAME
 from plone.app.testing import SITE_OWNER_PASSWORD
 from plone.app.testing import TEST_USER_ID
@@ -37,7 +37,6 @@ class TestGroupsFolder(GroupsFolderSetupMixin):
         ILocalBehaviorSupport(self.subnav).local_behaviors = ["elan"]
         self.subnav.reindexObject(idxs=["apps_supported"])
         transaction.commit()
-
 
     def test_group_navigation_second_level(self):
         page = self.page

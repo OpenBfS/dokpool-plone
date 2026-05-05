@@ -17,7 +17,7 @@
   >
 
     <metal:empty_title fill-slot="content-title" />
-    <div class="mx-0 my-0 p-1 border-bottom"
+    <div class="mx-0 my-0 border-bottom"
          id="listing-filters"
          tal:attributes="
            data-listing-modified python: view.modified;
@@ -45,15 +45,7 @@
             <strong tal:content="python: view.journal_title"></strong>
           </div>
 
-          <div class="mx-3 my-0 py-2"
-               tal:condition="python: 'entries' in view.filters"
-               tal:attributes="
-                 class python: 'mx-3 my-0 py-2 d-none d-lg-block' if show_scenario_filter_switch else 'mx-3 my-0 py-2 me-auto d-none d-lg-block';
-               "
-          >
-            <span tal:replace="python: len(items)"></span>
-            <span i18n:translate="">Entries</span>
-          </div>
+
 
           <div class="mx-3 my-0 py-2 me-auto d-none d-lg-block"
                tal:condition="python: show_scenario_filter_switch"
@@ -601,12 +593,22 @@
       </div>
 
 
-      <div class="mx-3 my-3"
+      <div class=""
            id="listing"
            tal:attributes="
              data-items python: view.json_items;
            "
       >
+        <div class="mx-3 my-0 py-2"
+             tal:condition="python: 'entries' in view.filters"
+             tal:attributes="
+               class python: 'mx-3 my-0 py-2 d-none d-lg-block' if show_scenario_filter_switch else 'mx-3 my-0 py-2 me-auto d-none d-lg-block';
+             "
+        >
+          <span tal:replace="python: len(items)"></span>
+          <span i18n:translate="">Entries</span>
+        </div>
+
         <tal:block tal:repeat="item python: folder_uids + other_uids + items">
           <a class="pat-inject list-item-inject-link"
              data-pat-inject="trigger: autoload-visible; delay: 50; target: self"
