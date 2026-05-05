@@ -204,7 +204,7 @@ class Listing(BrowserView):
             group_query = {
                 "portal_type": ["DPTransferFolder", "GroupFolder"],
                 "unrestricted": True,  # Readers have no access to the group folders.
-                "active_apps": self.active_apps,
+                "apps_supported": self.active_apps,
                 "sort_on": ["portal_type", "sortable_title"],
             }
             for brain in api.content.find(context=content_area, **group_query):
@@ -244,7 +244,7 @@ class Listing(BrowserView):
                 folder_query = {
                     "portal_type": "GroupFolder",
                     "sort_on": "getObjPositionInParent",
-                    "active_apps": self.active_apps,
+                    "apps_supported": self.active_apps,
                 }
                 for brain in api.content.find(context=self.context, **folder_query):
                     try:
@@ -260,7 +260,7 @@ class Listing(BrowserView):
                     "portal_type": FOLDER_TYPES,
                     "path": query["path"],
                     "sort_on": "getObjPositionInParent",
-                    "active_apps": self.active_apps,
+                    "apps_supported": self.active_apps,
                 }
                 self.folder_uids = [brain.UID for brain in catalog(**folder_query)]
 
@@ -269,7 +269,7 @@ class Listing(BrowserView):
                 "portal_type": OTHER_TYPES,
                 "path": query["path"],
                 "sort_on": "getObjPositionInParent",
-                "active_apps": self.active_apps,
+                "apps_supported": self.active_apps,
             }
             self.other_uids = [brain.UID for brain in catalog(**other_query)]
 
