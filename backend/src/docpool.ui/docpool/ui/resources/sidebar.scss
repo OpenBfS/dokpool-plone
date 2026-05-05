@@ -155,6 +155,24 @@ body.plone-toolbar-left .sidebar {
     font-weight: 600;
   }
 
+  li.folder {
+    position: relative;
+
+    > a.dp-group-link {
+      display: block;
+      padding-left: 1.6rem;
+      position: relative;
+    }
+
+    > .toggle {
+      position: absolute;
+      left: 0.4rem;
+      width: 0.8rem;
+      height: 0.8rem;
+      z-index: 2;
+    }
+  }
+
 }
 
 .sidebar-groups-tree.twisties {
