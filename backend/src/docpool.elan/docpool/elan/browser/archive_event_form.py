@@ -10,7 +10,6 @@ from docpool.config.utils import ploneId
 from docpool.elan import DocpoolMessageFactory as _
 from docpool.elan.behaviors.elandocument import IELANDocument
 from docpool.elan.config import ELAN_APP
-from elan.journal.adapters import IJournalEntryContainer
 from logging import getLogger
 from plone import api
 from Products.CMFPlone.utils import log_exc
@@ -356,8 +355,6 @@ class Snapshot(ArchiveAndClose):
         added between snapshop and purge that would be lost forever.
 
         * Create Archive for event but leave Event unchanged
-        * Copy Journals and Event to Archive
-        * Purge Journals
         * Purge Event (move content to archive unless used by other apps or events)
         """
 
@@ -396,20 +393,10 @@ class Snapshot(ArchiveAndClose):
                 logger.info("Archived %s of %s documents...", index, total)
                 transaction.savepoint(optimistic=True)
 
-        # 3. Copy DPEvent and Journals into snapshot
+        # 3. Copy DPEvent into snapshot
         copied_event = api.content.copy(self.context, target=archive, safe_id=True)
         copied_event.Status = "closed"
         copied_event.reindexObject()
-
-        # 4. Empty current Journals and copy local roles
-        for journal in self.context.contentValues({"portal_type": "Journal"}):
-            adapter = IJournalEntryContainer(journal)
-            for entry_id, _update in enumerate(adapter):
-                adapter.delete(entry_id)
-            # Copy local roles to journals
-            copied_journal = copied_event[journal.id]
-            copied_journal.__ac_local_roles__ = journal.__ac_local_roles__
-            copied_journal._p_changed = True
 
         # local roles were set when adding items to the archive but reindexing was deferred.
         archive_contentarea.reindexObjectSecurity()

@@ -9,7 +9,6 @@
       name="scenario"
       />
 
-  <subscriber handler=".dpevent.eventAdded" />
   <subscriber handler=".dpevent.eventChanged" />
   <subscriber handler=".dpevent.eventRemoved" />
 

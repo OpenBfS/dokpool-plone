@@ -1,9 +1,7 @@
 from AccessControl import ClassSecurityInfo
-from docpool.base.content.archiving import IArchiving
 from docpool.base.content.contentbase import ContentBase
 from docpool.base.content.contentbase import IContentBase
 from docpool.base.content.documentpool import IDocumentPool
-from docpool.base.content.places import IPlaces
 from docpool.base.marker import IImportingMarker
 from docpool.elan import DocpoolMessageFactory as _
 from docpool.elan.config import ELAN_APP
@@ -27,7 +25,6 @@ from zope.component import adapter
 from zope.globalrequest import getRequest
 from zope.interface import implementer
 from zope.interface import Invalid
-from zope.lifecycleevent.interfaces import IObjectAddedEvent
 from zope.lifecycleevent.interfaces import IObjectModifiedEvent
 from zope.lifecycleevent.interfaces import IObjectRemovedEvent
 
@@ -228,42 +225,6 @@ class DPEvent(Container, ContentBase):
         IAnnotations(self).pop(ARCHIVING_KEY, None)
         self._p_changed = True
 
-    def createDefaultJournals(self):
-        """
-        Creates journals inside the event
-        :return:"""
-        if not self.Journals:
-            return
-        docpool = IPlaces(self).document_pool
-        prefix = docpool.prefix or docpool.getId()
-        for index, title in enumerate(self.Journals, start=1):
-            title = title.strip()
-            # Skip empty lines
-            if not title:
-                continue
-            journal_id = f"journal{index!s}"
-            # Skip if it already exists
-            if not (journal := self.get(journal_id)):
-                journal = api.content.create(
-                    container=self,
-                    type="Journal",
-                    title=title,
-                    id=journal_id,
-                    exclude_from_nav=False,
-                )
-            # Grant local role to Journal Editor Groups
-            api.group.grant_roles(
-                groupname=f"{prefix}_Journal{index}_Editors",
-                roles=["JournalEditor"],
-                obj=journal,
-            )
-            # Grant local role to Journal Reader Groups
-            api.group.grant_roles(
-                groupname=f"{prefix}_Journal{index}_Readers",
-                roles=["JournalReader"],
-                obj=journal,
-            )
-
     def canBeAssigned(self):
         """
         Can this scenario be assigned to documents?
@@ -297,19 +258,6 @@ class DPEvent(Container, ContentBase):
     def status_title(self):
         vocab = api.portal.get_vocabulary("docpool.elan.vocabularies.Status", context=self)
         return safe_text(vocab.getTerm(self.Status).title)
-
-
-@adapter(IDPEvent, IObjectAddedEvent)
-def eventAdded(obj, event=None):
-    """
-    For new scenarios, add them to each user's personal selection and
-    create the journals.
-    """
-    if IImportingMarker.providedBy(getRequest()):
-        return
-    if IArchiving(obj).is_archive:
-        return
-    obj.createDefaultJournals()
 
 
 def addLogEntry(obj):
