@@ -12,7 +12,7 @@
                  "
   >
 
-    <div class="entrytypes pat-masonry mx-3 my-5">
+    <div class="entrytypes pat-masonry">
 
       <tal:block tal:repeat="category python: items">
         <div class="item me-3 mb-3 shadow-sm">

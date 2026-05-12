@@ -10,7 +10,7 @@
 
     <metal:empty_title fill-slot="content-title" />
 
-    <div class="mx-3 my-3 border-top journals"
+    <div class="border-top journals"
          id="listing"
     >
       <tal:block tal:repeat="item python: view.journals">
