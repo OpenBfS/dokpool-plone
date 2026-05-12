@@ -111,7 +111,9 @@
 
               <metal:slot define-slot="body">
 
-                <article id="content" class="mx-3 my-3">
+                <article class="mx-3 my-3"
+                         id="content"
+                >
 
                   <metal:bodytext define-slot="main">
 
