@@ -43,7 +43,7 @@
                 EntryType</a>
             </div>
             <div class="d-flex align-items-center ps-2">
-              <span class="badge rounded-pill text-bg-secondary"
+              <span class="badge rounded-pill text-bg-light"
                     tal:condition="python:data['count']"
                     tal:content="python:data['count']"
               >

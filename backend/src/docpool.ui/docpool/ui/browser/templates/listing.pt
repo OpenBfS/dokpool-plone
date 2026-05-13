@@ -237,14 +237,18 @@
                              disabled python: not categories[category][subcategory]['count'] and 'disabled';
                            "
                     />
-                    <label class="form-check-label text-nowrap"
+                    <label class="d-flex form-check-label text-nowrap"
                            for="${python: 'selected_subcategories-' + subcategory.replace(' ', '')}"
                     >
-                      <span tal:replace="python: subcategory"></span>
-                      <span class="badge rounded-pill text-bg-secondary"
-                            tal:condition="python:categories[category][subcategory]['count']"
-                            tal:content="python:categories[category][subcategory]['count']"
+                      <span class="flex-grow-1"
+                            tal:content="python: subcategory"
                       ></span>
+                      <span class="ms-2">
+                        <span class="badge rounded-pill text-bg-light"
+                              tal:condition="python:categories[category][subcategory]['count']"
+                              tal:content="python:categories[category][subcategory]['count']"
+                        ></span>
+                      </span>
                     </label>
                   </div>
                 </tal:subcategory>
@@ -316,15 +320,16 @@
                            disabled python: not view.review_states[review_state]['count'] and 'disabled';
                          "
                   />
-                  <label class="form-check-label text-nowrap"
+                  <label class="d-flex form-check-label text-nowrap"
                          for="${python: 'review_states-' + review_state}"
                   >
-                    <span tal:replace="python: view.review_states[review_state]['title']"
+                    <span class="flex-grow-1"
+                          tal:content="python: view.review_states[review_state]['title']"
                           i18n:translate=""
                     ></span>
-                    <span class="badge rounded-pill text-bg-secondary"
-                          tal:content="python:view.review_states[review_state]['count']"
-                    ></span>
+                    <span class="ms-2"><span class="badge rounded-pill text-bg-light"
+                            tal:content="python:view.review_states[review_state]['count']"
+                      ></span></span>
                   </label>
                 </div>
               </tal:doctypes>
@@ -403,14 +408,16 @@
                            disabled python: not groups[group]['count'] and 'disabled';
                          "
                   />
-                  <label class="form-check-label text-nowrap"
+                  <label class="d-flex form-check-label text-nowrap"
                          for="${python: 'selected_groups-' + group}"
                   >
-                    <span tal:replace="python: groups[group]['title']"></span>
-                    <span class="badge rounded-pill text-bg-secondary"
-                          tal:condition="python:groups[group]['count']"
-                          tal:content="python:groups[group]['count']"
+                    <span class="flex-grow-1"
+                          tal:content="python: groups[group]['title']"
                     ></span>
+                    <span class="ms-2"><span class="badge rounded-pill text-bg-light"
+                            tal:condition="python:groups[group]['count']"
+                            tal:content="python:groups[group]['count']"
+                      ></span></span>
                   </label>
                 </div>
               </tal:groups>
