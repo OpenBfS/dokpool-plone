@@ -312,8 +312,8 @@
             </button>
             <div class="dropdown-menu pt-2 pb-0 px-2">
               <tal:doctypes tal:repeat="review_state python: view.review_states">
-                <div class="form-check">
-                  <input class="form-check-input"
+                <div class="align-middle mb-3 form-check">
+                  <input class="mt-2 form-check-input"
                          id="${python: 'review_states-' + review_state}"
                          name="review_states:list"
                          type="checkbox"
@@ -326,11 +326,11 @@
                   <label class="d-flex form-check-label text-nowrap"
                          for="${python: 'review_states-' + review_state}"
                   >
-                    <span class="flex-grow-1"
+                    <span class="rounded px-2 py-1 flex-grow-1 state-${review_state}"
                           tal:content="python: view.review_states[review_state]['title']"
                           i18n:translate=""
                     ></span>
-                    <span class="ms-2"><span class="badge rounded-pill text-bg-light"
+                    <span class="mt-1 ms-2"><span class="badge rounded-pill text-bg-light"
                             tal:content="python:view.review_states[review_state]['count']"
                       ></span></span>
                   </label>
