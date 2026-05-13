@@ -6,21 +6,6 @@
      tal:condition="python:not context.restrictedTraverse('@@plone_portal_state').anonymous()"
 >
 
-  <div class="w-100 d-xl-none px-3 py-2 border-bottom groups-mobile-toggle"
-       tal:condition="groups_tree"
-  >
-    <button class="btn btn-secondary w-100 d-flex align-items-center justify-content-between"
-            aria-controls="offcanvasGroupsNav"
-            aria-label="Gruppen öffnen"
-            type="button"
-            data-bs-target="#offcanvasGroupsNav"
-            data-bs-toggle="offcanvas"
-    >
-      <span>Gruppen</span>
-      <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
-    </button>
-  </div>
-
   <nav class="w-100 align-items-center h-100 overflow-auto d-none d-xl-block">
     <h2 class="visually-hidden">Nav title</h2>
 

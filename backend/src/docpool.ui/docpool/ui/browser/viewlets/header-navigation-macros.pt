@@ -230,15 +230,15 @@
                   <span class="mobile-groups-folder-label"
                         tal:condition="groups_tree"
                   >
-                      <span class="w-100 d-flex align-items-center justify-content-between"
-                              aria-controls="offcanvasGroupsNav"
-                              aria-label="Gruppen öffnen"
-                              type="button"
-                              data-bs-target="#offcanvasGroupsNav"
-                              data-bs-toggle="offcanvas"
-                      >
-                        <span>Gruppen</span>
-                      </span>
+                    <span class="w-100 d-flex align-items-center justify-content-between"
+                          aria-controls="offcanvasGroupsNav"
+                          aria-label="Gruppen öffnen"
+                          type="button"
+                          data-bs-target="#offcanvasGroupsNav"
+                          data-bs-toggle="offcanvas"
+                    >
+                      <span>Gruppen</span>
+                    </span>
 
                     <nav class="w-100 align-items-center h-100 overflow-auto d-none d-xl-block">
                       <h2 class="visually-hidden">Nav title</h2>
@@ -254,10 +254,11 @@
 
                   </span>
                   <div class="mobile-groups-folder-link"
-
-                     tal:condition="python: not groups_tree"
+                       tal:condition="python: not groups_tree"
                   >
-                    <a class="mobile-groups-folder-label" href="${python: view.groups_folder_url}">Meine Gruppenordner</a>
+                    <a class="mobile-groups-folder-label"
+                       href="${python: view.groups_folder_url}"
+                    >Meine Gruppenordner</a>
                   </div>
 
                   <span class="mobile-placeholder-chevron">

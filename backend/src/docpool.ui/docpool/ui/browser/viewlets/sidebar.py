@@ -45,23 +45,6 @@ class SidebarViewlet(GroupsTreeMixin, common.ViewletBase):
             return self.context.myELANArchive().absolute_url()
         return self.navigation_root_url
 
-    def groups_tree_node_class(self, node):
-        # Mod for pat-expandable
-        if node.get("children"):
-            if node.get("currentItem") or node.get("currentParent"):
-                return "folder open"
-            return "folder closed"
-        return "document"
-
-    def groups_tree_link_class(self, node):
-        # Mod for pat-expandable
-        classes = []
-        if node.get("currentItem"):
-            classes.append("current")
-        if node.get("currentParent"):
-            classes.append("in-path")
-        return " ".join(classes) or None
-
     def show_journals(self):
         dp_app_state = api.content.get_view("dp_app_state", self.context, self.request)
         active_apps = dp_app_state.appsActivatedByCurrentUser()
