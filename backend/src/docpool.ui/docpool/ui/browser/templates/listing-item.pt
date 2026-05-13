@@ -194,7 +194,7 @@
             >Edit</span>
           </a>
         </li>
-        <li>
+        <li tal:replace="nothing">
           <a class="dropdown-item d-flex gap-2 align-items-center"
              href="#"
              tal:attributes="
@@ -273,7 +273,7 @@
             >Delete</span>
           </a>
         </li>
-        <li>
+        <li tal:replace="nothing">
           <a class="dropdown-item d-flex gap-2 align-items-center"
              href="#"
              tal:attributes="
