@@ -194,7 +194,6 @@ class Listing(BrowserView):
             self.review_states = review_state_filter_config
 
         # Prepare Entrytypes filter options (query needs to be complete)
-        # breakpoint()
         self.doctype_categories = self.doctype_options() if "entrytype" in self.filters else []
 
         # Prepare Group filter options (query needs to be complete)
@@ -327,7 +326,9 @@ class Listing(BrowserView):
                 show_subcategory = self.count_options({"subcategory": brain.subcategory}, self.base_query)
                 if show_subcategory:
                     count = self.count_options({"subcategory": brain.subcategory})
-                    results[brain.category][brain.subcategory] = {"count": count}
+                    # Get icon parent of obj (which is the subcategory)
+                    icon_name = brain.getObject().__parent__.icon_name
+                    results[brain.category][brain.subcategory] = {"count": count, "icon_name": icon_name}
         return {k: v for k, v in results.items() if v}
 
     def update(self):

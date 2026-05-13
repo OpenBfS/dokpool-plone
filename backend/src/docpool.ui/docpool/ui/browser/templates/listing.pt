@@ -240,6 +240,9 @@
                     <label class="d-flex form-check-label text-nowrap"
                            for="${python: 'selected_subcategories-' + subcategory.replace(' ', '')}"
                     >
+                      <span class="ms-1 me-3 pb-1">
+                        <tal:icon tal:replace="structure python:icons.tag(categories[category][subcategory]['icon_name'])" />
+                      </span>
                       <span class="flex-grow-1"
                             tal:content="python: subcategory"
                       ></span>
