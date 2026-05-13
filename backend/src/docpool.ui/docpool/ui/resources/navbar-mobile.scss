@@ -249,7 +249,7 @@
     display:none;
   }
 
-  .mobile-placeholder-link {
+  .mobile-placeholder-link, .mobile-groups-folder-link {
     width: 100%;
     display: flex;
     align-items: center;
@@ -258,7 +258,7 @@
     min-height: 58px;
   }
 
-  .mobile-placeholder-icon {
+  .mobile-placeholder-icon, .mobile-groups-folder-icon {
     width: 2rem;
     text-align: center;
     margin-right: 0.75rem;
@@ -266,7 +266,7 @@
     color: #4f6782;
   }
 
-  .mobile-placeholder-label {
+  .mobile-placeholder-label, .mobile-groups-folder-label {
     font-size: var(--dp-font-title);
   }
 

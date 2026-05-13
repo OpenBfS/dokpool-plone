@@ -31,6 +31,14 @@
       />
 
   <browser:page
+      name="groups-tree.macros"
+      for="*"
+      template="groups-tree-macros.pt"
+      permission="zope2.View"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
+  <browser:page
       name="event-switcher-dropdown"
       for="*"
       class=".header.EventSwitcherDropdown"

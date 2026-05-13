@@ -1,40 +1,48 @@
 <div class="sidebar groups align-items-center"
      tal:define="
        groups_tree python: view.groups_tree;
+       icons python:context.restrictedTraverse('@@iconresolver');
      "
      tal:condition="python:not context.restrictedTraverse('@@plone_portal_state').anonymous()"
 >
 
-  <nav class="w-100 align-items-center h-100 overflow-auto">
+  <nav class="w-100 align-items-center h-100 overflow-auto d-none d-xl-block">
     <h2 class="visually-hidden">Nav title</h2>
 
     <ul class="sidebar-groups-tree pat-expandable twisties w-100"
         tal:condition="groups_tree"
     >
       <tal:node tal:repeat="node groups_tree">
-        <metal:tree-node use-macro="template/macros/groups-tree-node" />
+        <metal:tree-node use-macro="context/@@groups-tree.macros/macros/groups-tree" />
       </tal:node>
     </ul>
   </nav>
 
-  <metal:groups-tree-node define-macro="groups-tree-node"
-                          tal:condition="exists:node"
+  <div class="offcanvas offcanvas-end d-xl-none"
+       id="offcanvasGroupsNav"
+       aria-labelledby="offcanvasGroupsNavLabel"
+       tabindex="-1"
+       tal:condition="groups_tree"
   >
-    <li tal:attributes="
-          class python: view.groups_tree_node_class(node);
-        ">
-      <a class="dp-group-link d-block text-decoration-none text-primary"
-         tal:content="python: node.get('Title')"
-         tal:attributes="
-           href python: node.get('getURL');
-           class python: ' '.join(filter(None, ['dp-group-link', 'd-block', 'text-decoration-none', 'text-primary', view.groups_tree_link_class(node)]));
-         "
-      >Folder</a>
-      <ul tal:condition="python: node.get('children')">
-        <tal:child tal:repeat="node python: node.get('children')">
-          <metal:child-node use-macro="template/macros/groups-tree-node" />
-        </tal:child>
+    <div class="offcanvas-header mobile-offcanvas-header">
+      <h5 class="offcanvas-title"
+          id="offcanvasGroupsNavLabel"
+      >Gruppen</h5>
+      <button class="btn btn-icon mobile-offcanvas-close"
+              aria-label="Close"
+              type="button"
+              data-bs-dismiss="offcanvas"
+      >
+        <tal:icon tal:replace="structure python:icons.tag('x')" />
+      </button>
+    </div>
+    <div class="offcanvas-body px-3">
+      <ul class="sidebar-groups-tree pat-expandable twisties w-100">
+        <tal:node tal:repeat="node groups_tree">
+          <metal:tree-node use-macro="context/@@groups-tree.macros/macros/groups-tree" />
+        </tal:node>
       </ul>
-    </li>
-  </metal:groups-tree-node>
+    </div>
+  </div>
+
 </div>

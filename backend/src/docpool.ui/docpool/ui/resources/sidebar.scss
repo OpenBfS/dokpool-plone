@@ -188,3 +188,42 @@ body.plone-toolbar-left .sidebar {
     margin-top: 7px;
   }
 }
+
+.groups-mobile-toggle {
+  background-color: #fafafa;
+}
+
+#offcanvasGroupsNav {
+  background: #fff;
+  width: min(86vw, 340px);
+
+  .offcanvas-header {
+    border-bottom: 1px solid #d9e1ea;
+    box-shadow: 0 2px 8px rgba(30, 56, 89, 0.08);
+  }
+
+  .offcanvas-title {
+    color: #344f6d;
+    font-size: var(--dp-font-title);
+  }
+
+  .mobile-offcanvas-close {
+    color: #344f6d;
+    margin-left: auto;
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 2.5rem;
+
+    svg {
+      height: 2em;
+    }
+  }
+
+  .offcanvas-body {
+    padding-top: 0.35rem;
+  }
+}
