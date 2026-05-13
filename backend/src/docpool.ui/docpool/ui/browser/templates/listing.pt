@@ -411,6 +411,9 @@
                   <label class="d-flex form-check-label text-nowrap"
                          for="${python: 'selected_groups-' + group}"
                   >
+                    <span class="ms-1 me-3 pb-1">
+                      <tal:icon tal:replace="structure python:icons.tag('people-fill')" />
+                    </span>
                     <span class="flex-grow-1"
                           tal:content="python: groups[group]['title']"
                     ></span>
