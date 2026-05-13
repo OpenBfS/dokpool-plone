@@ -116,10 +116,10 @@ class TestListing(GroupsFolderSetupMixin):
         expect(page.locator("#listing .listing-item")).to_have_count(2)
         page.get_by_role("button", name="Entrytype").click()
         expect(
-            page.locator("label").filter(has_text="Wetterlage und -prognosen").locator("span").first
+            page.locator("label").filter(has_text="Wetterlage und -prognosen").locator("span.badge").first
         ).to_contain_text("1")
         expect(
-            page.locator("label").filter(has_text="Mitteilungen der Stäbe").locator("span").first
+            page.locator("label").filter(has_text="Mitteilungen der Stäbe").locator("span.badge").first
         ).to_contain_text("1")
         page.get_by_role("checkbox", name="Wetterlage und -prognosen").click()
         page.get_by_role("button", name="Filter").click()
