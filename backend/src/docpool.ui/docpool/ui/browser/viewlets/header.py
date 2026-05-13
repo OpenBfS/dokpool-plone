@@ -1,14 +1,21 @@
 from App.config import getConfiguration
 from docpool.base.appregistry import appLogo as appLogo
 from docpool.base.appregistry import appName
+from docpool.base.config import BASE_APP
+from docpool.base.config import TRANSFERS_APP
 from docpool.base.content.places import IPlaces
+from docpool.base.utils import is_in_dp_folder
 from docpool.elan.utils import get_scenario_for_current_user
 from docpool.elan.utils import getOpenScenarios
 from docpool.ui.browser.viewlets.footer import TimezoneTableMixin
 from importlib.metadata import distribution
 from plone import api
+from plone.app.layout.navigation.interfaces import INavtreeStrategy
+from plone.app.layout.navigation.navtree import buildFolderTree
 from plone.app.layout.viewlets.common import ViewletBase
+from Products.CMFPlone.browser.navtree import DefaultNavtreeStrategy
 from Products.Five.browser import BrowserView
+from zope.component import getMultiAdapter
 from zope.viewlet.interfaces import IViewletManager
 
 import os
@@ -29,13 +36,56 @@ class EventSwitcherMixin:
         return scenarios_by_uid, selected_uid
 
 
-class PortalHeader(EventSwitcherMixin, TimezoneTableMixin, ViewletBase):
+class GroupsTreeMixin:
+    def build_groups_tree(self):
+        groups_folder = self.groups_folder()
+        if groups_folder is None:
+            return []
+
+        groups_path = "/".join(groups_folder.getPhysicalPath())
+        query = {
+            "path": {"query": groups_path, "depth": 999, "navtree": 1, "navtree_start": 1},
+            "portal_type": ["DPTransferFolder", "GroupFolder", "SimpleFolder"],
+            "sort_on": ["portal_type", "sortable_title"],
+            "apps_supported": self.active_apps_for_tree(),
+        }
+
+        strategy = getMultiAdapter((self.context, None), INavtreeStrategy)
+        if strategy is None:
+            strategy = DefaultNavtreeStrategy(self.context)
+        strategy.rootPath = groups_path
+        strategy.bottomLevel = 999
+
+        tree = buildFolderTree(self.context, obj=self.context, query=query, strategy=strategy)
+        return tree.get("children", [])
+
+    def groups_folder(self):
+        content_area = IPlaces(self.context).content
+        if content_area is None:
+            return None
+        return content_area.get("Groups")
+
+    # TODO Code duplication see listing.py
+    def active_apps_for_tree(self):
+        dp_app_state = api.content.get_view("dp_app_state", self.context, self.request)
+        active_apps = list(dp_app_state.appsActivatedByCurrentUser())
+        active_apps.extend([BASE_APP, TRANSFERS_APP])
+        return active_apps
+
+
+class PortalHeader(EventSwitcherMixin, TimezoneTableMixin, GroupsTreeMixin, ViewletBase):
     def update(self):
         super().update()
         self.dp, self.app, self.dp_apps = getApplicationDocPoolsForCurrentUser(self.context, self.request)
         self.dp_url = self.dp.absolute_url() if self.dp else None
         self.app_logo = appLogo(self.app) if self.app else None
         self.set_scenario_attributes()
+
+        # Prepare mobile folder tree navigation
+        if is_in_dp_folder(self.context, "content/Groups"):
+            self.groups_tree = self.build_groups_tree()
+        else:
+            self.groups_tree = []
 
         try:
             self.groups_folder_url = self.dp["content"]["Groups"].absolute_url()
