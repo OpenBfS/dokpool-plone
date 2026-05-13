@@ -1,5 +1,8 @@
 
 body.plone-toolbar-left-expanded {
+    #offcanvasGroupsNav.offcanvas.offcanvas-end {
+      padding-left: unset;
+    }
   .offcanvas.offcanvas-end {
     @include media-breakpoint-down(lg) {
       padding-left: var(--plone-toolbar-width);
@@ -12,7 +15,9 @@ body.plone-toolbar-left-expanded {
 }
 
 body.plone-toolbar-left {
-
+    #offcanvasGroupsNav.offcanvas.offcanvas-end {
+      padding-left: unset;
+    }
   .offcanvas.offcanvas-end {
     @include media-breakpoint-down(md) {
       padding-left: var(--plone-toolbar-width-collapsed);

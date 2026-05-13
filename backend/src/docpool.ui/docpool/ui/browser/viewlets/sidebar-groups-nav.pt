@@ -33,7 +33,7 @@
     </ul>
   </nav>
 
-  <div class="offcanvas offcanvas-start d-xl-none"
+  <div class="offcanvas offcanvas-end d-xl-none"
        id="offcanvasGroupsNav"
        aria-labelledby="offcanvasGroupsNavLabel"
        tabindex="-1"

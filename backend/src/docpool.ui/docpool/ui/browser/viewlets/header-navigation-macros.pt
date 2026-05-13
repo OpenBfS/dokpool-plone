@@ -39,23 +39,23 @@
             <tal:icon tal:replace="structure python:icons.tag('search')" />
           </button>
           <tal:accessibility tal:replace="structure context/@@accessibility-content">
-            Accessibility dropdown
+        Accessibility dropdown
           </tal:accessibility>
 
           <tal:systemmessages tal:replace="structure context/@@system-messages-content">
-            System messages dropdown
+        System messages dropdown
           </tal:systemmessages>
 
           <tal:info tal:replace="structure context/@@info-content">
-            Info dropdown
+        Info dropdown
           </tal:info>
 
           <tal:info tal:replace="structure context/@@config-content">
-            Config dropdown
+        Config dropdown
           </tal:info>
 
           <tal:info tal:replace="structure context/@@user-content">
-            User dropdown
+        User dropdown
           </tal:info>
         </div>
       </div>
@@ -78,33 +78,36 @@
             <tr>
               <td class="sidebar-tz text-primary"
                   i18n:translate=""
-              >ME(S)Z</td>
+              >ME(S)Z
+              </td>
               <td class="sidebar-tz text-primary"
                   datetime="${python: local_time}"
               >
-                ${python: local_time.strftime('%H:%M')}
+          ${python: local_time.strftime('%H:%M')}
               </td>
               <td class="sidebar-tz tz-offset"></td>
             </tr>
             <tr>
               <td class="sidebar-tz text-secondary"
                   i18n:translate=""
-              >UTC</td>
+              >UTC
+              </td>
               <td class="sidebar-tz text-secondary"
                   datetime="${python: utc_time}"
               >
-                ${python: utc_time.strftime('%H:%M')}
+          ${python: utc_time.strftime('%H:%M')}
               </td>
               <td class="sidebar-tz text-secondary tz-offset">-2h</td>
             </tr>
             <tr>
               <td class="sidebar-tz text-secondary"
                   i18n:translate=""
-              >JST</td>
+              >JST
+              </td>
               <td class="sidebar-tz text-secondary"
                   datetime="${python: jst_time}"
               >
-                ${python: jst_time.strftime('%H:%M')}
+          ${python: jst_time.strftime('%H:%M')}
               </td>
               <td class="sidebar-tz text-secondary tz-offset">+8h</td>
             </tr>
@@ -220,13 +223,14 @@
               <div class="mobile-placeholder-shortcuts"
                    aria-label="Platzhalter-Schnellzugriffe"
               >
-                <div class="mobile-placeholder-link">
-                  <span class="mobile-placeholder-icon">
+                <div class="mobile-groups-folder-link">
+                  <span class="mobile-groups-folder-icon">
                     <tal:icon tal:replace="structure python:icons.tag('folder-fill')" />
                   </span>
-                  <span class="mobile-placeholder-label">
-                    <div class="w-100 d-xl-none px-3 py-2 border-bottom groups-mobile-toggle">
-                      <button class="btn btn-secondary w-100 d-flex align-items-center justify-content-between"
+                  <span class="mobile-groups-folder-label"
+                        tal:condition="groups_tree"
+                  >
+                      <span class="w-100 d-flex align-items-center justify-content-between"
                               aria-controls="offcanvasGroupsNav"
                               aria-label="Gruppen öffnen"
                               type="button"
@@ -234,9 +238,7 @@
                               data-bs-toggle="offcanvas"
                       >
                         <span>Gruppen</span>
-                        <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
-                      </button>
-                    </div>
+                      </span>
 
                     <nav class="w-100 align-items-center h-100 overflow-auto d-none d-xl-block">
                       <h2 class="visually-hidden">Nav title</h2>
@@ -251,6 +253,13 @@
                     </nav>
 
                   </span>
+                  <div class="mobile-groups-folder-link"
+
+                     tal:condition="python: not groups_tree"
+                  >
+                    <a class="mobile-groups-folder-label" href="${python: view.groups_folder_url}">Meine Gruppenordner</a>
+                  </div>
+
                   <span class="mobile-placeholder-chevron">
                     <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
                   </span>
@@ -375,7 +384,7 @@
             </button>
             <div class="mobile-settings-pane-content">
               <tal:event-switcher-mobile tal:replace="structure context/@@event-switcher-mobile-content">
-                  Event switcher dropdown
+            Event switcher dropdown
               </tal:event-switcher-mobile>
             </div>
           </div>
@@ -433,7 +442,7 @@
             </button>
             <div class="mobile-settings-pane-content">
               <tal:accessibility-mobile tal:replace="structure context/@@accessibility-content">
-                  Accessibility dropdown
+            Accessibility dropdown
               </tal:accessibility-mobile>
             </div>
           </div>
@@ -457,7 +466,7 @@
             </button>
             <div class="mobile-settings-pane-content">
               <tal:info-mobile tal:replace="structure context/@@info-content">
-                  Info dropdown
+            Info dropdown
               </tal:info-mobile>
             </div>
           </div>
@@ -481,7 +490,7 @@
             </button>
             <div class="mobile-settings-pane-content">
               <tal:systemmessages-mobile tal:replace="structure context/@@system-messages-content">
-                  System messages dropdown
+            System messages dropdown
               </tal:systemmessages-mobile>
             </div>
           </div>
@@ -505,7 +514,7 @@
             </button>
             <div class="mobile-settings-pane-content">
               <tal:config-mobile tal:replace="structure context/@@config-content">
-                  Config dropdown
+            Config dropdown
               </tal:config-mobile>
             </div>
           </div>
@@ -529,7 +538,7 @@
             </button>
             <div class="mobile-settings-pane-content">
               <tal:user-mobile tal:replace="structure context/@@user-content">
-                  User dropdown
+            User dropdown
               </tal:user-mobile>
             </div>
           </div>
