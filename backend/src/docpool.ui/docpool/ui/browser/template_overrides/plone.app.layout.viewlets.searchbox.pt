@@ -38,10 +38,10 @@
         <div class="dp-search-context-dropdown dropdown position-relative">
           <button class="btn dp-search-context-btn event-switcher-detail d-inline-flex align-items-center justify-content-between justify-content-md-start text-nowrap text-white rounded-0"
                   id="search-context-dropdown-toggle"
-                  type="button"
-                  data-bs-toggle="dropdown"
-                  data-bs-auto-close="outside"
                   aria-expanded="false"
+                  type="button"
+                  data-bs-auto-close="outside"
+                  data-bs-toggle="dropdown"
           >
             <span tal:condition="python:selected_scenario is not None">${selected_scenario/Title}</span>
             <span tal:condition="python:selected_scenario is None">Aktuelles Ereignis</span>
@@ -56,10 +56,10 @@
                 tal:repeat="scenario active_scenarios"
             >
               <a class="dp-search-context-link ${python:'selected' if scenario.UID() == selected_uid else ''}"
-                 data-scenario-title="${scenario/Title}"
-                 data-scenario-uid="${scenario/UID}"
                  href="${python:
                     f'{context.absolute_url()}/@@select_scenario?scenario={scenario.UID()}&amp;_authenticator={auth_token}'}"
+                 data-scenario-title="${scenario/Title}"
+                 data-scenario-uid="${scenario/UID}"
               >
                 <span class="dp-search-context-link-title">${scenario/Title}</span>
                 <span class="dp-search-context-link-meta">${scenario/operation_mode_title}</span>

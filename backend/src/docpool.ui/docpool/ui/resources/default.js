@@ -245,7 +245,9 @@ function setupSearchContextInlineSwitch() {
       });
 
       if (!response.ok) {
-        throw new Error(`Scenario switch failed with status ${response.status}`);
+        throw new Error(
+          `Scenario switch failed with status ${response.status}`,
+        );
       }
 
       const title = link.getAttribute("data-scenario-title");
@@ -259,9 +261,11 @@ function setupSearchContextInlineSwitch() {
       }
 
       if (uid) {
-        menu.querySelectorAll("a.dp-search-context-link.selected").forEach((el) => {
-          el.classList.remove("selected");
-        });
+        menu
+          .querySelectorAll("a.dp-search-context-link.selected")
+          .forEach((el) => {
+            el.classList.remove("selected");
+          });
         link.classList.add("selected");
       }
 
