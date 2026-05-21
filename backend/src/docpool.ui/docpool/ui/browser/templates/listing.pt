@@ -613,13 +613,29 @@
            "
       >
         <div class="mx-3 my-0 py-2"
-             tal:condition="python: 'entries' in view.filters"
+             tal:condition="python: 'entries' in view.filters and not view.from_global_search"
              tal:attributes="
                class python: 'mx-3 my-0 py-2 d-none d-lg-block' if show_scenario_filter_switch else 'mx-3 my-0 py-2 me-auto d-none d-lg-block';
              "
         >
           <span tal:replace="python: len(items)"></span>
           <span i18n:translate="">Entries</span>
+        </div>
+
+
+        <div class="mx-3 my-0 py-2 search-text"
+             tal:condition="python: view.show_global_search_summary"
+             tal:attributes="
+               class python: 'mx-3 my-0 py-2 d-none d-lg-block' if show_scenario_filter_switch else 'mx-3 my-0 py-2 me-auto d-none d-lg-block';
+             "
+        >
+
+          <span tal:replace="python: len(items)"></span>
+          <span i18n:translate="">Resultate for</span>
+          <strong class="fw-bold"
+                  tal:content="python: view.global_search_text"
+          ></strong>
+
         </div>
 
         <tal:block tal:repeat="item python: folder_uids + other_uids + items">

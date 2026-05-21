@@ -1,16 +1,21 @@
-<div class="offcanvas offcanvas-top"
+<div class="offcanvas offcanvas-top overflow-y-auto"
      id="portal-searchbox"
      aria-labelledby="portal-searchbox-label"
      tabindex="-1"
      tal:define="
        navigation_root_url view/navigation_root_url;
        icons python:context.restrictedTraverse('@@iconresolver');
+       search_context python:context.restrictedTraverse('@@search-context')();
+       selected_scenario python:search_context.selected_scenario;
+       selected_uid python:selected_scenario.UID() if selected_scenario else None;
+       active_scenarios python:search_context.active_scenarios;
+       auth_token context/@@authenticator/token;
        recent_searches python:['Wetterbericht', 'Messergebnis', 'Lagebild'];
        popular_terms python:['Suchbegriff A', 'Suchbegriff lorem ipsum dolor sit amet', 'Suchbegriff the quick brown fox jumps over the lazy dog', 'Suchbegriff C', 'Suchbegriff AbcAbcAbc'];
      "
      i18n:domain="plone"
 >
-  <div class="offcanvas-body">
+  <div class="offcanvas-body p-3">
     <h2 class="offcanvas-title visually-hidden"
         id="portal-searchbox-label"
         i18n:translate="label_search"
@@ -20,7 +25,7 @@
           action="@@search"
           role="search"
           tal:attributes="
-            action string:${navigation_root_url}/@@search;
+            action string:${navigation_root_url};
           "
     >
 
@@ -29,36 +34,73 @@
              i18n:translate="text_search"
       >Search Site</label>
 
-      <div class="dp-search-row">
-        <button class="btn dp-search-context-btn"
-                type="button"
-        >
-          <span>Aktuelles Ereignis</span>
-          <tal:icon replace="structure python:icons.tag('chevron-down', tag_class='ms-2')" />
-        </button>
+      <div class="dp-search-row d-flex flex-column flex-md-row align-items-stretch w-100 bg-white rounded-1">
+        <div class="dp-search-context-dropdown dropdown position-relative">
+          <button class="btn dp-search-context-btn event-switcher-detail d-inline-flex align-items-center justify-content-between justify-content-md-start text-nowrap text-white rounded-0"
+                  id="search-context-dropdown-toggle"
+                  aria-expanded="false"
+                  type="button"
+                  data-bs-auto-close="outside"
+                  data-bs-toggle="dropdown"
+          >
+            <span tal:condition="python:selected_scenario is not None">${selected_scenario/Title}</span>
+            <span tal:condition="python:selected_scenario is None"
+                  i18n:translate=""
+            >Select scenario</span>
+            <tal:icon replace="structure python:icons.tag('chevron-down', tag_class='ms-2')" />
+          </button>
 
-        <div class="dp-search-input-wrap">
-          <span class="dp-search-input-icon"
+          <ul class="dropdown-menu dp-search-context-menu w-100"
+              id="search-context-dropdown-menu"
+              aria-labelledby="search-context-dropdown-toggle"
+          >
+            <li class="dp-search-context-item"
+                tal:repeat="scenario active_scenarios"
+            >
+              <a class="dp-search-context-link ${python:'selected' if scenario.UID() == selected_uid else ''}"
+                 href="${python:
+                    f'{context.absolute_url()}/@@select_scenario?scenario={scenario.UID()}&amp;_authenticator={auth_token}'}"
+                 data-scenario-title="${scenario/Title}"
+                 data-scenario-uid="${scenario/UID}"
+              >
+                <span class="dp-search-context-link-title">${scenario/Title}</span>
+                <span class="dp-search-context-link-meta">${scenario/operation_mode_title}</span>
+              </a>
+            </li>
+            <li class="dp-search-context-item"
+                tal:condition="python:not active_scenarios"
+            >
+              <span class="dp-search-context-empty">Keine aktiven Ereignisse</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="dp-search-input-wrap d-flex align-items-center flex-fill bg-white">
+          <span class="dp-search-input-icon d-inline-flex align-items-center justify-content-center"
                 aria-hidden="true"
           >
             <tal:icon replace="structure python:icons.tag('search')" />
           </span>
 
-          <input class="searchField form-control dp-search-input"
+          <input class="searchField form-control dp-search-input border-0 shadow-none ps-0"
                  id="searchGadget"
-                 name="SearchableText"
+                 name="searchable_text"
                  placeholder="ELAN durchsuchen"
                  size="18"
                  title="Search Site"
                  type="text"
                  value=""
                  tal:attributes="
-                   value request/form/SearchableText|nothing;
+                   value request/form/searchable_text|request/form/SearchableText|nothing;
                  "
                  i18n:attributes="title title_search_site"
           />
+          <input name="from_global_search"
+                 type="hidden"
+                 value="1"
+          />
 
-          <button class="btn dp-search-dismiss"
+          <button class="btn dp-search-dismiss h-100 rounded-0 bg-transparent lh-1"
                   aria-label="Suche schließen"
                   type="button"
                   data-bs-dismiss="offcanvas"
@@ -86,19 +128,19 @@
 
     </form>
 
-    <div class="dp-search-suggestions row g-0">
-      <div class="col-12 col-md-3 dp-search-col-recent">
+    <div class="dp-search-suggestions row g-0 mt-4">
+      <div class="col-12 col-md-3 dp-search-col-recent pe-md-4 mb-3 mb-md-0 pb-3 pb-md-0">
         <h3 class="dp-search-heading">Letzte Suchen</h3>
         <div class="d-flex flex-column gap-2">
-          <span class="dp-search-chip-outline"
+          <span class="dp-search-chip-outline d-inline-flex align-items-center text-nowrap rounded-pill bg-white"
                 tal:repeat="term recent_searches"
           >${term}</span>
         </div>
       </div>
-      <div class="col-12 col-md-9 dp-search-col-popular">
+      <div class="col-12 col-md-9 dp-search-col-popular ps-md-4">
         <h3 class="dp-search-heading">Beliebte Suchbegriffe</h3>
         <div class="d-flex flex-wrap gap-2">
-          <span class="dp-search-chip"
+          <span class="dp-search-chip d-inline-flex align-items-center text-nowrap rounded-pill"
                 tal:repeat="term popular_terms"
           >${term}</span>
         </div>
