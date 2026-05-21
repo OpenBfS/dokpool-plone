@@ -131,6 +131,7 @@ function setupHeaderMobileUi() {
   setupMobileOffcanvasSettingsNavigation();
   setupListingMobileFilters();
   setupListingDesktopFilterResets();
+  setupSearchContextInlineSwitch();
 }
 
 if (document.readyState === "loading") {
@@ -211,3 +212,65 @@ $(document).on("click", "a.pat-inject.list-item-link", function (e) {
     localStorage.setItem("dokpool-listing-query", params.toString());
   }
 });
+
+// Switches search context scenario inline without closing the search offcanvas.
+function setupSearchContextInlineSwitch() {
+  const menu = document.getElementById("search-context-dropdown-menu");
+  const button = document.getElementById("search-context-dropdown-toggle");
+  if (!menu || !button) return;
+
+  if (menu.dataset.inlineSwitchBound === "1") {
+    return;
+  }
+  menu.dataset.inlineSwitchBound = "1";
+
+  menu.addEventListener("click", async (event) => {
+    if (!(event.target instanceof Element)) return;
+    const link = event.target.closest("a.dp-search-context-link");
+    if (!link) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+
+    const href = link.getAttribute("href");
+    if (!href) return;
+
+    try {
+      const response = await fetch(href, {
+        method: "GET",
+        credentials: "same-origin",
+        headers: {
+          "X-Requested-With": "XMLHttpRequest",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`Scenario switch failed with status ${response.status}`);
+      }
+
+      const title = link.getAttribute("data-scenario-title");
+      const uid = link.getAttribute("data-scenario-uid");
+
+      if (title) {
+        const textNode = button.querySelector("span");
+        if (textNode) {
+          textNode.textContent = title;
+        }
+      }
+
+      if (uid) {
+        menu.querySelectorAll("a.dp-search-context-link.selected").forEach((el) => {
+          el.classList.remove("selected");
+        });
+        link.classList.add("selected");
+      }
+
+      // Close only the context dropdown after successful switch.
+      if (button.getAttribute("aria-expanded") === "true") {
+        button.click();
+      }
+    } catch (error) {
+      window.location.href = href;
+    }
+  });
+}

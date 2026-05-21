@@ -57,6 +57,14 @@
       />
 
   <browser:page
+      name="search-context"
+      for="*"
+      class=".header.SearchContextView"
+      permission="zope.Public"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
+  <browser:page
       name="info-content"
       for="*"
       class=".header.InfoDropdown"

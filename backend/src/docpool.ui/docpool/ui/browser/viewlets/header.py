@@ -195,6 +195,20 @@ class EventSwitcherDropdown(EventSwitcherMixin, BrowserView):
         return super().__call__()
 
 
+class SearchContextView(EventSwitcherMixin, BrowserView):
+    def __call__(self):
+        self.dp = IPlaces(self.context).document_pool
+        self.dp_url = self.dp.absolute_url() if self.dp is not None else None
+        scenarios_by_uid, selected_uid = self.set_scenario_attributes()
+        self.selected_uid = selected_uid
+        self.active_scenarios = [
+            scenario
+            for _, scenario in scenarios_by_uid.items()
+            if getattr(scenario, "Status", None) == "active"
+        ][:2]
+        return self
+
+
 class InfoDropdown(BrowserView):
     def get_dokpool_version(self):
         dist = distribution("docpool.base")

@@ -5,6 +5,11 @@
      tal:define="
        navigation_root_url view/navigation_root_url;
        icons python:context.restrictedTraverse('@@iconresolver');
+       search_context python:context.restrictedTraverse('@@search-context')();
+       selected_scenario python:search_context.selected_scenario;
+       selected_uid python:selected_scenario.UID() if selected_scenario else None;
+       active_scenarios python:search_context.active_scenarios;
+       auth_token context/@@authenticator/token;
        recent_searches python:['Wetterbericht', 'Messergebnis', 'Lagebild'];
        popular_terms python:['Suchbegriff A', 'Suchbegriff lorem ipsum dolor sit amet', 'Suchbegriff the quick brown fox jumps over the lazy dog', 'Suchbegriff C', 'Suchbegriff AbcAbcAbc'];
      "
@@ -29,13 +34,44 @@
              i18n:translate="text_search"
       >Search Site</label>
 
-      <div class="dp-search-row d-flex flex-column flex-md-row align-items-stretch w-100 overflow-hidden bg-white rounded-1">
-        <button class="btn dp-search-context-btn d-inline-flex align-items-center justify-content-between justify-content-md-start text-nowrap text-white rounded-0"
-                type="button"
-        >
-          <span>Aktuelles Ereignis</span>
-          <tal:icon replace="structure python:icons.tag('chevron-down', tag_class='ms-2')" />
-        </button>
+      <div class="dp-search-row d-flex flex-column flex-md-row align-items-stretch w-100 bg-white rounded-1">
+        <div class="dp-search-context-dropdown dropdown position-relative">
+          <button class="btn dp-search-context-btn event-switcher-detail d-inline-flex align-items-center justify-content-between justify-content-md-start text-nowrap text-white rounded-0"
+                  id="search-context-dropdown-toggle"
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  data-bs-auto-close="outside"
+                  aria-expanded="false"
+          >
+            <span tal:condition="python:selected_scenario is not None">${selected_scenario/Title}</span>
+            <span tal:condition="python:selected_scenario is None">Aktuelles Ereignis</span>
+            <tal:icon replace="structure python:icons.tag('chevron-down', tag_class='ms-2')" />
+          </button>
+
+          <ul class="dropdown-menu dp-search-context-menu w-100"
+              id="search-context-dropdown-menu"
+              aria-labelledby="search-context-dropdown-toggle"
+          >
+            <li class="dp-search-context-item"
+                tal:repeat="scenario active_scenarios"
+            >
+              <a class="dp-search-context-link ${python:'selected' if scenario.UID() == selected_uid else ''}"
+                 data-scenario-title="${scenario/Title}"
+                 data-scenario-uid="${scenario/UID}"
+                 href="${python:
+                    f'{context.absolute_url()}/@@select_scenario?scenario={scenario.UID()}&amp;_authenticator={auth_token}'}"
+              >
+                <span class="dp-search-context-link-title">${scenario/Title}</span>
+                <span class="dp-search-context-link-meta">${scenario/operation_mode_title}</span>
+              </a>
+            </li>
+            <li class="dp-search-context-item"
+                tal:condition="python:not active_scenarios"
+            >
+              <span class="dp-search-context-empty">Keine aktiven Ereignisse</span>
+            </li>
+          </ul>
+        </div>
 
         <div class="dp-search-input-wrap d-flex align-items-center flex-fill bg-white">
           <span class="dp-search-input-icon d-inline-flex align-items-center justify-content-center"
