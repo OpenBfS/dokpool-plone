@@ -65,6 +65,9 @@ class Listing(BrowserView):
         self.query["sort_on"] = sort_on_option[0]
         self.query["sort_order"] = sort_on_option[1]
 
+        self.from_global_search = form.get("from_global_search", False)
+        self.global_search_text = form.get("searchable_text", False) or ""
+
         # Filter by Text
         self.searchable_text = form.get("searchable_text")
         if self.searchable_text:
@@ -232,6 +235,10 @@ class Listing(BrowserView):
 
         if self.limit > 0:
             uids = uids[: self.limit]
+
+        self.show_global_search_summary = bool(
+            self.from_global_search and self.global_search_text and "entries" in self.filters
+        )
 
         self.folder_uids = []
         self.other_uids = []
