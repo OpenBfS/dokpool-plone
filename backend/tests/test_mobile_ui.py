@@ -64,7 +64,7 @@ class TestMobileUI:
         expect(search_button).to_be_visible()
         search_button.click()
         # Check that search input is visible
-        search_input = page.locator("input[type='search'], input[name='SearchableText']")
+        search_input = page.locator("input.dp-search-input")
         expect(search_input.first).to_be_visible()
         page.locator(".dp-search-dismiss").click()
         # Searchbox should be hidden or collapsed
