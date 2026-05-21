@@ -17,6 +17,8 @@
     overflow: visible;
     position: relative;
     z-index: 1;
+    border-radius: 0.25rem;
+    background-color: #fff;
   }
 
   .dp-search-context-btn {
@@ -25,6 +27,9 @@
     padding: 0 14px;
     background-color: var(--bs-primary);
     font-size: var(--dp-font-body);
+    min-height: 40px;
+    border-top-left-radius: 0.2rem;
+    border-bottom-left-radius: 0.2rem;
   }
 
   .dp-search-context-menu {
@@ -80,6 +85,8 @@
 
   .dp-search-input-wrap {
     min-width: 0;
+    border-top-right-radius: 0.2rem;
+    border-bottom-right-radius: 0.2rem;
   }
 
   .dp-search-input-icon {
@@ -90,6 +97,7 @@
   .dp-search-input {
     font-size: var(--dp-font-title);
     color: var(--bs-primary);
+    background-color: #fff;
   }
 
   .dp-search-dismiss {
