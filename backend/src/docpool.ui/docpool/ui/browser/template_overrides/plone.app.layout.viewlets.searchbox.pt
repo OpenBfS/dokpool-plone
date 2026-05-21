@@ -44,7 +44,9 @@
                   data-bs-toggle="dropdown"
           >
             <span tal:condition="python:selected_scenario is not None">${selected_scenario/Title}</span>
-            <span tal:condition="python:selected_scenario is None" i18n:translate="">Select scenario</span>
+            <span tal:condition="python:selected_scenario is None"
+                  i18n:translate=""
+            >Select scenario</span>
             <tal:icon replace="structure python:icons.tag('chevron-down', tag_class='ms-2')" />
           </button>
 
