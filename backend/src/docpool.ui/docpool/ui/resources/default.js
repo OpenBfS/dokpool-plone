@@ -6,6 +6,7 @@ import registry from "@patternslib/patternslib/src/core/registry";
 
 const MOBILE_SCROLL_TOP_BREAKPOINT = 991;
 const MOBILE_SCROLL_TOP_OFFSET = 240;
+const RECENT_SEARCHES_LIMIT = 10;
 
 // Initializes the mobile scroll-to-top button behavior.
 function setupMobileScrollTopButton() {
@@ -131,6 +132,91 @@ function setupHeaderMobileUi() {
   setupMobileOffcanvasSettingsNavigation();
   setupListingMobileFilters();
   setupListingDesktopFilterResets();
+  setupRecentSearches();
+}
+
+function setupRecentSearches() {
+  const searchbox = document.getElementById("portal-searchbox");
+  const form = document.getElementById("searchGadget_form");
+  const input = document.getElementById("searchGadget");
+  const container = document.getElementById("dp-recent-searches");
+  const resetButton = document.getElementById("dp-recent-searches-reset");
+  if (!searchbox || !form || !input || !container || !resetButton) return;
+
+  if (form.dataset.recentSearchesBound === "1") return;
+  form.dataset.recentSearchesBound = "1";
+
+  const appScope = searchbox.dataset.appScope || "default";
+  const storageKey = `dokpool-recent-searches::${appScope}`;
+
+  const loadRecentSearches = () => {
+    try {
+      const raw = localStorage.getItem(storageKey);
+      if (!raw) return [];
+      const parsed = JSON.parse(raw);
+      if (!Array.isArray(parsed)) return [];
+      return parsed
+        .map((value) => (typeof value === "string" ? value.trim() : ""))
+        .filter((value) => value.length > 0)
+        .slice(0, RECENT_SEARCHES_LIMIT);
+    } catch (error) {
+      return [];
+    }
+  };
+
+  const saveRecentSearches = (items) => {
+    try {
+      localStorage.setItem(storageKey, JSON.stringify(items));
+    } catch (error) {
+      // no localStorage m
+    }
+  };
+
+  const renderRecentSearches = (items) => {
+    container.replaceChildren();
+    resetButton.hidden = items.length === 0;
+    items.forEach((term) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className =
+        "dp-search-chip-outline d-inline-flex align-items-center rounded-pill bg-white";
+      button.textContent = term;
+      button.setAttribute("data-search-term", term);
+      container.appendChild(button);
+    });
+  };
+
+  const addRecentSearch = (term) => {
+    const cleanTerm = term.trim();
+    if (!cleanTerm) return;
+    const items = loadRecentSearches().filter((item) => item !== cleanTerm);
+    items.unshift(cleanTerm);
+    const nextItems = items.slice(0, RECENT_SEARCHES_LIMIT);
+    saveRecentSearches(nextItems);
+    renderRecentSearches(nextItems);
+  };
+
+  renderRecentSearches(loadRecentSearches());
+
+  form.addEventListener("submit", () => {
+    addRecentSearch(input.value || "");
+  });
+
+  container.addEventListener("click", (event) => {
+    const target = event.target;
+    if (!(target instanceof HTMLElement)) return;
+    const button = target.closest("button[data-search-term]");
+    if (!(button instanceof HTMLButtonElement)) return;
+
+    const term = button.dataset.searchTerm || "";
+    input.value = term;
+    form.requestSubmit();
+  });
+
+  resetButton.addEventListener("click", () => {
+    saveRecentSearches([]);
+    renderRecentSearches([]);
+  });
 }
 
 if (document.readyState === "loading") {

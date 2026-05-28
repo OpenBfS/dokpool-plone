@@ -6,7 +6,9 @@
        navigation_root_url view/navigation_root_url;
        icons python:context.restrictedTraverse('@@iconresolver');
        selected_search_scope python:request.form.get('search_scope', 'current_event');
-       recent_searches python:['Wetterbericht', 'Messergebnis', 'Lagebild'];
+     "
+     tal:attributes="
+       data-app-scope navigation_root_url;
      "
      i18n:domain="plone"
 >
@@ -39,16 +41,22 @@
                   name="search_scope"
           >
             <option value="current_event"
-                    tal:attributes="selected python:'selected' if selected_search_scope == 'current_event' else nothing"
-              i18n:translate=""
+                    tal:attributes="
+                      selected python:'selected' if selected_search_scope == 'current_event' else nothing;
+                    "
+                    i18n:translate=""
             >Current event</option>
             <option value="all_events"
-                    tal:attributes="selected python:'selected' if selected_search_scope == 'all_events' else nothing"
-               i18n:translate=""
+                    tal:attributes="
+                      selected python:'selected' if selected_search_scope == 'all_events' else nothing;
+                    "
+                    i18n:translate=""
             >All events</option>
             <option value="all_archives"
-                    tal:attributes="selected python:'selected' if selected_search_scope == 'all_archives' else nothing"
-               i18n:translate=""
+                    tal:attributes="
+                      selected python:'selected' if selected_search_scope == 'all_archives' else nothing;
+                    "
+                    i18n:translate=""
             >All archives</option>
           </select>
         </div>
@@ -107,11 +115,19 @@
 
     <div class="dp-search-suggestions row g-0 mt-4">
       <div class="col-12 col-md-3 dp-search-col-recent pe-md-4 mb-3 mb-md-0 pb-3 pb-md-0">
-        <h3 class="dp-search-heading">Letzte Suchen</h3>
-        <div class="d-flex flex-column gap-2">
-          <span class="dp-search-chip-outline d-inline-flex align-items-center text-nowrap rounded-pill bg-white"
-                tal:repeat="term recent_searches"
-          >${term}</span>
+        <div class="d-flex align-items-center justify-content-between gap-2">
+          <h3 class="dp-search-heading mb-0"
+              i18n:translate=""
+          >Letzte Suchen</h3>
+          <button class="btn btn-link p-0 text-decoration-none"
+                  id="dp-recent-searches-reset"
+                  type="button"
+                  i18n:translate=""
+          >Reset</button>
+        </div>
+        <div class="d-flex flex-column gap-2"
+             id="dp-recent-searches"
+        >
         </div>
       </div>
     </div>
