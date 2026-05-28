@@ -1,12 +1,14 @@
 from docpool.api.browser.setup import add_user
 from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
 from docpool.elan.utils import get_scenario_for_current_user
+from docpool.elan.utils import set_scenario_for_current_user
 from docpool.ui.testing import DOCPOOL_UI_FUNCTIONAL_TESTING
 from docpool.ui.testing import DOCPOOL_UI_INTEGRATION_TESTING
 from plone import api
 from plone.app.testing import login
 from plone.app.testing import logout
 from plone.app.testing import setRoles
+from plone.app.testing import SITE_OWNER_NAME
 from plone.app.testing import TEST_USER_ID
 from plone.dexterity.utils import datify
 from plone.namedfile.file import NamedBlobFile
@@ -189,3 +191,99 @@ class TestUIFeatures(unittest.TestCase):
         entry.reindexObject()
         uids, _ = listing_view.find()
         self.assertEqual(len(uids), 1)
+
+    def test_search_scopes_with_current_all_events_and_archive_documents(self):
+        scen_container = self.docpool["contentconfig"]["scen"]
+
+        # Event creation/archiving needs manager
+        logout()
+        login(self.portal, SITE_OWNER_NAME)
+        current_event = api.content.create(
+            container=scen_container,
+            type="DPEvent",
+            id="current_scope_event",
+            title="Current Scope Event",
+        )
+        all_events_event = api.content.create(
+            container=scen_container,
+            type="DPEvent",
+            id="all_events_scope_event",
+            title="All Events Scope Event",
+        )
+        archive_event = api.content.create(
+            container=scen_container,
+            type="DPEvent",
+            id="archive_scope_event",
+            title="Archive Scope Event",
+        )
+        logout()
+        login(self.portal, "user1")
+
+        current_doc = api.content.create(
+            container=self.group_folder,
+            type="DPDocument",
+            title="Current Scope Document",
+            description="scope-current",
+            docType="weather_conditions_and_forecast",
+            local_behaviors=["elan"],
+            scenario=current_event.UID(),
+        )
+        all_events_doc = api.content.create(
+            container=self.group_folder,
+            type="DPDocument",
+            title="All Events Scope Document",
+            description="scope-all-events",
+            docType="weather_conditions_and_forecast",
+            local_behaviors=["elan"],
+            scenario=all_events_event.UID(),
+        )
+        archive_doc = api.content.create(
+            container=self.group_folder,
+            type="DPDocument",
+            title="Archive Scope Document",
+            description="scope-archive",
+            docType="weather_conditions_and_forecast",
+            local_behaviors=["elan"],
+            scenario=archive_event.UID(),
+        )
+
+        # Ensure "current_event" scope points to the expected event.
+        set_scenario_for_current_user(current_event.UID())
+
+        logout()
+        login(self.portal, SITE_OWNER_NAME)
+        archive_form = archive_event.restrictedTraverse("@@archiveAndClose")
+        archive_form()
+        self.request.form["form.button.submit"] = True
+        archive_form()
+        logout()
+        login(self.portal, "user1")
+
+        listing_view = api.content.get_view("listing", self.docpool, self.request)
+
+        self.request.form.clear()
+        self.request.form.update(
+            search_scope="current_event",
+            from_global_search=1,
+            searchable_text="scope",
+        )
+        uids_current, _ = listing_view.find()
+        self.assertEqual(set(uids_current), {current_doc.UID()})
+
+        self.request.form.clear()
+        self.request.form.update(
+            search_scope="all_events",
+            from_global_search=1,
+            searchable_text="scope",
+        )
+        uids_all_events, _ = listing_view.find()
+        self.assertEqual(set(uids_all_events), {current_doc.UID(), all_events_doc.UID()})
+
+        self.request.form.clear()
+        self.request.form.update(
+            search_scope="all_archives",
+            from_global_search=1,
+            searchable_text="scope",
+        )
+        uids_all_archives, _ = listing_view.find()
+        self.assertEqual(set(uids_all_archives), {archive_doc.UID()})
