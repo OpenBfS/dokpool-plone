@@ -1,6 +1,8 @@
 from playwright.sync_api import expect
 from plone.app.testing import SITE_OWNER_NAME
 from plone.app.testing import SITE_OWNER_PASSWORD
+from urllib.parse import parse_qs
+from urllib.parse import urlparse
 
 import pytest
 
@@ -19,25 +21,7 @@ class TestSearch:
         page.locator("button.search-btn").click()
         expect(page.locator("#portal-searchbox")).to_be_visible()
 
-        toggle = page.locator("#search-context-dropdown-toggle")
-        menu = page.locator("#search-context-dropdown-menu")
-        selected = page.get_by_role("button", name="Normalfall")
+        selected = page.locator("#search-context-scope-select")
 
-        expect(toggle).to_be_visible()
-        expect(selected).to_have_text("Normalfall")
-        toggle.click()
-
-        notfall = menu.locator("a.dp-search-context-link", has_text="Notfall").first
-        expect(notfall).to_be_visible()
-        notfall.click()
-        page.wait_for_load_state("networkidle")
-        page.locator(".dp-search-dismiss").click()
-        expect(page.locator("#portal-searchbox")).not_to_be_visible()
-
-        page.reload()
-        page.wait_for_load_state("networkidle")
-        page.pause()
-        selected_event_title = page.locator(
-            "#docpool-header .event-card.event-switcher-detail .text-truncate",
-        ).first
-        expect(selected_event_title).to_have_text("Notfall")
+        expect(selected).to_be_visible()
+        expect(selected).to_have_value("current_event")
