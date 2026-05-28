@@ -1,8 +1,6 @@
 from playwright.sync_api import expect
 from plone.app.testing import SITE_OWNER_NAME
 from plone.app.testing import SITE_OWNER_PASSWORD
-from urllib.parse import parse_qs
-from urllib.parse import urlparse
 
 import pytest
 
