@@ -41,13 +41,16 @@
           >
             <option value="current_event"
                     tal:attributes="selected python:'selected' if selected_search_scope == 'current_event' else nothing"
-            >Aktuelles Ereignis</option>
+              i18n:translate=""
+            >Current event</option>
             <option value="all_events"
                     tal:attributes="selected python:'selected' if selected_search_scope == 'all_events' else nothing"
-            >Alle Ereignisse</option>
+               i18n:translate=""
+            >All events</option>
             <option value="all_archives"
                     tal:attributes="selected python:'selected' if selected_search_scope == 'all_archives' else nothing"
-            >Alle Archive</option>
+               i18n:translate=""
+            >All archives</option>
           </select>
         </div>
 
