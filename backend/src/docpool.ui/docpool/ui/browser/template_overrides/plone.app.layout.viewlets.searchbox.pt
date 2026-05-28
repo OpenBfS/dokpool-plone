@@ -7,7 +7,6 @@
        icons python:context.restrictedTraverse('@@iconresolver');
        selected_search_scope python:request.form.get('search_scope', 'current_event');
        recent_searches python:['Wetterbericht', 'Messergebnis', 'Lagebild'];
-       popular_terms python:['Suchbegriff A', 'Suchbegriff lorem ipsum dolor sit amet', 'Suchbegriff the quick brown fox jumps over the lazy dog', 'Suchbegriff C', 'Suchbegriff AbcAbcAbc'];
      "
      i18n:domain="plone"
 >
@@ -112,14 +111,6 @@
         <div class="d-flex flex-column gap-2">
           <span class="dp-search-chip-outline d-inline-flex align-items-center text-nowrap rounded-pill bg-white"
                 tal:repeat="term recent_searches"
-          >${term}</span>
-        </div>
-      </div>
-      <div class="col-12 col-md-9 dp-search-col-popular ps-md-4">
-        <h3 class="dp-search-heading">Beliebte Suchbegriffe</h3>
-        <div class="d-flex flex-wrap gap-2">
-          <span class="dp-search-chip d-inline-flex align-items-center text-nowrap rounded-pill"
-                tal:repeat="term popular_terms"
           >${term}</span>
         </div>
       </div>
