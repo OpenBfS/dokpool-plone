@@ -67,6 +67,9 @@ class Listing(BrowserView):
 
         self.from_global_search = form.get("from_global_search", False)
         self.global_search_text = form.get("searchable_text", False) or ""
+        self.search_scope = form.get("search_scope") or "current_event"
+        if self.search_scope == "all_events":
+            self.bypass_scenario_filter = True
 
         # Filter by Text
         self.searchable_text = form.get("searchable_text")
@@ -186,6 +189,13 @@ class Listing(BrowserView):
         else:
             content_area = IPlaces(self.context).content
             self.base_query["path"] = "/".join((content_area or self.context).getPhysicalPath())
+
+        # Archive-wide search
+        if "from_global_search" in form and self.search_scope == "all_archives":
+            self.base_query.pop("scenario", None)
+            self.bypass_scenario_filter = True
+            dp_archive = IPlaces(self.context).document_pool
+            self.base_query["path"] = "/".join(dp_archive.getPhysicalPath()) + "/archive"
 
         # Prepare review_state filter options (query needs to be complete)
         if "visibility" in self.filters:

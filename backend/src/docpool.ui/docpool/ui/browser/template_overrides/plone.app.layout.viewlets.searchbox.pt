@@ -5,11 +5,7 @@
      tal:define="
        navigation_root_url view/navigation_root_url;
        icons python:context.restrictedTraverse('@@iconresolver');
-       search_context python:context.restrictedTraverse('@@search-context')();
-       selected_scenario python:search_context.selected_scenario;
-       selected_uid python:selected_scenario.UID() if selected_scenario else None;
-       active_scenarios python:search_context.active_scenarios;
-       auth_token context/@@authenticator/token;
+       selected_search_scope python:request.form.get('search_scope', 'current_event');
        recent_searches python:['Wetterbericht', 'Messergebnis', 'Lagebild'];
        popular_terms python:['Suchbegriff A', 'Suchbegriff lorem ipsum dolor sit amet', 'Suchbegriff the quick brown fox jumps over the lazy dog', 'Suchbegriff C', 'Suchbegriff AbcAbcAbc'];
      "
@@ -35,44 +31,24 @@
       >Search Site</label>
 
       <div class="dp-search-row d-flex flex-column flex-md-row align-items-stretch w-100 bg-white rounded-1">
-        <div class="dp-search-context-dropdown dropdown position-relative">
-          <button class="btn dp-search-context-btn event-switcher-detail d-inline-flex align-items-center justify-content-between justify-content-md-start text-nowrap text-white rounded-0"
-                  id="search-context-dropdown-toggle"
-                  aria-expanded="false"
-                  type="button"
-                  data-bs-auto-close="outside"
-                  data-bs-toggle="dropdown"
+        <div class="dp-search-context-dropdown position-relative">
+          <label class="visually-hidden"
+                 for="search-context-scope-select"
+          >Suchkontext</label>
+          <select class="form-select dp-search-context-btn event-switcher-detail text-white rounded-0"
+                  id="search-context-scope-select"
+                  name="search_scope"
           >
-            <span tal:condition="python:selected_scenario is not None">${selected_scenario/Title}</span>
-            <span tal:condition="python:selected_scenario is None"
-                  i18n:translate=""
-            >Select scenario</span>
-            <tal:icon replace="structure python:icons.tag('chevron-down', tag_class='ms-2')" />
-          </button>
-
-          <ul class="dropdown-menu dp-search-context-menu w-100"
-              id="search-context-dropdown-menu"
-              aria-labelledby="search-context-dropdown-toggle"
-          >
-            <li class="dp-search-context-item"
-                tal:repeat="scenario active_scenarios"
-            >
-              <a class="dp-search-context-link ${python:'selected' if scenario.UID() == selected_uid else ''}"
-                 href="${python:
-                    f'{context.absolute_url()}/@@select_scenario?scenario={scenario.UID()}&amp;_authenticator={auth_token}'}"
-                 data-scenario-title="${scenario/Title}"
-                 data-scenario-uid="${scenario/UID}"
-              >
-                <span class="dp-search-context-link-title">${scenario/Title}</span>
-                <span class="dp-search-context-link-meta">${scenario/operation_mode_title}</span>
-              </a>
-            </li>
-            <li class="dp-search-context-item"
-                tal:condition="python:not active_scenarios"
-            >
-              <span class="dp-search-context-empty">Keine aktiven Ereignisse</span>
-            </li>
-          </ul>
+            <option value="current_event"
+                    tal:attributes="selected python:'selected' if selected_search_scope == 'current_event' else nothing"
+            >Aktuelles Ereignis</option>
+            <option value="all_events"
+                    tal:attributes="selected python:'selected' if selected_search_scope == 'all_events' else nothing"
+            >Alle Ereignisse</option>
+            <option value="all_archives"
+                    tal:attributes="selected python:'selected' if selected_search_scope == 'all_archives' else nothing"
+            >Alle Archive</option>
+          </select>
         </div>
 
         <div class="dp-search-input-wrap d-flex align-items-center flex-fill bg-white">
@@ -99,7 +75,6 @@
                  type="hidden"
                  value="1"
           />
-
           <button class="btn dp-search-dismiss h-100 rounded-0 bg-transparent lh-1"
                   aria-label="Suche schließen"
                   type="button"
