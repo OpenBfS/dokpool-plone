@@ -184,7 +184,7 @@
     <button class="btn btn-link p-0 text-decoration-none mt-4"
             id="dp-recent-searches-reset"
             type="button"
-       i18n:translate=""
+            i18n:translate=""
     >Reset
     </button>
   </div>
