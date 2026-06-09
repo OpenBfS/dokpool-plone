@@ -63,6 +63,10 @@
         <i18n:dummy translate="pending - Show document"></i18n:dummy>
         <i18n:dummy translate="Select a value ..."></i18n:dummy>
         <i18n:dummy translate="alert_transition"></i18n:dummy>
+        <i18n:dummy translate="Search ELAN"></i18n:dummy>
+        <i18n:dummy translate="Search RODOS"></i18n:dummy>
+        <i18n:dummy translate="Search DokSys"></i18n:dummy>
+        <i18n:dummy translate="Search REI"></i18n:dummy>
 
         <dummy i18n:domain="plone"
                i18n:translate="description_quit_to_log_out"
