@@ -132,7 +132,39 @@ function setupHeaderMobileUi() {
   setupMobileOffcanvasSettingsNavigation();
   setupListingMobileFilters();
   setupListingDesktopFilterResets();
+  setupSearchContextDropdown();
   setupRecentSearches();
+}
+
+function setupSearchContextDropdown() {
+  const searchbox = document.getElementById("portal-searchbox");
+  if (!searchbox) return;
+
+  if (searchbox.dataset.searchContextDropdownBound === "1") return;
+  searchbox.dataset.searchContextDropdownBound = "1";
+
+  const input = searchbox.querySelector("#search-context-scope-input");
+  const label = searchbox.querySelector(".dp-search-context-current-label");
+  const options = searchbox.querySelectorAll("[data-search-scope]");
+
+  if (!(input instanceof HTMLInputElement) || !label || options.length === 0) {
+    return;
+  }
+
+  options.forEach((option) => {
+    option.addEventListener("click", () => {
+      const scope = option.getAttribute("data-search-scope");
+      const scopeLabel = option.getAttribute("data-search-scope-label");
+      if (!scope || !scopeLabel) return;
+
+      input.value = scope;
+      label.textContent = scopeLabel;
+
+      options.forEach((item) => {
+        item.classList.toggle("selected", item === option);
+      });
+    });
+  });
 }
 
 function setupRecentSearches() {

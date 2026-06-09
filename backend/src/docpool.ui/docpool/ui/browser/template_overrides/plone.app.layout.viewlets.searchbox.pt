@@ -5,7 +5,8 @@
      tal:define="
        navigation_root_url view/navigation_root_url;
        icons python:context.restrictedTraverse('@@iconresolver');
-       selected_search_scope python:request.form.get('search_scope', 'current_event');
+       requested_search_scope python:request.form.get('search_scope', 'current_event');
+       selected_search_scope python:requested_search_scope if requested_search_scope in ('current_event', 'all_events', 'all_archives') else 'current_event';
      "
      tal:attributes="
        data-app-scope navigation_root_url;
@@ -32,33 +33,86 @@
       >Search Site</label>
 
       <div class="dp-search-row d-flex flex-column flex-md-row align-items-stretch w-100 bg-white rounded-1">
-        <div class="dp-search-context-dropdown position-relative">
+        <div class="dp-search-context-dropdown dropdown position-relative">
           <label class="visually-hidden"
-                 for="search-context-scope-select"
+                 for="search-context-dropdown-toggle"
           >Suchkontext</label>
-          <select class="form-select dp-search-context-btn event-switcher-detail text-white rounded-0"
-                  id="search-context-scope-select"
-                  name="search_scope"
+          <button class="btn dp-search-context-btn event-switcher-detail d-inline-flex align-items-center justify-content-between justify-content-md-start text-nowrap text-white rounded-0"
+                  id="search-context-dropdown-toggle"
+                  aria-expanded="false"
+                  type="button"
+                  data-bs-toggle="dropdown"
           >
-            <option value="current_event"
-                    tal:attributes="
-                      selected python:'selected' if selected_search_scope == 'current_event' else nothing;
-                    "
-                    i18n:translate=""
-            >Current event</option>
-            <option value="all_events"
-                    tal:attributes="
-                      selected python:'selected' if selected_search_scope == 'all_events' else nothing;
-                    "
-                    i18n:translate=""
-            >All events</option>
-            <option value="all_archives"
-                    tal:attributes="
-                      selected python:'selected' if selected_search_scope == 'all_archives' else nothing;
-                    "
-                    i18n:translate=""
-            >All archives</option>
-          </select>
+            <span class="dp-search-context-current-label"
+                  tal:condition="python:selected_search_scope == 'all_events'"
+                  i18n:translate=""
+            >All events</span>
+            <span class="dp-search-context-current-label"
+                  tal:condition="python:selected_search_scope == 'all_archives'"
+                  i18n:translate=""
+            >All archives</span>
+            <span class="dp-search-context-current-label"
+                  tal:condition="python:selected_search_scope not in ('all_events', 'all_archives')"
+                  i18n:translate=""
+            >Current event</span>
+            <tal:icon replace="structure python:icons.tag('chevron-down', tag_class='ms-2')" />
+          </button>
+          <input id="search-context-scope-input"
+                 name="search_scope"
+                 type="hidden"
+                 value="current_event"
+                 tal:attributes="
+                   value selected_search_scope;
+                 "
+          />
+
+          <ul class="dropdown-menu dp-search-context-menu w-100"
+              id="search-context-dropdown-menu"
+              aria-labelledby="search-context-dropdown-toggle"
+          >
+            <li class="dp-search-context-item">
+              <button class="dp-search-context-link ${python:'selected' if selected_search_scope == 'current_event' else ''}"
+                      type="button"
+                      data-search-scope="current_event"
+                      data-search-scope-label="Current event"
+              >
+                <span class="dp-search-context-link-title"
+                      i18n:translate=""
+                >Current event</span>
+                <span class="dp-search-context-link-meta"
+                      i18n:translate=""
+                >Search only the selected event</span>
+              </button>
+            </li>
+            <li class="dp-search-context-item">
+              <button class="dp-search-context-link ${python:'selected' if selected_search_scope == 'all_events' else ''}"
+                      type="button"
+                      data-search-scope="all_events"
+                      data-search-scope-label="All events"
+              >
+                <span class="dp-search-context-link-title"
+                      i18n:translate=""
+                >All events</span>
+                <span class="dp-search-context-link-meta"
+                      i18n:translate=""
+                >Search all active events</span>
+              </button>
+            </li>
+            <li class="dp-search-context-item">
+              <button class="dp-search-context-link ${python:'selected' if selected_search_scope == 'all_archives' else ''}"
+                      type="button"
+                      data-search-scope="all_archives"
+                      data-search-scope-label="All archives"
+              >
+                <span class="dp-search-context-link-title"
+                      i18n:translate=""
+                >All archives</span>
+                <span class="dp-search-context-link-meta"
+                      i18n:translate=""
+                >Search archived events</span>
+              </button>
+            </li>
+          </ul>
         </div>
 
         <div class="dp-search-input-wrap d-flex align-items-center flex-fill bg-white">
