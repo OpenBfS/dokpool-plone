@@ -1,4 +1,3 @@
-from docpool.base.appregistry import appName
 from plone import api
 from plone.app.layout.globals.layout import LayoutPolicy
 from zope.component import getMultiAdapter

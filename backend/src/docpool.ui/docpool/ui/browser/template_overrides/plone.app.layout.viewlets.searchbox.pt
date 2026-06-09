@@ -115,7 +115,7 @@
           </ul>
         </div>
 
-        <div class="dp-search-input-wrap d-flex align-items-center flex-fill bg-white">
+        <div class="dp-search-input-wrap d-flex align-items-center flex-fill">
           <span class="dp-search-input-icon d-inline-flex align-items-center justify-content-center"
                 aria-hidden="true"
           >

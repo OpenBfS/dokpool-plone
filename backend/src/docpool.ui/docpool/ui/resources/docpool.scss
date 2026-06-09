@@ -94,6 +94,12 @@ body.template-entrytypes {
   }
 }
 
+.form-control {
+  &:focus {
+    box-shadow: unset;
+  }
+}
+
 .outer-wrapper {
   background-color: #fafafa;
 }
@@ -151,19 +157,23 @@ body.template-entrytypes {
         color: #fff !important;
         background-color: $plone-default-published-color;
       }
+
       .state-private {
         color: #fff !important;
         background-color: $plone-default-private-color;
       }
+
       .state-pending {
         color: #000 !important;
         background-color: $plone-default-pending-color;
       }
+
       .state-revised {
         color: #000 !important;
         background-color: $plone-default-revised-color;
       }
     }
+
     .dropdown-menu > div.form-check:hover {
       background-color: var(--bs-light);
     }
@@ -274,7 +284,6 @@ body.template-entrytypes {
       font-size: var(--dp-font-small);
 
       &:focus {
-        box-shadow: none;
         background-color: unset;
         border-color: var(--bs-border-color);
         outline: 0;
@@ -319,6 +328,7 @@ span.badge.text-bg-light {
 
 #listing {
   border-top: 1px solid var(--bs-border-color);
+
   & > a {
     display: block;
     min-height: 80px;
@@ -534,6 +544,15 @@ body.template-dpdocument_wizard_1.injecting-content #formfield-entrytype {
 body.template-dpdocument_wizard_1.injecting-content #formfield-entrytype .spinner-border {
   display: block;
 }
+
+body.active-app-rodos,
+body.active-app-rei,
+body.active-app-doksys {
+  .dp-search-context-dropdown {
+    display: none;
+  }
+}
+
 
 #listing.journals {
   & > a {
