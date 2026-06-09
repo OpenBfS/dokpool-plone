@@ -1,9 +1,9 @@
-image: plone/server-builder:6.1.4
+image: plone/server-builder:6.2.0
 
 variables:
   PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache"
   UV_CACHE_DIR: "$HOME/.cache/uv"
-  PLONE_VERSION: "6.1.4"
+  PLONE_VERSION: "6.2.0"
   # This variable is shared by both the DinD service and Docker client.
   # For the service, it will instruct DinD to create `docker.sock` here.
   # For the client, it tells the Docker client which Docker Unix socket to connect to.
