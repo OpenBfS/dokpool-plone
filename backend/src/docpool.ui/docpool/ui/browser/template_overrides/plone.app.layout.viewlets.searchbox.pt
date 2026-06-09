@@ -5,13 +5,11 @@
      tal:define="
        navigation_root_url view/navigation_root_url;
        icons python:context.restrictedTraverse('@@iconresolver');
-       search_context python:context.restrictedTraverse('@@search-context')();
-       selected_scenario python:search_context.selected_scenario;
-       selected_uid python:selected_scenario.UID() if selected_scenario else None;
-       active_scenarios python:search_context.active_scenarios;
-       auth_token context/@@authenticator/token;
-       recent_searches python:['Wetterbericht', 'Messergebnis', 'Lagebild'];
-       popular_terms python:['Suchbegriff A', 'Suchbegriff lorem ipsum dolor sit amet', 'Suchbegriff the quick brown fox jumps over the lazy dog', 'Suchbegriff C', 'Suchbegriff AbcAbcAbc'];
+       requested_search_scope python:request.form.get('search_scope', 'current_event');
+       selected_search_scope python:requested_search_scope if requested_search_scope in ('current_event', 'all_events', 'all_archives') else 'current_event';
+     "
+     tal:attributes="
+       data-app-scope navigation_root_url;
      "
      i18n:domain="plone"
 >
@@ -36,46 +34,88 @@
 
       <div class="dp-search-row d-flex flex-column flex-md-row align-items-stretch w-100 bg-white rounded-1">
         <div class="dp-search-context-dropdown dropdown position-relative">
+          <label class="visually-hidden"
+                 for="search-context-dropdown-toggle"
+          >Suchkontext</label>
           <button class="btn dp-search-context-btn event-switcher-detail d-inline-flex align-items-center justify-content-between justify-content-md-start text-nowrap text-white rounded-0"
                   id="search-context-dropdown-toggle"
                   aria-expanded="false"
                   type="button"
-                  data-bs-auto-close="outside"
                   data-bs-toggle="dropdown"
           >
-            <span tal:condition="python:selected_scenario is not None">${selected_scenario/Title}</span>
-            <span tal:condition="python:selected_scenario is None"
+            <span class="dp-search-context-current-label"
+                  tal:condition="python:selected_search_scope == 'all_events'"
                   i18n:translate=""
-            >Select scenario</span>
+            >All events</span>
+            <span class="dp-search-context-current-label"
+                  tal:condition="python:selected_search_scope == 'all_archives'"
+                  i18n:translate=""
+            >All archives</span>
+            <span class="dp-search-context-current-label"
+                  tal:condition="python:selected_search_scope not in ('all_events', 'all_archives')"
+                  i18n:translate=""
+            >Current event</span>
             <tal:icon replace="structure python:icons.tag('chevron-down', tag_class='ms-2')" />
           </button>
+          <input id="search-context-scope-input"
+                 name="search_scope"
+                 type="hidden"
+                 value="current_event"
+                 tal:attributes="
+                   value selected_search_scope;
+                 "
+          />
 
           <ul class="dropdown-menu dp-search-context-menu w-100"
               id="search-context-dropdown-menu"
               aria-labelledby="search-context-dropdown-toggle"
           >
-            <li class="dp-search-context-item"
-                tal:repeat="scenario active_scenarios"
-            >
-              <a class="dp-search-context-link ${python:'selected' if scenario.UID() == selected_uid else ''}"
-                 href="${python:
-                    f'{context.absolute_url()}/@@select_scenario?scenario={scenario.UID()}&amp;_authenticator={auth_token}'}"
-                 data-scenario-title="${scenario/Title}"
-                 data-scenario-uid="${scenario/UID}"
+            <li class="dp-search-context-item">
+              <button class="dp-search-context-link ${python:'selected' if selected_search_scope == 'current_event' else ''}"
+                      type="button"
+                      data-search-scope="current_event"
+                      data-search-scope-label="Current event"
               >
-                <span class="dp-search-context-link-title">${scenario/Title}</span>
-                <span class="dp-search-context-link-meta">${scenario/operation_mode_title}</span>
-              </a>
+                <span class="dp-search-context-link-title"
+                      i18n:translate=""
+                >Current event</span>
+                <span class="dp-search-context-link-meta"
+                      i18n:translate=""
+                >Search only the selected event</span>
+              </button>
             </li>
-            <li class="dp-search-context-item"
-                tal:condition="python:not active_scenarios"
-            >
-              <span class="dp-search-context-empty">Keine aktiven Ereignisse</span>
+            <li class="dp-search-context-item">
+              <button class="dp-search-context-link ${python:'selected' if selected_search_scope == 'all_events' else ''}"
+                      type="button"
+                      data-search-scope="all_events"
+                      data-search-scope-label="All events"
+              >
+                <span class="dp-search-context-link-title"
+                      i18n:translate=""
+                >All events</span>
+                <span class="dp-search-context-link-meta"
+                      i18n:translate=""
+                >Search all active events</span>
+              </button>
+            </li>
+            <li class="dp-search-context-item">
+              <button class="dp-search-context-link ${python:'selected' if selected_search_scope == 'all_archives' else ''}"
+                      type="button"
+                      data-search-scope="all_archives"
+                      data-search-scope-label="All archives"
+              >
+                <span class="dp-search-context-link-title"
+                      i18n:translate=""
+                >All archives</span>
+                <span class="dp-search-context-link-meta"
+                      i18n:translate=""
+                >Search archived events</span>
+              </button>
             </li>
           </ul>
         </div>
 
-        <div class="dp-search-input-wrap d-flex align-items-center flex-fill bg-white">
+        <div class="dp-search-input-wrap d-flex align-items-center flex-fill">
           <span class="dp-search-input-icon d-inline-flex align-items-center justify-content-center"
                 aria-hidden="true"
           >
@@ -85,21 +125,21 @@
           <input class="searchField form-control dp-search-input border-0 shadow-none ps-0"
                  id="searchGadget"
                  name="searchable_text"
-                 placeholder="ELAN durchsuchen"
+                 placeholder="Search ELAN"
                  size="18"
                  title="Search Site"
                  type="text"
                  value=""
                  tal:attributes="
                    value request/form/searchable_text|request/form/SearchableText|nothing;
+                   placeholder view/search_placeholder;
+                   title view/search_placeholder;
                  "
-                 i18n:attributes="title title_search_site"
           />
           <input name="from_global_search"
                  type="hidden"
                  value="1"
           />
-
           <button class="btn dp-search-dismiss h-100 rounded-0 bg-transparent lh-1"
                   aria-label="Suche schließen"
                   type="button"
@@ -130,22 +170,24 @@
 
     <div class="dp-search-suggestions row g-0 mt-4">
       <div class="col-12 col-md-3 dp-search-col-recent pe-md-4 mb-3 mb-md-0 pb-3 pb-md-0">
-        <h3 class="dp-search-heading">Letzte Suchen</h3>
-        <div class="d-flex flex-column gap-2">
-          <span class="dp-search-chip-outline d-inline-flex align-items-center text-nowrap rounded-pill bg-white"
-                tal:repeat="term recent_searches"
-          >${term}</span>
+        <div class="d-flex align-items-center justify-content-between gap-2">
+          <h3 class="dp-search-heading mb-0"
+              i18n:translate=""
+          >Letzte Suchen</h3>
+
         </div>
-      </div>
-      <div class="col-12 col-md-9 dp-search-col-popular ps-md-4">
-        <h3 class="dp-search-heading">Beliebte Suchbegriffe</h3>
-        <div class="d-flex flex-wrap gap-2">
-          <span class="dp-search-chip d-inline-flex align-items-center text-nowrap rounded-pill"
-                tal:repeat="term popular_terms"
-          >${term}</span>
+        <div class="d-flex flex-column gap-2"
+             id="dp-recent-searches"
+        >
         </div>
       </div>
     </div>
+    <button class="btn btn-link p-0 text-decoration-none mt-4"
+            id="dp-recent-searches-reset"
+            type="button"
+            i18n:translate=""
+    >Reset
+    </button>
   </div>
 
 </div>

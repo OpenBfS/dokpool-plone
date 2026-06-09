@@ -6,6 +6,7 @@ import registry from "@patternslib/patternslib/src/core/registry";
 
 const MOBILE_SCROLL_TOP_BREAKPOINT = 991;
 const MOBILE_SCROLL_TOP_OFFSET = 240;
+const RECENT_SEARCHES_LIMIT = 10;
 
 // Initializes the mobile scroll-to-top button behavior.
 function setupMobileScrollTopButton() {
@@ -131,7 +132,123 @@ function setupHeaderMobileUi() {
   setupMobileOffcanvasSettingsNavigation();
   setupListingMobileFilters();
   setupListingDesktopFilterResets();
-  setupSearchContextInlineSwitch();
+  setupSearchContextDropdown();
+  setupRecentSearches();
+}
+
+function setupSearchContextDropdown() {
+  const searchbox = document.getElementById("portal-searchbox");
+  if (!searchbox) return;
+
+  if (searchbox.dataset.searchContextDropdownBound === "1") return;
+  searchbox.dataset.searchContextDropdownBound = "1";
+
+  const input = searchbox.querySelector("#search-context-scope-input");
+  const label = searchbox.querySelector(".dp-search-context-current-label");
+  const options = searchbox.querySelectorAll("[data-search-scope]");
+
+  if (!(input instanceof HTMLInputElement) || !label || options.length === 0) {
+    return;
+  }
+
+  options.forEach((option) => {
+    option.addEventListener("click", () => {
+      const scope = option.getAttribute("data-search-scope");
+      const scopeLabel = option.getAttribute("data-search-scope-label");
+      if (!scope || !scopeLabel) return;
+
+      input.value = scope;
+      label.textContent = scopeLabel;
+
+      options.forEach((item) => {
+        item.classList.toggle("selected", item === option);
+      });
+    });
+  });
+}
+
+function setupRecentSearches() {
+  const searchbox = document.getElementById("portal-searchbox");
+  const form = document.getElementById("searchGadget_form");
+  const input = document.getElementById("searchGadget");
+  const container = document.getElementById("dp-recent-searches");
+  const resetButton = document.getElementById("dp-recent-searches-reset");
+  if (!searchbox || !form || !input || !container || !resetButton) return;
+
+  if (form.dataset.recentSearchesBound === "1") return;
+  form.dataset.recentSearchesBound = "1";
+
+  const appScope = searchbox.dataset.appScope || "default";
+  const storageKey = `dokpool-recent-searches::${appScope}`;
+
+  const loadRecentSearches = () => {
+    try {
+      const raw = localStorage.getItem(storageKey);
+      if (!raw) return [];
+      const parsed = JSON.parse(raw);
+      if (!Array.isArray(parsed)) return [];
+      return parsed
+        .map((value) => (typeof value === "string" ? value.trim() : ""))
+        .filter((value) => value.length > 0)
+        .slice(0, RECENT_SEARCHES_LIMIT);
+    } catch (error) {
+      return [];
+    }
+  };
+
+  const saveRecentSearches = (items) => {
+    try {
+      localStorage.setItem(storageKey, JSON.stringify(items));
+    } catch (error) {
+      // no localStorage m
+    }
+  };
+
+  const renderRecentSearches = (items) => {
+    container.replaceChildren();
+    resetButton.hidden = items.length === 0;
+    items.forEach((term) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className =
+        "dp-search-chip-outline d-inline-flex align-items-center rounded-pill bg-white";
+      button.textContent = term;
+      button.setAttribute("data-search-term", term);
+      container.appendChild(button);
+    });
+  };
+
+  const addRecentSearch = (term) => {
+    const cleanTerm = term.trim();
+    if (!cleanTerm) return;
+    const items = loadRecentSearches().filter((item) => item !== cleanTerm);
+    items.unshift(cleanTerm);
+    const nextItems = items.slice(0, RECENT_SEARCHES_LIMIT);
+    saveRecentSearches(nextItems);
+    renderRecentSearches(nextItems);
+  };
+
+  renderRecentSearches(loadRecentSearches());
+
+  form.addEventListener("submit", () => {
+    addRecentSearch(input.value || "");
+  });
+
+  container.addEventListener("click", (event) => {
+    const target = event.target;
+    if (!(target instanceof HTMLElement)) return;
+    const button = target.closest("button[data-search-term]");
+    if (!(button instanceof HTMLButtonElement)) return;
+
+    const term = button.dataset.searchTerm || "";
+    input.value = term;
+    form.requestSubmit();
+  });
+
+  resetButton.addEventListener("click", () => {
+    saveRecentSearches([]);
+    renderRecentSearches([]);
+  });
 }
 
 if (document.readyState === "loading") {
@@ -212,69 +329,3 @@ $(document).on("click", "a.pat-inject.list-item-link", function (e) {
     localStorage.setItem("dokpool-listing-query", params.toString());
   }
 });
-
-// Switches search context scenario inline without closing the search offcanvas.
-function setupSearchContextInlineSwitch() {
-  const menu = document.getElementById("search-context-dropdown-menu");
-  const button = document.getElementById("search-context-dropdown-toggle");
-  if (!menu || !button) return;
-
-  if (menu.dataset.inlineSwitchBound === "1") {
-    return;
-  }
-  menu.dataset.inlineSwitchBound = "1";
-
-  menu.addEventListener("click", async (event) => {
-    if (!(event.target instanceof Element)) return;
-    const link = event.target.closest("a.dp-search-context-link");
-    if (!link) return;
-
-    event.preventDefault();
-    event.stopPropagation();
-
-    const href = link.getAttribute("href");
-    if (!href) return;
-
-    try {
-      const response = await fetch(href, {
-        method: "GET",
-        credentials: "same-origin",
-        headers: {
-          "X-Requested-With": "XMLHttpRequest",
-        },
-      });
-
-      if (!response.ok) {
-        throw new Error(
-          `Scenario switch failed with status ${response.status}`,
-        );
-      }
-
-      const title = link.getAttribute("data-scenario-title");
-      const uid = link.getAttribute("data-scenario-uid");
-
-      if (title) {
-        const textNode = button.querySelector("span");
-        if (textNode) {
-          textNode.textContent = title;
-        }
-      }
-
-      if (uid) {
-        menu
-          .querySelectorAll("a.dp-search-context-link.selected")
-          .forEach((el) => {
-            el.classList.remove("selected");
-          });
-        link.classList.add("selected");
-      }
-
-      // Close only the context dropdown after successful switch.
-      if (button.getAttribute("aria-expanded") === "true") {
-        button.click();
-      }
-    } catch (error) {
-      window.location.href = href;
-    }
-  });
-}

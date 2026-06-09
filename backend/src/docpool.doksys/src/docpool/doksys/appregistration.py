@@ -19,5 +19,5 @@ registerApp(
     dpRemoved,
     icon="++plone++docpool.doksys/doksys_app_icon.png",
     implicit=False,
-    logo="++plone++docpool/doksyslogo.png",
+    logo="++plone++docpoolui/logos/doksyslogo.png",
 )

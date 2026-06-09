@@ -20,5 +20,5 @@ registerApp(
     dpRemoved,
     icon="++plone++docpool.rodos/rodos_app_icon.png",
     implicit=False,
-    logo="++plone++docpool/rodoslogo.png",
+    logo="++plone++docpoolui/logos/rodoslogo.png",
 )
