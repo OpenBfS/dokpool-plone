@@ -25,7 +25,7 @@ dependencies = [
     "Products.CMFPlone==6.2.0",
     "plone.api",
     "plone.restapi",
-    "pyruvate==1.5.0",
+    "pyruvate==1.6.1",
     "Products.PloneKeywordManager",
     "eea.facetednavigation",
     "collective.impersonate",
@@ -150,4 +150,9 @@ omit = [
   "src/docpoolwrapper/locales/*.py",
   "*/tests/*",
   "*/testing.py",
+# We do not test upgrade-steps
+  "src/docpool.base/docpool/base/upgrades.py",
+# The following are not used and will be removed for gui
+  "src/docpool.base/docpool/base/pdfconversion.py",
+  "src/docpool.base/docpool/base/browser/scaling.py",
 ]
