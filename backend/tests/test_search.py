@@ -19,7 +19,8 @@ class TestSearch:
         page.locator("button.search-btn").click()
         expect(page.locator("#portal-searchbox")).to_be_visible()
 
-        selected = page.locator("#search-context-scope-select")
+        dropdown = page.locator("#search-context-dropdown-toggle")
+        selected = page.locator("#search-context-scope-input")
 
-        expect(selected).to_be_visible()
+        expect(dropdown).to_be_visible()
         expect(selected).to_have_value("current_event")
