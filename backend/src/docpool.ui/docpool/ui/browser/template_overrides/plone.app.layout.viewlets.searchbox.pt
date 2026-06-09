@@ -119,11 +119,7 @@
           <h3 class="dp-search-heading mb-0"
               i18n:translate=""
           >Letzte Suchen</h3>
-          <button class="btn btn-link p-0 text-decoration-none"
-                  id="dp-recent-searches-reset"
-                  type="button"
-                  i18n:translate=""
-          >Reset</button>
+
         </div>
         <div class="d-flex flex-column gap-2"
              id="dp-recent-searches"
@@ -131,6 +127,12 @@
         </div>
       </div>
     </div>
+    <button class="btn btn-link p-0 text-decoration-none mt-4"
+            id="dp-recent-searches-reset"
+            type="button"
+       i18n:translate=""
+    >Reset
+    </button>
   </div>
 
 </div>
