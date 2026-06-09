@@ -19,6 +19,6 @@ registerApp(
     dpAdded,
     dpRemoved,
     icon="++plone++docpool.rei/rei_app_icon.png",
-    logo="++plone++docpool/reilogo.png",
+    logo="++plone++docpoolui/logos/reilogo.png",
     implicit=False,
 )
