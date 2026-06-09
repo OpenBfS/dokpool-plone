@@ -1,4 +1,5 @@
 from App.config import getConfiguration
+from docpool.base import DocpoolMessageFactory as _
 from docpool.base.appregistry import appLogo as appLogo
 from docpool.base.appregistry import appName
 from docpool.base.config import BASE_APP
@@ -12,7 +13,9 @@ from importlib.metadata import distribution
 from plone import api
 from plone.app.layout.navigation.interfaces import INavtreeStrategy
 from plone.app.layout.navigation.navtree import buildFolderTree
+from plone.app.layout.viewlets.common import SearchBoxViewlet
 from plone.app.layout.viewlets.common import ViewletBase
+from plone.base.i18nl10n import utranslate
 from Products.CMFPlone.browser.navtree import DefaultNavtreeStrategy
 from Products.Five.browser import BrowserView
 from zope.component import getMultiAdapter
@@ -71,6 +74,25 @@ class GroupsTreeMixin:
         active_apps = list(dp_app_state.appsActivatedByCurrentUser())
         active_apps.extend([BASE_APP, TRANSFERS_APP])
         return active_apps
+
+
+class AppSearchBoxViewlet(SearchBoxViewlet):
+    search_placeholders = {
+        "rodos": _("Search RODOS"),
+        "doksys": _("Search DokSys"),
+        "rei": _("Search REI"),
+    }
+
+    def update(self):
+        super().update()
+        dp_app_state = api.content.get_view("dp_app_state", self.context, self.request)
+        active_apps = dp_app_state.appsActivatedByCurrentUser()
+        current_app = active_apps[0] if active_apps else None
+        placeholder = self.search_placeholders.get(
+            current_app,
+            _("Search ELAN"),
+        )
+        self.search_placeholder = utranslate("docpool.base", placeholder, context=self.request)
 
 
 class PortalHeader(EventSwitcherMixin, TimezoneTableMixin, GroupsTreeMixin, ViewletBase):

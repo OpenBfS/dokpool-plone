@@ -125,15 +125,16 @@
           <input class="searchField form-control dp-search-input border-0 shadow-none ps-0"
                  id="searchGadget"
                  name="searchable_text"
-                 placeholder="ELAN durchsuchen"
+                 placeholder="Search ELAN"
                  size="18"
                  title="Search Site"
                  type="text"
                  value=""
                  tal:attributes="
                    value request/form/searchable_text|request/form/SearchableText|nothing;
+                   placeholder view/search_placeholder;
+                   title view/search_placeholder;
                  "
-                 i18n:attributes="title title_search_site"
           />
           <input name="from_global_search"
                  type="hidden"

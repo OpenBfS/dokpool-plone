@@ -17,7 +17,7 @@
   <browser:viewlet
       name="plone.searchbox"
       manager="plone.app.layout.viewlets.interfaces.IPortalTop"
-      class="plone.app.layout.viewlets.common.SearchBoxViewlet"
+      class="docpool.ui.browser.viewlets.header.AppSearchBoxViewlet"
       permission="zope2.View"
       layer="docpool.ui.interfaces.IUITheme"
       />
