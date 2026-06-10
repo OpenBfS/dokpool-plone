@@ -15,10 +15,6 @@ GREEN=`tput setaf 2`
 RESET=`tput sgr0`
 YELLOW=`tput setaf 3`
 
-# Set distributions still in development
-DISTRIBUTIONS="docpooldemo"
-ALLOWED_DISTRIBUTIONS="docpooldemo"
-
 IMAGE_NAME=git.starzel.de:5050/bfs/dokpool
 
 # get branch name if not running in CI
@@ -40,12 +36,13 @@ ifeq (, $(shell which $(UV) ))
   $(error "UV=$(UV) not found in $(PATH)")
 endif
 
-PYTHON_VERSION=3.12
+REPOSITORY_SETTINGS := $(shell uvx repoplone settings dump)
 
 PLONE_SITE_ID=Plone
 BACKEND_FOLDER=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
-PLONE_VERSION=$(shell cat $(BACKEND_FOLDER)/version.txt)
-EXAMPLE_CONTENT_FOLDER=${BACKEND_FOLDER}/src/dokpool/setuphandlers/examplecontent
+PYTHON_VERSION := $(shell echo '$(REPOSITORY_SETTINGS)' | jq -r '.backend.python_version')
+PLONE_VERSION := $(shell echo '$(REPOSITORY_SETTINGS)' | jq -r '.backend.base_package_version')
+PACKAGE_NAME := $(shell echo '$(REPOSITORY_SETTINGS)' | jq -r '.backend.name')
 
 VENV_FOLDER=$(BACKEND_FOLDER)/.venv
 export VIRTUAL_ENV=$(VENV_FOLDER)
@@ -63,25 +60,26 @@ all: build
 help: ## This help message
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
-requirements-mxdev.txt: pyproject.toml mx.ini ## Generate constraints file
-	@echo "$(GREEN)==> Generate constraints file$(RESET)"
-	@echo '-c https://dist.plone.org/release/$(PLONE_VERSION)/constraints.txt' > requirements.txt
-	@uvx mxdev -c mx.ini
+.PHONY: debug-settings
+debug-settings:  ## Debug settings
+	@echo "Virtual Environment: $(VENV_FOLDER)"
+	@echo "PYTHON_VERSION: $(PYTHON_VERSION)"
+	@echo "PLONE_VERSION: $(PLONE_VERSION)"
+	@echo "PACKAGE_NAME: $(PACKAGE_NAME)"
+	@echo "EXAMPLE_CONTENT_FOLDER: $(EXAMPLE_CONTENT_FOLDER)"
+	@echo "IMAGE_NAME: $(IMAGE_NAME)"
 
-$(VENV_FOLDER): requirements-mxdev.txt ## Install dependencies
-	@echo "$(GREEN)==> Install environment$(RESET)"
-	@uv venv --python $(PYTHON_VERSION) $(VENV_FOLDER)
-	@uv pip install -r requirements-mxdev.txt
+mxdev:
+	@echo "$(GREEN)==> Run mxdev to get deps from source$(RESET)"
+	@uvx mxdev[uv] -c mx.ini
 
-.PHONY: sync
-sync: $(VENV_FOLDER) ## Sync project dependencies
-	@echo "$(GREEN)==> Sync project dependencies$(RESET)"
-	@uv pip install -r requirements-mxdev.txt
-
-instance/etc/zope.ini instance/etc/zope.conf instance_relstorage/etc/zope.ini instance_relstorage/etc/zope.conf: instance.yaml ## Create instance configuration
+############################################
+# Config
+############################################
+instance/etc/zope.ini instance/etc/zope.conf: instance.yaml ## Create instance configuration
 	@echo "$(GREEN)==> Create instance configuration$(RESET)"
-	@uvx cookiecutter -f --no-input -c 2.1.1 --config-file instance.yaml gh:plone/cookiecutter-zope-instance
-	@uvx cookiecutter -f --no-input -c 2.1.1 --config-file instance_relstorage.yaml gh:plone/cookiecutter-zope-instance
+	@uvx cookiecutter -f --no-input -c 2.4.1 --config-file instance.yaml gh:plone/cookiecutter-zope-instance
+	@uvx cookiecutter -f --no-input -c 2.4.1 --config-file instance_relstorage.yaml gh:plone/cookiecutter-zope-instance
 	cp templates/zope.ini instance/etc/zope.ini
 	cp templates/zope.ini instance_relstorage/etc/zope.ini
 	@echo "<zodb_db temporary>">>instance/etc/zope.conf
@@ -102,8 +100,21 @@ instance/etc/zope.ini instance/etc/zope.conf instance_relstorage/etc/zope.ini in
 .PHONY: config
 config: instance/etc/zope.ini
 
+############################################
+# Installation / Cleanup
+############################################
+.PHONY: update-constraints
+update-constraints: ## Update backend constraints
+	@echo "$(GREEN)==> Update backend constraints$(RESET)"
+	@uvx repoplone deps constraints
+
+.PHONY: sync
+sync: update-constraints ## Sync project dependencies
+	@echo "$(GREEN)==> Sync project dependencies$(RESET)"
+	@uv sync
+
 .PHONY: install
-install: $(VENV_FOLDER) config ## Install Plone and dependencies
+install: mxdev sync config ## Install Plone and dependencies
 
 .PHONY: clean
 clean: ## Clean installation and instance
@@ -115,34 +126,41 @@ remove-data: ## Remove all content
 	@echo "$(RED)==> Removing all content$(RESET)"
 	rm -rf $(VENV_FOLDER) instance/var
 
+############################################
+# Server Actions
+############################################
 .PHONY: start
 start: $(VENV_FOLDER) instance/etc/zope.ini ## Start a Plone instance on localhost:8080
-	@$(BIN_FOLDER)/runwsgi instance/etc/zope.ini config_file=zope.conf
+	@uv run runwsgi instance/etc/zope.ini config_file=zope.conf
 
 .PHONY: start-relstorage
 start-relstorage: $(VENV_FOLDER) instance_relstorage/etc/zope.ini ## Start a Plone instance on localhost:8080
-	@$(BIN_FOLDER)/runwsgi instance_relstorage/etc/zope.ini config_file=zope.conf
+	@uv run runwsgi instance_relstorage/etc/zope.ini config_file=zope.conf
 
 .PHONY: console
 console: $(VENV_FOLDER) instance/etc/zope.ini ## Start a console into a Plone instance
-	@$(BIN_FOLDER)/zconsole debug  instance/etc/zope.conf instance/etc/zope.conf
+	@uv run zconsole debug instance/etc/zope.conf config_file=zope.conf
 
 .PHONY: create-site
 create-site: $(VENV_FOLDER) instance/etc/zope.ini ## Create a new site from scratch
-	DEVELOP_DISTRIBUTIONS=$(DISTRIBUTIONS) ALLOWED_DISTRIBUTIONS=$(DISTRIBUTIONS) uv run zconsole run instance/etc/zope.conf ./scripts/create_site.py
+	@uv run zconsole run instance/etc/zope.conf ./scripts/create_site.py
 
-# Example Content
-.PHONY: update-example-content
-update-example-content: $(VENV_FOLDER) ## Export example content inside package
-	@echo "$(GREEN)==> Export example content into $(EXAMPLE_CONTENT_FOLDER) $(RESET)"
-	if [ -d $(EXAMPLE_CONTENT_FOLDER)/content ]; then rm -r $(EXAMPLE_CONTENT_FOLDER)/* ;fi
-	@$(BIN_FOLDER)/plone-exporter instance/etc/zope.conf $(PLONE_SITE_ID) $(EXAMPLE_CONTENT_FOLDER)
+############################################
+# Distribution
+############################################
+.PHONY: update-distribution
+update-distribution: $(VENV_FOLDER) ## Export example content inside package
+	@echo "$(GREEN)==> Export distribution content into docpool.distribution $(RESET)"
+	if [ -d src/docpool.distribution/src/docpool/distribution/distributions/docpooldemo/content ]; then rm -r src/docpool.distribution/src/docpool/distribution/distributions/docpooldemo/content/* ;fi
+	@$(BIN_FOLDER)/export-distribution instance/etc/zope.conf $(PLONE_SITE_ID)
 
+############################################
 # QA
+############################################
 .PHONY: lint
 lint: ## Check and fix code base according to Plone standards
 	@echo "$(GREEN)==> Lint codebase$(RESET)"
-	@uvx ruff@latest check --ignore I --fix --config $(BACKEND_FOLDER)/pyproject.toml
+	@uvx ruff@latest check --fix --config $(BACKEND_FOLDER)/pyproject.toml
 	@uvx pyroma@latest -d .
 	@uvx check-python-versions@latest .
 	@uvx zpretty@latest --check src
@@ -156,14 +174,18 @@ format: ## Check and fix code base according to Plone standards
 	@uvx zpretty@latest -i src
 	npm run prettier:fix
 
+############################################
 # i18n
+############################################
 .PHONY: i18n
 i18n: $(VENV_FOLDER) ## Update locales
 	@echo "$(GREEN)==> Updating locales$(RESET)"
 	@uv pip install i18ndude
 	@ls src |xargs uv run python ./scripts/update_locales.py
 
+############################################
 # Tests
+############################################
 .PHONY: test
 test: $(VENV_FOLDER) ## run tests
 	@$(BIN_FOLDER)/zope-testrunner --auto-color --auto-progress \
@@ -218,10 +240,13 @@ coverage: ## generate test-coverage report
 	@uv run coverage combine
 	mv .coverage .coverage.unit
 
-# Build Docker images
+############################################
+# Container images
+############################################
 .PHONY: build-image
-build-image:  ## Build Docker Images
-	@DOCKER_BUILDKIT=1 docker build . -t $(IMAGE_NAME):$(IMAGE_TAG) -f Dockerfile --build-arg PLONE_VERSION=$(PLONE_VERSION) --build-arg GIT_COMMIT=$(CI_COMMIT_SHORT_SHA)
+build-image:  ## Build Container Images
+	@echo "$(GREEN)==> Building image $(IMAGE_NAME) $(RESET)"
+	@DOCKER_BUILDKIT=1 docker build . -t $(IMAGE_NAME):$(IMAGE_TAG) -f Dockerfile --build-arg PYTHON_VERSION=$(PYTHON_VERSION) --build-arg PLONE_VERSION=$(PLONE_VERSION) --build-arg GIT_COMMIT=$(CI_COMMIT_SHORT_SHA)
 
 .PHONY: build-image-ci
 build-image-ci: build-image ## Build Docker Image
@@ -237,7 +262,16 @@ acceptance-update-image:  ## Build Docker Images
 acceptance-push-ci: acceptance-update-image ## Build Docker Image
 	@docker push $(IMAGE_NAME):acceptance
 
+############################################
+# Plone CLI
+############################################
+add: $(VENV_FOLDER)
+	@uvx plonecli add $(filter-out $@,$(MAKECMDGOALS))
+
+############################################
 # Theme and Webpack stuff
+############################################
+
 # uivars
 build_dir=$(BACKEND_FOLDER)/src/docpool.ui/docpool/ui/static/build
 
