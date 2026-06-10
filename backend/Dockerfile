@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-ARG PLONE_VERSION=6.2.0
+ARG PYTHON_VERSION=3.13
 
 # Stage to only build the theme
 FROM node:23-slim AS node
@@ -30,35 +30,54 @@ RUN npm ci
 RUN npm run build
 
 # Stage to build dokpool
-FROM plone/server-builder:${PLONE_VERSION} AS builder
+FROM plone/server-builder:uv-${PYTHON_VERSION} AS builder
 ARG GIT_COMMIT='Not detected'
 
 WORKDIR /app
 
 # Add local code
-COPY scripts/ scripts/
-COPY . src
+# COPY scripts/ scripts/
+COPY . /src
+WORKDIR /src
 
-# Install local requirements and pre-compile mo files
+# Install project dependencies based on uv.lock and pyproject.toml
+# We expect pyproject.toml to have an entry cointainer inside [dependency-groups]
+RUN --mount=type=cache,target=/root/.cache \
+    --mount=type=bind,source=uv.lock,target=uv.lock \
+    --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
+    --mount=type=bind,source=mx.ini,target=mx.ini \
+    uv tool run mxdev[uv] -c mx.ini && \
+    echo ${GIT_COMMIT} > GIT_COMMIT \
+    uv sync \
+        --locked \
+        --no-dev \
+        --no-group test \
+        --group container \
+        --no-install-project
+
+# # Install package
+RUN --mount=type=cache,target=/root/.cache \
+    uv tool run mxdev[uv] -c mx.ini && \
+    uv sync \
+        --no-dev \
+        --no-group test \
+        --group container \
+        --no-editable
+
+# Move skeleton files to /app
 RUN <<EOT
-    set -e
-    echo ${GIT_COMMIT} > GIT_COMMIT
-    apt update
-    apt install -y --no-install-recommends openssh-client ca-certificates
-    bin/pip install mxdev uv
-    # remove dev-extra from wrapperpackage in mx.ini
-    sed -i 's/-e .\[dev\]/./g' src/mx.ini
-    # remove all test-extras from checkouts in mx.ini
-    sed -i'' -e '/extras \= test/d' src/mx.ini
-    cd /app/src
-    # remove potentially existing virtualenv from local build
-    rm -rf .venv
-    ../bin/mxdev -c mx.ini
-    ../bin/uv pip install -r requirements-mxdev.txt
-    ../bin/python /compile_mo.py
+    mv /app_skeleton/* /app
+    rm -Rf /app_skeleton
+    chmod +x /app/docker-entrypoint.sh
+    mv scripts /app/scripts
 EOT
 
-FROM plone/server-prod-config:${PLONE_VERSION}
+# Compile translation files
+# RUN <<EOT
+#     /app/bin/python /compile_mo.py
+# EOT
+
+FROM plone/server-prod-config:uv-${PYTHON_VERSION}
 ENV TZ="Europe/Berlin"
 
 LABEL maintainer="Starzel.de for Bundesamt für Strahlenschutz <info@starzel.de>" \
@@ -91,4 +110,5 @@ ENV zope_i18n_compile_mo_files=true
 RUN <<EOT
     set -e
     ln -s /data /app/var
+    chown -R 500:500 /data
 EOT
