@@ -1,20 +1,25 @@
 [repository]
 name = "dokpool"
-managed_by_uv = false
 changelog = "CHANGES.md"
 version = "version.txt"
-compose = "docker-compose.yml"
+version_format = "calver"
+container_images_prefix = "registry.gitlab.com/OpenBfS/dokpool/"
+compose = ["docker-compose-run.yml"]
 
-[backend]
-path = "backend"
+[repository.towncrier]
+section = "Project"
+settings = "towncrier.toml"
 
 [backend.package]
-name = "dokpoolwrapper"
+name = "docpoolwrapper"
 path = "backend"
+code_path = "src/docpoolwrapper"
+changelog = "CHANGES.rst"
+towncrier_settings = "backend/pyproject.toml"
 base_package = "Products.CMFPlone"
 publish = false
 
 [cookieplone]
 template = "project"
-template_version = "d3c64e92c947928ea9bba83c1514b0f491dc97fb"
-generated_date = "2025-04-29 08:48:08"
+template_version = "b3f27275714df9e1cb1434ec83f20a25bf9fbebd"
+generated_date = "2026-06-10 07:01:27"

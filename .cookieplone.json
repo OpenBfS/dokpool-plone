@@ -1,0 +1,21 @@
+{
+    "title": "dokpool",
+    "description": "Dokpool is a CMS based on Plone 6, a website developed for handling documents in multiple contexts, using several editorial roles and workflows.",
+    "project_slug": "dokpool",
+    "hostname": "review-bfs.starzel.de",
+    "author": "Philip Bauer",
+    "email": "bauer@starzel.de",
+    "python_package_name": "docpoolwrapper",
+    "use_prerelease_versions": true,
+    "plone_version": "6.2.0",
+    "feature_headless": false,
+    "language_code": "de",
+    "github_organization": "OpenBfS",
+    "container_registry": "gitlab",
+    "devops_storage": "relstorage",
+    "devops_cache": true,
+    "devops_ansible": false,
+    "devops_gha_deploy": false,
+    "initialize_documentation": false,
+    "__template__": "project"
+}
