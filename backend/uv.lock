@@ -959,6 +959,109 @@ wheels = [
 ]
 
 [[package]]
+name = "docpool"
+version = "1.0.0a0"
+source = { virtual = "." }
+dependencies = [
+    { name = "collective-catalogcleanup" },
+    { name = "collective-eeafaceted-z3ctable" },
+    { name = "collective-excelexport" },
+    { name = "collective-impersonate" },
+    { name = "docpool-api" },
+    { name = "docpool-base" },
+    { name = "docpool-config" },
+    { name = "docpool-distribution" },
+    { name = "docpool-doksys" },
+    { name = "docpool-elan" },
+    { name = "docpool-rei" },
+    { name = "docpool-rodos" },
+    { name = "docpool-theme" },
+    { name = "docpool-ui" },
+    { name = "eea-facetednavigation" },
+    { name = "elan-journal" },
+    { name = "pas-plugins-trustedproxyauth" },
+    { name = "plone-api" },
+    { name = "plone-app-caching" },
+    { name = "plone-classicui" },
+    { name = "plone-restapi" },
+    { name = "products-cmfplone" },
+    { name = "products-plonekeywordmanager" },
+    { name = "products-temporaryfolder" },
+    { name = "psycopg2" },
+    { name = "pyruvate" },
+    { name = "relstorage" },
+    { name = "z3c-jbot" },
+]
+
+[package.dev-dependencies]
+container = [
+    { name = "plone-app-upgrade" },
+    { name = "psycopg2" },
+    { name = "relstorage" },
+    { name = "zeo" },
+]
+test = [
+    { name = "horse-with-no-namespace" },
+    { name = "playwright" },
+    { name = "plone-app-robotframework" },
+    { name = "plone-app-testing" },
+    { name = "pytest" },
+    { name = "pytest-cov" },
+    { name = "pytest-playwright" },
+    { name = "pytest-plone" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "collective-catalogcleanup" },
+    { name = "collective-eeafaceted-z3ctable", editable = "sources/collective.eeafaceted.z3ctable" },
+    { name = "collective-excelexport", editable = "sources/collective.excelexport" },
+    { name = "collective-impersonate" },
+    { name = "docpool-api", editable = "src/docpool.api" },
+    { name = "docpool-base", editable = "src/docpool.base" },
+    { name = "docpool-config", editable = "src/docpool.config" },
+    { name = "docpool-distribution", editable = "src/docpool.distribution" },
+    { name = "docpool-doksys", editable = "src/docpool.doksys" },
+    { name = "docpool-elan", editable = "src/docpool.elan" },
+    { name = "docpool-rei", editable = "src/docpool.rei" },
+    { name = "docpool-rodos", editable = "src/docpool.rodos" },
+    { name = "docpool-theme", editable = "src/docpool.theme" },
+    { name = "docpool-ui", editable = "src/docpool.ui" },
+    { name = "eea-facetednavigation" },
+    { name = "elan-journal", editable = "src/elan.journal" },
+    { name = "pas-plugins-trustedproxyauth", editable = "sources/pas.plugins.trustedproxyauth" },
+    { name = "plone-api" },
+    { name = "plone-app-caching" },
+    { name = "plone-classicui" },
+    { name = "plone-restapi" },
+    { name = "products-cmfplone", specifier = "==6.2.0" },
+    { name = "products-plonekeywordmanager" },
+    { name = "products-temporaryfolder" },
+    { name = "psycopg2" },
+    { name = "pyruvate", specifier = "==1.6.0" },
+    { name = "relstorage" },
+    { name = "z3c-jbot" },
+]
+
+[package.metadata.requires-dev]
+container = [
+    { name = "plone-app-upgrade" },
+    { name = "psycopg2", specifier = "==2.9.11" },
+    { name = "relstorage", specifier = "==4.2.0" },
+    { name = "zeo", specifier = "==6.1" },
+]
+test = [
+    { name = "horse-with-no-namespace" },
+    { name = "playwright" },
+    { name = "plone-app-robotframework" },
+    { name = "plone-app-testing" },
+    { name = "pytest" },
+    { name = "pytest-cov" },
+    { name = "pytest-playwright" },
+    { name = "pytest-plone", specifier = ">=1.0.0a3" },
+]
+
+[[package]]
 name = "docpool-api"
 version = "1.0a1"
 source = { editable = "src/docpool.api" }
@@ -1152,108 +1255,6 @@ requires-dist = [
     { name = "setuptools" },
     { name = "z3c-jbot" },
     { name = "zope-interface" },
-]
-
-[[package]]
-name = "docpoolwrapper"
-source = { editable = "." }
-dependencies = [
-    { name = "collective-catalogcleanup" },
-    { name = "collective-eeafaceted-z3ctable" },
-    { name = "collective-excelexport" },
-    { name = "collective-impersonate" },
-    { name = "docpool-api" },
-    { name = "docpool-base" },
-    { name = "docpool-config" },
-    { name = "docpool-distribution" },
-    { name = "docpool-doksys" },
-    { name = "docpool-elan" },
-    { name = "docpool-rei" },
-    { name = "docpool-rodos" },
-    { name = "docpool-theme" },
-    { name = "docpool-ui" },
-    { name = "eea-facetednavigation" },
-    { name = "elan-journal" },
-    { name = "pas-plugins-trustedproxyauth" },
-    { name = "plone-api" },
-    { name = "plone-app-caching" },
-    { name = "plone-classicui" },
-    { name = "plone-restapi" },
-    { name = "products-cmfplone" },
-    { name = "products-plonekeywordmanager" },
-    { name = "products-temporaryfolder" },
-    { name = "psycopg2" },
-    { name = "pyruvate" },
-    { name = "relstorage" },
-    { name = "z3c-jbot" },
-]
-
-[package.dev-dependencies]
-container = [
-    { name = "plone-app-upgrade" },
-    { name = "psycopg2" },
-    { name = "relstorage" },
-    { name = "zeo" },
-]
-test = [
-    { name = "horse-with-no-namespace" },
-    { name = "playwright" },
-    { name = "plone-app-robotframework" },
-    { name = "plone-app-testing" },
-    { name = "pytest" },
-    { name = "pytest-cov" },
-    { name = "pytest-playwright" },
-    { name = "pytest-plone" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "collective-catalogcleanup" },
-    { name = "collective-eeafaceted-z3ctable", editable = "sources/collective.eeafaceted.z3ctable" },
-    { name = "collective-excelexport", editable = "sources/collective.excelexport" },
-    { name = "collective-impersonate" },
-    { name = "docpool-api", editable = "src/docpool.api" },
-    { name = "docpool-base", editable = "src/docpool.base" },
-    { name = "docpool-config", editable = "src/docpool.config" },
-    { name = "docpool-distribution", editable = "src/docpool.distribution" },
-    { name = "docpool-doksys", editable = "src/docpool.doksys" },
-    { name = "docpool-elan", editable = "src/docpool.elan" },
-    { name = "docpool-rei", editable = "src/docpool.rei" },
-    { name = "docpool-rodos", editable = "src/docpool.rodos" },
-    { name = "docpool-theme", editable = "src/docpool.theme" },
-    { name = "docpool-ui", editable = "src/docpool.ui" },
-    { name = "eea-facetednavigation" },
-    { name = "elan-journal", editable = "src/elan.journal" },
-    { name = "pas-plugins-trustedproxyauth", editable = "sources/pas.plugins.trustedproxyauth" },
-    { name = "plone-api" },
-    { name = "plone-app-caching" },
-    { name = "plone-classicui" },
-    { name = "plone-restapi" },
-    { name = "products-cmfplone", specifier = "==6.2.0" },
-    { name = "products-plonekeywordmanager" },
-    { name = "products-temporaryfolder" },
-    { name = "psycopg2" },
-    { name = "pyruvate", specifier = "==1.6.0" },
-    { name = "relstorage" },
-    { name = "z3c-jbot" },
-]
-
-[package.metadata.requires-dev]
-container = [
-    { name = "plone-app-upgrade" },
-    { name = "psycopg2", specifier = "==2.9.11" },
-    { name = "relstorage", specifier = "==4.2.0" },
-    { name = "zeo", specifier = "==6.1" },
-]
-test = [
-    { name = "horse-with-no-namespace" },
-    { name = "playwright" },
-    { name = "plone-app-robotframework" },
-    { name = "plone-app-testing" },
-    { name = "pytest" },
-    { name = "pytest-cov" },
-    { name = "pytest-playwright" },
-    { name = "pytest-plone", specifier = ">=1.0.0a3" },
 ]
 
 [[package]]

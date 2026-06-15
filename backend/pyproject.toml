@@ -1,6 +1,6 @@
 [project]
-name = "docpoolwrapper"
-dynamic = ["version"]
+name = "docpool"
+version = "1.0.0a0"
 description = "Dokpool is a CMS based on Plone 6, a website developed for handling documents in multiple contexts, using several editorial roles and workflows."
 readme = "../README.md"
 license = "GPL-2.0-only"
@@ -84,6 +84,7 @@ target = "plone"
 
 [tool.uv]
 managed = true
+package = false
 default-groups = ["test"]
 override-dependencies = []
 constraint-dependencies = [
@@ -638,11 +639,10 @@ testpaths = ["tests"]
 # addopts = "-v --browser chromium --headed --slowmo 900"
 
 [tool.coverage.run]
-source_pkgs = ["docpoolwrapper", "tests"]
+source_pkgs = ["tests"]
 branch = true
 parallel = true
 omit = [
-  "src/docpoolwrapper/locales/*.py",
   "*/tests/*",
   "*/testing.py",
 # We do not test upgrade-steps
