@@ -74,7 +74,6 @@ constraints = [
     { name = "httplib2", specifier = "==0.31.2" },
     { name = "httpx", specifier = "==0.28.1" },
     { name = "i18ndude", specifier = "==6.3.0" },
-    { name = "icalendar", specifier = "==7.1.1" },
     { name = "id", specifier = "==1.6.1" },
     { name = "idna", specifier = "==3.12" },
     { name = "imagesize", specifier = "==2.0.0" },
@@ -134,13 +133,10 @@ constraints = [
     { name = "plone-app-contentlisting", specifier = "==4.0.0" },
     { name = "plone-app-contentmenu", specifier = "==4.0.0" },
     { name = "plone-app-contentrules", specifier = "==6.0.0" },
-    { name = "plone-app-contenttypes", specifier = "==5.0.0" },
     { name = "plone-app-customerize", specifier = "==3.0.0" },
     { name = "plone-app-debugtoolbar", specifier = "==2.0.0" },
-    { name = "plone-app-dexterity", specifier = "==5.0.0" },
     { name = "plone-app-discussion", specifier = "==6.0.0" },
     { name = "plone-app-drafts", specifier = "==3.0.0" },
-    { name = "plone-app-event", specifier = "==6.0.0" },
     { name = "plone-app-i18n", specifier = "==5.0.0" },
     { name = "plone-app-intid", specifier = "==3.0.0" },
     { name = "plone-app-iterate", specifier = "==7.0.0" },
@@ -150,7 +146,6 @@ constraints = [
     { name = "plone-app-lockingbehavior", specifier = "==3.0.0" },
     { name = "plone-app-mosaic", specifier = "==4.0.0" },
     { name = "plone-app-multilingual", specifier = "==9.0.0" },
-    { name = "plone-app-portlets", specifier = "==7.0.0" },
     { name = "plone-app-querystring", specifier = "==3.0.0" },
     { name = "plone-app-redirector", specifier = "==4.0.0" },
     { name = "plone-app-registry", specifier = "==3.0.0" },
@@ -158,7 +153,6 @@ constraints = [
     { name = "plone-app-robotframework", specifier = "==3.0.0" },
     { name = "plone-app-standardtiles", specifier = "==4.0.0" },
     { name = "plone-app-testing", specifier = "==8.0.0" },
-    { name = "plone-app-textfield", specifier = "==4.0.0" },
     { name = "plone-app-theming", specifier = "==7.0.0" },
     { name = "plone-app-tiles", specifier = "==5.0.0" },
     { name = "plone-app-upgrade", specifier = "==4.0.0" },
@@ -210,7 +204,6 @@ constraints = [
     { name = "plone-resource", specifier = "==4.0.0" },
     { name = "plone-resourceeditor", specifier = "==5.0.0" },
     { name = "plone-rest", specifier = "==6.0.0" },
-    { name = "plone-restapi", specifier = "==10.0.0" },
     { name = "plone-rfc822", specifier = "==4.0.0" },
     { name = "plone-scale", specifier = "==5.0.0" },
     { name = "plone-schema", specifier = "==3.0.0" },
@@ -291,7 +284,6 @@ constraints = [
     { name = "requests", specifier = "==2.33.1" },
     { name = "requests-toolbelt", specifier = "==1.0.0" },
     { name = "responses", specifier = "==0.26.0" },
-    { name = "restrictedpython", specifier = "==8.1" },
     { name = "rfc3986", specifier = "==2.0.0" },
     { name = "rich", specifier = "==15.0.0" },
     { name = "robotframework", specifier = "==7.3.2" },
@@ -447,6 +439,16 @@ constraints = [
     { name = "zope-viewlet", specifier = "==6.0" },
     { name = "zope2", specifier = "==4.0" },
     { name = "zopeundo", specifier = "==6.1" },
+]
+overrides = [
+    { name = "icalendar", specifier = "==7.1.3" },
+    { name = "plone-app-contenttypes", specifier = "==5.0.1" },
+    { name = "plone-app-dexterity", specifier = "==5.0.1" },
+    { name = "plone-app-event", specifier = "==6.0.1" },
+    { name = "plone-app-portlets", specifier = "==7.0.2" },
+    { name = "plone-app-textfield", specifier = "==4.0.1" },
+    { name = "plone-restapi", specifier = "==10.0.1" },
+    { name = "restrictedpython", specifier = "==8.3" },
 ]
 
 [[package]]
@@ -1570,15 +1572,15 @@ wheels = [
 
 [[package]]
 name = "icalendar"
-version = "7.1.1"
+version = "7.1.3"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "python-dateutil" },
     { name = "tzdata" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/10/1b/f02e4d997f50d8274c877bbf4f7809e6b04216c4d0b859e6ac7f8566165a/icalendar-7.1.1.tar.gz", hash = "sha256:df80df31f57d345b68b2d07be579a24e8103f7b6555c548e8ef8246cb2353186", size = 469560, upload-time = "2026-05-18T11:11:25.188Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/bd/86/16051e4f00db105d76bfd79f87cc5685c55d562d335f97c71bf128914c56/icalendar-7.1.3.tar.gz", hash = "sha256:eb03a0e215f30db689a72c49f18f998aabf17522eb0858a293c393510850727c", size = 472734, upload-time = "2026-06-15T14:06:13.199Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/d0/86/33636ea5600a30f4674650f460903ca817d4aa0f3a5c655db1b5511fd6d6/icalendar-7.1.1-py3-none-any.whl", hash = "sha256:5e581b8376df7c66972edcf1597c99efc07011829f73df420c2648784c424b42", size = 472071, upload-time = "2026-05-18T11:11:23.904Z" },
+    { url = "https://files.pythonhosted.org/packages/a0/57/aa44e7af1244856d92a700dca5089777a334fecd328f82d5faa5c2696e2e/icalendar-7.1.3-py3-none-any.whl", hash = "sha256:690f30aa50a76cbf854db5ad52654705db9c5cd0e1b152222f5d4b7854b60667", size = 475481, upload-time = "2026-06-15T14:06:11.605Z" },
 ]
 
 [[package]]
@@ -2234,7 +2236,7 @@ wheels = [
 
 [[package]]
 name = "plone-app-contenttypes"
-version = "5.0.0"
+version = "5.0.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "plone-app-contentmenu" },
@@ -2268,13 +2270,12 @@ dependencies = [
     { name = "products-mimetypesregistry" },
     { name = "products-portaltransforms" },
     { name = "products-statusmessages" },
-    { name = "setuptools" },
     { name = "z3c-form" },
     { name = "zope" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/99/b1/5ac603c64aa81044b04a876f66e87592a302ea21ac2a5cd48da1bc7c574a/plone_app_contenttypes-5.0.0.tar.gz", hash = "sha256:a74daaf3a36d9a21cd421e32b2c58077a484817f7aa70529d856491c9592c363", size = 157375, upload-time = "2026-05-14T21:33:11.564Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/56/95/4cb04b03307ad0add3f33e297d9d67b88b4547e49136c62640d1c69184c9/plone_app_contenttypes-5.0.1.tar.gz", hash = "sha256:daebd33047167cadea6b08dbcba51590f173d78efec891d218d33d193d8ad0f1", size = 158271, upload-time = "2026-06-23T12:37:51.204Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/88/a5/27934470617fb580023f3bb6a094053a41c52b0046ed39b9f650b8f9416d/plone_app_contenttypes-5.0.0-py3-none-any.whl", hash = "sha256:03b0dbec7e11762e6f76da0b9fcc26adb138b924321de396b574c78433fc6e87", size = 151935, upload-time = "2026-05-14T21:33:09.326Z" },
+    { url = "https://files.pythonhosted.org/packages/1c/ca/635550fa0337e1894c5e3f740335b23ee6bc78ed04286ac2828e4958751b/plone_app_contenttypes-5.0.1-py3-none-any.whl", hash = "sha256:bd9cda3406c2f0c5fd5acf7a1142bad4faa002932802f5af6835bf06029bf31d", size = 152657, upload-time = "2026-06-23T12:37:49.736Z" },
 ]
 
 [[package]]
@@ -2295,7 +2296,7 @@ wheels = [
 
 [[package]]
 name = "plone-app-dexterity"
-version = "5.0.0"
+version = "5.0.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "lxml" },
@@ -2329,16 +2330,9 @@ dependencies = [
     { name = "zope-dottedname" },
     { name = "zope-filerepresentation" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/c4/69/db2b8a3960d4c8174437cb03ff7f62e4368b01850cdf70b410e6e6db3136/plone_app_dexterity-5.0.0.tar.gz", hash = "sha256:7eec9369f9837d3f9c9f0dc49570d4518887badd22a126bd47627a47dc4e312a", size = 229991, upload-time = "2026-05-14T21:34:40.969Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/d4/00/e9f6edefb1d4d0673befc5496f03ce820f94925e995363126610872de956/plone_app_dexterity-5.0.1.tar.gz", hash = "sha256:73734867d7ee043cab1225f09eaf93a4efb94cbe985a76000905c9f536e2b906", size = 231580, upload-time = "2026-06-23T12:34:45.016Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/9a/1d/d507c31c2dd45e376cf93058ae963cf697177b26f6c7957ad75f6d89864f/plone_app_dexterity-5.0.0-py3-none-any.whl", hash = "sha256:0f604fa917e79e885cb891a105094c1363a6a6f4ac5bcedbc2089eda90c77ed7", size = 130769, upload-time = "2026-05-14T21:34:38.96Z" },
-]
-
-[package.optional-dependencies]
-relations = [
-    { name = "plone-app-intid" },
-    { name = "plone-app-relationfield" },
-    { name = "z3c-relationfield" },
+    { url = "https://files.pythonhosted.org/packages/8f/5f/4e85faac9369ccb394c26a3c5e89e053c0f7bb678214993961f21e2580d7/plone_app_dexterity-5.0.1-py3-none-any.whl", hash = "sha256:2317ac22cbe2df220627472da6a1045f28263c8b033b38bf991c95b5f619f3f8", size = 131883, upload-time = "2026-06-23T12:34:42.99Z" },
 ]
 
 [[package]]
@@ -2372,7 +2366,7 @@ wheels = [
 
 [[package]]
 name = "plone-app-event"
-version = "6.0.0"
+version = "6.0.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "icalendar" },
@@ -2407,12 +2401,13 @@ dependencies = [
     { name = "products-statusmessages" },
     { name = "products-zcatalog" },
     { name = "pytz" },
+    { name = "requests" },
     { name = "z3c-form" },
     { name = "zope" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/db/5c/43cf8d4989ca568d1e3de3f637ee3e36cb14160d67ab798d667310d4b33e/plone_app_event-6.0.0.tar.gz", hash = "sha256:d5b896ee69506091a571a248cfd94ef46f055dc32f748c467149f9c0312741a7", size = 178274, upload-time = "2026-05-14T21:36:21.931Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/dc/b6/97936a43832432f75648c63065705341e53877e84f7c28f895ac7d9e6126/plone_app_event-6.0.1.tar.gz", hash = "sha256:26bac4ec32f93693da6fbb796bafb6568badc8736fbaf663647e4c932d439093", size = 183168, upload-time = "2026-06-23T12:30:19.314Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/ea/62/2078a8b25b1b2ee8aeb71dee69934adb102d14ea0efd91c6b0f7425d80ee/plone_app_event-6.0.0-py3-none-any.whl", hash = "sha256:2856dc873489488faf76e75674ae69bc62b09450b0218e412af48da983a25033", size = 151779, upload-time = "2026-05-14T21:36:20.364Z" },
+    { url = "https://files.pythonhosted.org/packages/e4/39/f73cb751e8fd9d8dd2f2062ae227f81d4675cc41640be8d92ffe73b25ba8/plone_app_event-6.0.1-py3-none-any.whl", hash = "sha256:635c363c9ba72aab9351a1e2e149e637555ed8cb79dac0c570da8d96d041e963", size = 156335, upload-time = "2026-06-23T12:30:17.326Z" },
 ]
 
 [[package]]
@@ -2605,7 +2600,7 @@ wheels = [
 
 [[package]]
 name = "plone-app-portlets"
-version = "7.0.0"
+version = "7.0.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "btrees" },
@@ -2629,15 +2624,16 @@ dependencies = [
     { name = "products-pluggableauthservice" },
     { name = "products-pythonscripts" },
     { name = "products-statusmessages" },
+    { name = "requests" },
     { name = "z3c-form" },
     { name = "zope" },
     { name = "zope-annotation" },
     { name = "zope-browser" },
     { name = "zope-contentprovider" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/f5/ec/8168c9dfba5e216c9952cab3e69715146092356795f4ccf4a37a97d0d66a/plone_app_portlets-7.0.0.tar.gz", hash = "sha256:e3f3229833ff3a7a8ac2f7a2d3eb307b800a310b4324fdb96e3ac4835504add4", size = 134441, upload-time = "2026-05-07T15:24:50.744Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/fe/8a/145f2f9da67d5892dcf53fd31cee49a227e379536136d55051f5eb63b148/plone_app_portlets-7.0.2.tar.gz", hash = "sha256:7338e6f89f1eeb09b27be668037d021522e43192287c2b650eb45407320a771a", size = 141196, upload-time = "2026-06-23T12:24:29.319Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/b8/19/4d591f66397cda083a8656da735113828368a4b7dcd96be2cabb2018b4f8/plone_app_portlets-7.0.0-py3-none-any.whl", hash = "sha256:74d80d7d8278363edf4da3f114fea76bc7c7747d68a31278b9d255bc728bd9b8", size = 144213, upload-time = "2026-05-07T15:24:49.035Z" },
+    { url = "https://files.pythonhosted.org/packages/70/e6/7623978dd9ec8d9e94b2836b35f2eb5f2c9d2b692f7b132570f54211a880/plone_app_portlets-7.0.2-py3-none-any.whl", hash = "sha256:bbc3c95337f824207d78990e1d4f75b9f8fca3b4f4f7ad1f98e306723d09c483", size = 148751, upload-time = "2026-06-23T12:24:27.74Z" },
 ]
 
 [[package]]
@@ -2803,15 +2799,15 @@ wheels = [
 
 [[package]]
 name = "plone-app-textfield"
-version = "4.0.0"
+version = "4.0.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "plone-base" },
     { name = "zope" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/6c/71/4739a2c7ba5592239c6091c4950ea37ee2c06de0f3968200b07e84c79588/plone_app_textfield-4.0.0.tar.gz", hash = "sha256:e4fe069ff97f9cdc13e1b85cc1a794f38a6fe43226f23a17c8a92e10543b61f5", size = 37060, upload-time = "2026-05-16T17:54:30.079Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/97/79/19488388e07dbbbeccf857a070a58df584c322e5cd9f1f9a7de5843ff178/plone_app_textfield-4.0.1.tar.gz", hash = "sha256:bd9e1f244e3daa5ebd641629e4005eec63582328957cd8ce8a4603c9985e1a0b", size = 37877, upload-time = "2026-06-05T18:46:08.336Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/81/60/df2ba3f057e4c43af936de4f6a72e03c42d943672941d2ac1e5ee5d10823/plone_app_textfield-4.0.0-py3-none-any.whl", hash = "sha256:67bb98264be49663675213b9865ea6e9cd1199a1604c45a0d2f95e3c0a3176ce", size = 31115, upload-time = "2026-05-16T17:54:28.945Z" },
+    { url = "https://files.pythonhosted.org/packages/7a/d2/e65404a2819feae2adb83a936aeb9b57e9102e490bb5f5d32665417098b6/plone_app_textfield-4.0.1-py3-none-any.whl", hash = "sha256:bb11d92836dc09bb44dc08a2209d1ba755d2daedb7bedf37f598b9c03f97f257", size = 31922, upload-time = "2026-06-05T18:46:07.127Z" },
 ]
 
 [[package]]
@@ -2930,7 +2926,7 @@ name = "plone-app-versioningbehavior"
 version = "3.0.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "plone-app-dexterity", extra = ["relations"] },
+    { name = "plone-app-dexterity" },
     { name = "plone-autoform" },
     { name = "plone-base" },
     { name = "plone-behavior" },
@@ -3644,7 +3640,7 @@ wheels = [
 
 [[package]]
 name = "plone-restapi"
-version = "10.0.0"
+version = "10.0.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "packaging" },
@@ -3659,9 +3655,9 @@ dependencies = [
     { name = "pytz" },
     { name = "zope" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/85/d1/c269bf00246f7042404e65a665e37c47cb2a85ebe82e76cb85bdff0cee7c/plone_restapi-10.0.0.tar.gz", hash = "sha256:3bf811c9b0a69871b895691a7b6e88739b72089ea565436ffcd66c066ec86f7f", size = 2994572, upload-time = "2026-05-18T09:08:09.833Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/cd/e2/2cd9c4df145408af920517dda1cb648fb6e043c0334dbd294a75f461af03/plone_restapi-10.0.1.tar.gz", hash = "sha256:bdcd4a92bc26402df339b0ab75ea45162034cf6a7d5c9e19b89077ff45f29937", size = 2995339, upload-time = "2026-06-05T18:49:43.015Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/3c/d5/540183def8364843893530e474339b43ab3a1e91c6eee088860a443f56d8/plone_restapi-10.0.0-py3-none-any.whl", hash = "sha256:27c35477079d203570464b6022e44f534ffc62febf0a23c1dec17ef81e5dea6f", size = 3109975, upload-time = "2026-05-18T09:07:43.222Z" },
+    { url = "https://files.pythonhosted.org/packages/25/1f/a1e1ae2987a01be8529d5f24543c0ba6a137634da2f1a20a597c460f8f0f/plone_restapi-10.0.1-py3-none-any.whl", hash = "sha256:9422122c2f779f25d26dc07d101f781c0f5ae971fb5df634a5d5b05f239ba269", size = 3110396, upload-time = "2026-06-05T18:49:40.673Z" },
 ]
 
 [[package]]
@@ -4996,11 +4992,11 @@ wheels = [
 
 [[package]]
 name = "restrictedpython"
-version = "8.1"
+version = "8.3"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/5f/1c/aec08bcb4ab14a1521579fbe21ceff2a634bb1f737f11cf7f9c8bb96e680/restrictedpython-8.1.tar.gz", hash = "sha256:4a69304aceacf6bee74bdf153c728221d4e3109b39acbfe00b3494927080d898", size = 838331, upload-time = "2025-10-19T14:11:32.531Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/01/dc/19d6b8541f638b90411408a5f755e04da79c9df1651601465fb66a82fe5d/restrictedpython-8.3.tar.gz", hash = "sha256:9f31663ff2b86d9112bd7af4cd0601f12ef619c4f6ad162a1c9f9f186341337a", size = 449827, upload-time = "2026-06-16T10:05:20.243Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/1a/c0/3848f4006f7e164ee20833ca984067e4b3fc99fe7f1dfa88b4927e681299/restrictedpython-8.1-py3-none-any.whl", hash = "sha256:4769449c6cdb10f2071649ba386902befff0eff2a8fd6217989fa7b16aeae926", size = 27651, upload-time = "2025-10-19T14:11:30.201Z" },
+    { url = "https://files.pythonhosted.org/packages/fc/26/059538503370f82ffce8a4a1307c5c0a28134a7c27a6c88bdca83b743833/restrictedpython-8.3-py3-none-any.whl", hash = "sha256:de36a9b27ad4490a368984984751179e5fc28e2b49540dc348878e5c0e79d737", size = 27385, upload-time = "2026-06-16T10:05:18.508Z" },
 ]
 
 [[package]]
