@@ -11,7 +11,7 @@ class PrognosisTypesVocabulary:
 
     def __call__(self, context):
         values = [
-            (None, _("Select a value ...")),
+            ("", _("Select a value ...")),
             ("Sonstige Ausbreitungsrechnung", _("Sonstige Ausbreitungsrechnung")),
             ("Potenziell betroffene Gebiete", _("Potenziell betroffene Gebiete")),
             ("RODOS Prognose", _("RODOS Prognose")),
