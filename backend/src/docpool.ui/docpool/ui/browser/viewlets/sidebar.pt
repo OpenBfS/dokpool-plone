@@ -56,15 +56,21 @@
       <li class="nav-item flex-fill">
         <a class="nav-link d-flex flex-column align-items-center justify-content-center text-decoration-none"
            href="#"
+           tal:condition="python: view.show_tasks()"
+           tal:attributes="
+             href string:${view/base_url}/@@tasks;
+           "
         >
           <span class="icon-24 d-flex align-items-center justify-content-center mb-2">
             <tal:icon tal:replace="structure python:icons.tag('calendar-check-fill', tag_class='me-0')" />
           </span>
-          <span class="label text-center">Aufgaben (1)</span>
-        </a>
+          <span class="label text-center">
+            <span i18n:translate="">Tasks</span>
+            (<span tal:replace="python: view.number_of_tasks()"></span>)
+            <span>
+            </span></span></a>
       </li>
     </ul>
   </nav>
-
 
 </div>
