@@ -39,3 +39,14 @@ OTHER_TYPES = [
 
 JOURNAL_FOLDER_ID = "journal"
 JOURNALENTRY_ID = "journalentry"
+
+PRIVATE_STATES = ["private"]
+PENDING_STATES = [
+    "pending",
+    "pending_authority",
+    "pending_bfs",
+    "pending_bmu",
+    "pending_second",
+]
+PUBLISHED_STATES = ["published"]
+REVISED_STATES = ["revised"]

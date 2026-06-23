@@ -53,3 +53,14 @@ class SidebarViewlet(GroupsTreeMixin, common.ViewletBase):
 
         journals_view = api.content.get_view("journals", self.context, self.request)
         return bool(journals_view.get_journals())
+
+    def show_tasks(self):
+        dp_app_state = api.content.get_view("dp_app_state", self.context, self.request)
+        active_apps = dp_app_state.appsActivatedByCurrentUser()
+        if ELAN_APP in active_apps:
+            return True
+
+    def number_of_tasks(self):
+        tasks_view = api.content.get_view("tasks", self.context, self.request)
+        uids, _ = tasks_view.find()
+        return len(uids)

@@ -3,6 +3,10 @@ from copy import copy
 from docpool.base.config import BASE_APP
 from docpool.base.config import FOLDER_TYPES
 from docpool.base.config import OTHER_TYPES
+from docpool.base.config import PENDING_STATES
+from docpool.base.config import PRIVATE_STATES
+from docpool.base.config import PUBLISHED_STATES
+from docpool.base.config import REVISED_STATES
 from docpool.base.config import TRANSFERS_APP
 from docpool.base.content.archiving import IArchiving
 from docpool.base.content.places import IPlaces
@@ -150,25 +154,19 @@ class Listing(BrowserView):
         review_state_filter_config = {
             "private": {
                 "title": _("Internal"),
-                "review_states": ["private"],
+                "review_states": PRIVATE_STATES,
             },
             "pending": {
                 "title": _("Pending"),
-                "review_states": [
-                    "pending",
-                    "pending_authority",
-                    "pending_bfs",
-                    "pending_bmu",
-                    "pending_second",
-                ],
+                "review_states": PENDING_STATES,
             },
             "published": {
                 "title": _("Published"),
-                "review_states": ["published"],
+                "review_states": PUBLISHED_STATES,
             },
             "revised": {
                 "title": _("Revised"),
-                "review_states": ["revised"],
+                "review_states": REVISED_STATES,
             },
         }
         self.selected_review_states = form.get("review_states") or []
@@ -196,6 +194,9 @@ class Listing(BrowserView):
             self.bypass_scenario_filter = True
             dp_archive = IPlaces(self.context).document_pool
             self.base_query["path"] = "/".join(dp_archive.getPhysicalPath()) + "/archive"
+
+        # Hook to override (e.g. used for journals and tasks)
+        self.update()
 
         # Prepare review_state filter options (query needs to be complete)
         if "visibility" in self.filters:
@@ -229,12 +230,10 @@ class Listing(BrowserView):
 
         catalog = api.portal.get_tool("portal_catalog")
 
-        # Hook to override
-        self.update()
-
         # Merge base query with and manual filters for real results
         query = self.base_query | self.query
         brains = catalog(**query)
+        brains = [brain for brain in brains if self.include_brain(brain)]
         uids = [brain.UID for brain in brains]
         modified = max(brain.modified for brain in brains) if brains else None
 
@@ -351,6 +350,10 @@ class Listing(BrowserView):
     def update(self):
         # Allow overriding queries
         return
+
+    def include_brain(self, brain):
+        # Allow dropping brains from results
+        return True
 
 
 def extract_date(value):

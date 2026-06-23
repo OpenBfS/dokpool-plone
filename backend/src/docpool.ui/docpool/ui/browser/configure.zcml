@@ -68,6 +68,15 @@
       />
 
   <browser:page
+      name="tasks"
+      for="*"
+      class=".tasks.Tasks"
+      template="templates/listing.pt"
+      permission="zope.Public"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
+  <browser:page
       name="view"
       for="docpool.base.interfaces.IDocumentPool"
       class=".listing.Listing"
