@@ -90,7 +90,7 @@ build_image:
   script:
     - apt update
     # LDAP client dependencies
-    - apt-get install -y --no-install-recommends libsasl2-dev libldap2-dev libssl-dev curl poppler-utils docker.io
+    - apt-get install -y --no-install-recommends libsasl2-dev libldap2-dev libssl-dev curl poppler-utils docker.io jq
     # build
     - cd backend
     - export VIRTUAL_ENV=$(pwd)
