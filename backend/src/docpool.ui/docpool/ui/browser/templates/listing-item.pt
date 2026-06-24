@@ -21,6 +21,21 @@
      "
   >
     <span class="visually-hidden">Stretched link to details view</span></a>
+
+  <div class="listingitem-checkbox px-1"
+       tal:condition="python: view.show_bulk_actions"
+  >
+    <input class="form-check-input"
+           id="checkDefault"
+           name="uuid"
+           type="checkbox"
+           tal:attributes="
+             value python: data['uid'];
+             id python: data['uid'];
+           "
+    />
+  </div>
+
   <div class="text-center px-1 dateinfo flex-shrink-0">
     <div tal:content="python: toLocalizedTime(data['date'], time_only=1)">15:45</div>
     <div class="text-muted small"
@@ -148,7 +163,7 @@
   </div>
 
   <!-- Creator Column -->
-  <div class="dp-document-creator py-3 px-2 d-none d-xl-block"
+  <div class="listingitem-creator py-3 px-2 d-none d-xl-block"
        style="width: 158px;"
   >
     <div class="d-flex flex-column">
@@ -161,15 +176,15 @@
     </div>
   </div>
 
-  <div class="mx-3 dp-document-dropdown position-relative d-flex align-items-center justify-content-center">
+  <div class="mx-3 listingitem-dropdown position-relative d-flex align-items-center justify-content-center">
     <div class="dropdown">
-      <a class="btn btn-secondary text-bg-secondary btn-sm"
+      <a class="btn btn-secondary text-bg-secondary btn-sm px-1"
          aria-expanded="false"
          href="#"
          role="button"
          data-bs-toggle="dropdown"
       >
-        &#8942;
+        <img src="${python:icons.url('three-dots-vertical')}" />
       </a>
       <ul class="dropdown-menu pe-2 shadow">
         <li>
@@ -230,7 +245,7 @@
             </a>
           </li>
         </tal:transitions>
-        <li>
+        <li tal:condition="python: data['attachments']">
           <a class="dropdown-item d-flex gap-2 align-items-center"
              href="#"
              tal:attributes="
@@ -248,7 +263,7 @@
              href="#"
              data-pat-modal="class: large; source: #content"
              tal:attributes="
-               href python:'%s/@@dpdocument_transfer_form?dpdocids:list=%s' % (context.absolute_url(), data['path']);
+               href python:'%s/@@dpdocument_transfer_form?uid:list=%s' % (context.absolute_url(), data['uid']);
              "
           >
             <img src="${python:icons.url('box-arrow-up-right')}" />

@@ -34,6 +34,21 @@ class Listing(BrowserView):
     ]
 
     def __call__(self, limit=0):
+        self.fix_duplicate_fields()
+        form = self.request.form
+
+        # Execute Bulk Actions
+        if form.get("uuid"):
+            qs = "&".join([f"uid:list={i}" for i in form["uuid"]])
+            if "bulk_transfer" in form and form.get("uuid"):
+                # redirect to transfer_form
+                self.request.response.redirect(f"{self.context.absolute_url()}/dpdocument_transfer_form?{qs}")
+            if "bulk_transition" in form and form.get("uuid"):
+                # redirect to transition_form
+                self.request.response.redirect(
+                    f"{self.context.absolute_url()}/dpdocument_transition_form?{qs}"
+                )
+
         uids, modified = self.find(limit)
 
         # Mod-Date dazu und hash über udis & mod-date
@@ -46,6 +61,9 @@ class Listing(BrowserView):
     def find(self, limit=0):
         form = self.request.form
         self.folder_listing = self.context.portal_type in FOLDER_TYPES
+
+        # TODO: When do we show that?
+        self.show_bulk_actions = self.folder_listing or True
 
         # base_query is the query for results without manual filtering
         self.base_query = {
@@ -346,6 +364,32 @@ class Listing(BrowserView):
                     icon_name = brain.getObject().__parent__.icon_name
                     results[brain.category][brain.subcategory] = {"count": count, "icon_name": icon_name}
         return {k: v for k, v in results.items() if v}
+
+    def fix_duplicate_fields(self):
+        """Workaround for duplicate filter fields (desktop and mobile) in the form."""
+        form = self.request.form
+        duplicate_fields = {
+            "startdate",
+            "starttime",
+            "enddate",
+            "endtime",
+            "selected_subcategories",
+            "review_state",
+            "selected_groups",
+            "searchable_text",
+            "sort_on",
+            "came_from",
+        }
+        for fieldname in duplicate_fields:
+            value = form.get(fieldname)
+            if value == ["", ""]:
+                form.pop(fieldname)
+                continue
+            if isinstance(value, list):
+                value = list(set([i for i in value if i]))
+                if fieldname in ["searchable_text"]:
+                    value = value[0]
+                form[fieldname] = value
 
     def update(self):
         # Allow overriding queries

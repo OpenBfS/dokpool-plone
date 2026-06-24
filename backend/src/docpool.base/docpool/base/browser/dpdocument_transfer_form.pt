@@ -88,11 +88,11 @@
             </table>
 
             <tal:block tal:repeat="item items">
-              <input name="dpdocids:list"
+              <input name="uid:list"
                      type="hidden"
                      value="1"
                      tal:attributes="
-                       value python:item.absolute_url_path();
+                       value python:item.UID();
                      "
               />
             </tal:block>

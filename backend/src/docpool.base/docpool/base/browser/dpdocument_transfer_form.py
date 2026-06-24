@@ -13,9 +13,9 @@ PMF = MessageFactory("plone")
 
 
 class TransferForm(BrowserView):
-    def __call__(self, dpdocids=None, targets=None):
+    def __call__(self, uid=None, targets=None):
         request = self.request
-        self.dpdocids = dpdocids
+        self.uids = uid or request.form.get("uid")
 
         if request.form.get("form.button.cancel"):
             msg = PMF("Changes canceled.")
@@ -25,17 +25,17 @@ class TransferForm(BrowserView):
         if not request.form.get("form.button.submit", None):
             return self.index()
 
-        if not dpdocids or not targets:
+        if not self.uids or not targets:
             api.portal.show_message(_("No items or targets selected!"), request)
             return self.index()
 
-        for dpdocid in dpdocids:
-            doc = api.content.get(path=dpdocid)
+        for uid in self.uids:
+            doc = api.content.get(UID=uid)
             dpdoc = doc.doc_extension(TRANSFERS_APP)
             dpdoc.transferToTargets(targets)
             log(f'Transfer "{doc.title}" to transfer folders {targets}')
 
-        msg = _("${transferred} Items transferred!", mapping={"transferred": len(dpdocids)})
+        msg = _("${transferred} Items transferred!", mapping={"transferred": len(self.uids)})
         api.portal.show_message(msg, request)
         request.response.redirect(self.context.absolute_url())
         return self.index()
@@ -43,13 +43,13 @@ class TransferForm(BrowserView):
     def transfer_infos(self):
         targets = []
         items = []
-        # the folder_listing passes paths
-        paths = self.request.get("paths", [])
-        if not paths and self.dpdocids:
+        # the listing passes uids
+        uids = self.request.get("uid", [])
+        if not uids and self.uids:
             # handle individual transfer
-            paths = self.dpdocids
-        for path in paths:
-            obj = api.content.get(path=path)
+            uids = self.uids
+        for uid in uids:
+            obj = api.content.get(UID=uid)
             if not obj:
                 continue
             try:

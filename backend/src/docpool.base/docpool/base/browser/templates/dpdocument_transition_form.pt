@@ -96,11 +96,11 @@
             </div>
 
             <tal:block tal:repeat="item items">
-              <input name="paths:list"
+              <input name="uid:list"
                      type="hidden"
                      value="1"
                      tal:attributes="
-                       value python:item['path'];
+                       value python:item['uid'];
                      "
               />
             </tal:block>
