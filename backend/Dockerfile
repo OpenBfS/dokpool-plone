@@ -55,14 +55,17 @@ RUN --mount=type=cache,target=/root/.cache \
         --group container \
         --no-install-project
 
-# # Install package
+WORKDIR /
+RUN mv /src /app/src
+WORKDIR /app/src
+
+# Install local packages as editable sources under /app/src/src.
 RUN --mount=type=cache,target=/root/.cache \
     uv tool run mxdev[uv] -c mx.ini && \
     uv sync \
         --no-dev \
         --no-group test \
-        --group container \
-        --no-editable
+        --group container
 
 # Move skeleton files to /app
 RUN <<EOT
