@@ -47,7 +47,7 @@ RUN --mount=type=cache,target=/root/.cache \
     --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
     --mount=type=bind,source=mx.ini,target=mx.ini \
     uv tool run mxdev[uv] -c mx.ini && \
-    echo ${GIT_COMMIT} > GIT_COMMIT \
+    echo ${GIT_COMMIT} > GIT_COMMIT && \
     uv sync \
         --locked \
         --no-dev \
