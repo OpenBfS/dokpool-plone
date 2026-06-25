@@ -79,8 +79,8 @@ class TestJournal:
         items = page.get_by_role("link", name="Stretched link to details view", exact=True)
         expect(items).to_have_count(0)
 
-        page.wait_for_selector('iframe#journalentry-text_ifr')
-        page.locator('iframe#journalentry-text_ifr').content_frame.get_by_label("Rich Text Area").fill(
+        page.wait_for_selector("iframe#journalentry-text_ifr")
+        page.locator("iframe#journalentry-text_ifr").content_frame.get_by_label("Rich Text Area").fill(
             "Ein neuer Tagebucheintrag"
         )
         page.get_by_role("button", name="Add journal entry").click()
