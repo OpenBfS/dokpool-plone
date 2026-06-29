@@ -62,12 +62,14 @@ payload = {
     "portal_timezone": "Europe/Berlin",
 }
 
-logger.info(f"Creating a new Plone site {site_id}")
+logger.info(f"Creating a new Dokpool Demo site {site_id}")
 
 if site_id in app.objectIds() and DELETE_EXISTING:
+    logger.info(" - Existing site %s found and DELETE_EXISTING is true; deleting it.", site_id)
     app.manage_delObjects([site_id])
     transaction.commit()
     app._p_jar.sync()
+    logger.info(" - Existing site %s deleted.", site_id)
 elif site_id in app.objectIds() and not DELETE_EXISTING:
     logger.info(
         f" - Stopping site creation, as there is already a site with id {site_id} at the instance. "
@@ -75,7 +77,10 @@ elif site_id in app.objectIds() and not DELETE_EXISTING:
     )
 
 if site_id not in app.objectIds():
+    logger.info(" - No existing site %s found; creating a new site.", site_id)
     site = addPloneSite(app, site_id, **payload)
     transaction.commit()
     app._p_jar.sync()
     logger.info(" - Site created!")
+else:
+    logger.info(" - Site %s already exists; no new site was created.", site_id)
