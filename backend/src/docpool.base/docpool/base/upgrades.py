@@ -1,14 +1,18 @@
 from docpool.base.behaviors.transferable import ITransferable
 from docpool.base.config import JOURNAL_FOLDER_ID
 from docpool.base.config import JOURNALENTRY_ID
+from docpool.base.content.archiving import IArchiving
 from docpool.base.content.contentbase import IContentBase
 from docpool.base.content.documentpool import APPLICATIONS_KEY
+from docpool.base.content.places import IPlaces
 from docpool.base.content.simplefolder import ISimpleFolder
 from docpool.base.preview import generate_preview_image
 from docpool.base.setuphandlers import create_session_stuff
 from docpool.base.utils import getDocumentPoolSite
 from docpool.config.general.elan import DOCTYPES
+from docpool.elan.content.dpevents import IDPEvents
 from five.intid.intid import addIntIdSubscriber
+from persistent.list import PersistentList
 from plone import api
 from plone.app.upgrade.utils import loadMigrationProfile
 from plone.base.utils import get_installer
@@ -842,3 +846,44 @@ def to_3000_remove_scenarios_multiselection(context):
     for user in api.user.get_users():
         user.setMemberProperties({"scenarios": None})
     IAnnotations(api.portal.get()).pop("SCENARIO_SELECTION", None)
+
+
+def to_3000_global_events(context):
+    portal = api.portal.get()
+    if (global_events := (cc := portal["contentconfig"]).get("events")) is None:
+        global_events = api.content.create(
+            id="events",
+            title="Events",
+            container=cc,
+            type="DPEvents",
+        )
+        log.info("Created global events folder.")
+
+    for brain in api.content.find(portal_type="DPEvents"):
+        dpevents = brain.getObject()
+        if (dp := IPlaces(dpevents).document_pool) is None:
+            continue
+        if getattr(dpevents, "subscribed_events", None) is None:
+            dpevents.subscribed_events = PersistentList()
+            log.info(f"Updated DPEvents at {dp.Title()}.")
+
+    for brain in api.content.find(portal_type="DPEvent"):
+        event = brain.getObject()
+        if (source_dp := IPlaces(event).document_pool) is None:
+            continue
+        if IArchiving(event).is_archive:
+            continue
+
+        moved_id = f"{event.getId()}_{source_dp.getId()}"
+        moved_title = f"{event.Title()} ({source_dp.Title()})"
+        try:
+            moved = api.content.move(source=event, target=global_events, id=moved_id)
+        except Exception:
+            print(f"Failed moving {event}.")
+            raise
+        moved.setTitle(moved_title)
+
+        source_dpevents = api.content.get_closest_ancestor(event, interface=IDPEvents)
+        source_dpevents.subscribed_events.append(event.UID())
+
+        log.info(f"Moved {moved_title} to global events")

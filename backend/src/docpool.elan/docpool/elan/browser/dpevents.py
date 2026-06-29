@@ -4,6 +4,11 @@ from plone import api
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
+import logging
+
+
+log = logging.getLogger(__name__)
+
 
 class DPEventsView(BrowserView):
     """Default view"""
