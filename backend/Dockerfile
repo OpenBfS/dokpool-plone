@@ -36,7 +36,6 @@ ARG GIT_COMMIT='Not detected'
 WORKDIR /app
 
 # Add local code
-# COPY scripts/ scripts/
 COPY . /src
 WORKDIR /src
 
@@ -72,7 +71,8 @@ RUN <<EOT
     mv /app_skeleton/* /app
     rm -Rf /app_skeleton
     chmod +x /app/docker-entrypoint.sh
-    mv scripts /app/scripts
+    mv scripts/* /app/scripts/
+    rm -Rf scripts
 EOT
 
 # Compile translation files
