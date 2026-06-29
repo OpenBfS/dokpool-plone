@@ -1,7 +1,6 @@
 from AccessControl import ClassSecurityInfo
 from docpool.base.content.contentbase import ContentBase
 from docpool.base.content.contentbase import IContentBase
-from docpool.base.content.documentpool import IDocumentPool
 from docpool.base.marker import IImportingMarker
 from docpool.elan import DocpoolMessageFactory as _
 from docpool.elan.config import ELAN_APP
@@ -272,7 +271,7 @@ def eventRemoved(obj, event=None):
     Make sure the routinemode event cannot be removed unless the whole docpool
     or the whole Plonesite is being deleted.
     """
-    if IPloneSiteRoot.providedBy(event.object) or IDocumentPool.providedBy(event.object):
+    if IPloneSiteRoot.providedBy(event.object):
         return
     if obj.id == "routinemode":
         raise RuntimeError('The "routinemode" event cannot be removed.')

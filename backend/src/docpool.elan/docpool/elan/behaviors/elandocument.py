@@ -9,6 +9,7 @@ from docpool.base.utils import app_only_decorator
 from docpool.base.utils import getDocumentPoolSite
 from docpool.elan import DocpoolMessageFactory as _
 from docpool.elan.config import ELAN_APP
+from docpool.elan.content.dpevents import global_events_by_uid
 from docpool.elan.utils import get_scenario_for_current_user
 from plone import api
 from plone.autoform import directives
@@ -106,8 +107,7 @@ class ELANDocument(FlexibleView):
     def scenarioIndex(self):
         # We can not use the catalog (and therefore, plone.api.content.get()) here since
         # this is used in a indexer and during clear & rebuild no Events would be found.
-        # The path of events is assumed to be <docpool>/contentconfig/scen
-        # This implicitly filters for events present in the document's docpool but then,
+        # We filter for events subscribed by the document's docpool but then,
         # other events than those should not be associated with the document anyway.
         if not (scn := self.scenario):
             return
@@ -116,9 +116,12 @@ class ELANDocument(FlexibleView):
         if not (scen := docpool.unrestrictedTraverse("contentconfig/scen", None)):
             return
 
-        for candidate in scen.contentValues({"portal_type": "DPEvent"}):
-            if candidate.UID() == scn and api.content.get_state(candidate) == "published":
-                return [scn]
+        if scn not in scen.subscribed_events:
+            return
+
+        candidate = global_events_by_uid().get(scn)
+        if candidate and api.content.get_state(candidate) == "published":
+            return [scn]
 
     def getScenarioName(self):
         """ """

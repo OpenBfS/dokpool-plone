@@ -26,10 +26,6 @@ msgstr ""
 msgid "Active Journals are purged."
 msgstr "Die aktuellen Ereignistagebücher werden geleert."
 
-#: docpool.elan/docpool/elan/profiles/default/actions.xml
-msgid "Add New Scenario"
-msgstr "Neues Ereignis anlegen"
-
 #: docpool.elan/docpool/elan/portlets/overview.pt
 msgid "Add journal entry"
 msgstr "Tagebucheintrag hinzufügen"
@@ -190,10 +186,6 @@ msgstr "Aktuelle Lage"
 #: docpool.elan/docpool/elan/profiles/default/types/ELANArchive.xml
 msgid "Edit"
 msgstr ""
-
-#: docpool.elan/docpool/elan/profiles/default/actions.xml
-msgid "Edit Scenarios"
-msgstr "Ereignisse bearbeiten"
 
 #: docpool.elan/docpool/elan/profiles/default/actions.xml
 msgid "Edit Ticker"

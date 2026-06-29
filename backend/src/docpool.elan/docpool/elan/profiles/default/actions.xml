@@ -7,40 +7,6 @@
           name="user"
   >
     <object meta_type="CMF Action"
-            name="edit_scenarios"
-            i18n:domain="docpool.elan"
-    >
-      <property name="title"
-                i18n:translate=""
-      >Edit Scenarios</property>
-      <property name="description"
-                i18n:translate=""
-      />
-      <property name="url_expr">string:${context/dp_url}/contentconfig/scen/</property>
-      <property name="link_target" />
-      <property name="icon_expr">string:plone-edit</property>
-      <property name="available_expr">python: 'esd' in context.absolute_url() and (path('context/@@is/admin_or_contentadmin') or (member and member.has_role('EventEditor', context)))</property>
-      <property name="permissions" />
-      <property name="visible">True</property>
-    </object>
-    <object meta_type="CMF Action"
-            name="add_scenario"
-            i18n:domain="docpool.elan"
-    >
-      <property name="title"
-                i18n:translate=""
-      >Add New Scenario</property>
-      <property name="description"
-                i18n:translate=""
-      />
-      <property name="url_expr">string:${context/dp_url}/contentconfig/scen/++add++DPEvent</property>
-      <property name="link_target" />
-      <property name="icon_expr">string:calendar-plus</property>
-      <property name="available_expr">python: 'esd' in context.absolute_url() and (path('context/@@is/admin_or_contentadmin') or (member and member.has_role('EventEditor', context)))</property>
-      <property name="permissions" />
-      <property name="visible">True</property>
-    </object>
-    <object meta_type="CMF Action"
             name="edit_ticker"
             i18n:domain="docpool.elan"
     >

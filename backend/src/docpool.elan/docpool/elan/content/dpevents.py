@@ -1,8 +1,11 @@
+from docpool.base.content.places import IPlaces
 from docpool.elan.config import ELAN_APP
 from logging import getLogger
+from persistent.list import PersistentList
 from plone import api
 from plone.dexterity.content import Container
 from plone.supermodel import model
+from zope.interface import Attribute
 from zope.interface import implementer
 
 
@@ -12,6 +15,8 @@ logger = getLogger("dpevents")
 class IDPEvents(model.Schema):
     """ """
 
+    subscribed_events = Attribute("List of UIDs of events this Docpool subscribed to")
+
 
 @implementer(IDPEvents)
 class DPEvents(Container):
@@ -19,11 +24,26 @@ class DPEvents(Container):
 
     APP = ELAN_APP
 
+    def __init__(self, *args, **kw):
+        super().__init__(*args, **kw)
+        self.subscribed_events = PersistentList()
+
     def getDPEvents(self):
         """ """
-        query = {
-            "portal_type": "DPEvent",
-            "sort_on": "modified",
-            "sort_order": "reverse",
-        }
-        return [obj.getObject() for obj in api.content.find(context=self, **query)]
+        events_by_uid = global_events_by_uid()
+        if IPlaces(self).document_pool is None:
+            events = events_by_uid.values()
+        else:
+            events = (event for uid in self.subscribed_events if (event := events_by_uid.get(uid)))
+        return sorted(
+            events,
+            key=lambda event: event.modified(),
+            reverse=True,
+        )
+
+
+def global_events_by_uid():
+    # This is used in an indexer, so we must not query events using the catalog, else index rebuilds might
+    # break. But then, there's no reason to use the catalog in the first place.
+    dpevents = api.portal.get()["contentconfig"]["events"]
+    return {event.UID(): event for event in dpevents.contentValues({"portal_type": "DPEvent"})}

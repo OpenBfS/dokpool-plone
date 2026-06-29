@@ -1,5 +1,4 @@
 from ..utils import set_local_roles
-from datetime import datetime
 from docpool.base.content.documentpool import APPLICATIONS_KEY
 from docpool.base.utils import RARELY_USED_TYPES
 from docpool.config.local.base import CONTENT_AREA
@@ -9,6 +8,8 @@ from docpool.config.utils import ID
 from docpool.config.utils import TITLE
 from docpool.config.utils import TYPE
 from docpool.elan.config import ELAN_APP
+from docpool.elan.content.dpevents import global_events_by_uid
+from plone import api
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import log_exc
 from zExceptions import BadRequest
@@ -33,6 +34,8 @@ def dpAdded(self):
     createBasicPortalStructure(self, fresh)
     transaction.commit()
     createContentConfig(self, fresh)
+    transaction.commit()
+    subscribe_events(self)
     transaction.commit()
     if fresh:
         transaction.commit()
@@ -81,30 +84,7 @@ ADMINSTRUCTURE = [
                 TYPE: "DPEvents",
                 TITLE: "Ereignisse",
                 ID: "scen",
-                CHILDREN: [
-                    {
-                        TYPE: "DPEvent",
-                        TITLE: "Normalfall",
-                        ID: "routinemode",
-                        "Status": "active",
-                        "TimeOfEvent": datetime.now(),
-                        "EventType": "Routine",
-                        "OperationMode": "routine",
-                        "AlertingStatus": "none",
-                        CHILDREN: [],
-                    },
-                    {
-                        TYPE: "DPEvent",
-                        TITLE: "Notfall",
-                        ID: "emergency",
-                        "Status": "active",
-                        "TimeOfEvent": datetime.now(),
-                        "EventType": "Emergency",
-                        "OperationMode": "routine",
-                        "AlertingStatus": "none",
-                        CHILDREN: [],
-                    },
-                ],
+                CHILDREN: [],
             },
             {TYPE: "Text", TITLE: "Ticker", ID: "ticker", CHILDREN: []},
         ],
@@ -120,6 +100,10 @@ def createBasicPortalStructure(plonesite, fresh):
 def createContentConfig(plonesite, fresh):
     """ """
     createPloneObjects(plonesite, ADMINSTRUCTURE, fresh)
+
+
+def subscribe_events(dp):
+    dp["contentconfig"]["scen"].subscribed_events.extend(global_events_by_uid())
 
 
 def createELANUsers(self):
@@ -162,6 +146,7 @@ def setELANLocalRoles(self):
     set_local_roles(self, self.content.Groups, contentadmin, ["Site Administrator"])
     set_local_roles(self, self, "{0}_ELANUsers", ["ELANUser"])
     set_local_roles(self, self.config, contentadmin, ["Owner"])
+    set_local_roles(self, api.portal.get().contentconfig, "{0}_ELANUsers", ["Reader"])
 
 
 def createELANGroups(self):

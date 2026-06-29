@@ -1,3 +1,4 @@
+from datetime import datetime
 from docpool.base.config import JOURNAL_FOLDER_ID
 from docpool.base.config import JOURNALENTRY_ID
 from docpool.config.utils import CHILDREN
@@ -125,6 +126,35 @@ BASICSTRUCTURE = [
         ID: "contentconfig",
         CHILDREN: [
             {TYPE: "Text", TITLE: "Impressum", ID: "impressum", CHILDREN: []},
+            {
+                TYPE: "DPEvents",
+                TITLE: "Ereignisse",
+                ID: "events",
+                CHILDREN: [
+                    {
+                        TYPE: "DPEvent",
+                        TITLE: "Normalfall",
+                        ID: "routinemode",
+                        "Status": "active",
+                        "TimeOfEvent": datetime.now(),
+                        "EventType": "Routine",
+                        "OperationMode": "routine",
+                        "AlertingStatus": "none",
+                        CHILDREN: [],
+                    },
+                    {
+                        TYPE: "DPEvent",
+                        TITLE: "Notfall",
+                        ID: "emergency",
+                        "Status": "active",
+                        "TimeOfEvent": datetime.now(),
+                        "EventType": "Emergency",
+                        "OperationMode": "routine",
+                        "AlertingStatus": "none",
+                        CHILDREN: [],
+                    },
+                ],
+            },
         ],
     },
 ]

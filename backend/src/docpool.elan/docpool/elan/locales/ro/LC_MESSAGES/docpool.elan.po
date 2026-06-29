@@ -30,10 +30,6 @@ msgstr ""
 msgid "Active Journals are purged."
 msgstr ""
 
-#: docpool.elan/docpool/elan/profiles/default/actions.xml
-msgid "Add New Scenario"
-msgstr ""
-
 #: docpool.elan/docpool/elan/portlets/overview.pt
 msgid "Add journal entry"
 msgstr ""
@@ -193,10 +189,6 @@ msgstr ""
 #: docpool.elan/docpool/elan/profiles/default/types/DPEvents.xml
 #: docpool.elan/docpool/elan/profiles/default/types/ELANArchive.xml
 msgid "Edit"
-msgstr ""
-
-#: docpool.elan/docpool/elan/profiles/default/actions.xml
-msgid "Edit Scenarios"
 msgstr ""
 
 #: docpool.elan/docpool/elan/profiles/default/actions.xml

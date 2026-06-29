@@ -1,4 +1,4 @@
-from Acquisition import aq_get
+from docpool.base.content.places import IPlaces
 from docpool.elan.utils import set_scenario_for_current_user
 from plone import api
 from Products.Five.browser import BrowserView
@@ -11,12 +11,13 @@ class DPEventsView(BrowserView):
     __call__ = ViewPageTemplateFile("dpevents.pt")
 
     def number_of_entries(self, dpevent):
-        contentarea = aq_get(self.context, "content")
         args = {
             "portal_type": "DPDocument",
             "scenario": dpevent.UID(),
         }
-        return len(api.content.find(context=contentarea, **args))
+        if contentarea := IPlaces(self.context).content:
+            args["context"] = contentarea
+        return len(api.content.find(**args))
 
 
 class SelectScenario(BrowserView):
