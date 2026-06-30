@@ -525,8 +525,8 @@
             </div>
           </div>
 
-          <div class="m-1">
-            <a class="btn btn-secondary btn-icon d-none d-lg-block"
+          <div class="m-1 d-none d-lg-block">
+            <a class="btn btn-secondary btn-icon"
                href="javascript:this.print();"
                title="Print"
                i18n:attributes="title"
@@ -547,10 +547,10 @@
             </a>
           </div>
 
-          <div class="ms-1 my-1"
+          <div class="ms-1 my-1 d-none d-lg-block"
                tal:condition="python: not view.is_archive"
           >
-            <a class="btn btn-secondary btn-icon d-none d-lg-block"
+            <a class="btn btn-secondary btn-icon"
                href="${python: context.absolute_url()}/@@dpdocument_wizard_1"
                title="Add entry"
                i18n:attributes="title"
@@ -559,7 +559,7 @@
             </a>
           </div>
 
-          <div class="ms-1 my-1"
+          <div class="ms-1 my-1 d-none d-lg-block"
                tal:condition="python: show_bulk_actions"
           >
             <div class="dropdown">
