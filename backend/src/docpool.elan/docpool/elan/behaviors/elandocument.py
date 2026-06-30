@@ -4,6 +4,7 @@ from datetime import datetime
 from docpool.base.browser.flexible_view import FlexibleView
 from docpool.base.content.dpdocument import IAppSpecificSerializeToJsonDPDocument
 from docpool.base.content.dpdocument import IDPDocument
+from docpool.base.content.places import IPlaces
 from docpool.base.interfaces import IDocumentExtension
 from docpool.base.utils import app_only_decorator
 from docpool.base.utils import getDocumentPoolSite
@@ -40,10 +41,15 @@ def initializeScenario(context):
         "portal_type": "DPEvent",
         "Status": "active",
     }
-    if uid := get_scenario_for_current_user(context):
+    dp_uids = (
+        tuple(dp["contentconfig"]["scen"].subscribed_events)
+        if (dp := IPlaces(context).document_pool) is not None
+        else None
+    )
+    if (uid := get_scenario_for_current_user(context)) and (dp_uids is None or uid in dp_uids):
         query["UID"] = uid
-    if getattr(context, "dpSearchPath", None):
-        query["path"] = context.dpSearchPath()
+    elif dp_uids is not None:
+        query["UID"] = dp_uids
     scenarios = api.content.find(**query)
     return scenarios[0].UID if scenarios else None
 
