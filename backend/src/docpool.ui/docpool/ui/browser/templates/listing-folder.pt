@@ -20,7 +20,23 @@
        title python:data['doctype_title'];
      "
   >
-    <span class="visually-hidden">Stretched link to details view</span></a>
+    <span class="visually-hidden">Stretched link to details view</span>
+  </a>
+
+  <div class="listingitem-checkbox px-1"
+       tal:condition="python: view.show_bulk_actions"
+  >
+    <input class="form-check-input"
+           id="checkDefault"
+           name="uuid"
+           type="checkbox"
+           tal:attributes="
+             value python: data['uid'];
+             id python: data['uid'];
+           "
+    />
+  </div>
+
   <div class="text-center px-1 dateinfo flex-shrink-0">
     <div tal:content="python: toLocalizedTime(data['date'], time_only=1)">15:45</div>
     <div class="text-muted small"

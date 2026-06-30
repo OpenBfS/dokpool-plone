@@ -752,9 +752,13 @@
           <tal:block tal:repeat="item python: folder_uids + other_uids + items">
             <a class="pat-inject list-item-inject-link"
                data-pat-inject="trigger: autoload-visible; delay: 50; target: self"
+               tal:define="
+                 target python: '@@listing-item?uid='+ item;
+                 target python: target + '&amp;show_bulk_actions=1' if show_bulk_actions else target;
+               "
                tal:content="python: '@@listing-item?uid='+ item"
                tal:attributes="
-                 href python: '@@listing-item?uid='+ item;
+                 href python: target;
                "
             >
             </a>

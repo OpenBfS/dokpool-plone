@@ -62,8 +62,7 @@ class Listing(BrowserView):
         form = self.request.form
         self.folder_listing = self.context.portal_type in FOLDER_TYPES
 
-        # TODO: When do we show that?
-        self.show_bulk_actions = self.folder_listing or True
+        self.show_bulk_actions = self.folder_listing or self.__name__ in ["tasks"]
 
         # base_query is the query for results without manual filtering
         self.base_query = {

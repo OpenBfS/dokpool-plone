@@ -20,7 +20,8 @@
        title python:data['doctype_title'];
      "
   >
-    <span class="visually-hidden">Stretched link to details view</span></a>
+    <span class="visually-hidden">Stretched link to details view</span>
+  </a>
 
   <div class="listingitem-checkbox px-1"
        tal:condition="python: view.show_bulk_actions"
