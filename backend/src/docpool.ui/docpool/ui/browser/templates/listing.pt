@@ -13,21 +13,21 @@
                    other_uids python: view.other_uids;
                    icons python: context.restrictedTraverse('@@iconresolver');
                    show_scenario_filter_switch python: view.show_scenario_filter_switch;
+                   show_bulk_actions python: view.show_bulk_actions;
                  "
   >
 
-    <metal:empty_title fill-slot="content-title" />
-    <div class="border-bottom"
-         id="listing-filters"
-         tal:attributes="
-           data-listing-modified python: view.modified;
-         "
+    <form method="get"
+          tal:attributes="
+            action request/ACTUAL_URL;
+          "
     >
-      <form class="filter-form"
-            method="GET"
-            tal:attributes="
-              action request/ACTUAL_URL;
-            "
+      <metal:empty_title fill-slot="content-title" />
+      <div class="border-bottom"
+           id="listing-filters"
+           tal:attributes="
+             data-listing-modified python: view.modified;
+           "
       >
         <div class="d-flex flex-wrap justify-content-start justify-content-lg-end">
 
@@ -525,8 +525,8 @@
             </div>
           </div>
 
-          <div class="m-1">
-            <a class="btn btn-secondary btn-icon d-none d-lg-block"
+          <div class="m-1 d-none d-lg-block">
+            <a class="btn btn-secondary btn-icon"
                href="javascript:this.print();"
                title="Print"
                i18n:attributes="title"
@@ -547,10 +547,10 @@
             </a>
           </div>
 
-          <div class="ms-1 my-1"
+          <div class="ms-1 my-1 d-none d-lg-block"
                tal:condition="python: not view.is_archive"
           >
-            <a class="btn btn-secondary btn-icon d-none d-lg-block"
+            <a class="btn btn-secondary btn-icon"
                href="${python: context.absolute_url()}/@@dpdocument_wizard_1"
                title="Add entry"
                i18n:attributes="title"
@@ -558,17 +558,91 @@
               <tal:icon tal:replace="structure python:icons.tag('plus-circle')" />
             </a>
           </div>
+
+          <div class="ms-1 my-1 d-none d-lg-block"
+               tal:condition="python: show_bulk_actions"
+          >
+            <div class="dropdown">
+              <a class="btn btn-secondary text-bg-secondary btn-sm px-1"
+                 aria-expanded="false"
+                 href="#"
+                 role="button"
+                 data-bs-toggle="dropdown"
+              >
+                <img src="${python:icons.url('three-dots-vertical')}" />
+              </a>
+              <ul class="dropdown-menu pe-2 shadow">
+                <li tal:condition="python: view.folder_listing">
+                  <button class="dropdown-item d-flex gap-2 align-items-center"
+                          name="bulk_cut"
+                          type="submit"
+                  >
+                    <img src="${python:icons.url('scissors')}" />
+                    <span tal:omit-tag=""
+                          i18n:domain="plone"
+                          i18n:translate=""
+                    >Cut</span>
+                  </button>
+                </li>
+                <li tal:condition="python: view.folder_listing and context.cb_dataValid()">
+                  <button class="dropdown-item d-flex gap-2 align-items-center"
+                          name="bulk_paste"
+                          type="submit"
+                  >
+                    <img src="${python:icons.url('clipboard')}" />
+                    <span tal:omit-tag=""
+                          i18n:domain="plone"
+                          i18n:translate=""
+                    >Paste</span>
+                  </button>
+                </li>
+                <li tal:condition="python: view.folder_listing">
+                  <button class="dropdown-item d-flex gap-2 align-items-center"
+                          name="bulk_delete"
+                          type="submit"
+                  >
+                    <img src="${python:icons.url('trash')}" />
+                    <span tal:omit-tag=""
+                          i18n:domain="plone"
+                          i18n:translate=""
+                    >Delete</span>
+                  </button>
+                </li>
+                <li>
+                  <button class="dropdown-item d-flex gap-2 align-items-center"
+                          name="bulk_transfer"
+                          type="submit"
+                  >
+                    <img src="${python:icons.url('box-arrow-up-right')}" />
+                    <span tal:omit-tag=""
+                          i18n:domain="docpool.base"
+                          i18n:translate=""
+                    >Transfer</span>
+                  </button>
+                </li>
+                <li>
+                  <button class="dropdown-item d-flex gap-2 align-items-center"
+                          name="bulk_transition"
+                          type="submit"
+                  >
+                    <img src="${python:icons.url('arrow-down-up')}" />
+                    <span tal:omit-tag=""
+                          i18n:domain="docpool.base"
+                          i18n:translate=""
+                    >Transition</span>
+                  </button>
+                </li>
+
+              </ul>
+            </div>
+          </div>
+
         </div>
-      </form>
 
-      <metal:mobile-listing-filter use-macro="context/@@listing.macros/macros/mobile_listing_filter" />
+        <metal:mobile-listing-filter use-macro="context/@@listing.macros/macros/mobile_listing_filter" />
 
-      <div class="mx-3 my-3"
-           tal:condition="python: 'journal_title' in view.filters and view.show_add_form"
-      >
-        <form class="add-form"
-              action=""
-              method="GET"
+        <div class="mx-3 my-3"
+             tal:condition="python: 'journal_title' in view.filters and view.show_add_form"
         >
           <div class="d-flex flex-wrap">
             <div class="me-3 flex-fill">
@@ -602,52 +676,77 @@
               ><tal:icon tal:replace="structure python:icons.tag('send')" /></button>
             </div>
           </div>
-        </form>
-      </div>
-
-
-      <div class=""
-           id="listing"
-           tal:attributes="
-             data-items python: view.json_items;
-           "
-      >
-        <div class="mx-3 my-0 py-2"
-             tal:condition="python: 'entries' in view.filters and not view.from_global_search"
-             tal:attributes="
-               class python: 'mx-3 my-0 py-2 d-none d-lg-block' if show_scenario_filter_switch else 'mx-3 my-0 py-2 me-auto d-none d-lg-block';
-             "
-        >
-          <span tal:replace="python: len(items)"></span>
-          <span i18n:translate="">Entries</span>
         </div>
 
 
-        <div class="mx-3 my-0 py-2 search-text"
-             tal:condition="python: view.show_global_search_summary"
+        <div class="pat-checklist"
+             id="listing"
              tal:attributes="
-               class python: 'mx-3 my-0 py-2 d-none d-lg-block' if show_scenario_filter_switch else 'mx-3 my-0 py-2 me-auto d-none d-lg-block';
+               data-items python: view.json_items;
+               class python: 'pat-checklist' if show_bulk_actions else '';
              "
         >
 
-          <span tal:replace="python: len(items)"></span>
-          <span i18n:translate="">Resultate for</span>
-          <strong class="fw-bold"
-                  tal:content="python: view.global_search_text"
-          ></strong>
+          <div class="d-flex">
 
+            <div class="mx-1 my-0 py-2"
+                 tal:condition="python: show_bulk_actions"
+            >
+              <div class="form-check">
+                <input class="form-check-input toggle-all"
+                       id="checkDefault"
+                       title="label_toggle"
+                       type="checkbox"
+                       value=""
+                       i18n:attributes="title"
+                       i18n:domain="docpool.base"
+                />
+              </div>
+            </div>
+
+            <div class="mx-3 my-0 py-2"
+                 tal:condition="python: 'entries' in view.filters and not view.from_global_search"
+                 tal:attributes="
+                   class python: 'mx-3 my-0 py-2 d-none d-lg-block' if show_scenario_filter_switch else 'mx-3 my-0 py-2 me-auto d-none d-lg-block';
+                 "
+            >
+              <span tal:replace="python: len(items)"></span>
+              <span i18n:translate="">Entries</span>
+            </div>
+
+            <div class="mx-3 my-0 py-2 search-text"
+                 tal:condition="python: view.show_global_search_summary"
+                 tal:attributes="
+                   class python: 'mx-3 my-0 py-2 d-none d-lg-block' if show_scenario_filter_switch else 'mx-3 my-0 py-2 me-auto d-none d-lg-block';
+                 "
+            >
+
+              <span tal:replace="python: len(items)"></span>
+              <span i18n:translate="">Resultate for</span>
+              <strong class="fw-bold"
+                      tal:content="python: view.global_search_text"
+              ></strong>
+            </div>
+
+          </div>
+
+          <tal:block tal:repeat="item python: folder_uids + other_uids + items">
+            <a class="pat-inject list-item-inject-link"
+               data-pat-inject="trigger: autoload-visible; delay: 50; target: self"
+               tal:define="
+                 target python: '@@listing-item?uid='+ item;
+                 target python: target + '&amp;show_bulk_actions=1' if show_bulk_actions else target;
+               "
+               tal:content="python: '@@listing-item?uid='+ item"
+               tal:attributes="
+                 href python: target;
+               "
+            >
+            </a>
+          </tal:block>
         </div>
-
-        <tal:block tal:repeat="item python: folder_uids + other_uids + items">
-          <a class="pat-inject list-item-inject-link"
-             data-pat-inject="trigger: autoload-visible; delay: 50; target: self"
-             tal:content="python: '@@listing-item?uid='+ item"
-             tal:attributes="
-               href python: '@@listing-item?uid='+ item;
-             "
-          >
-          </a>
-        </tal:block>
       </div>
-    </div></metal:content>
+    </form>
+
+  </metal:content>
 </html>

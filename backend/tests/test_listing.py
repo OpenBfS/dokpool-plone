@@ -41,7 +41,7 @@ class TestListing(GroupsFolderSetupMixin):
         dp_without_images = page.locator("#listing .listing-item", has_text="Weatherinfo without images")
         expect(dp_without_images).to_have_count(1)
         # Publish the DPDocument
-        dp_without_images.get_by_role("button", name="⋮").click()
+        dp_without_images.get_by_role("button").click()
         dp_without_images.locator("#workflow-transition-publish").click()
         status_msg = page.locator(".statusmessage-info").first
         screenshot_dir = Path("screenshots")
@@ -60,7 +60,7 @@ class TestListing(GroupsFolderSetupMixin):
         expect(items).to_have_count(2)
         # Tests if the DPDocument (without images) exists
         dp_without_images = page.locator("#listing .listing-item", has_text="Weatherinfo without images")
-        dp_without_images.get_by_role("button", name="⋮").click()
+        dp_without_images.get_by_role("button").click()
         page.locator(".dropdown").get_by_role("link", name="Edit", exact=True).click()
         page.get_by_role("textbox", name="Title •").click()
         page.locator("#form-widgets-IDublinCore-title").fill("A Weatherinfo with updated title")
@@ -83,7 +83,7 @@ class TestListing(GroupsFolderSetupMixin):
         expect(items).to_have_count(2)
         # Tests if the DPDocument (without images) exists
         dp_without_images = page.locator("#listing .listing-item", has_text="Weatherinfo without images")
-        dp_without_images.get_by_role("button", name="⋮").click()
+        dp_without_images.get_by_role("button").click()
         page.locator(".dropdown").get_by_role("link", name="Delete", exact=True).click()
         page.get_by_role("button", name="Delete").click()
         # Wait for items to get loaded

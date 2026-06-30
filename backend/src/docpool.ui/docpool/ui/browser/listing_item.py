@@ -38,7 +38,10 @@ class Item(BrowserView):
     template_folder = ViewPageTemplateFile("templates/listing-folder.pt")
     template_other = ViewPageTemplateFile("templates/listing-other.pt")
 
-    def __call__(self, uid=None):
+    def __call__(self, uid=None, show_bulk_actions=False):
+        self.folder_listing = self.context.portal_type in FOLDER_TYPES
+        self.show_bulk_actions = show_bulk_actions
+
         obj = api.content.get(UID=uid) if uid else self.context
 
         if obj.portal_type == "DPDocument":

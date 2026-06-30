@@ -14,6 +14,7 @@ from docpool.elan.config import ELAN_APP
 from docpool.elan.utils import get_scenario_for_current_user
 from docpool.ui import _
 from plone import api
+from plone.protect.authenticator import createToken
 from Products.CMFPlone.browser.search import munge_search_term
 from Products.Five.browser import BrowserView
 
@@ -34,6 +35,33 @@ class Listing(BrowserView):
     ]
 
     def __call__(self, limit=0):
+        self.fix_duplicate_fields()
+        form = self.request.form
+
+        # Execute Bulk Actions
+        if form.get("uuid"):
+            qs = "&".join([f"uid:list={i}" for i in form["uuid"]])
+            if "bulk_transfer" in form:
+                # redirect to transfer_form
+                self.request.response.redirect(f"{self.context.absolute_url()}/dpdocument_transfer_form?{qs}")
+            if "bulk_transition" in form:
+                # redirect to transition_form
+                self.request.response.redirect(
+                    f"{self.context.absolute_url()}/@@dpdocument_transition_form?{qs}"
+                )
+            if "bulk_delete" in form:
+                # redirect to delete
+                self.request.response.redirect(f"{self.context.absolute_url()}/@@folder_delete?{qs}")
+            if "bulk_cut" in form and self.context.portal_type in FOLDER_TYPES:
+                # redirect to cut
+                self.request.response.redirect(f"{self.context.absolute_url()}/@@folder_cut?{qs}")
+        if "bulk_paste" in form and self.context.portal_type in FOLDER_TYPES:
+            # redirect to paste
+            token = createToken()
+            self.request.response.redirect(
+                f"{self.context.absolute_url()}/@@folder_paste?_authenticator={token}"
+            )
+
         uids, modified = self.find(limit)
 
         # Mod-Date dazu und hash über udis & mod-date
@@ -46,6 +74,8 @@ class Listing(BrowserView):
     def find(self, limit=0):
         form = self.request.form
         self.folder_listing = self.context.portal_type in FOLDER_TYPES
+
+        self.show_bulk_actions = self.folder_listing or self.__name__ in ["tasks"]
 
         # base_query is the query for results without manual filtering
         self.base_query = {
@@ -346,6 +376,32 @@ class Listing(BrowserView):
                     icon_name = brain.getObject().__parent__.icon_name
                     results[brain.category][brain.subcategory] = {"count": count, "icon_name": icon_name}
         return {k: v for k, v in results.items() if v}
+
+    def fix_duplicate_fields(self):
+        """Workaround for duplicate filter fields (desktop and mobile) in the form."""
+        form = self.request.form
+        duplicate_fields = {
+            "startdate",
+            "starttime",
+            "enddate",
+            "endtime",
+            "selected_subcategories",
+            "review_state",
+            "selected_groups",
+            "searchable_text",
+            "sort_on",
+            "came_from",
+        }
+        for fieldname in duplicate_fields:
+            value = form.get(fieldname)
+            if value == ["", ""]:
+                form.pop(fieldname)
+                continue
+            if isinstance(value, list):
+                value = list(set([i for i in value if i]))
+                if fieldname in ["searchable_text"]:
+                    value = value[0]
+                form[fieldname] = value
 
     def update(self):
         # Allow overriding queries

@@ -392,11 +392,15 @@ span.badge.text-bg-light {
       }
     }
 
-    .dp-document-creator {
+    .listingitem-creator {
       font-size: var(--dp-font-small);
     }
 
-    .dp-document-dropdown {
+    .listingitem-checkbox {
+      z-index: 2;
+    }
+
+    .listingitem-dropdown {
       right: 0;
       z-index: 2;
 

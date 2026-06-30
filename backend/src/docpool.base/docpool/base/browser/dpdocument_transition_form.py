@@ -47,24 +47,25 @@ class WorkflowActionView(BrowserView):
         self.transitions = []
         self.items = []
         self.errors = []
-        # the folder_listing passes paths
-        paths = self.request.get("paths", [])
-        for path in paths:
-            obj = api.content.get(path=path)
-            item = {
-                "title": obj.title,
-                "path": path,
-                "obj": obj,
-                "transitions": [],
-            }
-            for transition in self.pworkflow.getTransitionsFor(obj):
-                transition_title = translate(transition["name"], domain="plone", context=self.request)
-                tdata = {"id": transition["id"], "title": transition_title}
-                item["transitions"].append(transition_title)
-                if tdata not in self.transitions:
-                    self.transitions.append(tdata)
-            if item["transitions"]:
-                self.items.append(item)
+        # the listing passes uids
+        uids = self.request.get("uid", [])
+        for uid in uids:
+            if obj := api.content.get(UID=uid):
+                item = {
+                    "title": obj.title,
+                    "path": "/".join(obj.getPhysicalPath()),
+                    "obj": obj,
+                    "uid": uid,
+                    "transitions": [],
+                }
+                for transition in self.pworkflow.getTransitionsFor(obj):
+                    transition_title = translate(transition["name"], domain="plone", context=self.request)
+                    tdata = {"id": transition["id"], "title": transition_title}
+                    item["transitions"].append(transition_title)
+                    if tdata not in self.transitions:
+                        self.transitions.append(tdata)
+                if item["transitions"]:
+                    self.items.append(item)
 
         for tinfo in self.transitions:
             tinfo["sort_key"] = self.TRANSITION_SORTKEYS.get(tinfo["id"], 3)

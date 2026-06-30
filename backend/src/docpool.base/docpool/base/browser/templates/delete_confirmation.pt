@@ -31,11 +31,11 @@
 
         <metal:block use-macro="context/@@ploneform-macros/titlelessform">
           <metal:block fill-slot="formtop">
-            <tal:paths tal:repeat="path python:request.get('paths', [])">
-              <input name="paths:list"
+            <tal:paths tal:repeat="uid python:request.get('uid', [])">
+              <input name="uid:list"
                      type="hidden"
                      tal:attributes="
-                       value python: path;
+                       value python: uid;
                      "
               />
             </tal:paths>
