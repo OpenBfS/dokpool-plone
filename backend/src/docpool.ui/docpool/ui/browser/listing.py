@@ -14,6 +14,7 @@ from docpool.elan.config import ELAN_APP
 from docpool.elan.utils import get_scenario_for_current_user
 from docpool.ui import _
 from plone import api
+from plone.protect.authenticator import createToken
 from Products.CMFPlone.browser.search import munge_search_term
 from Products.Five.browser import BrowserView
 
@@ -40,14 +41,26 @@ class Listing(BrowserView):
         # Execute Bulk Actions
         if form.get("uuid"):
             qs = "&".join([f"uid:list={i}" for i in form["uuid"]])
-            if "bulk_transfer" in form and form.get("uuid"):
+            if "bulk_transfer" in form:
                 # redirect to transfer_form
                 self.request.response.redirect(f"{self.context.absolute_url()}/dpdocument_transfer_form?{qs}")
-            if "bulk_transition" in form and form.get("uuid"):
+            if "bulk_transition" in form:
                 # redirect to transition_form
                 self.request.response.redirect(
-                    f"{self.context.absolute_url()}/dpdocument_transition_form?{qs}"
+                    f"{self.context.absolute_url()}/@@dpdocument_transition_form?{qs}"
                 )
+            if "bulk_delete" in form:
+                # redirect to delete
+                self.request.response.redirect(f"{self.context.absolute_url()}/@@folder_delete?{qs}")
+            if "bulk_cut" in form and self.context.portal_type in FOLDER_TYPES:
+                # redirect to cut
+                self.request.response.redirect(f"{self.context.absolute_url()}/@@folder_cut?{qs}")
+        if "bulk_paste" in form and self.context.portal_type in FOLDER_TYPES:
+            # redirect to paste
+            token = createToken()
+            self.request.response.redirect(
+                f"{self.context.absolute_url()}/@@folder_paste?_authenticator={token}"
+            )
 
         uids, modified = self.find(limit)
 

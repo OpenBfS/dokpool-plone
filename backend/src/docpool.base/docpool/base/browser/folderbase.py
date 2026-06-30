@@ -199,10 +199,8 @@ class FolderDeleteForm(form.Form, FolderAction):
 
     def more_info(self):
         """Render linkintegrity-info for all items that are to be deleted."""
-        portal = api.portal.get()
-        paths = self.request.get("paths", [])
-        # We use unrestrictedTraverse because the user may not have access to all parents
-        objects = [portal.unrestrictedTraverse(path) for path in paths]
+        uids = self.request.get("uid", [])
+        objects = [api.content.get(UID=uid) for uid in uids]
         objects = [i for i in objects if self.check_delete_permission(i)]
         if not objects:
             return self.redirect_info(_("No items to delete."))
@@ -213,8 +211,8 @@ class FolderDeleteForm(form.Form, FolderAction):
 
     @button.buttonAndHandler(_("Delete"), name="Delete")
     def handle_delete(self, action):
-        paths = self.request.get("paths", [])
-        objects = [api.content.get(path=str(path)) for path in paths]
+        uids = self.request.get("uid", [])
+        objects = [api.content.get(UID=uid) for uid in uids]
         objects = [i for i in objects if self.check_delete_permission(i)]
         if objects:
             # linkintegrity was already checked and maybe ignored!
@@ -240,10 +238,11 @@ class FolderDeleteForm(form.Form, FolderAction):
 
 class FolderCutForm(BrowserView, FolderAction):
     def __call__(self):
-        if not (paths := self.request.get("paths", [])):
+        if not (uids := self.request.get("uid", [])):
             return self.redirect_error(_("Please select one or more items to cut."))
 
-        ids = [p.removesuffix("/").rpartition("/")[-1] for p in paths]
+        objects = [api.content.get(UID=uid) for uid in uids]
+        ids = [i.id for i in objects]
         try:
             self.context.manage_cutObjects(ids, self.request)
         except CopyError:

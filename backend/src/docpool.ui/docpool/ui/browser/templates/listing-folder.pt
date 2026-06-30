@@ -28,7 +28,7 @@
   >
     <input class="form-check-input"
            id="checkDefault"
-           name="uuid"
+           name="uuid:list"
            type="checkbox"
            tal:attributes="
              value python: data['uid'];

@@ -572,47 +572,41 @@
                 <img src="${python:icons.url('three-dots-vertical')}" />
               </a>
               <ul class="dropdown-menu pe-2 shadow">
-                <li>
-                  <a class="dropdown-item d-flex gap-2 align-items-center"
-                     href="#"
-                     tal:attributes="
-                       href python: f'TODO';
-                     "
+                <li tal:condition="python: view.folder_listing">
+                  <button class="dropdown-item d-flex gap-2 align-items-center"
+                          name="bulk_cut"
+                          type="submit"
                   >
                     <img src="${python:icons.url('scissors')}" />
                     <span tal:omit-tag=""
                           i18n:domain="plone"
                           i18n:translate=""
                     >Cut</span>
-                  </a>
+                  </button>
                 </li>
-                <li>
-                  <a class="dropdown-item d-flex gap-2 align-items-center"
-                     href="#"
-                     tal:attributes="
-                       href python: f'TODO';
-                     "
+                <li tal:condition="python: view.folder_listing and context.cb_dataValid()">
+                  <button class="dropdown-item d-flex gap-2 align-items-center"
+                          name="bulk_paste"
+                          type="submit"
                   >
                     <img src="${python:icons.url('clipboard')}" />
                     <span tal:omit-tag=""
                           i18n:domain="plone"
                           i18n:translate=""
                     >Paste</span>
-                  </a>
+                  </button>
                 </li>
-                <li>
-                  <a class="dropdown-item d-flex gap-2 align-items-center"
-                     href="#"
-                     tal:attributes="
-                       href python: f'TODO';
-                     "
+                <li tal:condition="python: view.folder_listing">
+                  <button class="dropdown-item d-flex gap-2 align-items-center"
+                          name="bulk_delete"
+                          type="submit"
                   >
                     <img src="${python:icons.url('trash')}" />
                     <span tal:omit-tag=""
                           i18n:domain="plone"
                           i18n:translate=""
                     >Delete</span>
-                  </a>
+                  </button>
                 </li>
                 <li>
                   <button class="dropdown-item d-flex gap-2 align-items-center"
