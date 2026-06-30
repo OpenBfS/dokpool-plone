@@ -632,19 +632,6 @@
                     >Transition</span>
                   </button>
                 </li>
-                <li>
-                  <a class="dropdown-item d-flex gap-2 align-items-center"
-                     href="#"
-                     tal:attributes="
-                       href python: f'TODO';
-                     "
-                  >
-                    <img src="${python:icons.url('download')}" />
-                    <span tal:omit-tag=""
-                          i18n:translate=""
-                    >Download all attachments</span>
-                  </a>
-                </li>
 
               </ul>
             </div>
