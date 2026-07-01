@@ -1,3 +1,4 @@
+from conftest import BUND_CONTENT_ADMIN_NAME
 from docpool.api.browser.setup import add_user
 from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
 from docpool.elan.utils import get_scenario_for_current_user
@@ -13,15 +14,16 @@ import transaction
 
 class GroupsFolderSetupMixin:
     def setup_content(self):
-        add_user(self.docpool, "user1", ["group1"], enabled_apps=["elan"])
-        from docpool.api.browser.setup import add_group
-
-        add_group(self.docpool, "group2")
-        api.group.add_user(groupname="bund_group2", username="user1")
+        add_user(
+            self.docpool,
+            BUND_CONTENT_ADMIN_NAME,
+            ["group1", "group2"],
+            enabled_apps=["elan"],
+        )
         content = self.docpool["content"]
         assert content.keys() == ["Transfers", "Members", "Groups"]
-        assert "user1" in content["Members"]
-        assert "user1" not in self.portal["Members"]
+        assert BUND_CONTENT_ADMIN_NAME in content["Members"]
+        assert BUND_CONTENT_ADMIN_NAME not in self.portal["Members"]
 
         # assign app to groupfolder to make is show up in navigation (#5434)
         self.group_folder = content["Groups"]["bund_group1"]
@@ -31,7 +33,8 @@ class GroupsFolderSetupMixin:
         self.group_folder.reindexObject(idxs=["apps_supported"])
         self.group_folder2.reindexObject(idxs=["apps_supported"])
         logout()
-        login(self.portal, "user1")
+        login(self.portal, BUND_CONTENT_ADMIN_NAME)
+        expected_creator = (BUND_CONTENT_ADMIN_NAME, "Content Admin (Bund)", "Group1 (Bund)")
 
         # create first entry
         self.entry = api.content.create(
@@ -43,7 +46,7 @@ class GroupsFolderSetupMixin:
             local_behaviors=["elan"],
             scenario=get_scenario_for_current_user(),
         )
-        assert self.entry.created_by == ("user1", "user1 (Bund)", "Group1 (Bund)")
+        assert self.entry.created_by == expected_creator
 
         # create second entry
         self.entry = api.content.create(
@@ -55,7 +58,7 @@ class GroupsFolderSetupMixin:
             local_behaviors=["elan"],
             scenario=get_scenario_for_current_user(),
         )
-        assert self.entry.created_by == ("user1", "user1 (Bund)", "Group1 (Bund)")
+        assert self.entry.created_by == expected_creator
         # add attachments
         filename = os.path.join(os.path.dirname(__file__), "image.png")
         with open(filename, "rb") as f:
