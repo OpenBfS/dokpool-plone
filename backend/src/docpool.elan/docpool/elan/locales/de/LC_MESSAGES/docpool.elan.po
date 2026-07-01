@@ -1,8 +1,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-07-14 09:08+0000\n"
-"PO-Revision-Date: 2026-02-18 14:20+0100\n"
+#, fuzzy
+"POT-Creation-Date: 2026-07-22 13:57+0000\n"
+"PO-Revision-Date: 2026-07-22 16:05+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -157,6 +158,10 @@ msgstr "Gelöschte Archive"
 msgid "Depending on the number of entries in this event this can take an hour or longer."
 msgstr "Abhängig von der Anzahl der Einträge in diesem Ereignis kann dies bis zu einer Stunde oder länger dauern."
 
+#: docpool.elan/docpool/elan/browser/dpevents.pt
+msgid "Docpools"
+msgstr ""
+
 #: docpool.elan/docpool/elan/profiles/default/types/ELANDocCollection.xml
 msgid "ELAN Collection"
 msgstr "Kategorie"
@@ -191,6 +196,11 @@ msgstr ""
 msgid "Edit Ticker"
 msgstr "Ticker bearbeiten"
 
+#: docpool.elan/docpool/elan/browser/dpevents.pt
+#: docpool.elan/docpool/elan/browser/dpevents.py
+msgid "Edit event subscriptions"
+msgstr "Abonnierte Ereignisse bearbeiten"
+
 #: docpool.elan/docpool/elan/browser/elandoccollectiondoc.pt
 msgid "Edit the document"
 msgstr "Den Eintrag bearbeiten"
@@ -207,6 +217,10 @@ msgstr "Einträge"
 #: docpool.elan/docpool/elan/browser/archive_event_form.pt
 msgid "Entries that are also assigned to other events are copied into the archive instead of moved."
 msgstr "Einträge, die weiteren Ereignissen zugewiesen sind, werden in das Archiv kopiert anstatt verschoben."
+
+#: docpool.elan/docpool/elan/browser/dpevents.py
+msgid "Error"
+msgstr "Fehler"
 
 #: docpool.elan/docpool/elan/browser/dpevent.pt
 msgid "Event Information"
@@ -252,6 +266,10 @@ msgstr ""
 msgid "LT"
 msgstr "Ortszeit"
 
+#: docpool.elan/docpool/elan/content/dpevents.py
+msgid "List of UIDs of events this Docpool subscribed to"
+msgstr "Liste von UIDs von Ereignissen, die dieser Docpool abonniert hat."
+
 #: docpool.elan/docpool/elan/profiles/default/registry/querystring.xml
 msgid "Location"
 msgstr "Ort"
@@ -292,6 +310,10 @@ msgstr "Kleine Lage"
 #: docpool.elan/docpool/elan/vocabularies.py
 msgid "Routine mode"
 msgstr "Routinebetrieb"
+
+#: docpool.elan/docpool/elan/browser/dpevents.py
+msgid "Saved"
+msgstr "Gespeichert"
 
 #: docpool.elan/docpool/elan/browser/archive_event_form.py
 msgid "Scenario archived"
@@ -473,10 +495,20 @@ msgstr ""
 msgid "inactive"
 msgstr "Inaktiv"
 
+#. Default: "Apply"
+#: docpool.elan/docpool/elan/browser/dpevents.py
+msgid "label_apply"
+msgstr "Anwenden"
+
 #. Default: "Archive"
 #: docpool.elan/docpool/elan/browser/archive_event_form.pt
 msgid "label_archive"
 msgstr "Archivieren"
+
+#. Default: "Cancel"
+#: docpool.elan/docpool/elan/browser/dpevents.py
+msgid "label_cancel"
+msgstr "Abbrechen"
 
 #. Default: "Belongs to scenario"
 #: docpool.elan/docpool/elan/behaviors/elandocument.py

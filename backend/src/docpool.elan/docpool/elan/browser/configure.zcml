@@ -23,6 +23,13 @@
       />
 
   <browser:page
+      name="edit-subscribed-events"
+      for="..interfaces.IDPEvents"
+      class=".dpevents.EditSubscribedEvents"
+      permission="docpool.elan.AddDPEvent"
+      />
+
+  <browser:page
       name="view"
       for="..interfaces.IDPEvent"
       class=".dpevent.DPEventView"

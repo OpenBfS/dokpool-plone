@@ -1,11 +1,14 @@
 from docpool.base.content.places import IPlaces
+from docpool.elan import DocpoolMessageFactory as _
 from docpool.elan.config import ELAN_APP
 from logging import getLogger
 from persistent.list import PersistentList
 from plone import api
+from plone.autoform import directives
 from plone.dexterity.content import Container
 from plone.supermodel import model
-from zope.interface import Attribute
+from z3c.form.browser.checkbox import CheckBoxFieldWidget
+from zope import schema
 from zope.interface import implementer
 
 
@@ -15,7 +18,11 @@ logger = getLogger("dpevents")
 class IDPEvents(model.Schema):
     """ """
 
-    subscribed_events = Attribute("List of UIDs of events this Docpool subscribed to")
+    subscribed_events = schema.List(
+        title=_("List of UIDs of events this Docpool subscribed to"),
+        value_type=schema.Choice(source="docpool.elan.vocabularies.OpenEvents"),
+    )
+    directives.widget(subscribed_events=CheckBoxFieldWidget)
 
 
 @implementer(IDPEvents)

@@ -1,4 +1,5 @@
 from AccessControl.SecurityInfo import allow_module
+from docpool.base.content.archiving import IArchiving
 from docpool.base.content.places import IPlaces
 from docpool.elan import DocpoolMessageFactory as _
 from plone import api
@@ -27,6 +28,26 @@ class EventVocabulary:
 
 
 EventVocabularyFactory = EventVocabulary()
+
+
+@implementer(IVocabularyFactory)
+class OpenEventsVocabulary:
+    """ """
+
+    def __call__(self, context):
+        items = sorted(
+            (
+                (t.getObject().dp_type(), t.Title, t.UID)
+                for t in api.content.find(portal_type="DPEvent")
+                if not IArchiving(t).is_archive
+            ),
+            key=lambda i: (("active", "inactive", "closed").index(i[0]), i[1]),
+        )
+        terms = [SimpleTerm(i[2], i[2], f"{i[1]} ({i[0]})") for i in items]
+        return SimpleVocabulary(terms)
+
+
+OpenEventsVocabularyFactory = OpenEventsVocabulary()
 
 
 @implementer(IVocabularyFactory)

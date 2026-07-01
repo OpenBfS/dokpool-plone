@@ -55,6 +55,10 @@
       component=".vocabularies.EventVocabularyFactory"
       />
   <utility
+      name="docpool.elan.vocabularies.OpenEvents"
+      component=".vocabularies.OpenEventsVocabularyFactory"
+      />
+  <utility
       name="docpool.elan.vocabularies.EventTypes"
       component=".vocabularies.EventTypesVocabularyFactory"
       />
