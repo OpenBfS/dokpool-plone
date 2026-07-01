@@ -11,9 +11,19 @@ import transaction
 
 class TestJournal:
     @pytest.fixture(autouse=True)
-    def setup(self, portal_factory, playwright_page_factory) -> None:
+    def setup(
+        self,
+        request,
+        portal_factory,
+        playwright_page_factory,
+        site_owner_page_factory,
+    ) -> None:
         self.portal = portal_factory(username=TEST_USER_NAME, roles=["Manager"])
-        self.page = playwright_page_factory()
+        self.page = (
+            site_owner_page_factory()
+            if request.node.get_closest_marker("admin_ui")
+            else playwright_page_factory()
+        )
         self.plone_url = self.portal.absolute_url()
 
         setRoles(self.portal, TEST_USER_ID, ["Manager"])
@@ -64,6 +74,7 @@ class TestJournal:
 
         page.goto(f"{self.plone_url}/bund")
 
+    @pytest.mark.admin_ui
     def test_one_journal(self):
         page = self.page
         page.goto(f"{self.plone_url}/bund/@@journals")
