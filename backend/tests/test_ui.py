@@ -1,15 +1,13 @@
 from playwright.sync_api import expect
-from plone.app.testing import SITE_OWNER_NAME
-from plone.app.testing import SITE_OWNER_PASSWORD
 
 import pytest
 
 
 class TestUI:
     @pytest.fixture(autouse=True)
-    def setup(self, portal_factory, playwright_page_factory) -> None:
-        self.portal = portal_factory(username=SITE_OWNER_NAME, roles=["Manager"])
-        self.page = playwright_page_factory(username=SITE_OWNER_NAME, password=SITE_OWNER_PASSWORD)
+    def setup(self, acceptance, playwright_page_factory) -> None:
+        self.portal = acceptance["portal"]
+        self.page = playwright_page_factory()
         self.plone_url = self.portal.absolute_url()
 
     def test_header_dropdown(self):

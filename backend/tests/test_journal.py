@@ -2,8 +2,6 @@ from docpool.base.marker import IJournalContainerMarker
 from docpool.base.marker import IJournalEntryMarker
 from playwright.sync_api import expect
 from plone.app.testing import setRoles
-from plone.app.testing import SITE_OWNER_NAME
-from plone.app.testing import SITE_OWNER_PASSWORD
 from plone.app.testing import TEST_USER_ID
 from plone.app.testing import TEST_USER_NAME
 
@@ -15,7 +13,7 @@ class TestJournal:
     @pytest.fixture(autouse=True)
     def setup(self, portal_factory, playwright_page_factory) -> None:
         self.portal = portal_factory(username=TEST_USER_NAME, roles=["Manager"])
-        self.page = playwright_page_factory(username=SITE_OWNER_NAME, password=SITE_OWNER_PASSWORD)
+        self.page = playwright_page_factory()
         self.plone_url = self.portal.absolute_url()
 
         setRoles(self.portal, TEST_USER_ID, ["Manager"])
