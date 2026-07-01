@@ -675,6 +675,7 @@
            id="listingMobileActions"
            aria-labelledby="listingMobileActionsToggle"
       >
+
         <a class="dropdown-item"
            href="javascript:this.print();"
         >
@@ -685,6 +686,7 @@
                 i18n:translate=""
           >Print</span>
         </a>
+
         <a class="dropdown-item"
            href="${python: context.absolute_url()}/@@folder_wizard"
            tal:condition="python: view.folder_listing and not view.is_archive"
@@ -696,6 +698,7 @@
                 i18n:translate=""
           >Add folder</span>
         </a>
+
         <a class="dropdown-item"
            href="${python: context.absolute_url()}/@@dpdocument_wizard_1"
            tal:condition="python: not view.is_archive"
@@ -707,6 +710,67 @@
                 i18n:translate=""
           >Add entry</span>
         </a>
+
+        <tal:bulkactions tal:condition="python: show_bulk_actions">
+          <button class="dropdown-item"
+                  name="bulk_cut"
+                  type="submit"
+                  tal:condition="python: view.folder_listing"
+          >
+            <tal:icon tal:replace="structure python:icons.tag('scissors')" />
+            <span class="listing-mobile-actions-item-label"
+                  i18n:domain="plone"
+                  i18n:translate=""
+            >Cut</span>
+          </button>
+
+          <button class="dropdown-item"
+                  name="bulk_paste"
+                  type="submit"
+                  tal:condition="python: view.folder_listing and context.cb_dataValid()"
+          >
+            <tal:icon tal:replace="structure python:icons.tag('clipboard')" />
+            <span class="listing-mobile-actions-item-label"
+                  i18n:domain="plone"
+                  i18n:translate=""
+            >Paste</span>
+          </button>
+
+          <button class="dropdown-item"
+                  name="bulk_delete"
+                  type="submit"
+                  tal:condition="python: view.folder_listing"
+          >
+            <tal:icon tal:replace="structure python:icons.tag('trash')" />
+            <span class="listing-mobile-actions-item-label"
+                  i18n:domain="plone"
+                  i18n:translate=""
+            >Delete</span>
+          </button>
+
+          <button class="dropdown-item"
+                  name="bulk_transfer"
+                  type="submit"
+          >
+            <tal:icon tal:replace="structure python:icons.tag('box-arrow-up-right')" />
+            <span class="listing-mobile-actions-item-label"
+                  i18n:domain="docpool.base"
+                  i18n:translate=""
+            >Transfer</span>
+          </button>
+
+          <button class="dropdown-item"
+                  name="bulk_transition"
+                  type="submit"
+          >
+            <tal:icon tal:replace="structure python:icons.tag('arrow-down-up')" />
+            <span class="listing-mobile-actions-item-label"
+                  i18n:domain="docpool.base"
+                  i18n:translate=""
+            >Transition</span>
+          </button>
+        </tal:bulkactions>
+
       </div>
     </div>
   </div>
