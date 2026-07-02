@@ -86,7 +86,7 @@
                  "
             >
 
-              <div class="nav nav-pills"
+              <div class="nav nav-tabs mb-2"
                    tal:condition="view/group"
               >
                 <a class="nav-link active"
@@ -97,6 +97,14 @@
                    href="${dp_url}/@@usergroup-groupdetails?${groupquery}"
                    i18n:translate="label_group_properties"
                 >Group Properties</a>
+                <a class="nav-link"
+                   href="${dp_url}/@@manage-group-portlets?${groupkeyquery}&amp;_authenticator=${token}"
+                   i18n:translate="label_group_portlets"
+                >Group Portlets</a>
+                <a class="nav-link"
+                   href="${dp_url}/@@manage-group-dashboard?${groupkeyquery}&amp;_authenticator=${token}"
+                   i18n:translate="label_group_dashboard"
+                >Group Dashboard</a>
               </div>
               <div class="text-muted mt-2 mb-4"
                    i18n:translate="description_group_members_of"

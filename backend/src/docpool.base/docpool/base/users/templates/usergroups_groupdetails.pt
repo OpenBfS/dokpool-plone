@@ -95,7 +95,7 @@
           >
             <div class="autotabs">
 
-              <div class="nav nav-pills"
+              <div class="nav nav-tabs mb-2"
                    tal:condition="view/group"
               >
                 <a class="nav-link"
