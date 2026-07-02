@@ -17,7 +17,6 @@ class TestMobileUI:
         page.set_viewport_size({"width": 375, "height": 667})
         page.goto(f"{self.plone_url}/bund/setActiveApp?app=elan")
         # Check that offcanvas menu exists but is not visible initially
-        page.pause()
         offcanvas = page.locator("#offcanvasNavbar")
         expect(offcanvas).to_be_attached()
         menu_toggle = page.locator("button.navbar-toggler.ms-2")
