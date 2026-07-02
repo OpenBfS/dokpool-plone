@@ -572,44 +572,11 @@ body.active-app-doksys {
   }
 }
 
-/* Toolbar fixes
-   Needs more cleanup */
 
-body.plone-toolbar-left-expanded {
-  #offcanvasGroupsNav.offcanvas.offcanvas-end {
-    padding-left: unset;
-  }
-  .offcanvas.offcanvas-end {
-    @include media-breakpoint-down(lg) {
-      padding-left: var(--plone-toolbar-width);
-    }
-  }
 
-  #offcanvasNavbar {
-    @include media-breakpoint-down(lg) {
-      padding-left: var(--plone-toolbar-width);
-    }
-  }
-
-  #portal-searchbox.offcanvas-top {
-    padding-left: var(--plone-toolbar-width);
-  }
-}
-
-body.plone-toolbar-left {
-  #offcanvasGroupsNav.offcanvas.offcanvas-end {
-    padding-left: unset;
-  }
-  .offcanvas.offcanvas-end {
-    @include media-breakpoint-down(md) {
-      padding-left: var(--plone-toolbar-width-collapsed);
-    }
-  }
-
-  #portal-searchbox.offcanvas-top {
-    @include media-breakpoint-down(md) {
-      padding-left: var(--plone-toolbar-width-collapsed);
-    }
+#offcanvasNavbar {
+  @include media-breakpoint-down(lg) {
+    padding-left: var(--dp-toolbar-offset, 0);
   }
 }
 
@@ -621,40 +588,28 @@ body.plone-toolbar-left {
   }
 }
 
-body.plone-toolbar-left-expanded {
-  #listingMobileFilters {
-    @include media-breakpoint-down(lg) {
-      padding-left: var(--plone-toolbar-width);
-    }
-  }
+/* Toolbar offsets */
+
+body {
+  --dp-toolbar-offset: 0;
 }
 
 body.plone-toolbar-left {
-  #listingMobileFilters {
-    @include media-breakpoint-down(md) {
-      padding-left: var(--plone-toolbar-width-collapsed);
-    }
-  }
-}
-
-body.plone-toolbar-left-expanded .sidebar {
-  left: var(--plone-toolbar-width) !important;
-}
-
-body.plone-toolbar-left .sidebar {
-  left: var(--plone-toolbar-width-collapsed);
+  --dp-toolbar-offset: var(--plone-toolbar-width-collapsed);
 }
 
 body.plone-toolbar-left-expanded {
+  --dp-toolbar-offset: var(--plone-toolbar-width);
+}
+
+body.plone-toolbar-left,
+body.plone-toolbar-left-expanded {
   .menu-system-messages-dropdown {
-    padding-left: var(--plone-toolbar-width);
+    padding-left: var(--dp-toolbar-offset);
   }
-}
 
-body.plone-toolbar-left-expanded .footer-tz-table {
-  left: var(--plone-toolbar-width) !important;
-}
-
-body.plone-toolbar-left .footer-tz-table {
-  left: var(--plone-toolbar-width-collapsed);
+  .sidebar,
+  .footer-tz-table {
+    left: var(--dp-toolbar-offset) !important;
+  }
 }

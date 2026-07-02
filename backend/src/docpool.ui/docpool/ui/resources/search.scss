@@ -4,7 +4,6 @@
   max-height: 100vh;
   background-color: #f0f2f5;
   border-bottom: 1px solid var(--bs-gray-dark);
-  padding-left: var(--plone-toolbar-width-collapsed);
 
   .offcanvas-body {
     @include media-breakpoint-up(md) {
