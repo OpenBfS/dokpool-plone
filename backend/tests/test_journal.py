@@ -4,6 +4,7 @@ from playwright.sync_api import expect
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
 from plone.app.testing import TEST_USER_NAME
+from utils import fill_rich_text_widget
 
 import pytest
 import transaction
@@ -88,10 +89,7 @@ class TestJournal:
         items = page.get_by_role("link", name="Stretched link to details view", exact=True)
         expect(items).to_have_count(0)
 
-        page.wait_for_selector("iframe#journalentry-text_ifr")
-        page.locator("iframe#journalentry-text_ifr").content_frame.get_by_label("Rich Text Area").fill(
-            "Ein neuer Tagebucheintrag"
-        )
+        fill_rich_text_widget(page, "Ein neuer Tagebucheintrag", editor_id="journalentry-text")
         page.get_by_role("button", name="Add journal entry").click()
         inject_links = page.locator("#listing .list-item-inject-link")
         expect(inject_links).to_have_count(1)
