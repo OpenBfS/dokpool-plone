@@ -1,5 +1,5 @@
-from playwright.sync_api import Page
 from playwright.sync_api import expect
+from playwright.sync_api import Page
 
 import re
 
@@ -15,9 +15,9 @@ def fill_rich_text_widget(page: Page, text: str, editor_id: str = "form-widgets-
         arg=editor_id,
     )
 
-    rich_text_area = page.locator(
-        f'iframe[id="{editor_id}_ifr"]'
-    ).content_frame.get_by_label("Rich Text Area")
+    rich_text_area = page.locator(f'iframe[id="{editor_id}_ifr"]').content_frame.get_by_label(
+        "Rich Text Area"
+    )
 
     expect(rich_text_area).to_be_visible()
     rich_text_area.fill(text)
@@ -35,6 +35,4 @@ def fill_rich_text_widget(page: Page, text: str, editor_id: str = "form-widgets-
         }""",
         editor_id,
     )
-    expect(page.locator(f'textarea[id="{editor_id}"]')).to_have_value(
-        re.compile(re.escape(text))
-    )
+    expect(page.locator(f'textarea[id="{editor_id}"]')).to_have_value(re.compile(re.escape(text)))
