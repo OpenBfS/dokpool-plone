@@ -3,14 +3,6 @@
   --sidebar-groups-width: 300px;
 }
 
-body.plone-toolbar-left-expanded .sidebar {
-  left: var(--plone-toolbar-width) !important;
-}
-
-body.plone-toolbar-left .sidebar {
-  left: var(--plone-toolbar-width-collapsed);
-}
-
 @include media-breakpoint-up(xl) {
   .outer-wrapper {
     padding-left: var(--sidebar-width);
@@ -174,7 +166,6 @@ body.plone-toolbar-left .sidebar {
       z-index: 2;
     }
   }
-
 }
 
 .sidebar-groups-tree.twisties {

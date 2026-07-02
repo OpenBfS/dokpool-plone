@@ -174,6 +174,7 @@ function setupRecentSearches() {
   const container = document.getElementById("dp-recent-searches");
   const resetButton = document.getElementById("dp-recent-searches-reset");
   if (!searchbox || !form || !input || !container || !resetButton) return;
+  const recentSearchesSection = container.closest(".dp-search-col-recent");
 
   if (form.dataset.recentSearchesBound === "1") return;
   form.dataset.recentSearchesBound = "1";
@@ -205,8 +206,13 @@ function setupRecentSearches() {
   };
 
   const renderRecentSearches = (items) => {
+    const hasItems = items.length > 0;
+
     container.replaceChildren();
-    resetButton.hidden = items.length === 0;
+    if (recentSearchesSection) {
+      recentSearchesSection.classList.toggle("d-none", !hasItems);
+    }
+    resetButton.classList.toggle("d-none", !hasItems);
     items.forEach((term) => {
       const button = document.createElement("button");
       button.type = "button";

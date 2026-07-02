@@ -1,43 +1,4 @@
 
-body.plone-toolbar-left-expanded {
-    #offcanvasGroupsNav.offcanvas.offcanvas-end {
-      padding-left: unset;
-    }
-  .offcanvas.offcanvas-end {
-    @include media-breakpoint-down(lg) {
-      padding-left: var(--plone-toolbar-width);
-    }
-  }
-
-  #portal-searchbox.offcanvas-top {
-      padding-left: var(--plone-toolbar-width);
-  }
-}
-
-body.plone-toolbar-left {
-    #offcanvasGroupsNav.offcanvas.offcanvas-end {
-      padding-left: unset;
-    }
-  .offcanvas.offcanvas-end {
-    @include media-breakpoint-down(md) {
-      padding-left: var(--plone-toolbar-width-collapsed);
-    }
-  }
-
-  #portal-searchbox.offcanvas-top {
-    @include media-breakpoint-down(md) {
-      padding-left: var(--plone-toolbar-width-collapsed);
-    }
-  }
-}
-
-.navbar-nav .dropdown-menu {
-  background: #fff;
-  a:hover {
-    color: unset;
-    background-color: unset;
-  }
-}
 
 .app-header {
   background-color: #ffffff;
@@ -168,7 +129,6 @@ body.plone-toolbar-left {
         background-color: transparent !important;
       }
     }
-
   }
 }
 
@@ -334,11 +294,6 @@ body.plone-toolbar-left {
   overflow-y: auto;
 }
 
-body.plone-toolbar-left-expanded {
-  .menu-system-messages-dropdown {
-    padding-left: var(--plone-toolbar-width);
-  }
-}
 
 
 .menu-user-dropdown {
@@ -379,7 +334,6 @@ body.plone-toolbar-left-expanded {
     align-items: center;
     color: #5f7895;
   }
-
 }
 
 .icon-with-text {
@@ -418,7 +372,7 @@ body.plone-toolbar-left-expanded {
   background-color: transparent;
   color: var(--bs-dropdown-link-color);
 
-  a, {
+  a {
     padding: unset;
     display: unset;
   }

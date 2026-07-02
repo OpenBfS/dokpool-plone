@@ -1,19 +1,4 @@
-body.plone-toolbar-left-expanded {
-  #listingMobileFilters {
-    @include media-breakpoint-down(lg) {
-      padding-left: var(--plone-toolbar-width);
-    }
-  }
-}
 
-body.plone-toolbar-left {
-
-  #listingMobileFilters {
-    @include media-breakpoint-down(md) {
-      padding-left: var(--plone-toolbar-width-collapsed);
-    }
-  }
-}
 
 .listing-mobile-filter-dropdown {
   display: flex;
@@ -239,5 +224,4 @@ body.plone-toolbar-left {
   .mobile-listing-filter-actions .btn {
     flex: 1 1 0;
   }
-
 }

@@ -120,7 +120,9 @@ body.template-entrytypes {
   opacity: 0;
   pointer-events: none;
   transform: translateY(0.7rem);
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
   z-index: 1040;
 
   &.is-visible {
@@ -148,7 +150,6 @@ body.template-entrytypes {
     display: none;
   }
 }
-
 
 #listing-filters {
   .filter-form {
@@ -343,7 +344,6 @@ span.badge.text-bg-light {
     position: relative;
     z-index: 1;
 
-
     &:has(.dropdown-menu.show) {
       z-index: 1050;
     }
@@ -492,8 +492,6 @@ body.portaltype-dpdocument.template-edit .autotoc-nav {
 }
 
 body.template-entrytypes {
-
-
   .entrytypes .item {
     width: 25em;
   }
@@ -535,17 +533,19 @@ span.badge.visibility-option-published {
 }
 
 body.template-dpdocument_wizard_1 #formfield-entrytype .spinner-border {
-  display: none
+  display: none;
 }
 
 body.template-dpdocument_wizard_1.injecting-content #formfield-entrytype {
   .wizard-field,
   p {
-    display: none
+    display: none;
   }
 }
 
-body.template-dpdocument_wizard_1.injecting-content #formfield-entrytype .spinner-border {
+body.template-dpdocument_wizard_1.injecting-content
+  #formfield-entrytype
+  .spinner-border {
   display: block;
 }
 
@@ -556,7 +556,6 @@ body.active-app-doksys {
     display: none;
   }
 }
-
 
 #listing.journals {
   & > a {
@@ -570,5 +569,47 @@ body.active-app-doksys {
   .small {
     font-size: var(--dp-font-small);
     color: #324d6a;
+  }
+}
+
+
+
+#offcanvasNavbar {
+  @include media-breakpoint-down(lg) {
+    padding-left: var(--dp-toolbar-offset, 0);
+  }
+}
+
+.navbar-nav .dropdown-menu {
+  background: #fff;
+  a:hover {
+    color: unset;
+    background-color: unset;
+  }
+}
+
+/* Toolbar offsets */
+
+body {
+  --dp-toolbar-offset: 0;
+}
+
+body.plone-toolbar-left {
+  --dp-toolbar-offset: var(--plone-toolbar-width-collapsed);
+}
+
+body.plone-toolbar-left-expanded {
+  --dp-toolbar-offset: var(--plone-toolbar-width);
+}
+
+body.plone-toolbar-left,
+body.plone-toolbar-left-expanded {
+  .menu-system-messages-dropdown {
+    padding-left: var(--dp-toolbar-offset);
+  }
+
+  .sidebar,
+  .footer-tz-table {
+    left: var(--dp-toolbar-offset) !important;
   }
 }

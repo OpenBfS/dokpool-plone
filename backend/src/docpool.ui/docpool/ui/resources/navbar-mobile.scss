@@ -31,12 +31,12 @@
     flex: 0 0 2.5rem;
 
     svg {
-        height: 2em;;
+      height: 2em;
     }
   }
 
-  .offcanvas-body{
-    padding:0;
+  .offcanvas-body {
+    padding: 0;
   }
   #mobile-settings-pane-main {
     border-top: 1px solid #d9e1ea;
@@ -88,7 +88,7 @@
     font-size: var(--dp-font-title);
     font-weight: 400;
     padding: 0.75rem 1rem 0.5rem;
-        border-bottom: 1px solid #d9e1ea;
+    border-bottom: 1px solid #d9e1ea;
     margin-bottom: 0;
   }
 
@@ -135,7 +135,7 @@
 
   .mobile-event-add-wrap {
     padding: 0.6rem 1rem 0.5rem;
-  border-bottom: 1px solid #d9e1ea;
+    border-bottom: 1px solid #d9e1ea;
   }
 
   .mobile-event-add-btn {
@@ -246,10 +246,11 @@
   }
 
   #mobile-settings-main-tab-trigger {
-    display:none;
+    display: none;
   }
 
-  .mobile-placeholder-link, .mobile-groups-folder-link {
+  .mobile-placeholder-link,
+  .mobile-groups-folder-link {
     width: 100%;
     display: flex;
     align-items: center;
@@ -258,7 +259,8 @@
     min-height: 58px;
   }
 
-  .mobile-placeholder-icon, .mobile-groups-folder-icon {
+  .mobile-placeholder-icon,
+  .mobile-groups-folder-icon {
     width: 2rem;
     text-align: center;
     margin-right: 0.75rem;
@@ -266,7 +268,8 @@
     color: #4f6782;
   }
 
-  .mobile-placeholder-label, .mobile-groups-folder-label {
+  .mobile-placeholder-label,
+  .mobile-groups-folder-label {
     font-size: var(--dp-font-title);
   }
 
@@ -277,14 +280,14 @@
     line-height: 1;
   }
 
-   .mobile-settings-nav {
-     #mobile-settings-tab-accessibility,
-     #mobile-settings-tab-info,
-     #mobile-settings-tab-system-messages,
-     #mobile-settings-tab-config,
-     #mobile-settings-tab-user {
-       border-bottom: 1px solid #d9e1ea;
-     }
+  .mobile-settings-nav {
+    #mobile-settings-tab-accessibility,
+    #mobile-settings-tab-info,
+    #mobile-settings-tab-system-messages,
+    #mobile-settings-tab-config,
+    #mobile-settings-tab-user {
+      border-bottom: 1px solid #d9e1ea;
+    }
   }
 
   .mobile-settings-nav .mobile-settings-link,
