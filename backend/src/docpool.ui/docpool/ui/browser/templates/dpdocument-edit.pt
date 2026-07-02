@@ -11,7 +11,7 @@
   <body>
     <metal:body fill-slot="body">
 
-      <div class="container mx-3 my-3"
+      <div class="container"
            id="content"
       >
         <!-- macros defined in plone/app/z3cform/templates/macros.pt -->

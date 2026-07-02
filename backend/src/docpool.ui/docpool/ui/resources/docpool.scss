@@ -85,6 +85,10 @@ article > header {
   margin-bottom: auto;
 }
 
+#content {
+  margin: 1rem;
+}
+
 // Hide article header
 body.template-listing,
 body.template-entrytypes {
@@ -451,22 +455,12 @@ div.pat-modal {
   }
 }
 
-#portal-logo {
-  float: left;
-}
-
 .preview-tile {
   width: 64px;
   height: 64px;
   overflow: hidden;
   background-color: var(--bs-gray-light);
   color: var(--bs-blue-gray);
-}
-
-#portal-footer {
-  margin-top: auto;
-  background-color: #f8f9fa !important;
-  min-height: 48px;
 }
 
 // Temp Stuff
