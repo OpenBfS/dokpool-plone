@@ -1,48 +1,4 @@
-body.plone-toolbar-left-expanded {
-  #offcanvasGroupsNav.offcanvas.offcanvas-end {
-    padding-left: unset;
-  }
-  .offcanvas.offcanvas-end {
-    @include media-breakpoint-down(lg) {
-      padding-left: var(--plone-toolbar-width);
-    }
-  }
 
-  #offcanvasNavbar {
-    @include media-breakpoint-down(lg) {
-      padding-left: var(--plone-toolbar-width);
-    }
-  }
-
-  #portal-searchbox.offcanvas-top {
-    padding-left: var(--plone-toolbar-width);
-  }
-}
-
-body.plone-toolbar-left {
-  #offcanvasGroupsNav.offcanvas.offcanvas-end {
-    padding-left: unset;
-  }
-  .offcanvas.offcanvas-end {
-    @include media-breakpoint-down(md) {
-      padding-left: var(--plone-toolbar-width-collapsed);
-    }
-  }
-
-  #portal-searchbox.offcanvas-top {
-    @include media-breakpoint-down(md) {
-      padding-left: var(--plone-toolbar-width-collapsed);
-    }
-  }
-}
-
-.navbar-nav .dropdown-menu {
-  background: #fff;
-  a:hover {
-    color: unset;
-    background-color: unset;
-  }
-}
 
 .app-header {
   background-color: #ffffff;
@@ -338,11 +294,7 @@ body.plone-toolbar-left {
   overflow-y: auto;
 }
 
-body.plone-toolbar-left-expanded {
-  .menu-system-messages-dropdown {
-    padding-left: var(--plone-toolbar-width);
-  }
-}
+
 
 .menu-user-dropdown {
   .user-menu-header-item {
