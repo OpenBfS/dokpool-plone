@@ -17,7 +17,7 @@ def add_user(
     groupnames=None,
     enabled_apps=None,
 ):
-    """Create a User and a Group for a docpool for testing.
+    """Create or update a User and a Group for a docpool for testing.
 
     This mimicks adding groups in the application in docpool.users by:
     * adding the docpool-prefix to the groups id and title
@@ -34,17 +34,18 @@ def add_user(
     for groupname in groupnames:
         add_group(docpool, groupname)
 
-    password = username
-    password = f"dp_{username}"
-    # add the user
     user_fullname = f"{username} ({docpool_title})"
-    user = api.user.create(
-        email="tester@plone.org",
-        username=username,
-        password=password,
-        roles=("Member",),
-        properties={"fullname": user_fullname},
-    )
+    user = api.user.get(username=username)
+    if user is None:
+        user = api.user.create(
+            email="tester@plone.org",
+            username=username,
+            password=f"dp_{username}",
+            roles=("Member",),
+            properties={"fullname": user_fullname},
+        )
+    else:
+        user_fullname = user.getProperty("fullname") or user_fullname
     user.setMemberProperties({
         "fullname": user_fullname,
         "dp": docpool_uid,
@@ -65,7 +66,8 @@ def add_user(
     if "rei" in enabled_apps:
         api.group.add_user(groupname=f"{prefix}_REIUsers", user=user)
     pm = getToolByName(docpool, "portal_membership")
-    pm.createMemberArea(username)
+    if username not in docpool.content.Members:
+        pm.createMemberArea(username)
     return user
 
 

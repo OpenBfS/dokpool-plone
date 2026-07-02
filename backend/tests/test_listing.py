@@ -3,10 +3,9 @@ from pathlib import Path
 from playwright.sync_api import expect
 from plone import api
 from plone.app.testing import setRoles
-from plone.app.testing import SITE_OWNER_NAME
-from plone.app.testing import SITE_OWNER_PASSWORD
 from plone.app.testing import TEST_USER_ID
 from plone.app.testing import TEST_USER_NAME
+from utils import fill_rich_text_widget
 
 import pytest
 import re
@@ -17,7 +16,7 @@ class TestListing(GroupsFolderSetupMixin):
     @pytest.fixture(autouse=True)
     def setup(self, portal_factory, playwright_page_factory) -> None:
         self.portal = portal_factory(username=TEST_USER_NAME, roles=["Manager"])
-        self.page = playwright_page_factory(username=SITE_OWNER_NAME, password=SITE_OWNER_PASSWORD)
+        self.page = playwright_page_factory()
         self.plone_url = self.portal.absolute_url()
 
         setRoles(self.portal, TEST_USER_ID, ["Manager"])
@@ -64,8 +63,7 @@ class TestListing(GroupsFolderSetupMixin):
         page.locator(".dropdown").get_by_role("link", name="Edit", exact=True).click()
         page.get_by_role("textbox", name="Title •").click()
         page.locator("#form-widgets-IDublinCore-title").fill("A Weatherinfo with updated title")
-        page.locator("iframe").content_frame.get_by_label("Rich Text Area").click()
-        page.locator("iframe").content_frame.get_by_label("Rich Text Area").fill("Test text")
+        fill_rich_text_widget(page, "Test text")
         # Click somewhere else, so Save button gets activated
         page.locator("#form-widgets-IDublinCore-title").click()
         page.get_by_role("button", name="Save").click()
@@ -159,8 +157,7 @@ class TestListing(GroupsFolderSetupMixin):
         page.locator("input#official_notification").click()
         page.get_by_role("button", name="Next").click()
         page.locator("#form-widgets-IDublinCore-title").fill("Example Entry")
-        page.locator("iframe").content_frame.get_by_label("Rich Text Area").click()
-        page.locator("iframe").content_frame.get_by_label("Rich Text Area").fill("Test text")
+        fill_rich_text_widget(page, "Test text")
         page.set_input_files("#attachments", ["tests/image.png", "tests/file.pdf"])
         page.get_by_role("button", name="Next").click()
 
@@ -181,7 +178,7 @@ class TestListing(GroupsFolderSetupMixin):
         page.locator("#attachments_list").click()
         expect(page.get_by_role("cell", name="image.png PNG image 1.2 KB")).to_be_visible()
         expect(page.locator(".field", has_text="Normalfall")).to_be_visible()
-        expect(page.locator("#content")).to_contain_text("Test text")
+        expect(page.locator("#content").get_by_text("Test text", exact=True)).to_be_visible()
         page.goto(f"{self.plone_url}/bund")
         # Wait for items to get loaded
         page.wait_for_selector("#listing .listing-item", state="visible")

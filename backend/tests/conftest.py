@@ -14,6 +14,10 @@ import pytest
 import transaction
 
 
+BUND_CONTENT_ADMIN_NAME = "bund_contentadmin"
+BUND_CONTENT_ADMIN_PASSWORD = "admin"
+
+
 pytest_plugins = ["pytest_plone"]
 
 globals().update(
@@ -60,7 +64,10 @@ def portal_factory(acceptance, request):
 
 @pytest.fixture()
 def playwright_page_factory(new_context):
-    def factory(username: str = SITE_OWNER_NAME, password: str = SITE_OWNER_PASSWORD) -> Page:
+    def factory(
+        username: str = BUND_CONTENT_ADMIN_NAME,
+        password: str = BUND_CONTENT_ADMIN_PASSWORD,
+    ) -> Page:
         context = new_context(
             extra_http_headers={
                 "Authorization": generate_basic_authentication_header_value(username, password),
@@ -68,5 +75,16 @@ def playwright_page_factory(new_context):
         )
         page = context.new_page()
         return page
+
+    return factory
+
+
+@pytest.fixture()
+def site_owner_page_factory(playwright_page_factory):
+    def factory() -> Page:
+        return playwright_page_factory(
+            username=SITE_OWNER_NAME,
+            password=SITE_OWNER_PASSWORD,
+        )
 
     return factory

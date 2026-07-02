@@ -2,10 +2,9 @@ from docpool.base.marker import IJournalContainerMarker
 from docpool.base.marker import IJournalEntryMarker
 from playwright.sync_api import expect
 from plone.app.testing import setRoles
-from plone.app.testing import SITE_OWNER_NAME
-from plone.app.testing import SITE_OWNER_PASSWORD
 from plone.app.testing import TEST_USER_ID
 from plone.app.testing import TEST_USER_NAME
+from utils import fill_rich_text_widget
 
 import pytest
 import transaction
@@ -13,9 +12,19 @@ import transaction
 
 class TestJournal:
     @pytest.fixture(autouse=True)
-    def setup(self, portal_factory, playwright_page_factory) -> None:
+    def setup(
+        self,
+        request,
+        portal_factory,
+        playwright_page_factory,
+        site_owner_page_factory,
+    ) -> None:
         self.portal = portal_factory(username=TEST_USER_NAME, roles=["Manager"])
-        self.page = playwright_page_factory(username=SITE_OWNER_NAME, password=SITE_OWNER_PASSWORD)
+        self.page = (
+            site_owner_page_factory()
+            if request.node.get_closest_marker("admin_ui")
+            else playwright_page_factory()
+        )
         self.plone_url = self.portal.absolute_url()
 
         setRoles(self.portal, TEST_USER_ID, ["Manager"])
@@ -66,6 +75,7 @@ class TestJournal:
 
         page.goto(f"{self.plone_url}/bund")
 
+    @pytest.mark.admin_ui
     def test_one_journal(self):
         page = self.page
         page.goto(f"{self.plone_url}/bund/@@journals")
@@ -79,10 +89,7 @@ class TestJournal:
         items = page.get_by_role("link", name="Stretched link to details view", exact=True)
         expect(items).to_have_count(0)
 
-        page.wait_for_selector("iframe#journalentry-text_ifr")
-        page.locator("iframe#journalentry-text_ifr").content_frame.get_by_label("Rich Text Area").fill(
-            "Ein neuer Tagebucheintrag"
-        )
+        fill_rich_text_widget(page, "Ein neuer Tagebucheintrag", editor_id="journalentry-text")
         page.get_by_role("button", name="Add journal entry").click()
         inject_links = page.locator("#listing .list-item-inject-link")
         expect(inject_links).to_have_count(1)
