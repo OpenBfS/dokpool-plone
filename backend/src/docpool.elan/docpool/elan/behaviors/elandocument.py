@@ -24,6 +24,11 @@ from zope.interface import named
 from zope.interface import provider
 from zope.schema.interfaces import IContextAwareDefaultFactory
 
+import logging
+
+
+log = logging.getLogger(__name__)
+
 
 elan_only = app_only_decorator(ELAN_APP)
 
@@ -150,11 +155,21 @@ class ELANSpecificSerializeToJsonDPDocument:
         self.context = context
 
     def augment(self, result):
-        """Add id of scenario to json used for data-transfer with BW (#5999)."""
-        if scenario := result.get("scenario"):
+        """Add id of scenario to json used for data-transfer with BW (#5999). Keep lists (#6447)."""
+        if "scenario" in result:
+            # The lists are left from when there was a list-valued scenarios attribute. We keep them for the
+            # time being since this interfaces with external systems. See #6447.
+            result["scenarios"] = [scenario := result["scenario"]]
             uid = scenario["token"] if isinstance(scenario, dict) else scenario
             if brains := api.content.find(UID=uid):
-                # The list is left from when scenarios itself was a list. We keep it for the time being
-                # since this interfaces with external systems. See #6447.
                 result["scenario_ids"] = [brains[0].id]
         return result
+
+    def receive(self, data):
+        if "scenarios" in data:
+            data["scenario"] = (scenarios := data["scenarios"])[0]
+            if len(scenarios) > 1:
+                uids = [s["token"] if isinstance(s, dict) else s for s in scenarios]
+                lines = [f"    {s} {'/'.join(api.content.get(UID=s).getPhysicalPath())}" for s in uids]
+                log.warning(f"Multiple scenarios for {self.context.getPhysicalPath()}:\n{'\n'.join(lines)}")
+        return data

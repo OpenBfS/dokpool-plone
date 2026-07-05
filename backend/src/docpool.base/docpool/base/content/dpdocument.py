@@ -563,6 +563,14 @@ def mark_journalentry(obj, event=None):
         alsoProvides(obj, IJournalEntryMarker)
 
 
+class IAppSpecificSerializeToJsonDPDocument(Interface):
+    def augment(result):
+        pass
+
+    def receive(data):
+        pass
+
+
 @adapter(IDPDocument, Interface)
 class DeserializeFromJsonDPDocument(DeserializeFromJson):
     name = "local_behaviors"
@@ -573,6 +581,12 @@ class DeserializeFromJsonDPDocument(DeserializeFromJson):
         # modifies the context object. It is thus OK to add another modification.
         if self.name in data:
             self.set_local_behaviors(data[self.name])
+
+        for app in ILocalBehaviorSupport(self.context).local_behaviors:
+            app_serializer = queryAdapter(self.context, IAppSpecificSerializeToJsonDPDocument, name=app)
+            if app_serializer is not None:
+                data = app_serializer.receive(data)
+
         return super().get_schema_data(data, validate_all, create)
 
     def set_local_behaviors(self, local_behaviors):
@@ -601,11 +615,6 @@ class DeserializeFromJsonDPDocument(DeserializeFromJson):
         if dm.get() != value:
             dm.set(value)
             self.mark_field_as_changed(ILocalBehaviorSupport, self.name)
-
-
-class IAppSpecificSerializeToJsonDPDocument(Interface):
-    def augment(result):
-        pass
 
 
 @adapter(IDPDocument, Interface)

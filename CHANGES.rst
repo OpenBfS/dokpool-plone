@@ -1,27 +1,50 @@
 Changelog
 =========
 
-2.6.0 (unreleased)
+2.7.0 (unreleased)
+------------------
+
+
+
+2.6.0 (2026-04-24)
 ------------------
 
 Changed:
 
-- ELAN documents can be associated with at most one scenario (#6430)
+- ELAN documents can be associated with at most one scenario. (#6430)
   [tlotze]
 
-- Modernize build piplene from shell docker build to dind builds (#6301)
-  [slindner]
-
-- Add Cancel button and better doctypes widget to group details form (#6475)
+- Change doctypes widget in group properties form to OrderedSelectWidget. (#6475)
   [tlotze]
 
-- Move scenario_ids serializer to docpool.elan (#6447)
-  [tlotze]
+- Rename Nutzer to Benutzer. (#5757)
+  [pbauer]
 
 
 Fixed:
 
-- Handle an edge case where transfer logs would break
+- Handle an edge case where transfer logs would break.
+  [tlotze]
+
+- Stop ContentAdmins from seeing actions in dokpools other than their own by fixing condition in is_contentadmin. (#6516)
+  [pbauer]
+
+- Fix handling of unset doctypePermissions. (#5779)
+  [tlotze]
+
+- Edit/Add Events Actions: Check for local role instead of global role EventEditor. (#6516)
+  [pbauer]
+
+
+Technical:
+
+- Handle src checkouts that aren't installed in update_locales.py.
+  [tlotze]
+
+- Modernize build piplene from shell docker build to dind builds. (#6301)
+  [slindner]
+
+- Move scenario_ids serializer to docpool.elan. (#6447)
   [tlotze]
 
 
