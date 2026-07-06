@@ -1,10 +1,8 @@
 from AccessControl.SecurityInfo import allow_module
 from docpool.base.content.places import IPlaces
-from docpool.base.utils import getDocumentPoolSite
 from docpool.elan import DocpoolMessageFactory as _
 from plone import api
 from plone.base.utils import safe_bytes
-from Products.CMFCore.utils import getToolByName
 from zope.interface import implementer
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm
@@ -44,25 +42,6 @@ class EventTypesVocabulary:
 
 
 EventTypesVocabularyFactory = EventTypesVocabulary()
-
-
-@implementer(IVocabularyFactory)
-class EventRefVocabulary:
-    """ """
-
-    def __call__(self, context):
-        esd = getDocumentPoolSite(context)
-        path = "/".join(esd.getPhysicalPath()) + "/contentconfig"
-        cat = getToolByName(esd, "portal_catalog", None)
-        if cat is None:
-            return SimpleVocabulary([])
-
-        items = sorted((t.Title, t.UID) for t in cat({"portal_type": "DPEvent", "path": path}))
-        items = [SimpleTerm(i[1], i[1], i[0]) for i in items]
-        return SimpleVocabulary(items)
-
-
-EventRefVocabularyFactory = EventRefVocabulary()
 
 
 @implementer(IVocabularyFactory)
