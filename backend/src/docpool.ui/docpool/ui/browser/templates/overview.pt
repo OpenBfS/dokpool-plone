@@ -11,48 +11,77 @@
 
     <main class="mx-3 my-3">
       <section class="row g-2 overview-layout">
-        <article class="col-12 col-xl-4">
-          <div class="card tile-card h-100">
-            <header class="tile-header d-flex align-items-center justify-content-between">
-              <h2 class="tile-headline mb-0">KKW Grohnde, Deutschland / N 52.034, E 9.410</h2>
+        <article class="col-12 col-xl-4"
+                 tal:define="event python:view.event_data()"
+        >
+          <div class="card tile-card overview-event h-100 text-dark">
+            <header class="overview-event-header bg-white pt-4 px-4 pb-2">
+              <h2 class="overview-event-headline mb-0 fw-normal text-primary"
+                  tal:content="python:event['headline']"
+              >KKW Grohnde, Deutschland / N 52.034, E 9.410</h2>
             </header>
-            <div class="tile-map-wrap">
+            <div class="overview-event-placeholder d-flex flex-grow-1 align-items-center justify-content-center p-4 text-center text-secondary"
+                 tal:condition="python:not event['has_event']"
+            >
+              <p class="mb-0"
+                 tal:content="python:event['placeholder']"
+              >Bitte wählen Sie ein Szenario aus, um die Ereignisdaten anzuzeigen.</p>
+            </div>
+            <div class="tile-map-wrap"
+                 tal:condition="python:event['has_event']"
+            >
               <img class="img-fluid tile-map-image"
                    alt="Kartenansicht des Ereignisorts"
                    src="++plone++docpoolui/map-overview.png"
               />
             </div>
-            <div class="card-body tile-body">
-              <dl class="mb-0 overview-facts">
-                <div class="fact-row">
-                  <dt>Ereignisart</dt>
-                  <dd>
-                    <span class="event-tag">Uebung</span>
+            <div class="card-body p-4"
+                 tal:condition="python:event['has_event']"
+            >
+              <dl class="row gx-4 gy-3 mb-0">
+                <div class="col-12">
+                  <dt class="overview-event-label mb-1 fw-normal text-secondary">Ereigniszeitpunkt und -dauer</dt>
+                  <dd class="overview-event-value mb-0 text-dark"
+                      tal:content="python:event['event_time_and_duration']"
+                  >24.03.2023 09:42 ME(S)Z / 6d 13h 52min</dd>
+                </div>
+                <div class="col-12 col-sm-6">
+                  <dt class="overview-event-label mb-1 fw-normal text-secondary">Ereignisart</dt>
+                  <dd class="overview-event-value mb-0 text-dark">
+                    <span class="badge bg-warning text-dark fw-normal rounded-pill px-3 py-1"
+                          tal:content="python:event['event_type']"
+                    >Uebung</span>
                   </dd>
                 </div>
-                <div class="fact-row">
-                  <dt>Ereigniszeitpunkt</dt>
-                  <dd><span class="highlight-value">ME(S)Z&nbsp;&nbsp;&nbsp;&nbsp;24.03.2023&nbsp;&nbsp;&nbsp;&nbsp;09:42</span></dd>
+                <div class="col-12 col-sm-6">
+                  <dt class="overview-event-label mb-1 fw-normal text-secondary">Notfalleinstufung</dt>
+                  <dd class="overview-event-value mb-0 text-dark"
+                      tal:content="python:event['emergency_classification']"
+                  >Ueberregional</dd>
                 </div>
-                <div class="fact-row">
-                  <dt>Ereignisdauer</dt>
-                  <dd>+ 6d 13h 52min</dd>
+                <div class="col-12 col-sm-6">
+                  <dt class="overview-event-label mb-1 fw-normal text-secondary">IMIS Betriebsart</dt>
+                  <dd class="overview-event-value mb-0 text-dark"
+                      tal:content="python:event['operation_mode']"
+                  >Intensivbetrieb</dd>
                 </div>
-                <div class="fact-row">
-                  <dt>Referenzszenario</dt>
-                  <dd>S2 - ....</dd>
+                <div class="col-12 col-sm-6">
+                  <dt class="overview-event-label mb-1 fw-normal text-secondary">Phase</dt>
+                  <dd class="overview-event-value mb-0 text-dark"
+                      tal:content="python:event['phase']"
+                  >Freisetzungsphase</dd>
                 </div>
-                <div class="fact-row">
-                  <dt>Notfalleinstufung</dt>
-                  <dd>Ueberregional</dd>
+                <div class="col-12">
+                  <dt class="overview-event-label mb-1 fw-normal text-secondary">Referenzszenario</dt>
+                  <dd class="overview-event-value mb-0 text-dark"
+                      tal:content="python:event['reference_scenario']"
+                  >S2 - ....</dd>
                 </div>
-                <div class="fact-row">
-                  <dt>Kurzbeschreibung</dt>
-                  <dd>Im Kernkraftwerk ABC im Ort XYZ kam es gestern um 03:00 Ortszeit zu einem Brand. Fuer weitere Informationen zum Ereignis siehe Meldungen oder Lagebilder.</dd>
-                </div>
-                <div class="fact-row">
-                  <dt>IMIS Betriebsart</dt>
-                  <dd>Intensivbetrieb</dd>
+                <div class="col-12">
+                  <dt class="overview-event-label mb-1 fw-normal text-secondary">Kurzbeschreibung</dt>
+                  <dd class="overview-event-value mb-0 text-dark"
+                      tal:content="python:event['description']"
+                  >Im Kernkraftwerk ABC im Ort XYZ kam es gestern um 03:00 Ortszeit zu einem Brand. Fuer weitere Informationen zum Ereignis siehe Meldungen oder Lagebilder.</dd>
                 </div>
               </dl>
             </div>
