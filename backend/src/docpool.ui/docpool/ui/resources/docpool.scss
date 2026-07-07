@@ -331,7 +331,8 @@ span.badge.text-bg-light {
   font-weight: 300;
 }
 
-#listing {
+#listing,
+.listing-items {
   border-top: 1px solid var(--bs-border-color);
 
   & > a {

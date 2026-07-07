@@ -302,6 +302,42 @@
       />
 
   <browser:page
+      name="overview-latest-situation"
+      for="*"
+      class=".overview.LatestSituationTile"
+      template="templates/overview-tile.pt"
+      permission="zope2.View"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
+  <browser:page
+      name="overview-notifications"
+      for="*"
+      class=".overview.NotificationsTile"
+      template="templates/overview-tile.pt"
+      permission="zope2.View"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
+  <browser:page
+      name="overview-rodos-forecasts"
+      for="*"
+      class=".overview.RodosForecastsTile"
+      template="templates/overview-tile.pt"
+      permission="zope2.View"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
+  <browser:page
+      name="overview-measurements"
+      for="*"
+      class=".overview.MeasurementsTile"
+      template="templates/overview-tile.pt"
+      permission="zope2.View"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
+  <browser:page
       name="preview"
       for="plone.app.contenttypes.interfaces.IFile"
       class=".preview.Preview"

@@ -1,0 +1,27 @@
+<article class="col-12 col-lg-6"
+         i18n:domain="docpool.base"
+>
+  <div class="card tile-card overview-tile h-100">
+    <header class="tile-header section-title-wrap">
+      <h3 class="section-title mb-0"
+          tal:content="python:view.tile_title"
+      >Tile title</h3>
+    </header>
+
+    <div class="overview-tile-listing listing-items list-group list-group-flush"
+         tal:condition="python:view.items"
+    >
+      <tal:items tal:repeat="uid python:view.items">
+        <div class="list-group-item px-0 py-0">
+          <tal:item tal:replace="structure python:context.restrictedTraverse('@@listing-item')(uid=uid)" />
+        </div>
+      </tal:items>
+    </div>
+
+    <div class="overview-tile-empty flex-grow-1 d-flex align-items-center justify-content-center p-4 text-center text-secondary"
+         tal:condition="python:not view.items"
+    >
+      <p class="mb-0">Keine Eintr&auml;ge vorhanden</p>
+    </div>
+  </div>
+</article>

@@ -63,6 +63,33 @@
   line-height: 1.18;
 }
 
+.overview-tile {
+  overflow: hidden;
+}
+
+.overview-tile-listing {
+  border-top: 0;
+
+  .list-group-item:last-child .listing-item {
+    border-bottom: 0 !important;
+  }
+
+  .listingitem-attachments,
+  .listingitem-creator {
+    display: none !important;
+  }
+
+  .text-box {
+    width: auto;
+    min-width: 0;
+  }
+}
+
+.overview-tile-empty {
+  min-height: 184px;
+  font-size: var(--dp-font-body);
+}
+
 .message-list .list-group-item {
   border-color: var(--bs-light-border);
   padding-top: 0;
