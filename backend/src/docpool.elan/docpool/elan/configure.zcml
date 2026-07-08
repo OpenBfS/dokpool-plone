@@ -11,6 +11,7 @@
   <include package="zope.annotation" />
   <include package="elan.journal" />
 
+  <include file="permissions.zcml" />
   <include package=".browser" />
   <include package=".content" />
   <include package=".behaviors" />
@@ -38,53 +39,6 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       directory="profiles/uninstall"
       post_handler=".setuphandlers.uninstall"
-      />
-
-  <permission
-      id="docpool.elan.AccessELAN"
-      title="Docpool: Access ELAN Content"
-      />
-
-  <permission
-      id="docpool.elan.AddDPEvent"
-      title="Docpool: Add DPEvent"
-      />
-  <permission
-      id="docpool.elan.ManageDPEvents"
-      title="Docpool: Manage DPEvent"
-      />
-  <permission
-      id="docpool.elan.AddDPEvents"
-      title="Docpool: Add DPEvents"
-      />
-
-  <permission
-      id="docpool.elan.AddELANInfos"
-      title="Docpool: Add ELANInfos"
-      />
-  <permission
-      id="docpool.elan.AddELANDocCollection"
-      title="Docpool: Add ELANDocCollection"
-      />
-  <permission
-      id="docpool.elan.AddELANArchive"
-      title="Docpool: Add ELANArchive"
-      />
-  <permission
-      id="docpool.elan.AddELANCurrentSituation"
-      title="Docpool: Add ELANCurrentSituation"
-      />
-  <permission
-      id="docpool.elan.AddELANSection"
-      title="Docpool: Add ELANSection"
-      />
-  <permission
-      id="docpool.elan.AddELANContentConfig"
-      title="Docpool: Add ELANContentConfig"
-      />
-  <permission
-      id="docpool.elan.AddELANArchives"
-      title="Docpool: Add ELANArchives"
       />
 
   <adapter
