@@ -37,25 +37,27 @@
     />
   </div>
 
-  <div class="text-center px-1 dateinfo flex-shrink-0">
-    <div tal:content="python: toLocalizedTime(data['date'], time_only=1)">15:45</div>
-    <div class="text-muted small"
-         tal:content="python: toLocalizedTime(data['date'], long_format=0)"
-    >16.12.2021
+  <div class="listingitem-meta me-3 flex-shrink-0 d-flex flex-column align-items-center">
+    <div class="doctype-box">
+      <div class="h-100 doktype-icon-container px-3 pt-3 pb-3">
+        <img class="doktype-icon p-1"
+             alt="Type"
+             src="doctype"
+             tal:attributes="
+               alt python: doctype;
+               title python:data['doctype_title'];
+               src python:data['doctype_icon_url'];
+             "
+        />
+      </div>
     </div>
-  </div>
 
-  <div class="me-3 doctype-box flex-shrink-0">
-    <div class="h-100 doktype-icon-container px-3 pt-3 pb-3">
-      <img class="doktype-icon p-1"
-           alt="Type"
-           src="doctype"
-           tal:attributes="
-             alt python: doctype;
-             title python:data['doctype_title'];
-             src python:data['doctype_icon_url'];
-           "
-      />
+    <div class="text-center px-1 dateinfo">
+      <div tal:content="python: toLocalizedTime(data['date'], time_only=1)">15:45</div>
+      <div class="text-muted small"
+           tal:content="python: toLocalizedTime(data['date'], long_format=0)"
+      >16.12.2021
+      </div>
     </div>
   </div>
 

@@ -37,26 +37,28 @@
     />
   </div>
 
-  <div class="text-center px-1 dateinfo flex-shrink-0">
-    <div tal:content="python: toLocalizedTime(data['date'], time_only=1)">15:45</div>
-    <div class="text-muted small"
-         tal:content="python: toLocalizedTime(data['date'], long_format=0)"
-    >16.12.2021
+  <div class="listingitem-meta me-3 flex-shrink-0 d-flex flex-column align-items-center">
+    <div class="doctype-box">
+      <div class="h-100 text-center doktype-icon-container px-3 pt-2 pb-1">
+        <tal:icon tal:replace="structure python:icons.tag(data['doctype_icon_name'], tag_class='entrytype ' + data['doctype_icon_name'], tag_alt=data['doctype_title'])" />
+      </div>
+      <div class="card-body review-state ${python:data['state_class']}">
+        <p class="card-text text-center small"
+           title="${python: data['state_title']}"
+           tal:content="python: data['state_title']"
+           i18n:attributes="title"
+           i18n:domain="docpool.base"
+           i18n:translate=""
+        >Review state</p>
+      </div>
     </div>
-  </div>
 
-  <div class="me-3 doctype-box flex-shrink-0">
-    <div class="h-100 text-center doktype-icon-container px-3 pt-2 pb-1">
-      <tal:icon tal:replace="structure python:icons.tag(data['doctype_icon_name'], tag_class='entrytype ' + data['doctype_icon_name'], tag_alt=data['doctype_title'])" />
-    </div>
-    <div class="card-body review-state ${python:data['state_class']}">
-      <p class="card-text text-center small"
-         title="${python: data['state_title']}"
-         tal:content="python: data['state_title']"
-         i18n:attributes="title"
-         i18n:domain="docpool.base"
-         i18n:translate=""
-      >Review state</p>
+    <div class="text-center px-1 dateinfo">
+      <div tal:content="python: toLocalizedTime(data['date'], time_only=1)">15:45</div>
+      <div class="text-muted small"
+           tal:content="python: toLocalizedTime(data['date'], long_format=0)"
+      >16.12.2021
+      </div>
     </div>
   </div>
 
