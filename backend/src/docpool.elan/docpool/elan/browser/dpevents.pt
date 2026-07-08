@@ -20,6 +20,7 @@
               <th i18n:translate="">Created</th>
               <th i18n:translate="">Title/Description</th>
               <th i18n:translate="">Status</th>
+              <th i18n:translate="">Docpools</th>
               <th i18n:translate="">Entries</th>
             </tr>
           </thead>
@@ -64,6 +65,7 @@
               <td tal:content="scenario/Status"
                   i18n:translate=""
               ></td>
+              <td>${python:', '.join(sorted(dp.Title() for dp in scenario.subscribed_docpools()))}</td>
               <td tal:content="python: view.number_of_entries(scenario)"></td>
             </tr>
           </tbody>

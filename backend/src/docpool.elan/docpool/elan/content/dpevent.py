@@ -230,6 +230,14 @@ class DPEvent(Container, ContentBase):
         vocab = api.portal.get_vocabulary("docpool.elan.vocabularies.Status", context=self)
         return safe_text(vocab.getTerm(self.Status).title)
 
+    def subscribed_docpools(self):
+        return [
+            dp
+            for brain in api.content.find(portal_type="DocumentPool")
+            if (dpevents := (dp := brain.getObject()).get("contentconfig", {}).get("scen")) is not None
+            and self.UID() in dpevents.subscribed_events
+        ]
+
 
 def addLogEntry(obj):
     changelog = json.loads(obj.changelog or "[]")
