@@ -75,6 +75,21 @@
     display: none !important;
   }
 
+  &.listing-items {
+    .listing-item {
+      .listingitem-meta {
+        width: 80px;
+        gap: 1rem;
+        flex-direction: column !important;
+
+        .dateinfo,
+        .doctype-box {
+          order: initial;
+        }
+      }
+    }
+  }
+
   .text-box {
     width: auto;
     min-width: 0;
