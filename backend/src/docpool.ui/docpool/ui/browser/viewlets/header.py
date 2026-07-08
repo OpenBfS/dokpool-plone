@@ -331,7 +331,12 @@ class UserDropdown(BrowserView):
 
 
 class ConfigDropdown(BrowserView):
-    pass
+    @property
+    def events_url(self):
+        if (dp := IPlaces(self.context).document_pool) is not None:
+            return f"{dp.absolute_url()}/contentconfig/scen"
+        else:
+            return f"{api.portal.get().absolute_url()}/contentconfig/events"
 
 
 class SystemMessagesDropdown(BrowserView):

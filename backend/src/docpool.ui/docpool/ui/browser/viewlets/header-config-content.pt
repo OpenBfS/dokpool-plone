@@ -17,7 +17,7 @@
     <li class="dropdown-item user-menu-action-item">
       <tal:icon tal:replace="structure python:icons.tag('pencil', tag_class='user-menu-row-icon')" />
       <a class="user-menu-link"
-         href="${dp_url}/contentconfig/scen"
+         href="${view/events_url}"
          i18n:domain="docpool.elan"
          i18n:translate=""
       >Edit Scenarios</a>

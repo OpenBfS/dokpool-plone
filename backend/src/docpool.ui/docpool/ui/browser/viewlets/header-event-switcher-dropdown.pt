@@ -89,7 +89,7 @@
   <li class="dropdown-item event-switcher-detail d-flex align-items-end justify-content-end gap-3">
     <div>
       <a class="btn btn-secondary"
-         href="${python: view.dp_url}/contentconfig/++add++DPEvents"
+         href="${python: view.dp_url}/contentconfig/scen/@@edit-subscribed-events"
       >
         <tal:icon replace="structure python:icons.tag('plus-circle', tag_class='icon-with-text')" />
         <span class="small"
