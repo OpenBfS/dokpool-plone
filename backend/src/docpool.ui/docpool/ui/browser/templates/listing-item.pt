@@ -12,10 +12,11 @@
      "
      i18n:domain="docpool.ui"
 >
-  <a class="pat-inject list-item-link stretched-link"
+  <a class="list-item-link stretched-link"
      href="#"
-     data-pat-inject="trigger: default; source: #portal-column-content; target: #content-core; history: record"
      tal:attributes="
+       class python: view.pat_inject_class('list-item-link stretched-link');
+       data-pat-inject python: view.pat_inject_config();
        href python: data['url'];
        title python:data['doctype_title'];
      "
@@ -198,10 +199,11 @@
                    value came_from;
                  "
           />
-          <a class="dropdown-item d-flex gap-2 align-items-center pat-inject"
+          <a class="dropdown-item d-flex gap-2 align-items-center"
              href="#"
-             data-pat-inject="trigger: default; source: #portal-column-content; target: #content-core; history: record"
              tal:attributes="
+               class python: view.pat_inject_class('dropdown-item d-flex gap-2 align-items-center');
+               data-pat-inject python: view.pat_inject_config();
                href python: f'{data['url']}/@@edit?_authenticator={token}&amp;came_from={came_from}';
              "
           >
@@ -244,13 +246,14 @@
                          tal:repeat="transition python: data['available_transitions']"
         >
           <li>
-            <a class="dropdown-item d-flex gap-2 align-items-center transition pat-inject"
+            <a class="dropdown-item d-flex gap-2 align-items-center transition"
                href="#"
-               data-pat-inject="source: #listing; target: #listing; trigger: default &amp;&amp; source: #global_statusmessage; target: #global_statusmessage; trigger: default "
                tal:define="
                  icon_name python: view.transition_icon(transition['id']);
                "
                tal:attributes="
+                 class python: view.pat_inject_class('dropdown-item d-flex gap-2 align-items-center transition');
+                 data-pat-inject python: view.pat_inject_config('transition');
                  href python:'%s/@@change_state?action=%s&amp;back_to_referer=1&amp;_authenticator=%s' % (data['url'], transition['id'], token);
                  id python: 'workflow-transition-' + transition['id'];
                "
@@ -278,10 +281,11 @@
           </a>
         </li>
         <li tal:condition="python: data['actions']['delete']">
-          <a class="dropdown-item d-flex gap-2 align-items-center pat-inject"
+          <a class="dropdown-item d-flex gap-2 align-items-center"
              href="#"
-             data-pat-inject="trigger: default; source: #portal-column-content; target: #content-core; history: record"
              tal:attributes="
+               class python: view.pat_inject_class('dropdown-item d-flex gap-2 align-items-center');
+               data-pat-inject python: view.pat_inject_config();
                href python: f'{data['url']}/@@delete_confirmation?_authenticator={token}&came_from={came_from}';
              "
           >

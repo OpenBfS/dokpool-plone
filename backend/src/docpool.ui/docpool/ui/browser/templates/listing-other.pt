@@ -12,10 +12,11 @@
      "
      i18n:domain="docpool.base"
 >
-  <a class="pat-inject list-item-link stretched-link"
+  <a class="list-item-link stretched-link"
      href="#"
-     data-pat-inject="trigger: default; source: #portal-column-content; target: #content-core; history: record"
      tal:attributes="
+       class python: view.pat_inject_class('list-item-link stretched-link');
+       data-pat-inject python: view.pat_inject_config();
        href python: data['url'];
        title python:data['doctype_title'];
      "
@@ -106,10 +107,11 @@
                    value came_from;
                  "
           />
-          <a class="dropdown-item d-flex gap-2 align-items-center pat-inject"
+          <a class="dropdown-item d-flex gap-2 align-items-center"
              href="#"
-             data-pat-inject="trigger: default; source: #portal-column-content; target: #content-core; history: record"
              tal:attributes="
+               class python: view.pat_inject_class('dropdown-item d-flex gap-2 align-items-center');
+               data-pat-inject python: view.pat_inject_config();
                href python: f'{data['url']}/@@edit?_authenticator={token}&amp;came_from={came_from}';
              "
           >
@@ -134,10 +136,11 @@
           </a>
         </li>
         <li tal:condition="python: data['actions']['delete']">
-          <a class="dropdown-item d-flex gap-2 align-items-center pat-inject"
+          <a class="dropdown-item d-flex gap-2 align-items-center"
              href="#"
-             data-pat-inject="trigger: default; source: #portal-column-content; target: #content-core; history: record"
              tal:attributes="
+               class python: view.pat_inject_class('dropdown-item d-flex gap-2 align-items-center');
+               data-pat-inject python: view.pat_inject_config();
                href python: f'{data['url']}/@@delete_confirmation?_authenticator={token}&came_from={came_from}';
              "
           >

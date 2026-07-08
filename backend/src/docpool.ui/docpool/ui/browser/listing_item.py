@@ -32,15 +32,24 @@ TRANSITION_ICON_MAPPING = {
     "submit": "arrow-right",
 }
 
+PAT_INJECT_CONFIGS = {
+    "default": "trigger: default; source: #portal-column-content; target: #content-core; history: record",
+    "transition": (
+        "source: #listing; target: #listing; trigger: default && "
+        "source: #global_statusmessage; target: #global_statusmessage; trigger: default "
+    ),
+}
+
 
 class Item(BrowserView):
     template = ViewPageTemplateFile("templates/listing-item.pt")
     template_folder = ViewPageTemplateFile("templates/listing-folder.pt")
     template_other = ViewPageTemplateFile("templates/listing-other.pt")
 
-    def __call__(self, uid=None, show_bulk_actions=False):
+    def __call__(self, uid=None, show_bulk_actions=False, use_pat_inject=True):
         self.folder_listing = self.context.portal_type in FOLDER_TYPES
         self.show_bulk_actions = show_bulk_actions
+        self.use_pat_inject = use_pat_inject
 
         obj = api.content.get(UID=uid) if uid else self.context
 
@@ -125,6 +134,16 @@ class Item(BrowserView):
 
     def transition_icon(self, transition_id):
         return TRANSITION_ICON_MAPPING.get(transition_id, "arrow-right")
+
+    def pat_inject_class(self, classes):
+        if self.use_pat_inject:
+            return f"pat-inject {classes}"
+        return classes
+
+    def pat_inject_config(self, name="default"):
+        if self.use_pat_inject:
+            return PAT_INJECT_CONFIGS[name]
+        return None
 
     def mimetype_name(self, content_type):
         mtr = api.portal.get_tool("mimetypes_registry")

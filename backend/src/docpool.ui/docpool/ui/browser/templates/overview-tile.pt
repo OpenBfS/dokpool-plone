@@ -13,7 +13,7 @@
     >
       <tal:items tal:repeat="uid python:view.items">
         <div class="list-group-item px-0 py-0">
-          <tal:item tal:replace="structure python:context.restrictedTraverse('@@listing-item')(uid=uid)" />
+          <tal:item tal:replace="structure python:context.restrictedTraverse('@@listing-item')(uid=uid, use_pat_inject=False)" />
         </div>
       </tal:items>
     </div>

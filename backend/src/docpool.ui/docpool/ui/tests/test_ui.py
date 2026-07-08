@@ -126,6 +126,9 @@ class TestUIFeatures(unittest.TestCase):
         listing_item_view = api.content.get_view("listing-item", self.group_folder, self.request)
         html = listing_item_view(uid=uid)
         self.assertIn("A Weatherinfo</h3>", html)
+        self.assertIn("pat-inject list-item-link stretched-link", html)
+        html = listing_item_view(uid=uid, use_pat_inject=False)
+        self.assertNotIn("pat-inject", html)
 
         # Test data
         data = listing_item_view.dpdocument
