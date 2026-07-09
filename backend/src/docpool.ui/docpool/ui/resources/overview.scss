@@ -22,6 +22,13 @@
   line-height: 1;
 }
 
+.overview-tile-count {
+  background: #e1e7ed;
+  color: var(--bs-primary);
+  font-size: var(--dp-font-body);
+  font-weight: 400;
+}
+
 .tile-map-wrap {
   height: 230px;
   overflow: hidden;

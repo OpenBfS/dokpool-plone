@@ -134,6 +134,15 @@ class Listing(BrowserView):
         if self.selected_subcategories:
             self.query["subcategory"] = self.selected_subcategories
 
+        # TODO Hacked - Sync it with filter - needs real data
+        selected_dp_types = form.get("dp_type") or []
+        if selected_dp_types:
+            self.query["dp_type"] = selected_dp_types
+
+        selected_uids = form.get("UID") or []
+        if selected_uids:
+            self.query["UID"] = selected_uids
+
         # Filter by Group
         self.selected_groups = form.get("selected_groups") or []
         if self.selected_groups:
@@ -264,6 +273,7 @@ class Listing(BrowserView):
         brains = catalog(**query)
         brains = [brain for brain in brains if self.include_brain(brain)]
         uids = [brain.UID for brain in brains]
+        self.total_count = len(uids)
         modified = max(brain.modified for brain in brains) if brains else None
 
         self.count_without_scenario_filter = None

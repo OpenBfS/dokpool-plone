@@ -1,4 +1,5 @@
 from datetime import datetime
+from docpool.base import DocpoolMessageFactory as _
 from docpool.elan.utils import get_scenario_for_current_user
 from docpool.ui.browser.listing import Listing
 from plone import api
@@ -139,12 +140,13 @@ class OverviewTileListing(Listing):
     """Small listing variant used by the overview tiles."""
 
     filters = []
-    tile_title = ""
+    tile_title = {"id": "", "title": ""}
     tile_query = {}
 
     def __call__(self):
         uids, modified = self.find(OVERVIEW_TILE_LIMIT)
         self.items = uids
+        self.item_count = self.total_count
         self.modified = modified
         self.show_bulk_actions = False
         self.folder_uids = []
@@ -156,7 +158,10 @@ class OverviewTileListing(Listing):
 
 
 class LatestSituationTile(OverviewTileListing):
-    tile_title = "Aktuellste Lageinformationen"
+    tile_title = {
+        "id": "overview_tile_latest_situation",
+        "title": _("overview_tile_latest_situation", default="Latest situation information"),
+    }
     tile_query = {
         "dp_type": [
             "radiological_situation_report",
@@ -168,7 +173,10 @@ class LatestSituationTile(OverviewTileListing):
 
 
 class NotificationsTile(OverviewTileListing):
-    tile_title = "Meldungen und Anlageinformationen"
+    tile_title = {
+        "id": "overview_tile_notifications",
+        "title": _("overview_tile_notifications", default="Notifications and plant information"),
+    }
     tile_query = {
         "subcategory": ["official_notification"],
     }
@@ -176,14 +184,20 @@ class NotificationsTile(OverviewTileListing):
 
 # TODO Not needed in ELAN - Replace?
 class RodosForecastsTile(OverviewTileListing):
-    tile_title = "RODOS Prognosen"
+    tile_title = {
+        "id": "overview_tile_rodos_forecasts",
+        "title": _("overview_tile_rodos_forecasts", default="RODOS forecasts"),
+    }
     tile_query = {
         "UID": "_invalid_no_results_",
     }
 
 
 class MeasurementsTile(OverviewTileListing):
-    tile_title = "Messergebnisse und Messstrategien"
+    tile_title = {
+        "id": "overview_tile_measurements",
+        "title": _("overview_tile_measurements", default="Measurement results and strategies"),
+    }
     tile_query = {
         "subcategory": ["Messstrategien"],
     }

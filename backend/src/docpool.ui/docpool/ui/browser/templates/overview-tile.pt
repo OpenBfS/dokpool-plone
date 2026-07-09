@@ -1,11 +1,32 @@
 <article class="col-12 col-lg-6"
          i18n:domain="docpool.base"
+         tal:define="
+           tile_title_id python:view.tile_title['id'];
+           tile_title python:context.translate(view.tile_title['title']);
+           listing_query python:{
+             'overview_tile_latest_situation': 'dp_type:list=radiological_situation_report&amp;dp_type:list=radiological_situation_report_draft&amp;dp_type:list=situation_overview&amp;dp_type:list=situation_overview_draft',
+             'overview_tile_notifications': 'selected_subcategories:list=official_notification',
+             'overview_tile_rodos_forecasts': 'UID:list=_invalid_no_results_',
+             'overview_tile_measurements': 'selected_subcategories:list=Messstrategien',
+           }.get(tile_title_id, '');
+           listing_url python:context.absolute_url() + '/@@listing' + (listing_query and '?' + listing_query or '');
+         "
+         tal:attributes="id tile_title_id"
 >
   <div class="card tile-card overview-tile h-100">
-    <header class="tile-header section-title-wrap">
+    <header class="tile-header section-title-wrap d-flex align-items-center justify-content-between gap-3">
       <h3 class="section-title mb-0"
-          tal:content="python:view.tile_title"
+          tal:content="tile_title"
       >Tile title</h3>
+      <a class="overview-tile-count badge rounded-pill text-decoration-none flex-shrink-0"
+         href="#"
+         tal:attributes="
+           href python:listing_url;
+           title tile_title;
+         "
+      >
+        <span tal:content="python:view.item_count">99</span>
+      </a>
     </header>
 
     <div class="overview-tile-listing listing-items list-group list-group-flush"
