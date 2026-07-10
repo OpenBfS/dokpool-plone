@@ -1,7 +1,7 @@
 from docpool.base.caching.etags import cacheTimes
 from docpool.base.caching.interfaces import IAppCaching
+from docpool.elan.utils import get_scenario_for_current_user
 from docpool.elan.utils import getOpenScenarios
-from docpool.elan.utils import getScenariosForCurrentUser
 from plone import api
 from zope.component import adapter
 from zope.interface import implementer
@@ -17,7 +17,7 @@ class AppCaching:
 
     def etag_pieces(self):
         pieces = []
-        pieces.append(";".join(getScenariosForCurrentUser()))
+        pieces.append(get_scenario_for_current_user() or "")
 
         user = api.user.get_current()
         filtered = user.getProperty("filter_active") or False

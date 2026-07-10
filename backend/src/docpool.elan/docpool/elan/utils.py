@@ -53,19 +53,11 @@ def set_scenario_for_current_user(scenario):
         user.setMemberProperties({"scenarios": value})
 
 
-# TODO Remove once the new GUI is finished (5 functions)
+# TODO Remove once the new GUI is finished (3 functions)
 def _get_scenario_selections_for_user(user):
     selections_prop = user.getProperty("scenarios", [])
     selections = dict(line.strip().rsplit(":", 1) for line in selections_prop)
     return {scen: selected == "selected" for scen, selected in selections.items()}
-
-
-def getScenariosForCurrentUser():
-    """ """
-    mtool = api.portal.get_tool("portal_membership")
-    user = mtool.getAuthenticatedMember()
-    sc = get_scenarios_for_user(user)
-    return list(sc)
 
 
 def get_scenarios_for_user(user):
@@ -80,12 +72,6 @@ def get_scenarios_for_user(user):
 
     scenarios = [scen for scen, selected in selections.items() if selected]
     return scenarios
-
-
-def setScenariosForCurrentUser(scenarios):
-    """ """
-    user = api.user.get_current()
-    set_scenarios_for_user(user, scenarios)
 
 
 def set_scenarios_for_user(user, scenarios):

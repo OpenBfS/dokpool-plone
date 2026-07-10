@@ -3,7 +3,7 @@ from Acquisition import aq_inner
 from docpool.base.content.archiving import IArchiving
 from docpool.base.content.places import IPlaces
 from docpool.elan import DocpoolMessageFactory as _
-from docpool.elan.utils import getScenariosForCurrentUser
+from docpool.elan.utils import get_scenario_for_current_user
 from plone import api
 from plone.app.portlets.portlets import base
 from plone.portlets.interfaces import IPortletDataProvider
@@ -65,11 +65,9 @@ class Renderer(base.Renderer):
             return
 
         # Get the active journals for this scenario and document pool
-        scenarios = getScenariosForCurrentUser()
-        # User could select more than one scenario
         for brain in api.content.find(
             context=dp,
-            UID=scenarios,
+            UID=get_scenario_for_current_user(),
         ):
             if not IArchiving(brain).is_archive:
                 yield from api.content.find(

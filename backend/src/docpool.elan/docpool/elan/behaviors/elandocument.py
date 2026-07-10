@@ -9,7 +9,7 @@ from docpool.base.utils import app_only_decorator
 from docpool.base.utils import getDocumentPoolSite
 from docpool.elan import DocpoolMessageFactory as _
 from docpool.elan.config import ELAN_APP
-from docpool.elan.utils import getScenariosForCurrentUser
+from docpool.elan.utils import get_scenario_for_current_user
 from plone import api
 from plone.autoform import directives
 from plone.autoform.directives import read_permission
@@ -37,9 +37,10 @@ elan_only = app_only_decorator(ELAN_APP)
 def initializeScenario(context):
     query = {
         "portal_type": "DPEvent",
-        "UID": getScenariosForCurrentUser(),
         "Status": "active",
     }
+    if uid := get_scenario_for_current_user():
+        query["UID"] = uid
     if getattr(context, "dpSearchPath", None):
         query["path"] = context.dpSearchPath()
     scenarios = api.content.find(**query)

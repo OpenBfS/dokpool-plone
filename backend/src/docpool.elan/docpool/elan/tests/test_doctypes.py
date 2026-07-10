@@ -5,8 +5,7 @@ from docpool.base.users.usergroups_groupdetails import create_journalfolder
 from docpool.base.utils import possibleDocTypes
 from docpool.elan.testing import DOCPOOL_EVENT_FUNCTIONAL_TESTING
 from docpool.elan.utils import get_scenario_for_current_user
-from docpool.elan.utils import getScenariosForCurrentUser
-from docpool.elan.utils import setScenariosForCurrentUser
+from docpool.elan.utils import set_scenario_for_current_user
 from plone import api
 from plone.app.layout.globals.interfaces import IViewView
 from plone.app.testing import login
@@ -426,11 +425,9 @@ class TestDocTypes(unittest.TestCase):
         api.content.transition(obj=new, transition="publish")
         modified(new)
         # Test setting event/scenario
-        scenarios = {b.UID: False for b in api.content.find(portal_type="DPEvent")}
-        scenarios[event_uid] = True
-        setScenariosForCurrentUser(scenarios=scenarios)
-        scenarios = getScenariosForCurrentUser()
-        self.assertEqual(scenarios, [event_uid])
+        set_scenario_for_current_user(event_uid)
+        scenario = get_scenario_for_current_user()
+        self.assertEqual(scenario, event_uid)
         # Test search in catalog
         brains = api.content.find(SearchableText="willbefound")
         self.assertEqual(brains[0].getObject().description, "willbefound")
