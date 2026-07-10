@@ -71,17 +71,6 @@
   />
   <drop css:content="#portal-logo" />
 
-  <replace css:content="#portal-top #scenario_box"
-           css:theme="#scenario_box"
-           mode="raw"
-  />
-  <drop css:content="#portal-top #scenario_box" />
-  <after css:content=".arch_scen"
-         css:theme="#scenario_box-wrapper"
-         mode="raw"
-  />
-  <drop css:content="#portal-header .arch_scen" />
-
   <replace css:content-children="#portal-header"
            css:theme-children="#portal-top"
   />

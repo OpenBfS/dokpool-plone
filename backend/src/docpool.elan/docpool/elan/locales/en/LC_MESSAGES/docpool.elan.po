@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-03-06 15:28+0000\n"
+"POT-Creation-Date: 2026-07-10 21:14+0000\n"
 "PO-Revision-Date: 2026-02-18 14:21+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -58,16 +58,11 @@ msgstr ""
 msgid "All"
 msgstr ""
 
-#: docpool.elan/docpool/elan/browser/viewlets/events.pt
-msgid "All Archives"
-msgstr ""
-
 #: docpool.elan/docpool/elan/browser/archive_event_form.pt
 msgid "All content for this event is saved in an archive."
 msgstr ""
 
 #: docpool.elan/docpool/elan/browser/elandoccollectionrpopup.pt
-#: docpool.elan/docpool/elan/browser/viewlets/events.pt
 #: docpool.elan/docpool/elan/profiles/default/types/ELANArchive.xml
 msgid "Archive"
 msgstr ""
@@ -238,7 +233,6 @@ msgid "Entries that are also assigned to other events are copied into the archiv
 msgstr ""
 
 #: docpool.elan/docpool/elan/browser/dpevent.pt
-#: docpool.elan/docpool/elan/browser/viewlets/events.pt
 msgid "Event Information"
 msgstr ""
 

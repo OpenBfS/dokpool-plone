@@ -4,14 +4,6 @@
     >
 
   <browser:viewlet
-      name="docpool.elan.events"
-      manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
-      class=".common.EventViewlet"
-      permission="zope2.View"
-      layer="docpool.theme.interfaces.ICustomTheme"
-      />
-
-  <browser:viewlet
       name="docpool.elan.ticker"
       manager="plone.app.layout.viewlets.interfaces.IGlobalStatusMessage"
       class=".common.TickerViewlet"

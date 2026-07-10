@@ -3,7 +3,6 @@
   <order manager="plone.portalheader"
          skinname="*"
   >
-    <viewlet name="docpool.elan.events" />
     <viewlet name="docpool.logo" />
     <viewlet name="plone.logo" />
     <viewlet name="docpool.time" />

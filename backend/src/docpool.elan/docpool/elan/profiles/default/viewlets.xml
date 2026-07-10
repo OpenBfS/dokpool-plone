@@ -2,7 +2,6 @@
 <object>
   <order manager="plone.portalheader">
     <viewlet name="plone.logo" />
-    <viewlet name="docpool.elan.events" />
     <viewlet name="docpool.time" />
     <viewlet name="plone.searchbox" />
     <viewlet name="plone.anontools" />
