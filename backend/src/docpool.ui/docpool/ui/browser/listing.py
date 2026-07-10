@@ -207,7 +207,6 @@ class Listing(BrowserView):
             self.query["review_state"] = filtered_by_review_states
 
         # Filter by context
-        # TODO: Remove implicit default filtering on path + /content in docpool.elan.monkey
         if self.folder_listing:
             content_area = self.context
             self.base_query["path"] = {

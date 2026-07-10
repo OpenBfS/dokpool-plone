@@ -448,7 +448,6 @@ class TestDocTypes(unittest.TestCase):
         query_notfound = {"SearchableText": "Test Event"}
         res_not = search_view.results(query=query_notfound)
         # TODO: Update when global search is implemented in GUI
-        # Since docpool.elan.monkey is deactivated we find the item in /config
         self.assertEqual(len(res_not), 1)
         # Check the catalog_path
         # catalog_path = IELANDocument(new).cat_path()
