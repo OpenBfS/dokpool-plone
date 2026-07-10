@@ -47,13 +47,6 @@
       />
 
   <browser:page
-      name="event_select_action"
-      for="*"
-      class=".dpevents.EventSelectAction"
-      permission="zope2.View"
-      />
-
-  <browser:page
       name="select_scenario"
       for="*"
       class=".dpevents.SelectScenario"
