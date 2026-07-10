@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-03-06 15:37+0000\n"
+"POT-Creation-Date: 2026-07-10 21:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,12 +17,32 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: docpool.ui\n"
 
+#: docpool.ui/docpool/ui/browser/templates/listing.pt
+msgid "<span class=\"dp-filter-reset-icon\" role=\"button\" tabindex=\"0\" title=\"x\" data-filter-reset-url=\"${DYNAMIC_CONTENT}\"> ${DYNAMIC_CONTENT} </span> <span>x</span>"
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/templates/listing.pt
+msgid "<span class=\"me-1\"> ${DYNAMIC_CONTENT} </span> Filter anwenden"
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/templates/listing.pt
+msgid "<span class=\"me-1\"> ${DYNAMIC_CONTENT} </span> Reset"
+msgstr ""
+
 #: docpool.ui/docpool/ui/browser/listing.py
 msgid "A-Z"
 msgstr ""
 
+#: docpool.ui/docpool/ui/browser/templates/folder_wizard.pt
+msgid "Ablageort"
+msgstr ""
+
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
 msgid "Add entry"
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/templates/listing.pt
+msgid "Add folder"
 msgstr ""
 
 #: docpool.ui/docpool/ui/browser/viewlets/header-event-switcher-dropdown.pt
@@ -42,9 +62,9 @@ msgstr ""
 msgid "Back"
 msgstr ""
 
+#: docpool.ui/docpool/ui/browser/templates/folder_wizard.pt
 #: docpool.ui/docpool/ui/browser/templates/wizard_1.pt
 #: docpool.ui/docpool/ui/browser/templates/wizard_2.pt
-#: docpool.ui/docpool/ui/browser/templates/wizard_3.pt
 msgid "Cancel"
 msgstr ""
 
@@ -62,6 +82,10 @@ msgstr ""
 msgid "Content added"
 msgstr ""
 
+#: docpool.ui/docpool/ui/browser/templates/folder_wizard.pt
+msgid "Create new"
+msgstr ""
+
 #: docpool.ui/docpool/ui/browser/templates/wizard_1.pt
 #: docpool.ui/docpool/ui/browser/templates/wizard_2.pt
 #: docpool.ui/docpool/ui/browser/templates/wizard_3.pt
@@ -70,6 +94,10 @@ msgstr ""
 
 #: docpool.ui/docpool/ui/browser/wizard.py
 msgid "Created ${doktype} '${title}'"
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/wizard.py
+msgid "Created ${portal_type} '${title}'"
 msgstr ""
 
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
@@ -92,17 +120,17 @@ msgstr ""
 msgid "Download all attachments"
 msgstr ""
 
-#: docpool.ui/docpool/ui/browser/viewlets/header.pt
+#: docpool.ui/docpool/ui/browser/viewlets/header-navigation-macros.pt
 msgid "Emergency documents"
-msgstr ""
-
-#: docpool.ui/docpool/ui/browser/templates/listing.pt
-msgid "Entries"
 msgstr ""
 
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
 #: docpool.ui/docpool/ui/browser/templates/wizard_1.pt
 msgid "Entrytype"
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/templates/folder_wizard.pt
+msgid "Folder Type"
 msgstr ""
 
 #: docpool.ui/docpool/ui/browser/templates/wizard_1.pt
@@ -124,18 +152,27 @@ msgstr ""
 msgid "Internal"
 msgstr ""
 
-#: docpool.ui/docpool/ui/browser/templates/listing-item.pt
-msgid "Mark as Favorite"
+#: docpool.ui/docpool/ui/browser/viewlets/header-navigation-macros.pt
+msgid "JST"
 msgstr ""
 
-#: docpool.ui/docpool/ui/browser/viewlets/header.pt
+#: docpool.ui/docpool/ui/browser/viewlets/header-navigation-macros.pt
+msgid "ME(S)Z"
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/viewlets/header-navigation-macros.pt
 msgid "My group folders"
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/viewlets/header-navigation-macros.pt
+msgid "Neues Ereignis anlegen"
 msgstr ""
 
 #: docpool.ui/docpool/ui/browser/listing.py
 msgid "Newest first"
 msgstr ""
 
+#: docpool.ui/docpool/ui/browser/templates/folder_wizard.pt
 #: docpool.ui/docpool/ui/browser/templates/wizard_1.pt
 #: docpool.ui/docpool/ui/browser/templates/wizard_2.pt
 msgid "Next"
@@ -153,10 +190,15 @@ msgstr ""
 msgid "Pending"
 msgstr ""
 
+#: docpool.ui/docpool/ui/browser/wizard.py
+msgid "Please add either text or a document!"
+msgstr ""
+
 #: docpool.ui/docpool/ui/browser/templates/wizard_3.pt
 msgid "Please check who will have access to the entry."
 msgstr ""
 
+#: docpool.ui/docpool/ui/browser/templates/folder_wizard.pt
 #: docpool.ui/docpool/ui/browser/templates/wizard_1.pt
 msgid "Please select a container first"
 msgstr ""
@@ -178,6 +220,14 @@ msgstr ""
 msgid "Published"
 msgstr ""
 
+#: docpool.ui/docpool/ui/browser/templates/listing.pt
+msgid "Reset filter"
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/templates/listing.pt
+msgid "Reset search"
+msgstr ""
+
 #: docpool.ui/docpool/ui/browser/listing.py
 msgid "Revised"
 msgstr ""
@@ -186,12 +236,24 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#: docpool.ui/docpool/ui/browser/templates/listing.pt
-msgid "Search on this page…"
+#: docpool.ui/docpool/ui/browser/viewlets/header.py
+msgid "Search DokSys"
 msgstr ""
 
-#: docpool.ui/docpool/ui/browser/templates/wizard_1.pt
-msgid "Select a Entrytype"
+#: docpool.ui/docpool/ui/browser/viewlets/header.py
+msgid "Search ELAN"
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/viewlets/header.py
+msgid "Search REI"
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/viewlets/header.py
+msgid "Search RODOS"
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/templates/listing.pt
+msgid "Search on this page…"
 msgstr ""
 
 #: docpool.ui/docpool/ui/browser/templates/wizard_1.pt
@@ -210,10 +272,18 @@ msgstr ""
 msgid "Title added"
 msgstr ""
 
+#: docpool.ui/docpool/ui/browser/viewlets/header-navigation-macros.pt
+msgid "UTC"
+msgstr ""
+
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
 #: docpool.ui/docpool/ui/browser/templates/wizard_1.pt
 #: docpool.ui/docpool/ui/browser/templates/wizard_2.pt
 msgid "Visibility"
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/wizard.py
+msgid "You cannot add any folders"
 msgstr ""
 
 #: docpool.ui/docpool/ui/browser/listing.py
@@ -223,6 +293,11 @@ msgstr ""
 #. Default: "Attachments"
 #: docpool.ui/docpool/ui/browser/templates/wizard_2.pt
 msgid "attachments"
+msgstr ""
+
+#. Default: "Zur&uuml;ck"
+#: docpool.ui/docpool/ui/browser/templates/listing.pt
+msgid "back"
 msgstr ""
 
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
