@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object meta_type="Plone Memberdata Tool"
+        name="portal_memberdata"
+>
+  <property name="scenarios"
+            remove="true"
+  />
+  <property name="scenario"
+            type="string"
+  />
+</object>

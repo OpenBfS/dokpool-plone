@@ -1,11 +1,6 @@
 from docpool.base.utils import getDocumentPoolSite
-from persistent.mapping import PersistentMapping
 from plone import api
 from Products.CMFCore.utils import getToolByName
-from zope.annotation.interfaces import IAnnotations
-
-
-ANN_KEY_SCENARIO_SELECTION = "SCENARIO_SELECTION"
 
 
 def getActiveScenarios(self):
@@ -35,11 +30,10 @@ def getOpenScenarios(self):
 
 
 def get_scenario_for_current_user(context):
-    global_scenarios = get_global_scenario_selection()
     user = api.user.get_current()
-    for scen, selected in _get_scenario_selections_for_user(user).items():
-        if selected and global_scenarios.get(scen) not in ("closed", "removed"):
-            return scen
+    value = user.getProperty("scenario", None)
+    if api.content.find(UID=value, dp_type=["active", "inactive"]):
+        return value
     # XXX We really want to fall back to some kind of default scenario. Any scenario is better than nothing
     # for the time being, though. For the sake of existing test setups, return "Normalfall" as a sensible
     # default.
@@ -51,55 +45,10 @@ def get_scenario_for_current_user(context):
 
 
 def set_scenario_for_current_user(scenario):
-    global_scenarios = get_global_scenario_selection()
-    value = [f"{scenario}:selected"] if global_scenarios.get(scenario) != "removed" else []
     user = api.user.get_current()
-    if user.getProperty("scenarios", []) != value:
-        user.setMemberProperties({"scenarios": value})
-
-
-# TODO Remove once the new GUI is finished (3 functions)
-def _get_scenario_selections_for_user(user):
-    selections_prop = user.getProperty("scenarios", [])
-    selections = dict(line.strip().rsplit(":", 1) for line in selections_prop)
-    return {scen: selected == "selected" for scen, selected in selections.items()}
-
-
-def get_scenarios_for_user(user):
-    selections = _get_scenario_selections_for_user(user)
-
-    global_scenarios = get_global_scenario_selection()
-    for scen, state in global_scenarios.items():
-        if state in ("closed", "removed"):
-            selections.pop(scen, None)
-        else:
-            selections.setdefault(scen, state == "selected")
-
-    scenarios = [scen for scen, selected in selections.items() if selected]
-    return scenarios
-
-
-def set_scenarios_for_user(user, scenarios):
-    selections = _get_scenario_selections_for_user(user)
-    selections.update(scenarios)
-
-    global_scenarios = get_global_scenario_selection()
-    value = [
-        "{}:{}".format(scen, "selected" if selected else "deselected")
-        for scen, selected in selections.items()
-        if global_scenarios.get(scen) != "removed"
-    ]
-    if sorted(user.getProperty("scenarios", [])) != sorted(value):
-        user.setMemberProperties({"scenarios": value})
-
-
-# TODO Remove once the new GUI is finished (up to here)
-
-
-def get_global_scenario_selection():
-    portal = api.portal.get()
-    annotations = IAnnotations(portal)
-    return annotations.setdefault(ANN_KEY_SCENARIO_SELECTION, PersistentMapping())
+    value = scenario if api.content.find(UID=scenario) else None
+    if user.getProperty("scenarios", None) != value:
+        user.setMemberProperties({"scenario": value})
 
 
 def getAvailableCategories(self):

@@ -1,6 +1,4 @@
 from docpool.elan.testing import DOCPOOL_EVENT_FUNCTIONAL_TESTING
-from docpool.elan.utils import get_scenarios_for_user
-from docpool.elan.utils import set_scenarios_for_user
 from plone import api
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
@@ -18,14 +16,6 @@ class TestEvent(unittest.TestCase):
         docpool = self.portal["test_docpool"]
         self.container = docpool["contentconfig"]["scen"]
 
-    def _get_user_scenarios(self):
-        test_user = api.user.get(TEST_USER_ID)
-        return get_scenarios_for_user(test_user)
-
-    def _set_user_scenarios(self, scenarios):
-        test_user = api.user.get(TEST_USER_ID)
-        set_scenarios_for_user(test_user, scenarios)
-
     def test_types_available(self):
         portal_types = api.portal.get_tool("portal_types")
         self.assertTrue(IDexterityFTI.providedBy(portal_types["DPEvent"]))
@@ -42,16 +32,6 @@ class TestEvent(unittest.TestCase):
         )
         self.assertTrue(event.restrictedTraverse("@@view")())
         self.assertTrue(event.restrictedTraverse("@@edit")())
-
-    def test_added_event_is_active_for_users(self):
-        event = api.content.create(
-            container=self.container,
-            type="DPEvent",
-            id="test_event",
-            title="Test Event",
-        )
-        scenarios = self._get_user_scenarios()
-        self.assertIn(event.UID(), scenarios)
 
     def test_archived_event_is_moved(self):
         event = api.content.create(
@@ -72,62 +52,6 @@ class TestEvent(unittest.TestCase):
         self.assertEqual(archived_event.__parent__.portal_type, "ELANArchive")
         self.assertEqual(archived_event.Status, "closed")
         self.assertEqual(archived_event.keys(), ["journal1", "journal2", "journal3", "journal4"])
-
-    def test_archived_event_is_not_active_for_users(self):
-        event = api.content.create(
-            container=self.container,
-            type="DPEvent",
-            id="test_event",
-            title="Test Event",
-        )
-        event_uid = event.UID()
-        scenarios = self._get_user_scenarios()
-        self.assertIn(event_uid, scenarios)
-        archive_form = event.restrictedTraverse("@@archiveAndClose")
-        self.layer["request"].form["form.button.submit"] = True
-        archive_form()
-        scenarios = self._get_user_scenarios()
-        self.assertNotIn(event_uid, scenarios)
-
-    def test_removed_event_is_not_active_for_users(self):
-        event = api.content.create(
-            container=self.container,
-            type="DPEvent",
-            id="test_event",
-            title="Test Event",
-        )
-        event_uid = event.UID()
-        scenarios = self._get_user_scenarios()
-        self.assertIn(event_uid, scenarios)
-        api.content.delete(event)
-        scenarios = self._get_user_scenarios()
-        self.assertNotIn(event_uid, scenarios)
-
-    def test_added_event_can_be_deactivated_by_user(self):
-        event = api.content.create(
-            container=self.container,
-            type="DPEvent",
-            id="test_event",
-            title="Test Event",
-        )
-        event_uid = event.UID()
-        scenarios = self._get_user_scenarios()
-        self.assertIn(event_uid, scenarios)
-        self._set_user_scenarios({event_uid: False})
-        scenarios = self._get_user_scenarios()
-        self.assertNotIn(event_uid, scenarios)
-
-    def test_added_and_activated_event_is_listed_only_once(self):
-        event = api.content.create(
-            container=self.container,
-            type="DPEvent",
-            id="test_event",
-            title="Test Event",
-        )
-        event_uid = event.UID()
-        self.assertEqual(1, self._get_user_scenarios().count(event_uid))
-        self._set_user_scenarios({event_uid: True})
-        self.assertEqual(1, self._get_user_scenarios().count(event_uid))
 
     def test_removal_keeps_working_for_arbitrary_dpevents(self):
         event = api.content.create(

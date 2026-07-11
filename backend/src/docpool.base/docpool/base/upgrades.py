@@ -836,3 +836,9 @@ def to_3000_refactor_journals(self):
                 # Delete group
                 api.group.delete(group=group)
                 break
+
+
+def to_3000_remove_scenarios_multiselection(context):
+    for user in api.user.get_users():
+        user.setMemberProperties({"scenarios": None})
+    IAnnotations(api.portal.get()).pop("SCENARIO_SELECTION", None)

@@ -121,6 +121,11 @@
         handler="docpool.base.upgrades.to_3000_refactor_journals"
         />
 
+    <genericsetup:upgradeStep
+        title="Remove 'scenarios' multiselection arteafacts"
+        handler="docpool.base.upgrades.to_3000_remove_scenarios_multiselection"
+        />
+
   </genericsetup:upgradeSteps>
 
 </configure>

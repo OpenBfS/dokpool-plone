@@ -10,7 +10,6 @@ from docpool.config.utils import ploneId
 from docpool.elan import DocpoolMessageFactory as _
 from docpool.elan.behaviors.elandocument import IELANDocument
 from docpool.elan.config import ELAN_APP
-from docpool.elan.utils import get_global_scenario_selection
 from elan.journal.adapters import IJournalEntryContainer
 from logging import getLogger
 from plone import api
@@ -127,8 +126,6 @@ class ArchiveAndClose(BrowserView):
         """
 
         # 1. Disable scenario to prevent new data from being added for it
-        global_scenarios = get_global_scenario_selection()
-        global_scenarios[self.context.UID()] = "closed"
         self.context.Status = "closed"
         transaction.savepoint(optimistic=True)
 

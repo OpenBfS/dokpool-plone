@@ -7,7 +7,6 @@ from docpool.base.content.places import IPlaces
 from docpool.base.marker import IImportingMarker
 from docpool.elan import DocpoolMessageFactory as _
 from docpool.elan.config import ELAN_APP
-from docpool.elan.utils import get_global_scenario_selection
 from logging import getLogger
 from persistent.list import PersistentList
 from plone import api
@@ -229,10 +228,6 @@ class DPEvent(Container, ContentBase):
         IAnnotations(self).pop(ARCHIVING_KEY, None)
         self._p_changed = True
 
-    def selectGlobally(self):
-        global_scenarios = get_global_scenario_selection()
-        global_scenarios[self.UID()] = "selected"
-
     def createDefaultJournals(self):
         """
         Creates journals inside the event
@@ -314,7 +309,6 @@ def eventAdded(obj, event=None):
         return
     if IArchiving(obj).is_archive:
         return
-    obj.selectGlobally()
     obj.createDefaultJournals()
 
 
@@ -366,6 +360,3 @@ def eventRemoved(obj, event=None):
         return
     if obj.id == "routinemode":
         raise RuntimeError('The "routinemode" event cannot be removed.')
-
-    global_scenarios = get_global_scenario_selection()
-    global_scenarios[obj.UID()] = "removed"
