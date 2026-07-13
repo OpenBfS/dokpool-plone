@@ -93,17 +93,6 @@ def global_dict_hook(item, obj, config):
     return item
 
 
-def dict_hook_dpevent(item, obj, config):
-    """Used this to modify the serialized data.
-    Return None if you want to skip this particular object.
-    """
-    if obj.portal_type.lower() != "dpevent":
-        return item
-    if obj.EventPhase:
-        item["exportimport.EventPhase"] = obj.EventPhase.to_object.title
-    return item
-
-
 def export_annotations(item, obj):
     results = {}
     annotations = IAnnotations(obj)
@@ -128,5 +117,4 @@ class CustomContentExporter(ContentExporter):
     obj_hooks = [global_obj_hook]
     data_hooks = [
         global_dict_hook,
-        dict_hook_dpevent,
     ]

@@ -42,13 +42,6 @@
           </tr>
 
           <tr tal:define="
-                widget python:view.widgets['EventPhase'];
-              ">
-            <td tal:content="widget/label"></td>
-            <td tal:content="structure widget/render"></td>
-          </tr>
-
-          <tr tal:define="
                 widget python:view.widgets['EventLocation'];
               ">
             <td tal:content="widget/label"></td>
@@ -152,7 +145,6 @@
             <tr>
               <th i18n:translate="">Date/User</th>
               <th i18n:translate="">Type of event</th>
-              <th i18n:translate="">Phase</th>
               <th i18n:translate="">State</th>
               <th i18n:translate="">Operation mode</th>
               <th i18n:translate="">Alerting status</th>
@@ -173,10 +165,6 @@
                   tal:content="python: item.get('EventType', '')"
                   i18n:attributes="data-title"
                   i18n:translate=""
-              ></td>
-              <td data-title="Phase"
-                  tal:content="python: item.get('Phase', '')"
-                  i18n:attributes="data-title"
               ></td>
               <td data-title="State"
                   tal:content="python: item.get('Status', '')"

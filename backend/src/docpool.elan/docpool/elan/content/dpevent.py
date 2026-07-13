@@ -90,11 +90,6 @@ class IDPEvent(IContentBase):
         defaultFactory=initializeTimeOfEvent,
     )
 
-    EventPhase = schema.TextLine(
-        title=_("Scenario & Phase"),
-        required=False,
-    )
-
     directives.write_permission(EventLocation="docpool.elan.ManageDPEvents")
     directives.widget(EventLocation="plone.app.z3cform.widgets.select.SelectFieldWidget")
     EventLocation = RelationChoice(
@@ -187,12 +182,6 @@ class DPEvent(Container, ContentBase):
 
     security = ClassSecurityInfo()
 
-    def phaseInfo(self):
-        """
-        :return:
-        """
-        return self.EventPhase
-
     def dp_type(self):
         """
         We reuse the dp_type index for the scenario status.
@@ -276,7 +265,6 @@ def addLogEntry(obj):
     entry["Operation mode"] = modes
     entry["Alerting status"] = alerting_status
     entry["Alerting note"] = obj.AlertingNote
-    entry["Phase"] = obj.phaseInfo()
     entry["Sectorizing sample types"] = ", ".join(
         obj.SectorizingSampleTypes if obj.SectorizingSampleTypes is not None else " "
     )

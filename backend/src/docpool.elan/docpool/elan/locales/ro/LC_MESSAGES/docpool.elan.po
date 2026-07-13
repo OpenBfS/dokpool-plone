@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-07-10 21:14+0000\n"
+"POT-Creation-Date: 2026-07-14 08:58+0000\n"
 "PO-Revision-Date: 2025-05-19 17:02+0200\n"
 "Last-Translator: Philip Bauer <bauer@starzel.de>\n"
 "Language-Team: BfS <elan@bfs.de>\n"
@@ -309,10 +309,6 @@ msgstr ""
 msgid "Overview"
 msgstr ""
 
-#: docpool.elan/docpool/elan/browser/dpevent.pt
-msgid "Phase"
-msgstr ""
-
 #: docpool.elan/docpool/elan/browser/i18ndummy.pt
 msgid "Purge"
 msgstr ""
@@ -327,10 +323,6 @@ msgstr ""
 
 #: docpool.elan/docpool/elan/vocabularies.py
 msgid "Routine mode"
-msgstr ""
-
-#: docpool.elan/docpool/elan/content/dpevent.py
-msgid "Scenario & Phase"
 msgstr ""
 
 #: docpool.elan/docpool/elan/browser/archive_event_form.py

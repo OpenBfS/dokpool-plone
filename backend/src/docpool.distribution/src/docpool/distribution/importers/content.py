@@ -164,8 +164,6 @@ def global_obj_hook(item, obj):
     if obj.portal_type == "DPEvent":
         if item.get("changelog"):
             obj.changelog = item["changelog"]
-        if eventphase := item.get("exportimport.EventPhase", None):
-            obj.EventPhase = eventphase
 
     if item.get("_last_journalentry_edition"):
         obj._last_journalentry_edition = item["_last_journalentry_edition"]
