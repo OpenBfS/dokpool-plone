@@ -190,7 +190,7 @@ class Item(BrowserView):
             and "bypass_scenario_filter=on" not in self.request.get("HTTP_REFERER", "")
             and not IArchiving(obj).is_archive
         ):
-            if event := get_scenario_for_current_user():
+            if event := get_scenario_for_current_user(self.context):
                 base_query["scenario"] = event
 
         brains = api.content.find(**base_query)

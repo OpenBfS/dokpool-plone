@@ -122,7 +122,7 @@ class Listing(BrowserView):
             and ELAN_APP in self.active_apps
             and not IArchiving(self.context).is_archive
         ):
-            if event := get_scenario_for_current_user():
+            if event := get_scenario_for_current_user(self.context):
                 self.base_query["scenario"] = event
 
         self.show_scenario_filter_switch = False

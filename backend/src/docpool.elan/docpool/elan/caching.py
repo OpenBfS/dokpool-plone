@@ -17,7 +17,7 @@ class AppCaching:
 
     def etag_pieces(self):
         pieces = []
-        pieces.append(get_scenario_for_current_user() or "")
+        pieces.append(get_scenario_for_current_user(self.context) or "")
 
         user = api.user.get_current()
         filtered = user.getProperty("filter_active") or False

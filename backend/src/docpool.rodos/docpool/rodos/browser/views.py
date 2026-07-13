@@ -26,7 +26,7 @@ class AssignToElanEvent(BrowserView):
         self.events = [i for i in dpevents if i.review_state == "published"]
         self.current_event = None
 
-        if current_event_id := get_scenario_for_current_user():
+        if current_event_id := get_scenario_for_current_user(self.context):
             for brain in self.events:
                 if current_event_id == brain.UID:
                     self.current_event = brain.UID

@@ -67,7 +67,7 @@ class Renderer(base.Renderer):
         # Get the active journals for this scenario and document pool
         for brain in api.content.find(
             context=dp,
-            UID=get_scenario_for_current_user(),
+            UID=get_scenario_for_current_user(self.context),
         ):
             if not IArchiving(brain).is_archive:
                 yield from api.content.find(

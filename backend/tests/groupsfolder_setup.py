@@ -44,7 +44,7 @@ class GroupsFolderSetupMixin:
             description="foo",
             docType="weather_conditions_and_forecast",
             local_behaviors=["elan"],
-            scenario=get_scenario_for_current_user(),
+            scenario=get_scenario_for_current_user(self.docpool),
         )
         assert self.entry.created_by == expected_creator
 
@@ -56,7 +56,7 @@ class GroupsFolderSetupMixin:
             description="foo",
             docType="staff_note",
             local_behaviors=["elan"],
-            scenario=get_scenario_for_current_user(),
+            scenario=get_scenario_for_current_user(self.docpool),
         )
         assert self.entry.created_by == expected_creator
         # add attachments

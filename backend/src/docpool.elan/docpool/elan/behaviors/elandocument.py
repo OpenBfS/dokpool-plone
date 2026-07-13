@@ -39,7 +39,7 @@ def initializeScenario(context):
         "portal_type": "DPEvent",
         "Status": "active",
     }
-    if uid := get_scenario_for_current_user():
+    if uid := get_scenario_for_current_user(context):
         query["UID"] = uid
     if getattr(context, "dpSearchPath", None):
         query["path"] = context.dpSearchPath()

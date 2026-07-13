@@ -34,15 +34,20 @@ def getOpenScenarios(self):
     return res
 
 
-def get_scenario_for_current_user():
+def get_scenario_for_current_user(context):
     global_scenarios = get_global_scenario_selection()
     user = api.user.get_current()
     for scen, selected in _get_scenario_selections_for_user(user).items():
         if selected and global_scenarios.get(scen) not in ("closed", "removed"):
             return scen
-    for scen, state in global_scenarios.items():
-        if state == "selected":
-            return scen
+    # XXX We really want to fall back to some kind of default scenario. Any scenario is better than nothing
+    # for the time being, though. For the sake of existing test setups, return "Normalfall" as a sensible
+    # default.
+    if brains := getOpenScenarios(context):
+        for brain in brains:
+            if brain.Title == "Normalfall":
+                return brain.UID
+        return brains[0].UID
 
 
 def set_scenario_for_current_user(scenario):

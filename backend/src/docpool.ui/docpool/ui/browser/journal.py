@@ -82,7 +82,7 @@ class Journals(BrowserView):
             "sort_order": "descending",
         }
         if not IArchiving(self.context).is_archive:
-            if event := get_scenario_for_current_user():
+            if event := get_scenario_for_current_user(self.context):
                 base_query["scenario"] = event
 
         query = {

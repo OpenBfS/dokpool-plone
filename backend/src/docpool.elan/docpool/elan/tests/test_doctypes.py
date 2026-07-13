@@ -426,7 +426,7 @@ class TestDocTypes(unittest.TestCase):
         modified(new)
         # Test setting event/scenario
         set_scenario_for_current_user(event_uid)
-        scenario = get_scenario_for_current_user()
+        scenario = get_scenario_for_current_user(docpool)
         self.assertEqual(scenario, event_uid)
         # Test search in catalog
         brains = api.content.find(SearchableText="willbefound")
@@ -527,6 +527,6 @@ class TestDocTypes(unittest.TestCase):
             description="foo",
             docType="journalentry",
             local_behaviors=["elan"],
-            scenario=get_scenario_for_current_user(),
+            scenario=get_scenario_for_current_user(docpool),
         )
         self.assertTrue(IJournalEntryMarker.providedBy(journalentry))

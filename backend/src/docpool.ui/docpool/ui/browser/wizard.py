@@ -423,7 +423,7 @@ class DPDocumentWizard(ContextlessWizard):
         query = {
             "context": getDocumentPoolSite(self.context),
             "portal_type": "DPEvent",
-            "UID": get_scenario_for_current_user(),
+            "UID": get_scenario_for_current_user(self.context),
             "Status": "active",
         }
         default_scenarios = api.content.find(**query)

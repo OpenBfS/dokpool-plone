@@ -30,7 +30,7 @@ class TestGroupsFolder(GroupsFolderSetupMixin):
             type="SimpleFolder",
             title="Folder Nav 2",
             description="foo",
-            scenario=get_scenario_for_current_user(),
+            scenario=get_scenario_for_current_user(self.docpool),
         )
         ILocalBehaviorSupport(self.subnav).local_behaviors = ["elan"]
         self.subnav.reindexObject(idxs=["apps_supported"])

@@ -71,7 +71,7 @@ class TestUIFeatures(unittest.TestCase):
             description="foo",
             docType="weather_conditions_and_forecast",
             local_behaviors=["elan"],
-            scenario=get_scenario_for_current_user(),
+            scenario=get_scenario_for_current_user(self.docpool),
         )
         self.assertEqual(self.entry.created_by, ("user1", "user1 (Bund)", "Group1 (Bund)"))
         # add attachments
@@ -172,7 +172,7 @@ class TestUIFeatures(unittest.TestCase):
             description="foo",
             docType="weather_conditions_and_forecast",
             local_behaviors=["elan"],
-            scenario=get_scenario_for_current_user(),
+            scenario=get_scenario_for_current_user(self.docpool),
         )
         uids, _ = listing_view.find()
         self.assertEqual(len(uids), 2)
