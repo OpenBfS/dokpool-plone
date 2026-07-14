@@ -18,9 +18,6 @@
   <object meta_type="Dexterity FTI"
           name="DPNetwork"
   />
-  <object meta_type="Dexterity FTI"
-          name="DPNuclearPowerStation"
-  />
 
   <object meta_type="Dexterity FTI"
           name="ELANInfos"

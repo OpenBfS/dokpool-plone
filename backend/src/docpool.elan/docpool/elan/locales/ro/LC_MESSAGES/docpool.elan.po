@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-07-14 08:58+0000\n"
+"POT-Creation-Date: 2026-07-14 09:07+0000\n"
 "PO-Revision-Date: 2025-05-19 17:02+0200\n"
 "Last-Translator: Philip Bauer <bauer@starzel.de>\n"
 "Language-Team: BfS <elan@bfs.de>\n"
@@ -121,10 +121,6 @@ msgstr ""
 msgid "Content from:"
 msgstr ""
 
-#: docpool.elan/docpool/elan/content/dpnuclearpowerstation.py
-msgid "Coordinates"
-msgstr ""
-
 #: docpool.elan/docpool/elan/browser/dpevents.pt
 msgid "Created"
 msgstr ""
@@ -147,10 +143,6 @@ msgstr ""
 
 #: docpool.elan/docpool/elan/profiles/default/types/DPNetwork.xml
 msgid "DP Network"
-msgstr ""
-
-#: docpool.elan/docpool/elan/profiles/default/types/DPNuclearPowerStation.xml
-msgid "DP Nuclear Power Station"
 msgstr ""
 
 #: docpool.elan/docpool/elan/profiles/default/registry/querystring.xml
@@ -242,10 +234,6 @@ msgstr ""
 
 #: docpool.elan/docpool/elan/content/dpevent.py
 msgid "Event coordinates"
-msgstr ""
-
-#: docpool.elan/docpool/elan/content/dpevent.py
-msgid "Event location"
 msgstr ""
 
 #: docpool.elan/docpool/elan/content/dpevent.py

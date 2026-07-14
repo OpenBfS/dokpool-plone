@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-07-14 08:58+0000\n"
+"POT-Creation-Date: 2026-07-14 09:07+0000\n"
 "PO-Revision-Date: 2026-02-18 14:20+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -117,10 +117,6 @@ msgstr "Chronologie"
 msgid "Content from:"
 msgstr "Kategorie:"
 
-#: docpool.elan/docpool/elan/content/dpnuclearpowerstation.py
-msgid "Coordinates"
-msgstr "Koordinaten"
-
 #: docpool.elan/docpool/elan/browser/dpevents.pt
 msgid "Created"
 msgstr "Erzeugt"
@@ -144,10 +140,6 @@ msgstr "Ereignisse"
 #: docpool.elan/docpool/elan/profiles/default/types/DPNetwork.xml
 msgid "DP Network"
 msgstr "Netz"
-
-#: docpool.elan/docpool/elan/profiles/default/types/DPNuclearPowerStation.xml
-msgid "DP Nuclear Power Station"
-msgstr "Kernkraftwerk"
 
 #: docpool.elan/docpool/elan/profiles/default/registry/querystring.xml
 msgid "Date of last user action"
@@ -239,10 +231,6 @@ msgstr "Ereignisinformationen"
 #: docpool.elan/docpool/elan/content/dpevent.py
 msgid "Event coordinates"
 msgstr "Ereigniskoordinaten"
-
-#: docpool.elan/docpool/elan/content/dpevent.py
-msgid "Event location"
-msgstr "Ereignisort"
 
 #: docpool.elan/docpool/elan/content/dpevent.py
 msgid "Example: POINT(12.293121814727781 48.60338936478996)"

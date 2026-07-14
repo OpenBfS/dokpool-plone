@@ -21,7 +21,6 @@
 
     <element value="DPEvent" />
     <element value="DPNetwork" />
-    <element value="DPNuclearPowerStation" />
 
   </property>
   <!-- schema interface -->

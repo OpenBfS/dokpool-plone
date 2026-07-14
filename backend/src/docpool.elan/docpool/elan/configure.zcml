@@ -61,10 +61,6 @@
       id="docpool.elan.AddDPNetwork"
       title="Docpool: Add DPNetwork"
       />
-  <permission
-      id="docpool.elan.AddDPNuclearPowerStation"
-      title="Docpool: Add DPNuclearPowerStation"
-      />
 
   <permission
       id="docpool.elan.AddELANInfos"
@@ -131,10 +127,6 @@
   <utility
       name="docpool.elan.vocabularies.Networks"
       component=".vocabularies.NetworksVocabularyFactory"
-      />
-  <utility
-      name="docpool.elan.vocabularies.PowerStations"
-      component=".vocabularies.PowerStationsVocabularyFactory"
       />
   <utility
       name="docpool.elan.vocabularies.AlertingStatus"

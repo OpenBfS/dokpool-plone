@@ -41,13 +41,6 @@
             <td tal:content="structure widget/render"></td>
           </tr>
 
-          <tr tal:define="
-                widget python:view.widgets['EventLocation'];
-              ">
-            <td tal:content="widget/label"></td>
-            <td tal:content="structure widget/render"></td>
-          </tr>
-
           <tal:nogeo tal:replace="nothing">
             <tr tal:define="
                   widget python:view.widgets['EventCoordinates'];

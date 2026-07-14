@@ -181,20 +181,6 @@ def NetworksVocabularyFactory(context=None):
     )
 
 
-@provider(IVocabularyFactory)
-def PowerStationsVocabularyFactory(context=None):
-    esd = getDocumentPoolSite(context)
-    path = "/".join(esd.getPhysicalPath()) + "/contentconfig"
-    return StaticCatalogVocabulary(
-        {
-            "portal_type": "DPNuclearPowerStation",
-            "sort_on": "sortable_title",
-            "path": path,
-        },
-        title_template="{brain.Title}",
-    )
-
-
 allow_module("docpool.elan.vocabularies")
 # allow_class(ELANESDVocabulary)
 

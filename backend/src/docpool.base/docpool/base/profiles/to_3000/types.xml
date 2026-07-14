@@ -8,4 +8,7 @@
   <object meta_type="Dexterity FTI"
           name="DocTypeSubCategory"
   />
+  <object name="DPNuclearPowerStation"
+          remove="true"
+  />
 </object>

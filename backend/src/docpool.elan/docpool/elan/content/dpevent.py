@@ -90,14 +90,6 @@ class IDPEvent(IContentBase):
         defaultFactory=initializeTimeOfEvent,
     )
 
-    directives.write_permission(EventLocation="docpool.elan.ManageDPEvents")
-    directives.widget(EventLocation="plone.app.z3cform.widgets.select.SelectFieldWidget")
-    EventLocation = RelationChoice(
-        title=_("Event location"),
-        vocabulary="docpool.elan.vocabularies.PowerStations",
-        required=False,
-    )
-
     directives.write_permission(EventCoordinates="docpool.elan.ManageDPEvents")
     EventCoordinates = schema.Text(
         title=_("Event coordinates"),
