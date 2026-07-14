@@ -132,10 +132,22 @@ class ArchiveAndClose(BrowserView):
         archive = self._createArchive()
         archive_contentarea = archive.content
         logger.info("Archiving DPEvent %s to %s", self.context.title, archive.absolute_url())
-        contentarea = aq_get(self.context, "content")
-        contentarea_path = "/".join(contentarea.getPhysicalPath())
 
         # 3. Move or Copy related DPDocuments
+        self._archive_documents(archive_contentarea)
+
+        # 4. Move DPEvent into archive and redirect to it
+        archived_event = api.content.move(self.context, target=archive, safe_id=True)
+        archived_event.reindexObject()
+        # local roles were set when adding items to the archive but reindexing was deferred.
+        archive_contentarea.reindexObjectSecurity()
+        logger.info("Finished archiving DPEvent %s", archived_event.title)
+        api.portal.show_message(_("Scenario archived"), self.request)
+        return archived_event
+
+    def _archive_documents(self, archive_contentarea):
+        contentarea = aq_get(self.context, "content")
+        contentarea_path = "/".join(contentarea.getPhysicalPath())
         brains = self._getDocumentsForScenario(path=contentarea_path)
         total = len(brains)
         logger.info(
@@ -158,15 +170,6 @@ class ArchiveAndClose(BrowserView):
             if not index % 10:
                 logger.info("Archived %s of %s documents...", index, total)
                 transaction.savepoint(optimistic=True)
-
-        # 4. Move DPEvent into archive and redirect to it
-        archived_event = api.content.move(self.context, target=archive, safe_id=True)
-        archived_event.reindexObject()
-        # local roles were set when adding items to the archive but reindexing was deferred.
-        archive_contentarea.reindexObjectSecurity()
-        logger.info("Finished archiving DPEvent %s", archived_event.title)
-        api.portal.show_message(_("Scenario archived"), self.request)
-        return archived_event
 
     def _ensureTargetFolder(self, obj, target):
         """
@@ -368,30 +371,7 @@ class Snapshot(ArchiveAndClose):
         )
 
         # 2. Move or Copy related DPDocuments (previously done by purge)
-        contentarea = aq_get(self.context, "content")
-        contentarea_path = "/".join(contentarea.getPhysicalPath())
-        brains = self._getDocumentsForScenario(path=contentarea_path)
-        total = len(brains)
-        logger.info(
-            "Archiving %s items associated with DPEvent %s. This may take a while...",
-            total,
-            self.context.absolute_url(),
-        )
-        for index, brain in enumerate(brains, start=1):
-            obj = brain.getObject()
-            if self.context.UID() != IELANDocument(obj).scenario:
-                # If the object is not part of the current event, the index is wrong and we skip it
-                logger.info("Skipping %s since it is not part of the current event", obj.absolute_url())
-                continue
-            target_folder = self._ensureTargetFolder(obj, archive_contentarea)
-            if self.can_move(obj):
-                self._move_to_archive(target_folder, obj)
-            else:
-                self._copy_to_archive(target_folder, obj)
-
-            if not index % 10:
-                logger.info("Archived %s of %s documents...", index, total)
-                transaction.savepoint(optimistic=True)
+        self._archive_documents(archive_contentarea)
 
         # 3. Copy DPEvent into snapshot
         copied_event = api.content.copy(self.context, target=archive, safe_id=True)
