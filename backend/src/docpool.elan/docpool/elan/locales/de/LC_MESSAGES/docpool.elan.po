@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-07-14 09:07+0000\n"
+"POT-Creation-Date: 2026-07-14 09:08+0000\n"
 "PO-Revision-Date: 2026-02-18 14:20+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -312,11 +312,6 @@ msgstr "Routinebetrieb"
 #: docpool.elan/docpool/elan/browser/archive_event_form.py
 msgid "Scenario archived"
 msgstr "Ereignis archiviert"
-
-#: docpool.elan/docpool/elan/browser/dpevent.pt
-#: docpool.elan/docpool/elan/content/dpevent.py
-msgid "Sectorizing networks"
-msgstr "Sektorierung Netze"
 
 #: docpool.elan/docpool/elan/browser/dpevent.pt
 #: docpool.elan/docpool/elan/content/dpevent.py

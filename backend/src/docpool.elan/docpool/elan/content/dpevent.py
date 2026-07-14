@@ -17,8 +17,6 @@ from Products.CMFCore.utils import getToolByName
 from pygeoif import from_wkt
 from z3c.form.browser.radio import RadioFieldWidget
 from z3c.form.interfaces import IEditForm
-from z3c.relationfield.schema import RelationChoice
-from z3c.relationfield.schema import RelationList
 from zope import schema
 from zope.annotation.interfaces import IAnnotations
 from zope.component import adapter
@@ -138,13 +136,6 @@ class IDPEvent(IContentBase):
         value_type=schema.Choice(source="docpool.elan.vocabularies.SampleType"),
     )
 
-    directives.widget(SectorizingNetworks="z3c.form.browser.select.CollectionSelectFieldWidget")
-    SectorizingNetworks = RelationList(
-        title=_("Sectorizing networks"),
-        required=False,
-        value_type=RelationChoice(source="docpool.elan.vocabularies.Networks"),
-    )
-
     directives.omitted(IEditForm, "Journals")
     Journals = schema.List(
         title=_("Journals"),
@@ -259,9 +250,6 @@ def addLogEntry(obj):
     entry["Alerting note"] = obj.AlertingNote
     entry["Sectorizing sample types"] = ", ".join(
         obj.SectorizingSampleTypes if obj.SectorizingSampleTypes is not None else " "
-    )
-    entry["Sectorizing networks"] = ", ".join(
-        (n.to_object.title for n in obj.SectorizingNetworks) if obj.SectorizingNetworks is not None else " "
     )
     # Check if there are changes to prevent duplicate log entries.
     if changelog and entry == changelog[-1]:
