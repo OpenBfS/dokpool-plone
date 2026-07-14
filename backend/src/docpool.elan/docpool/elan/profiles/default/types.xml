@@ -15,9 +15,6 @@
   <object meta_type="Dexterity FTI"
           name="DPEvents"
   />
-  <object meta_type="Dexterity FTI"
-          name="DPNetwork"
-  />
 
   <object meta_type="Dexterity FTI"
           name="ELANInfos"

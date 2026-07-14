@@ -20,7 +20,6 @@ class TestEvent(unittest.TestCase):
         portal_types = api.portal.get_tool("portal_types")
         self.assertTrue(IDexterityFTI.providedBy(portal_types["DPEvent"]))
         self.assertTrue(IDexterityFTI.providedBy(portal_types["DPEvents"]))
-        self.assertTrue(IDexterityFTI.providedBy(portal_types["DPNetwork"]))
 
     def test_add_event(self):
         event = api.content.create(

@@ -92,10 +92,6 @@ msgstr ""
 msgid "Archiving Info purged!"
 msgstr ""
 
-#: docpool.elan/docpool/elan/content/dpnetwork.py
-msgid "Area coordinates"
-msgstr ""
-
 #: docpool.elan/docpool/elan/profiles/default/types/ELANInfos.xml
 msgid "Area for general information"
 msgstr ""
@@ -139,10 +135,6 @@ msgstr ""
 
 #: docpool.elan/docpool/elan/profiles/default/types/DPEvents.xml
 msgid "DP Events"
-msgstr ""
-
-#: docpool.elan/docpool/elan/profiles/default/types/DPNetwork.xml
-msgid "DP Network"
 msgstr ""
 
 #: docpool.elan/docpool/elan/profiles/default/registry/querystring.xml
@@ -199,7 +191,7 @@ msgstr ""
 
 #: docpool.elan/docpool/elan/profiles/default/types/DPEvent.xml
 #: docpool.elan/docpool/elan/profiles/default/types/DPEvents.xml
-#: docpool.elan/docpool/elan/profiles/default/types/DPNetwork.xml
+#: docpool.elan/docpool/elan/profiles/default/types/ELANArchive.xml
 msgid "Edit"
 msgstr ""
 
@@ -407,7 +399,7 @@ msgstr ""
 
 #: docpool.elan/docpool/elan/profiles/default/types/DPEvent.xml
 #: docpool.elan/docpool/elan/profiles/default/types/DPEvents.xml
-#: docpool.elan/docpool/elan/profiles/default/types/DPNetwork.xml
+#: docpool.elan/docpool/elan/profiles/default/types/ELANArchive.xml
 msgid "View"
 msgstr ""
 

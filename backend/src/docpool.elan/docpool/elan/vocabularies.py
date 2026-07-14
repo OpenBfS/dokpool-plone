@@ -3,11 +3,9 @@ from docpool.base.content.places import IPlaces
 from docpool.base.utils import getDocumentPoolSite
 from docpool.elan import DocpoolMessageFactory as _
 from plone import api
-from plone.app.vocabularies.catalog import StaticCatalogVocabulary
 from plone.base.utils import safe_bytes
 from Products.CMFCore.utils import getToolByName
 from zope.interface import implementer
-from zope.interface import provider
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
@@ -165,20 +163,6 @@ class SampleType:
 
 
 SampleTypeVocabularyFactory = SampleType()
-
-
-@provider(IVocabularyFactory)
-def NetworksVocabularyFactory(context=None):
-    esd = getDocumentPoolSite(context)
-    path = "/".join(esd.getPhysicalPath()) + "/contentconfig"
-    return StaticCatalogVocabulary(
-        {
-            "portal_type": "DPNetwork",
-            "sort_on": "sortable_title",
-            "path": path,
-        },
-        title_template="{brain.Title}",
-    )
 
 
 allow_module("docpool.elan.vocabularies")

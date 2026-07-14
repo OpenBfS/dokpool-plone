@@ -57,10 +57,6 @@
       id="docpool.elan.AddDPEvents"
       title="Docpool: Add DPEvents"
       />
-  <permission
-      id="docpool.elan.AddDPNetwork"
-      title="Docpool: Add DPNetwork"
-      />
 
   <permission
       id="docpool.elan.AddELANInfos"
@@ -123,10 +119,6 @@
   <utility
       name="docpool.elan.vocabularies.SampleType"
       component=".vocabularies.SampleTypeVocabularyFactory"
-      />
-  <utility
-      name="docpool.elan.vocabularies.Networks"
-      component=".vocabularies.NetworksVocabularyFactory"
       />
   <utility
       name="docpool.elan.vocabularies.AlertingStatus"

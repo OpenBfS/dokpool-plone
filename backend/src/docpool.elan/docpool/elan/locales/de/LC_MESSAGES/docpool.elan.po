@@ -88,10 +88,6 @@ msgstr "Archivieren"
 msgid "Archiving Info purged!"
 msgstr "Archivierungsinfos gelöscht!"
 
-#: docpool.elan/docpool/elan/content/dpnetwork.py
-msgid "Area coordinates"
-msgstr "Koordinaten"
-
 #: docpool.elan/docpool/elan/profiles/default/types/ELANInfos.xml
 msgid "Area for general information"
 msgstr "Bereich für allgemeine Informationen"
@@ -136,10 +132,6 @@ msgstr "Ereignis"
 #: docpool.elan/docpool/elan/profiles/default/types/DPEvents.xml
 msgid "DP Events"
 msgstr "Ereignisse"
-
-#: docpool.elan/docpool/elan/profiles/default/types/DPNetwork.xml
-msgid "DP Network"
-msgstr "Netz"
 
 #: docpool.elan/docpool/elan/profiles/default/registry/querystring.xml
 msgid "Date of last user action"
@@ -195,7 +187,7 @@ msgstr "Aktuelle Lage"
 
 #: docpool.elan/docpool/elan/profiles/default/types/DPEvent.xml
 #: docpool.elan/docpool/elan/profiles/default/types/DPEvents.xml
-#: docpool.elan/docpool/elan/profiles/default/types/DPNetwork.xml
+#: docpool.elan/docpool/elan/profiles/default/types/ELANArchive.xml
 msgid "Edit"
 msgstr ""
 
@@ -403,7 +395,7 @@ msgstr ""
 
 #: docpool.elan/docpool/elan/profiles/default/types/DPEvent.xml
 #: docpool.elan/docpool/elan/profiles/default/types/DPEvents.xml
-#: docpool.elan/docpool/elan/profiles/default/types/DPNetwork.xml
+#: docpool.elan/docpool/elan/profiles/default/types/ELANArchive.xml
 msgid "View"
 msgstr ""
 

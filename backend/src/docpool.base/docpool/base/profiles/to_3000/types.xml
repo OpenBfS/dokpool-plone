@@ -11,4 +11,7 @@
   <object name="DPNuclearPowerStation"
           remove="true"
   />
+  <object name="DPNetwork"
+          remove="true"
+  />
 </object>
