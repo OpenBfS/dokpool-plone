@@ -42,10 +42,27 @@
           <tal:icon replace="structure python:icons.tag('info-circle', tag_class='')" />
         </a>
       </div>
-      <div class="icon-column">
-        <a href="${scenario_url}/@@edit">
-          <tal:icon replace="structure python:icons.tag('pencil', tag_class='')" />
+      <div class="dropdown context-menu icon-column">
+        <a class="btn btn-secondary text-bg-secondary btn-sm px-1"
+           aria-expanded="false"
+           href="#"
+           role="button"
+           data-bs-toggle="dropdown"
+        >
+          ${structure:python:icons.tag('three-dots-vertical', tag_class='')}
         </a>
+        <ul class="dropdown-menu dropdown-menu-end pe-2 shadow">
+          <li>
+            <a class="dropdown-item d-flex gap-2 align-items-center"
+               href="${scenario_url}/@@edit"
+            >
+              ${structure:python:icons.tag('pencil', tag_class='')}
+              <tal:translate i18n:domain="plone"
+                             i18n:translate=""
+              >Edit</tal:translate>
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
   </li>

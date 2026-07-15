@@ -27,6 +27,7 @@
   <div class="nav-button event-switcher d-flex align-items-center justify-content-center border-end ${python: view.active}"
        aria-label="Event switcher"
        onclick="$('a#event-dropdown-load').click()"
+       data-bs-auto-close="outside"
        data-bs-toggle="dropdown"
   >
     <tal:icon tal:replace="structure python:icons.tag('chevron-down', tag_class='')" />
