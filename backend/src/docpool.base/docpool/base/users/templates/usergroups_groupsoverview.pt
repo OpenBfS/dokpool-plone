@@ -240,7 +240,7 @@
                                value="value"
                                tal:attributes="
                                  value group_info/groupid;
-                                 disabled python:is_manager and group_info['can_delete'] and default or 'disabled';
+                                 disabled python:default if group_info['can_delete'] else 'disabled';
                                "
                         />
                       </td>
