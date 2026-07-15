@@ -25,6 +25,7 @@ from plone.app.dexterity.textindexer.directives import searchable
 from plone.app.discussion.interfaces import IConversation
 from plone.app.textfield import RichText
 from plone.app.textfield import RichTextValue
+from plone.autoform import directives
 from plone.autoform.interfaces import WRITE_PERMISSIONS_KEY
 from plone.base.utils import safe_text
 from plone.dexterity.content import Container
@@ -78,6 +79,7 @@ class IAppSpecificWorkflow(Interface):
 class IDPDocument(IContentBase):
     """ """
 
+    directives.write_permission(docType="docpool.base.ChangeDocTypeForDPDocument")
     docType = schema.Choice(
         title=_("label_dpdocument_doctype", default="Document Type"),
         description=_("description_dpdocument_doctype", default=""),

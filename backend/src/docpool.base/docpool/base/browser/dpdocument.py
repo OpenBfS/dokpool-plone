@@ -242,6 +242,7 @@ class DPDocumentEditForm(EditForm):
 
         if not api.user.has_permission("Docpool: Change docType for DPDocument", obj=self.context):
             self.widgets["docType"].mode = "display"
+
         if IArchiving(self.context).is_archive:
             del self.widgets["IELANDocument.scenario"]
             self.fields["IELANDocument.scenario"].field.required = False
