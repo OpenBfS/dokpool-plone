@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-06-09 14:28+0000\n"
+"POT-Creation-Date: 2026-07-20 14:29+0000\n"
 "PO-Revision-Date: 2025-05-19 17:02+0200\n"
 "Last-Translator: Philip Bauer <bauer@starzel.de>\n"
 "Language-Team: BfS <elan@bfs.de>\n"
@@ -185,6 +185,10 @@ msgstr ""
 
 #: docpool.base/docpool/base/profiles/default/types/InfoDocument.xml
 msgid "General information (generic type)"
+msgstr ""
+
+#: docpool.base/docpool/base/profiles/default/actions.xml
+msgid "Global User Management"
 msgstr ""
 
 #: docpool.base/docpool/base/profiles/default/types/GroupFolder.xml

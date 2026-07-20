@@ -57,7 +57,7 @@
       <property name="description"
                 i18n:translate=""
       />
-      <property name="url_expr">string:${context/portal_url}/impressum?popup_load=1</property>
+      <property name="url_expr">string:${portal_url}/impressum?popup_load=1</property>
       <property name="link_target" />
       <property name="icon_expr" />
       <property name="available_expr" />
@@ -178,6 +178,21 @@
       <property name="icon_expr">string:plone-group</property>
       <property name="available_expr">context/@@is/admin_on_dokpool</property>
       <property name="permissions" />
+      <property name="visible">True</property>
+    </object>
+    <object meta_type="CMF Action"
+            name="globalusermanagement"
+            i18n:domain="docpool.base"
+    >
+      <property name="title"
+                i18n:translate=""
+      >Global User Management</property>
+      <property name="url_expr">string:${portal_url}/@@usergroup-userprefs</property>
+      <property name="icon_expr">string:plone-group</property>
+      <property name="available_expr" />
+      <property name="permissions">
+        <element value="Manage portal" />
+      </property>
       <property name="visible">True</property>
     </object>
     <object meta_type="CMF Action"
