@@ -41,7 +41,7 @@ class TestJournal:
         expect(page.locator("#listing-filters")).to_contain_text("0 Entries")
 
         page.get_by_role("link", name="admin").click()
-        page.get_by_role("link", name="User Management").click()
+        page.get_by_role("link", name="User Management", exact=True).click()
         assert page.url.endswith("/bund/@@usergroup-userprefs")
         page.get_by_role("link", name="Groups").click()
         page.get_by_role("link", name="Add New Group").click()
