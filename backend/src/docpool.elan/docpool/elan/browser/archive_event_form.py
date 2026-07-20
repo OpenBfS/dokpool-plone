@@ -1,6 +1,7 @@
 from Acquisition import aq_get
 from datetime import datetime
 from docpool.base.content.archiving import IArchiving
+from docpool.base.content.places import IPlaces
 from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
 from docpool.config.local.base import navSettings
 from docpool.config.local.elan import ARCHIVESTRUCTURE
@@ -29,9 +30,7 @@ class ArchiveAndClose(BrowserView):
         request = self.request
         form = self.request.form
 
-        contentarea = aq_get(self.context, "content")
-        contentarea_path = "/".join(contentarea.getPhysicalPath())
-        self.items = self._getDocumentsForScenario(path=contentarea_path)
+        self.items = self._getDocumentsForScenario(path=IPlaces(self.context).content_path)
         self.full_archiving_info = self.context.get_archiving_info()
         self.archiving_info = self.full_archiving_info[-1] if self.full_archiving_info else {}
 
@@ -130,7 +129,7 @@ class ArchiveAndClose(BrowserView):
 
         # 2. Create Archive
         archive = self._createArchive()
-        archive_contentarea = archive.content
+        archive_contentarea = IPlaces(archive).content
         logger.info("Archiving DPEvent %s to %s", self.context.title, archive.absolute_url())
 
         # 3. Move or Copy related DPDocuments
@@ -146,16 +145,13 @@ class ArchiveAndClose(BrowserView):
         return archived_event
 
     def _archive_documents(self, archive_contentarea):
-        contentarea = aq_get(self.context, "content")
-        contentarea_path = "/".join(contentarea.getPhysicalPath())
-        brains = self._getDocumentsForScenario(path=contentarea_path)
-        total = len(brains)
+        total = len(self.items)
         logger.info(
             "Archiving %s items associated with DPEvent %s. This may take a while...",
             total,
             self.context.absolute_url(),
         )
-        for index, brain in enumerate(brains, start=1):
+        for index, brain in enumerate(self.items, start=1):
             obj = brain.getObject()
             if self.context.UID() != IELANDocument(obj).scenario:
                 # If the object is not part of the current event, the index is wrong and we skip it
@@ -176,6 +172,7 @@ class ArchiveAndClose(BrowserView):
         Make sure that a personal or group folder with proper permissions
         exists for this document in the archive.
         """
+        content = IPlaces(self.context).content
         path = obj.getPhysicalPath()
 
         # 1. check whether this is a personal or a group document
@@ -184,15 +181,15 @@ class ArchiveAndClose(BrowserView):
         isMember = "Members" in path
         if isGroup:
             target = target.Groups
-            container = self.context.content.Groups
+            container = content.Groups
             foldertype = "GroupFolder"
         elif isMember:
             target = target.Members
-            container = self.context.content.Members
+            container = content.Members
             foldertype = "UserFolder"
         elif isTransfer:
             target = target.Transfers
-            container = self.context.content.Transfers
+            container = content.Transfers
             foldertype = "DPTransferFolder"
 
         # 2. check for which user / group
@@ -344,7 +341,7 @@ class ArchiveAndClose(BrowserView):
         arc.description = self.context.description
         # create the document folders
         createPloneObjects(arc, ARCHIVESTRUCTURE)
-        createPloneObjects(arc.content, TRANSFER_AREA)
+        createPloneObjects(IPlaces(arc).content, TRANSFER_AREA)
 
         navSettings(arc)
         return arc
