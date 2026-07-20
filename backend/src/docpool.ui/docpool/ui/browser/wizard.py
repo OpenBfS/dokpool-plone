@@ -3,6 +3,7 @@ from Acquisition import aq_get
 from docpool.base.browser.dpdocument import AddForm
 from docpool.base.config import FOLDER_TYPES
 from docpool.base.content.archiving import IArchiving
+from docpool.base.content.groupfolder import IGroupFolder
 from docpool.base.content.places import IPlaces
 from docpool.base.marker import IJournalContainerMarker
 from docpool.base.utils import getAllowedDocumentTypes
@@ -398,22 +399,27 @@ class DPDocumentWizard(ContextlessWizard):
         if "publish" not in initial.transitions:
             return []
 
-        container_title = container.title
+        group_folder = (
+            container
+            if IGroupFolder.providedBy(container)
+            else api.content.get_closest_ancestor(container, interface=IGroupFolder)
+        )
+        group_title = group_folder.title
         docpool_title = getDocumentPoolSite(container).title
         options = [
             {
                 "value": "private",
                 "title": _("Internal"),
                 "description": _(
-                    "For all users of '${app} ${docpool_title}'",
-                    mapping={"app": self.app.upper(), "docpool_title": docpool_title},
+                    "Only for member of '${container_title}'", mapping={"container_title": group_title}
                 ),
             },
             {
                 "value": "published",
                 "title": _("Published"),
                 "description": _(
-                    "Only for member of '${container_title}'", mapping={"container_title": container_title}
+                    "For all users of '${app} ${docpool_title}'",
+                    mapping={"app": self.app.upper(), "docpool_title": docpool_title},
                 ),
             },
         ]
