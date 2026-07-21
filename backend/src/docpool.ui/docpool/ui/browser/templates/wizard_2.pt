@@ -125,56 +125,52 @@
               </div>
             </div>
 
-            <hr />
+            <tal:advanced condition="context/@@is/admin">
 
-            <div class="accordion accordion-flush"
-                 id="advancedSettings"
-            >
-              <div class="accordion-item">
-                <h2 class="accordion-header">
-                  <button class="accordion-button collapsed"
-                          aria-controls="flush-collapseOne"
-                          aria-expanded="false"
-                          type="button"
-                          data-bs-target="#flush-collapseOne"
-                          data-bs-toggle="collapse"
-                          i18n:translate=""
-                  >
+              <hr />
+
+              <div class="accordion accordion-flush"
+                   id="advancedSettings"
+              >
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed"
+                            aria-controls="flush-collapseOne"
+                            aria-expanded="false"
+                            type="button"
+                            data-bs-target="#flush-collapseOne"
+                            data-bs-toggle="collapse"
+                            i18n:translate=""
+                    >
                 Advanced Settings
-                  </button>
-                </h2>
-                <div class="accordion-collapse collapse"
-                     id="flush-collapseOne"
-                     data-bs-parent="#advancedSettings"
-                >
-                  <div class="accordion-body">
-                    <tal:block tal:define="
-                                 widget python:view.get_widget('IExcludeFromNavigation.exclude_from_nav');
-                               "
-                               tal:condition="python: widget"
-                    >
-                      <tal:widget tal:replace="structure widget/@@ploneform-render-widget" />
-                    </tal:block>
+                    </button>
+                  </h2>
+                  <div class="accordion-collapse collapse"
+                       id="flush-collapseOne"
+                       data-bs-parent="#advancedSettings"
+                  >
+                    <div class="accordion-body">
+                      <tal:block tal:define="
+                                   widget python:view.get_widget('IExcludeFromNavigation.exclude_from_nav');
+                                 "
+                                 tal:condition="python: widget"
+                      >
+                        <tal:widget tal:replace="structure widget/@@ploneform-render-widget" />
+                      </tal:block>
 
-                    <tal:block tal:define="
-                                 widget python:view.get_widget('IDublinCore.effective');
-                               "
-                               tal:condition="python: widget"
-                    >
-                      <tal:widget tal:replace="structure widget/@@ploneform-render-widget" />
-                    </tal:block>
-                    <tal:block tal:define="
-                                 widget python:view.get_widget('IDublinCore.expires');
-                               "
-                               tal:condition="python: widget"
-                    >
-                      <tal:widget tal:replace="structure widget/@@ploneform-render-widget" />
-                    </tal:block>
+                      <tal:block tal:define="
+                                   widget python:view.get_widget('IDublinCore.effective');
+                                 "
+                                 tal:condition="python: widget"
+                      >
+                        <tal:widget tal:replace="structure widget/@@ploneform-render-widget" />
+                      </tal:block>
 
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </tal:advanced>
 
           </div>
         </div>
