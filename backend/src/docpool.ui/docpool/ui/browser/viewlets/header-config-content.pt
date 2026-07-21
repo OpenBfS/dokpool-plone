@@ -44,21 +44,5 @@
          i18n:translate=""
       >User Management</a>
     </li>
-    <li class="dropdown-item user-menu-action-item">
-      <tal:icon tal:replace="structure python:icons.tag('x-circle', tag_class='user-menu-row-icon')" />
-      <a class="user-menu-link"
-         href="${dp_url}/contentconfig/ticker/deleteTicker"
-         i18n:domain="docpool.elan"
-         i18n:translate=""
-      >Delete Ticker</a>
-    </li>
-    <li class="dropdown-item user-menu-action-item">
-      <tal:icon tal:replace="structure python:icons.tag('pencil-square', tag_class='user-menu-row-icon')" />
-      <a class="user-menu-link"
-         href="${dp_url}/contentconfig/ticker/edit"
-         i18n:domain="docpool.elan"
-         i18n:translate=""
-      >Edit Ticker</a>
-    </li>
   </ul>
 </div>
