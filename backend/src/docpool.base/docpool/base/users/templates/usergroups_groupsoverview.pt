@@ -240,7 +240,7 @@
                                value="value"
                                tal:attributes="
                                  value group_info/groupid;
-                                 disabled python:default if group_info['can_delete'] else 'disabled';
+                                 disabled python:default if (group_info['can_delete'] and not view.group_is_protected(group_info)) else 'disabled';
                                "
                         />
                       </td>
