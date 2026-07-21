@@ -35,6 +35,7 @@
     <div class="d-flex align-items-stretch gap-3"
          tal:define="
            scenario_url python: item['scenario'].absolute_url();
+           actions python: item['actions'];
          "
     >
       <div class="icon-column">
@@ -48,18 +49,19 @@
            href="#"
            role="button"
            data-bs-toggle="dropdown"
+           tal:condition="actions"
         >
           ${structure:python:icons.tag('three-dots-vertical', tag_class='')}
         </a>
         <ul class="dropdown-menu dropdown-menu-end pe-2 shadow">
-          <li>
+          <li tal:repeat="action actions">
             <a class="dropdown-item d-flex gap-2 align-items-center"
-               href="${scenario_url}/@@edit"
+               href="${action/url}"
             >
-              ${structure:python:icons.tag('pencil', tag_class='')}
+              ${structure:python:icons.tag(action['icon'], tag_class='')}
               <tal:translate i18n:domain="plone"
                              i18n:translate=""
-              >Edit</tal:translate>
+              >${action/text}</tal:translate>
             </a>
           </li>
         </ul>

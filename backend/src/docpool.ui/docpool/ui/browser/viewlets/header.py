@@ -9,6 +9,7 @@ from docpool.base.utils import is_in_dp_folder
 from docpool.elan.utils import get_scenario_for_current_user
 from docpool.elan.utils import getOpenScenarios
 from docpool.ui.browser.viewlets.footer import TimezoneTableMixin
+from docpool.ui.utils import can_view
 from importlib.metadata import distribution
 from plone import api
 from plone.app.layout.navigation.interfaces import INavtreeStrategy
@@ -207,6 +208,7 @@ class EventSwitcherDropdown(EventSwitcherMixin, BrowserView):
                     scenario=s,
                     selected=(uid == selected_uid),
                     last=False,
+                    actions=self._actions(s),
                 )
                 for uid, s in scenarios_by_uid.items()
                 if s.Status == status_term.value
@@ -215,6 +217,13 @@ class EventSwitcherDropdown(EventSwitcherMixin, BrowserView):
                 scenarios[-1]["last"] = True
                 self.scenarios.extend(scenarios)
         return super().__call__()
+
+    def _actions(self, scenario):
+        scenario_url = scenario.absolute_url()
+        actions = []
+        if can_view(scenario, "@@edit"):
+            actions.append(dict(url=f"{scenario_url}/@@edit", icon="pencil", text="Edit"))
+        return actions
 
 
 class SearchContextView(EventSwitcherMixin, BrowserView):

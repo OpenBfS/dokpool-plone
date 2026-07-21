@@ -1,3 +1,4 @@
+from AccessControl.unauthorized import Unauthorized
 from plone import api
 from plone.autoform.interfaces import WIDGETS_KEY
 from plone.dexterity.interfaces import IDexterityFTI
@@ -161,3 +162,12 @@ def prepare_came_from_link(request):
         # We only get @@listing-item so fix it here:
         return "/".join(came_from.split("/")[:-1])
     return
+
+
+def can_view(context, view):
+    try:
+        context.restrictedTraverse(view if view.startswith("@@") else f"@@{view}")
+    except Unauthorized:
+        return False
+    else:
+        return True
