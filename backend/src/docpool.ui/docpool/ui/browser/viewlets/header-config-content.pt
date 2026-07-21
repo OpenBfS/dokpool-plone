@@ -2,7 +2,14 @@
      tal:define="
        icons python:context.restrictedTraverse('@@iconresolver');
        dp_url context/@@dp_url;
+       _is nocall: context/@@is;
+       member context/@@plone_portal_state/member;
+       can_manage_events python: _is.admin_or_contentadmin() or (member and member.has_role('EventEditor', context));
+       can_manage_users python: _is.admin_on_dokpool();
+       can_manage_doctypes python: _is.admin_or_contentadmin();
+       show_menu python: any([can_manage_events, can_manage_users, can_manage_doctypes]);
      "
+     tal:condition="python: show_menu"
      i18n:domain="docpool.base"
 >
   <button class="btn btn-icon"
@@ -14,7 +21,9 @@
   </button>
 
   <ul class="dropdown-menu dropdown-menu-end menu-config-dropdown menu-utility-dropdown">
-    <li class="dropdown-item user-menu-action-item">
+    <li class="dropdown-item user-menu-action-item"
+        tal:condition="python: can_manage_events"
+    >
       <tal:icon tal:replace="structure python:icons.tag('pencil', tag_class='user-menu-row-icon')" />
       <a class="user-menu-link"
          href="${dp_url}/contentconfig/scen"
@@ -22,7 +31,9 @@
          i18n:translate=""
       >Edit Scenarios</a>
     </li>
-    <li class="dropdown-item user-menu-action-item">
+    <li class="dropdown-item user-menu-action-item"
+        tal:condition="python: can_manage_events"
+    >
       <tal:icon tal:replace="structure python:icons.tag('archive', tag_class='user-menu-row-icon')" />
       <a class="user-menu-link"
          href="${dp_url}/archive"
@@ -30,14 +41,18 @@
          i18n:translate=""
       >Edit Archives</a>
     </li>
-    <li class="dropdown-item user-menu-action-item">
+    <li class="dropdown-item user-menu-action-item"
+        tal:condition="python: can_manage_doctypes"
+    >
       <tal:icon tal:replace="structure python:icons.tag('diagram-3', tag_class='user-menu-row-icon')" />
       <a class="user-menu-link"
          href="${dp_url}/config/dtypes"
          i18n:translate=""
       >Eintragsarten</a>
     </li>
-    <li class="dropdown-item user-menu-action-item">
+    <li class="dropdown-item user-menu-action-item"
+        tal:condition="python: can_manage_users"
+    >
       <tal:icon tal:replace="structure python:icons.tag('people', tag_class='user-menu-row-icon')" />
       <a class="user-menu-link"
          href="${dp_url}/@@usergroup-userprefs"
