@@ -89,15 +89,15 @@ if not pdf2jpg.pdftocairo_path:
 
 @adapter(IFile, IObjectAddedEvent)
 def generate_preview_image_on_add(obj, event=None):
-    generate_preview_image(obj)
+    generate_preview_image(obj, event)
 
 
 @adapter(IFile, IObjectModifiedEvent)
 def generate_preview_image_on_modified(obj, event=None):
-    generate_preview_image(obj)
+    generate_preview_image(obj, event)
 
 
-def generate_preview_image(obj):
+def generate_preview_image(obj, event=None):
     """ """
     # Check if parent is DPDocument and the File has a file
     if obj.__parent__.portal_type not in ALLOWED_TYPES or not obj.file:
@@ -139,8 +139,20 @@ def generate_preview_image(obj):
         logger.debug("Keep existing previews of %s", obj.absolute_url())
         return
 
-    # Send blob-path to subprocess to generate preview image
+    # Handle copy&paste (transfer) and cut&paste (manually)
+    if IObjectAddedEvent.providedBy(event) and previews["last_updated"] and previews["relative_blob_path"]:
+        # Object was created but has previews
+        previews["relative_blob_path"] = relative_blob_path
+        previews["last_updated"] = datetime.datetime.now().timestamp()
+        logger.info("Keep existing previews for moved/copied %s", obj.absolute_url())
+        return
+
     blob_path = Path(fshelper.base_dir) / Path(relative_blob_path)
+    if not blob_path.exists():
+        logger.error("Could not generate preview for %s because path %s does not exists", obj.absolute_url(), blob_path)
+        return
+
+    # Send blob-path to subprocess to generate preview image
     data = pdf2jpg.convert(blob_path)
     mode = "scale"
     parameters = {"quality": QUALITY}
