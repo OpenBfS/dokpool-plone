@@ -76,8 +76,7 @@ class TestTransferFunctional(unittest.TestCase):
             docType="staff_note",
             local_behaviors=["testapp"],
         )
-        filename = Path(__file__).parent / "file.pdf"
-        with open(filename, "rb") as f:
+        with open(Path(__file__).parent / "file.pdf", "rb") as f:
             FILE_DATA = f.read()
         api.content.create(
             container=document,
