@@ -132,7 +132,7 @@ class ArchiveAndClose(BrowserView):
         """
 
         # 1. Disable scenario to prevent new data from being added for it
-        self.event.Status = "closed"
+        self.context.contentconfig.scen.subscribed_events.remove(self.event.UID())
         transaction.savepoint(optimistic=True)
 
         # 2. Create Archive
@@ -143,8 +143,9 @@ class ArchiveAndClose(BrowserView):
         # 3. Move or Copy related DPDocuments
         self._archive_documents(archive_contentarea)
 
-        # 4. Move DPEvent into archive and redirect to it
-        archived_event = api.content.move(self.event, target=archive, safe_id=True)
+        # 4. Copy DPEvent into archive and redirect to it
+        archived_event = api.content.copy(self.event, target=archive, safe_id=True)
+        archived_event.Status = "closed"
         archived_event.reindexObject()
         # local roles were set when adding items to the archive but reindexing was deferred.
         archive_contentarea.reindexObjectSecurity()
