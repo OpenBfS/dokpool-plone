@@ -130,27 +130,29 @@ class ArchiveAndClose(BrowserView):
         This can take a long time since associated DPDocuments can have many attechments
         and all need to be copied or moved and reindexed. This is why we make savepoints.
         """
-
-        # 1. Disable scenario to prevent new data from being added for it
         self.context.contentconfig.scen.subscribed_events.remove(self.event.UID())
         transaction.savepoint(optimistic=True)
 
-        # 2. Create Archive
         archive = self._createArchive()
-        archive_contentarea = IPlaces(archive).content
         logger.info("Archiving DPEvent %s to %s", self.event.title, archive.absolute_url())
 
-        # 3. Move or Copy related DPDocuments
+        archived_event = self._copy_event(archive)
+
+        logger.info("Finished archiving DPEvent %s", archived_event.title)
+        api.portal.show_message(_("Scenario archived"), self.request)
+        return archived_event
+
+    def _copy_event(self, archive):
+        archive_contentarea = IPlaces(archive).content
+
         self._archive_documents(archive_contentarea)
 
-        # 4. Copy DPEvent into archive and redirect to it
         archived_event = api.content.copy(self.event, target=archive, safe_id=True)
         archived_event.Status = "closed"
         archived_event.reindexObject()
+
         # local roles were set when adding items to the archive but reindexing was deferred.
         archive_contentarea.reindexObjectSecurity()
-        logger.info("Finished archiving DPEvent %s", archived_event.title)
-        api.portal.show_message(_("Scenario archived"), self.request)
         return archived_event
 
     def _archive_documents(self, archive_contentarea):
@@ -366,26 +368,10 @@ class Snapshot(ArchiveAndClose):
         * Create Archive for event but leave Event unchanged
         * Purge Event (move content to archive unless used by other apps or events)
         """
-
-        # 1. Create Archive
         archive = self._createArchive()
-        archive_contentarea = aq_get(archive, "content")
-        logger.info(
-            "Create snapshot of DPEvent %s in %s",
-            self.event.title,
-            archive.absolute_url(),
-        )
+        logger.info("Create snapshot of DPEvent %s in %s", self.event.title, archive.absolute_url())
 
-        # 2. Move or Copy related DPDocuments (previously done by purge)
-        self._archive_documents(archive_contentarea)
-
-        # 3. Copy DPEvent into snapshot
-        copied_event = api.content.copy(self.event, target=archive, safe_id=True)
-        copied_event.Status = "closed"
-        copied_event.reindexObject()
-
-        # local roles were set when adding items to the archive but reindexing was deferred.
-        archive_contentarea.reindexObjectSecurity()
+        copied_event = self._copy_event(archive)
 
         logger.info("Finished snapshot of DPEvent %s", self.event.title)
         api.portal.show_message(_("Created snapshot of event."), self.request)
