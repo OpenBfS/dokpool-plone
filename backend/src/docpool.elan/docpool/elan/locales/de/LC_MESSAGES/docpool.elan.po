@@ -1,9 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-#, fuzzy
 "POT-Creation-Date: 2026-07-22 13:57+0000\n"
-"PO-Revision-Date: 2026-07-22 16:05+0200\n"
+"PO-Revision-Date: 2026-07-22 16:06+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -77,7 +76,6 @@ msgid "Archives"
 msgstr "Archive"
 
 #: docpool.elan/docpool/elan/browser/i18ndummy.pt
-#: docpool.elan/docpool/elan/profiles/default/actions.xml
 msgid "Archiving"
 msgstr "Archivieren"
 
@@ -278,6 +276,10 @@ msgstr "Ort"
 msgid "Metadata"
 msgstr "Metadaten"
 
+#: docpool.elan/docpool/elan/browser/archive_event_form.py
+msgid "No event specified for archiving."
+msgstr "Kein Ereignis zum Archivieren ausgewählt."
+
 #: docpool.elan/docpool/elan/browser/dpevent.pt
 #: docpool.elan/docpool/elan/content/dpevent.py
 msgid "Operation mode"
@@ -330,7 +332,6 @@ msgid "Show Debug-Info"
 msgstr "Debug-Infos anzeigen"
 
 #: docpool.elan/docpool/elan/browser/i18ndummy.pt
-#: docpool.elan/docpool/elan/profiles/default/actions.xml
 msgid "Snapshot"
 msgstr "Teilarchivierung des aktuellen Standes"
 

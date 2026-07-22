@@ -80,7 +80,6 @@ msgid "Archives"
 msgstr ""
 
 #: docpool.elan/docpool/elan/browser/i18ndummy.pt
-#: docpool.elan/docpool/elan/profiles/default/actions.xml
 msgid "Archiving"
 msgstr ""
 
@@ -281,6 +280,10 @@ msgstr ""
 msgid "Metadata"
 msgstr ""
 
+#: docpool.elan/docpool/elan/browser/archive_event_form.py
+msgid "No event specified for archiving."
+msgstr ""
+
 #: docpool.elan/docpool/elan/browser/dpevent.pt
 #: docpool.elan/docpool/elan/content/dpevent.py
 msgid "Operation mode"
@@ -333,7 +336,6 @@ msgid "Show Debug-Info"
 msgstr ""
 
 #: docpool.elan/docpool/elan/browser/i18ndummy.pt
-#: docpool.elan/docpool/elan/profiles/default/actions.xml
 msgid "Snapshot"
 msgstr ""
 

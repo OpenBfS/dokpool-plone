@@ -39,7 +39,7 @@
 
   <browser:page
       name="archiveAndClose"
-      for="..interfaces.IDPEvent"
+      for="docpool.base.content.documentpool.IDocumentPool"
       class=".archive_event_form.ArchiveAndClose"
       template="archive_event_form.pt"
       permission="cmf.ModifyPortalContent"
@@ -47,7 +47,7 @@
 
   <browser:page
       name="snapshot"
-      for="..interfaces.IDPEvent"
+      for="docpool.base.content.documentpool.IDocumentPool"
       class=".archive_event_form.Snapshot"
       template="archive_event_form.pt"
       permission="cmf.ModifyPortalContent"

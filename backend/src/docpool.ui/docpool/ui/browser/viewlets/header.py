@@ -6,6 +6,7 @@ from docpool.base.config import BASE_APP
 from docpool.base.config import TRANSFERS_APP
 from docpool.base.content.places import IPlaces
 from docpool.base.utils import is_in_dp_folder
+from docpool.elan import DocpoolMessageFactory as EMF
 from docpool.elan.utils import get_scenario_for_current_user
 from docpool.elan.utils import getOpenScenarios
 from docpool.ui.browser.viewlets.footer import TimezoneTableMixin
@@ -223,6 +224,22 @@ class EventSwitcherDropdown(EventSwitcherMixin, BrowserView):
         actions = []
         if can_view(event, "@@edit"):
             actions.append(dict(url=f"{event_url}/@@edit", icon="pencil", text="Edit"))
+        if can_view(self.dp, "@@archiveAndClose"):
+            actions.append(
+                dict(
+                    url=f"{self.dp_url}/@@archiveAndClose?event={event.UID()}",
+                    icon="archive-fill",
+                    text=EMF("Archiving"),
+                )
+            )
+        if can_view(self.dp, "@@snapshot"):
+            actions.append(
+                dict(
+                    url=f"{self.dp_url}/@@snaphot?event={event.UID()}",
+                    icon="archive-fill",
+                    text=EMF("Snapshot"),
+                )
+            )
         return actions
 
 

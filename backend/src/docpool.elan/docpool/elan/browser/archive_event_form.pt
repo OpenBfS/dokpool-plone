@@ -26,6 +26,10 @@
                 "
           >
 
+            <input name="event"
+                   type="hidden"
+                   value="${view/event_uid}"
+            />
             <input name="form.uid"
                    type="hidden"
                    tal:attributes="
@@ -59,7 +63,7 @@
             <tal:archive tal:condition="python: view.__name__=='archiveAndClose'">
               <h1 i18n:translate="">Archive Event</h1>
               <p><span i18n:translate="subtitle_archive">Archive event</span>
-                <em>${python: context.title}</em>
+                <em>${python: view.event.title}</em>
                 <span i18n:translate="subtitle_with">with</span>
                 ${python: len(items)}
                 <span i18n:translate="subtitle_entries">entries</span>.</p>
@@ -76,7 +80,7 @@
             <tal:snapshot tal:condition="python: view.__name__=='snapshot'">
               <h1 i18n:translate="">Snapshot Event</h1>
               <p><span i18n:translate="subtitle_snapshot">Create a snapshot of the event</span>
-                <em>${python: context.title}</em>
+                <em>${python: view.event.title}</em>
                 <span i18n:translate="subtitle_with">with</span>
                 ${python: len(items)}
                 <span i18n:translate="subtitle_entries">entries</span>.</p>
