@@ -218,11 +218,11 @@ class EventSwitcherDropdown(EventSwitcherMixin, BrowserView):
                 self.scenarios.extend(scenarios)
         return super().__call__()
 
-    def _actions(self, scenario):
-        scenario_url = scenario.absolute_url()
+    def _actions(self, event):
+        event_url = event.absolute_url()
         actions = []
-        if can_view(scenario, "@@edit"):
-            actions.append(dict(url=f"{scenario_url}/@@edit", icon="pencil", text="Edit"))
+        if can_view(event, "@@edit"):
+            actions.append(dict(url=f"{event_url}/@@edit", icon="pencil", text="Edit"))
         return actions
 
 
