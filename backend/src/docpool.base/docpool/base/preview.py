@@ -141,7 +141,7 @@ def generate_preview_image(obj, event=None):
 
     # Handle copy&paste (transfer) and cut&paste (manually)
     if IObjectAddedEvent.providedBy(event) and previews["last_updated"] and previews["relative_blob_path"]:
-        # Object was created but has previews
+        # Object was created but already has previews since it was moved
         previews["relative_blob_path"] = relative_blob_path
         previews["last_updated"] = datetime.datetime.now().timestamp()
         logger.info("Keep existing previews for moved/copied %s", obj.absolute_url())
@@ -149,7 +149,9 @@ def generate_preview_image(obj, event=None):
 
     blob_path = Path(fshelper.base_dir) / Path(relative_blob_path)
     if not blob_path.exists():
-        logger.error("Could not generate preview for %s because path %s does not exists", obj.absolute_url(), blob_path)
+        logger.error(
+            "Could not generate preview for %s because path %s does not exists", obj.absolute_url(), blob_path
+        )
         return
 
     # Send blob-path to subprocess to generate preview image

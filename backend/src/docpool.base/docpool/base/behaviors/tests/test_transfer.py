@@ -4,7 +4,9 @@ from docpool.base.content.dpdocument import IDPDocument
 from docpool.base.content.dptransferfolder import IDPTransferFolder
 from docpool.base.content.places import IPlaces
 from docpool.base.testing import DOCPOOL_TRANSFER_FUNCTIONAL_TESTING
+from pathlib import Path
 from plone import api
+from plone.namedfile.file import NamedBlobFile
 from zope.component import getGlobalSiteManager
 
 import unittest
@@ -74,6 +76,17 @@ class TestTransferFunctional(unittest.TestCase):
             docType="staff_note",
             local_behaviors=["testapp"],
         )
+        filename = Path(__file__).parent / "file.pdf"
+        with open(filename, "rb") as f:
+            FILE_DATA = f.read()
+        api.content.create(
+            container=document,
+            type="File",
+            title="Some File",
+            description="bar",
+            file=NamedBlobFile(data=FILE_DATA, filename="file.pdf"),
+        )
+
         # Transfer to both targets, pass a (that doesn't have testapp) first on purpose. This is to make sure
         # removal of apps not present at the transfer target affects only the transfer to that target.
         ITransferable(document).transferToTargets([self.target_tf_a.UID(), self.target_tf_b.UID()])
