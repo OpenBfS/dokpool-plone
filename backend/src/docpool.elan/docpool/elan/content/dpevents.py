@@ -49,8 +49,12 @@ class DPEvents(Container):
         )
 
 
+def global_events_folder():
+    return api.portal.get()["contentconfig"]["events"]
+
+
 def global_events_by_uid():
     # This is used in an indexer, so we must not query events using the catalog, else index rebuilds might
     # break. But then, there's no reason to use the catalog in the first place.
-    dpevents = api.portal.get()["contentconfig"]["events"]
+    dpevents = global_events_folder()
     return {event.UID(): event for event in dpevents.contentValues({"portal_type": "DPEvent"})}

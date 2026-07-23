@@ -1,7 +1,9 @@
 from docpool.base.content.places import IPlaces
 from docpool.elan import DocpoolMessageFactory as _
+from docpool.elan.content.dpevents import global_events_folder
 from docpool.elan.content.dpevents import IDPEvents
 from docpool.elan.utils import set_scenario_for_current_user
+from docpool.ui.utils import can_view
 from plone import api
 from plone.autoform.form import AutoExtensibleForm
 from plone.dexterity.interfaces import IDexterityEditForm
@@ -36,6 +38,13 @@ class DPEventsView(BrowserView):
         if IPlaces(self.context).document_pool is None:
             return False
         return api.user.has_permission("docpool.elan.AddDPEvent", obj=self.context)
+
+    @property
+    def global_events_link(self):
+        if IPlaces(self.context).document_pool is None:
+            return
+        if can_view(ge := global_events_folder(), "@@view"):
+            return ge.absolute_url()
 
 
 @implementer(IDexterityEditForm)

@@ -75,6 +75,15 @@
              i18n:translate=""
           >Edit event subscriptions</a>
         </p>
+        <p tal:define="
+             global_events_link python: view.global_events_link;
+           "
+           tal:condition="global_events_link"
+        >
+          <a href="${global_events_link}"
+             i18n:translate=""
+          >Edit global events</a>
+        </p>
       </metal:content-core>
     </metal:content-core>
   </body>
