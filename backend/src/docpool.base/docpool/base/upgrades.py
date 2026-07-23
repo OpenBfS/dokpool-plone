@@ -867,23 +867,26 @@ def to_3000_global_events(context):
             dpevents.subscribed_events = PersistentList()
             log.info(f"Updated DPEvents at {dp.Title()}.")
 
+    events_by_title = {}
     for brain in api.content.find(portal_type="DPEvent"):
         event = brain.getObject()
-        if (source_dp := IPlaces(event).document_pool) is None:
+        if IPlaces(event).document_pool is None:
             continue
         if IArchiving(event).is_archive:
             continue
 
-        moved_id = f"{event.getId()}_{source_dp.getId()}"
-        moved_title = f"{event.Title()} ({source_dp.Title()})"
-        try:
-            moved = api.content.move(source=event, target=global_events, id=moved_id)
-        except Exception:
-            print(f"Failed moving {event}.")
-            raise
-        moved.setTitle(moved_title)
+        title = event.Title()
+        if (moved := events_by_title.get(title)) is None:
+            try:
+                moved = api.content.move(source=event, target=global_events)
+            except Exception:
+                print(f"Failed moving {event}.")
+                raise
+            else:
+                events_by_title[title] = moved
+                log.info(f"Moved {event} ({title}) to global events")
+        else:
+            log.info(f"Replace {event} ({title}) by existing global {moved}")
 
         source_dpevents = api.content.get_closest_ancestor(event, interface=IDPEvents)
-        source_dpevents.subscribed_events.append(event.UID())
-
-        log.info(f"Moved {moved_title} to global events")
+        source_dpevents.subscribed_events.append(moved.UID())
