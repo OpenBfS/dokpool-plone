@@ -5,6 +5,7 @@ from docpool.base.marker import IImportingMarker
 from docpool.elan import DocpoolMessageFactory as _
 from docpool.elan.config import ELAN_APP
 from logging import getLogger
+from OFS.interfaces import IObjectWillBeRemovedEvent
 from persistent.list import PersistentList
 from plone import api
 from plone.autoform import directives
@@ -271,6 +272,12 @@ def eventChanged(obj, event=None):
     if IImportingMarker.providedBy(getRequest()):
         return
     addLogEntry(obj)
+
+
+@adapter(IDPEvent, IObjectWillBeRemovedEvent)
+def check_delete_event(obj, event):
+    if obj.subscribed_docpools():
+        raise RuntimeError("Event cannot be deleted, still in use.")
 
 
 @adapter(IDPEvent, IObjectRemovedEvent)
