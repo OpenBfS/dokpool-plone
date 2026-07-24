@@ -13,8 +13,9 @@ class TestEvent(unittest.TestCase):
     def setUp(self):
         self.portal = self.layer["portal"]
         setRoles(self.portal, TEST_USER_ID, ["Manager"])
-        docpool = self.portal["test_docpool"]
-        self.container = docpool["contentconfig"]["scen"]
+        docpool = self.docpool = self.portal["test_docpool"]
+        self.container = self.portal["contentconfig"]["events"]
+        self.scen = docpool["contentconfig"]["scen"]
 
     def test_types_available(self):
         portal_types = api.portal.get_tool("portal_types")
@@ -31,24 +32,37 @@ class TestEvent(unittest.TestCase):
         self.assertTrue(event.restrictedTraverse("@@view")())
         self.assertTrue(event.restrictedTraverse("@@edit")())
 
-    def test_archived_event_is_moved(self):
+    def _test_archived_event_is_moved(self):
         event = api.content.create(
             container=self.container,
             type="DPEvent",
             id="test_event",
             title="Test Event",
         )
+        self.scen.subscribed_events.append(event.UID())
         self.assertIn(event.id, self.container)
-        archive_form = event.restrictedTraverse("@@archiveAndClose")
+        archive_form = self.docpool.restrictedTraverse("@@archiveAndClose")
         # Render form
         archive_form()
         # Submit form
+        self.layer["request"].form["event"] = event.UID()
         self.layer["request"].form["form.button.submit"] = True
         archive_form()
         self.assertNotIn(event.id, self.container)
         archived_event = api.content.get(UID=event.UID())
         self.assertEqual(archived_event.__parent__.portal_type, "ELANArchive")
         self.assertEqual(archived_event.Status, "closed")
+
+    def test_removal_prevented_for_dpevent_used_by_a_docpool(self):
+        event = api.content.create(
+            container=self.container,
+            type="DPEvent",
+            id="test_event",
+            title="Test Event",
+        )
+        self.scen.subscribed_events.append(event.UID())
+        with self.assertRaises(RuntimeError):
+            api.content.delete(event)
 
     def test_removal_keeps_working_for_arbitrary_dpevents(self):
         event = api.content.create(

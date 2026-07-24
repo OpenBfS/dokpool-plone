@@ -193,29 +193,38 @@ class TestUIFeatures(unittest.TestCase):
         self.assertEqual(len(uids), 1)
 
     def test_search_scopes_with_current_all_events_and_archive_documents(self):
+        events_container = self.portal["contentconfig"]["events"]
         scen_container = self.docpool["contentconfig"]["scen"]
 
         # Event creation/archiving needs manager
         logout()
         login(self.portal, SITE_OWNER_NAME)
         current_event = api.content.create(
-            container=scen_container,
+            container=events_container,
             type="DPEvent",
             id="current_scope_event",
             title="Current Scope Event",
         )
+        current_event.reindexObject()
         all_events_event = api.content.create(
-            container=scen_container,
+            container=events_container,
             type="DPEvent",
             id="all_events_scope_event",
             title="All Events Scope Event",
         )
+        all_events_event.reindexObject()
         archive_event = api.content.create(
-            container=scen_container,
+            container=events_container,
             type="DPEvent",
             id="archive_scope_event",
             title="Archive Scope Event",
         )
+        archive_event.reindexObject()
+        scen_container.subscribed_events.extend((
+            current_event.UID(),
+            all_events_event.UID(),
+            archive_event.UID(),
+        ))
         logout()
         login(self.portal, "user1")
 
@@ -252,8 +261,9 @@ class TestUIFeatures(unittest.TestCase):
 
         logout()
         login(self.portal, SITE_OWNER_NAME)
-        archive_form = archive_event.restrictedTraverse("@@archiveAndClose")
+        archive_form = self.docpool.restrictedTraverse("@@archiveAndClose")
         archive_form()
+        self.request.form["event"] = archive_event.UID()
         self.request.form["form.button.submit"] = True
         archive_form()
         logout()
