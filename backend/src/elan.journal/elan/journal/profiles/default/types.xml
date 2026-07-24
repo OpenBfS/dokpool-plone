@@ -3,6 +3,10 @@
         name="portal_types"
 >
   <object meta_type="Dexterity FTI"
+          name="GroupFolder"
+  />
+
+  <object meta_type="Dexterity FTI"
           name="Journal"
   />
 </object>

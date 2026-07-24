@@ -26,7 +26,7 @@ class ViewletTestCase(unittest.TestCase):
         alsoProvides(self.request, IBrowserLayer)
 
         docpool = self.portal["test_docpool"]
-        self.container = docpool["contentconfig"]["scen"]["routinemode"]
+        self.container = docpool["content"]["Groups"]["test_docpool_Members"]
         with api.env.adopt_roles(["Manager"]):
             self.journal = api.content.create(self.container, "Journal", "journal")
 

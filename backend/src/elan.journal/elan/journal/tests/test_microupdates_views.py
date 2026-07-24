@@ -17,7 +17,7 @@ class BaseJournalEntryViewTestCase(unittest.TestCase):
         self.request = self.layer["request"]
         alsoProvides(self.request, IBrowserLayer)
         docpool = self.portal["test_docpool"]
-        self.container = docpool["contentconfig"]["scen"]["routinemode"]
+        self.container = docpool["content"]["Groups"]["test_docpool_Members"]
         with api.env.adopt_roles(["Manager"]):
             self.journal = api.content.create(self.container, "Journal", "journal")
         self.view = api.content.get_view("base-journalentry", self.journal, self.request)
@@ -64,7 +64,7 @@ class AddJournalEtnryViewTestCase(unittest.TestCase):
         self.request = self.layer["request"]
         alsoProvides(self.request, IBrowserLayer)
         docpool = self.portal["test_docpool"]
-        self.container = docpool["contentconfig"]["scen"]["routinemode"]
+        self.container = docpool["content"]["Groups"]["test_docpool_Members"]
         with api.env.adopt_roles(["Manager"]):
             self.journal = api.content.create(self.container, "Journal", "journal")
 
@@ -78,7 +78,7 @@ class AddJournalEtnryViewTestCase(unittest.TestCase):
         # redirection will happen
         self.assertEqual(
             self.request.RESPONSE.getHeader("location"),
-            "http://nohost/plone/test_docpool/contentconfig/scen/routinemode/journal/update",
+            "http://nohost/plone/test_docpool/content/Groups/test_docpool_Members/journal/update",
         )
 
     def test_add_journalentry(self):
@@ -93,7 +93,7 @@ class AddJournalEtnryViewTestCase(unittest.TestCase):
         # redirection will happen
         self.assertEqual(
             self.request.RESPONSE.getHeader("location"),
-            "http://nohost/plone/test_docpool/contentconfig/scen/routinemode/journal/update",
+            "http://nohost/plone/test_docpool/content/Groups/test_docpool_Members/journal/update",
         )
 
 
@@ -105,7 +105,7 @@ class EditJournalEntryViewTestCase(unittest.TestCase):
         self.request = self.layer["request"]
         alsoProvides(self.request, IBrowserLayer)
         docpool = self.portal["test_docpool"]
-        self.container = docpool["contentconfig"]["scen"]["routinemode"]
+        self.container = docpool["content"]["Groups"]["test_docpool_Members"]
         with api.env.adopt_roles(["Manager"]):
             self.journal = api.content.create(self.container, "Journal", "journal")
         adapter = IJournalEntryContainer(self.journal)
@@ -129,7 +129,7 @@ class EditJournalEntryViewTestCase(unittest.TestCase):
         # redirection will happen
         self.assertEqual(
             self.request.RESPONSE.getHeader("location"),
-            "http://nohost/plone/test_docpool/contentconfig/scen/routinemode/journal/update",
+            "http://nohost/plone/test_docpool/content/Groups/test_docpool_Members/journal/update",
         )
 
 
@@ -141,7 +141,7 @@ class DeleteJournalEntryViewTestCase(unittest.TestCase):
         self.request = self.layer["request"]
         alsoProvides(self.request, IBrowserLayer)
         docpool = self.portal["test_docpool"]
-        self.container = docpool["contentconfig"]["scen"]["routinemode"]
+        self.container = docpool["content"]["Groups"]["test_docpool_Members"]
         with api.env.adopt_roles(["Manager"]):
             self.journal = api.content.create(self.container, "Journal", "journal")
         adapter = IJournalEntryContainer(self.journal)
@@ -163,5 +163,5 @@ class DeleteJournalEntryViewTestCase(unittest.TestCase):
         # redirection will happen
         self.assertEqual(
             self.request.RESPONSE.getHeader("location"),
-            "http://nohost/plone/test_docpool/contentconfig/scen/routinemode/journal/update",
+            "http://nohost/plone/test_docpool/content/Groups/test_docpool_Members/journal/update",
         )
