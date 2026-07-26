@@ -276,6 +276,8 @@ def eventChanged(obj, event=None):
 
 @adapter(IDPEvent, IObjectWillBeRemovedEvent)
 def check_delete_event(obj, event):
+    if IPloneSiteRoot.providedBy(event.object):
+        return
     if obj.subscribed_docpools():
         raise RuntimeError("Event cannot be deleted, still in use.")
 
