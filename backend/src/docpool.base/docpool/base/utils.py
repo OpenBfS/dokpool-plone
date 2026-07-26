@@ -83,15 +83,17 @@ def getAllowedDocumentTypes(obj):
     Otherwise, take the union of the allowed documents for each of the user's groups.
 
     """
-    content_area = IPlaces(obj).content
-    types_by_group = {group["id"]: group["etypes"] for group in getGroupsForCurrentUser(content_area)}
+    if (content_area := IPlaces(obj).content) is not None:
+        types_by_group = {group["id"]: group["etypes"] for group in getGroupsForCurrentUser(content_area)}
 
-    try:
-        folder = obj.myGroupFolder()
-    except AttributeError:
-        tids = list(set().union(*types_by_group.values()))
+        try:
+            folder = obj.myGroupFolder()
+        except AttributeError:
+            tids = list(set().union(*types_by_group.values()))
+        else:
+            tids = types_by_group.get(folder.id, [])
     else:
-        tids = types_by_group.get(folder.id, [])
+        tids = ()
 
     esd = getDocumentPoolSite(obj)
     res = api.content.find(
