@@ -288,6 +288,8 @@ def eventRemoved(obj, event=None):
     Make sure the routinemode event cannot be removed unless the whole docpool
     or the whole Plonesite is being deleted.
     """
+    if getattr(obj, "__ALLOW_DELETE_DURING_UPGRADE_STEP__", False):
+        return
     if IPloneSiteRoot.providedBy(event.object):
         return
     if obj.id == "routinemode":

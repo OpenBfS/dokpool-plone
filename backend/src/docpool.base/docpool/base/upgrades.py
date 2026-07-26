@@ -867,7 +867,7 @@ def to_3000_global_events(context):
             dpevents.subscribed_events = PersistentList()
             log.info(f"Updated DPEvents at {dp.Title()}.")
 
-    events_by_title = {}
+    events_by_title = {e.Title(): e for e in global_events.contentValues({"portal_type": "DPEvent"})}
     for brain in api.content.find(portal_type="DPEvent"):
         event = brain.getObject()
         if IPlaces(event).document_pool is None:
@@ -875,6 +875,7 @@ def to_3000_global_events(context):
         if IArchiving(event).is_archive:
             continue
 
+        source_dpevents = api.content.get_closest_ancestor(event, interface=IDPEvents)
         title = event.Title()
         if (moved := events_by_title.get(title)) is None:
             try:
@@ -883,10 +884,14 @@ def to_3000_global_events(context):
                 print(f"Failed moving {event}.")
                 raise
             else:
+                source_dpevents.subscribed_events.append(moved.UID())
                 events_by_title[title] = moved
                 log.info(f"Moved {event} ({title}) to global events")
         else:
+            source_dpevents.subscribed_events.append(moved_uid := moved.UID())
+            for doc_brain in api.content.find(portal_type="DPDocument", scenario=event.UID()):
+                (doc := doc_brain.getObject()).scenario = moved_uid
+                doc.reindexObject()
+            event.__ALLOW_DELETE_DURING_UPGRADE_STEP__ = True
+            api.content.delete(obj=event)
             log.info(f"Replace {event} ({title}) by existing global {moved}")
-
-        source_dpevents = api.content.get_closest_ancestor(event, interface=IDPEvents)
-        source_dpevents.subscribed_events.append(moved.UID())
