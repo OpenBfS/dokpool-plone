@@ -6,6 +6,7 @@ from docpool.base.content.dpdocument import IAppSpecificSerializeToJsonDPDocumen
 from docpool.base.content.dpdocument import IDPDocument
 from docpool.base.content.places import IPlaces
 from docpool.base.interfaces import IDocumentExtension
+from docpool.base.marker import IImportingMarker
 from docpool.base.utils import app_only_decorator
 from docpool.base.utils import getDocumentPoolSite
 from docpool.elan import DocpoolMessageFactory as _
@@ -21,6 +22,7 @@ from Products.DCWorkflow.interfaces import IAfterTransitionEvent
 from z3c.form.browser.radio import RadioFieldWidget
 from zope import schema
 from zope.component import adapter
+from zope.globalrequest import getRequest
 from zope.interface import implementer
 from zope.interface import named
 from zope.interface import provider
@@ -111,6 +113,9 @@ class ELANDocument(FlexibleView):
             context.scenario = value
 
     def scenarioIndex(self):
+        if IImportingMarker.providedBy(getRequest()):
+            return [self.scenario]
+
         # We can not use the catalog (and therefore, plone.api.content.get()) here since
         # this is used in a indexer and during clear & rebuild no Events would be found.
         # We filter for events subscribed by the document's docpool but then,
