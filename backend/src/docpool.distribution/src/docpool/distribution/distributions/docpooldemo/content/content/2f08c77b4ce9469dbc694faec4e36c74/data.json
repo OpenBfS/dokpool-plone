@@ -1,5 +1,5 @@
 {
-  "@id": "/brandenburg/contentconfig/scen/routinemode",
+  "@id": "/contentconfig/events/emergency",
   "@type": "DPEvent",
   "AlertingNote": null,
   "AlertingStatus": "none",
@@ -15,12 +15,12 @@
   "OperationMode": "routine",
   "SectorizingSampleTypes": null,
   "Status": "active",
-  "TimeOfEvent": "2025-09-10T14:49:56",
-  "UID": "0bc5af2142554247a0d2529a763c0894",
+  "TimeOfEvent": "2026-07-27T22:24:05",
+  "UID": "2f08c77b4ce9469dbc694faec4e36c74",
   "allow_discussion": null,
-  "changelog": "[{\"Date\": \"10.09.2025 15:24\", \"User\": \"admin\", \"Status\": \"active\", \"EventType\": null, \"Operation mode\": null, \"Alerting status\": null, \"Alerting note\": null, \"Sectorizing sample types\": \" \"}, {\"Date\": \"10.09.2025 15:24\", \"User\": \"admin\", \"Status\": \"active\", \"EventType\": \"Emergency\", \"Operation mode\": \"Routine mode\", \"Alerting status\": \"keine\", \"Alerting note\": null, \"Sectorizing sample types\": \" \"}]",
+  "changelog": "[{\"Date\": \"27.07.2026 22:24\", \"User\": \"admin\", \"Status\": \"active\", \"EventType\": \"Emergency\", \"Operation mode\": \"Routine mode\", \"Alerting status\": \"keine\", \"Alerting note\": null, \"Sectorizing sample types\": \" \"}]",
   "contributors": [],
-  "created": "2025-09-10T13:24:47+00:00",
+  "created": "2026-07-27T20:24:21+00:00",
   "created_by": [
     "",
     "admin",
@@ -35,21 +35,21 @@
   "expires": null,
   "exportimport.constrains": {},
   "exportimport.conversation": [],
-  "id": "routinemode",
+  "id": "emergency",
   "is_folderish": true,
   "language": "##DEFAULT##",
   "layout": "view",
   "lock": {},
-  "mdate": "2025-09-10T15:24:47",
-  "modified": "2025-09-10T13:24:47+00:00",
+  "mdate": "2026-07-27T22:24:21",
+  "modified": "2026-07-27T20:24:21+00:00",
   "modified_by": null,
   "review_state": "published",
   "rights": "",
   "subjects": [],
-  "title": "Normalfall",
+  "title": "Notfall",
   "type_title": "DP Event",
   "version": "current",
-  "wdate": "2025-09-10T15:24:47+00:00",
+  "wdate": "2026-07-27T22:24:21",
   "workflow_history": {
     "dp_event_workflow": [
       {
@@ -57,7 +57,7 @@
         "actor": "admin",
         "comments": "",
         "review_state": "published",
-        "time": "2025-09-10T13:24:47+00:00"
+        "time": "2026-07-27T20:24:21+00:00"
       }
     ]
   },

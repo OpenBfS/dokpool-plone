@@ -1,5 +1,5 @@
 {
-  "@id": "/berlin/contentconfig/scen/uebung-imis-2025",
+  "@id": "/contentconfig/events/uebung-imis-2025",
   "@type": "DPEvent",
   "AlertingNote": null,
   "AlertingStatus": "none",
@@ -16,7 +16,7 @@
   "TimeOfEvent": "2025-09-17T15:36:00",
   "UID": "0bb1834242c24743b5aa1a1a8852c40d",
   "allow_discussion": null,
-  "changelog": "[{\"Date\": \"17.09.2025 15:40\", \"User\": \"User BE (Berlin)\", \"Status\": \"active\", \"EventType\": \"Exercise\", \"Operation mode\": \"Routine mode\", \"Alerting status\": \"keine\", \"Alerting note\": null, \"Sectorizing sample types\": \"\"}]",
+  "changelog": "[{\"Date\": \"17.09.2025 15:40\", \"User\": \"User BE (Berlin)\", \"Status\": \"active\", \"EventType\": \"Exercise\", \"Operation mode\": \"Routine mode\", \"Alerting status\": \"keine\", \"Alerting note\": null, \"Sectorizing sample types\": \"\"}, {\"Date\": \"27.07.2026 22:25\", \"User\": \"admin\", \"Status\": \"active\", \"EventType\": \"Exercise\", \"Operation mode\": \"Routine mode\", \"Alerting status\": \"keine\", \"Alerting note\": null, \"Sectorizing sample types\": \"\"}]",
   "contributors": [],
   "created": "2025-09-17T13:40:38+00:00",
   "created_by": [
@@ -39,7 +39,7 @@
   "layout": "view",
   "lock": {},
   "mdate": "2025-09-17T15:40:38",
-  "modified": "2025-09-17T13:40:38+00:00",
+  "modified": "2026-07-27T20:25:17+00:00",
   "modified_by": null,
   "review_state": "published",
   "rights": null,

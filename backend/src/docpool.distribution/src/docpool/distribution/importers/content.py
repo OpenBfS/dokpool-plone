@@ -32,6 +32,7 @@ SIMPLE_SETTER_FIELDS = {
     "DocType": ["automaticTransferTargets"],
     "DPDocument": ["scenario", "OperationMode", "Origins"],
     "DPEvent": ["Status"],
+    "DPEvents": ["subscribed_events"],
     "DPTransferFolder": ["sendingESD"],
     "Folder": ["nextPreviousEnabled"],
     "GroupFolder": ["allowedDocTypes"],
