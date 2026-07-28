@@ -6,8 +6,8 @@
       xml:lang="en"
       i18n:domain="docpool.ui"
 >
-<metal:empty_title fill-slot="content-title"/>
-<metal:content fill-slot="content-core"
+  <metal:empty_title fill-slot="content-title" />
+  <metal:content fill-slot="content-core"
                  tal:define="
                    items python: view.items;
                    folder_uids python: view.folder_uids;
