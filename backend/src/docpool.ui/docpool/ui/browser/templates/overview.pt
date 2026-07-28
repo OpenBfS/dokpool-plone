@@ -27,7 +27,7 @@
             >
               <p class="mb-0"
                  tal:content="python:event['placeholder']"
-              >Bitte w&auml;hlen Sie ein Szenario aus, um die Ereignisdaten anzuzeigen.</p>
+              >Please select a scenario to view the event data.</p>
             </div>
             <div class="tile-map-wrap"
                  tal:condition="python:event['has_event']"

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-07-28 12:49+0000\n"
+"POT-Creation-Date: 2026-07-28 10:31+0000\n"
 "PO-Revision-Date: 2025-11-24 12:24+0100\n"
 "Last-Translator: Thomas Lotze <lotze@starzel.de>\n"
 "Language-Team: German <translation-team-de@lists.sourceforge.net>\n"
@@ -40,7 +40,7 @@ msgstr ""
 
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
 msgid "Add entry"
-msgstr "Neuen Eintrag anlegen"
+msgstr ""
 
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
 msgid "Add folder"
@@ -107,11 +107,11 @@ msgstr ""
 
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
 msgid "Created since"
-msgstr "Erstellt von"
+msgstr ""
 
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
 msgid "Created until"
-msgstr "Erstellt bis"
+msgstr ""
 
 #: docpool.ui/docpool/ui/browser/dpdocument.py
 msgid "Delete"
@@ -154,7 +154,7 @@ msgstr "Für alle Anwender von '${app} ${docpool_title}' sichtbar"
 
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
 msgid "Group"
-msgstr "Gruppe"
+msgstr ""
 
 #: docpool.ui/docpool/ui/browser/listing.py
 #: docpool.ui/docpool/ui/browser/wizard.py
@@ -191,6 +191,10 @@ msgstr "Neueste zuerst"
 msgid "Next"
 msgstr "Weiter"
 
+#: docpool.ui/docpool/ui/browser/overview.py
+msgid "No scenario selected"
+msgstr ""
+
 #: docpool.ui/docpool/ui/browser/listing.py
 msgid "Oldest first"
 msgstr "Älteste zuerst"
@@ -216,6 +220,10 @@ msgstr "Bitte &uuml;berpr&uuml;fen Sie die gew&uuml;nschte Sichtbarkeit des Eint
 msgid "Please select a container first"
 msgstr "Bitte wählen Sie zunächst einen Ablageort"
 
+#: docpool.ui/docpool/ui/browser/overview.py
+msgid "Please select a scenario to view the event data."
+msgstr ""
+
 #: docpool.ui/docpool/ui/browser/templates/wizard_1.pt
 msgid "Please select the group-folder in which the entry should be created. Then select the entrytype."
 msgstr "Bitte w&auml;hlen Sie zun&auml;chst den Gruppenordner, in dem der neue Eintrag abgelegt werden soll. W&auml;hlen Sie danach die Eintragsart aus."
@@ -228,7 +236,7 @@ msgstr "Bitte definieren Sie den Inhalt des Eintrags."
 #: docpool.ui/docpool/ui/browser/templates/listing-item.pt
 #: docpool.ui/docpool/ui/browser/templates/listing-other.pt
 msgid "Print"
-msgstr "Drucken"
+msgstr ""
 
 #: docpool.ui/docpool/ui/browser/listing.py
 #: docpool.ui/docpool/ui/browser/wizard.py
@@ -273,7 +281,7 @@ msgstr ""
 
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
 msgid "Search on this page…"
-msgstr "Auf dieser Seite suchen…"
+msgstr ""
 
 #: docpool.ui/docpool/ui/browser/templates/wizard_1.pt
 msgid "Select a container"
@@ -281,11 +289,11 @@ msgstr "Wählen Sie einen Ablageort"
 
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
 msgid "Sorting"
-msgstr "Sortierung"
+msgstr ""
 
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
 msgid "Time [ME(S)Z]"
-msgstr "Zeit [ME(S)Z]"
+msgstr ""
 
 #: docpool.ui/docpool/ui/browser/templates/wizard_3.pt
 msgid "Title added"
@@ -321,7 +329,7 @@ msgstr ""
 
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
 msgid "for all events"
-msgstr "für alle Ereignisse"
+msgstr ""
 
 #. Default: "Cancel"
 #: docpool.ui/docpool/ui/browser/dpdocument.py
@@ -330,7 +338,27 @@ msgstr "Abbrechen"
 
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
 msgid "more entries for other events"
-msgstr "weitere für andere Ereignisse"
+msgstr ""
+
+#. Default: "Latest situation information"
+#: docpool.ui/docpool/ui/browser/overview.py
+msgid "overview_tile_latest_situation"
+msgstr ""
+
+#. Default: "Measurement results and strategies"
+#: docpool.ui/docpool/ui/browser/overview.py
+msgid "overview_tile_measurements"
+msgstr ""
+
+#. Default: "Notifications and plant information"
+#: docpool.ui/docpool/ui/browser/overview.py
+msgid "overview_tile_notifications"
+msgstr ""
+
+#. Default: "RODOS forecasts"
+#: docpool.ui/docpool/ui/browser/overview.py
+msgid "overview_tile_rodos_forecasts"
+msgstr ""
 
 #. Default: "There was an error processing the form!"
 #: docpool.ui/docpool/ui/browser/wizard.py

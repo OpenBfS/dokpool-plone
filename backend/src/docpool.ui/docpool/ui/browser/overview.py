@@ -5,6 +5,7 @@ from docpool.ui.browser.listing import Listing
 from plone import api
 from plone.base.utils import safe_text
 from Products.Five.browser import BrowserView
+from docpool.ui import _
 
 
 OVERVIEW_TILE_LIMIT = 2
@@ -25,8 +26,8 @@ class Overview(BrowserView):
         if event is None:
             return {
                 "has_event": False,
-                "headline": "Kein Szenario ausgewählt",
-                "placeholder": "Bitte wählen Sie ein Szenario aus, um die Ereignisdaten anzuzeigen.",
+                "headline": _("No scenario selected"),
+                "placeholder": _("Please select a scenario to view the event data."),
             }
 
         empty_value = "-"
@@ -98,7 +99,7 @@ class Overview(BrowserView):
 
         title_value = getattr(event, "title", None)
         title = safe_text(title_value).strip() if title_value is not None else empty_value
-        title = location_static or title or empty_value
+        headline = location_static or title or empty_value
 
         event_time_and_duration_values = [
             value for value in (event_time, event_duration_label) if value and value != empty_value
@@ -109,8 +110,8 @@ class Overview(BrowserView):
 
         return {
             "has_event": True,
-            "headline": title,
-            "placeholder": "",
+            "headline": headline,
+            "placeholder": _("Please select a scenario to view the event data."),
             "event_type": event_type,
             "event_time": event_time,
             "event_duration": event_duration_label,
