@@ -141,6 +141,15 @@ class Item(BrowserView):
         iconresolver = self.context.restrictedTraverse("@@iconresolver")
         icon_name = "folder"
         count = self.count_options(obj)
+
+        actions = {
+            "edit": api.user.has_permission("Modify portal content", obj=obj),
+            "favorite": False,
+            "delete": api.user.has_permission("Delete objects", obj=obj),
+            "cut": False,
+            "print": False,
+        }
+
         self.folder = {
             "date": getattr(obj, "mdate", None),
             "title": obj.title,
@@ -156,6 +165,7 @@ class Item(BrowserView):
             "modified_by_user": modified_by_user,
             "modified_by_group": modified_by_group,
             "count": count,
+            "actions": actions,
         }
         return self.template_folder()
 
@@ -168,6 +178,15 @@ class Item(BrowserView):
 
         iconresolver = self.context.restrictedTraverse("@@iconresolver")
         icon_name = "document"
+
+        actions = {
+            "edit": api.user.has_permission("Modify portal content", obj=obj),
+            "favorite": False,
+            "delete": api.user.has_permission("Delete objects", obj=obj),
+            "cut": False,
+            "print": False,
+        }
+
         self.folder = {
             "date": getattr(obj, "mdate", None),
             "title": obj.title,
@@ -182,6 +201,7 @@ class Item(BrowserView):
             "path": obj.absolute_url_path(),
             "modified_by_user": modified_by_user,
             "modified_by_group": modified_by_group,
+            "actions": actions,
         }
         return self.template_other()
 

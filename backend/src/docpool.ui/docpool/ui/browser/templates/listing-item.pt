@@ -313,7 +313,7 @@
           >
             <img src="${python:icons.url('printer')}" />
             <span tal:omit-tag=""
-                  i18n:domain="plone"
+                  i18n:domain="docpool.ui"
                   i18n:translate=""
             >Print</span>
           </a>
