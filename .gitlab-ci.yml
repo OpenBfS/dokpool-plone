@@ -49,6 +49,7 @@ translation_check:
     - cd backend
     - pip install --upgrade pip
     - pip install uv
+    - make install
     - ./scripts/ci-translation-check.sh
 
 unit_tests:

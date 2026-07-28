@@ -4,8 +4,6 @@ set -euo pipefail
 
 cd "$(dirname "${BASH_SOURCE[0]}")/.."
 
-uv sync --locked
-
 output="$(make i18n 2>&1)" || {
     echo "$output"
     exit 1
