@@ -38,6 +38,20 @@ lint_tests:
     - make lint
     - make format
 
+translation_check:
+  image: plone/server-builder:$PLONE_VERSION
+  tags:
+    - dind
+  stage: test
+  script:
+    - apt-get update
+    - apt-get install -y --no-install-recommends gettext jq
+    - cd backend
+    - pip install --upgrade pip
+    - pip install uv
+    - make install
+    - ./scripts/ci-translation-check.sh
+
 unit_tests:
   image: plone/server-builder:$PLONE_VERSION
   tags:

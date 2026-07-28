@@ -6,6 +6,7 @@
       xml:lang="en"
       i18n:domain="docpool.ui"
 >
+  <metal:empty_title fill-slot="content-title" />
   <metal:content fill-slot="content-core"
                  tal:define="
                    items python: view.items;
@@ -22,7 +23,6 @@
             action request/ACTUAL_URL;
           "
     >
-      <metal:empty_title fill-slot="content-title" />
       <div class="border-bottom"
            id="listing-filters"
            tal:attributes="
@@ -473,7 +473,6 @@
                        class python: 'form-control border-start-0 ' + (is_selected and 'border-primary' or '');
                      "
                      i18n:attributes="placeholder"
-                     i18n:translate=""
               />
 
               <a class="btn btn-secondary border border-start-0 dp-search-reset"
@@ -672,7 +671,7 @@
                       style="font-size: 1.5rem"
                       title="Add journal entry"
                       type="submit"
-                      i18n:attributes="placeholder"
+                      i18n:attributes="title"
               ><tal:icon tal:replace="structure python:icons.tag('send')" /></button>
             </div>
           </div>
@@ -695,10 +694,10 @@
               <div class="form-check">
                 <input class="form-check-input toggle-all"
                        id="checkDefault"
-                       title="label_toggle"
+                       title="Toggle all"
                        type="checkbox"
                        value=""
-                       i18n:attributes="title"
+                       i18n:attributes="title label_toggle"
                        i18n:domain="docpool.base"
                 />
               </div>
@@ -722,7 +721,7 @@
             >
 
               <span tal:replace="python: len(items)"></span>
-              <span i18n:translate="">Resultate for</span>
+              <span i18n:translate="">Results for</span>
               <strong class="fw-bold"
                       tal:content="python: view.global_search_text"
               ></strong>
