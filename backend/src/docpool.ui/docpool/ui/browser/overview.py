@@ -56,16 +56,14 @@ class Overview(BrowserView):
         # Ereignisart
         if getattr(event, "EventType", None):
             event_type_value = event.event_type_title()
-            event_type = safe_text(event_type_value).strip() if event_type_value is not None else empty_value
+            event_type = event_type_value if event_type_value is not None else empty_value
         else:
             event_type = empty_value
 
         # Betriebsart
         if getattr(event, "OperationMode", None):
             operation_mode_value = event.operation_mode_title()
-            operation_mode = (
-                safe_text(operation_mode_value).strip() if operation_mode_value is not None else empty_value
-            )
+            operation_mode = operation_mode_value if operation_mode_value is not None else empty_value
         else:
             operation_mode = empty_value
 
@@ -77,11 +75,7 @@ class Overview(BrowserView):
                 context=event,
             )
             emergency_classification_value = vocabulary.getTerm(alerting_status).title
-            emergency_classification = (
-                safe_text(emergency_classification_value).strip()
-                if emergency_classification_value is not None
-                else empty_value
-            )
+            emergency_classification = emergency_classification_value if emergency_classification_value is not None else empty_value
         else:
             emergency_classification = empty_value
 
@@ -97,21 +91,14 @@ class Overview(BrowserView):
         description = safe_text(description_value).strip() if description_value is not None else empty_value
         description = description or empty_value
 
-        # Ereignisort
-        location_relation = getattr(event, "EventLocation", None)
-        location_obj = getattr(location_relation, "to_object", None)
-        location = (
-            safe_text(getattr(location_obj, "title", None) or "").strip() if location_obj is not None else ""
-        )
-        title_value = getattr(event, "title", None)
-        title = safe_text(title_value).strip() if title_value is not None else empty_value
-        title = location or title or empty_value
-
-        # TODO
+        # TODO Ereignisort (EventCoordinates & AreaOfInterest)
+        location_static = "TODO KKW Grohnde, Deutschland / N 52.034, E 9.410"
+        # TODO Image
         coordinates_label = empty_value
 
-        headline_values = [value for value in (title, coordinates_label) if value and value != empty_value]
-        headline = " / ".join(headline_values) if headline_values else empty_value
+        title_value = getattr(event, "title", None)
+        title = safe_text(title_value).strip() if title_value is not None else empty_value
+        title = location_static or title or empty_value
 
         event_time_and_duration_values = [
             value for value in (event_time, event_duration_label) if value and value != empty_value
@@ -122,7 +109,7 @@ class Overview(BrowserView):
 
         return {
             "has_event": True,
-            "headline": headline,
+            "headline": title,
             "placeholder": "",
             "event_type": event_type,
             "event_time": event_time,
