@@ -1,4 +1,3 @@
-from docpool.base.content.archiving import IArchiving
 from elan.journal.adapters import IJournalEntryContainer
 from elan.journal.interfaces import IJournal
 from plone import api
@@ -55,11 +54,4 @@ class Journal(Container):
         return updates
 
     def can_add_journalentries(self):
-        # Allow adding journal entries if event is active, not archived and user has permission
-        obj = self.__parent__
-        assert obj.portal_type == "DPEvent"
-        if getattr(obj.aq_base, "Status", None) not in ["active"]:
-            return False
-        if IArchiving(obj).is_archive:
-            return False
         return api.user.has_permission("elan.journal: Add JournalEntry", obj=self)

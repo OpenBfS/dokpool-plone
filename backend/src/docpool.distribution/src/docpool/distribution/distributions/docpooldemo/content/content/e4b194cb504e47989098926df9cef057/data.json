@@ -1,5 +1,5 @@
 {
-  "@id": "/bund/contentconfig/scen/beispiel-notfall",
+  "@id": "/contentconfig/events/beispiel-notfall",
   "@type": "DPEvent",
   "AlertingNote": null,
   "AlertingStatus": "none",
@@ -18,7 +18,7 @@
   "TimeOfEvent": "2025-09-23T10:25:00",
   "UID": "e4b194cb504e47989098926df9cef057",
   "allow_discussion": null,
-  "changelog": "[{\"Date\": \"23.09.2025 13:44\", \"User\": \"ELAN Administrator\", \"Status\": \"active\", \"EventType\": \"Emergency\", \"Operation mode\": \"Routine mode\", \"Alerting status\": \"keine\", \"Alerting note\": null, \"Sectorizing sample types\": \"\"}]",
+  "changelog": "[{\"Date\": \"23.09.2025 13:44\", \"User\": \"ELAN Administrator\", \"Status\": \"active\", \"EventType\": \"Emergency\", \"Operation mode\": \"Routine mode\", \"Alerting status\": \"keine\", \"Alerting note\": null, \"Sectorizing sample types\": \"\"}, {\"Date\": \"27.07.2026 22:25\", \"User\": \"admin\", \"Status\": \"active\", \"EventType\": \"Emergency\", \"Operation mode\": \"Routine mode\", \"Alerting status\": \"keine\", \"Alerting note\": null, \"Sectorizing sample types\": \"\"}]",
   "contributors": [],
   "created": "2025-09-23T11:44:31+00:00",
   "created_by": [
@@ -41,7 +41,7 @@
   "layout": "view",
   "lock": {},
   "mdate": "2025-09-23T13:44:31",
-  "modified": "2025-09-23T11:44:31+00:00",
+  "modified": "2026-07-27T20:25:10+00:00",
   "modified_by": null,
   "review_state": "published",
   "rights": null,

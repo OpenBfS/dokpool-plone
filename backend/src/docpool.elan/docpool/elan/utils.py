@@ -1,14 +1,14 @@
+from docpool.base.content.places import IPlaces
 from docpool.base.utils import getDocumentPoolSite
 from plone import api
-from Products.CMFCore.utils import getToolByName
 
 
 def getActiveScenarios(self):
-    cat = getToolByName(self, "portal_catalog")
-    esd = getDocumentPoolSite(self)
-    res = cat(
-        path="/".join(esd.getPhysicalPath()) + "/contentconfig",
+    dp = IPlaces(self).document_pool  # currently only called on documents inside a docpool
+    scen = dp["contentconfig"]["scen"]
+    res = api.content.find(
         portal_type="DPEvent",
+        UID=tuple(scen.subscribed_events),
         dp_type="active",
         sort_on="modified",
         sort_order="reverse",
@@ -17,15 +17,16 @@ def getActiveScenarios(self):
 
 
 def getOpenScenarios(self):
-    cat = getToolByName(self, "portal_catalog")
-    esd = getDocumentPoolSite(self)
-    res = cat(
-        path="/".join(esd.getPhysicalPath()) + "/contentconfig",
+    query = dict(
         portal_type="DPEvent",
         dp_type=["active", "inactive"],
         sort_on="created",
         sort_order="reverse",
     )
+    if (dp := IPlaces(self).document_pool) is not None:
+        scen = dp["contentconfig"]["scen"]
+        query.update(UID=tuple(scen.subscribed_events))
+    res = api.content.find(**query)
     return res
 
 

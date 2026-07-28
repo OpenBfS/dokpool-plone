@@ -1,12 +1,12 @@
 {
-  "@id": "/brandenburg/contentconfig/scen/uebung-imis-2025/journal1",
-  "@type": "Journal",
-  "UID": "636daadb72134e6bbf0fc5c681452437",
+  "@id": "/contentconfig/events",
+  "@type": "DPEvents",
+  "UID": "598c44331c3a4ef4ad0b9cd1a4599fea",
   "allow_discussion": null,
   "contributors": [],
-  "created": "2025-09-17T13:40:38+00:00",
+  "created": "2026-07-27T20:24:21+00:00",
   "creators": [
-    "user-be"
+    "admin"
   ],
   "description": "",
   "effective": null,
@@ -14,26 +14,27 @@
   "expires": null,
   "exportimport.constrains": {},
   "exportimport.conversation": [],
-  "id": "journal1",
+  "id": "events",
   "is_folderish": true,
   "language": "##DEFAULT##",
   "layout": "view",
   "lock": {},
-  "modified": "2025-09-17T14:09:38+00:00",
+  "modified": "2026-07-27T20:24:21+00:00",
   "review_state": "published",
   "rights": "",
   "subjects": [],
-  "title": "Einsatztagebuch Senatsverwaltung",
-  "type_title": "Journal",
+  "subscribed_events": [],
+  "title": "Ereignisse",
+  "type_title": "DP Events",
   "version": "current",
   "workflow_history": {
-    "dp_journal_workflow": [
+    "dp_one_state_workflow": [
       {
         "action": null,
         "actor": "admin",
         "comments": "",
         "review_state": "published",
-        "time": "2025-09-17T14:09:38+00:00"
+        "time": "2026-07-27T20:24:21+00:00"
       }
     ]
   },

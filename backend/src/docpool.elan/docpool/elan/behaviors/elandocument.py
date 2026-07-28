@@ -4,11 +4,14 @@ from datetime import datetime
 from docpool.base.browser.flexible_view import FlexibleView
 from docpool.base.content.dpdocument import IAppSpecificSerializeToJsonDPDocument
 from docpool.base.content.dpdocument import IDPDocument
+from docpool.base.content.places import IPlaces
 from docpool.base.interfaces import IDocumentExtension
+from docpool.base.marker import IImportingMarker
 from docpool.base.utils import app_only_decorator
 from docpool.base.utils import getDocumentPoolSite
 from docpool.elan import DocpoolMessageFactory as _
 from docpool.elan.config import ELAN_APP
+from docpool.elan.content.dpevents import global_events_by_uid
 from docpool.elan.utils import get_scenario_for_current_user
 from plone import api
 from plone.autoform import directives
@@ -19,6 +22,7 @@ from Products.DCWorkflow.interfaces import IAfterTransitionEvent
 from z3c.form.browser.radio import RadioFieldWidget
 from zope import schema
 from zope.component import adapter
+from zope.globalrequest import getRequest
 from zope.interface import implementer
 from zope.interface import named
 from zope.interface import provider
@@ -39,10 +43,15 @@ def initializeScenario(context):
         "portal_type": "DPEvent",
         "Status": "active",
     }
-    if uid := get_scenario_for_current_user(context):
+    dp_uids = (
+        tuple(dp["contentconfig"]["scen"].subscribed_events)
+        if (dp := IPlaces(context).document_pool) is not None
+        else None
+    )
+    if (uid := get_scenario_for_current_user(context)) and (dp_uids is None or uid in dp_uids):
         query["UID"] = uid
-    if getattr(context, "dpSearchPath", None):
-        query["path"] = context.dpSearchPath()
+    elif dp_uids is not None:
+        query["UID"] = dp_uids
     scenarios = api.content.find(**query)
     return scenarios[0].UID if scenarios else None
 
@@ -104,10 +113,12 @@ class ELANDocument(FlexibleView):
             context.scenario = value
 
     def scenarioIndex(self):
+        if IImportingMarker.providedBy(getRequest()):
+            return [self.scenario]
+
         # We can not use the catalog (and therefore, plone.api.content.get()) here since
         # this is used in a indexer and during clear & rebuild no Events would be found.
-        # The path of events is assumed to be <docpool>/contentconfig/scen
-        # This implicitly filters for events present in the document's docpool but then,
+        # We filter for events subscribed by the document's docpool but then,
         # other events than those should not be associated with the document anyway.
         if not (scn := self.scenario):
             return
@@ -116,9 +127,12 @@ class ELANDocument(FlexibleView):
         if not (scen := docpool.unrestrictedTraverse("contentconfig/scen", None)):
             return
 
-        for candidate in scen.contentValues({"portal_type": "DPEvent"}):
-            if candidate.UID() == scn and api.content.get_state(candidate) == "published":
-                return [scn]
+        if scn not in scen.subscribed_events:
+            return
+
+        candidate = global_events_by_uid().get(scn)
+        if candidate and api.content.get_state(candidate) == "published":
+            return [scn]
 
     def getScenarioName(self):
         """ """

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-07-14 09:08+0000\n"
+"POT-Creation-Date: 2026-07-23 13:40+0000\n"
 "PO-Revision-Date: 2025-05-19 17:02+0200\n"
 "Last-Translator: Philip Bauer <bauer@starzel.de>\n"
 "Language-Team: BfS <elan@bfs.de>\n"
@@ -28,10 +28,6 @@ msgstr ""
 
 #: docpool.elan/docpool/elan/browser/archive_event_form.pt
 msgid "Active Journals are purged."
-msgstr ""
-
-#: docpool.elan/docpool/elan/profiles/default/actions.xml
-msgid "Add New Scenario"
 msgstr ""
 
 #: docpool.elan/docpool/elan/portlets/overview.pt
@@ -84,7 +80,6 @@ msgid "Archives"
 msgstr ""
 
 #: docpool.elan/docpool/elan/browser/i18ndummy.pt
-#: docpool.elan/docpool/elan/profiles/default/actions.xml
 msgid "Archiving"
 msgstr ""
 
@@ -165,6 +160,10 @@ msgstr ""
 msgid "Depending on the number of entries in this event this can take an hour or longer."
 msgstr ""
 
+#: docpool.elan/docpool/elan/browser/dpevents.pt
+msgid "Docpools"
+msgstr ""
+
 #: docpool.elan/docpool/elan/profiles/default/types/ELANDocCollection.xml
 msgid "ELAN Collection"
 msgstr ""
@@ -196,11 +195,16 @@ msgid "Edit"
 msgstr ""
 
 #: docpool.elan/docpool/elan/profiles/default/actions.xml
-msgid "Edit Scenarios"
+msgid "Edit Ticker"
 msgstr ""
 
-#: docpool.elan/docpool/elan/profiles/default/actions.xml
-msgid "Edit Ticker"
+#: docpool.elan/docpool/elan/browser/dpevents.pt
+#: docpool.elan/docpool/elan/browser/dpevents.py
+msgid "Edit event subscriptions"
+msgstr ""
+
+#: docpool.elan/docpool/elan/browser/dpevents.pt
+msgid "Edit global events"
 msgstr ""
 
 #: docpool.elan/docpool/elan/browser/elandoccollectiondoc.pt
@@ -218,6 +222,10 @@ msgstr ""
 
 #: docpool.elan/docpool/elan/browser/archive_event_form.pt
 msgid "Entries that are also assigned to other events are copied into the archive instead of moved."
+msgstr ""
+
+#: docpool.elan/docpool/elan/browser/dpevents.py
+msgid "Error"
 msgstr ""
 
 #: docpool.elan/docpool/elan/browser/dpevent.pt
@@ -264,12 +272,20 @@ msgstr ""
 msgid "LT"
 msgstr ""
 
+#: docpool.elan/docpool/elan/content/dpevents.py
+msgid "List of UIDs of events this Docpool subscribed to"
+msgstr ""
+
 #: docpool.elan/docpool/elan/profiles/default/registry/querystring.xml
 msgid "Location"
 msgstr ""
 
 #: docpool.elan/docpool/elan/profiles/default/registry/querystring.xml
 msgid "Metadata"
+msgstr ""
+
+#: docpool.elan/docpool/elan/browser/archive_event_form.py
+msgid "No event specified for archiving."
 msgstr ""
 
 #: docpool.elan/docpool/elan/browser/dpevent.pt
@@ -305,6 +321,10 @@ msgstr ""
 msgid "Routine mode"
 msgstr ""
 
+#: docpool.elan/docpool/elan/browser/dpevents.py
+msgid "Saved"
+msgstr ""
+
 #: docpool.elan/docpool/elan/browser/archive_event_form.py
 msgid "Scenario archived"
 msgstr ""
@@ -320,7 +340,6 @@ msgid "Show Debug-Info"
 msgstr ""
 
 #: docpool.elan/docpool/elan/browser/i18ndummy.pt
-#: docpool.elan/docpool/elan/profiles/default/actions.xml
 msgid "Snapshot"
 msgstr ""
 
@@ -485,9 +504,19 @@ msgstr ""
 msgid "inactive"
 msgstr ""
 
+#. Default: "Apply"
+#: docpool.elan/docpool/elan/browser/dpevents.py
+msgid "label_apply"
+msgstr ""
+
 #. Default: "Archive"
 #: docpool.elan/docpool/elan/browser/archive_event_form.pt
 msgid "label_archive"
+msgstr ""
+
+#. Default: "Cancel"
+#: docpool.elan/docpool/elan/browser/dpevents.py
+msgid "label_cancel"
 msgstr ""
 
 #. Default: "Belongs to scenario"

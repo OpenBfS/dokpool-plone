@@ -30,8 +30,16 @@ class ArchiveAndClose(BrowserView):
         request = self.request
         form = self.request.form
 
+        if (event_uid := form.get("event")) and ((event := api.content.get(UID=event_uid)) is not None):
+            self.event_uid = event_uid
+            self.event = event
+        else:
+            logger.warning("No event specified for archiving!")
+            api.portal.show_message(_("No event specified for archiving."), self.request, "warning")
+            return request.response.redirect(self.context.absolute_url())
+
         self.items = self._getDocumentsForScenario(path=IPlaces(self.context).content_path)
-        self.full_archiving_info = self.context.get_archiving_info()
+        self.full_archiving_info = event.get_archiving_info()
         self.archiving_info = self.full_archiving_info[-1] if self.full_archiving_info else {}
 
         if form.get("form.uid"):
@@ -42,12 +50,12 @@ class ArchiveAndClose(BrowserView):
         if form.get("form.button.purge"):
             msg = _("Archiving Info purged!")
             api.portal.show_message(msg, self.request)
-            self.context.purge_archiving_info()
+            event.purge_archiving_info()
             self.full_archiving_info = None
             self.archiving_info = None
             return self.index()
 
-        if IArchiving(self.context).is_archive:
+        if IArchiving(event).is_archive:
             logger.info("Item is already archived!")
             api.portal.show_message(_("Scenario archived"), self.request)
             return request.response.redirect(self.context.absolute_url())
@@ -97,9 +105,9 @@ class ArchiveAndClose(BrowserView):
             "uid": self.uid,
             "items": len(self.items),
         }
-        self.context.set_archiving_info(info)
+        event.set_archiving_info(info)
         # Commit to make info available before archiving is finished
-        transaction.get().note(f"Store archiving info for {self.context.absolute_url()}")
+        transaction.get().note(f"Store archiving info for {event.absolute_url()}")
         transaction.commit()
 
         target = self.process_action()
@@ -122,26 +130,29 @@ class ArchiveAndClose(BrowserView):
         This can take a long time since associated DPDocuments can have many attechments
         and all need to be copied or moved and reindexed. This is why we make savepoints.
         """
-
-        # 1. Disable scenario to prevent new data from being added for it
-        self.context.Status = "closed"
+        self.context.contentconfig.scen.subscribed_events.remove(self.event.UID())
         transaction.savepoint(optimistic=True)
 
-        # 2. Create Archive
         archive = self._createArchive()
-        archive_contentarea = IPlaces(archive).content
-        logger.info("Archiving DPEvent %s to %s", self.context.title, archive.absolute_url())
+        logger.info("Archiving DPEvent %s to %s", self.event.title, archive.absolute_url())
 
-        # 3. Move or Copy related DPDocuments
-        self._archive_documents(archive_contentarea)
+        archived_event = self._copy_event(archive)
 
-        # 4. Move DPEvent into archive and redirect to it
-        archived_event = api.content.move(self.context, target=archive, safe_id=True)
-        archived_event.reindexObject()
-        # local roles were set when adding items to the archive but reindexing was deferred.
-        archive_contentarea.reindexObjectSecurity()
         logger.info("Finished archiving DPEvent %s", archived_event.title)
         api.portal.show_message(_("Scenario archived"), self.request)
+        return archived_event
+
+    def _copy_event(self, archive):
+        archive_contentarea = IPlaces(archive).content
+
+        self._archive_documents(archive_contentarea)
+
+        archived_event = api.content.copy(self.event, target=archive, safe_id=True)
+        archived_event.Status = "closed"
+        archived_event.reindexObject()
+
+        # local roles were set when adding items to the archive but reindexing was deferred.
+        archive_contentarea.reindexObjectSecurity()
         return archived_event
 
     def _archive_documents(self, archive_contentarea):
@@ -149,11 +160,11 @@ class ArchiveAndClose(BrowserView):
         logger.info(
             "Archiving %s items associated with DPEvent %s. This may take a while...",
             total,
-            self.context.absolute_url(),
+            self.event.absolute_url(),
         )
         for index, brain in enumerate(self.items, start=1):
             obj = brain.getObject()
-            if self.context.UID() != IELANDocument(obj).scenario:
+            if self.event_uid != IELANDocument(obj).scenario:
                 # If the object is not part of the current event, the index is wrong and we skip it
                 logger.info("Skipping %s since it is not part of the current event", obj.absolute_url())
                 continue
@@ -317,7 +328,7 @@ class ArchiveAndClose(BrowserView):
         """
         args = {
             "portal_type": "DPDocument",
-            "scenario": self.context.UID(),
+            "scenario": self.event_uid,
             "sort_on": "sortable_title",
         }
         args.update(kwargs)
@@ -334,11 +345,11 @@ class ArchiveAndClose(BrowserView):
         arc = api.content.create(
             container=archive,
             type="ELANArchive",
-            id=ploneId(self.context, f"{self.context.id}_{now}"),
-            title=f"{self.context.title} {now}",
+            id=ploneId(self.event, f"{self.event.id}_{now}"),
+            title=f"{self.event.title} {now}",
             safe_id=True,
         )
-        arc.description = self.context.description
+        arc.description = self.event.description
         # create the document folders
         createPloneObjects(arc, ARCHIVESTRUCTURE)
         createPloneObjects(IPlaces(arc).content, TRANSFER_AREA)
@@ -357,27 +368,11 @@ class Snapshot(ArchiveAndClose):
         * Create Archive for event but leave Event unchanged
         * Purge Event (move content to archive unless used by other apps or events)
         """
-
-        # 1. Create Archive
         archive = self._createArchive()
-        archive_contentarea = aq_get(archive, "content")
-        logger.info(
-            "Create snapshot of DPEvent %s in %s",
-            self.context.title,
-            archive.absolute_url(),
-        )
+        logger.info("Create snapshot of DPEvent %s in %s", self.event.title, archive.absolute_url())
 
-        # 2. Move or Copy related DPDocuments (previously done by purge)
-        self._archive_documents(archive_contentarea)
+        copied_event = self._copy_event(archive)
 
-        # 3. Copy DPEvent into snapshot
-        copied_event = api.content.copy(self.context, target=archive, safe_id=True)
-        copied_event.Status = "closed"
-        copied_event.reindexObject()
-
-        # local roles were set when adding items to the archive but reindexing was deferred.
-        archive_contentarea.reindexObjectSecurity()
-
-        logger.info("Finished snapshot of DPEvent %s", self.context.title)
+        logger.info("Finished snapshot of DPEvent %s", self.event.title)
         api.portal.show_message(_("Created snapshot of event."), self.request)
         return copied_event

@@ -7,40 +7,6 @@
           name="user"
   >
     <object meta_type="CMF Action"
-            name="edit_scenarios"
-            i18n:domain="docpool.elan"
-    >
-      <property name="title"
-                i18n:translate=""
-      >Edit Scenarios</property>
-      <property name="description"
-                i18n:translate=""
-      />
-      <property name="url_expr">string:${context/dp_url}/contentconfig/scen/</property>
-      <property name="link_target" />
-      <property name="icon_expr">string:plone-edit</property>
-      <property name="available_expr">python: 'esd' in context.absolute_url() and (path('context/@@is/admin_or_contentadmin') or (member and member.has_role('EventEditor', context)))</property>
-      <property name="permissions" />
-      <property name="visible">True</property>
-    </object>
-    <object meta_type="CMF Action"
-            name="add_scenario"
-            i18n:domain="docpool.elan"
-    >
-      <property name="title"
-                i18n:translate=""
-      >Add New Scenario</property>
-      <property name="description"
-                i18n:translate=""
-      />
-      <property name="url_expr">string:${context/dp_url}/contentconfig/scen/++add++DPEvent</property>
-      <property name="link_target" />
-      <property name="icon_expr">string:calendar-plus</property>
-      <property name="available_expr">python: 'esd' in context.absolute_url() and (path('context/@@is/admin_or_contentadmin') or (member and member.has_role('EventEditor', context)))</property>
-      <property name="permissions" />
-      <property name="visible">True</property>
-    </object>
-    <object meta_type="CMF Action"
             name="edit_ticker"
             i18n:domain="docpool.elan"
     >
@@ -71,45 +37,6 @@
       <property name="link_target" />
       <property name="icon_expr">string:trash</property>
       <property name="available_expr">python:path('context/@@is/contentadmin') and 'esd' in context.absolute_url()</property>
-      <property name="permissions" />
-      <property name="visible">True</property>
-    </object>
-  </object>
-  <object meta_type="CMF Action Category"
-          name="object_buttons"
-  >
-    <object meta_type="CMF Action"
-            name="snapshot"
-            i18n:domain="docpool.elan"
-    >
-      <property name="title"
-                i18n:translate=""
-      >Snapshot</property>
-      <property name="description"
-                i18n:translate=""
-      />
-      <property name="icon_expr">string:clipboard2-plus</property>
-      <property name="url_expr">string:$object_url/@@snapshot</property>
-      <property name="link_target" />
-      <property name="icon_expr">string:archive</property>
-      <property name="available_expr">python: object.portal_type == 'DPEvent' and object.Status != 'closed' and object.restrictedTraverse("@@is").admin_or_contentadmin()</property>
-      <property name="permissions" />
-      <property name="visible">True</property>
-    </object>
-    <object meta_type="CMF Action"
-            name="archive"
-            i18n:domain="docpool.elan"
-    >
-      <property name="title"
-                i18n:translate=""
-      >Archiving</property>
-      <property name="description"
-                i18n:translate=""
-      />
-      <property name="url_expr">string:$object_url/@@archiveAndClose</property>
-      <property name="link_target" />
-      <property name="icon_expr">string:archive</property>
-      <property name="available_expr">python: object.portal_type == 'DPEvent' and object.Status == 'inactive' and object.restrictedTraverse("@@is").admin_or_contentadmin()</property>
       <property name="permissions" />
       <property name="visible">True</property>
     </object>

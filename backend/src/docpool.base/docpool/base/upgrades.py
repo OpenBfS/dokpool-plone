@@ -1,14 +1,18 @@
 from docpool.base.behaviors.transferable import ITransferable
 from docpool.base.config import JOURNAL_FOLDER_ID
 from docpool.base.config import JOURNALENTRY_ID
+from docpool.base.content.archiving import IArchiving
 from docpool.base.content.contentbase import IContentBase
 from docpool.base.content.documentpool import APPLICATIONS_KEY
+from docpool.base.content.places import IPlaces
 from docpool.base.content.simplefolder import ISimpleFolder
 from docpool.base.preview import generate_preview_image
 from docpool.base.setuphandlers import create_session_stuff
 from docpool.base.utils import getDocumentPoolSite
 from docpool.config.general.elan import DOCTYPES
+from docpool.elan.content.dpevents import IDPEvents
 from five.intid.intid import addIntIdSubscriber
+from persistent.list import PersistentList
 from plone import api
 from plone.app.upgrade.utils import loadMigrationProfile
 from plone.base.utils import get_installer
@@ -842,3 +846,52 @@ def to_3000_remove_scenarios_multiselection(context):
     for user in api.user.get_users():
         user.setMemberProperties({"scenarios": None})
     IAnnotations(api.portal.get()).pop("SCENARIO_SELECTION", None)
+
+
+def to_3000_global_events(context):
+    portal = api.portal.get()
+    if (global_events := (cc := portal["contentconfig"]).get("events")) is None:
+        global_events = api.content.create(
+            id="events",
+            title="Events",
+            container=cc,
+            type="DPEvents",
+        )
+        log.info("Created global events folder.")
+
+    for brain in api.content.find(portal_type="DPEvents"):
+        dpevents = brain.getObject()
+        if (dp := IPlaces(dpevents).document_pool) is None:
+            continue
+        if getattr(dpevents, "subscribed_events", None) is None:
+            dpevents.subscribed_events = PersistentList()
+            log.info(f"Updated DPEvents at {dp.Title()}.")
+
+    events_by_title = {e.Title(): e for e in global_events.contentValues({"portal_type": "DPEvent"})}
+    for brain in api.content.find(portal_type="DPEvent"):
+        event = brain.getObject()
+        if IPlaces(event).document_pool is None:
+            continue
+        if IArchiving(event).is_archive:
+            continue
+
+        source_dpevents = api.content.get_closest_ancestor(event, interface=IDPEvents)
+        title = event.Title()
+        if (moved := events_by_title.get(title)) is None:
+            try:
+                moved = api.content.move(source=event, target=global_events)
+            except Exception:
+                print(f"Failed moving {event}.")
+                raise
+            else:
+                source_dpevents.subscribed_events.append(moved.UID())
+                events_by_title[title] = moved
+                log.info(f"Moved {event} ({title}) to global events")
+        else:
+            source_dpevents.subscribed_events.append(moved_uid := moved.UID())
+            for doc_brain in api.content.find(portal_type="DPDocument", scenario=event.UID()):
+                (doc := doc_brain.getObject()).scenario = moved_uid
+                doc.reindexObject()
+            event.__ALLOW_DELETE_DURING_UPGRADE_STEP__ = True
+            api.content.delete(obj=event)
+            log.info(f"Replace {event} ({title}) by existing global {moved}")

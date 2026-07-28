@@ -126,6 +126,11 @@
         handler="docpool.base.upgrades.to_3000_remove_scenarios_multiselection"
         />
 
+    <genericsetup:upgradeStep
+        title="Upgrade to global event management"
+        handler="docpool.base.upgrades.to_3000_global_events"
+        />
+
   </genericsetup:upgradeSteps>
 
 </configure>

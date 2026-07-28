@@ -19,10 +19,14 @@
   "language": "##DEFAULT##",
   "layout": "view",
   "lock": {},
-  "modified": "2025-09-23T13:31:54+00:00",
+  "modified": "2026-07-27T20:24:21+00:00",
   "review_state": "published",
   "rights": "",
   "subjects": [],
+  "subscribed_events": [
+    "8e982cec0c1c4647a5e099d5a4d4c9a3",
+    "e4b194cb504e47989098926df9cef057"
+  ],
   "title": "Ereignisse",
   "type_title": "DP Events",
   "version": "current",

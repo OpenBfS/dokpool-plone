@@ -52,3 +52,8 @@ class TestUninstall(unittest.TestCase):
         from plone.browserlayer import utils
 
         self.assertNotIn(IDocpoolElanLayer, utils.registered_layers())
+
+    def test_delete_portal(self):
+        portal_id = self.layer["portal"].id
+        (app := self.layer["portal"].__parent__).manage_delObjects([portal_id])
+        self.assertNotIn(portal_id, app.objectIds())

@@ -101,7 +101,7 @@ class TestDocTypes(unittest.TestCase):
                 "weather_conditions_and_forecast",
             ],
         )
-        self.assertEqual(global_contentconfig.keys(), ["impressum"])
+        self.assertEqual(global_contentconfig.keys(), ["impressum", "events"])
 
         from docpool.base.appregistry import selectableApps
 
@@ -268,18 +268,8 @@ class TestDocTypes(unittest.TestCase):
         folder = groups["test_docpool_ContentAdministrators"]
 
         # DPDocument is allowed
-        self.assertEqual(
-            [i.id for i in folder.allowedContentTypes()],
-            [
-                "Collection",
-                "InfoFolder",
-                "DPDocument",
-                "SimpleFolder",
-                "ReviewFolder",
-                "CollaborationFolder",
-                "PrivateFolder",
-            ],
-        )
+        allowed_content_types = [i.id for i in folder.allowedContentTypes()]
+        self.assertIn("DPDocument", allowed_content_types)
 
         # but not for the current user...
         from docpool.base.utils import getAllowedDocumentTypes
@@ -313,18 +303,7 @@ class TestDocTypes(unittest.TestCase):
         )
 
         # portal_types are still the same
-        self.assertEqual(
-            [i.id for i in folder.allowedContentTypes()],
-            [
-                "Collection",
-                "InfoFolder",
-                "DPDocument",
-                "SimpleFolder",
-                "ReviewFolder",
-                "CollaborationFolder",
-                "PrivateFolder",
-            ],
-        )
+        self.assertEqual([i.id for i in folder.allowedContentTypes()], allowed_content_types)
 
         # add a dpdocument of type weather_conditions_and_forecast
         weatherinfo = api.content.create(

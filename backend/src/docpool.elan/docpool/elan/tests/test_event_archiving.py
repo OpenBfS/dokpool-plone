@@ -29,7 +29,7 @@ class TestDPEventArchivingWithBrowser(unittest.TestCase):
         self.test_docpool = self.portal["test_docpool"]
 
         # Get the scenario container (created by ELAN installation)
-        self.scenario_container = self.test_docpool.contentconfig.scen
+        self.events_container = self.portal.contentconfig.events
 
         # Create test event
         self.test_event = self._create_test_event()
@@ -41,12 +41,13 @@ class TestDPEventArchivingWithBrowser(unittest.TestCase):
     def _create_test_event(self):
         """Create a test DPEvent for archiving tests."""
         event = api.content.create(
-            container=self.scenario_container,
+            container=self.events_container,
             type="DPEvent",
             id="test_event_archive",
             title="Test Event for Archiving",
             description="Event to test archiving functionality",
         )
+        self.test_docpool.contentconfig.scen.subscribed_events.append(event.UID())
         return event
 
     def _create_test_documents_for_event(self, amount=2):
@@ -118,7 +119,7 @@ class TestDPEventArchivingWithBrowser(unittest.TestCase):
         transaction.commit()
 
         # Navigate to the event's archive form
-        archive_url = f"{self.test_event.absolute_url()}/@@archiveAndClose"
+        archive_url = f"{self.test_docpool.absolute_url()}/@@archiveAndClose?event={self.test_event.UID()}"
         self.browser.open(archive_url)
 
         # Verify we're on the archive form
@@ -158,11 +159,11 @@ class TestDPEventArchivingWithBrowser(unittest.TestCase):
         self.test_documents = self._create_test_documents_for_event(25)
 
         # Archive the event programmatically (following pattern from docpool.elan tests)
-        archive_view = self.test_event.restrictedTraverse("@@archiveAndClose")
+        archive_view = self.test_docpool.restrictedTraverse("@@archiveAndClose")
         # Render form first
         archive_view()
         # Submit form
-        self.layer["request"].form = {"form.button.submit": True}
+        self.layer["request"].form = {"event": self.test_event.UID(), "form.button.submit": True}
         archive_view()
 
         # Find the archive folder
@@ -219,7 +220,7 @@ class TestDPEventArchivingWithBrowser(unittest.TestCase):
         transaction.commit()
 
         # Navigate to the event's snapshot form
-        snapshot_url = f"{self.test_event.absolute_url()}/@@snapshot"
+        snapshot_url = f"{self.test_docpool.absolute_url()}/@@snapshot?event={self.test_event.UID()}"
         self.browser.open(snapshot_url)
 
         # Verify we're on the snapshot form
@@ -241,7 +242,7 @@ class TestDPEventArchivingWithBrowser(unittest.TestCase):
 
         # Verify the original event is still in place (snapshots don't move the original)
         self.assertEqual(self.test_event.Title(), "Test Event for Archiving")
-        self.assertIn("test_event_archive", self.scenario_container.objectIds())
+        self.assertIn("test_event_archive", self.events_container.objectIds())
 
     def test_snapshot_preserves_document_local_behaviors(self):
         """Test that snapshot creation preserves local behaviors on copied documents."""
@@ -249,11 +250,11 @@ class TestDPEventArchivingWithBrowser(unittest.TestCase):
         self.test_documents = self._create_test_documents_for_event(25)
 
         # Create snapshot programmatically (following pattern from docpool.elan tests)
-        snapshot_view = self.test_event.restrictedTraverse("@@snapshot")
+        snapshot_view = self.test_docpool.restrictedTraverse("@@snapshot")
         # Render form first
         snapshot_view()
         # Submit form
-        self.layer["request"].form = {"form.button.submit": True}
+        self.layer["request"].form = {"event": self.test_event.UID(), "form.button.submit": True}
         snapshot_view()
 
         # Find the snapshot folder
@@ -339,11 +340,11 @@ class TestDPEventArchivingWithBrowser(unittest.TestCase):
                 test_docs.append((document, original_state))
 
         # Archive the event
-        archive_view = self.test_event.restrictedTraverse("@@archiveAndClose")
+        archive_view = self.test_docpool.restrictedTraverse("@@archiveAndClose")
         # Render form first
         archive_view()
         # Submit form
-        self.layer["request"].form = {"form.button.submit": True}
+        self.layer["request"].form = {"event": self.test_event.UID(), "form.button.submit": True}
         archive_view()
 
         # Find archived documents
@@ -388,7 +389,7 @@ class TestDPEventArchivingWithBrowser(unittest.TestCase):
         """Test that the archive form performs proper validation."""
         # Test with unpublished event (should not be archivable)
         unpublished_event = api.content.create(
-            container=self.scenario_container,
+            container=self.events_container,
             type="DPEvent",
             id="unpublished_event",
             title="Unpublished Event",
@@ -423,7 +424,7 @@ class TestDPEventArchivingWithBrowser(unittest.TestCase):
         transaction.commit()
 
         # Test snapshot with valid event
-        snapshot_url = f"{self.test_event.absolute_url()}/@@snapshot"
+        snapshot_url = f"{self.test_docpool.absolute_url()}/@@snapshot?event={self.test_event.UID()}"
 
         try:
             self.browser.open(snapshot_url)
@@ -444,11 +445,11 @@ class TestDPEventArchivingWithBrowser(unittest.TestCase):
         self.test_event.description = "Detailed event description for archiving test"
 
         # Archive the event (following pattern from docpool.elan tests)
-        archive_view = self.test_event.restrictedTraverse("@@archiveAndClose")
+        archive_view = self.test_docpool.restrictedTraverse("@@archiveAndClose")
         # Render form first
         archive_view()
         # Submit form
-        self.layer["request"].form = {"form.button.submit": True}
+        self.layer["request"].form = {"event": self.test_event.UID(), "form.button.submit": True}
         archive_view()
 
         # Find archived event
@@ -490,26 +491,28 @@ class TestDPEventArchivingEdgeCases(unittest.TestCase):
         setRoles(self.portal, TEST_USER_ID, ["Manager"])
 
         self.test_docpool = self.portal["test_docpool"]
+        self.events_container = self.portal.contentconfig.events
 
     def test_archive_event_without_documents(self):
         """Test archiving an event that has no assigned documents."""
         # Create event without documents
-        contentconfig = self.test_docpool.contentconfig
-        scenario_container = contentconfig.scen
-
         empty_event = api.content.create(
-            container=scenario_container, type="DPEvent", id="empty_event", title="Event Without Documents"
+            container=self.events_container,
+            type="DPEvent",
+            id="empty_event",
+            title="Event Without Documents",
         )
+        self.test_docpool.contentconfig.scen.subscribed_events.append(empty_event.UID())
 
         # Events start in published state by default
         transaction.commit()
 
         # Archive the event (following the pattern from docpool.elan tests)
-        archive_view = empty_event.restrictedTraverse("@@archiveAndClose")
+        archive_view = self.test_docpool.restrictedTraverse("@@archiveAndClose")
         # Render form first
         archive_view()
         # Submit form
-        self.layer["request"].form = {"form.button.submit": True}
+        self.layer["request"].form = {"event": empty_event.UID(), "form.button.submit": True}
         archive_view()
 
         # Should succeed even without documents
@@ -525,15 +528,14 @@ class TestDPEventArchivingEdgeCases(unittest.TestCase):
     def test_snapshot_preserves_original_state(self):
         """Test that creating snapshots doesn't affect the original event."""
         # Create simple event for snapshot test
-        contentconfig = self.test_docpool.contentconfig
-        scenario_container = contentconfig.scen
 
         snapshot_event = api.content.create(
-            container=scenario_container,
+            container=self.events_container,
             type="DPEvent",
             id="snapshot_test_event",
             title="Event for Snapshot Test",
         )
+        self.test_docpool.contentconfig.scen.subscribed_events.append(snapshot_event.UID())
 
         # Events start in published state by default
         original_state = api.content.get_state(snapshot_event)
@@ -541,32 +543,31 @@ class TestDPEventArchivingEdgeCases(unittest.TestCase):
         transaction.commit()
 
         # Create snapshot (following pattern from docpool.elan tests)
-        snapshot_view = snapshot_event.restrictedTraverse("@@snapshot")
+        snapshot_view = self.test_docpool.restrictedTraverse("@@snapshot")
         # Render form first
         snapshot_view()
         # Submit form
-        self.layer["request"].form = {"form.button.submit": True}
+        self.layer["request"].form = {"event": snapshot_event.UID(), "form.button.submit": True}
         snapshot_view()
 
         # Verify original event is unchanged
         self.assertEqual(api.content.get_state(snapshot_event), original_state)
         self.assertEqual(snapshot_event.Title(), "Event for Snapshot Test")
-        self.assertIn("snapshot_test_event", scenario_container.objectIds())
+        self.assertIn("snapshot_test_event", self.events_container.objectIds())
 
     def test_document_with_no_local_behaviors_archiving(self):
         """Test archiving documents that have no local behaviors assigned."""
         # This tests the system's robustness when dealing with documents
         # that haven't been assigned any local behaviors
-        contentconfig = self.test_docpool.contentconfig
-        scenario_container = contentconfig.scen
 
         # Create event and document without local behaviors
         test_event = api.content.create(
-            container=scenario_container,
+            container=self.events_container,
             type="DPEvent",
             id="no_behavior_test_event",
             title="Event for No Behavior Test",
         )
+        self.test_docpool.contentconfig.scen.subscribed_events.append(test_event.UID())
 
         # Events start in published state by default
 
@@ -602,11 +603,11 @@ class TestDPEventArchivingEdgeCases(unittest.TestCase):
         transaction.commit()
 
         # Archive should work even with documents that have no local behaviors (following pattern from docpool.elan tests)
-        archive_view = test_event.restrictedTraverse("@@archiveAndClose")
+        archive_view = self.test_docpool.restrictedTraverse("@@archiveAndClose")
         # Render form first
         archive_view()
         # Submit form
-        self.layer["request"].form = {"form.button.submit": True}
+        self.layer["request"].form = {"event": test_event.UID(), "form.button.submit": True}
         archive_view()
 
         # Verify archiving succeeded

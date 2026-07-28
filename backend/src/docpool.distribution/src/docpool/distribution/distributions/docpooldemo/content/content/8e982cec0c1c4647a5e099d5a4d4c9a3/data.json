@@ -1,11 +1,11 @@
 {
-  "@id": "/bund/contentconfig/scen/routinemode",
+  "@id": "/contentconfig/events/routinemode",
   "@type": "DPEvent",
   "AlertingNote": null,
   "AlertingStatus": "none",
   "AreaOfInterest": null,
   "EventCoordinates": null,
-  "EventType": "Emergency",
+  "EventType": "Routine",
   "Journals": [
     "Einsatztagebuch BfS",
     "Einsatztagebuch RLZ",
@@ -15,19 +15,19 @@
   "OperationMode": "routine",
   "SectorizingSampleTypes": null,
   "Status": "active",
-  "TimeOfEvent": "2025-09-10T14:06:49",
-  "UID": "0e39ef14056a4058847dd6f48594ba9f",
+  "TimeOfEvent": "2026-07-27T22:24:05",
+  "UID": "8e982cec0c1c4647a5e099d5a4d4c9a3",
   "allow_discussion": null,
-  "changelog": "[{\"Date\": \"10.09.2025 14:30\", \"User\": \"rescue\", \"Status\": \"active\", \"EventType\": null, \"Operation mode\": null, \"Alerting status\": null, \"Alerting note\": null, \"Sectorizing sample types\": \" \"}, {\"Date\": \"10.09.2025 14:30\", \"User\": \"rescue\", \"Status\": \"active\", \"EventType\": \"Emergency\", \"Operation mode\": \"Routine mode\", \"Alerting status\": \"keine\", \"Alerting note\": null, \"Sectorizing sample types\": \" \"}]",
+  "changelog": "[{\"Date\": \"27.07.2026 22:24\", \"User\": \"admin\", \"Status\": \"active\", \"EventType\": \"Routine\", \"Operation mode\": \"Routine mode\", \"Alerting status\": \"keine\", \"Alerting note\": null, \"Sectorizing sample types\": \" \"}]",
   "contributors": [],
-  "created": "2025-09-10T12:30:29+00:00",
+  "created": "2026-07-27T20:24:21+00:00",
   "created_by": [
     "",
-    "rescue",
+    "admin",
     ""
   ],
   "creators": [
-    "rescue"
+    "admin"
   ],
   "description": "",
   "effective": null,
@@ -40,8 +40,8 @@
   "language": "##DEFAULT##",
   "layout": "view",
   "lock": {},
-  "mdate": "2025-09-10T14:30:29",
-  "modified": "2025-09-10T12:30:29+00:00",
+  "mdate": "2026-07-27T22:24:21",
+  "modified": "2026-07-27T20:24:21+00:00",
   "modified_by": null,
   "review_state": "published",
   "rights": "",
@@ -49,15 +49,15 @@
   "title": "Normalfall",
   "type_title": "DP Event",
   "version": "current",
-  "wdate": "2025-09-10T14:30:29+00:00",
+  "wdate": "2026-07-27T22:24:21",
   "workflow_history": {
     "dp_event_workflow": [
       {
         "action": null,
-        "actor": "rescue",
+        "actor": "admin",
         "comments": "",
         "review_state": "published",
-        "time": "2025-09-10T12:30:29+00:00"
+        "time": "2026-07-27T20:24:21+00:00"
       }
     ]
   },

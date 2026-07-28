@@ -1,11 +1,11 @@
 from AccessControl import ClassSecurityInfo
 from docpool.base.content.contentbase import ContentBase
 from docpool.base.content.contentbase import IContentBase
-from docpool.base.content.documentpool import IDocumentPool
 from docpool.base.marker import IImportingMarker
 from docpool.elan import DocpoolMessageFactory as _
 from docpool.elan.config import ELAN_APP
 from logging import getLogger
+from OFS.interfaces import IObjectWillBeRemovedEvent
 from persistent.list import PersistentList
 from plone import api
 from plone.autoform import directives
@@ -231,6 +231,14 @@ class DPEvent(Container, ContentBase):
         vocab = api.portal.get_vocabulary("docpool.elan.vocabularies.Status", context=self)
         return safe_text(vocab.getTerm(self.Status).title)
 
+    def subscribed_docpools(self):
+        return [
+            dp
+            for brain in api.content.find(portal_type="DocumentPool")
+            if (dpevents := (dp := brain.getObject()).get("contentconfig", {}).get("scen")) is not None
+            and self.UID() in dpevents.subscribed_events
+        ]
+
 
 def addLogEntry(obj):
     changelog = json.loads(obj.changelog or "[]")
@@ -266,13 +274,23 @@ def eventChanged(obj, event=None):
     addLogEntry(obj)
 
 
+@adapter(IDPEvent, IObjectWillBeRemovedEvent)
+def check_delete_event(obj, event):
+    if IPloneSiteRoot.providedBy(event.object):
+        return
+    if obj.subscribed_docpools():
+        raise RuntimeError("Event cannot be deleted, still in use.")
+
+
 @adapter(IDPEvent, IObjectRemovedEvent)
 def eventRemoved(obj, event=None):
     """
     Make sure the routinemode event cannot be removed unless the whole docpool
     or the whole Plonesite is being deleted.
     """
-    if IPloneSiteRoot.providedBy(event.object) or IDocumentPool.providedBy(event.object):
+    if getattr(obj, "__ALLOW_DELETE_DURING_UPGRADE_STEP__", False):
+        return
+    if IPloneSiteRoot.providedBy(event.object):
         return
     if obj.id == "routinemode":
         raise RuntimeError('The "routinemode" event cannot be removed.')

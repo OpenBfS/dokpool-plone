@@ -10,6 +10,7 @@
       />
 
   <subscriber handler=".dpevent.eventChanged" />
+  <subscriber handler=".dpevent.check_delete_event" />
   <subscriber handler=".dpevent.eventRemoved" />
 
   <subscriber handler=".elaninfos.infosAdded" />

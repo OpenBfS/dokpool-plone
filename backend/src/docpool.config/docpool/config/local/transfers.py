@@ -37,7 +37,7 @@ def setTransfersLocalRoles(self):
     self.content.Transfers.manage_setLocalRoles("%s_Receivers" % prefix, ["Owner"])
     self.content.Transfers.manage_setLocalRoles("%s_Administrators" % prefix, ["Owner"])
     if base_hasattr(self, "contentconfig"):
-        self.contentconfig.scen.manage_setLocalRoles("%s_Receivers" % prefix, ["ContentReceiver"])
+        self.manage_setLocalRoles("%s_Receivers" % prefix, ["ContentReceiver"])
     self.config.manage_setLocalRoles("%s_Receivers" % prefix, ["ContentReceiver"])
     self.content.Groups.manage_setLocalRoles("%s_Senders" % prefix, ["ContentSender"])
 
