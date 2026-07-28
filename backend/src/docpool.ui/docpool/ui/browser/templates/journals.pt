@@ -6,9 +6,9 @@
       xml:lang="en"
       i18n:domain="docpool.ui"
 >
-  <metal:content fill-slot="content-core">
+  <metal:empty_title fill-slot="content-title" />
 
-    <metal:empty_title fill-slot="content-title" />
+  <metal:content fill-slot="content-core">
 
     <div class="border-top journals"
          id="listing"
