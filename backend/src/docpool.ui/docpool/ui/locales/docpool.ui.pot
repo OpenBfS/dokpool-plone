@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-07-10 21:13+0000\n"
+"POT-Creation-Date: 2026-07-28 12:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -43,6 +43,10 @@ msgstr ""
 
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
 msgid "Add folder"
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/templates/listing.pt
+msgid "Add journal entry"
 msgstr ""
 
 #: docpool.ui/docpool/ui/browser/viewlets/header-event-switcher-dropdown.pt
@@ -125,6 +129,10 @@ msgid "Emergency documents"
 msgstr ""
 
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
+msgid "Entries"
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/templates/listing.pt
 #: docpool.ui/docpool/ui/browser/templates/wizard_1.pt
 msgid "Entrytype"
 msgstr ""
@@ -158,6 +166,10 @@ msgstr ""
 
 #: docpool.ui/docpool/ui/browser/viewlets/header-navigation-macros.pt
 msgid "ME(S)Z"
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/templates/listing-item.pt
+msgid "Mark as Favorite"
 msgstr ""
 
 #: docpool.ui/docpool/ui/browser/viewlets/header-navigation-macros.pt
@@ -211,7 +223,9 @@ msgstr ""
 msgid "Please set the content of the entry."
 msgstr ""
 
-#: docpool.ui/docpool/ui/browser/templates/listing.pt
+#: docpool.ui/docpool/ui/browser/templates/listing-folder.pt
+#: docpool.ui/docpool/ui/browser/templates/listing-item.pt
+#: docpool.ui/docpool/ui/browser/templates/listing-other.pt
 msgid "Print"
 msgstr ""
 
@@ -226,6 +240,10 @@ msgstr ""
 
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
 msgid "Reset search"
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/templates/listing.pt
+msgid "Results for"
 msgstr ""
 
 #: docpool.ui/docpool/ui/browser/listing.py

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-07-10 21:13+0000\n"
+"POT-Creation-Date: 2026-07-28 12:49+0000\n"
 "PO-Revision-Date: 2025-11-24 12:24+0100\n"
 "Last-Translator: Thomas Lotze <lotze@starzel.de>\n"
 "Language-Team: German <translation-team-de@lists.sourceforge.net>\n"
@@ -45,6 +45,10 @@ msgstr "Neuen Eintrag anlegen"
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
 msgid "Add folder"
 msgstr ""
+
+#: docpool.ui/docpool/ui/browser/templates/listing.pt
+msgid "Add journal entry"
+msgstr "Journaleintrag hinzufügen"
 
 #: docpool.ui/docpool/ui/browser/viewlets/header-event-switcher-dropdown.pt
 msgid "Add scenario"
@@ -126,6 +130,10 @@ msgid "Emergency documents"
 msgstr "Dokumente Notfallschutz"
 
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
+msgid "Entries"
+msgstr "Einträge"
+
+#: docpool.ui/docpool/ui/browser/templates/listing.pt
 #: docpool.ui/docpool/ui/browser/templates/wizard_1.pt
 msgid "Entrytype"
 msgstr "Eintragsart"
@@ -160,6 +168,10 @@ msgstr ""
 #: docpool.ui/docpool/ui/browser/viewlets/header-navigation-macros.pt
 msgid "ME(S)Z"
 msgstr ""
+
+#: docpool.ui/docpool/ui/browser/templates/listing-item.pt
+msgid "Mark as Favorite"
+msgstr "Als Favorit markieren"
 
 #: docpool.ui/docpool/ui/browser/viewlets/header-navigation-macros.pt
 msgid "My group folders"
@@ -212,7 +224,9 @@ msgstr "Bitte w&auml;hlen Sie zun&auml;chst den Gruppenordner, in dem der neue E
 msgid "Please set the content of the entry."
 msgstr "Bitte definieren Sie den Inhalt des Eintrags."
 
-#: docpool.ui/docpool/ui/browser/templates/listing.pt
+#: docpool.ui/docpool/ui/browser/templates/listing-folder.pt
+#: docpool.ui/docpool/ui/browser/templates/listing-item.pt
+#: docpool.ui/docpool/ui/browser/templates/listing-other.pt
 msgid "Print"
 msgstr "Drucken"
 
@@ -228,6 +242,10 @@ msgstr ""
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
 msgid "Reset search"
 msgstr ""
+
+#: docpool.ui/docpool/ui/browser/templates/listing.pt
+msgid "Results for"
+msgstr "Ergebnisse für"
 
 #: docpool.ui/docpool/ui/browser/listing.py
 msgid "Revised"
