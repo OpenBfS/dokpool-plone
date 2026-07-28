@@ -336,20 +336,6 @@ msgstr ""
 msgid "label_cancel"
 msgstr "Abbrechen"
 
-#: docpool.ui/docpool/ui/browser/templates/listing.pt
-msgid "more entries for other events"
-msgstr ""
-
-#. Default: "Latest situation information"
-#: docpool.ui/docpool/ui/browser/overview.py
-msgid "overview_tile_latest_situation"
-msgstr ""
-
-#. Default: "Measurement results and strategies"
-#: docpool.ui/docpool/ui/browser/overview.py
-msgid "overview_tile_measurements"
-msgstr ""
-
 #. Default: "Notifications and plant information"
 #: docpool.ui/docpool/ui/browser/overview.py
 msgid "overview_tile_notifications"

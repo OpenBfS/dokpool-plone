@@ -5,7 +5,6 @@ from docpool.ui.browser.listing import Listing
 from plone import api
 from plone.base.utils import safe_text
 from Products.Five.browser import BrowserView
-from docpool.ui import _
 
 
 OVERVIEW_TILE_LIMIT = 2
@@ -76,7 +75,9 @@ class Overview(BrowserView):
                 context=event,
             )
             emergency_classification_value = vocabulary.getTerm(alerting_status).title
-            emergency_classification = emergency_classification_value if emergency_classification_value is not None else empty_value
+            emergency_classification = (
+                emergency_classification_value if emergency_classification_value is not None else empty_value
+            )
         else:
             emergency_classification = empty_value
 
@@ -95,7 +96,7 @@ class Overview(BrowserView):
         # TODO Ereignisort (EventCoordinates & AreaOfInterest)
         location_static = "TODO KKW Grohnde, Deutschland / N 52.034, E 9.410"
         # TODO Image
-        coordinates_label = empty_value
+        # coordinates_label = empty_value
 
         title_value = getattr(event, "title", None)
         title = safe_text(title_value).strip() if title_value is not None else empty_value

@@ -1,5 +1,4 @@
 <article class="col-12 col-lg-6"
-         i18n:domain="docpool.base"
          tal:define="
            tile_title_id python:view.tile_title['id'];
            tile_title python:context.translate(view.tile_title['title']);
@@ -11,7 +10,10 @@
            }.get(tile_title_id, '');
            listing_url python:context.absolute_url() + '/@@listing' + (listing_query and '?' + listing_query or '');
          "
-         tal:attributes="id tile_title_id"
+         tal:attributes="
+           id tile_title_id;
+         "
+         i18n:domain="docpool.base"
 >
   <div class="card tile-card overview-tile h-100">
     <header class="tile-header section-title-wrap d-flex align-items-center justify-content-between gap-3">
