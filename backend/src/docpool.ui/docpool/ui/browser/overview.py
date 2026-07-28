@@ -15,7 +15,7 @@ class Overview(BrowserView):
         return self.index()
 
     def selected_event(self):
-        uid = get_scenario_for_current_user()
+        uid = get_scenario_for_current_user(self.context)
         if not uid:
             return None
         return api.content.get(UID=uid)
