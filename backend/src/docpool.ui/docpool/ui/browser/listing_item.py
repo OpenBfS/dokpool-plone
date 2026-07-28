@@ -88,6 +88,17 @@ class Item(BrowserView):
         if IJournalEntryMarker.providedBy(obj):
             text = obj.text.output_relative_to(obj)
 
+        actions = {
+            "edit": api.user.has_permission("Modify portal content", obj=obj),
+            "transfer": show_transfer_action,
+            "favorite": False,
+            "transitions": bool(available_transitions),
+            "download_attachments": bool(attachments),
+            "delete": api.user.has_permission("Delete objects", obj=obj),
+            "cut": False,
+            "print": True,
+        }
+
         self.dpdocument = {
             "date": obj.mdate,
             "title": obj.title,
@@ -107,7 +118,7 @@ class Item(BrowserView):
             "path": obj.absolute_url_path(),
             "modified_by_user": modified_by_user,
             "modified_by_group": modified_by_group,
-            "show_transfer_action": show_transfer_action,
+            "actions": actions,
             "attachments": attachments,
         }
         return self.index()
