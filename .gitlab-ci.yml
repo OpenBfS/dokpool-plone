@@ -45,7 +45,7 @@ translation_check:
   stage: test
   script:
     - apt-get update
-    - apt-get install -y --no-install-recommends gettext
+    - apt-get install -y --no-install-recommends gettext jq
     - cd backend
     - pip install --upgrade pip
     - pip install uv

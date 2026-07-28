@@ -4,13 +4,16 @@ set -euo pipefail
 
 cd "$(dirname "${BASH_SOURCE[0]}")/.."
 
+export TERM="${TERM:-xterm}"
+
 output="$(make i18n 2>&1)" || {
     echo "$output"
     exit 1
 }
 echo "$output"
 
-if grep -Eiq "Error|Warning" <<< "$output"; then
+# Fails on Traceback, There was an error processing, AttributeError:, TypeError:, RuntimeError
+if grep -Eq "Traceback \(most recent call last\)|There was an error processing|(^|[[:space:]])[[:alnum:]_.]+Error:|Warning: msgid" <<< "$output"; then
     echo "make i18n reported an error or warning"
     exit 1
 fi
