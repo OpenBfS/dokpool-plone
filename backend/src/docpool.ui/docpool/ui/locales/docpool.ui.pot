@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-07-28 12:49+0000\n"
+"POT-Creation-Date: 2026-07-28 10:31+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -190,6 +190,10 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
+#: docpool.ui/docpool/ui/browser/overview.py
+msgid "No scenario selected"
+msgstr ""
+
 #: docpool.ui/docpool/ui/browser/listing.py
 msgid "Oldest first"
 msgstr ""
@@ -213,6 +217,10 @@ msgstr ""
 #: docpool.ui/docpool/ui/browser/templates/folder_wizard.pt
 #: docpool.ui/docpool/ui/browser/templates/wizard_1.pt
 msgid "Please select a container first"
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/overview.py
+msgid "Please select a scenario to view the event data."
 msgstr ""
 
 #: docpool.ui/docpool/ui/browser/templates/wizard_1.pt
@@ -329,6 +337,26 @@ msgstr ""
 
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
 msgid "more entries for other events"
+msgstr ""
+
+#. Default: "Latest situation information"
+#: docpool.ui/docpool/ui/browser/overview.py
+msgid "overview_tile_latest_situation"
+msgstr ""
+
+#. Default: "Measurement results and strategies"
+#: docpool.ui/docpool/ui/browser/overview.py
+msgid "overview_tile_measurements"
+msgstr ""
+
+#. Default: "Notifications and plant information"
+#: docpool.ui/docpool/ui/browser/overview.py
+msgid "overview_tile_notifications"
+msgstr ""
+
+#. Default: "RODOS forecasts"
+#: docpool.ui/docpool/ui/browser/overview.py
+msgid "overview_tile_rodos_forecasts"
 msgstr ""
 
 #. Default: "There was an error processing the form!"

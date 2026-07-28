@@ -12,10 +12,11 @@
      "
      i18n:domain="docpool.base"
 >
-  <a class="pat-inject list-item-link stretched-link"
+  <a class="list-item-link stretched-link"
      href="#"
-     data-pat-inject="trigger: default; source: #portal-column-content; target: #content-core; history: record"
      tal:attributes="
+       class python: view.pat_inject_class('list-item-link stretched-link');
+       data-pat-inject python: view.pat_inject_config();
        href python: data['url'];
        title python:data['doctype_title'];
      "
@@ -37,25 +38,27 @@
     />
   </div>
 
-  <div class="text-center px-1 dateinfo flex-shrink-0">
-    <div tal:content="python: toLocalizedTime(data['date'], time_only=1)">15:45</div>
-    <div class="text-muted small"
-         tal:content="python: toLocalizedTime(data['date'], long_format=0)"
-    >16.12.2021
+  <div class="listingitem-meta me-3 flex-shrink-0 d-flex flex-column align-items-center">
+    <div class="doctype-box">
+      <div class="h-100 doktype-icon-container px-3 pt-3 pb-3">
+        <img class="doktype-icon p-1"
+             alt="Type"
+             src="doctype"
+             tal:attributes="
+               alt python: doctype;
+               title python:data['doctype_title'];
+               src python:data['doctype_icon_url'];
+             "
+        />
+      </div>
     </div>
-  </div>
 
-  <div class="me-3 doctype-box flex-shrink-0">
-    <div class="h-100 doktype-icon-container px-3 pt-3 pb-3">
-      <img class="doktype-icon p-1"
-           alt="Type"
-           src="doctype"
-           tal:attributes="
-             alt python: doctype;
-             title python:data['doctype_title'];
-             src python:data['doctype_icon_url'];
-           "
-      />
+    <div class="text-center px-1 dateinfo">
+      <div tal:content="python: toLocalizedTime(data['date'], time_only=1)">15:45</div>
+      <div class="text-muted small"
+           tal:content="python: toLocalizedTime(data['date'], long_format=0)"
+      >16.12.2021
+      </div>
     </div>
   </div>
 
@@ -119,10 +122,11 @@
                    value came_from;
                  "
           />
-          <a class="dropdown-item d-flex gap-2 align-items-center pat-inject"
+          <a class="dropdown-item d-flex gap-2 align-items-center"
              href="#"
-             data-pat-inject="trigger: default; source: #portal-column-content; target: #content-core; history: record"
              tal:attributes="
+               class python: view.pat_inject_class('dropdown-item d-flex gap-2 align-items-center');
+               data-pat-inject python: view.pat_inject_config();
                href python: f'{data['url']}/@@edit?_authenticator={token}&amp;came_from={came_from}';
              "
           >
@@ -147,10 +151,11 @@
           </a>
         </li>
         <li tal:condition="python: data['actions']['delete']">
-          <a class="dropdown-item d-flex gap-2 align-items-center pat-inject"
+          <a class="dropdown-item d-flex gap-2 align-items-center"
              href="#"
-             data-pat-inject="trigger: default; source: #portal-column-content; target: #content-core; history: record"
              tal:attributes="
+               class python: view.pat_inject_class('dropdown-item d-flex gap-2 align-items-center');
+               data-pat-inject python: view.pat_inject_config();
                href python: f'{data['url']}/@@delete_confirmation?_authenticator={token}&came_from={came_from}';
              "
           >
