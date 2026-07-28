@@ -1,6 +1,6 @@
 from datetime import datetime
-from docpool.base import DocpoolMessageFactory as _
 from docpool.elan.utils import get_scenario_for_current_user
+from docpool.ui import _
 from docpool.ui.browser.listing import Listing
 from plone import api
 from plone.base.utils import safe_text

@@ -193,7 +193,7 @@ msgstr "Weiter"
 
 #: docpool.ui/docpool/ui/browser/overview.py
 msgid "No scenario selected"
-msgstr ""
+msgstr "Kein Szenario ausgewählt"
 
 #: docpool.ui/docpool/ui/browser/listing.py
 msgid "Oldest first"
@@ -222,7 +222,7 @@ msgstr "Bitte wählen Sie zunächst einen Ablageort"
 
 #: docpool.ui/docpool/ui/browser/overview.py
 msgid "Please select a scenario to view the event data."
-msgstr ""
+msgstr "Bitte wählen Sie ein Szenario aus, um die Ereignisdaten anzuzeigen."
 
 #: docpool.ui/docpool/ui/browser/templates/wizard_1.pt
 msgid "Please select the group-folder in which the entry should be created. Then select the entrytype."
@@ -336,15 +336,29 @@ msgstr ""
 msgid "label_cancel"
 msgstr "Abbrechen"
 
+#: docpool.ui/docpool/ui/browser/templates/listing.pt
+msgid "more entries for other events"
+msgstr ""
+
+#. Default: "Latest situation information"
+#: docpool.ui/docpool/ui/browser/overview.py
+msgid "overview_tile_latest_situation"
+msgstr "Aktuellste Lageinformationen"
+
+#. Default: "Measurement results and strategies"
+#: docpool.ui/docpool/ui/browser/overview.py
+msgid "overview_tile_measurements"
+msgstr "Messergebnisse und Messstrategien"
+
 #. Default: "Notifications and plant information"
 #: docpool.ui/docpool/ui/browser/overview.py
 msgid "overview_tile_notifications"
-msgstr ""
+msgstr "Meldungen und Anlageinformationen"
 
 #. Default: "RODOS forecasts"
 #: docpool.ui/docpool/ui/browser/overview.py
 msgid "overview_tile_rodos_forecasts"
-msgstr ""
+msgstr "RODOS Prognosen"
 
 #. Default: "There was an error processing the form!"
 #: docpool.ui/docpool/ui/browser/wizard.py
