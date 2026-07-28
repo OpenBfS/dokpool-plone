@@ -188,7 +188,7 @@
         <img src="${python:icons.url('three-dots-vertical')}" />
       </a>
       <ul class="dropdown-menu pe-2 shadow">
-        <li>
+        <li tal:condition="python: data['actions']['edit']">
           <input name="came_from"
                  type="hidden"
                  tal:condition="came_from|nothing"
@@ -210,7 +210,22 @@
             >Edit</span>
           </a>
         </li>
-        <li tal:replace="nothing">
+        <li tal:condition="python: data['actions']['transfer']">
+          <a class="dropdown-item d-flex gap-2 align-items-center pat-modal"
+             href="#"
+             data-pat-modal="class: large; source: #content"
+             tal:attributes="
+               href python:'%s/@@dpdocument_transfer_form?uid:list=%s' % (context.absolute_url(), data['uid']);
+             "
+          >
+            <img src="${python:icons.url('box-arrow-up-right')}" />
+            <span tal:omit-tag=""
+                  i18n:domain="docpool.base"
+                  i18n:translate=""
+            >Transfer</span>
+          </a>
+        </li>
+        <li tal:condition="python: data['actions']['favorite']">
           <a class="dropdown-item d-flex gap-2 align-items-center"
              href="#"
              tal:attributes="
@@ -221,10 +236,11 @@
             <span tal:omit-tag=""
                   i18n:translate=""
             >Mark as Favorite</span>
-            (TODO)
           </a>
         </li>
-        <tal:transitions tal:repeat="transition python: data['available_transitions']">
+        <tal:transitions tal:condition="python: data['actions']['transitions']"
+                         tal:repeat="transition python: data['available_transitions']"
+        >
           <li>
             <a class="dropdown-item d-flex gap-2 align-items-center transition pat-inject"
                href="#"
@@ -246,7 +262,7 @@
             </a>
           </li>
         </tal:transitions>
-        <li tal:condition="python: data['attachments']">
+        <li tal:condition="python: data['actions']['download_attachments']">
           <a class="dropdown-item d-flex gap-2 align-items-center"
              href="#"
              tal:attributes="
@@ -259,22 +275,7 @@
             >Download all attachments</span>
           </a>
         </li>
-        <li tal:condition="python: data['show_transfer_action']">
-          <a class="dropdown-item d-flex gap-2 align-items-center pat-modal"
-             href="#"
-             data-pat-modal="class: large; source: #content"
-             tal:attributes="
-               href python:'%s/@@dpdocument_transfer_form?uid:list=%s' % (context.absolute_url(), data['uid']);
-             "
-          >
-            <img src="${python:icons.url('box-arrow-up-right')}" />
-            <span tal:omit-tag=""
-                  i18n:domain="docpool.base"
-                  i18n:translate=""
-            >Transfer</span>
-
-          </a></li>
-        <li>
+        <li tal:condition="python: data['actions']['delete']">
           <a class="dropdown-item d-flex gap-2 align-items-center pat-inject"
              href="#"
              data-pat-inject="trigger: default; source: #portal-column-content; target: #content-core; history: record"
@@ -289,7 +290,7 @@
             >Delete</span>
           </a>
         </li>
-        <li tal:replace="nothing">
+        <li tal:condition="python: data['actions']['cut']">
           <a class="dropdown-item d-flex gap-2 align-items-center"
              href="#"
              tal:attributes="
@@ -301,7 +302,20 @@
                   i18n:domain="plone"
                   i18n:translate=""
             >Cut</span>
-            (TODO)
+          </a>
+        </li>
+        <li tal:condition="python: data['actions']['print']">
+          <a class="dropdown-item d-flex gap-2 align-items-center"
+             href="#"
+             tal:attributes="
+               href python: f'{data['url']}/@@print';
+             "
+          >
+            <img src="${python:icons.url('printer')}" />
+            <span tal:omit-tag=""
+                  i18n:domain="docpool.ui"
+                  i18n:translate=""
+            >Print</span>
           </a>
         </li>
       </ul>
