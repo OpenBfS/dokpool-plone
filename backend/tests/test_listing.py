@@ -167,7 +167,7 @@ class TestListing(GroupsFolderSetupMixin):
         page.get_by_title("Published").click()
         page.get_by_role("button", name="Save").click()
 
-        assert page.url.endswith("/bund")
+        assert page.url.endswith("/bund/@@listing")
         expect(page.get_by_text("Created Offizielle Meldung 'Example Entry'")).to_be_visible()
 
         page.goto(f"{self.plone_url}/bund/content/Groups/bund_group1/example-entry")
@@ -179,7 +179,7 @@ class TestListing(GroupsFolderSetupMixin):
         expect(page.get_by_role("cell", name="image.png PNG image 1.2 KB")).to_be_visible()
         expect(page.locator(".field", has_text="Normalfall")).to_be_visible()
         expect(page.locator("#content").get_by_text("Test text", exact=True)).to_be_visible()
-        page.goto(f"{self.plone_url}/bund")
+        page.goto(f"{self.plone_url}/bund/@@listing")
         # Wait for items to get loaded
         page.wait_for_selector("#listing .listing-item", state="visible")
         items = page.locator("#listing .listing-item")
