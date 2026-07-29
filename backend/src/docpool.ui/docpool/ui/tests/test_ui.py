@@ -49,6 +49,19 @@ class TestUIFeatures(unittest.TestCase):
         self.docpool = self.portal["bund"]
         self.setup_content()
 
+    def test_docpool_view_redirects_to_overview(self):
+        view = api.content.get_view("view", self.docpool, self.request)
+        overview_url = f"{self.docpool.absolute_url()}/@@overview"
+
+        self.assertEqual(view(), overview_url)
+        self.assertEqual(self.request.response.getStatus(), 302)
+        self.assertEqual(self.request.response.getHeader("Location"), overview_url)
+
+    def test_docpool_listing_remains_available(self):
+        listing_view = api.content.get_view("listing", self.docpool, self.request)
+
+        self.assertIsNotNone(listing_view)
+
     def setup_content(self):
         add_user(self.docpool, "user1", ["group1"], enabled_apps=["elan"])
         content = self.docpool["content"]

@@ -79,8 +79,7 @@
   <browser:page
       name="view"
       for="docpool.base.interfaces.IDocumentPool"
-      class=".listing.Listing"
-      template="templates/listing.pt"
+      class=".overview.OverviewRedirect"
       permission="zope.Public"
       layer="docpool.ui.interfaces.IUITheme"
       />

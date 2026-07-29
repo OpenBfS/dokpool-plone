@@ -10,6 +10,11 @@ from Products.Five.browser import BrowserView
 OVERVIEW_TILE_LIMIT = 2
 
 
+class OverviewRedirect(BrowserView):
+    def __call__(self):
+        return self.request.response.redirect(f"{self.context.absolute_url()}/@@overview")
+
+
 class Overview(BrowserView):
     def __call__(self):
         return self.index()
