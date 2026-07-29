@@ -9,13 +9,25 @@
   >
     <div tal:define="
            scenario python: view.selected_scenario;
+           is_archive python: view.is_archive;
          "
          tal:condition="python: scenario is not None"
     >
-      <div class="text-primary text-truncate">${scenario/Title}</div>
-      <div class="d-flex align-items-center gap-3 mt-1">
-        <span class="badge bg-warning text-dark tag-badge small">${scenario/event_type_title}</span>
-        <span class="small text-primary">${scenario/operation_mode_title}</span>
+      <div class="text-primary text-truncate">
+        <tal:icon tal:condition="python: is_archive"
+                  tal:replace="structure python:icons.tag('archive-fill', tag_class='')"
+        />
+        <span tal:replace="python: scenario.title"></span>
+      </div>
+      <div class="d-flex align-items-center gap-3 mt-1"
+           tal:condition="python: not is_archive"
+      >
+        <span class="badge bg-warning text-dark tag-badge small"
+              tal:content="python: scenario.event_type_title()"
+        ></span>
+        <span class="small text-primary"
+              tal:content="python: scenario.operation_mode_title()"
+        ></span>
       </div>
     </div>
     <div class="text-primary small"

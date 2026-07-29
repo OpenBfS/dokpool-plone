@@ -4,9 +4,11 @@ from docpool.base.appregistry import appLogo as appLogo
 from docpool.base.appregistry import appName
 from docpool.base.config import BASE_APP
 from docpool.base.config import TRANSFERS_APP
+from docpool.base.content.archiving import IArchiving
 from docpool.base.content.places import IPlaces
 from docpool.base.utils import is_in_dp_folder
 from docpool.elan import DocpoolMessageFactory as EMF
+from docpool.elan.content.elanarchive import IELANArchive
 from docpool.elan.utils import get_scenario_for_current_user
 from docpool.elan.utils import getOpenScenarios
 from docpool.ui.browser.viewlets.footer import TimezoneTableMixin
@@ -173,6 +175,16 @@ class EventSwitcherViewlet(EventSwitcherMixin, ViewletBase):
 
         self.dp_url = self.dp.absolute_url()
         self.set_scenario_attributes()
+
+        self.is_archive = False
+        if IArchiving(self.context).is_archive:
+            self.is_archive = True
+            if self.context.portal_type in ["ELANArchives", "ELANArchive"]:
+                self.selected_scenario = self.context
+            else:
+                self.selected_scenario = api.content.get_closest_ancestor(
+                    self.context, interface=IELANArchive
+                )
 
         url = self.request.getURL()
         self.active = (

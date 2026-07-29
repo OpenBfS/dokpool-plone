@@ -72,9 +72,10 @@
     <div class="d-flex align-items-stretch flex-grow-1 gap-3 border-end">
       <div class="icon-column"></div>
       <div class="text-primary flex-grow-1 event-title-column">
-        <a href="${python: view.dp_url}/archive"
-           i18n:translate=""
-        >Archived events</a>
+        <a href="${python: view.dp_url}/archive">
+          <tal:icon tal:replace="structure python:icons.tag('archive', tag_class='')" />
+          <span i18n:translate="">Archived events</span>
+        </a>
       </div>
     </div>
     <div class="d-flex align-items-stretch gap-3">
