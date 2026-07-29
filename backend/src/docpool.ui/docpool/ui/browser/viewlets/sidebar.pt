@@ -10,10 +10,14 @@
 
       <tal:appspecific replace="structure provider:docpool.sidebar.appspecific.manager" />
 
-      <li class="nav-item flex-fill">
+      <li class="nav-item flex-fill"
+          tal:define="active python:view.is_active('chronology')"
+      >
         <a class="nav-link d-flex flex-column align-items-center justify-content-center text-decoration-none"
            tal:attributes="
-             href string:${view/base_url}/@@listing;
+             href string:${view/base_url};
+             class python:'nav-link d-flex flex-column align-items-center justify-content-center text-decoration-none' + (' active' if active else '');
+             aria-current python:'page' if active else None;
            "
         >
 
@@ -24,11 +28,15 @@
         </a>
       </li>
 
-      <li class="nav-item flex-fill">
+      <li class="nav-item flex-fill"
+          tal:define="active python:view.is_active('entrytypes')"
+      >
         <a class="nav-link d-flex flex-column align-items-center justify-content-center text-decoration-none"
            href="#"
            tal:attributes="
              href string:${view/base_url}/@@entrytypes;
+             class python:'nav-link d-flex flex-column align-items-center justify-content-center text-decoration-none' + (' active' if active else '');
+             aria-current python:'page' if active else None;
            "
         >
           <span class="icon-24 d-flex align-items-center justify-content-center mb-2">
@@ -38,12 +46,16 @@
         </a>
       </li>
 
-      <li class="nav-item flex-fill">
+      <li class="nav-item flex-fill"
+          tal:define="active python:view.is_active('journals')"
+      >
         <a class="nav-link d-flex flex-column align-items-center justify-content-center text-decoration-none"
            href="#"
            tal:condition="python: view.show_journals()"
            tal:attributes="
              href string:${view/base_url}/@@journals;
+             class python:'nav-link d-flex flex-column align-items-center justify-content-center text-decoration-none' + (' active' if active else '');
+             aria-current python:'page' if active else None;
            "
         >
           <span class="icon-24 d-flex align-items-center justify-content-center mb-2">
@@ -53,12 +65,16 @@
         </a>
       </li>
 
-      <li class="nav-item flex-fill">
+      <li class="nav-item flex-fill"
+          tal:define="active python:view.is_active('tasks')"
+      >
         <a class="nav-link d-flex flex-column align-items-center justify-content-center text-decoration-none"
            href="#"
            tal:condition="python: view.show_tasks()"
            tal:attributes="
              href string:${view/base_url}/@@tasks;
+             class python:'nav-link d-flex flex-column align-items-center justify-content-center text-decoration-none' + (' active' if active else '');
+             aria-current python:'page' if active else None;
            "
         >
           <span class="icon-24 d-flex align-items-center justify-content-center mb-2">

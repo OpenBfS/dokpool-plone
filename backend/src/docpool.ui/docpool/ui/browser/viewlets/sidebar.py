@@ -19,6 +19,12 @@ class ISidebarAppSpecificManager(IViewletManager):
 class SidebarViewlet(GroupsTreeMixin, common.ViewletBase):
     index = ViewPageTemplateFile("sidebar.pt")
     groups_nav = ViewPageTemplateFile("sidebar-groups-nav.pt")
+    section_views = {
+        "chronology": {"listing"},
+        "entrytypes": {"entrytypes"},
+        "journals": {"journals", "journalentries"},
+        "tasks": {"tasks"},
+    }
 
     def update(self):
         super().update()
@@ -44,6 +50,16 @@ class SidebarViewlet(GroupsTreeMixin, common.ViewletBase):
         if IArchiving(self.context).is_archive and getattr(self.context, "myELANArchive", None):
             return self.context.myELANArchive().absolute_url()
         return self.navigation_root_url
+
+    def is_active(self, section):
+        current_url = self.request.getURL().rstrip("/")
+        if section == "chronology" and current_url == self.base_url().rstrip("/"):
+            return True
+
+        view_segment = current_url.rsplit("/", 1)[-1]
+        if not view_segment.startswith("@@"):
+            return False
+        return view_segment[2:] in self.section_views[section]
 
     def show_journals(self):
         dp_app_state = api.content.get_view("dp_app_state", self.context, self.request)
