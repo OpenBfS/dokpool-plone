@@ -1,6 +1,8 @@
+from docpool.base.preview import ANNOTATION_KEY
 from plone import api
 from plone.base.utils import human_readable_size
 from Products.Five.browser import BrowserView
+from zope.annotation import IAnnotations
 
 
 class Attachments(BrowserView):
@@ -17,6 +19,12 @@ class Attachments(BrowserView):
         mtr = api.portal.get_tool("mimetypes_registry")
         mimetypes = mtr.lookup(content_type)
         return mimetypes[0].name() if mimetypes else content_type.split("/")[-1]
+
+    def pages(self, obj):
+        annotations = IAnnotations(obj)
+        previews = annotations.get(ANNOTATION_KEY, None)
+        if previews and "pages" in previews:
+            return previews["pages"]
 
 
 def complete_size_in_bytes(values):

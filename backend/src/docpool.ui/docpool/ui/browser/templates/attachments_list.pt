@@ -12,43 +12,54 @@
     >
       <tbody>
         <tr tal:repeat="item python: items">
-          <td tal:define="
-                is_image python: item.portal_type == 'Image';
-              ">
-            <a class="gallery-item"
-               target="_blank"
-               tal:content="python: item.title"
-               tal:attributes="
-                 class python: 'gallery-item' if is_image else '';
-                 href python: item.getURL() + '/@@images/image/huge' if is_image else item.getURL();
-               "
-            >
-            </a>
-            <div class="float-end">
-              <span class="badge text-bg-secondary"
-                    tal:content="python: view.mimetype_name(item.getObject().content_type())"
-              ></span>
-              <span tal:content="python: item.getSize()"></span>
-            </div>
-          </td>
-          <td>
-            <div class="float-end">
-              <a href=""
+          <tal:item tal:define="
+                      is_image python: item.portal_type == 'Image';
+                      mime_type python: item.getObject().content_type();
+                      is_pdf python: not is_image and mime_type == 'application/pdf';
+                    ">
+            <td>
+              <a class="gallery-item"
+                 target="_blank"
+                 tal:content="python: item.title"
                  tal:attributes="
-                   href python: item.getURL() + '/@@download';
+                   class python: 'gallery-item' if is_image else '';
+                   href python: item.getURL() + '/@@images/image/huge' if is_image else item.getURL();
                  "
-              ><img src="${python:icons.url('file-arrow-down')}" /></a>
-              <a href=""
-                 title="Download"
-                 tal:attributes="
-                   href python: item.getURL() + '/@@download';
-                 "
-                 i18n:attributes="title"
-                 i18n:domain="plone"
-              ><img src="${python:icons.url('download')}" /></a>
-            </div>
-          </td>
-
+              >
+              </a>
+              <div class="float-end">
+                <span class="badge text-bg-secondary"
+                      tal:content="python: view.mimetype_name(mime_type)"
+                ></span>
+                <span tal:content="python: item.getSize()"></span>
+              </div>
+            </td>
+            <td>
+              <div class="float-end">
+                <a href=""
+                   title="View"
+                   tal:condition="python: is_pdf"
+                   tal:attributes="
+                     href python: item.getURL() + '/@@pdfjs_file_view';
+                   "
+                   i18n:attributes="title"
+                ><img src="${python:icons.url('eye')}" /></a>
+                <a href=""
+                   tal:attributes="
+                     href python: item.getURL() + '/@@download';
+                   "
+                ><img src="${python:icons.url('file-arrow-down')}" /></a>
+                <a href=""
+                   title="Download"
+                   tal:attributes="
+                     href python: item.getURL() + '/@@download';
+                   "
+                   i18n:attributes="title"
+                   i18n:domain="plone"
+                ><img src="${python:icons.url('download')}" /></a>
+              </div>
+            </td>
+          </tal:item>
         </tr>
       </tbody>
     </table>
