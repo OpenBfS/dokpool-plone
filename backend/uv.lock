@@ -838,6 +838,17 @@ wheels = [
 ]
 
 [[package]]
+name = "collective-pdfjs"
+version = "1.0.5"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "plone-app-upgrade" },
+    { name = "products-cmfplone" },
+    { name = "setuptools" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/1b/42/6efc58c889ca077c63f70c6fc5acfc7052d7912e5a6a4cfda66fad0b61e2/collective.pdfjs-1.0.5.tar.gz", hash = "sha256:71eb996c7b38cec851019d28bd3c877cdf7d7b9c3e5b43721d2fb86b29458324", size = 485959, upload-time = "2024-07-26T07:49:05.384Z" }
+
+[[package]]
 name = "colorama"
 version = "0.4.6"
 source = { registry = "https://pypi.org/simple" }
@@ -1242,6 +1253,7 @@ name = "docpool-ui"
 version = "1.0"
 source = { editable = "src/docpool.ui" }
 dependencies = [
+    { name = "collective-pdfjs" },
     { name = "plone-app-theming" },
     { name = "plone-patternslib" },
     { name = "setuptools" },
@@ -1251,6 +1263,7 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
+    { name = "collective-pdfjs" },
     { name = "plone-app-theming" },
     { name = "plone-patternslib" },
     { name = "setuptools" },

@@ -28,6 +28,7 @@ class DocpoolUiLayer(PloneSandboxLayer):
         import docpool.ui
         import eea.facetednavigation
         import plone.patternslib
+        import collective.pdfjs
         import plone.restapi
         import z3c.jbot
 
@@ -38,6 +39,7 @@ class DocpoolUiLayer(PloneSandboxLayer):
         self.loadZCML(package=eea.facetednavigation)
         self.loadZCML(package=collective.impersonate)
         self.loadZCML(package=plone.patternslib)
+        self.loadZCML(package=collective.pdfjs)
         self.loadZCML(package=docpool.ui)
 
     def setUpPloneSite(self, portal):
