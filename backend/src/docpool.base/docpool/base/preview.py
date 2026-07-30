@@ -5,6 +5,7 @@ from plone import api
 from plone.app.contenttypes.interfaces import IFile
 from plone.namedfile.file import NamedBlobImage
 from plone.scale.scale import scaleImage
+from pypdf import PdfReader
 from shutil import which
 from tempfile import TemporaryDirectory
 from ZODB.DemoStorage import DemoStorage
@@ -116,6 +117,7 @@ def generate_preview_image(obj, event=None):
         previews = OOBTree()
         previews["last_updated"] = None
         previews["relative_blob_path"] = None
+        previews["pages"] = None
         annotations[ANNOTATION_KEY] = previews
 
     if not obj.file._blob._p_oid:
@@ -153,6 +155,11 @@ def generate_preview_image(obj, event=None):
             "Could not generate preview for %s because path %s does not exists", obj.absolute_url(), blob_path
         )
         return
+
+    # Extract number of pages
+    with open(blob_path, "rb") as f:
+        reader = PdfReader(f)
+        previews["pages"] = len(reader.pages)
 
     # Send blob-path to subprocess to generate preview image
     data = pdf2jpg.convert(blob_path)
