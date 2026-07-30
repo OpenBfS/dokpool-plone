@@ -28,6 +28,7 @@ class DocpoolEventLayer(PloneSandboxLayer):
         import docpool.elan
         import docpool.theme
         import docpool.ui
+        import collective.pdfjs
         import eea.facetednavigation
         import elan.journal
         import plone.patternslib
@@ -39,6 +40,7 @@ class DocpoolEventLayer(PloneSandboxLayer):
         self.loadZCML(package=plone.patternslib)
         self.loadZCML(package=docpool.theme)
         self.loadZCML(package=docpool.ui)
+        self.loadZCML(package=collective.pdfjs)
         self.loadZCML(package=docpool.doksys)
         self.loadZCML(package=eea.facetednavigation)
         self.loadZCML(package=collective.impersonate)
