@@ -839,14 +839,22 @@ wheels = [
 
 [[package]]
 name = "collective-pdfjs"
-version = "1.0.5"
-source = { registry = "https://pypi.org/simple" }
+version = "1.0.6.dev0"
+source = { editable = "sources/collective.pdfjs" }
 dependencies = [
     { name = "plone-app-upgrade" },
     { name = "products-cmfplone" },
     { name = "setuptools" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/1b/42/6efc58c889ca077c63f70c6fc5acfc7052d7912e5a6a4cfda66fad0b61e2/collective.pdfjs-1.0.5.tar.gz", hash = "sha256:71eb996c7b38cec851019d28bd3c877cdf7d7b9c3e5b43721d2fb86b29458324", size = 485959, upload-time = "2024-07-26T07:49:05.384Z" }
+
+[package.metadata]
+requires-dist = [
+    { name = "plone-app-testing", marker = "extra == 'test'" },
+    { name = "plone-app-upgrade" },
+    { name = "products-cmfplone" },
+    { name = "setuptools" },
+]
+provides-extras = ["test"]
 
 [[package]]
 name = "colorama"
@@ -979,6 +987,7 @@ dependencies = [
     { name = "collective-eeafaceted-z3ctable" },
     { name = "collective-excelexport" },
     { name = "collective-impersonate" },
+    { name = "collective-pdfjs" },
     { name = "docpool-api" },
     { name = "docpool-base" },
     { name = "docpool-config" },
@@ -1029,6 +1038,7 @@ requires-dist = [
     { name = "collective-eeafaceted-z3ctable", editable = "sources/collective.eeafaceted.z3ctable" },
     { name = "collective-excelexport", editable = "sources/collective.excelexport" },
     { name = "collective-impersonate" },
+    { name = "collective-pdfjs", editable = "sources/collective.pdfjs" },
     { name = "docpool-api", editable = "src/docpool.api" },
     { name = "docpool-base", editable = "src/docpool.base" },
     { name = "docpool-config", editable = "src/docpool.config" },
