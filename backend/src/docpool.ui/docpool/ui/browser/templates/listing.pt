@@ -40,8 +40,8 @@
             >
               <img src="${python:icons.url('chevron-left')}" />
               <span class="small"
-                    i18n:translate="back"
-              >Zur&uuml;ck</span>
+                    i18n:translate=""
+              >Back</span>
             </a>
             <strong tal:content="python: view.journal_title"></strong>
           </div>

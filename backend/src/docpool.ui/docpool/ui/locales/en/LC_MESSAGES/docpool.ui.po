@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-07-28 10:31+0000\n"
+"POT-Creation-Date: 2026-07-30 11:41+0000\n"
 "PO-Revision-Date: 2025-11-24 11:56+0100\n"
 "Last-Translator: Thomas Lotze <lotze@starzel.de>\n"
 "Language-Team: English\n"
@@ -62,6 +62,7 @@ msgstr ""
 msgid "Archived events"
 msgstr ""
 
+#: docpool.ui/docpool/ui/browser/templates/listing.pt
 #: docpool.ui/docpool/ui/browser/templates/wizard_2.pt
 #: docpool.ui/docpool/ui/browser/templates/wizard_3.pt
 msgid "Back"
@@ -203,6 +204,10 @@ msgstr "Oldest first"
 msgid "Only for member of '${container_title}'"
 msgstr "Only for member of '${container_title}'"
 
+#: docpool.ui/docpool/ui/browser/templates/attachments_grid.pt
+msgid "Pages"
+msgstr ""
+
 #: docpool.ui/docpool/ui/browser/listing.py
 msgid "Pending"
 msgstr ""
@@ -320,11 +325,6 @@ msgstr "Z-A"
 #. Default: "Attachments"
 #: docpool.ui/docpool/ui/browser/templates/wizard_2.pt
 msgid "attachments"
-msgstr ""
-
-#. Default: "Zur&uuml;ck"
-#: docpool.ui/docpool/ui/browser/templates/listing.pt
-msgid "back"
 msgstr ""
 
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
