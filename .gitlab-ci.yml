@@ -79,6 +79,7 @@ acceptance_tests:
     - dind
   stage: test
   script:
+    - apt update
     - apt-get install -y poppler-utils jq
     - cd backend
     - pip install --upgrade pip
