@@ -118,7 +118,8 @@
                   ><span tal:replace="error"></span></div>
 
                   <label>
-                    <input name="${widget_name}"
+                    <input class="radio-widget choice-field form-check-input"
+                           name="${widget_name}"
                            type="radio"
                            value="${python: item['value']}"
                            tal:define="
