@@ -22,9 +22,13 @@ $plone-default-revised-color: #d4d4d4;
   --bs-link-hover-color-rgb: 12, 27, 44;
   --bs-primary: #324d6a; /* Graublau Dunkel1 */
   --bs-warning: #fed86c; /* Gelb Main */
-  --bs-light: #e1e6eb; /* Graublau Hell3 */
-  --bs-light-blue: #c3dce7; /* Hellblau(Hell2) */
-  --bs-btn-active-bg: #c3dce7;
+  --bs-light-blue: #e7f1f5; /* Hellblau (Hell2) */
+  --bs-dark-blue: #c3dce7; /* Hellblau (Hell3) */
+  --bs-btn-active-bg: var(--bs-dark-blue);
+  --bs-nav-active-bg: var(--bs-dark-blue);
+  --bs-nav-hover-bg: var(--bs-light-blue);
+  --bs-sidebar-nav-item-width: 90px;
+  --bs-sidebar-nav-item-height: 72px;
   --bs-btn-font-size: var(--dp-font-small);
   // Bootstrap default:
   // $font-size-base: 1rem !default; // Assumes the browser default, typically `16px`
@@ -73,7 +77,6 @@ $plone-default-revised-color: #d4d4d4;
   --bs-btn-disabled-bg: #f1f3f6;
   --bs-btn-disabled-border-color: transparent;
 }
-
 body {
   /* Fallback for browsers that don't support dvh */
   min-height: 100vh;

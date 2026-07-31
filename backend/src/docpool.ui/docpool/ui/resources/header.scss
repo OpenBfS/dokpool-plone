@@ -53,8 +53,8 @@
 }
 
 .nav-active {
-  background-color: var(--bs-light-blue);
-  border-bottom: 2px solid var(--bs-primary);
+  background-color: var(--bs-nav-active-bg);
+  border-bottom: none;
 }
 
 .event-switcher,
@@ -348,10 +348,14 @@
 }
 
 .nav-btn {
-  height: 72px;
+  height: var(--bs-sidebar-nav-item-height);
 
   .small {
     font-size: var(--dp-font-body);
+  }
+
+  &:hover:not(.nav-active) {
+    background-color: var(--bs-nav-hover-bg);
   }
 }
 

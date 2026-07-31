@@ -5,7 +5,7 @@
      tal:condition="python:not context.restrictedTraverse('@@plone_portal_state').anonymous()"
 >
 
-  <nav class="w-100 align-items-center">
+  <nav class="w-100 my-3 align-items-center">
     <ul class="nav nav-pills d-flex flex-row flex-nowrap flex-xl-column align-items-center w-100">
 
       <tal:appspecific replace="structure provider:docpool.sidebar.appspecific.manager" />
@@ -18,7 +18,7 @@
         <a class="nav-link d-flex flex-column align-items-center justify-content-center text-decoration-none"
            tal:attributes="
              href string:${view/base_url}/@@listing;
-             class python:'nav-link d-flex flex-column align-items-center justify-content-center text-decoration-none' + (' active' if active else '');
+             class python:'nav-link d-flex flex-column align-items-center justify-content-center text-decoration-none' + (' active fw-bold' if active else '');
              aria-current python:'page' if active else None;
            "
         >
@@ -39,7 +39,7 @@
            href="#"
            tal:attributes="
              href string:${view/base_url}/@@entrytypes;
-             class python:'nav-link d-flex flex-column align-items-center justify-content-center text-decoration-none' + (' active' if active else '');
+             class python:'nav-link d-flex flex-column align-items-center justify-content-center text-decoration-none' + (' active fw-bold' if active else '');
              aria-current python:'page' if active else None;
            "
         >
@@ -60,7 +60,7 @@
            tal:condition="python: view.show_journals()"
            tal:attributes="
              href string:${view/base_url}/@@journals;
-             class python:'nav-link d-flex flex-column align-items-center justify-content-center text-decoration-none' + (' active' if active else '');
+             class python:'nav-link d-flex flex-column align-items-center justify-content-center text-decoration-none' + (' active fw-bold' if active else '');
              aria-current python:'page' if active else None;
            "
         >
@@ -81,7 +81,7 @@
            tal:condition="python: view.show_tasks()"
            tal:attributes="
              href string:${view/base_url}/@@tasks;
-             class python:'nav-link d-flex flex-column align-items-center justify-content-center text-decoration-none' + (' active' if active else '');
+             class python:'nav-link d-flex flex-column align-items-center justify-content-center text-decoration-none' + (' active fw-bold' if active else '');
              aria-current python:'page' if active else None;
            "
         >
