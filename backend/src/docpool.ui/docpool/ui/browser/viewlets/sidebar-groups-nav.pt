@@ -4,6 +4,7 @@
        icons python:context.restrictedTraverse('@@iconresolver');
      "
      tal:condition="python:not context.restrictedTraverse('@@plone_portal_state').anonymous()"
+     i18n:domain="docpool.ui"
 >
 
   <nav class="w-100 align-items-center h-100 overflow-auto d-none d-xl-block">
@@ -27,7 +28,8 @@
     <div class="offcanvas-header mobile-offcanvas-header">
       <h5 class="offcanvas-title"
           id="offcanvasGroupsNavLabel"
-      >Gruppen</h5>
+          i18n:translate=""
+      >Groups</h5>
       <button class="btn btn-icon mobile-offcanvas-close"
               aria-label="Close"
               type="button"
