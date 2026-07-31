@@ -73,6 +73,7 @@
 .event-switcher {
   background-color: var(--bs-nav-active-bg);
   width: 44px;
+  cursor: pointer;
 
   > * {
     width: 44px;
