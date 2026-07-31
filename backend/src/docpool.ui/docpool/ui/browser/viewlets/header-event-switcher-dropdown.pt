@@ -4,6 +4,7 @@
     tal:define="
       icons python:context.restrictedTraverse('@@iconresolver');
       auth_token context/@@authenticator/token;
+      checkPermission nocall: context/portal_membership/checkPermission;
     "
     i18n:domain="docpool.ui"
 >
@@ -87,7 +88,9 @@
       <div class="icon-column"></div>
     </div>
   </li>
-  <li class="dropdown-item event-switcher-detail d-flex align-items-end justify-content-end gap-3">
+  <li class="dropdown-item event-switcher-detail d-flex align-items-end justify-content-end gap-3"
+      tal:condition="python: checkPermission('docpool.elan.AddDPEvent', context)"
+  >
     <div>
       <a class="btn btn-secondary"
          href="${python: view.dp_url}/contentconfig/scen/@@edit-subscribed-events"
