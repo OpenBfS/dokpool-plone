@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-07-30 11:41+0000\n"
+"POT-Creation-Date: 2026-07-31 14:09+0000\n"
 "PO-Revision-Date: 2025-11-24 11:56+0100\n"
 "Last-Translator: Thomas Lotze <lotze@starzel.de>\n"
 "Language-Team: Romanian <translation-team-ro@lists.sourceforge.net>\n"
@@ -32,10 +32,6 @@ msgstr ""
 
 #: docpool.ui/docpool/ui/browser/listing.py
 msgid "A-Z"
-msgstr ""
-
-#: docpool.ui/docpool/ui/browser/templates/folder_wizard.pt
-msgid "Ablageort"
 msgstr ""
 
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
@@ -72,6 +68,10 @@ msgstr ""
 #: docpool.ui/docpool/ui/browser/templates/wizard_1.pt
 #: docpool.ui/docpool/ui/browser/templates/wizard_2.pt
 msgid "Cancel"
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/viewlets/sidebar.pt
+msgid "Chronology"
 msgstr ""
 
 #: docpool.ui/docpool/ui/browser/templates/wizard_1.pt
@@ -139,6 +139,11 @@ msgstr ""
 msgid "Entrytype"
 msgstr ""
 
+#. Default: "Eintragsarten"
+#: docpool.ui/docpool/ui/browser/viewlets/sidebar.pt
+msgid "Entrytypes"
+msgstr ""
+
 #: docpool.ui/docpool/ui/browser/templates/folder_wizard.pt
 msgid "Folder Type"
 msgstr ""
@@ -157,6 +162,10 @@ msgstr ""
 msgid "Group"
 msgstr ""
 
+#: docpool.ui/docpool/ui/browser/viewlets/sidebar-groups-nav.pt
+msgid "Groups"
+msgstr ""
+
 #: docpool.ui/docpool/ui/browser/listing.py
 #: docpool.ui/docpool/ui/browser/wizard.py
 msgid "Internal"
@@ -164,6 +173,14 @@ msgstr ""
 
 #: docpool.ui/docpool/ui/browser/viewlets/header-navigation-macros.pt
 msgid "JST"
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/viewlets/sidebar.pt
+msgid "Journal"
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/templates/folder_wizard.pt
+msgid "Location"
 msgstr ""
 
 #: docpool.ui/docpool/ui/browser/viewlets/header-navigation-macros.pt
@@ -202,6 +219,10 @@ msgstr ""
 
 #: docpool.ui/docpool/ui/browser/wizard.py
 msgid "Only for member of '${container_title}'"
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/viewlets/sidebar-elan.pt
+msgid "Overview"
 msgstr ""
 
 #: docpool.ui/docpool/ui/browser/templates/attachments_grid.pt
@@ -294,6 +315,10 @@ msgstr ""
 
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
 msgid "Sorting"
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/viewlets/sidebar.pt
+msgid "Tasks"
 msgstr ""
 
 #: docpool.ui/docpool/ui/browser/templates/listing.pt

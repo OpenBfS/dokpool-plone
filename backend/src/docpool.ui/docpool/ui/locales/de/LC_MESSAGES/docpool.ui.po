@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-07-30 11:41+0000\n"
+"POT-Creation-Date: 2026-07-31 14:09+0000\n"
 "PO-Revision-Date: 2025-11-24 12:24+0100\n"
 "Last-Translator: Thomas Lotze <lotze@starzel.de>\n"
 "Language-Team: German <translation-team-de@lists.sourceforge.net>\n"
@@ -28,23 +28,19 @@ msgstr ""
 
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
 msgid "<span class=\"me-1\"> ${DYNAMIC_CONTENT} </span> Reset"
-msgstr ""
+msgstr "Zurücksetzen"
 
 #: docpool.ui/docpool/ui/browser/listing.py
 msgid "A-Z"
 msgstr ""
 
-#: docpool.ui/docpool/ui/browser/templates/folder_wizard.pt
-msgid "Ablageort"
-msgstr ""
-
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
 msgid "Add entry"
-msgstr ""
+msgstr "Eintrag anlegen"
 
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
 msgid "Add folder"
-msgstr ""
+msgstr "Ordner anlegen"
 
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
 msgid "Add journal entry"
@@ -74,6 +70,10 @@ msgstr "Zurück"
 msgid "Cancel"
 msgstr "Abbrechen"
 
+#: docpool.ui/docpool/ui/browser/viewlets/sidebar.pt
+msgid "Chronology"
+msgstr "Chronologie"
+
 #: docpool.ui/docpool/ui/browser/templates/wizard_1.pt
 msgid "Container"
 msgstr "Ablageort"
@@ -90,7 +90,7 @@ msgstr "Inhalt ist definiert"
 
 #: docpool.ui/docpool/ui/browser/templates/folder_wizard.pt
 msgid "Create new"
-msgstr ""
+msgstr "Erstelle"
 
 #: docpool.ui/docpool/ui/browser/templates/wizard_1.pt
 #: docpool.ui/docpool/ui/browser/templates/wizard_2.pt
@@ -104,15 +104,15 @@ msgstr "Eintrag '${title}' erfolgreich gespeichert"
 
 #: docpool.ui/docpool/ui/browser/wizard.py
 msgid "Created ${portal_type} '${title}'"
-msgstr ""
+msgstr "${portal_type} '${title}' wurde angelegt"
 
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
 msgid "Created since"
-msgstr ""
+msgstr "Erstellt seit"
 
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
 msgid "Created until"
-msgstr ""
+msgstr "Erstellt bis"
 
 #: docpool.ui/docpool/ui/browser/dpdocument.py
 msgid "Delete"
@@ -139,9 +139,14 @@ msgstr "Einträge"
 msgid "Entrytype"
 msgstr "Eintragsart"
 
+#. Default: "Eintragsarten"
+#: docpool.ui/docpool/ui/browser/viewlets/sidebar.pt
+msgid "Entrytypes"
+msgstr "Eintragsarten"
+
 #: docpool.ui/docpool/ui/browser/templates/folder_wizard.pt
 msgid "Folder Type"
-msgstr ""
+msgstr "Art des Ordners"
 
 #: docpool.ui/docpool/ui/browser/templates/wizard_1.pt
 #: docpool.ui/docpool/ui/browser/templates/wizard_2.pt
@@ -155,7 +160,11 @@ msgstr "Für alle Anwender von '${app} ${docpool_title}' sichtbar"
 
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
 msgid "Group"
-msgstr ""
+msgstr "Gruppe"
+
+#: docpool.ui/docpool/ui/browser/viewlets/sidebar-groups-nav.pt
+msgid "Groups"
+msgstr "Gruppen"
 
 #: docpool.ui/docpool/ui/browser/listing.py
 #: docpool.ui/docpool/ui/browser/wizard.py
@@ -165,6 +174,14 @@ msgstr "Gruppenintern"
 #: docpool.ui/docpool/ui/browser/viewlets/header-navigation-macros.pt
 msgid "JST"
 msgstr ""
+
+#: docpool.ui/docpool/ui/browser/viewlets/sidebar.pt
+msgid "Journal"
+msgstr "Protokoll"
+
+#: docpool.ui/docpool/ui/browser/templates/folder_wizard.pt
+msgid "Location"
+msgstr "Ablageort"
 
 #: docpool.ui/docpool/ui/browser/viewlets/header-navigation-macros.pt
 msgid "ME(S)Z"
@@ -204,6 +221,10 @@ msgstr "Älteste zuerst"
 msgid "Only for member of '${container_title}'"
 msgstr "Für alle Mitglieder der Gruppe '${container_title}' sichtbar"
 
+#: docpool.ui/docpool/ui/browser/viewlets/sidebar-elan.pt
+msgid "Overview"
+msgstr "Übersicht"
+
 #: docpool.ui/docpool/ui/browser/templates/attachments_grid.pt
 msgid "Pages"
 msgstr "Seiten"
@@ -241,7 +262,7 @@ msgstr "Bitte definieren Sie den Inhalt des Eintrags."
 #: docpool.ui/docpool/ui/browser/templates/listing-item.pt
 #: docpool.ui/docpool/ui/browser/templates/listing-other.pt
 msgid "Print"
-msgstr ""
+msgstr "Drucken"
 
 #: docpool.ui/docpool/ui/browser/listing.py
 #: docpool.ui/docpool/ui/browser/wizard.py
@@ -250,11 +271,11 @@ msgstr "Öffentlich"
 
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
 msgid "Reset filter"
-msgstr ""
+msgstr "Filter zurücksetzen"
 
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
 msgid "Reset search"
-msgstr ""
+msgstr "Suche zurücksetzen"
 
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
 msgid "Results for"
@@ -270,23 +291,23 @@ msgstr "Speichern"
 
 #: docpool.ui/docpool/ui/browser/viewlets/header.py
 msgid "Search DokSys"
-msgstr ""
+msgstr "DokSys durchsuchen"
 
 #: docpool.ui/docpool/ui/browser/viewlets/header.py
 msgid "Search ELAN"
-msgstr ""
+msgstr "ELAN durchsuchen"
 
 #: docpool.ui/docpool/ui/browser/viewlets/header.py
 msgid "Search REI"
-msgstr ""
+msgstr "REI durchsuchen"
 
 #: docpool.ui/docpool/ui/browser/viewlets/header.py
 msgid "Search RODOS"
-msgstr ""
+msgstr "RODOS durchsuchen"
 
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
 msgid "Search on this page…"
-msgstr ""
+msgstr "Auf dieser Seite suchen…"
 
 #: docpool.ui/docpool/ui/browser/templates/wizard_1.pt
 msgid "Select a container"
@@ -294,11 +315,15 @@ msgstr "Wählen Sie einen Ablageort"
 
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
 msgid "Sorting"
-msgstr ""
+msgstr "Sortierung"
+
+#: docpool.ui/docpool/ui/browser/viewlets/sidebar.pt
+msgid "Tasks"
+msgstr "Aufgaben"
 
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
 msgid "Time [ME(S)Z]"
-msgstr ""
+msgstr "Zeit [ME(S)Z]"
 
 #: docpool.ui/docpool/ui/browser/templates/wizard_3.pt
 msgid "Title added"
@@ -316,7 +341,7 @@ msgstr "Sichtbarkeit"
 
 #: docpool.ui/docpool/ui/browser/wizard.py
 msgid "You cannot add any folders"
-msgstr ""
+msgstr "Sie können keine Ornder anlegen"
 
 #: docpool.ui/docpool/ui/browser/listing.py
 msgid "Z-A"
@@ -329,7 +354,7 @@ msgstr "Dokumente"
 
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
 msgid "for all events"
-msgstr ""
+msgstr "für alle Ereignisse"
 
 #. Default: "Cancel"
 #: docpool.ui/docpool/ui/browser/dpdocument.py
@@ -338,7 +363,7 @@ msgstr "Abbrechen"
 
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
 msgid "more entries for other events"
-msgstr ""
+msgstr "weitere Einträge für andere Ereignisse"
 
 #. Default: "Latest situation information"
 #: docpool.ui/docpool/ui/browser/overview.py

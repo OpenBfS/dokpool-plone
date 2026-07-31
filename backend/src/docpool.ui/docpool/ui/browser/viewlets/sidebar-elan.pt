@@ -3,6 +3,7 @@
     tal:define="
       icons python:context.restrictedTraverse('@@iconresolver');
     "
+    i18n:domain="docpool.ui"
 >
   <a class="nav-link d-flex flex-column align-items-center justify-content-center text-decoration-none"
      href="${string:${view/navigation_root_url}/@@overview}"
@@ -10,6 +11,8 @@
     <span class="icon-24 d-flex align-items-center justify-content-center mb-2">
       <tal:icon replace="structure python:icons.tag('grid-1x2-fill', tag_class='me-0')" />
     </span>
-    <span class="label text-center">&Uuml;bersicht</span>
+    <span class="label text-center"
+          i18n:translate=""
+    >Overview</span>
   </a>
 </li>

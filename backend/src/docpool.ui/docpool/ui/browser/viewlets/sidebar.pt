@@ -3,6 +3,7 @@
        icons python:context.restrictedTraverse('@@iconresolver');
      "
      tal:condition="python:not context.restrictedTraverse('@@plone_portal_state').anonymous()"
+     i18n:domain="docpool.ui"
 >
 
   <nav class="w-100 align-items-center">
@@ -20,7 +21,9 @@
           <span class="icon-24 d-flex align-items-center justify-content-center mb-2">
             <tal:icon tal:replace="structure python:icons.tag('clock-fill', tag_class='me-0')" />
           </span>
-          <span class="label text-center">Chronologie</span>
+          <span class="label text-center"
+                i18n:translate=""
+          >Chronology</span>
         </a>
       </li>
 
@@ -34,7 +37,9 @@
           <span class="icon-24 d-flex align-items-center justify-content-center mb-2">
             <tal:icon tal:replace="structure python:icons.tag('diagram-3-fill', tag_class='me-0')" />
           </span>
-          <span class="label text-center">Eintragsarten</span>
+          <span class="label text-center"
+                i18n:translate="Entrytypes"
+          >Eintragsarten</span>
         </a>
       </li>
 
@@ -49,7 +54,9 @@
           <span class="icon-24 d-flex align-items-center justify-content-center mb-2">
             <tal:icon tal:replace="structure python:icons.tag('book-half', tag_class='me-0')" />
           </span>
-          <span class="label text-center">Protokoll</span>
+          <span class="label text-center"
+                i18n:translate=""
+          >Journal</span>
         </a>
       </li>
 
