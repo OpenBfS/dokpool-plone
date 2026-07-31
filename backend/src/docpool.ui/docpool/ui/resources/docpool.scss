@@ -352,6 +352,10 @@ span.badge.text-bg-light {
     position: relative;
     z-index: 1;
 
+    &:hover {
+      background-color: var(--bs-nav-hover-bg);
+    }
+
     &:has(.dropdown-menu.show) {
       z-index: 1050;
     }
