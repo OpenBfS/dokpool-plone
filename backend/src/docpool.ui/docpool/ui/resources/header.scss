@@ -63,6 +63,7 @@
 }
 
 .event-switcher-detail {
+  background-color: var(--bs-nav-active-bg);
   .badge,
   .small {
     font-size: var(--dp-font-body);
@@ -70,6 +71,7 @@
 }
 
 .event-switcher {
+  background-color: var(--bs-nav-active-bg);
   width: 44px;
 
   > * {
@@ -78,6 +80,13 @@
     padding-top: 10px;
     padding-bottom: 10px;
     border-left: 1px solid var(--bs-blue-gray);
+  }
+}
+
+#header-primary-shortcuts:has(.nav-link.nav-active) {
+  .event-switcher-detail,
+  .event-switcher {
+    background-color: transparent;
   }
 }
 
