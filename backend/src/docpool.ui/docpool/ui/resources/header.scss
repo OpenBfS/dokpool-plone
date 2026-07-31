@@ -83,10 +83,21 @@
   }
 }
 
-#header-primary-shortcuts:has(.nav-link.nav-active) {
-  .event-switcher-detail,
-  .event-switcher {
-    background-color: transparent;
+#header-primary-shortcuts {
+  .event-switcher-detail:hover,
+  .event-switcher:hover {
+    background-color: var(--bs-nav-hover-darker-bg);
+  }
+
+  &:has(.nav-link.nav-active) {
+    .event-switcher-detail,
+    .event-switcher {
+      background-color: transparent;
+
+      &:hover {
+        background-color: var(--bs-nav-hover-bg);
+      }
+    }
   }
 }
 
