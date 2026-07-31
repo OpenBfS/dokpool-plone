@@ -46,7 +46,7 @@
 }
 
 .sidebar .nav-link {
-  height: 72px;
+  height: var(--bs-sidebar-nav-item-height);
   width: 100%;
   min-width: 0;
   border-radius: 0.25rem; /* 4px */
@@ -67,8 +67,7 @@
 }
 
 .sidebar .nav-link.active {
-  background-color: var(--bs-info);
-  font-weight: 600;
+  background-color: var(--bs-nav-active-bg);
 }
 
 .sidebar .icon-24 svg {
@@ -111,13 +110,13 @@
 .sidebar {
   .nav-link {
     @include media-breakpoint-up(xl) {
-      margin: 0 10px;
-      width: auto;
+      margin: 0 auto;
+      width: var(--bs-sidebar-nav-item-width);
     }
   }
 
-  .nav-link:hover {
-    background-color: #c3dce7;
+  .nav-link:hover:not(.active) {
+    background-color: var(--bs-nav-hover-bg);
   }
 }
 
@@ -134,19 +133,17 @@
     font-size: var(--dp-font-body);
   }
 
-  .dp-group-link:hover {
-    background-color: #e1e6eb;
+  .dp-group-link:hover:not(.current) {
+    background-color: var(--bs-nav-hover-bg);
     color: var(--bs-primary);
   }
 
   .dp-group-link.current {
-    background-color: #c3dce7;
+    background-color: var(--bs-nav-active-bg);
     border-left-color: var(--bs-primary);
-    font-weight: 700;
   }
 
   .dp-group-link.in-path {
-    font-weight: 600;
   }
 
   li.folder {

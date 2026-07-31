@@ -59,7 +59,7 @@
       <!-- Middle: Event pill/button area with switcher and main nav buttons -->
       <div class="d-flex align-items-stretch flex-grow-1">
         <nav class="navbar navbar-expand-lg d-flex align-items-stretch flex-grow-1 fixed-top">
-          <div class="container-fluid w-100">
+          <div class="container-fluid g-0 w-100">
 
             <button class="btn btn-icon d-lg-none ms-auto mobile-search-btn"
                     aria-controls="portal-searchbox"

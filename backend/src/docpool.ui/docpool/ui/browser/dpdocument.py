@@ -48,7 +48,7 @@ class DPDocumentView(DefaultView):
 
     def getDocpoolListingPath(self):
         dp = getDocumentPoolSite(self.context)
-        path = "/".join(dp.getPhysicalPath())
+        path = "/".join(dp.getPhysicalPath()) + "/@@listing"
         return path
 
 

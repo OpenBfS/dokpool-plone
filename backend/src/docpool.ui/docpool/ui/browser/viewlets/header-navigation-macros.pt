@@ -10,17 +10,21 @@
         <tal:headernav replace="structure provider:docpool.headernav.manager" />
 
         <!-- Main navigation buttons -->
-        <a class="nav-link nav-btn d-flex flex-column justify-content-center px-4 border-end text-decoration-none ${python: view.active['groups']}"
-           href="${python: view.groups_folder_url}"
-           tal:condition="python: view.groups_folder_url"
+        <a tal:condition="python: view.groups_folder_url"
+           tal:attributes="
+             href python: view.groups_folder_url;
+             class python:'nav-link nav-btn d-flex flex-column align-items-center justify-content-center text-center px-4 border-end text-decoration-none ' + view.active['groups'] + (' fw-bold' if view.active['groups'] else '');
+           "
         >
           <span class="small text-primary mb-n1"
                 i18n:translate=""
           >My group folders</span>
         </a>
-        <a class="nav-link nav-btn d-flex flex-column justify-content-center px-4 border-end text-decoration-none ${python: view.active['emergency']}"
-           href="${python: view.emergency_info_url}"
-           tal:condition="python: view.emergency_info_url"
+        <a tal:condition="python: view.emergency_info_url"
+           tal:attributes="
+             href python: view.emergency_info_url;
+             class python:'nav-link nav-btn d-flex flex-column align-items-center justify-content-center text-center px-4 border-end text-decoration-none ' + view.active['emergency'] + (' fw-bold' if view.active['emergency'] else '');
+           "
         >
           <span class="small text-primary mb-n1"
                 i18n:translate=""

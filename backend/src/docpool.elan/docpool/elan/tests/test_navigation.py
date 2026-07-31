@@ -54,7 +54,7 @@ class TestNavigation(unittest.TestCase):
         dp_app_state = docpool.restrictedTraverse("dp_app_state")
         self.assertFalse(dp_app_state.isCurrentlyActive("elan"))
 
-        view = docpool.restrictedTraverse("@@view")
+        view = docpool.restrictedTraverse("@@listing")
         html = view()
         # personal folder is there
         self.assertIn('<a href="http://nohost/plone/bund/content/Members/user1"', html)

@@ -8,7 +8,7 @@
        tal:content="python: node.get('Title')"
        tal:attributes="
          href python: node.get('getURL');
-         class python: ' '.join(filter(None, ['dp-group-link', 'd-block', 'text-decoration-none', 'text-primary', ('current' if node.get('currentItem') else None), ('in-path' if node.get('currentParent') else None)]));
+         class python: ' '.join(filter(None, ['dp-group-link', 'd-block', 'text-decoration-none', 'text-primary', ('current fw-bold' if node.get('currentItem') else None), ('in-path fw-semibold' if node.get('currentParent') else None)]));
        "
     >Folder</a>
     <ul tal:condition="python: node.get('children')">

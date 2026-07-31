@@ -154,14 +154,14 @@ def prepare_came_from_link(request):
     """Prepare came_from link for redirecting after form submission."""
 
     came_from = request.get("came_from")
-    if came_from:
-        # Valid url?
-        url_tool = api.portal.get_tool("portal_url")
-        if not url_tool.isURLInPortal(came_from):
-            return
-        # We only get @@listing-item so fix it here:
-        return "/".join(came_from.split("/")[:-1])
-    return
+    if not came_from:
+        return
+
+    url_tool = api.portal.get_tool("portal_url")
+    if not url_tool.isURLInPortal(came_from):
+        return
+
+    return came_from.replace("@@listing-item", "@@listing")
 
 
 def can_view(context, view):

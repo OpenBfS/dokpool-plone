@@ -134,7 +134,7 @@
   <browser:viewlet
       name="docpool.sidebar.elan"
       manager=".sidebar.ISidebarAppSpecificManager"
-      class="plone.app.layout.viewlets.common.ViewletBase"
+      class=".sidebar.SidebarViewlet"
       template="sidebar-elan.pt"
       permission="zope2.View"
       layer="docpool.elan.interfaces.IELANActive"

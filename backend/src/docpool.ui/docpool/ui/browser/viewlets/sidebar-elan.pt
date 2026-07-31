@@ -1,12 +1,17 @@
 
 <li class="nav-item"
     tal:define="
+      active python:view.is_active('overview');
       icons python:context.restrictedTraverse('@@iconresolver');
     "
     i18n:domain="docpool.ui"
 >
   <a class="nav-link d-flex flex-column align-items-center justify-content-center text-decoration-none"
-     href="${string:${view/navigation_root_url}/@@overview}"
+     tal:attributes="
+       href string:${view/base_url}/@@overview;
+       class python:'nav-link d-flex flex-column align-items-center justify-content-center text-decoration-none' + (' active' if active else '');
+       aria-current python:'page' if active else None;
+     "
   >
     <span class="icon-24 d-flex align-items-center justify-content-center mb-2">
       <tal:icon replace="structure python:icons.tag('grid-1x2-fill', tag_class='me-0')" />

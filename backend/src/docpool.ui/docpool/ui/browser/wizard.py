@@ -267,7 +267,7 @@ class DPDocumentWizard(ContextlessWizard):
             mapping={"doktype": new.docTypeObj().title, "title": new.title},
         )
         api.portal.show_message(msg, self.request)
-        return self.request.response.redirect(self.context.absolute_url())
+        return self.request.response.redirect(self.context.absolute_url() + "/@@listing")
 
     def create_item(self):
         """Create the content from the data"""
