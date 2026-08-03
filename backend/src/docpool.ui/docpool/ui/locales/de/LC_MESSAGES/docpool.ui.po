@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-07-31 14:09+0000\n"
+"POT-Creation-Date: 2026-08-03 09:33+0000\n"
 "PO-Revision-Date: 2025-11-24 12:24+0100\n"
 "Last-Translator: Thomas Lotze <lotze@starzel.de>\n"
 "Language-Team: German <translation-team-de@lists.sourceforge.net>\n"
@@ -144,6 +144,10 @@ msgstr "Eintragsart"
 msgid "Entrytypes"
 msgstr "Eintragsarten"
 
+#: docpool.ui/docpool/ui/browser/viewlets/header-navigation-macros.pt
+msgid "Event Timezone"
+msgstr "Ereignis Zeitzone"
+
 #: docpool.ui/docpool/ui/browser/templates/folder_wizard.pt
 msgid "Folder Type"
 msgstr "Art des Ordners"
@@ -170,10 +174,6 @@ msgstr "Gruppen"
 #: docpool.ui/docpool/ui/browser/wizard.py
 msgid "Internal"
 msgstr "Gruppenintern"
-
-#: docpool.ui/docpool/ui/browser/viewlets/header-navigation-macros.pt
-msgid "JST"
-msgstr ""
 
 #: docpool.ui/docpool/ui/browser/viewlets/sidebar.pt
 msgid "Journal"
