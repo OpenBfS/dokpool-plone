@@ -6,7 +6,7 @@
     <tbody tal:define="
              local_time python: view.get_local_time();
              utc_time python: view.get_utc_time();
-             jst_time python: view.get_jst_time();
+             event_time python: view.get_event_time();
            ">
       <tr>
         <td class="sidebar-tz text-primary"
@@ -30,15 +30,17 @@
           ${python: utc_time.strftime('%H:%M')}
         </td>
       </tr>
-      <tr>
+      <tr tal:condition="python: event_time">
         <td class="sidebar-tz text-secondary"
-            i18n:translate=""
+            title="Event Timezone"
+            tal:content="python: event_time.strftime('%Z')"
+            i18n:attributes="title"
         >JST
         </td>
         <td class="sidebar-tz text-secondary"
-            datetime="${python: jst_time}"
+            datetime="${python: event_time}"
         >
-          ${python: jst_time.strftime('%H:%M')}
+          ${python: event_time.strftime('%H:%M')}
         </td>
       </tr>
     </tbody>
