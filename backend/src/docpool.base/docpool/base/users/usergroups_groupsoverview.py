@@ -6,26 +6,19 @@ from Products.CMFPlone.controlpanel.browser.usergroups_groupsoverview import (
 class GroupsOverviewControlPanel(GOCP):
     def group_is_protected(self, groupinfo):
         protected = [
-            "_administrators",
-            "_bfs_rei",
-            "_bmu_rei",
-            "_contentadministrators",
-            "_doksysusers",
-            "_elanusers",
-            "_eventeditors",
-            "_members",
-            "_receivers",
-            "_reicontentadministrators",
-            "_reiusers",
-            "_rodoscontentadministrators",
-            "_rodosusers",
-            "_senders",
-            "_situationreportadmins",
-            "administrators",
-            "reviewers",
-            "site administrators",
+            "_Administrators",
+            "_ContentAdministrators",
+            "_DoksysUsers",
+            "_ELANUsers",
+            "_EventEditors",
+            "_Members",
+            "_Receivers",
+            "_RodosContentAdministrators",
+            "_RodosUsers",
+            "_Senders",
+            "_SituationReportAdmins",
         ]
         for suffix in protected:
-            if groupinfo["groupid"].lower().endswith(suffix):
+            if groupinfo["groupid"].lower().endswith(suffix.lower()):
                 return True
         return False
