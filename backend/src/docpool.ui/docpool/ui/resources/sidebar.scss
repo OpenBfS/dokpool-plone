@@ -47,7 +47,7 @@
 
 .sidebar .nav-link {
   height: var(--bs-sidebar-nav-item-height);
-  width: 100%;
+  width: var(--bs-sidebar-nav-item-width);
   min-width: 0;
   border-radius: 0.25rem; /* 4px */
   padding: 0;
@@ -111,7 +111,6 @@
   .nav-link {
     @include media-breakpoint-up(xl) {
       margin: 0 auto;
-      width: var(--bs-sidebar-nav-item-width);
     }
   }
 
