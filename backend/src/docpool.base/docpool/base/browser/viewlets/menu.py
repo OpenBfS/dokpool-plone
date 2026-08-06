@@ -1,7 +1,5 @@
-from docpool.base.appregistry import appName
 from docpool.base.config import BASE_APP
 from docpool.base.config import TRANSFERS_APP
-from docpool.base.content.archiving import IArchiving
 from docpool.base.content.places import IPlaces
 from docpool.base.utils import getGroupsForCurrentUser
 from docpool.elan.config import ELAN_APP
@@ -10,9 +8,6 @@ from plone import api
 from plone.app.layout.navigation.interfaces import INavigationQueryBuilder
 from plone.app.layout.navigation.interfaces import INavtreeStrategy
 from plone.app.layout.navigation.navtree import buildFolderTree
-from plone.app.layout.viewlets import common
-from plone.base.i18nl10n import utranslate
-from plone.memoize.view import memoize
 from Products.CMFPlone.browser.navtree import DefaultNavtreeStrategy
 from Products.CMFPlone.browser.navtree import SitemapQueryBuilder
 from Products.PlonePAS.utils import cleanId

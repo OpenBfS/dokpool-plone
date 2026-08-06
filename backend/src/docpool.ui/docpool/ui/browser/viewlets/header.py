@@ -162,9 +162,7 @@ class PortalHeader(EventSwitcherMixin, TimezoneTableMixin, GroupsTreeMixin, View
             apps = []
             for app_title, app_name in all_apps:
                 redirect_to = self.redirect_to_map.get(app_name)
-                params = (
-                    "" if keep_context or redirect_to is None else f"&redirect_to={redirect_to}"
-                )
+                params = "" if keep_context or redirect_to is None else f"&redirect_to={redirect_to}"
                 apps.append(
                     dict(
                         title=f"{app_title}",
