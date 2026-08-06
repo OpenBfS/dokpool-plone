@@ -100,6 +100,14 @@ class AppSearchBoxViewlet(SearchBoxViewlet):
 
 
 class PortalHeader(EventSwitcherMixin, TimezoneTableMixin, GroupsTreeMixin, ViewletBase):
+    redirect_to_map = {
+        "base": "",
+        "elan": "/@@overview",
+        "doksys": "/@@listing",
+        "rei": "/@@listing",
+        "rodos": "/@@listing",
+    }
+
     def update(self):
         super().update()
         self.dp, self.app, self.dp_apps = getApplicationDocPoolsForCurrentUser(self.context, self.request)
@@ -142,28 +150,35 @@ class PortalHeader(EventSwitcherMixin, TimezoneTableMixin, GroupsTreeMixin, View
         all_apps = sorted(
             (appName(name), name) for name in set().union(*[names for _, names in self.dp_apps])
         )
+        menu = []
 
-        for dp, app_names in self.dp_apps:
+        for dp, _app_names in self.dp_apps:
             dp_id = dp.getId()
             physical_path = self.context.getPhysicalPath()
             keep_context = (
                 current_dp_id == dp_id and "content" in physical_path and "archive" not in physical_path
             )
             url = (self.context if keep_context else dp).absolute_url()
-            params = "" if keep_context else "&redirect_to="
-            yield dict(
-                dptitle=dp.title,
-                selected=dp_id == current_dp_id,
-                apps=[
+            apps = []
+            for app_title, app_name in all_apps:
+                redirect_to = self.redirect_to_map.get(app_name)
+                params = "" if keep_context or redirect_to is None else f"&redirect_to={redirect_to}"
+                apps.append(
                     dict(
                         title=f"{app_title}",
                         url=f"{url}/setActiveApp?app={app_name}{params}",
                     )
-                    if app_name in app_names
-                    else None
-                    for app_title, app_name in all_apps
-                ],
+                )
+
+            menu.append(
+                dict(
+                    dptitle=dp.title,
+                    selected=dp_id == current_dp_id,
+                    apps=apps,
+                )
             )
+
+        return menu
 
 
 class EventSwitcherViewlet(EventSwitcherMixin, ViewletBase):

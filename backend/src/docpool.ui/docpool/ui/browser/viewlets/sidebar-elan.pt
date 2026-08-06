@@ -1,5 +1,5 @@
 
-<li class="nav-item"
+<li class="nav-item flex-fill"
     tal:define="
       active python:view.is_active('overview');
       icons python:context.restrictedTraverse('@@iconresolver');
