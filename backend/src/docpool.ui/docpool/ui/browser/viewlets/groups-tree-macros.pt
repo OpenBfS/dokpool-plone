@@ -11,14 +11,11 @@
          class python: ' '.join(filter(None, ['dp-group-link', 'd-block', 'text-decoration-none', 'text-primary', ('current fw-bold' if node.get('currentItem') else None), ('in-path fw-semibold' if node.get('currentParent') else None)]));
        "
     >
-      <span tal:content="python: node.get('Title')">Folder</span>
-      <span class="float-end ms-2"
-            title="Transfer Folder"
-            tal:condition="python: node.get('item_class') == 'transfer'"
-            i18n:attributes="title"
-            i18n:domain="docpool.base"
-      >
-        <tal:icon tal:replace="structure python:icons.tag('arrow-down-up')" />
+      <span class="d-flex align-items-center gap-2">
+        <tal:icon tal:define="icon_name python:'dokpool-transfer-folder' if node.get('item_class') == 'transfer' else 'folder-fill'"
+                  tal:replace="structure python:icons.tag(icon_name, tag_class='flex-shrink-0')"
+        />
+        <span tal:content="python: node.get('Title')">Folder</span>
       </span>
     </a>
     <ul tal:condition="python: node.get('children')">

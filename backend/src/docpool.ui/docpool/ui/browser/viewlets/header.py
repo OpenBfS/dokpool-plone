@@ -72,9 +72,12 @@ class GroupsTreeMixin:
             tree = buildFolderTree(self.context, obj=self.context, query=query, strategy=strategy)
             children = tree.get("children", [])
             if item_class:
+                tree["item_class"] = item_class
                 for node in children:
                     node["item_class"] = item_class
-            result.extend(children)
+                result.append(tree)
+            else:
+                result.extend(children)
 
         return result
 
