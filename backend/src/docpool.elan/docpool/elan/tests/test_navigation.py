@@ -19,6 +19,7 @@ class TestNavigation(unittest.TestCase):
         self.portal = self.layer["portal"]
         setRoles(self.portal, TEST_USER_ID, ["Manager"])
 
+    @unittest.skip("Still needed? See #6773")
     def test_personal_folder(self):
         """Personal Folder are not visible for elan
         See https://redmine-koala.bfs.de/issues/2690

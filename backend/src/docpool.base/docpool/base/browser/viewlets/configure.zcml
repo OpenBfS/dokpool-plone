@@ -5,14 +5,6 @@
     i18n_domain="docpool.base"
     >
 
-  <browser:viewlet
-      name="plone.global_sections"
-      manager="plone.app.layout.viewlets.interfaces.IMainNavigation"
-      class=".menu.GlobalSectionsViewlet"
-      permission="zope2.View"
-      layer="docpool.base.interfaces.IDocpoolBaseLayer"
-      />
-
   <adapter
       factory=".menu.DropDownMenuStrategy"
       provides="plone.app.layout.navigation.interfaces.INavtreeStrategy"
