@@ -58,7 +58,7 @@ class GroupsTreeMixin:
             folder_path = "/".join(folder.getPhysicalPath())
             query = {
                 "path": {"query": folder_path, "depth": 999, "navtree": 1, "navtree_start": 1},
-                "portal_type": ["DPTransferFolder", "GroupFolder", "SimpleFolder"],
+                "portal_type": ["DPTransferFolder", "DPTransfersArea", "GroupFolder", "SimpleFolder"],
                 "sort_on": ["portal_type", "sortable_title"],
                 "apps_supported": self.active_apps_for_tree(),
             }
@@ -72,7 +72,10 @@ class GroupsTreeMixin:
             tree = buildFolderTree(self.context, obj=self.context, query=query, strategy=strategy)
             children = tree.get("children", [])
             if item_class:
+                if not children:
+                    continue
                 tree["item_class"] = item_class
+                tree["Title"] = tree.get("Title") or folder.Title()
                 for node in children:
                     node["item_class"] = item_class
                 result.append(tree)
