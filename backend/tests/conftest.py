@@ -3,8 +3,6 @@ from docpool.ui.testing import DOCPOOL_UI_FUNCTIONAL_TESTING
 from docpool.ui.testing import DOCPOOL_UI_INTEGRATION_TESTING
 from playwright.sync_api import Page
 from plone import api
-from plone.app.testing.interfaces import SITE_OWNER_NAME
-from plone.app.testing.interfaces import SITE_OWNER_PASSWORD
 from plone.app.testing.interfaces import TEST_USER_NAME
 from pytest_plone import fixtures_factory
 from zope.component.hooks import setSite
@@ -80,11 +78,15 @@ def playwright_page_factory(new_context):
 
 
 @pytest.fixture()
-def site_owner_page_factory(playwright_page_factory):
+def site_owner_page_factory(
+    playwright_page_factory,
+    site_owner_name,
+    site_owner_password,
+):
     def factory() -> Page:
         return playwright_page_factory(
-            username=SITE_OWNER_NAME,
-            password=SITE_OWNER_PASSWORD,
+            username=site_owner_name,
+            password=site_owner_password,
         )
 
     return factory
