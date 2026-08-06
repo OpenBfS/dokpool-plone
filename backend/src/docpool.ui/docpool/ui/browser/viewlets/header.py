@@ -84,12 +84,6 @@ class GroupsTreeMixin:
 
         return result
 
-    def groups_folder(self):
-        content_area = IPlaces(self.context).content
-        if content_area is None:
-            return None
-        return content_area.get("Groups")
-
     # TODO Code duplication see listing.py
     def active_apps_for_tree(self):
         dp_app_state = api.content.get_view("dp_app_state", self.context, self.request)
