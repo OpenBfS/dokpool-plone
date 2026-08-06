@@ -1,6 +1,8 @@
 <metal:groups-tree define-macro="groups-tree"
+                   tal:define="
+                     icons python:context.restrictedTraverse('@@iconresolver');
+                   "
                    tal:condition="exists:node"
-                   tal:define="icons python:context.restrictedTraverse('@@iconresolver')"
 >
   <li tal:attributes="
         class python: ' '.join(filter(None, [('folder open' if node.get('children') and (node.get('currentItem') or node.get('currentParent')) else ('folder closed' if node.get('children') else 'document')), node.get('item_class')]));
@@ -12,7 +14,9 @@
        "
     >
       <span class="d-flex align-items-center gap-2">
-        <tal:icon tal:define="icon_name python:'dokpool-transfer-folder' if node.get('item_class') == 'transfer' else 'folder-fill'"
+        <tal:icon tal:define="
+                    icon_name python:'dokpool-transfer-folder' if node.get('item_class') == 'transfer' else 'folder-fill';
+                  "
                   tal:replace="structure python:icons.tag(icon_name, tag_class='flex-shrink-0')"
         />
         <span tal:content="python: node.get('Title')">Folder</span>
