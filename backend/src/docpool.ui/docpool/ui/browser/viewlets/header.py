@@ -45,26 +45,38 @@ class EventSwitcherMixin:
 
 class GroupsTreeMixin:
     def build_groups_tree(self):
-        groups_folder = self.groups_folder()
-        if groups_folder is None:
+        content_area = IPlaces(self.context).content
+        if content_area is None:
             return []
 
-        groups_path = "/".join(groups_folder.getPhysicalPath())
-        query = {
-            "path": {"query": groups_path, "depth": 999, "navtree": 1, "navtree_start": 1},
-            "portal_type": ["DPTransferFolder", "GroupFolder", "SimpleFolder"],
-            "sort_on": ["portal_type", "sortable_title"],
-            "apps_supported": self.active_apps_for_tree(),
-        }
+        result = []
+        for folder_id, item_class in (("Groups", None), ("Transfers", "transfer")):
+            folder = content_area.get(folder_id)
+            if folder is None:
+                continue
 
-        strategy = getMultiAdapter((self.context, None), INavtreeStrategy)
-        if strategy is None:
-            strategy = DefaultNavtreeStrategy(self.context)
-        strategy.rootPath = groups_path
-        strategy.bottomLevel = 999
+            folder_path = "/".join(folder.getPhysicalPath())
+            query = {
+                "path": {"query": folder_path, "depth": 999, "navtree": 1, "navtree_start": 1},
+                "portal_type": ["DPTransferFolder", "GroupFolder", "SimpleFolder"],
+                "sort_on": ["portal_type", "sortable_title"],
+                "apps_supported": self.active_apps_for_tree(),
+            }
 
-        tree = buildFolderTree(self.context, obj=self.context, query=query, strategy=strategy)
-        return tree.get("children", [])
+            strategy = getMultiAdapter((self.context, None), INavtreeStrategy)
+            if strategy is None:
+                strategy = DefaultNavtreeStrategy(self.context)
+            strategy.rootPath = folder_path
+            strategy.bottomLevel = 999
+
+            tree = buildFolderTree(self.context, obj=self.context, query=query, strategy=strategy)
+            children = tree.get("children", [])
+            if item_class:
+                for node in children:
+                    node["item_class"] = item_class
+            result.extend(children)
+
+        return result
 
     def groups_folder(self):
         content_area = IPlaces(self.context).content
@@ -116,7 +128,7 @@ class PortalHeader(EventSwitcherMixin, TimezoneTableMixin, GroupsTreeMixin, View
         self.set_scenario_attributes()
 
         # Prepare mobile folder tree navigation
-        if is_in_dp_folder(self.context, "content/Groups"):
+        if is_in_dp_folder(self.context, "content/Groups", "content/Transfers"):
             self.groups_tree = self.build_groups_tree()
         else:
             self.groups_tree = []
@@ -140,7 +152,7 @@ class PortalHeader(EventSwitcherMixin, TimezoneTableMixin, GroupsTreeMixin, View
                 else ""
             )
             for key, value in dict(
-                groups=["/content/Groups"],
+                groups=["/content/Groups", "/content/Transfers"],
                 emergency=["/hintergrundinfos-ns"],
             ).items()
         }

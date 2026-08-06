@@ -1,16 +1,26 @@
 <metal:groups-tree define-macro="groups-tree"
                    tal:condition="exists:node"
+                   tal:define="icons python:context.restrictedTraverse('@@iconresolver')"
 >
   <li tal:attributes="
-        class python: 'folder open' if node.get('children') and (node.get('currentItem') or node.get('currentParent')) else ('folder closed' if node.get('children') else 'document');
+        class python: ' '.join(filter(None, [('folder open' if node.get('children') and (node.get('currentItem') or node.get('currentParent')) else ('folder closed' if node.get('children') else 'document')), node.get('item_class')]));
       ">
     <a class="dp-group-link d-block text-decoration-none text-primary"
-       tal:content="python: node.get('Title')"
        tal:attributes="
          href python: node.get('getURL');
          class python: ' '.join(filter(None, ['dp-group-link', 'd-block', 'text-decoration-none', 'text-primary', ('current fw-bold' if node.get('currentItem') else None), ('in-path fw-semibold' if node.get('currentParent') else None)]));
        "
-    >Folder</a>
+    >
+      <span tal:content="python: node.get('Title')">Folder</span>
+      <span class="float-end ms-2"
+            title="Transfer Folder"
+            tal:condition="python: node.get('item_class') == 'transfer'"
+            i18n:attributes="title"
+            i18n:domain="docpool.base"
+      >
+        <tal:icon tal:replace="structure python:icons.tag('arrow-down-up')" />
+      </span>
+    </a>
     <ul tal:condition="python: node.get('children')">
       <tal:child tal:repeat="node python: node.get('children')">
         <metal:child-node use-macro="context/@@groups-tree.macros/macros/groups-tree" />

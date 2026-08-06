@@ -44,20 +44,16 @@ class SidebarViewlet(GroupsTreeMixin, common.ViewletBase):
 
     def update(self):
         super().update()
-        if is_in_dp_folder(self.context, "content/Groups"):
+        if is_in_dp_folder(self.context, "content/Groups", "content/Transfers"):
             self.groups_tree = self.build_groups_tree()
         else:
             self.groups_tree = []
 
     def render(self):
         # XXX Paths shouldn't be hard-coded. Maybe add a property to folders or introduce a behavior.
-        if is_in_dp_folder(self.context, "content/Groups"):
+        if is_in_dp_folder(self.context, "content/Groups", "content/Transfers"):
             return self.groups_nav()
-        if is_in_dp_folder(
-            self.context,
-            "content/Transfers",
-            "hintergrundinfos-ns",
-        ):
+        if is_in_dp_folder(self.context, "hintergrundinfos-ns"):
             return ""
         return super().render()
 
