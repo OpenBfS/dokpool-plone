@@ -165,14 +165,27 @@
 }
 
 .sidebar-groups-tree.twisties {
-  li.folder::before,
-  li.closed::before,
-  li.open::before {
-    color: var(--bs-primary);
+  // Patternslib injects `.toggle` and renders a triangle by default.
+  // Override with a small chevron for the Dokpool groups tree.
+  .toggle::before {
+    content: "";
+    display: block;
+    width: 0.4rem;
+    height: 0.4rem;
+    margin-top: 0.1rem;
+    margin-left: 0.05rem;
+    border-right: 1px solid var(--bs-primary);
+    border-bottom: 1px solid var(--bs-primary);
+    transform: rotate(-45deg);
+  }
+
+  .open > .toggle::before {
+    content: "";
+    transform: rotate(45deg);
   }
 
   .toggle {
-    margin-top: 7px;
+    margin-top: 4px;
   }
 }
 
