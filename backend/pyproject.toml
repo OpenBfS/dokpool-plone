@@ -62,7 +62,7 @@ test = [
     "plone.app.robotframework",
     "pytest",
     "pytest-cov",
-    "pytest-plone>=1.0.0a3",
+    "pytest-plone==1.1.0",
     "pytest-playwright",
     "playwright",
 ]
@@ -636,6 +636,9 @@ ignore = [
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+markers = [
+    "admin_ui: run the browser test with site-owner credentials",
+]
 # addopts = "--browser chromium"
 # addopts = "-v --browser chromium --headed"
 # The following config will enable the chromium browser and slow down the steps, so one can follow them.
