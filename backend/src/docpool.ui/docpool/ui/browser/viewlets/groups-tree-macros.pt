@@ -15,7 +15,7 @@
     >
       <span class="d-flex align-items-center gap-2">
         <tal:icon tal:define="
-                    icon_name python:'dokpool-transfer-folder' if node.get('item_class') == 'transfer' else 'folder-fill';
+                    icon_name python:{'transfer': 'dokpool-transfer-folder', 'personal': 'dokpool-user'}.get(node.get('item_class'), 'folder-fill');
                   "
                   tal:replace="structure python:icons.tag(icon_name, tag_class='flex-shrink-0')"
         />

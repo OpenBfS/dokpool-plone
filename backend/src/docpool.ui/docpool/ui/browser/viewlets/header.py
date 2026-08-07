@@ -7,6 +7,7 @@ from docpool.base.config import TRANSFERS_APP
 from docpool.base.content.archiving import IArchiving
 from docpool.base.content.places import IPlaces
 from docpool.base.utils import is_in_dp_folder
+from docpool.doksys.config import DOKSYS_APP
 from docpool.elan import DocpoolMessageFactory as EMF
 from docpool.elan.content.elanarchive import IELANArchive
 from docpool.elan.utils import get_scenario_for_current_user
@@ -22,6 +23,7 @@ from plone.app.layout.viewlets.common import ViewletBase
 from plone.base.i18nl10n import utranslate
 from Products.CMFPlone.browser.navtree import DefaultNavtreeStrategy
 from Products.Five.browser import BrowserView
+from Products.PlonePAS.utils import cleanId
 from zope.component import getMultiAdapter
 from zope.viewlet.interfaces import IViewletManager
 
@@ -32,6 +34,10 @@ import subprocess
 
 class IHeaderNavManager(IViewletManager):
     """Custom header navigation manager"""
+
+
+# Folders of the content area that are navigated with the groups tree.
+GROUPS_NAV_FOLDERS = ("content/Members", "content/Groups", "content/Transfers")
 
 
 class EventSwitcherMixin:
@@ -49,40 +55,87 @@ class GroupsTreeMixin:
         if content_area is None:
             return []
 
-        result = []
-        for folder_id, item_class in (("Groups", None), ("Transfers", "transfer")):
-            folder = content_area.get(folder_id)
-            if folder is None:
-                continue
+        return (
+            self._member_folder_nodes(content_area)
+            + self._group_folder_nodes(content_area)
+            + self._transfer_folder_nodes(content_area)
+        )
 
-            folder_path = "/".join(folder.getPhysicalPath())
-            query = {
-                "path": {"query": folder_path, "depth": 999, "navtree": 1, "navtree_start": 1},
-                "portal_type": ["DPTransferFolder", "DPTransfersArea", "GroupFolder", "SimpleFolder"],
-                "sort_on": ["portal_type", "sortable_title"],
-                "apps_supported": self.active_apps_for_tree(),
-            }
+    def _member_folder_nodes(self, content_area):
+        """The personal folder of the current user, shown as a single node.
 
-            strategy = getMultiAdapter((self.context, None), INavtreeStrategy)
-            if strategy is None:
-                strategy = DefaultNavtreeStrategy(self.context)
-            strategy.rootPath = folder_path
-            strategy.bottomLevel = 999
+        User folders are indexed with UserFolder.APP, so they are only meant to
+        show up in Doksys.
+        """
+        if DOKSYS_APP not in self.active_apps_for_tree() or api.user.is_anonymous():
+            return []
 
-            tree = buildFolderTree(self.context, obj=self.context, query=query, strategy=strategy)
-            children = tree.get("children", [])
-            if item_class:
-                if not children:
-                    continue
-                tree["item_class"] = item_class
-                tree["Title"] = tree.get("Title") or folder.Title()
-                for node in children:
-                    node["item_class"] = item_class
-                result.append(tree)
-            else:
-                result.extend(children)
+        members_folder = content_area.get("Members")
+        if members_folder is None:
+            return []
 
-        return result
+        # member folders for users with '-' in their username are created with double dashes
+        user_name = cleanId(api.user.get_current().getUserName())
+        user_folder = members_folder.get(user_name)
+        # A folder for the user has not been found, e.g. in archive
+        if user_folder is None:
+            return []
+
+        tree = self._build_folder_tree(user_folder)
+        return [self._as_root_node(tree, user_folder, "personal")]
+
+    def _group_folder_nodes(self, content_area):
+        """All group folders of the current user, without their parent folder."""
+        groups_folder = content_area.get("Groups")
+        if groups_folder is None:
+            return []
+
+        return self._build_folder_tree(groups_folder).get("children", [])
+
+    def _transfer_folder_nodes(self, content_area):
+        """The transfers area, shown as a single node. Hidden while it is empty."""
+        transfers_folder = content_area.get("Transfers")
+        if transfers_folder is None:
+            return []
+
+        tree = self._build_folder_tree(transfers_folder)
+        if not tree.get("children"):
+            return []
+
+        return [self._as_root_node(tree, transfers_folder, "transfer")]
+
+    def _build_folder_tree(self, folder):
+        folder_path = "/".join(folder.getPhysicalPath())
+        query = {
+            "path": {"query": folder_path, "depth": 999, "navtree": 1, "navtree_start": 1},
+            "portal_type": [
+                "DPTransferFolder",
+                "DPTransfersArea",
+                "GroupFolder",
+                "SimpleFolder",
+                "UserFolder",
+            ],
+            "sort_on": ["portal_type", "sortable_title"],
+            "apps_supported": self.active_apps_for_tree(),
+        }
+
+        strategy = getMultiAdapter((self.context, None), INavtreeStrategy)
+        if strategy is None:
+            strategy = DefaultNavtreeStrategy(self.context)
+        strategy.rootPath = folder_path
+        strategy.bottomLevel = 999
+
+        return buildFolderTree(self.context, obj=self.context, query=query, strategy=strategy)
+
+    def _as_root_node(self, tree, folder, item_class):
+        """Make the root of a tree displayable and tag it and its children."""
+        tree["item_class"] = item_class
+        # The root is only a stub if the query didn't return the folder itself.
+        tree["Title"] = tree.get("Title") or folder.Title()
+        tree["getURL"] = tree.get("getURL") or folder.absolute_url()
+        for node in tree.get("children", []):
+            node["item_class"] = item_class
+        return tree
 
     # TODO Code duplication see listing.py
     def active_apps_for_tree(self):
@@ -128,7 +181,7 @@ class PortalHeader(EventSwitcherMixin, TimezoneTableMixin, GroupsTreeMixin, View
         self.set_scenario_attributes()
 
         # Prepare mobile folder tree navigation
-        if is_in_dp_folder(self.context, "content/Groups", "content/Transfers"):
+        if is_in_dp_folder(self.context, *GROUPS_NAV_FOLDERS):
             self.groups_tree = self.build_groups_tree()
         else:
             self.groups_tree = []
@@ -152,7 +205,7 @@ class PortalHeader(EventSwitcherMixin, TimezoneTableMixin, GroupsTreeMixin, View
                 else ""
             )
             for key, value in dict(
-                groups=["/content/Groups", "/content/Transfers"],
+                groups=[f"/{folder}" for folder in GROUPS_NAV_FOLDERS],
                 emergency=["/hintergrundinfos-ns"],
             ).items()
         }
