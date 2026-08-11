@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-07-23 13:40+0000\n"
+"POT-Creation-Date: 2026-08-11 11:27+0000\n"
 "PO-Revision-Date: 2026-07-23 15:42+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,10 +25,6 @@ msgstr ""
 #: docpool.elan/docpool/elan/browser/archive_event_form.pt
 msgid "Active Journals are purged."
 msgstr "Die aktuellen Ereignistagebücher werden geleert."
-
-#: docpool.elan/docpool/elan/portlets/overview.pt
-msgid "Add journal entry"
-msgstr "Tagebucheintrag hinzufügen"
 
 #: docpool.elan/docpool/elan/behaviors/configure.zcml
 msgid "Adds ELAN attributes to DPDocuments"
@@ -99,10 +95,6 @@ msgstr "Zu Ereignis:"
 #: docpool.elan/docpool/elan/content/dpevent.py
 msgid "Changelog"
 msgstr "Ereignis-Historie"
-
-#: docpool.elan/docpool/elan/portlets/overview.pt
-msgid "Chronological Overview"
-msgstr "Chronologie"
 
 #: docpool.elan/docpool/elan/browser/elan_macros.pt
 msgid "Content from:"
@@ -297,17 +289,9 @@ msgstr "Betriebsart und Alarmierung"
 msgid "Original content is moved to the archive."
 msgstr "Nur diesem Ereignis zugewiesene Inhalte werden in das Archiv verschoben."
 
-#: docpool.elan/docpool/elan/portlets/overview.py
-msgid "Overview"
-msgstr "Übersicht"
-
 #: docpool.elan/docpool/elan/browser/i18ndummy.pt
 msgid "Purge"
 msgstr "Inhalte des Ereignisses löschen"
-
-#: docpool.elan/docpool/elan/portlets/recent.py
-msgid "Recent"
-msgstr "Letzte Änderungen"
 
 #: docpool.elan/docpool/elan/vocabularies.py
 msgid "Routine"
@@ -450,11 +434,6 @@ msgstr "Wollen Sie diesen Eintrag wirklich einreichen?"
 msgid "archive_confirm_msg"
 msgstr "Wollen Sie dieses Ereignis wirklich archivieren?"
 
-#. Default: "No items changed yet."
-#: docpool.elan/docpool/elan/portlets/recent.pt
-msgid "box_recent_no_items"
-msgstr "Noch keine Änderungen"
-
 #: docpool.elan/docpool/elan/browser/elanarchives.pt
 msgid "by"
 msgstr "durch"
@@ -555,11 +534,6 @@ msgstr "Art des Ereignisses"
 #: docpool.elan/docpool/elan/browser/dpevent.pt
 msgid "label_purge"
 msgstr "Archivierungsinfos löschen"
-
-#. Default: "Recently Modified"
-#: docpool.elan/docpool/elan/portlets/recent.pt
-msgid "label_recent"
-msgstr "Aktuelle Einträge"
 
 #. Default: "Restart"
 #: docpool.elan/docpool/elan/browser/archive_event_form.pt

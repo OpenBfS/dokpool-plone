@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-07-23 13:40+0000\n"
+"POT-Creation-Date: 2026-08-11 11:27+0000\n"
 "PO-Revision-Date: 2025-05-19 17:02+0200\n"
 "Last-Translator: Philip Bauer <bauer@starzel.de>\n"
 "Language-Team: BfS <elan@bfs.de>\n"
@@ -28,10 +28,6 @@ msgstr ""
 
 #: docpool.elan/docpool/elan/browser/archive_event_form.pt
 msgid "Active Journals are purged."
-msgstr ""
-
-#: docpool.elan/docpool/elan/portlets/overview.pt
-msgid "Add journal entry"
 msgstr ""
 
 #: docpool.elan/docpool/elan/behaviors/configure.zcml
@@ -102,10 +98,6 @@ msgstr ""
 #: docpool.elan/docpool/elan/browser/dpevent.pt
 #: docpool.elan/docpool/elan/content/dpevent.py
 msgid "Changelog"
-msgstr ""
-
-#: docpool.elan/docpool/elan/portlets/overview.pt
-msgid "Chronological Overview"
 msgstr ""
 
 #: docpool.elan/docpool/elan/browser/elan_macros.pt
@@ -301,16 +293,8 @@ msgstr ""
 msgid "Original content is moved to the archive."
 msgstr ""
 
-#: docpool.elan/docpool/elan/portlets/overview.py
-msgid "Overview"
-msgstr ""
-
 #: docpool.elan/docpool/elan/browser/i18ndummy.pt
 msgid "Purge"
-msgstr ""
-
-#: docpool.elan/docpool/elan/portlets/recent.py
-msgid "Recent"
 msgstr ""
 
 #: docpool.elan/docpool/elan/vocabularies.py
@@ -454,11 +438,6 @@ msgstr ""
 msgid "archive_confirm_msg"
 msgstr ""
 
-#. Default: "No items changed yet."
-#: docpool.elan/docpool/elan/portlets/recent.pt
-msgid "box_recent_no_items"
-msgstr ""
-
 #: docpool.elan/docpool/elan/browser/elanarchives.pt
 msgid "by"
 msgstr ""
@@ -558,11 +537,6 @@ msgstr ""
 #: docpool.elan/docpool/elan/browser/archive_event_form.pt
 #: docpool.elan/docpool/elan/browser/dpevent.pt
 msgid "label_purge"
-msgstr ""
-
-#. Default: "Recently Modified"
-#: docpool.elan/docpool/elan/portlets/recent.pt
-msgid "label_recent"
 msgstr ""
 
 #. Default: "Restart"
