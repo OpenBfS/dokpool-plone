@@ -132,9 +132,10 @@
   .dp-group-link {
     min-height: 2.5rem;
     line-height: 1.25;
-    padding: 0.58rem 0.85rem 0.58rem 0.95rem;
+    padding: 0.58rem 0.85rem 0.58rem 1.6rem;
     border-left: 4px solid transparent;
     font-size: var(--dp-font-body);
+    position: relative;
 
     > .d-flex > svg {
       align-self: flex-start;
@@ -157,12 +158,6 @@
 
   li.folder {
     position: relative;
-
-    > a.dp-group-link {
-      display: block;
-      padding-left: 1.6rem;
-      position: relative;
-    }
 
     > .toggle {
       position: absolute;
