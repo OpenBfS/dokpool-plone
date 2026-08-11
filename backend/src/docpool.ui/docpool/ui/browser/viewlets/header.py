@@ -24,7 +24,7 @@ from plone.base.i18nl10n import utranslate
 from Products.CMFPlone.browser.navtree import DefaultNavtreeStrategy
 from Products.Five.browser import BrowserView
 from Products.PlonePAS.utils import cleanId
-from zope.component import getMultiAdapter
+from zope.component import queryMultiAdapter
 from zope.viewlet.interfaces import IViewletManager
 
 import os
@@ -119,7 +119,7 @@ class GroupsTreeMixin:
             "apps_supported": self.active_apps_for_tree(),
         }
 
-        strategy = getMultiAdapter((self.context, None), INavtreeStrategy)
+        strategy = queryMultiAdapter((self.context, None), INavtreeStrategy)
         if strategy is None:
             strategy = DefaultNavtreeStrategy(self.context)
         strategy.rootPath = folder_path
