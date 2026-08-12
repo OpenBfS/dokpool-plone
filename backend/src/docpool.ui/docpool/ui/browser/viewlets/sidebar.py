@@ -1,6 +1,7 @@
 from docpool.base.content.archiving import IArchiving
 from docpool.base.utils import is_in_dp_folder
 from docpool.elan.config import ELAN_APP
+from docpool.ui.browser.viewlets.header import GROUPS_NAV_FOLDERS
 from docpool.ui.browser.viewlets.header import GroupsTreeMixin
 from plone import api
 from plone.app.layout.viewlets import common
@@ -44,20 +45,16 @@ class SidebarViewlet(GroupsTreeMixin, common.ViewletBase):
 
     def update(self):
         super().update()
-        if is_in_dp_folder(self.context, "content/Groups"):
+        if is_in_dp_folder(self.context, *GROUPS_NAV_FOLDERS):
             self.groups_tree = self.build_groups_tree()
         else:
             self.groups_tree = []
 
     def render(self):
         # XXX Paths shouldn't be hard-coded. Maybe add a property to folders or introduce a behavior.
-        if is_in_dp_folder(self.context, "content/Groups"):
+        if is_in_dp_folder(self.context, *GROUPS_NAV_FOLDERS):
             return self.groups_nav()
-        if is_in_dp_folder(
-            self.context,
-            "content/Transfers",
-            "hintergrundinfos-ns",
-        ):
+        if is_in_dp_folder(self.context, "hintergrundinfos-ns"):
             return ""
         return super().render()
 

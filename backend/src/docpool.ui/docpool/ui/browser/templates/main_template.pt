@@ -80,11 +80,6 @@
       </header>
 
       <div class="outer-wrapper flex-shrink-0">
-        <div id="portal-mainnavigation"
-             tal:content="structure provider:plone.mainnavigation"
-        >
-      The main navigation
-        </div>
 
         <section id="global_statusmessage">
           <tal:message tal:content="structure provider:plone.globalstatusmessage" />

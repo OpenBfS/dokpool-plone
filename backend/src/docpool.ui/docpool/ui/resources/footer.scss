@@ -8,13 +8,28 @@
 .footer-tz-table {
   position: fixed;
   left: 0;
-  right: 16px;
-  bottom: 16px;
+  right: 0;
+  bottom: 0;
   z-index: 1000;
-  width: fit-content;
+  width: 117px;
+  box-sizing: border-box;
+  background-color: #f3f3f3;
+  border-top: 1px solid var(--bs-gray-dark);
   padding-left: 20px;
+
+  body:has(.sidebar.groups) & {
+    width: var(--sidebar-groups-width);
+    padding-left: 0;
+    padding-right: 0;
+
+    tbody {
+      display: table;
+      width: fit-content;
+      margin: 0 auto;
+    }
+  }
+
   tr:first-child td {
-    border-top: 1px solid var(--bs-gray-dark);
     padding-top: 10px;
   }
   tr td {

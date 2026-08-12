@@ -21,7 +21,6 @@
     top: 74px;
     left: 0;
     bottom: 0;
-    height: 100%;
     border-right: none;
     z-index: 991;
 
@@ -34,6 +33,12 @@
       padding-left: 15px;
       padding-right: 15px;
     }
+  }
+}
+
+@include media-breakpoint-up(xl) {
+  .sidebar.groups nav {
+    padding-bottom: 5rem;
   }
 }
 
@@ -127,9 +132,15 @@
   .dp-group-link {
     min-height: 2.5rem;
     line-height: 1.25;
-    padding: 0.58rem 0.85rem 0.58rem 0.95rem;
+    padding: 0.58rem 0.85rem 0.58rem 1.6rem;
     border-left: 4px solid transparent;
     font-size: var(--dp-font-body);
+    position: relative;
+
+    > .d-flex > svg {
+      align-self: flex-start;
+      margin-top: 2px;
+    }
   }
 
   .dp-group-link:hover:not(.current) {
@@ -148,31 +159,47 @@
   li.folder {
     position: relative;
 
-    > a.dp-group-link {
-      display: block;
-      padding-left: 1.6rem;
-      position: relative;
-    }
-
     > .toggle {
       position: absolute;
       left: 0.4rem;
       width: 0.8rem;
       height: 0.8rem;
+      top: 9px;
       z-index: 2;
+
+      .current svg{
+        top: 0px;
+      }
     }
   }
 }
 
 .sidebar-groups-tree.twisties {
-  li.folder::before,
-  li.closed::before,
-  li.open::before {
-    color: var(--bs-primary);
+  // Patternslib injects `.toggle` and renders a triangle by default.
+  // Override with a small chevron for the Dokpool groups tree.
+  .toggle::before {
+    content: "";
+    display: block;
+    width: 0.4rem;
+    height: 0.4rem;
+    margin-top: 0.1rem;
+    margin-left: 0.05rem;
+    border-right: 1px solid var(--bs-primary);
+    border-bottom: 1px solid var(--bs-primary);
+    transform: rotate(-45deg);
   }
 
+  .open > .toggle {
+    top:0;
+
+    &::before {
+
+    content: "";
+    transform: rotate(45deg);
+  }
+}
   .toggle {
-    margin-top: 7px;
+    margin-top: 4px;
   }
 }
 

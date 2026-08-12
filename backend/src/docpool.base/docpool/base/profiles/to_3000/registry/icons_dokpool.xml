@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<registry>
+
+  <record name="plone.icon.dokpool-user">
+    <field type="plone.registry.field.TextLine">
+      <title>Dokpool Icon user</title>
+    </field>
+    <value key="resource">++plone++docpoolui/icons/dokpool-user.svg</value>
+  </record>
+
+  <record name="plone.icon.dokpool-wrench">
+    <field type="plone.registry.field.TextLine">
+      <title>Dokpool Icon Wrench</title>
+    </field>
+    <value key="resource">++plone++docpoolui/icons/dokpool-wrench.svg</value>
+  </record>
+
+  <record name="plone.icon.dokpool-transfer-folder">
+    <field type="plone.registry.field.TextLine">
+      <title>Dokpool Icon Transfer Folder</title>
+    </field>
+    <value key="resource">++plone++docpoolui/icons/dokpool-transfer-folder.svg</value>
+  </record>
+
+  <record name="plone.icon.radiological_situation_report">
+    <field type="plone.registry.field.TextLine">
+      <title>Radiological Situation Report</title>
+    </field>
+    <value key="resource">++plone++docpoolui/icons/radiological_situation_report.svg</value>
+  </record>
+
+  <record name="plone.icon.official_notification">
+    <field type="plone.registry.field.TextLine">
+      <title>Official Notification</title>
+    </field>
+    <value key="resource">++plone++docpoolui/icons/official_notification.svg</value>
+  </record>
+
+</registry>

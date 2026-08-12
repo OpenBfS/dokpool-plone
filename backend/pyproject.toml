@@ -558,7 +558,7 @@ constraint-dependencies = [
 path = "src/docpoolwrapper/__init__.py"
 
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling==1.29.0"]
 build-backend = "hatchling.build"
 
 [tool.hatch.build]

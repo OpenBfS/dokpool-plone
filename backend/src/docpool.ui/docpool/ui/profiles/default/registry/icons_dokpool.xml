@@ -15,6 +15,13 @@
     <value key="resource">++plone++docpoolui/icons/dokpool-wrench.svg</value>
   </record>
 
+  <record name="plone.icon.dokpool-transfer-folder">
+    <field type="plone.registry.field.TextLine">
+      <title>Dokpool Icon Transfer Folder</title>
+    </field>
+    <value key="resource">++plone++docpoolui/icons/dokpool-transfer-folder.svg</value>
+  </record>
+
   <record name="plone.icon.radiological_situation_report">
     <field type="plone.registry.field.TextLine">
       <title>Radiological Situation Report</title>
