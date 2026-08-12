@@ -22,3 +22,11 @@ class TestSearch:
 
         expect(dropdown).to_be_visible()
         expect(selected).to_have_value("current_event")
+
+        search_input = page.locator("#searchGadget")
+        search_input.fill("nonexistent search result")
+        search_input.press("Enter")
+
+        expect(page.locator("#listing")).to_be_visible()
+        assert page.url.split("?", 1)[0] == f"{self.plone_url}/bund/@@listing"
+        expect(page.locator("#listing .listing-item")).to_have_count(0)
