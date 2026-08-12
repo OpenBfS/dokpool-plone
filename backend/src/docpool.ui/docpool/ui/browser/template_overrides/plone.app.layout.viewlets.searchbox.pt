@@ -23,7 +23,7 @@
           action="@@search"
           role="search"
           tal:attributes="
-            action string:${navigation_root_url};
+            action string:${navigation_root_url}/@@listing;
           "
     >
 
