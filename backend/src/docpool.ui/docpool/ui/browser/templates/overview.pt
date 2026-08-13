@@ -94,7 +94,7 @@
           <div class="row g-2 h-100">
             <tal:tile tal:replace="structure python:context.restrictedTraverse('@@overview-latest-situation')()" />
             <tal:tile tal:replace="structure python:context.restrictedTraverse('@@overview-notifications')()" />
-            <tal:tile tal:replace="structure python:context.restrictedTraverse('@@overview-rodos-forecasts')()" />
+            <tal:tile tal:replace="structure python:context.restrictedTraverse('@@overview-public-information')()" />
             <tal:tile tal:replace="structure python:context.restrictedTraverse('@@overview-measurements')()" />
           </div>
         </div>

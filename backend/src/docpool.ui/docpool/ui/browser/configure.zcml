@@ -319,9 +319,9 @@
       />
 
   <browser:page
-      name="overview-rodos-forecasts"
+      name="overview-public-information"
       for="*"
-      class=".overview.RodosForecastsTile"
+      class=".overview.MeasuresInformationPublicTile"
       template="templates/overview-tile.pt"
       permission="zope2.View"
       layer="docpool.ui.interfaces.IUITheme"
