@@ -154,7 +154,7 @@ msgstr ""
 msgid "Folder and Entrytype"
 msgstr ""
 
-#: docpool.ui/docpool/ui/browser/wizard.py
+#: docpool.ui/docpool/ui/browser/dpdocument.py
 msgid "For all users of '${app} ${docpool_title}'"
 msgstr ""
 
@@ -166,8 +166,8 @@ msgstr ""
 msgid "Groups"
 msgstr ""
 
+#: docpool.ui/docpool/ui/browser/dpdocument.py
 #: docpool.ui/docpool/ui/browser/listing.py
-#: docpool.ui/docpool/ui/browser/wizard.py
 msgid "Internal"
 msgstr ""
 
@@ -213,7 +213,7 @@ msgstr ""
 msgid "Oldest first"
 msgstr ""
 
-#: docpool.ui/docpool/ui/browser/wizard.py
+#: docpool.ui/docpool/ui/browser/dpdocument.py
 msgid "Only for member of '${container_title}'"
 msgstr ""
 
@@ -225,6 +225,7 @@ msgstr ""
 msgid "Pages"
 msgstr ""
 
+#: docpool.ui/docpool/ui/browser/dpdocument.py
 #: docpool.ui/docpool/ui/browser/listing.py
 msgid "Pending"
 msgstr ""
@@ -260,8 +261,8 @@ msgstr ""
 msgid "Print"
 msgstr ""
 
+#: docpool.ui/docpool/ui/browser/dpdocument.py
 #: docpool.ui/docpool/ui/browser/listing.py
-#: docpool.ui/docpool/ui/browser/wizard.py
 msgid "Published"
 msgstr ""
 
@@ -277,6 +278,7 @@ msgstr ""
 msgid "Results for"
 msgstr ""
 
+#: docpool.ui/docpool/ui/browser/dpdocument.py
 #: docpool.ui/docpool/ui/browser/listing.py
 msgid "Revised"
 msgstr ""

@@ -52,6 +52,29 @@ class DPDocumentView(DefaultView):
         return path
 
 
+def visibility_options(app, group_folder):
+    group_title = group_folder.title
+    docpool_title = getDocumentPoolSite(group_folder).title
+    options = [
+        {
+            "value": "private",
+            "title": _("Internal"),
+            "description": _(
+                "Only for member of '${container_title}'", mapping={"container_title": group_title}
+            ),
+        },
+        {
+            "value": "published",
+            "title": _("Published"),
+            "description": _(
+                "For all users of '${app} ${docpool_title}'",
+                mapping={"app": app.upper(), "docpool_title": docpool_title},
+            ),
+        },
+    ]
+    return options
+
+
 @implementer(IDexterityEditForm)
 class DPDocumentEditFormUI(DPDocumentEditForm):
     """Edit view for all DPDocuments."""

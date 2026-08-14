@@ -10,6 +10,7 @@ from docpool.base.utils import getAllowedDocumentTypes
 from docpool.base.utils import getDocumentPoolSite
 from docpool.elan.utils import get_scenario_for_current_user
 from docpool.ui import _
+from docpool.ui.browser.dpdocument import visibility_options
 from docpool.ui.utils import extract_data
 from plone import api
 from plone.app.dexterity.interfaces import IDXFileFactory
@@ -404,26 +405,7 @@ class DPDocumentWizard(ContextlessWizard):
             if IGroupFolder.providedBy(container)
             else api.content.get_closest_ancestor(container, interface=IGroupFolder)
         )
-        group_title = group_folder.title
-        docpool_title = getDocumentPoolSite(container).title
-        options = [
-            {
-                "value": "private",
-                "title": _("Internal"),
-                "description": _(
-                    "Only for member of '${container_title}'", mapping={"container_title": group_title}
-                ),
-            },
-            {
-                "value": "published",
-                "title": _("Published"),
-                "description": _(
-                    "For all users of '${app} ${docpool_title}'",
-                    mapping={"app": self.app.upper(), "docpool_title": docpool_title},
-                ),
-            },
-        ]
-        return options
+        return visibility_options(self.app, group_folder)
 
     def default_scenario(self):
         query = {
