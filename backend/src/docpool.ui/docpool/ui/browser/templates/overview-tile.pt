@@ -2,13 +2,7 @@
          tal:define="
            tile_title_id python:view.tile_title['id'];
            tile_title python:context.translate(view.tile_title['title']);
-           listing_query python:{
-             'overview_tile_latest_situation': 'dp_type:list=radiological_situation_report&amp;dp_type:list=radiological_situation_report_draft&amp;dp_type:list=situation_overview&amp;dp_type:list=situation_overview_draft',
-             'overview_tile_notifications': 'selected_subcategories:list=official_notification',
-             'overview_tile_rodos_forecasts': 'UID:list=_invalid_no_results_',
-             'overview_tile_measurements': 'selected_subcategories:list=Messstrategien',
-           }.get(tile_title_id, '');
-           listing_url python:context.absolute_url() + '/@@listing' + (listing_query and '?' + listing_query or '');
+           listing_url python:view.listing_url();
          "
          tal:attributes="
            id tile_title_id;
@@ -22,6 +16,7 @@
       >Tile title</h3>
       <a class="overview-tile-count badge rounded-pill text-decoration-none flex-shrink-0"
          href="#"
+         tal:condition="python:view.item_count"
          tal:attributes="
            href python:listing_url;
            title tile_title;
@@ -44,7 +39,10 @@
     <div class="overview-tile-empty flex-grow-1 d-flex align-items-center justify-content-center p-4 text-center text-secondary"
          tal:condition="python:not view.items"
     >
-      <p class="mb-0">Keine Eintr&auml;ge vorhanden</p>
+      <p class="mb-0"
+         i18n:domain="docpool.ui"
+         i18n:translate="overview_tile_no_entries"
+      >No entries available</p>
     </div>
   </div>
 </article>

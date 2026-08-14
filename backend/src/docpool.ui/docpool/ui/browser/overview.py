@@ -1,4 +1,5 @@
 from datetime import datetime
+from urllib.parse import urlencode
 from docpool.elan.utils import get_scenario_for_current_user
 from docpool.ui import _
 from docpool.ui.browser.listing import Listing
@@ -150,7 +151,17 @@ class OverviewTileListing(Listing):
     def update(self):
         self.query.update(self.tile_query)
 
+    def listing_url(self):
+        query = urlencode(
+            {f"{name}:list": values for name, values in self.tile_query.items()},
+            doseq=True,
+            safe=":",
+        )
+        suffix = f"?{query}" if query else ""
+        return f"{self.context.absolute_url()}/@@listing{suffix}"
 
+
+# Aktuellste Lageinformationen
 class LatestSituationTile(OverviewTileListing):
     tile_title = {
         "id": "overview_tile_latest_situation",
@@ -166,32 +177,32 @@ class LatestSituationTile(OverviewTileListing):
     }
 
 
+# Meldungen und Ereignisinformationen
 class NotificationsTile(OverviewTileListing):
     tile_title = {
         "id": "overview_tile_notifications",
-        "title": _("overview_tile_notifications", default="Notifications and plant information"),
+        "title": _("overview_tile_notifications", default="Reports and Event Information"),
     }
     tile_query = {
-        "subcategory": ["official_notification"],
+        "dp_type": ["official_notification", "additional_event_information"],
     }
 
 
-# TODO Not needed in ELAN - Replace?
-class RodosForecastsTile(OverviewTileListing):
+# Maßnahmen und Informationen an Bevölkerung
+class MeasuresInformationPublicTile(OverviewTileListing):
     tile_title = {
-        "id": "overview_tile_rodos_forecasts",
-        "title": _("overview_tile_rodos_forecasts", default="RODOS forecasts"),
+        "id": "overview_tile_public_information",
+        "title": _("overview_tile_public_information", default="Measures and Information for the Public"),
     }
-    tile_query = {
-        "UID": "_invalid_no_results_",
-    }
+    tile_query = {"dp_type": ["response_action", "response_action_taken", "information-for_the_public"]}
 
 
+# Messstrategien und Messempfehlungen
 class MeasurementsTile(OverviewTileListing):
     tile_title = {
         "id": "overview_tile_measurements",
-        "title": _("overview_tile_measurements", default="Measurement results and strategies"),
+        "title": _("overview_tile_measurements", default="Measurement Strategies and Recommendations"),
     }
     tile_query = {
-        "subcategory": ["Messstrategien"],
+        "dp_type": ["measurement_recommendation", "measurement_strategy"],
     }

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-08-03 09:33+0000\n"
+"POT-Creation-Date: 2026-08-13 12:37+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -369,19 +369,24 @@ msgstr ""
 msgid "overview_tile_latest_situation"
 msgstr ""
 
-#. Default: "Measurement results and strategies"
+#. Default: "Measurement Strategies and Recommendations"
 #: docpool.ui/docpool/ui/browser/overview.py
 msgid "overview_tile_measurements"
 msgstr ""
 
-#. Default: "Notifications and plant information"
+#. Default: "No entries available"
+#: docpool.ui/docpool/ui/browser/templates/overview-tile.pt
+msgid "overview_tile_no_entries"
+msgstr ""
+
+#. Default: "Reports and Event Information"
 #: docpool.ui/docpool/ui/browser/overview.py
 msgid "overview_tile_notifications"
 msgstr ""
 
-#. Default: "RODOS forecasts"
+#. Default: "Measures and Information for the Public"
 #: docpool.ui/docpool/ui/browser/overview.py
-msgid "overview_tile_rodos_forecasts"
+msgid "overview_tile_public_information"
 msgstr ""
 
 #. Default: "There was an error processing the form!"

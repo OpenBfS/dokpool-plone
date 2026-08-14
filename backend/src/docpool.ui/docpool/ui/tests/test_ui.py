@@ -62,6 +62,23 @@ class TestUIFeatures(unittest.TestCase):
 
         self.assertIsNotNone(listing_view)
 
+    def test_overview_tile_listing_url_uses_tile_query(self):
+        tile_view = api.content.get_view("overview-public-information", self.docpool, self.request)
+        expected_url = (
+            f"{self.docpool.absolute_url()}/@@listing"
+            "?dp_type:list=response_action"
+            "&dp_type:list=response_action_taken"
+            "&dp_type:list=information-for_the_public"
+        )
+
+        self.assertEqual(tile_view.listing_url(), expected_url)
+
+    def test_overview_tile_without_results_has_no_count_link(self):
+        tile_view = api.content.get_view("overview-public-information", self.docpool, self.request)
+        html = tile_view()
+
+        self.assertNotIn("overview-tile-count", html)
+
     def setup_content(self):
         add_user(self.docpool, "user1", ["group1"], enabled_apps=["elan"])
         content = self.docpool["content"]
