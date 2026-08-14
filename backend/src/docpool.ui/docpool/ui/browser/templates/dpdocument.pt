@@ -116,6 +116,7 @@
 
             <tal:elan condition="python: 'elan' in context.local_behaviors">
 
+              <label i18n:translate="">Document type and category</label>
               <div class="field mb-2 doc_metadata"
                    tal:define="
                      doctype python: context.docTypeObj();
@@ -129,6 +130,55 @@
                     <span tal:condition="subcategory">(${python: subcategory})</span></div>
                 </tal:cat>
               </div>
+
+              <label i18n:translate="">Visibility</label>
+              <div class="field mb-2 doc_metadata"
+                   tal:define="
+                     visibility python:view.visibility_options()[view.workflow_state()];
+                   "
+              >
+                <div>${python: visibility['title']}</div>
+                <div>${python: visibility.get('description')}</div>
+              </div>
+
+              <tal:published define="
+                               pubinfo python: view.published_info();
+                             "
+                             condition="python: pubinfo"
+              >
+                <label i18n:translate="">Last published</label>
+                <div class="field mb-2 doc_metadata">
+                  <div>${python: pubinfo[1]}</div>
+                  <div>${python: pubinfo[0]}</div>
+                </div>
+              </tal:published>
+
+              <label i18n:translate="">Last modified</label>
+              <div class="field mb-2 doc_metadata"
+                   tal:define="
+                     modinfo python:context.modInfo();
+                   "
+              >
+                <div>${python: modinfo[1]}</div>
+                <div>${python: modinfo[0]}</div>
+              </div>
+
+              <label i18n:translate="">Created</label>
+              <div class="field mb-2 doc_metadata"
+                   tal:define="
+                     modinfo python:context.modInfo(show_created=True);
+                   "
+              >
+                <div>${python: modinfo[1]}</div>
+                <div>${python: modinfo[0]}</div>
+              </div>
+
+              <tal:location condition="python: view.group_folder">
+                <label i18n:translate="">Location</label>
+                <div class="field mb-2 doc_metadata">
+                  <div>${python: view.group_folder.Title()}</div>
+                </div>
+              </tal:location>
 
               <div class="field mb-2"
                    tal:define="
