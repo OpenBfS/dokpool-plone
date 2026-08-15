@@ -8,7 +8,7 @@
         can_delete python: context.canBeDeleted();
         token context/@@authenticator/token;
       "
-      i18n:domain="docpool.base"
+      i18n:domain="docpool.ui"
 >
 
   <body>
@@ -32,13 +32,13 @@
                 <li class="list-group-item border-0 bg-transparent prev">
                   <a class="pat-inject prev-item text-decoration-none"
                      data-pat-inject="trigger: default; source: #portal-column-content; target: #content; history: record"
-                     i18n:translate=""
+                     i18n:translate="previous_next_previous"
                   >Previous</a>
                 </li>
                 <li class="list-group-item border-0 bg-transparent next">
                   <a class="pat-inject next-item text-decoration-none"
                      data-pat-inject="trigger: default; source: #portal-column-content; target: #content; history: record"
-                     i18n:translate=""
+                     i18n:translate="previous_next_next"
                   >Next</a>
                 </li>
                 <li class="list-group-item border-0 bg-transparent">

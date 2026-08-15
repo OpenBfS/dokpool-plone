@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-08-13 12:37+0000\n"
+"POT-Creation-Date: 2026-08-15 11:23+0000\n"
 "PO-Revision-Date: 2025-11-24 11:56+0100\n"
 "Last-Translator: Thomas Lotze <lotze@starzel.de>\n"
 "Language-Team: Romanian <translation-team-ro@lists.sourceforge.net>\n"
@@ -388,6 +388,16 @@ msgstr ""
 #. Default: "Measures and Information for the Public"
 #: docpool.ui/docpool/ui/browser/overview.py
 msgid "overview_tile_public_information"
+msgstr ""
+
+#. Default: "Next"
+#: docpool.ui/docpool/ui/browser/templates/dpdocument.pt
+msgid "previous_next_next"
+msgstr ""
+
+#. Default: "Previous"
+#: docpool.ui/docpool/ui/browser/templates/dpdocument.pt
+msgid "previous_next_previous"
 msgstr ""
 
 #. Default: "There was an error processing the form!"
