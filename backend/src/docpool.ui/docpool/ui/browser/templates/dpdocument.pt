@@ -14,7 +14,9 @@
   <body>
     <metal:body fill-slot="body">
 
-      <div id="content">
+      <div class="dp-document"
+           id="content"
+      >
 
         <div class="dp-document-header row mx-0 my-0 p-1 border-bottom">
           <div class="col-sm-6">
@@ -112,90 +114,86 @@
             <tal:attachments replace="structure python: context.restrictedTraverse('@@attachments')()" />
           </div>
 
-          <div class="col-sm-4">
+          <dl class="col-sm-4">
 
             <tal:elan condition="python: 'elan' in context.local_behaviors">
 
-              <label i18n:translate="">Document type and category</label>
-              <div class="field mb-2 doc_metadata"
-                   tal:define="
-                     doctype python: context.docTypeObj();
-                     doctype_title python: doctype.title if doctype else context.dp_type();
-                     subcategory python: context.subcategory();
-                   "
+              <dt i18n:translate="">Document type and category</dt>
+              <dd class="field mb-2"
+                  tal:define="
+                    doctype python: context.docTypeObj();
+                    doctype_title python: doctype.title if doctype else context.dp_type();
+                    subcategory python: context.subcategory();
+                  "
               >
-                <img src="${python:icons.url(getattr(doctype, 'icon_name', 'question'))}" />
-                <tal:cat>
-                  <div>${python: doctype_title}
-                    <span tal:condition="subcategory">(${python: subcategory})</span></div>
-                </tal:cat>
-              </div>
+                <div>
+                  ${structure:python:icons.tag(getattr(doctype, 'icon_name', 'question'))}
+                  ${python: doctype_title}
+                  <span tal:condition="subcategory">(${python: subcategory})</span>
+                </div>
+              </dd>
 
-              <label i18n:translate="">Visibility</label>
-              <div class="field mb-2 doc_metadata"
-                   tal:define="
-                     visibility python:view.visibility_options()[view.workflow_state()];
-                   "
+              <dt i18n:translate="">Visibility</dt>
+              <dd class="field mb-2"
+                  tal:define="
+                    visibility python:view.visibility_options()[view.workflow_state()];
+                  "
               >
-                <div>${python: visibility['title']}</div>
-                <div>${python: visibility.get('description')}</div>
-              </div>
+                <div class="visibility-title">${python: visibility['title']}</div>
+                <div class="visibility-description">${python: visibility.get('description')}</div>
+              </dd>
 
               <tal:published define="
                                pubinfo python: view.published_info();
                              "
                              condition="python: pubinfo"
               >
-                <label i18n:translate="">Last published</label>
-                <div class="field mb-2 doc_metadata">
-                  <div>${python: pubinfo[1]}</div>
-                  <div>${python: pubinfo[0]}</div>
-                </div>
+                <dt i18n:translate="">Last published</dt>
+                <dd class="field mb-2">
+                  <div>${structure:python:icons.tag('person')} ${python: pubinfo[1]}</div>
+                  <div>${structure:python:icons.tag('clock')} ${python: pubinfo[0]}</div>
+                </dd>
               </tal:published>
 
-              <label i18n:translate="">Last modified</label>
-              <div class="field mb-2 doc_metadata"
-                   tal:define="
-                     modinfo python:context.modInfo();
-                   "
+              <dt i18n:translate="">Last modified</dt>
+              <dd class="field mb-2"
+                  tal:define="
+                    modinfo python:context.modInfo();
+                  "
               >
-                <div>${python: modinfo[1]}</div>
-                <div>${python: modinfo[0]}</div>
-              </div>
+                <div>${structure:python:icons.tag('person')} ${python: modinfo[1]}</div>
+                <div>${structure:python:icons.tag('clock')} ${python: modinfo[0]}</div>
+              </dd>
 
-              <label i18n:translate="">Created</label>
-              <div class="field mb-2 doc_metadata"
-                   tal:define="
-                     modinfo python:context.modInfo(show_created=True);
-                   "
+              <dt i18n:translate="">Created</dt>
+              <dd class="field mb-2"
+                  tal:define="
+                    modinfo python:context.modInfo(show_created=True);
+                  "
               >
-                <div>${python: modinfo[1]}</div>
-                <div>${python: modinfo[0]}</div>
-              </div>
+                <div>${structure:python:icons.tag('person')} ${python: modinfo[1]}</div>
+                <div>${structure:python:icons.tag('clock')} ${python: modinfo[0]}</div>
+              </dd>
 
               <tal:location condition="python: view.group_folder">
-                <label i18n:translate="">Location</label>
-                <div class="field mb-2 doc_metadata">
-                  <div>${python: view.group_folder.Title()}</div>
-                </div>
+                <dt i18n:translate="">Location</dt>
+                <dd class="field mb-2">
+                  <div>${structure:python:icons.tag('folder-fill')} ${python: view.group_folder.Title()}</div>
+                </dd>
               </tal:location>
 
-              <div class="field mb-2"
-                   tal:define="
-                     widget python: view.widgets.get('IELANDocument.scenario');
-                   "
-                   tal:condition="python: widget"
+              <tal:event define="
+                           widget python: view.widgets.get('IELANDocument.scenario');
+                         "
+                         condition="python: widget"
               >
-                <label class="small"
-                       tal:content="python: widget.label"
-                ></label>
-                <br />
-                <div tal:content="structure python: widget.render()"></div>
-              </div>
+                <dt>${python: widget.label}</dt>
+                <dd class="field mb-2 event">${structure:python: widget.render()}</dd>
+              </tal:event>
 
             </tal:elan>
 
-          </div>
+          </dl>
 
         </div>
 
