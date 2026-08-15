@@ -19,7 +19,8 @@ class IDPEvents(model.Schema):
     """ """
 
     subscribed_events = schema.List(
-        title=_("List of UIDs of events this Docpool subscribed to"),
+        title=_("Global events subscribed to by this docpool"),
+        description=_("description_subscribed_events"),
         value_type=schema.Choice(source="docpool.elan.vocabularies.OpenEvents"),
     )
     directives.widget(subscribed_events=CheckBoxFieldWidget)

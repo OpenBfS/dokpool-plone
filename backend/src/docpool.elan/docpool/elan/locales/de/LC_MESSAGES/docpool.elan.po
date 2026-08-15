@@ -241,6 +241,10 @@ msgstr "Übung"
 msgid "Filter"
 msgstr "Filter"
 
+#: docpool.elan/docpool/elan/content/dpevents.py
+msgid "Global events subscribed to by this docpool"
+msgstr "Globale Ereignisse, die dieser Dokpool abonniert hat"
+
 #: docpool.elan/docpool/elan/browser/i18ndummy.pt
 msgid "Home"
 msgstr "Home"
@@ -260,10 +264,6 @@ msgstr ""
 #: docpool.elan/docpool/elan/browser/dpevents.pt
 msgid "LT"
 msgstr "Ortszeit"
-
-#: docpool.elan/docpool/elan/content/dpevents.py
-msgid "List of UIDs of events this Docpool subscribed to"
-msgstr "Liste von UIDs von Ereignissen, die dieser Docpool abonniert hat."
 
 #: docpool.elan/docpool/elan/profiles/default/registry/querystring.xml
 msgid "Location"
@@ -467,6 +467,12 @@ msgstr ""
 #: docpool.elan/docpool/elan/content/dpevent.py
 msgid "description_dpevent_type"
 msgstr ""
+
+#: docpool.elan/docpool/elan/content/dpevents.py
+msgid "description_subscribed_events"
+msgstr ""
+"Globale Ereignisse, die dieser Dokpool abonniert hat, sind in der folgenden Liste angehakt.\n"
+"An dieser Stelle können Sie Ereignisse abwählen oder weitere Ereignisse abonnieren."
 
 #: docpool.elan/docpool/elan/configure.zcml
 msgid "docpool.elan"
