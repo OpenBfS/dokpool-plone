@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2026-08-13 12:37+0000\n"
-"PO-Revision-Date: 2025-11-24 12:24+0100\n"
+"PO-Revision-Date: 2026-08-15 13:14+0200\n"
 "Last-Translator: Thomas Lotze <lotze@starzel.de>\n"
 "Language-Team: German <translation-team-de@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -341,7 +341,7 @@ msgstr "Sichtbarkeit"
 
 #: docpool.ui/docpool/ui/browser/wizard.py
 msgid "You cannot add any folders"
-msgstr "Sie können keine Ornder anlegen"
+msgstr "Sie können keine Ordner anlegen"
 
 #: docpool.ui/docpool/ui/browser/listing.py
 msgid "Z-A"
