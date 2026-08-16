@@ -185,10 +185,10 @@
               <tal:event define="
                            widget python: view.widgets.get('IELANDocument.scenario');
                          "
-                         condition="python: widget"
+                         condition="python: widget and view.event"
               >
                 <dt>${python: widget.label}</dt>
-                <dd class="field mb-2 event">${structure:python: widget.render()}</dd>
+                <dd class="field mb-2 event">${structure:python:view.event.Title()}</dd>
               </tal:event>
 
             </tal:elan>

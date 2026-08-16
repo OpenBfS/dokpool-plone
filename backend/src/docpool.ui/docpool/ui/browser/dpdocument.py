@@ -23,6 +23,7 @@ class DPDocumentView(DefaultView):
         if "download_attachments" in self.request.form:
             return self.download_attachments()
 
+        self.event = api.content.get(UID=self.context.scenario)
         self.group_folder = api.content.get_closest_ancestor(self.context, interface=IGroupFolder)
         return super().__call__()
 
