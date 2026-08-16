@@ -857,6 +857,7 @@ def to_3000_global_events(context):
             container=cc,
             type="DPEvents",
         )
+        api.group.grant_roles(groupname="AuthenticatedUsers", roles=["Reader"], obj=global_events)
         log.info("Created global events folder.")
 
     for brain in api.content.find(portal_type="DPEvents"):
