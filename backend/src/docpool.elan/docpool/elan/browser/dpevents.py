@@ -37,7 +37,7 @@ class DPEventsView(BrowserView):
     def show_edit_link(self):
         if IPlaces(self.context).document_pool is None:
             return False
-        return api.user.has_permission("docpool.elan.AddDPEvent", obj=self.context)
+        return api.user.has_permission("Docpool: Add DPEvent", obj=self.context)
 
     @property
     def global_events_link(self):
