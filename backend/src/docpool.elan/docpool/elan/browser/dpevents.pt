@@ -25,7 +25,9 @@
               <th i18n:translate="">Title/Description</th>
               <th i18n:translate="">Status</th>
               <th i18n:translate="">Docpools</th>
-              <th i18n:translate="">Entries</th>
+              <th tal:condition="python:view.document_pool"
+                  i18n:translate=""
+              >Entries</th>
             </tr>
           </thead>
           <tbody>
@@ -84,7 +86,9 @@
                   </a>
                 </tal:if>
               </td>
-              <td tal:content="python: view.number_of_entries(scenario)"></td>
+              <td tal:condition="python:view.document_pool"
+                  tal:content="python: view.number_of_entries(scenario)"
+              ></td>
             </tr>
           </tbody>
         </table>
