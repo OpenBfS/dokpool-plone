@@ -48,8 +48,8 @@ class DPEventsView(BrowserView):
 
 @implementer(IDexterityEditForm)
 @layout.wrap_form
-class EditSubscribedEvents(AutoExtensibleForm, form.Form):
-    label = _("Edit event subscriptions")
+class ManageSubscribedEvents(AutoExtensibleForm, form.Form):
+    label = _("Manage event subscriptions")
     schema = IDPEvents
 
     def updateActions(self):

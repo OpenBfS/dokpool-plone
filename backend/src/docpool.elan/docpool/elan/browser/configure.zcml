@@ -23,9 +23,9 @@
       />
 
   <browser:page
-      name="edit-subscribed-events"
+      name="manage-subscribed-events"
       for="..interfaces.IDPEvents"
-      class=".dpevents.EditSubscribedEvents"
+      class=".dpevents.ManageSubscribedEvents"
       permission="docpool.elan.AddDPEvent"
       />
 

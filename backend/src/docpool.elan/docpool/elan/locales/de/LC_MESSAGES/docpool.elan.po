@@ -188,11 +188,6 @@ msgid "Edit Ticker"
 msgstr "Ticker bearbeiten"
 
 #: docpool.elan/docpool/elan/browser/dpevents.pt
-#: docpool.elan/docpool/elan/browser/dpevents.py
-msgid "Edit event subscriptions"
-msgstr "Abonnierte Ereignisse bearbeiten"
-
-#: docpool.elan/docpool/elan/browser/dpevents.pt
 msgid "Edit global events"
 msgstr "Ereignisse zentral bearbeiten"
 
@@ -268,6 +263,11 @@ msgstr "Ortszeit"
 #: docpool.elan/docpool/elan/profiles/default/registry/querystring.xml
 msgid "Location"
 msgstr "Ort"
+
+#: docpool.elan/docpool/elan/browser/dpevents.pt
+#: docpool.elan/docpool/elan/browser/dpevents.py
+msgid "Manage event subscriptions"
+msgstr "Abonnierte Ereignisse verwalten"
 
 #: docpool.elan/docpool/elan/profiles/default/registry/querystring.xml
 msgid "Metadata"

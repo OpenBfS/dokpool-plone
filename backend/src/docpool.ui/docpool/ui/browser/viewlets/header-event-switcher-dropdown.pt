@@ -93,7 +93,7 @@
   >
     <div>
       <a class="btn btn-secondary"
-         href="${python: view.dp_url}/contentconfig/scen/@@edit-subscribed-events"
+         href="${python: view.dp_url}/contentconfig/scen/@@manage-subscribed-events"
       >
         <tal:icon replace="structure python:icons.tag('plus-circle', tag_class='icon-with-text')" />
         <span class="small"
