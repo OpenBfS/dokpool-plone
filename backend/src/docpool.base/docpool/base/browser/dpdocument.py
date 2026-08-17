@@ -237,6 +237,9 @@ class AddView(add.DefaultAddView):
 class DPDocumentEditForm(EditForm):
     def updateWidgets(self):
         super().updateWidgets()
+
+        self.widgets.pop("IDublinCore.description", None)
+
         if not api.user.has_permission("Docpool: Change docType for DPDocument", obj=self.context):
             self.widgets["docType"].mode = "display"
         if IArchiving(self.context).is_archive:

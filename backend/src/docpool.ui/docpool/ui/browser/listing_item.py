@@ -92,10 +92,11 @@ class Item(BrowserView):
 
         iconresolver = self.context.restrictedTraverse("@@iconresolver")
         attachments = api.content.get_view("contentlisting", obj, self.request)(portal_type=["Image", "File"])
-
-        text = obj.title
-        if IJournalEntryMarker.providedBy(obj):
-            text = obj.text.output_relative_to(obj)
+        if obj.text and obj.text.raw.strip():
+            portal_transforms = api.portal.get_tool("portal_transforms")
+            text = portal_transforms.convert("html_to_text", obj.text.raw).getData().strip()
+        else:
+            text = None
 
         actions = {
             "edit": api.user.has_permission("Modify portal content", obj=obj),
@@ -113,7 +114,6 @@ class Item(BrowserView):
             "title": obj.title,
             "text": text,
             "id": obj.id,
-            "description": obj.description,
             "review_state": review_state,
             "state_title": review_state_title,
             "state_class": state_class,

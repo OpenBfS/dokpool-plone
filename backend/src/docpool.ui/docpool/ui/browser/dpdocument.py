@@ -60,8 +60,8 @@ class DPDocumentEditFormUI(DPDocumentEditForm):
     enable_form_tabbing = False
 
     def render(self):
+        self.title_widget = self.widgets.pop("IDublinCore.title", None)
         self.text_widget = self.widgets.pop("text", None)
-        self.description_widget = self.widgets.pop("IDublinCore.description", None)
         return super().render()
 
 

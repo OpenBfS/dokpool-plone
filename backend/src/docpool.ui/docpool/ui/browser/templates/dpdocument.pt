@@ -100,15 +100,6 @@
         <div class="row mx-3 my-3">
           <div class="col-sm-8">
 
-            <div tal:condition="python: getattr(context.aq_base, 'description')">
-              <label i18n:domain="plone"
-                     i18n:translate=""
-              >Description</label>
-              <p class="description"
-                 tal:content="python: context.description"
-              ></p>
-            </div>
-
             <div tal:condition="python: getattr(context.aq_base, 'text')">
               <label i18n:domain="plone"
                      i18n:translate=""
