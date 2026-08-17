@@ -4231,6 +4231,9 @@
     },
     "598c44331c3a4ef4ad0b9cd1a4599fea": {
       "local_roles": {
+        "AuthenticatedUsers": [
+          "Reader"
+        ],
         "admin": [
           "Owner"
         ]
