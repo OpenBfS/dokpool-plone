@@ -25,7 +25,9 @@
               <th i18n:translate="">Title/Description</th>
               <th i18n:translate="">Status</th>
               <th i18n:translate="">Docpools</th>
-              <th i18n:translate="">Entries</th>
+              <th tal:condition="python:view.document_pool"
+                  i18n:translate=""
+              >Entries</th>
             </tr>
           </thead>
           <tbody>
@@ -84,14 +86,21 @@
                   </a>
                 </tal:if>
               </td>
-              <td tal:content="python: view.number_of_entries(scenario)"></td>
+              <td tal:condition="python:view.document_pool"
+                  tal:content="python: view.number_of_entries(scenario)"
+              ></td>
             </tr>
           </tbody>
         </table>
         <p tal:condition="python: view.show_edit_link">
           <a href="${python:context.absolute_url()}/@@edit-subscribed-events"
+             tal:condition="python:view.document_pool"
              i18n:translate=""
           >Edit event subscriptions</a>
+          <a href="${python:context.absolute_url()}/++add++DPEvent"
+             tal:condition="python:not view.document_pool"
+             i18n:translate=""
+          >Add event</a>
         </p>
         <p tal:define="
              global_events_link python: view.global_events_link;

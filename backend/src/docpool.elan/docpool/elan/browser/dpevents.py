@@ -9,7 +9,6 @@ from plone.autoform.form import AutoExtensibleForm
 from plone.dexterity.interfaces import IDexterityEditForm
 from plone.z3cform import layout
 from Products.Five.browser import BrowserView
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from z3c.form import form
 from zope.interface import implementer
 
@@ -22,7 +21,9 @@ log = logging.getLogger(__name__)
 class DPEventsView(BrowserView):
     """Default view"""
 
-    __call__ = ViewPageTemplateFile("dpevents.pt")
+    def __call__(self):
+        self.document_pool = IPlaces(self.context).document_pool
+        return super().__call__()
 
     def number_of_entries(self, dpevent):
         args = {
@@ -35,13 +36,11 @@ class DPEventsView(BrowserView):
 
     @property
     def show_edit_link(self):
-        if IPlaces(self.context).document_pool is None:
-            return False
         return api.user.has_permission("Docpool: Add DPEvent", obj=self.context)
 
     @property
     def global_events_link(self):
-        if IPlaces(self.context).document_pool is None:
+        if self.document_pool is None:
             return
         if can_view(ge := global_events_folder(), "@@view"):
             return ge.absolute_url()

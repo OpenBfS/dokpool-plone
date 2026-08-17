@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-08-11 11:27+0000\n"
+"POT-Creation-Date: 2026-08-16 10:12+0000\n"
 "PO-Revision-Date: 2025-05-19 17:02+0200\n"
 "Last-Translator: Philip Bauer <bauer@starzel.de>\n"
 "Language-Team: BfS <elan@bfs.de>\n"
@@ -28,6 +28,10 @@ msgstr ""
 
 #: docpool.elan/docpool/elan/browser/archive_event_form.pt
 msgid "Active Journals are purged."
+msgstr ""
+
+#: docpool.elan/docpool/elan/browser/dpevents.pt
+msgid "Add event"
 msgstr ""
 
 #: docpool.elan/docpool/elan/behaviors/configure.zcml
