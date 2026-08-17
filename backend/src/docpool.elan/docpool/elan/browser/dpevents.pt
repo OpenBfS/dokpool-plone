@@ -93,10 +93,10 @@
           </tbody>
         </table>
         <p tal:condition="python: view.show_edit_link">
-          <a href="${python:context.absolute_url()}/@@edit-subscribed-events"
+          <a href="${python:context.absolute_url()}/@@manage-subscribed-events"
              tal:condition="python:view.document_pool"
              i18n:translate=""
-          >Edit event subscriptions</a>
+          >Manage event subscriptions</a>
           <a href="${python:context.absolute_url()}/++add++DPEvent"
              tal:condition="python:not view.document_pool"
              i18n:translate=""

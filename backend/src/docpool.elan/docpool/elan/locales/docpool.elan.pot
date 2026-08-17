@@ -191,11 +191,6 @@ msgid "Edit Ticker"
 msgstr ""
 
 #: docpool.elan/docpool/elan/browser/dpevents.pt
-#: docpool.elan/docpool/elan/browser/dpevents.py
-msgid "Edit event subscriptions"
-msgstr ""
-
-#: docpool.elan/docpool/elan/browser/dpevents.pt
 msgid "Edit global events"
 msgstr ""
 
@@ -244,6 +239,10 @@ msgstr ""
 msgid "Filter"
 msgstr ""
 
+#: docpool.elan/docpool/elan/content/dpevents.py
+msgid "Global events subscribed to by this docpool"
+msgstr ""
+
 #: docpool.elan/docpool/elan/browser/i18ndummy.pt
 msgid "Home"
 msgstr ""
@@ -264,12 +263,13 @@ msgstr ""
 msgid "LT"
 msgstr ""
 
-#: docpool.elan/docpool/elan/content/dpevents.py
-msgid "List of UIDs of events this Docpool subscribed to"
-msgstr ""
-
 #: docpool.elan/docpool/elan/profiles/default/registry/querystring.xml
 msgid "Location"
+msgstr ""
+
+#: docpool.elan/docpool/elan/browser/dpevents.pt
+#: docpool.elan/docpool/elan/browser/dpevents.py
+msgid "Manage event subscriptions"
 msgstr ""
 
 #: docpool.elan/docpool/elan/profiles/default/registry/querystring.xml
@@ -469,6 +469,10 @@ msgstr ""
 
 #: docpool.elan/docpool/elan/content/dpevent.py
 msgid "description_dpevent_type"
+msgstr ""
+
+#: docpool.elan/docpool/elan/content/dpevents.py
+msgid "description_subscribed_events"
 msgstr ""
 
 #: docpool.elan/docpool/elan/configure.zcml
