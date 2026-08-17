@@ -15,7 +15,7 @@
            id="content"
       >
         <!-- macros defined in plone/app/z3cform/templates/macros.pt -->
-        <metal:form use-macro="context/ploneform-macros/titlelessform">
+        <metal:form use-macro="context/@@ploneform-macros/titlelessform">
           <metal:fields-slot fill-slot="fields">
             <input name="fieldset"
                    type="hidden"
@@ -35,7 +35,7 @@
                                      view.description_widget,
                                      ]">
                   <tal:widget condition="python: widget is not None">
-                    <metal:fields use-macro="context/ploneform-macros/field" />
+                    <metal:fields use-macro="context/@@ploneform-macros/field" />
                   </tal:widget>
                 </tal:widgets>
 
@@ -54,7 +54,7 @@
                      "
               />
               <div class="col-sm-4 enableFormTabbing pat-autotoc">
-                <metal:fields use-macro="context/ploneform-macros/fields" />
+                <metal:fields use-macro="context/@@ploneform-macros/fields" />
               </div>
             </div>
           </metal:fields-slot>
