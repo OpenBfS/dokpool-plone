@@ -14,23 +14,21 @@ i18ndude = "i18ndude"
 excludes = '"*.html *json-schema*.xml"'
 
 
-POT_PREFIX = '"POT-Creation-Date: '
+CONFLICT_PREFIXES = (
+    '"POT-Creation-Date: ',
+    '"PO-Revision-Date: ',
+    '"Last-Translator: ',
+)
 
 
 @contextlib.contextmanager
-def reset_pot_creation_date(path):
+def remove_conflicting_metadata(path):
     """Write back old po(t) file if the POT Creation Date is the only change."""
-    if not path.is_file():
-        yield
-        return
-    old_text = path.read_text()
-    old_lines = [l for l in old_text.splitlines() if not l.startswith(POT_PREFIX)]
     yield
     if path.is_file():
-        new_text = path.read_text()
-        new_lines = [l for l in new_text.splitlines() if not l.startswith(POT_PREFIX)]
-        if old_lines == new_lines:
-            path.write_text(old_text)
+        text = path.read_text()
+        lines = [l for l in text.splitlines() if not l.startswith(CONFLICT_PREFIXES)]
+        path.write_text("\n".join(lines) + "\n")
 
 
 def rebuild_pot(domain, pot, target_path):
@@ -60,7 +58,7 @@ def update_lang(domain, pot, locale_path, lang):
             f"--output={po}",
         ])
 
-    with reset_pot_creation_date(po):
+    with remove_conflicting_metadata(po):
         subprocess.call([i18ndude, "sync", "--pot", pot, po])
 
 
@@ -73,7 +71,7 @@ def update_pkg(pkg):
     domain = pkg
     pot = locale_path / f"{domain}.pot"
     target_path = locale_path.parent
-    with reset_pot_creation_date(pot):
+    with remove_conflicting_metadata(pot):
         rebuild_pot(domain, pot, target_path)
     for lang in languages:
         update_lang(domain, pot, locale_path, lang)
