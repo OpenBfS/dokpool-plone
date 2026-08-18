@@ -157,9 +157,12 @@ def generate_preview_image(obj, event=None):
         return
 
     # Extract number of pages
-    with open(blob_path, "rb") as f:
-        reader = PdfReader(f)
-        previews["pages"] = len(reader.pages)
+    try:
+        with open(blob_path, "rb") as f:
+            reader = PdfReader(f)
+            previews["pages"] = len(reader.pages)
+    except:
+        logger.info("Could not extract number of pages for %s", obj.absolute_url(), exc_info=True)
 
     # Send blob-path to subprocess to generate preview image
     data = pdf2jpg.convert(blob_path)
