@@ -90,6 +90,9 @@ def global_dict_hook(item, obj, config):
     if item.get("local_behaviors"):
         item["local_behaviors"] = sorted(item["local_behaviors"])
 
+    # Drop bbb scenarios
+    item.pop("scenarios", None)
+
     return item
 
 
