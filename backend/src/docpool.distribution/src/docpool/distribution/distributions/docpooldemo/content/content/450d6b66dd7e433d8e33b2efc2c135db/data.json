@@ -1,0 +1,64 @@
+{
+  "@id": "/bund/content/Groups/bund_behoerde/journal/approaches-nanotechnology-generated-deep-derive-day-test",
+  "@type": "DPDocument",
+  "UID": "450d6b66dd7e433d8e33b2efc2c135db",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2026-08-18T13:43:51+00:00",
+  "created_by": [
+    "user-behoerde",
+    "User Beh\u00f6rde (Bund)",
+    "Bundesbeh\u00f6rde (Bund)"
+  ],
+  "creators": [
+    "user-behoerde"
+  ],
+  "description": "",
+  "docType": "journalentry",
+  "effective": null,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.marker_interfaces": [
+    "docpool.base.marker.IJournalEntryMarker"
+  ],
+  "id": "approaches-nanotechnology-generated-deep-derive-day-test",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "local_behaviors": [
+    "elan"
+  ],
+  "lock": {},
+  "mdate": "2026-08-18T15:43:51",
+  "modified": "2026-08-18T13:43:51+00:00",
+  "modified_by": null,
+  "review_state": "private",
+  "rights": "",
+  "scenario": "e4b194cb504e47989098926df9cef057",
+  "subjects": [],
+  "text": {
+    "content-type": "text/html",
+    "data": "<p>Approaches nanotechnology generated deep derive day test streamlined identify content end. Provide approaches focusing bring towards fruit ballpark keeping dive. While hanging override seamless taking beta management evolved proposition level empowerment devops. New additional inside loop devops derive approaches agile the. Framework up offshoring touchpoints focusing devops divide taking.</p>\r\n<p>Dive solution overall value foster diversity content immersion x that normal line of highway at. That identify mentality taking change ballpark win key diversity domination. Keeping identify in forward tail leverage heading approaches nanotechnology and. Workflows content has up streamlined and evolved your. Solely innovation capitalize workplace in synopsis in on nanotechnology has workplace innovation strategy streamlined.</p>",
+    "encoding": "utf-8"
+  },
+  "title": "Approaches nanotechnology generated deep derive day test ...",
+  "transferred": null,
+  "transferred_by": null,
+  "type_title": "Document",
+  "version": "current",
+  "wdate": "2026-08-18T15:43:51",
+  "workflow_history": {
+    "dp_doc_workflow": [
+      {
+        "action": null,
+        "actor": "user-behoerde",
+        "comments": "",
+        "review_state": "private",
+        "time": "2026-08-18T13:43:51+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

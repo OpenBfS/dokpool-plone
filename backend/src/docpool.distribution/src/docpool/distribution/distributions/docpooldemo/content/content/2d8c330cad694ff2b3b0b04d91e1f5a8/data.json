@@ -1,0 +1,64 @@
+{
+  "@id": "/bund/content/Groups/bund_behoerde/journal/erster-tagebucheintrag-evolved-win-performing-framework",
+  "@type": "DPDocument",
+  "UID": "2d8c330cad694ff2b3b0b04d91e1f5a8",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2026-08-18T13:43:38+00:00",
+  "created_by": [
+    "user-behoerde",
+    "User Beh\u00f6rde (Bund)",
+    "Bundesbeh\u00f6rde (Bund)"
+  ],
+  "creators": [
+    "user-behoerde"
+  ],
+  "description": "",
+  "docType": "journalentry",
+  "effective": null,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.marker_interfaces": [
+    "docpool.base.marker.IJournalEntryMarker"
+  ],
+  "id": "erster-tagebucheintrag-evolved-win-performing-framework",
+  "is_folderish": true,
+  "language": "##DEFAULT##",
+  "layout": "view",
+  "local_behaviors": [
+    "elan"
+  ],
+  "lock": {},
+  "mdate": "2026-08-18T15:43:38",
+  "modified": "2026-08-18T13:43:38+00:00",
+  "modified_by": null,
+  "review_state": "private",
+  "rights": "",
+  "scenario": "e4b194cb504e47989098926df9cef057",
+  "subjects": [],
+  "text": {
+    "content-type": "text/html",
+    "data": "<p>Erster Tagebucheintrag</p>\r\n<p>Evolved win performing framework x real generation along corporate proposition mentality evolved level generated overviews. Workplace strategy nanotechnology value along foster is mentality. Nanotechnology performing diversity close and framework bottom normal multiple thinking corporate user. Day disruptive going end heading dive evolved generation added heading is maximise towards. Framework immersion nanotechnology heading with of and focusing empowerment taking.</p>\r\n<p>User towards runway indicators a capitalize while collaborative. Strategy performing proposition approaches workflows along deep tail your close key devops grow forward. Dive digital cross deep along keeping evolved view synopsis via framework beta have the. Start touchpoints towards maximise solely long has table empowerment time identify collaborative. For close from performing ballpark maximise beta highway have override further towards.</p>",
+    "encoding": "utf-8"
+  },
+  "title": "Erster Tagebucheintrag \r\n Evolved win performing framework ...",
+  "transferred": null,
+  "transferred_by": null,
+  "type_title": "Document",
+  "version": "current",
+  "wdate": "2026-08-18T15:43:38",
+  "workflow_history": {
+    "dp_doc_workflow": [
+      {
+        "action": null,
+        "actor": "user-behoerde",
+        "comments": "",
+        "review_state": "private",
+        "time": "2026-08-18T13:43:38+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}
