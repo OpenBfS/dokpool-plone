@@ -429,6 +429,16 @@ span.badge.text-bg-light {
       .description {
         font-size: var(--dp-font-body);
         color: $plone-default-published-color;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+        -webkit-box-orient: vertical;
+        display: -webkit-box;
+      }
+
+      @include media-breakpoint-down(lg) {
+        .description {
+          -webkit-line-clamp: 5;
+        }
       }
     }
 
@@ -449,6 +459,10 @@ span.badge.text-bg-light {
       }
     }
   }
+}
+
+.overview-layout .listing-items .listing-item .text-box .description {
+  -webkit-line-clamp: 5;
 }
 
 #edit-zone .nav-link,
