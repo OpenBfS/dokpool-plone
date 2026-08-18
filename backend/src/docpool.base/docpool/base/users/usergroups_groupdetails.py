@@ -1,5 +1,4 @@
 from Acquisition import aq_inner
-from Acquisition import ImplicitAcquisitionWrapper
 from docpool.base import DocpoolMessageFactory as _
 from docpool.base.config import JOURNAL_FOLDER_ID
 from docpool.base.config import JOURNALENTRY_ID
@@ -21,6 +20,7 @@ from zope.interface import alsoProvides
 from zope.interface import implementer
 from zope.interface import Interface
 from zope.interface import provider
+from zope.location.location import located
 from zope.schema.interfaces import IContextSourceBinder
 
 
@@ -166,8 +166,9 @@ class GroupDetailsControlPanel(GDCP):
         return self.index()
 
     def setup_allowed_doctypes_widget(self):
-        group_proxy = ImplicitAcquisitionWrapper(GroupProxy(), self.context)
-        group_proxy.allowedDocTypes = self.group.getProperty("allowedDocTypes") if self.group else []
+        group_proxy = located(GroupProxy(), self.context, "__group_proxy__")
+        # careful to assign a list in all cases including an existing property value of None:
+        group_proxy.allowedDocTypes = (self.group.getProperty("allowedDocTypes") or []) if self.group else []
         field = IGroupDetails["allowedDocTypes"].bind(group_proxy)
         self.doctypes_widget = OrderedSelectFieldWidget(field, self.request)
         alsoProvides(self.doctypes_widget, IContextAware)
