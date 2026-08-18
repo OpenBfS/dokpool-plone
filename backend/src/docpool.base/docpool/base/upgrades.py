@@ -812,7 +812,7 @@ def to_3000_refactor_journals(self):
         obj = brain.getObject()
         has_entries = any(i for i in IJournalEntryContainer(obj) if i and i.text)
         if has_entries and brain.getPath() not in handled_journals:
-            log.info("Keeping unhandled old journal with entries: %s", obj.absolute_url())
+            log.info("Keeping unhandled old journal with entries: %s: %s", obj.title, obj.absolute_url())
         else:
             log.info("Deleting old journal %s", obj.absolute_url())
             api.content.delete(obj)
