@@ -15,26 +15,16 @@ msgstr ""
 "Domain: docpool.ui\n"
 "Language: en\n"
 
-#: docpool.ui/docpool/ui/browser/templates/listing.pt
-msgid "<span class=\"dp-filter-reset-icon\" role=\"button\" tabindex=\"0\" title=\"x\" data-filter-reset-url=\"${DYNAMIC_CONTENT}\"> ${DYNAMIC_CONTENT} </span> <span>x</span>"
-msgstr ""
-
-#: docpool.ui/docpool/ui/browser/templates/listing.pt
-msgid "<span class=\"me-1\"> ${DYNAMIC_CONTENT} </span> Filter anwenden"
-msgstr ""
-
-#: docpool.ui/docpool/ui/browser/templates/listing.pt
-msgid "<span class=\"me-1\"> ${DYNAMIC_CONTENT} </span> Reset"
-msgstr ""
-
 #: docpool.ui/docpool/ui/browser/listing.py
 msgid "A-Z"
 msgstr "A-Z"
 
+#: docpool.ui/docpool/ui/browser/templates/listing-filter-macros.pt
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
 msgid "Add entry"
 msgstr ""
 
+#: docpool.ui/docpool/ui/browser/templates/listing-filter-macros.pt
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
 msgid "Add folder"
 msgstr ""
@@ -49,6 +39,11 @@ msgstr ""
 
 #: docpool.ui/docpool/ui/browser/templates/wizard_2.pt
 msgid "Advanced Settings"
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/templates/listing-filter-macros.pt
+#: docpool.ui/docpool/ui/browser/templates/listing.pt
+msgid "Apply filter"
 msgstr ""
 
 #: docpool.ui/docpool/ui/browser/viewlets/header-event-switcher-dropdown.pt
@@ -107,10 +102,12 @@ msgstr "Created ${doktype} '${title}'"
 msgid "Created ${portal_type} '${title}'"
 msgstr ""
 
+#: docpool.ui/docpool/ui/browser/templates/listing-filter-macros.pt
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
 msgid "Created since"
 msgstr ""
 
+#: docpool.ui/docpool/ui/browser/templates/listing-filter-macros.pt
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
 msgid "Created until"
 msgstr ""
@@ -139,6 +136,7 @@ msgstr ""
 msgid "Entries"
 msgstr ""
 
+#: docpool.ui/docpool/ui/browser/templates/listing-filter-macros.pt
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
 #: docpool.ui/docpool/ui/browser/templates/wizard_1.pt
 msgid "Entrytype"
@@ -151,6 +149,10 @@ msgstr ""
 
 #: docpool.ui/docpool/ui/browser/viewlets/header-navigation-macros.pt
 msgid "Event Timezone"
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/templates/listing-filter-macros.pt
+msgid "Filter"
 msgstr ""
 
 #: docpool.ui/docpool/ui/browser/templates/folder_wizard.pt
@@ -167,6 +169,7 @@ msgstr ""
 msgid "For all users of '${app} ${docpool_title}'"
 msgstr "For all users of '${app} ${docpool_title}'"
 
+#: docpool.ui/docpool/ui/browser/templates/listing-filter-macros.pt
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
 msgid "Group"
 msgstr ""
@@ -203,6 +206,10 @@ msgstr ""
 
 #: docpool.ui/docpool/ui/browser/templates/listing-item.pt
 msgid "Mark as Favorite"
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/templates/listing-filter-macros.pt
+msgid "More actions"
 msgstr ""
 
 #: docpool.ui/docpool/ui/browser/viewlets/header-navigation-macros.pt
@@ -273,9 +280,9 @@ msgstr ""
 msgid "Please set the content of the entry."
 msgstr ""
 
+#: docpool.ui/docpool/ui/browser/templates/listing-filter-macros.pt
 #: docpool.ui/docpool/ui/browser/templates/listing-folder.pt
 #: docpool.ui/docpool/ui/browser/templates/listing-item.pt
-#: docpool.ui/docpool/ui/browser/templates/listing-other.pt
 msgid "Print"
 msgstr ""
 
@@ -329,6 +336,7 @@ msgstr ""
 msgid "Select a container"
 msgstr ""
 
+#: docpool.ui/docpool/ui/browser/templates/listing-filter-macros.pt
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
 msgid "Sorting"
 msgstr ""
@@ -337,6 +345,7 @@ msgstr ""
 msgid "Tasks"
 msgstr ""
 
+#: docpool.ui/docpool/ui/browser/templates/listing-filter-macros.pt
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
 msgid "Time [ME(S)Z]"
 msgstr ""
@@ -350,8 +359,8 @@ msgid "UTC"
 msgstr ""
 
 #: docpool.ui/docpool/ui/browser/templates/dpdocument.pt
+#: docpool.ui/docpool/ui/browser/templates/listing-filter-macros.pt
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
-#: docpool.ui/docpool/ui/browser/templates/wizard_1.pt
 msgid "Visibility"
 msgstr ""
 
@@ -368,6 +377,7 @@ msgstr "Z-A"
 msgid "attachments"
 msgstr ""
 
+#: docpool.ui/docpool/ui/browser/templates/listing-filter-macros.pt
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
 msgid "for all events"
 msgstr ""
@@ -377,6 +387,7 @@ msgstr ""
 msgid "label_cancel"
 msgstr ""
 
+#: docpool.ui/docpool/ui/browser/templates/listing-filter-macros.pt
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
 msgid "more entries for other events"
 msgstr ""

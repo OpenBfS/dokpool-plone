@@ -90,7 +90,6 @@
                     tal:attributes="
                       class python: 'btn dropdown-toggle ' + (is_selected and 'selected' or 'btn-secondary');
                     "
-                    i18n:translate=""
             >
               <span class="dp-filter-reset-icon"
                     role="button"
@@ -100,7 +99,6 @@
                     tal:attributes="
                       data-filter-reset-url python: view.reset_url(['startdate', 'starttime', 'enddate', 'endtime']);
                     "
-                    i18n:attributes="title"
               >
                 <tal:icon tal:replace="structure python:icons.tag('x-circle-fill')" />
               </span>
@@ -159,30 +157,30 @@
               <div class="sticky-bottom bg-white py-2 d-flex justify-content-between gap-2">
                 <a class="btn btn-secondary w-50"
                    href="${python: view.reset_url(['startdate', 'starttime', 'enddate', 'endtime'])}"
-                   i18n:translate=""
                 >
                   <span class="me-1">
                     <tal:icon tal:replace="structure python:icons.tag('x-lg')" />
                   </span>
-                  Reset
+                  <span i18n:domain="plone"
+                        i18n:translate="reset-button"
+                  >Reset</span>
                 </a>
                 <button class="btn btn-primary w-50"
                         formnovalidate="formnovalidate"
                         type="submit"
                         value="submit"
-                        i18n:translate=""
                 >
                   <span class="me-1">
                     <tal:icon tal:replace="structure python:icons.tag('check-lg')" />
                   </span>
-                  Filter anwenden
+                  <span i18n:translate="">Apply filter</span>
                 </button>
               </div>
 
             </div>
           </div>
 
-          <div class="m-1 dropdowni d-none d-lg-block"
+          <div class="m-1 dropdown d-none d-lg-block"
                tal:define="
                  selected_subcategories python: view.selected_subcategories;
                  categories python: view.doctype_categories;
@@ -198,7 +196,6 @@
                     tal:attributes="
                       class python: 'btn dropdown-toggle ' + (is_selected and 'selected' or 'btn-secondary');
                     "
-                    i18n:translate=""
             >
               <span class="dp-filter-reset-icon"
                     role="button"
@@ -260,21 +257,21 @@
               <div class="sticky-bottom bg-white py-2 d-flex justify-content-between gap-2">
                 <a class="btn btn-secondary w-50"
                    href="${python: view.reset_url('selected_subcategories')}"
-                   i18n:translate=""
                 >
                   <span class="me-1">
                     <tal:icon tal:replace="structure python:icons.tag('x-lg')" />
                   </span>
-                  Reset
+                  <span i18n:domain="plone"
+                        i18n:translate="reset-button"
+                  >Reset</span>
                 </a>
                 <button class="btn btn-primary w-50"
                         type="submit"
-                        i18n:translate=""
                 >
                   <span class="me-1">
                     <tal:icon tal:replace="structure python:icons.tag('check-lg')" />
                   </span>
-                  Filter anwenden
+                  <span i18n:translate="">Apply filter</span>
                 </button>
               </div>
             </div>
@@ -295,7 +292,6 @@
                     tal:attributes="
                       class python: 'btn dropdown-toggle ' + (is_selected and 'selected' or 'btn-secondary');
                     "
-                    i18n:translate=""
             >
               <span class="dp-filter-reset-icon"
                     role="button"
@@ -340,21 +336,21 @@
               <div class="sticky-bottom bg-white py-2 d-flex justify-content-between gap-2">
                 <a class="btn btn-secondary w-50"
                    href="${python: view.reset_url('review_states')}"
-                   i18n:translate=""
                 >
                   <span class="me-1">
                     <tal:icon tal:replace="structure python:icons.tag('x-lg')" />
                   </span>
-                  Reset
+                  <span i18n:domain="plone"
+                        i18n:translate="reset-button"
+                  >Reset</span>
                 </a>
                 <button class="btn btn-primary w-50"
                         type="submit"
-                        i18n:translate=""
                 >
                   <span class="me-1">
                     <tal:icon tal:replace="structure python:icons.tag('check-lg')" />
                   </span>
-                  Filter anwenden
+                  <span i18n:translate="">Apply filter</span>
                 </button>
               </div>
             </div>
@@ -376,7 +372,6 @@
                     tal:attributes="
                       class python: 'btn dropdown-toggle ' + (is_selected and 'selected' or 'btn-secondary');
                     "
-                    i18n:translate=""
             >
               <span class="dp-filter-reset-icon"
                     role="button"
@@ -431,21 +426,21 @@
               <div class="sticky-bottom bg-white py-2 d-flex justify-content-between gap-2">
                 <a class="btn btn-secondary w-50"
                    href="${python: view.reset_url('selected_groups')}"
-                   i18n:translate=""
                 >
                   <span class="me-1">
                     <tal:icon tal:replace="structure python:icons.tag('x-lg')" />
                   </span>
-                  Reset
+                  <span i18n:domain="plone"
+                        i18n:translate="reset-button"
+                  >Reset</span>
                 </a>
                 <button class="btn btn-primary w-50"
                         type="submit"
-                        i18n:translate=""
                 >
                   <span class="me-1">
                     <tal:icon tal:replace="structure python:icons.tag('check-lg')" />
                   </span>
-                  Filter anwenden
+                  <span i18n:translate="">Apply filter</span>
                 </button>
               </div>
             </div>
