@@ -53,6 +53,12 @@ class GroupProxy:
 class GroupDetailsControlPanel(GDCP):
     def __call__(self):
         context = aq_inner(self.context)
+        if self.request.form.get("form.submitted") and self.request.form.get("form.button.Cancel"):
+            target_url = "{}/{}".format(
+                self.context.absolute_url(),
+                "@@usergroup-groupprefs",
+            )
+            self.request.response.redirect(target_url)
 
         self.gtool = getToolByName(context, "portal_groups")
         self.gdtool = getToolByName(context, "portal_groupdata")

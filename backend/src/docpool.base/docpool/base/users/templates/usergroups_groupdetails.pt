@@ -354,6 +354,13 @@
                             i18n:attributes="value label_save;"
                             i18n:translate=""
                     >Save</button>
+                    <button class="btn btn-secondary"
+                            name="form.button.Cancel"
+                            type="submit"
+                            value="Cancel"
+                            i18n:attributes="value label_cancel;"
+                            i18n:translate=""
+                    >Cancel</button>
                   </tal:dp>
                 </fieldset>
 
