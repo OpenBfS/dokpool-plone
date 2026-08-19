@@ -173,6 +173,7 @@ class GroupDetailsControlPanel(GDCP):
         self.doctypes_widget = OrderedSelectFieldWidget(field, self.request)
         alsoProvides(self.doctypes_widget, IContextAware)
         self.doctypes_widget.context = group_proxy
+        self.doctypes_widget.required = False
         self.doctypes_widget.update()
 
 
