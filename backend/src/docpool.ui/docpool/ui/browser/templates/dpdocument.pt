@@ -56,12 +56,6 @@
                   </a>
                 </li>
 
-                <li class="list-group-item border-0 bg-transparent icon-action">
-                  <a href="#">
-                    <tal:icon tal:replace="structure python:icons.tag('star', tag_alt='Favorite')" />
-                  </a>
-                </li>
-
                 <li class="list-group-item border-0 bg-transparent icon-action"
                     tal:condition="python: can_delete"
                 >
