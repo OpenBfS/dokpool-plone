@@ -95,6 +95,10 @@ msgstr ""
 msgid "Create new entry"
 msgstr ""
 
+#: docpool.ui/docpool/ui/browser/templates/dpdocument.pt
+msgid "Created"
+msgstr ""
+
 #: docpool.ui/docpool/ui/browser/wizard.py
 msgid "Created ${doktype} '${title}'"
 msgstr "Created ${doktype} '${title}'"
@@ -117,6 +121,10 @@ msgstr ""
 
 #: docpool.ui/docpool/ui/browser/viewlets/header.pt
 msgid "Docpools"
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/templates/dpdocument.pt
+msgid "Document type and category"
 msgstr ""
 
 #: docpool.ui/docpool/ui/browser/templates/listing-item.pt
@@ -155,7 +163,7 @@ msgstr ""
 msgid "Folder and Entrytype"
 msgstr ""
 
-#: docpool.ui/docpool/ui/browser/wizard.py
+#: docpool.ui/docpool/ui/browser/dpdocument.py
 msgid "For all users of '${app} ${docpool_title}'"
 msgstr "For all users of '${app} ${docpool_title}'"
 
@@ -167,8 +175,8 @@ msgstr ""
 msgid "Groups"
 msgstr ""
 
+#: docpool.ui/docpool/ui/browser/dpdocument.py
 #: docpool.ui/docpool/ui/browser/listing.py
-#: docpool.ui/docpool/ui/browser/wizard.py
 msgid "Internal"
 msgstr ""
 
@@ -176,6 +184,15 @@ msgstr ""
 msgid "Journal"
 msgstr ""
 
+#: docpool.ui/docpool/ui/browser/templates/dpdocument.pt
+msgid "Last modified"
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/templates/dpdocument.pt
+msgid "Last published"
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/templates/dpdocument.pt
 #: docpool.ui/docpool/ui/browser/templates/folder_wizard.pt
 msgid "Location"
 msgstr ""
@@ -214,7 +231,7 @@ msgstr ""
 msgid "Oldest first"
 msgstr "Oldest first"
 
-#: docpool.ui/docpool/ui/browser/wizard.py
+#: docpool.ui/docpool/ui/browser/dpdocument.py
 msgid "Only for member of '${container_title}'"
 msgstr "Only for member of '${container_title}'"
 
@@ -226,6 +243,7 @@ msgstr ""
 msgid "Pages"
 msgstr ""
 
+#: docpool.ui/docpool/ui/browser/dpdocument.py
 #: docpool.ui/docpool/ui/browser/listing.py
 msgid "Pending"
 msgstr ""
@@ -261,8 +279,8 @@ msgstr ""
 msgid "Print"
 msgstr ""
 
+#: docpool.ui/docpool/ui/browser/dpdocument.py
 #: docpool.ui/docpool/ui/browser/listing.py
-#: docpool.ui/docpool/ui/browser/wizard.py
 msgid "Published"
 msgstr ""
 
@@ -278,6 +296,7 @@ msgstr ""
 msgid "Results for"
 msgstr ""
 
+#: docpool.ui/docpool/ui/browser/dpdocument.py
 #: docpool.ui/docpool/ui/browser/listing.py
 msgid "Revised"
 msgstr ""
@@ -330,9 +349,9 @@ msgstr ""
 msgid "UTC"
 msgstr ""
 
+#: docpool.ui/docpool/ui/browser/templates/dpdocument.pt
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
 #: docpool.ui/docpool/ui/browser/templates/wizard_1.pt
-#: docpool.ui/docpool/ui/browser/templates/wizard_2.pt
 msgid "Visibility"
 msgstr ""
 

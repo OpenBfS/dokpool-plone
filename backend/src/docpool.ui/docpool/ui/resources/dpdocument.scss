@@ -1,0 +1,32 @@
+.dp-document {
+  label,
+  dt,
+  .visibility-description {
+    color: var(--bs-blue-gray);
+    font-size: small;
+    font-weight: normal;
+  }
+
+  dd {
+    margin-bottom: 30px;
+  }
+
+  .visibility-title {
+    background-color: #de9895;
+    border-radius: 5px;
+    display: inline-block;
+    padding: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .event {
+    background-color: var(--bs-gray-light);
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    display: inline-block;
+    padding: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}

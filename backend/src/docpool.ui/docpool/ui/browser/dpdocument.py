@@ -1,7 +1,10 @@
 from docpool.base.browser.dpdocument import DPDocumentEditForm
+from docpool.base.content.groupfolder import IGroupFolder
 from docpool.base.utils import getDocumentPoolSite
+from docpool.base.utils import getUserInfo
 from docpool.ui import _
 from docpool.ui.utils import prepare_came_from_link
+from plone import api
 from plone.app.content.browser.actions import DeleteConfirmationForm
 from plone.dexterity.browser.view import DefaultView
 from plone.dexterity.interfaces import IDexterityEditForm
@@ -20,6 +23,8 @@ class DPDocumentView(DefaultView):
         if "download_attachments" in self.request.form:
             return self.download_attachments()
 
+        self.event = api.content.get(UID=self.context.scenario)
+        self.group_folder = api.content.get_closest_ancestor(self.context, interface=IGroupFolder)
         return super().__call__()
 
     def download_attachments(self):
@@ -50,6 +55,50 @@ class DPDocumentView(DefaultView):
         dp = getDocumentPoolSite(self.context)
         path = "/".join(dp.getPhysicalPath()) + "/@@listing"
         return path
+
+    def workflow_state(self):
+        return api.content.get_state(self.context)
+
+    def published_info(self):
+        wftool = api.portal.get_tool("portal_workflow")
+        if not (wfs := wftool.getWorkflowsFor(self.context)):
+            return
+        if not (history := wftool.getHistoryOf(wfs[0].id, self.context)):
+            return
+        if (last := history[-1])["review_state"] != "published":
+            return
+        return last["time"], self.context.formatUserInfo(getUserInfo(self.context, last["actor"]))
+
+    def visibility_options(self):
+        dp_app_state = api.content.get_view("dp_app_state", self.context, self.request)
+        app = dp_app_state.appsActivatedByCurrentUser()[0]
+        return {o["value"]: o for o in visibility_options(app, self.group_folder)} | {
+            "pending": {"title": _("Pending")},
+            "revised": {"title": _("Revised")},
+        }
+
+
+def visibility_options(app, group_folder):
+    group_title = group_folder.title
+    docpool_title = getDocumentPoolSite(group_folder).title
+    options = [
+        {
+            "value": "private",
+            "title": _("Internal"),
+            "description": _(
+                "Only for member of '${container_title}'", mapping={"container_title": group_title}
+            ),
+        },
+        {
+            "value": "published",
+            "title": _("Published"),
+            "description": _(
+                "For all users of '${app} ${docpool_title}'",
+                mapping={"app": app.upper(), "docpool_title": docpool_title},
+            ),
+        },
+    ]
+    return options
 
 
 @implementer(IDexterityEditForm)
