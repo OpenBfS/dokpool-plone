@@ -176,6 +176,13 @@ class TestUIFeatures(unittest.TestCase):
         html = dpdocument_view()
         self.assertIn("<h1>A Weatherinfo</h1>", html)
 
+    def test_dpdocument_edit_view(self):
+        dpdocument_edit_view = api.content.get_view("edit", self.entry, self.request)
+        html = dpdocument_edit_view()
+        self.assertIn('class="dp-document-header', html)
+        self.assertIn(">Edit the document</h1>", html)
+        self.assertIn(f'href="{self.entry.absolute_url()}"', html)
+
     def test_attachments_view(self):
         attachments_view = api.content.get_view("attachments", self.entry, self.request)
         html = attachments_view()

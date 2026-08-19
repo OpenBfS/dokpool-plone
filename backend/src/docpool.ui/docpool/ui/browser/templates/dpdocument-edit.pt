@@ -11,54 +11,80 @@
   <body>
     <metal:body fill-slot="body">
 
-      <div class="container"
+      <div class="dp-document"
            id="content"
       >
-        <!-- macros defined in plone/app/z3cform/templates/macros.pt -->
-        <metal:form use-macro="context/@@ploneform-macros/titlelessform">
-          <metal:fields-slot fill-slot="fields">
-            <input name="fieldset"
-                   type="hidden"
-                   tal:define="
-                     current_fieldset request/fieldset | python:None;
-                   "
-                   tal:condition="python:has_groups and enable_form_tabbing and current_fieldset is not None"
-                   tal:attributes="
-                     value current_fieldset;
-                   "
-            />
-
-            <div class="row">
-              <div class="col-sm-8">
-                <tal:widgets repeat="widget python: [
-                                     view.title_widget,
-                                     view.text_widget,
-                                     ]">
-                  <tal:widget condition="python: widget is not None">
-                    <metal:fields use-macro="context/@@ploneform-macros/field" />
-                  </tal:widget>
-                </tal:widgets>
-
-                <div class="pat-upload"
-                     data-pat-upload="ajaxUpload: false;
-                                      autoCleanResults: false;
-                                      url: ${context/absolute_url}/@@upload
-                                      "
-                ></div>
-              </div>
-              <input name="came_from"
-                     type="hidden"
-                     tal:condition="request/came_from|nothing"
+        <div class="dp-document-header row mx-0 my-0 p-1 border-bottom align-items-center">
+          <div class="col-sm-6">
+            <h1 class="mb-0"
+                i18n:translate=""
+            >Edit the document</h1>
+          </div>
+          <div class="col-sm-6">
+            <div class="actions">
+              <ul class="list-group list-group-horizontal list-group-flush justify-content-end">
+                <li class="list-group-item border-0 bg-transparent back icon-action">
+                  <a class="pat-inject"
+                     data-pat-inject="trigger: default; source: #portal-column-content; target: #content; history: record"
                      tal:attributes="
-                       value request/came_from;
+                       href python: context.absolute_url();
+                     "
+                  >
+                    <tal:icon tal:replace="structure python:icons.tag('x-lg', tag_alt='Back')" />
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mx-3 my-3">
+          <!-- macros defined in plone/app/z3cform/templates/macros.pt -->
+          <metal:form use-macro="context/@@ploneform-macros/titlelessform">
+            <metal:fields-slot fill-slot="fields">
+              <input name="fieldset"
+                     type="hidden"
+                     tal:define="
+                       current_fieldset request/fieldset | python:None;
+                     "
+                     tal:condition="python:has_groups and enable_form_tabbing and current_fieldset is not None"
+                     tal:attributes="
+                       value current_fieldset;
                      "
               />
-              <div class="col-sm-4 enableFormTabbing pat-autotoc">
-                <metal:fields use-macro="context/@@ploneform-macros/fields" />
+
+              <div class="row">
+                <div class="col-sm-8">
+                  <tal:widgets repeat="widget python: [
+                                       view.title_widget,
+                                       view.text_widget,
+                                       ]">
+                    <tal:widget condition="python: widget is not None">
+                      <metal:fields use-macro="context/@@ploneform-macros/field" />
+                    </tal:widget>
+                  </tal:widgets>
+
+                  <div class="pat-upload"
+                       data-pat-upload="ajaxUpload: false;
+                                        autoCleanResults: false;
+                                        url: ${context/absolute_url}/@@upload
+                                        "
+                  ></div>
+                </div>
+                <input name="came_from"
+                       type="hidden"
+                       tal:condition="request/came_from|nothing"
+                       tal:attributes="
+                         value request/came_from;
+                       "
+                />
+                <div class="col-sm-4 enableFormTabbing pat-autotoc">
+                  <metal:fields use-macro="context/@@ploneform-macros/fields" />
+                </div>
               </div>
-            </div>
-          </metal:fields-slot>
-        </metal:form>
+            </metal:fields-slot>
+          </metal:form>
+        </div>
       </div>
     </metal:body>
   </body>

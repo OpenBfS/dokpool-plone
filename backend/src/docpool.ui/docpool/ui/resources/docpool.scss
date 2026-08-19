@@ -529,7 +529,7 @@ body.portaltype-dpdocument.template-edit .autotoc-nav {
     }
 
     .list-group-item {
-      padding: 0.75rem 0.625rem;
+      padding: 0;
     }
 
     a {
@@ -537,11 +537,20 @@ body.portaltype-dpdocument.template-edit .autotoc-nav {
       align-items: center;
       justify-content: center;
       gap: 0.5rem;
+      padding: 0.75rem 0.625rem;
+
+      &[href]:hover,
+      &[href]:focus-visible {
+        color: var(--bs-primary);
+        background-color: var(--bs-nav-hover-bg);
+      }
     }
 
     .icon-action {
-      padding-right: 1rem;
-      padding-left: 1rem;
+      a {
+        padding-right: 1rem;
+        padding-left: 1rem;
+      }
     }
 
     .actions-divider {
