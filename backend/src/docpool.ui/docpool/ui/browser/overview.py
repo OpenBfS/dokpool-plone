@@ -1,11 +1,11 @@
 from datetime import datetime
-from urllib.parse import urlencode
 from docpool.elan.utils import get_scenario_for_current_user
 from docpool.ui import _
 from docpool.ui.browser.listing import Listing
 from plone import api
 from plone.base.utils import safe_text
 from Products.Five.browser import BrowserView
+from urllib.parse import urlencode
 
 
 OVERVIEW_TILE_LIMIT = 2
