@@ -703,6 +703,7 @@
 
         <tal:bulkactions tal:condition="python: show_bulk_actions">
           <button class="dropdown-item"
+                  form="listing-primary-form"
                   name="bulk_cut"
                   type="submit"
                   tal:condition="python: view.folder_listing"
@@ -715,6 +716,7 @@
           </button>
 
           <button class="dropdown-item"
+                  form="listing-primary-form"
                   name="bulk_paste"
                   type="submit"
                   tal:condition="python: view.folder_listing and context.cb_dataValid()"
@@ -727,6 +729,7 @@
           </button>
 
           <button class="dropdown-item"
+                  form="listing-primary-form"
                   name="bulk_delete"
                   type="submit"
                   tal:condition="python: view.folder_listing"
@@ -739,6 +742,7 @@
           </button>
 
           <button class="dropdown-item"
+                  form="listing-primary-form"
                   name="bulk_transfer"
                   type="submit"
           >
@@ -750,6 +754,7 @@
           </button>
 
           <button class="dropdown-item"
+                  form="listing-primary-form"
                   name="bulk_transition"
                   type="submit"
           >

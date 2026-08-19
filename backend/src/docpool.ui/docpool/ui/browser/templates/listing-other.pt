@@ -29,6 +29,7 @@
   >
     <input class="form-check-input"
            id="checkDefault"
+           form="listing-primary-form"
            name="uuid:list"
            type="checkbox"
            tal:attributes="
@@ -100,13 +101,6 @@
       </a>
       <ul class="dropdown-menu pe-2 shadow">
         <li tal:condition="python: data['actions']['edit']">
-          <input name="came_from"
-                 type="hidden"
-                 tal:condition="came_from|nothing"
-                 tal:attributes="
-                   value came_from;
-                 "
-          />
           <a class="dropdown-item d-flex gap-2 align-items-center"
              href="#"
              tal:attributes="

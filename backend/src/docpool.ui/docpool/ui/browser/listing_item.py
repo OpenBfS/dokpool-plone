@@ -2,7 +2,6 @@ from docpool.base.behaviors.transferable import ITransferable
 from docpool.base.behaviors.utils import allowed_targets
 from docpool.base.config import FOLDER_TYPES
 from docpool.base.content.archiving import IArchiving
-from docpool.base.marker import IJournalEntryMarker
 from docpool.base.utils import get_current_state_title
 from docpool.elan.config import ELAN_APP
 from docpool.elan.utils import get_scenario_for_current_user

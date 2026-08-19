@@ -19,16 +19,17 @@
                  "
   >
 
-    <form method="get"
-          tal:attributes="
-            action request/ACTUAL_URL;
-          "
+    <div class="border-bottom"
+         id="listing-filters"
+         tal:attributes="
+           data-listing-modified python: view.modified;
+         "
     >
-      <div class="border-bottom"
-           id="listing-filters"
-           tal:attributes="
-             data-listing-modified python: view.modified;
-           "
+      <form id="listing-primary-form"
+            method="get"
+            tal:attributes="
+              action request/ACTUAL_URL;
+            "
       >
         <div class="d-flex flex-wrap justify-content-start justify-content-lg-end">
 
@@ -633,115 +634,127 @@
           </div>
 
         </div>
+      </form>
 
+      <form id="listing-mobile-filter-form"
+            method="get"
+            tal:attributes="
+              action request/ACTUAL_URL;
+            "
+      >
         <metal:mobile-listing-filter use-macro="context/@@listing.macros/macros/mobile_listing_filter" />
+      </form>
 
-        <div class="mx-3 my-3"
-             tal:condition="python: 'journal_title' in view.filters and view.show_add_form"
-        >
-          <div class="d-flex flex-wrap">
-            <div class="me-3 flex-fill">
-              <textarea class="pat-tinymce form-control"
-                        id="journalentry-text"
-                        name="journalentry-text"
-                        placeholder="New journal entry"
-                        tal:attributes="
-                          data-pat-tinymce python: view.tinymce_settings();
-                        "
-              ></textarea>
-              <input name="journal_title"
-                     type="hidden"
-                     value="${python:request.get('journal_title')}"
-              />
-              <input name="journal_folder_uid"
-                     type="hidden"
-                     value="${python:request.get('journal_folder_uid')}"
-              />
-              <input name="selected_groups"
-                     type="hidden"
-                     value="${python:request.get('selected_groups')}"
-              />
-            </div>
-            <div>
-              <button class="btn btn-secondary me-1 mt-1"
-                      style="font-size: 1.5rem"
-                      title="Add journal entry"
-                      type="submit"
-                      i18n:attributes="title"
-              ><tal:icon tal:replace="structure python:icons.tag('send')" /></button>
-            </div>
+      <div class="mx-3 my-3"
+           tal:condition="python: 'journal_title' in view.filters and view.show_add_form"
+      >
+        <div class="d-flex flex-wrap">
+          <div class="me-3 flex-fill">
+            <textarea class="pat-tinymce form-control"
+                      id="journalentry-text"
+                      form="listing-primary-form"
+                      name="journalentry-text"
+                      placeholder="New journal entry"
+                      tal:attributes="
+                        data-pat-tinymce python: view.tinymce_settings();
+                      "
+            ></textarea>
+            <input form="listing-primary-form"
+                   name="journal_title"
+                   type="hidden"
+                   value="${python:request.get('journal_title')}"
+            />
+            <input form="listing-primary-form"
+                   name="journal_folder_uid"
+                   type="hidden"
+                   value="${python:request.get('journal_folder_uid')}"
+            />
+            <input form="listing-primary-form"
+                   name="selected_groups"
+                   type="hidden"
+                   value="${python:request.get('selected_groups')}"
+            />
           </div>
-        </div>
-
-
-        <div class="pat-checklist"
-             id="listing"
-             tal:attributes="
-               data-items python: view.json_items;
-               class python: 'pat-checklist' if show_bulk_actions else '';
-             "
-        >
-
-          <div class="d-flex">
-
-            <div class="mx-1 my-0 py-2"
-                 tal:condition="python: show_bulk_actions"
-            >
-              <div class="form-check">
-                <input class="form-check-input toggle-all"
-                       id="checkDefault"
-                       title="Toggle all"
-                       type="checkbox"
-                       value=""
-                       i18n:attributes="title label_toggle"
-                       i18n:domain="docpool.base"
-                />
-              </div>
-            </div>
-
-            <div class="mx-3 my-0 py-2"
-                 tal:condition="python: 'entries' in view.filters and not view.from_global_search"
-                 tal:attributes="
-                   class python: 'mx-3 my-0 py-2 d-none d-lg-block' if show_scenario_filter_switch else 'mx-3 my-0 py-2 me-auto d-none d-lg-block';
-                 "
-            >
-              <span tal:replace="python: len(items)"></span>
-              <span i18n:translate="">Entries</span>
-            </div>
-
-            <div class="mx-3 my-0 py-2 search-text"
-                 tal:condition="python: view.show_global_search_summary"
-                 tal:attributes="
-                   class python: 'mx-3 my-0 py-2 d-none d-lg-block' if show_scenario_filter_switch else 'mx-3 my-0 py-2 me-auto d-none d-lg-block';
-                 "
-            >
-
-              <span tal:replace="python: len(items)"></span>
-              <span i18n:translate="">Results for</span>
-              <strong class="fw-bold"
-                      tal:content="python: view.global_search_text"
-              ></strong>
-            </div>
-
+          <div>
+            <button class="btn btn-secondary me-1 mt-1"
+                    form="listing-primary-form"
+                    style="font-size: 1.5rem"
+                    title="Add journal entry"
+                    type="submit"
+                    i18n:attributes="title"
+            ><tal:icon tal:replace="structure python:icons.tag('send')" /></button>
           </div>
-
-          <tal:block tal:repeat="item python: folder_uids + other_uids + items">
-            <a class="pat-inject list-item-inject-link"
-               data-pat-inject="trigger: autoload-visible; delay: 50; target: self"
-               tal:define="
-                 target python: '@@listing-item?uid='+ item;
-                 target python: target + '&amp;show_bulk_actions=1' if show_bulk_actions else target;
-               "
-               tal:content="python: '@@listing-item?uid='+ item"
-               tal:attributes="
-                 href python: target;
-               "
-            >
-            </a>
-          </tal:block>
         </div>
       </div>
-    </form>
+
+
+      <div class="pat-checklist"
+           id="listing"
+           tal:attributes="
+             data-items python: view.json_items;
+             class python: 'pat-checklist' if show_bulk_actions else '';
+           "
+      >
+
+        <div class="d-flex">
+
+          <div class="mx-1 my-0 py-2"
+               tal:condition="python: show_bulk_actions"
+          >
+            <div class="form-check">
+              <input class="form-check-input toggle-all"
+                     id="checkDefault"
+                     title="Toggle all"
+                     type="checkbox"
+                     value=""
+                     i18n:attributes="title label_toggle"
+                     i18n:domain="docpool.base"
+              />
+            </div>
+          </div>
+
+          <div class="mx-3 my-0 py-2"
+               tal:condition="python: 'entries' in view.filters and not view.from_global_search"
+               tal:attributes="
+                 class python: 'mx-3 my-0 py-2 d-none d-lg-block' if show_scenario_filter_switch else 'mx-3 my-0 py-2 me-auto d-none d-lg-block';
+               "
+          >
+            <span tal:replace="python: len(items)"></span>
+            <span i18n:translate="">Entries</span>
+          </div>
+
+          <div class="mx-3 my-0 py-2 search-text"
+               tal:condition="python: view.show_global_search_summary"
+               tal:attributes="
+                 class python: 'mx-3 my-0 py-2 d-none d-lg-block' if show_scenario_filter_switch else 'mx-3 my-0 py-2 me-auto d-none d-lg-block';
+               "
+          >
+
+            <span tal:replace="python: len(items)"></span>
+            <span i18n:translate="">Results for</span>
+            <strong class="fw-bold"
+                    tal:content="python: view.global_search_text"
+            ></strong>
+          </div>
+
+        </div>
+
+        <tal:block tal:repeat="item python: folder_uids + other_uids + items">
+          <a class="pat-inject list-item-inject-link"
+             data-pat-inject="trigger: autoload-visible; delay: 50; target: self"
+             tal:define="
+               target python: '@@listing-item?uid='+ item;
+               target python: target + '&amp;show_bulk_actions=1' if show_bulk_actions else target;
+             "
+             tal:content="python: '@@listing-item?uid='+ item"
+             tal:attributes="
+               href python: target;
+             "
+          >
+          </a>
+        </tal:block>
+      </div>
+    </div>
 
   </metal:content>
 </html>
