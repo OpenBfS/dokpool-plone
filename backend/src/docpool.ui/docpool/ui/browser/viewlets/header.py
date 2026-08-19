@@ -186,10 +186,7 @@ class PortalHeader(EventSwitcherMixin, TimezoneTableMixin, GroupsTreeMixin, View
         else:
             self.groups_tree = []
 
-        try:
-            self.groups_folder_url = self.dp["content"]["Groups"].absolute_url()
-        except BaseException:
-            self.groups_folder_url = None
+        self.groups_folder_url = self.get_groups_folder_url()
         try:
             self.emergency_info_url = self.dp["hintergrundinfos-ns"].absolute_url()
         except BaseException:
@@ -209,6 +206,21 @@ class PortalHeader(EventSwitcherMixin, TimezoneTableMixin, GroupsTreeMixin, View
                 emergency=["/hintergrundinfos-ns"],
             ).items()
         }
+
+    def get_groups_folder_url(self):
+        if not self.dp:
+            return
+        listing_view = api.content.get_view(
+            name="view", context=(groups_folder := self.dp["content"]["Groups"]), request=self.request
+        )
+        listing_view.find()
+        if not listing_view.folder_uids:
+            return
+        try:
+            url = groups_folder.absolute_url()
+        except BaseException:
+            return
+        return url
 
     def apps_menu(self):
         current_dp_id = self.dp.getId() if self.dp else None
