@@ -1,4 +1,5 @@
 from conftest import BUND_CONTENT_ADMIN_NAME
+from datetime import datetime
 from docpool.api.browser.setup import add_user
 from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
 from docpool.elan.utils import get_scenario_for_current_user
@@ -37,7 +38,7 @@ class GroupsFolderSetupMixin:
         expected_creator = (BUND_CONTENT_ADMIN_NAME, "Content Admin (Bund)", "Group1 (Bund)")
 
         # create first entry
-        self.entry = api.content.create(
+        self.entry1 = api.content.create(
             container=self.group_folder,
             type="DPDocument",
             title="Weatherinfo without images",
@@ -46,10 +47,13 @@ class GroupsFolderSetupMixin:
             local_behaviors=["elan"],
             scenario=get_scenario_for_current_user(self.docpool),
         )
-        assert self.entry.created_by == expected_creator
+        self.entry1.creation_date = datetime(2026, 1, 1, 14, 00, 00)
+        self.entry1.mdate = datetime(2026, 1, 1, 14, 00, 00)
+        self.entry1.reindexObject()
+        assert self.entry1.created_by == expected_creator
 
         # create second entry
-        self.entry = api.content.create(
+        self.entry2 = api.content.create(
             container=self.group_folder,
             type="DPDocument",
             title="Staff Note",
@@ -58,13 +62,15 @@ class GroupsFolderSetupMixin:
             local_behaviors=["elan"],
             scenario=get_scenario_for_current_user(self.docpool),
         )
-        assert self.entry.created_by == expected_creator
+        self.entry2.creation_date = datetime(2026, 6, 1, 14, 00, 00)
+        self.entry2.reindexObject()
+        assert self.entry2.created_by == expected_creator
         # add attachments
         filename = os.path.join(os.path.dirname(__file__), "image.png")
         with open(filename, "rb") as f:
             IMAGE_DATA = f.read()
         api.content.create(
-            container=self.entry,
+            container=self.entry2,
             type="Image",
             title="Some Image",
             description="foo",
@@ -75,10 +81,11 @@ class GroupsFolderSetupMixin:
         with open(filename, "rb") as f:
             FILE_DATA = f.read()
         api.content.create(
-            container=self.entry,
+            container=self.entry2,
             type="File",
             title="Some File",
             description="bar",
             file=NamedBlobFile(data=FILE_DATA, filename="file.pdf"),
         )
+        self.entry2.mdate = datetime(2026, 6, 1, 14, 00, 00)
         transaction.commit()

@@ -123,6 +123,37 @@ class TestListing(GroupsFolderSetupMixin):
         page.get_by_role("button", name="Filter").click()
         expect(page.locator(".listing-item")).to_have_count(1)
 
+    def test_listing_filter_date(self):
+        page = self.page
+        page.goto(f"{self.plone_url}/bund/setActiveApp?app=elan")
+        page.goto(f"{self.plone_url}/bund/listing")
+        expect(page.locator("#listing .listing-item")).to_have_count(2)
+
+        # Filter by date since
+        page.get_by_role("button", name="Time [ME(S)Z]").click()
+        page.get_by_role("textbox", name="Created since").fill("2026-05-01")
+        page.get_by_role("button", name="Apply filter").click()
+        expect(page.locator("#listing .listing-item")).to_have_count(1)
+
+        # Filter by date until
+        page.get_by_role("button", name="Time [ME(S)Z]").click()
+        expect(page.get_by_role("textbox", name="Created since")).to_have_value("2026-05-01")
+        page.get_by_role("textbox", name="Created since").fill("2026-01-01")
+        page.get_by_role("textbox", name="Created until").fill("2026-01-02")
+        page.get_by_role("button", name="Apply filter").click()
+        expect(page.locator("#listing .listing-item")).to_have_count(1)
+
+        # Filter by date and time since
+        page.get_by_role("button", name="Time [ME(S)Z]").click()
+        page.get_by_role("textbox", name="Created since").fill("2026-01-01")
+        page.get_by_role("textbox", name="Created until").fill("2026-01-02")
+        page.locator("#starttime").fill("15:00")
+        page.get_by_role("button", name="Apply filter").click()
+        expect(page.locator("#listing .listing-item")).to_have_count(0)
+
+        page.get_by_role("button", name="Reset filter").click()
+        expect(page.locator("#listing .listing-item")).to_have_count(2)
+
     def test_listing_next_item(self):
         page = self.page
         page.goto(f"{self.plone_url}/bund/setActiveApp?app=elan")
