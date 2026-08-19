@@ -157,14 +157,19 @@ class Listing(BrowserView):
         else:
             # Pass original values as string to populate the inputs
             self.startdate = form.get("startdate") or None
+            self.startdate = self.startdate[0] if isinstance(self.startdate, list) else self.startdate
             self.starttime = form.get("starttime") or None
+            self.starttime = self.starttime[0] if isinstance(self.starttime, list) else self.starttime
             self.enddate = form.get("enddate") or None
+            self.enddate = self.enddate[0] if isinstance(self.enddate, list) else self.enddate
             self.endtime = form.get("endtime") or None
+            self.endtime = self.endtime[0] if isinstance(self.endtime, list) else self.endtime
+
             # Transform to use in query
-            startdate = extract_date(form.get("startdate"))
-            starttime = extract_time(form.get("starttime"))
-            enddate = extract_date(form.get("enddate"))
-            endtime = extract_time(form.get("endtime"))
+            startdate = extract_date(self.startdate)
+            starttime = extract_time(self.starttime)
+            enddate = extract_date(self.enddate)
+            endtime = extract_time(self.endtime)
             if startdate and starttime:
                 startdate = startdate.replace(hour=starttime.hour, minute=starttime.minute)
 
