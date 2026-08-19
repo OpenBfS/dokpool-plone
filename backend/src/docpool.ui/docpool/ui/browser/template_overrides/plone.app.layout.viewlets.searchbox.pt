@@ -132,8 +132,8 @@
                  value=""
                  tal:attributes="
                    value request/form/searchable_text|request/form/SearchableText|nothing;
-                   placeholder view/search_placeholder;
-                   title view/search_placeholder;
+                   placeholder view/search_placeholder | string:Suchen;
+                   title view/search_placeholder | string:Suchen;
                  "
           />
           <input name="from_global_search"
