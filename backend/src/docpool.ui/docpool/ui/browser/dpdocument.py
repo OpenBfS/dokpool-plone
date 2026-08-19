@@ -121,9 +121,9 @@ class DPDocumentDeleteConfirmationFormUI(DeleteConfirmationForm):
 
     @button.buttonAndHandler(_("Delete"), name="Delete")
     def handle_delete(self, action):
+        listing_url = prepare_came_from_link(self.request)
         super().handle_delete(self, action)
 
-        listing_url = prepare_came_from_link(self.request)
         if listing_url:
             self.request.response.redirect(listing_url)
         else:

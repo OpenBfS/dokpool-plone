@@ -63,7 +63,7 @@
                      href="delete"
                      data-pat-inject="source: #content; target: #content"
                      tal:attributes="
-                       href python: f'{context.absolute_url()}/@@delete_confirmation?_authenticator={token}';
+                       href python: f'{context.absolute_url()}/@@delete_confirmation?_authenticator={token}&amp;came_from={view.getDocpoolListingPath()}';
                      "
                   >
 
