@@ -32,3 +32,10 @@ class TestDPDocumentView(GroupsFolderSetupMixin):
         expect(page).to_have_url(f"{self.plone_url}/bund/@@listing")
         expect(page.locator("#listing .listing-item")).to_have_count(1)
         expect(page.locator("#listing .listing-item", has_text="Weatherinfo without images")).to_have_count(0)
+
+        status_messages = page.locator("#global_statusmessage .portalMessage")
+        status_message = status_messages.first
+        expect(status_message).to_be_visible()
+        close_button = status_message.locator(".portal-message-close")
+        close_button.click()
+        expect(status_message).to_be_hidden()
