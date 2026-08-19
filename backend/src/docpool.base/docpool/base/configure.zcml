@@ -240,10 +240,6 @@
       component=".vocabularies.UserDocumentPoolVocabularyFactory"
       />
   <utility
-      name="docpool.base.vocabularies.DashboardCollections"
-      component=".vocabularies.DashboardCollectionsVocabularyFactory"
-      />
-  <utility
       name="docpool.base.vocabularies.Icons"
       component=".vocabularies.IconsVocabularyFactory"
       />
@@ -262,10 +258,6 @@
   <utility
       name="docpool.transfers.vocabularies.TransferTargets"
       component=".vocabularies.TransferTargetsVocabularyFactory"
-      />
-  <utility
-      name="docpool.base.vocabularies.Groups"
-      component=".vocabularies.GroupsVocabularyFactory"
       />
 
   <subscriber handler=".events.delete_handler" />

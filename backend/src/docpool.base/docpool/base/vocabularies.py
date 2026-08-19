@@ -5,10 +5,8 @@ from docpool.base.appregistry import activeApps
 from docpool.base.appregistry import appName
 from docpool.base.appregistry import extendingApps
 from docpool.base.appregistry import selectableApps
-from docpool.base.content.archiving import IArchiving
 from docpool.base.content.doctype import IDocType
 from docpool.base.content.dptransferfolder import IDPTransferFolder
-from docpool.base.content.groupfolder import IGroupFolder
 from docpool.base.content.places import IPlaces
 from docpool.base.utils import getAllowedDocumentTypesForGroup
 from docpool.base.utils import getDocumentPoolSite
@@ -216,17 +214,6 @@ class UserDocumentPoolVocabulary:
 UserDocumentPoolVocabularyFactory = UserDocumentPoolVocabulary()
 
 
-@provider(IVocabularyFactory)
-def DashboardCollectionsVocabularyFactory(context=None):
-    esd = getDocumentPoolSite(context)
-    path = "/".join(esd.getPhysicalPath()) + "/contentconfig"
-    return StaticCatalogVocabulary({
-        "portal_type": "DashboardCollection",
-        "sort_on": "sortable_title",
-        "path": path,
-    })
-
-
 @implementer(IVocabularyFactory)
 class PermissionsVocabulary:
     """ """
@@ -307,31 +294,6 @@ def IconsVocabularyFactory(context=None):
         if key.startswith(prefix):
             icon_names.append(key[len(prefix) :])
     return SimpleVocabulary([SimpleTerm(i, i, i) for i in icon_names])
-
-
-@provider(IVocabularyFactory)
-def GroupsVocabularyFactory(context=None):
-    """Collect groupfolder and transferfolders"""
-    if context is None:
-        return ()
-    esd = getDocumentPoolSite(context)
-    query = {
-        "context": esd,
-        "object_provides": [IDPTransferFolder.__identifier__, IGroupFolder.__identifier__],
-        "unrestricted": True,  # Readers have no access to the group folders.
-        "sort_on": "sortable_title",
-    }
-    # Filter by current app
-    request = getRequest()
-    if request:
-        dp_app_state = api.content.get_view("dp_app_state", context, request)
-        active_apps = dp_app_state.appsActivatedByCurrentUser()
-        query["apps_supported"] = active_apps
-
-    brains = api.content.find(**query)
-    return SimpleVocabulary([
-        SimpleTerm(value=i.UID, token=i.UID, title=i.Title) for i in brains if not IArchiving(i).is_archive
-    ])
 
 
 allow_module("docpool.base.vocabularies")
