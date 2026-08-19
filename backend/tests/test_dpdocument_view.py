@@ -1,8 +1,5 @@
 from groupsfolder_setup import GroupsFolderSetupMixin
 from playwright.sync_api import expect
-from plone.app.testing import setRoles
-from plone.app.testing import TEST_USER_ID
-from plone.app.testing import TEST_USER_NAME
 
 import pytest
 
@@ -34,6 +31,4 @@ class TestDPDocumentView(GroupsFolderSetupMixin):
 
         expect(page).to_have_url(f"{self.plone_url}/bund/@@listing")
         expect(page.locator("#listing .listing-item")).to_have_count(1)
-        expect(
-            page.locator("#listing .listing-item", has_text="Weatherinfo without images")
-        ).to_have_count(0)
+        expect(page.locator("#listing .listing-item", has_text="Weatherinfo without images")).to_have_count(0)

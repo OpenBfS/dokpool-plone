@@ -20,7 +20,9 @@
 
         <div class="dp-document-header row mx-0 my-0 p-1 border-bottom align-items-center">
           <div class="col-sm-6">
-            <h1 class="mb-0" tal:content="python: context.title"></h1>
+            <h1 class="mb-0"
+                tal:content="python: context.title"
+            ></h1>
           </div>
           <div class="col-sm-6">
 

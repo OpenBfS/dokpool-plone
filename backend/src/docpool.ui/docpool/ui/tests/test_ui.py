@@ -174,7 +174,7 @@ class TestUIFeatures(unittest.TestCase):
     def test_dpdocument_view(self):
         dpdocument_view = api.content.get_view("view", self.entry, self.request)
         html = dpdocument_view()
-        self.assertIn("<h1>A Weatherinfo</h1>", html)
+        self.assertIn(">A Weatherinfo</h1>", html)
 
     def test_dpdocument_edit_view(self):
         dpdocument_edit_view = api.content.get_view("edit", self.entry, self.request)
