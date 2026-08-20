@@ -2,7 +2,7 @@
                  icons nocall: context/@@iconresolver;
                "
                tal:repeat="message python:view.messages"
-                i18n:domain="plone"
+               i18n:domain="plone"
 >
 
   <details class="portalMessage"

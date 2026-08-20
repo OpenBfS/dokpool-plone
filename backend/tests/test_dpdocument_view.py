@@ -21,13 +21,9 @@ class TestDPDocumentView(GroupsFolderSetupMixin):
         expect(page.locator("h1")).to_have_text("Weatherinfo without images")
         page.locator("a[href*='/@@delete_confirmation']").click()
 
-        heading = page.get_by_role(
-            "heading",
-            name="Do you really want to delete this object?",
-            exact=False,
-        )
-        expect(heading).to_be_visible()
-        page.get_by_role("button", name="Delete").click()
+        delete_button = page.locator("button[name='form.buttons.Delete']")
+        expect(delete_button).to_be_visible()
+        delete_button.click()
 
         expect(page).to_have_url(f"{self.plone_url}/bund/@@listing")
         expect(page.locator("#listing .listing-item")).to_have_count(1)
