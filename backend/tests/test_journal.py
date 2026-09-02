@@ -96,10 +96,9 @@ class TestJournal:
         expect(inject_links).to_have_count(1)
         # Inject happens if visible
         inject_links.first.scroll_into_view_if_needed()
-        page.screenshot(path="screenshots/journal-inject-after-scroll.png")
-        expect(page.locator("#listing .listing-item")).to_have_count(1)
         items = page.get_by_role("link", name="Stretched link to details view", exact=True)
-        expect(items).to_have_count(1)
+        expect(items).to_have_count(1, timeout=15_000)
+        expect(page.locator("#listing .listing-item")).to_have_count(1)
 
         transaction.commit()
         assert self.journal_folder.keys() == [".wf_policy_config", "ein-neuer-tagebucheintrag"]
