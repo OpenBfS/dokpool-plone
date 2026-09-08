@@ -79,14 +79,28 @@ class TestListing(GroupsFolderSetupMixin):
         expect(page.locator("#edit-attachments #attachments tbody tr")).to_have_count(2)
         expect(page.locator("#attachments_grid")).to_have_count(0)
         expect(page.locator("#attachments_list")).to_have_count(0)
+        upload = page.locator("#dpdocument-edit-upload")
+        expect(upload.locator(".upload-container > .title")).to_be_hidden()
+        expect(upload.locator("#fakeUploadFile")).to_be_hidden()
+        formats = upload.locator(".docpool-upload__formats")
+        expect(formats).to_have_text("Supported formats: pdf, xls, doc, jpeg, gif, png")
+        formats.hover()
+        expect(upload).to_have_css("background-color", "rgb(231, 241, 245)")
+        expect(upload.get_by_role("button", name="Browse")).to_be_visible()
+        progress = upload.locator(".progress.active")
+        upload_button = upload.get_by_role("button", name="Upload")
+        expect(progress).to_be_hidden()
+        expect(upload_button).to_be_hidden()
 
         title = page.locator("#form-widgets-IDublinCore-title")
         title.fill("Unsaved title")
         with page.expect_response("**/@@upload") as response_info:
             with page.expect_file_chooser() as file_chooser_info:
-                page.locator("#dpdocument-edit-upload button.browse").click()
+                upload.get_by_role("button", name="Browse").click()
             file_chooser_info.value.set_files("tests/image.png")
-            page.locator("#dpdocument-edit-upload button.upload-all").click()
+            expect(progress).to_be_hidden()
+            expect(upload_button).to_be_visible()
+            upload_button.click()
         assert response_info.value.ok
 
         expect(page.locator("#edit-attachments #attachments tbody tr")).to_have_count(3)
