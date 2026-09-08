@@ -446,6 +446,10 @@ msgstr ""
 msgid "Submit to BfS"
 msgstr ""
 
+#: docpool.base/docpool/base/browser/dp_macros.pt
+msgid "Supported formats: pdf, xls, doc, jpeg, gif, png"
+msgstr ""
+
 #: docpool.base/docpool/base/profiles/default/types/Text.xml
 msgid "Textpage"
 msgstr ""
@@ -1111,9 +1115,4 @@ msgstr ""
 
 #: docpool.base/docpool/base/vocabularies.py
 msgid "write"
-msgstr ""
-
-#: docpool.base/docpool/base/browser/dp_macros.pt
-#: docpool.ui/docpool/ui/browser/templates/dpdocument-edit.pt
-msgid "Supported formats: pdf, xls, doc, jpeg, gif, png"
 msgstr ""

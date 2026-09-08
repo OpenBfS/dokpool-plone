@@ -124,6 +124,10 @@ msgstr ""
 msgid "Document type and category"
 msgstr ""
 
+#: docpool.ui/docpool/ui/browser/templates/attachments_edit.pt
+msgid "Documents"
+msgstr ""
+
 #: docpool.ui/docpool/ui/browser/templates/listing-item.pt
 msgid "Download all attachments"
 msgstr ""
