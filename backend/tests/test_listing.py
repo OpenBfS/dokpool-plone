@@ -72,6 +72,28 @@ class TestListing(GroupsFolderSetupMixin):
         )
         expect(dp_without_images).to_have_count(1)
 
+    def test_edit_attachments_refresh_after_upload(self):
+        page = self.page
+        page.goto(f"{self.entry2.absolute_url()}/@@edit")
+
+        expect(page.locator("#edit-attachments #attachments tbody tr")).to_have_count(2)
+        expect(page.locator("#attachments_grid")).to_have_count(0)
+        expect(page.locator("#attachments_list")).to_have_count(0)
+
+        title = page.locator("#form-widgets-IDublinCore-title")
+        title.fill("Unsaved title")
+        with page.expect_response("**/@@upload") as response_info:
+            with page.expect_file_chooser() as file_chooser_info:
+                page.locator("#dpdocument-edit-upload button.browse").click()
+            file_chooser_info.value.set_files("tests/image.png")
+            page.locator("#dpdocument-edit-upload button.upload-all").click()
+        assert response_info.value.ok
+
+        expect(page.locator("#edit-attachments #attachments tbody tr")).to_have_count(3)
+        expect(page.get_by_role("cell", name="image.png PNG image 1.2 KB")).to_be_visible()
+        expect(title).to_have_value("Unsaved title")
+        assert page.url.endswith("/@@edit")
+
     def test_dropdown_delete(self):
         page = self.page
         page.goto(f"{self.plone_url}/bund/setActiveApp?app=elan")

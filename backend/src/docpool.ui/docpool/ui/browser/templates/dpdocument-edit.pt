@@ -64,7 +64,18 @@
                     </tal:widget>
                   </tal:widgets>
 
+                  <tal:attachments replace="structure python: context.restrictedTraverse('@@attachments_edit')()" />
+                  <a class="pat-inject d-none"
+                     id="edit-attachments-refresh"
+                     href="@@attachments_edit"
+                     data-pat-inject="source: #edit-attachments; target: #edit-attachments; trigger: default"
+                     tal:attributes="
+                       href python: context.absolute_url() + '/@@attachments_edit';
+                     "
+                  ></a>
+
                   <div class="pat-upload"
+                       id="dpdocument-edit-upload"
                        data-pat-upload="ajaxUpload: false;
                                         autoCleanResults: false;
                                         url: ${context/absolute_url}/@@upload

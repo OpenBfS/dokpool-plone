@@ -335,3 +335,8 @@ $(document).on("click", "a.pat-inject.list-item-link", function (e) {
     localStorage.setItem("dokpool-listing-query", params.toString());
   }
 });
+
+// Event from pat-upload
+$(document).on("uploadAllCompleted", "#dpdocument-edit-upload", function () {
+  document.getElementById("edit-attachments-refresh")?.click();
+});
