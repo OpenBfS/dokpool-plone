@@ -15,6 +15,14 @@
       />
 
   <browser:viewlet
+      name="plone.globalstatusmessage"
+      manager="plone.app.layout.viewlets.interfaces.IGlobalStatusMessage"
+      class=".globalstatusmessage.GlobalStatusMessage"
+      permission="zope2.View"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
+  <browser:viewlet
       name="plone.searchbox"
       manager="plone.app.layout.viewlets.interfaces.IPortalTop"
       class="docpool.ui.browser.viewlets.header.AppSearchBoxViewlet"

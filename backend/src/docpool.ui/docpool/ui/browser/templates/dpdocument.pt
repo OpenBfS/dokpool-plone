@@ -18,9 +18,11 @@
            id="content"
       >
 
-        <div class="dp-document-header row mx-0 my-0 p-1 border-bottom">
+        <div class="dp-document-header row mx-0 my-0 p-1 border-bottom align-items-center">
           <div class="col-sm-6">
-            <h1 tal:content="python: context.title"></h1>
+            <h1 class="mb-0"
+                tal:content="python: context.title"
+            ></h1>
           </div>
           <div class="col-sm-6">
 
@@ -31,38 +33,39 @@
                   "
               >
 
-                <li class="list-group-item border-0 bg-transparent prev">
+                <li class="list-group-item border-0 bg-transparent prev navigation-action">
                   <a class="pat-inject prev-item text-decoration-none"
                      data-pat-inject="trigger: default; source: #portal-column-content; target: #content; history: record"
-                     i18n:translate="previous_next_previous"
-                  >Previous</a>
-                </li>
-                <li class="list-group-item border-0 bg-transparent next">
-                  <a class="pat-inject next-item text-decoration-none"
-                     data-pat-inject="trigger: default; source: #portal-column-content; target: #content; history: record"
-                     i18n:translate="previous_next_next"
-                  >Next</a>
-                </li>
-                <li class="list-group-item border-0 bg-transparent">
-                  <a class="pat-inject"
-                     href="edit"
-                     data-pat-inject="trigger: default; source: #content; target: #content; history: record"
-                     tal:condition="python: can_edit"
-                     tal:attributes="
-                       href python: f'{context.absolute_url()}/@@edit?_authenticator={token}';
-                     "
                   >
-                    <tal:icon tal:replace="structure python:icons.tag('pencil', tag_alt='Edit')" />
-
+                    <tal:icon tal:replace="structure python:icons.tag('chevron-left', tag_alt='Previous')" />
+                    <span i18n:translate="previous_next_previous">Previous</span>
                   </a>
                 </li>
-                <li class="list-group-item border-0 bg-transparent">
+                <li class="actions-divider actions-navigation-divider"
+                    aria-hidden="true"
+                ></li>
+                <li class="list-group-item border-0 bg-transparent next navigation-action">
+                  <a class="pat-inject next-item text-decoration-none"
+                     data-pat-inject="trigger: default; source: #portal-column-content; target: #content; history: record"
+                  >
+                    <span i18n:translate="previous_next_next">Next</span>
+                    <tal:icon tal:replace="structure python:icons.tag('chevron-right', tag_alt='Next')" />
+                  </a>
+                </li>
+                <li class="list-group-item border-0 bg-transparent icon-action">
+                  <a href="javascript:this.print();">
+                    <tal:icon tal:replace="structure python:icons.tag('printer', tag_alt='Print')" />
+                  </a>
+                </li>
+
+                <li class="list-group-item border-0 bg-transparent icon-action"
+                    tal:condition="python: can_delete"
+                >
                   <a class="pat-inject"
                      href="delete"
                      data-pat-inject="source: #content; target: #content"
-                     tal:condition="python: can_delete"
                      tal:attributes="
-                       href python: f'{context.absolute_url()}/@@delete_confirmation?_authenticator={token}';
+                       href python: f'{context.absolute_url()}/@@delete_confirmation?_authenticator={token}&amp;came_from={view.getDocpoolListingPath()}';
                      "
                   >
 
@@ -70,21 +73,18 @@
 
                   </a>
                 </li>
-
-                <li class="list-group-item border-0 bg-transparent">
-                  <a href="javascript:this.print();">
-                    <tal:icon tal:replace="structure python:icons.tag('printer', tag_alt='Print')" />
+                <li class="list-group-item border-0 bg-transparent icon-action"
+                    tal:condition="python: can_edit"
+                >
+                  <a href="edit"
+                     tal:attributes="
+                       href python: f'{context.absolute_url()}/@@edit?_authenticator={token}';
+                     "
+                  >
+                    <tal:icon tal:replace="structure python:icons.tag('pencil', tag_alt='Edit')" />
                   </a>
-
-
                 </li>
-                <li class="list-group-item border-0 bg-transparent">
-
-                  <a href="#">
-                    <tal:icon tal:replace="structure python:icons.tag('star', tag_alt='Favorite')" />
-                  </a></li>
-
-                <li class="list-group-item border-0 bg-transparent back">
+                <li class="list-group-item border-0 bg-transparent back icon-action">
                   <a href="#"
                      tal:attributes="
                        href python: view.getDocpoolListingPath();

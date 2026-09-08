@@ -39,12 +39,6 @@
       >Change Password</a>
     </li>
     <li class="dropdown-item user-menu-action-item">
-      <tal:icon tal:replace="structure python:icons.tag('star', tag_class='user-menu-row-icon')" />
-      <a class="user-menu-link"
-         href="${dp_url}/overview"
-      >Meine Favoriten</a>
-    </li>
-    <li class="dropdown-item user-menu-action-item">
       <tal:icon tal:replace="structure python:icons.tag('wrench', tag_class='user-menu-row-icon')" />
       <a class="user-menu-link"
          href="${portal_url}/@@user-preferences"

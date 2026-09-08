@@ -1,0 +1,34 @@
+<tal:statusmsg tal:define="
+                 icons nocall: context/@@iconresolver;
+               "
+               tal:repeat="message python:view.messages"
+               i18n:domain="plone"
+>
+
+  <details class="portalMessage"
+           open="open"
+           role="alert"
+           tal:define="
+             mtype message/type | nothing;
+             display_info python:view.display_info_for_mtype(mtype);
+           "
+           tal:condition="mtype"
+           tal:attributes="
+             class string:portalMessage ${display_info/cssclass};
+           "
+  >
+    <summary class="portal-message-close">
+      <span class="visually-hidden">Meldung schlie&szlig;en</span>
+      <span aria-hidden="true">&times;</span>
+    </summary>
+    <tal:icon tal:replace="structure python:icons.tag(display_info['icon'], tag_alt='', tag_class='statusmessage-icon')" />
+    <strong class="visually-hidden">${python:display_info['msg']}</strong>
+    <span class="content"
+          tal:replace="message/message | nothing"
+          i18n:translate=""
+    >
+            The status message.
+    </span>
+  </details>
+
+</tal:statusmsg>

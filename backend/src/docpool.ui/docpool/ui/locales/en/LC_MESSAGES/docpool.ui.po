@@ -427,6 +427,31 @@ msgstr ""
 msgid "previous_next_previous"
 msgstr ""
 
+#. Default: "Danger:"
+#: docpool.ui/docpool/ui/browser/viewlets/globalstatusmessage.py
+msgid "statusmessage_mtype_danger"
+msgstr ""
+
+#. Default: "Error:"
+#: docpool.ui/docpool/ui/browser/viewlets/globalstatusmessage.py
+msgid "statusmessage_mtype_error"
+msgstr ""
+
+#. Default: "Info:"
+#: docpool.ui/docpool/ui/browser/viewlets/globalstatusmessage.py
+msgid "statusmessage_mtype_info"
+msgstr ""
+
+#. Default: "Success:"
+#: docpool.ui/docpool/ui/browser/viewlets/globalstatusmessage.py
+msgid "statusmessage_mtype_success"
+msgstr ""
+
+#. Default: "Warning:"
+#: docpool.ui/docpool/ui/browser/viewlets/globalstatusmessage.py
+msgid "statusmessage_mtype_warning"
+msgstr ""
+
 #. Default: "There was an error processing the form!"
 #: docpool.ui/docpool/ui/browser/wizard.py
 msgid "there_was_an_error_processing_the_form"

@@ -6,6 +6,7 @@
 @import "navbar-mobile";
 @import "filter-mobile";
 @import "dpdocument";
+@import "portal-messages";
 
 $plone-default-private-color: #b74d48;
 $plone-default-pending-color: #e5bc4a;
@@ -522,6 +523,50 @@ body.portaltype-dpdocument.template-edit .autotoc-nav {
 //DPDocument Details
 .dp-document-header {
   background-color: #fafafa;
+
+  .actions {
+    .list-group {
+      align-items: center;
+    }
+
+    .list-group-item {
+      padding: 0;
+    }
+
+    a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.75rem 0.625rem;
+
+      &[href]:hover,
+      &[href]:focus-visible {
+        color: var(--bs-primary);
+        background-color: var(--bs-nav-hover-bg);
+      }
+    }
+
+    .icon-action {
+      a {
+        padding-right: 1rem;
+        padding-left: 1rem;
+      }
+    }
+
+    .actions-divider {
+      flex: 0 0 1px;
+      width: 1px;
+      padding: 0;
+      list-style: none;
+      background-color: var(--bs-border-color);
+    }
+
+    .actions-navigation-divider {
+      height: 1rem;
+      margin: 0 0.125rem;
+    }
+  }
 
   .list-group-item a:not([href]) {
     cursor: default;
