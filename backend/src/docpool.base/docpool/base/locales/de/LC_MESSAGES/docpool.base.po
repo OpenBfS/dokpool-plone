@@ -1111,3 +1111,8 @@ msgstr "Nach oben"
 #: docpool.base/docpool/base/vocabularies.py
 msgid "write"
 msgstr "schreiben"
+
+#: docpool.base/docpool/base/browser/dp_macros.pt
+#: docpool.ui/docpool/ui/browser/templates/dpdocument-edit.pt
+msgid "Supported formats: pdf, xls, doc, jpeg, gif, png"
+msgstr "Unterstützte Formate: pdf, xls, doc, jpeg, gif, png"
