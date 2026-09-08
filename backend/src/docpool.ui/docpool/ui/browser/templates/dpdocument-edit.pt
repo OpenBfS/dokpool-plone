@@ -74,13 +74,18 @@
                      "
                   ></a>
 
-                  <div class="pat-upload"
+                  <div class="pat-upload docpool-upload d-flex flex-column my-3"
                        id="dpdocument-edit-upload"
                        data-pat-upload="ajaxUpload: false;
                                         autoCleanResults: false;
+                                        showTitle: false;
                                         url: ${context/absolute_url}/@@upload
                                         "
-                  ></div>
+                  >
+                    <p class="docpool-upload__formats order-2 mb-0 px-3 pb-3 text-center small"
+                       i18n:translate=""
+                    >Supported formats: pdf, xls, doc, jpeg, gif, png</p>
+                  </div>
                 </div>
                 <input name="came_from"
                        type="hidden"

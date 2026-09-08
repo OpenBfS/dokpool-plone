@@ -353,10 +353,13 @@ size = human_readable_size(size)
     <metal:macro define-macro="fileupload">
       <tal:if condition="python:context.uploadsAllowed() and edit_allowed">
         <form action="${context/absolute_url}/@@upload">
-          <div class="pat-upload"
+          <div class="pat-upload docpool-upload d-flex flex-column my-3"
                id="uploader"
-               data-pat-upload="ajaxUpload: false; autoCleanResults: false;"
+               data-pat-upload="ajaxUpload: false; autoCleanResults: false; showTitle: false;"
           >
+            <p class="docpool-upload__formats order-2 mb-0 px-3 pb-3 text-center small"
+               i18n:translate=""
+            >Supported formats: pdf, xls, doc, jpeg, gif, png</p>
           </div>
         </form>
         <script type="text/javascript">
