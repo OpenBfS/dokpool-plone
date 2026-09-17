@@ -15,6 +15,14 @@ msgstr ""
 "Domain: docpool.ui\n"
 "Language: ro\n"
 
+#: docpool.ui/docpool/ui/browser/templates/wizard_2.pt
+msgid "Drop files here to select them"
+msgstr "Plasați fișierele aici pentru a le selecta"
+
+#: docpool.ui/docpool/ui/browser/templates/wizard_2.pt
+msgid "Select files"
+msgstr "Selectați fișiere"
+
 #: docpool.ui/docpool/ui/browser/listing.py
 msgid "A-Z"
 msgstr ""
