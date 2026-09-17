@@ -1,5 +1,6 @@
 from docpool.base.browser.dpdocument import DPDocumentEditForm
 from docpool.base.content.groupfolder import IGroupFolder
+from docpool.base.content.places import IPlaces
 from docpool.base.utils import getDocumentPoolSite
 from docpool.base.utils import getUserInfo
 from docpool.ui import _
@@ -72,23 +73,31 @@ class DPDocumentView(DefaultView):
     def visibility_options(self):
         dp_app_state = api.content.get_view("dp_app_state", self.context, self.request)
         app = dp_app_state.appsActivatedByCurrentUser()[0]
-        return {o["value"]: o for o in visibility_options(app, self.group_folder)} | {
+        return {
+            o["value"]: o
+            for o in visibility_options(
+                app,
+                self.group_folder if self.group_folder is not None else self.context,
+            )
+        } | {
             "pending": {"title": _("Pending")},
             "revised": {"title": _("Revised")},
         }
 
 
-def visibility_options(app, group_folder):
-    group_title = group_folder.title
-    docpool_title = getDocumentPoolSite(group_folder).title
-    options = [
-        {
+def visibility_options(app, context):
+    options = []
+    if IGroupFolder.providedBy(context):
+        group_title = context.title
+        options.append({
             "value": "private",
             "title": _("Internal"),
             "description": _(
                 "Only for member of '${container_title}'", mapping={"container_title": group_title}
             ),
-        },
+        })
+    docpool_title = IPlaces(context).document_pool.title
+    options.extend([
         {
             "value": "published",
             "title": _("Published"),
@@ -97,7 +106,7 @@ def visibility_options(app, group_folder):
                 mapping={"app": app.upper(), "docpool_title": docpool_title},
             ),
         },
-    ]
+    ])
     return options
 
 
