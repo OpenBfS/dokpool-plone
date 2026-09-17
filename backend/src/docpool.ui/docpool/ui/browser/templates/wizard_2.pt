@@ -104,23 +104,44 @@
                     >Attachments</span>
                   </label>
                 </div>
-                <div class="error-msg invalid-feedback"
+                <div class="error-msg invalid-feedback d-block"
+                     id="attachments-error"
                      tal:condition="error"
                 ><span tal:replace="error"></span></div>
-                <div class="wizard-field field"
+                <div class="docpool-upload docpool-upload--input d-flex flex-column my-3"
                      tal:attributes="
-                       class python:error and 'wizard-field field error' or 'wizard-field field';
+                       class python:'docpool-upload docpool-upload--input d-flex flex-column my-3 border-danger' if error else 'docpool-upload docpool-upload--input d-flex flex-column my-3';
                      "
                 >
-                  <input class="form-control"
-                         id="attachments"
-                         multiple
-                         name="attachments"
-                         type="file"
-                         tal:attributes="
-                           class python: 'is-invalid form-control' if error else 'form-control';
-                         "
-                  />
+                  <div class="docpool-upload__area d-flex flex-column align-items-center justify-content-center">
+                    <p class="docpool-upload__message d-flex align-items-center mb-0 text-center"
+                       i18n:translate=""
+                    >Drop files here to select them</p>
+                    <input class="docpool-upload__input visually-hidden"
+                           id="attachments"
+                           multiple
+                           name="attachments"
+                           type="file"
+                           tal:attributes="
+                             aria-invalid python:'true' if error else 'false';
+                             aria-describedby python:'attachments-formats attachments-error' if error else 'attachments-formats';
+                           "
+                    />
+                    <label class="docpool-upload__browse btn btn-secondary d-inline-flex align-items-center mt-2 mb-0"
+                           for="attachments"
+                           i18n:translate=""
+                    >Select files</label>
+                  </div>
+                  <p class="docpool-upload__formats mb-0 px-3 pb-3 text-center small"
+                     id="attachments-formats"
+                     i18n:translate=""
+                  >Supported formats: pdf, xls, doc, jpeg, gif, png</p>
+                  <div class="px-3"
+                       aria-atomic="true"
+                       aria-live="polite"
+                  >
+                    <ul class="docpool-upload__files list-unstyled small mb-3 d-none"></ul>
+                  </div>
                 </div>
               </div>
             </div>
