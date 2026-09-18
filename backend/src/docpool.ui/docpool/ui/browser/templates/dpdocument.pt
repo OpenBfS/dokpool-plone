@@ -53,8 +53,12 @@
                   </a>
                 </li>
                 <li class="list-group-item border-0 bg-transparent icon-action">
-                  <a href="javascript:this.print();">
-                    <tal:icon tal:replace="structure python:icons.tag('printer', tag_alt='Print')" />
+                  <a href="javascript:this.print();"
+                     title="Print this"
+                     i18n:attributes="title"
+                     i18n:domain="plone"
+                  >
+                    <tal:icon tal:replace="structure python:icons.tag('printer')" />
                   </a>
                 </li>
 
@@ -63,45 +67,54 @@
                 >
                   <a class="pat-inject"
                      href="delete"
+                     title="Delete"
                      data-pat-inject="source: #content; target: #content"
                      tal:attributes="
                        href python: f'{context.absolute_url()}/@@delete_confirmation?_authenticator={token}&amp;came_from={view.getDocpoolListingPath()}';
                      "
+                     i18n:attributes="title"
+                     i18n:domain="plone"
                   >
-
-                    <tal:icon tal:replace="structure python:icons.tag('trash3', tag_alt='Delete')" />
-
+                    <tal:icon tal:replace="structure python:icons.tag('trash3')" />
                   </a>
                 </li>
                 <li class="list-group-item border-0 bg-transparent icon-action"
                     tal:condition="python: can_edit"
                 >
                   <a href="edit"
+                     title="Edit"
                      tal:attributes="
                        href python: f'{context.absolute_url()}/@@edit?_authenticator={token}';
                      "
+                     i18n:attributes="title"
+                     i18n:domain="plone"
                   >
-                    <tal:icon tal:replace="structure python:icons.tag('pencil', tag_alt='Edit')" />
+                    <tal:icon tal:replace="structure python:icons.tag('pencil')" />
                   </a>
                 </li>
                 <li class="list-group-item border-0 bg-transparent icon-action"
                     tal:condition="python: view.show_transfer_action"
                 >
                   <a href="dpdocument_transfer_form"
+                     title="Transfer"
                      tal:attributes="
                        href python:'%s/@@dpdocument_transfer_form?uid:list=%s' % (context.absolute_url(), context.UID());
                      "
+                     i18n:attributes="title"
+                     i18n:domain="docpool.base"
                   >
-                    <tal:icon tal:replace="structure python:icons.tag('box-arrow-up-right', tag_alt='Transfer')" />
+                    <tal:icon tal:replace="structure python:icons.tag('box-arrow-up-right')" />
                   </a>
                 </li>
                 <li class="list-group-item border-0 bg-transparent back icon-action">
                   <a href="#"
+                     title="Back"
                      tal:attributes="
                        href python: view.getDocpoolListingPath();
                      "
+                     i18n:attributes="title"
                   >
-                    <tal:icon tal:replace="structure python:icons.tag('x-lg', tag_alt='Back')" />
+                    <tal:icon tal:replace="structure python:icons.tag('x-lg')" />
                   </a>
                 </li>
               </ul>
