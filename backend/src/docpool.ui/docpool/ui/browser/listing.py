@@ -34,6 +34,13 @@ class Listing(BrowserView):
         "text",
     ]
 
+    features = [
+        "sort",
+        "print",
+        "folder_wizard",
+        "entry_wizard",
+    ]
+
     def __call__(self, limit=0):
         form = self.request.form
 

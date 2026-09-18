@@ -227,6 +227,10 @@ msgstr "Meine Gruppenordner"
 msgid "Neues Ereignis anlegen"
 msgstr ""
 
+#: docpool.ui/docpool/ui/browser/templates/listing.pt
+msgid "New journal entry"
+msgstr "Neuer Protokolleintrag"
+
 #: docpool.ui/docpool/ui/browser/listing.py
 msgid "Newest first"
 msgstr "Neueste zuerst"
