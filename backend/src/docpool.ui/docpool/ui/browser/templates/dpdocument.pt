@@ -84,6 +84,17 @@
                     <tal:icon tal:replace="structure python:icons.tag('pencil', tag_alt='Edit')" />
                   </a>
                 </li>
+                <li class="list-group-item border-0 bg-transparent icon-action"
+                    tal:condition="python: view.show_transfer_action"
+                >
+                  <a href="dpdocument_transfer_form"
+                     tal:attributes="
+                       href python:'%s/@@dpdocument_transfer_form?uid:list=%s' % (context.absolute_url(), context.UID());
+                     "
+                  >
+                    <tal:icon tal:replace="structure python:icons.tag('box-arrow-up-right', tag_alt='Transfer')" />
+                  </a>
+                </li>
                 <li class="list-group-item border-0 bg-transparent back icon-action">
                   <a href="#"
                      tal:attributes="
