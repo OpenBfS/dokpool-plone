@@ -26,8 +26,7 @@
                 <li class="list-group-item border-0 bg-transparent back icon-action">
                   <a tal:attributes="
                        href python: context.absolute_url();
-                     "
-                  >
+                     ">
                     <tal:icon tal:replace="structure python:icons.tag('x-lg', tag_alt='Back')" />
                   </a>
                 </li>
