@@ -36,13 +36,16 @@
             </td>
             <td>
               <div class="float-end">
-                <a href=""
+                <a class="pat-plone-modal"
+                   href=""
                    title="View"
+                   data-pat-plone-modal="modalSizeClass: modal-fullscreen; margin: 0;"
                    tal:condition="python: is_pdf"
                    tal:attributes="
                      href python: item.getURL() + '/@@pdfjs_file_view';
                    "
                    i18n:attributes="title"
+                   i18n:domain="plone"
                 ><img src="${python:icons.url('eye')}" /></a>
                 <a href=""
                    tal:attributes="
