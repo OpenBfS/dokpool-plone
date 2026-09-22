@@ -15,14 +15,6 @@ msgstr ""
 "Domain: docpool.ui\n"
 "Language: ro\n"
 
-#: docpool.ui/docpool/ui/browser/templates/wizard_2.pt
-msgid "Drop files here to select them"
-msgstr "Plasați fișierele aici pentru a le selecta"
-
-#: docpool.ui/docpool/ui/browser/templates/wizard_2.pt
-msgid "Select files"
-msgstr "Selectați fișiere"
-
 #: docpool.ui/docpool/ui/browser/listing.py
 msgid "A-Z"
 msgstr ""
@@ -138,6 +130,10 @@ msgstr ""
 
 #: docpool.ui/docpool/ui/browser/templates/listing-item.pt
 msgid "Download all attachments"
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/templates/wizard_2.pt
+msgid "Drop files here to select them"
 msgstr ""
 
 #: docpool.ui/docpool/ui/browser/viewlets/header-navigation-macros.pt
@@ -348,9 +344,17 @@ msgstr ""
 msgid "Select a container"
 msgstr ""
 
+#: docpool.ui/docpool/ui/browser/templates/wizard_2.pt
+msgid "Select files"
+msgstr ""
+
 #: docpool.ui/docpool/ui/browser/templates/listing-filter-macros.pt
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
 msgid "Sorting"
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/templates/wizard_2.pt
+msgid "Supported formats: pdf, xls, doc, jpeg, gif, png"
 msgstr ""
 
 #: docpool.ui/docpool/ui/browser/viewlets/sidebar.pt
