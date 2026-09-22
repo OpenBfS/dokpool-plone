@@ -24,9 +24,7 @@
             <div class="actions">
               <ul class="list-group list-group-horizontal list-group-flush justify-content-end">
                 <li class="list-group-item border-0 bg-transparent back icon-action">
-                  <a class="pat-inject"
-                     data-pat-inject="trigger: default; source: #portal-column-content; target: #content; history: record"
-                     tal:attributes="
+                  <a tal:attributes="
                        href python: context.absolute_url();
                      "
                   >

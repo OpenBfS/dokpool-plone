@@ -15,7 +15,7 @@ import transaction
 class TestListing(GroupsFolderSetupMixin):
     @pytest.fixture(autouse=True)
     def setup(self, portal_factory, playwright_page_factory) -> None:
-        self.portal = portal_factory(username=TEST_USER_NAME, roles=["Manager"])
+        self.portal = portal_factory(username=TEST_USER_NAME, roles=["User"])
         self.page = playwright_page_factory()
         self.plone_url = self.portal.absolute_url()
 
@@ -107,6 +107,26 @@ class TestListing(GroupsFolderSetupMixin):
         expect(page.get_by_role("cell", name="image.png PNG image 1.2 KB")).to_be_visible()
         expect(title).to_have_value("Unsaved title")
         assert page.url.endswith("/@@edit")
+
+    def test_close_edit_refreshes_body_classes(self):
+        # Needs to be publish
+        api.content.transition(obj=self.entry2, transition="publish")
+        transaction.commit()
+        assert api.content.get_state(obj=self.entry2) == "published"
+
+        page = self.page
+        page.goto(f"{self.entry2.absolute_url()}/@@edit")
+        page.pause()
+
+        body_classes = page.locator("body").get_attribute("class").split()
+        assert "template-edit" in body_classes
+
+        page.locator(".dp-document-header .back a").click()
+        page.wait_for_url(self.entry2.absolute_url())
+
+        body_classes = page.locator("body").get_attribute("class").split()
+        assert "template-edit" not in body_classes
+        expect(page.get_by_role("heading", name="Staff Note")).to_be_visible()
 
     def test_dropdown_delete(self):
         page = self.page
