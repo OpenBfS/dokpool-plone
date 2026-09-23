@@ -838,25 +838,6 @@ wheels = [
 ]
 
 [[package]]
-name = "collective-pdfjs"
-version = "1.0.6.dev0"
-source = { editable = "sources/collective.pdfjs" }
-dependencies = [
-    { name = "plone-app-upgrade" },
-    { name = "products-cmfplone" },
-    { name = "setuptools" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "plone-app-testing", marker = "extra == 'test'" },
-    { name = "plone-app-upgrade" },
-    { name = "products-cmfplone" },
-    { name = "setuptools" },
-]
-provides-extras = ["test"]
-
-[[package]]
 name = "collective-pdfviewer"
 source = { editable = "sources/collective.pdfviewer" }
 dependencies = [
@@ -1014,7 +995,6 @@ dependencies = [
     { name = "collective-eeafaceted-z3ctable" },
     { name = "collective-excelexport" },
     { name = "collective-impersonate" },
-    { name = "collective-pdfjs" },
     { name = "collective-pdfviewer" },
     { name = "docpool-api" },
     { name = "docpool-base" },
@@ -1066,7 +1046,6 @@ requires-dist = [
     { name = "collective-eeafaceted-z3ctable", editable = "sources/collective.eeafaceted.z3ctable" },
     { name = "collective-excelexport", editable = "sources/collective.excelexport" },
     { name = "collective-impersonate" },
-    { name = "collective-pdfjs", editable = "sources/collective.pdfjs" },
     { name = "collective-pdfviewer", editable = "sources/collective.pdfviewer" },
     { name = "docpool-api", editable = "src/docpool.api" },
     { name = "docpool-base", editable = "src/docpool.base" },
@@ -1292,7 +1271,7 @@ name = "docpool-ui"
 version = "1.0"
 source = { editable = "src/docpool.ui" }
 dependencies = [
-    { name = "collective-pdfjs" },
+    { name = "collective-pdfviewer" },
     { name = "plone-app-theming" },
     { name = "plone-patternslib" },
     { name = "setuptools" },
@@ -1302,7 +1281,7 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "collective-pdfjs" },
+    { name = "collective-pdfviewer" },
     { name = "plone-app-theming" },
     { name = "plone-patternslib" },
     { name = "setuptools" },

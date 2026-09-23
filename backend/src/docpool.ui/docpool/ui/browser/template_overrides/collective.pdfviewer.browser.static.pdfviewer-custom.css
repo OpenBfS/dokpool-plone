@@ -1,0 +1,25 @@
+:root {
+  --body-bg-color: #fff;
+}
+
+body,
+#viewerContainer {
+  background-color: #fff;
+}
+
+#editorModeButtons,
+#editorModeSeparator,
+#viewsManagerAddFileButton,
+#secondaryOpenFile,
+#presentationMode,
+#viewBookmark,
+#viewBookmarkSeparator,
+#cursorToolButtons,
+#scrollModeButtons,
+#spreadModeButtons,
+#imageAltTextSettings,
+#imageAltTextSettingsSeparator,
+#toolbarButtonWithContainer,
+#secondaryToolbarButtonContainer > .horizontalToolbarSeparator {
+  display: none !important;
+}

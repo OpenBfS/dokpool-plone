@@ -22,7 +22,7 @@ class DocpoolEventLayer(PloneSandboxLayer):
         # The z3c.autoinclude feature is disabled in the Plone fixture base
         # layer.
         import collective.impersonate
-        import collective.pdfjs
+        import collective.pdfviewer
         import docpool.base
         import docpool.config
         import docpool.doksys
@@ -40,7 +40,7 @@ class DocpoolEventLayer(PloneSandboxLayer):
         self.loadZCML(package=plone.patternslib)
         self.loadZCML(package=docpool.theme)
         self.loadZCML(package=docpool.ui)
-        self.loadZCML(package=collective.pdfjs)
+        self.loadZCML(package=collective.pdfviewer)
         self.loadZCML(package=docpool.doksys)
         self.loadZCML(package=eea.facetednavigation)
         self.loadZCML(package=collective.impersonate)

@@ -201,12 +201,18 @@ class TestUIFeatures(unittest.TestCase):
     def test_attachments_list_view(self):
         attachments_list_view = api.content.get_view("attachments_list", self.entry, self.request)
         html = attachments_list_view()
-        self.assertIn(f"{self.entry['some-file'].absolute_url()}/@@download", html)
+        file_url = self.entry["some-file"].absolute_url()
+        self.assertIn(f"{file_url}/@@download", html)
+        self.assertIn(f"{file_url}/@@pdfjs_file_view", html)
+        self.assertIn('class="pat-plone-modal"', html)
+        self.assertIn("modalSizeClass: modal-fullscreen", html)
 
     def test_attachments_grid_view(self):
         attachments_grid_view = api.content.get_view("attachments_grid", self.entry, self.request)
         html = attachments_grid_view()
         self.assertIn(f"{self.entry['some-file'].absolute_url()}/@@preview", html)
+        self.assertIn('class="pat-plone-modal"', html)
+        self.assertIn("modalSizeClass: modal-fullscreen", html)
 
     def test_time_filter(self):
         listing_view = api.content.get_view("listing", self.group_folder, self.request)

@@ -28,6 +28,21 @@ class TestListing(GroupsFolderSetupMixin):
         page.goto(f"{self.plone_url}")
         expect(page.locator("body")).not_to_contain_text("error while rendering")
 
+    def test_pdfviewer_uses_docpool_stylesheet(self):
+        page = self.page
+        file_url = self.entry2["some-file"].absolute_url()
+
+        page.goto(f"{file_url}/@@pdfviewer_file_view")
+
+        viewer = page.frame_locator(".pdfviewer-frame")
+        stylesheet = viewer.locator('link[data-pdfviewer-custom-stylesheet="true"]')
+        expect(stylesheet).to_have_attribute(
+            "href",
+            f"{self.plone_url}/++plone++collective.pdfviewer/pdfviewer-custom.css",
+        )
+        expect(viewer.locator("#editorModeButtons")).to_be_hidden()
+        expect(viewer.locator("body")).to_have_css("background-color", "rgb(255, 255, 255)")
+
     # Opens dropdown actions and clicks publish
     def test_dropdown_publish_dpdocument(self):
         page = self.page
