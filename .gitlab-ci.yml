@@ -60,6 +60,8 @@ unit_tests:
     - dind
   stage: test
   script:
+    - printf 'machine %s login gitlab-ci-token password %s\n' "$CI_SERVER_HOST" "$CI_JOB_TOKEN" > "$HOME/.netrc"
+    - chmod 600 "$HOME/.netrc"
     - apt update
     # LDAP client dependencies
     - apt-get install -y --no-install-recommends libsasl2-dev libldap2-dev libssl-dev curl poppler-utils
