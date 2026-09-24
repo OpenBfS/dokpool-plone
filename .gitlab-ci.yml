@@ -44,6 +44,8 @@ translation_check:
     - dind
   stage: test
   script:
+    - printf 'machine %s login gitlab-ci-token password %s\n' "$CI_SERVER_HOST" "$CI_JOB_TOKEN" > "$HOME/.netrc"
+    - chmod 600 "$HOME/.netrc"
     - apt-get update
     - apt-get install -y --no-install-recommends gettext jq
     - cd backend
@@ -79,6 +81,8 @@ acceptance_tests:
     - dind
   stage: test
   script:
+    - printf 'machine %s login gitlab-ci-token password %s\n' "$CI_SERVER_HOST" "$CI_JOB_TOKEN" > "$HOME/.netrc"
+    - chmod 600 "$HOME/.netrc"
     - apt update
     - apt-get install -y poppler-utils jq
     - cd backend
@@ -103,6 +107,8 @@ build_image:
     - docker:28.0.1-dind
   stage: build
   script:
+    - printf 'machine %s login gitlab-ci-token password %s\n' "$CI_SERVER_HOST" "$CI_JOB_TOKEN" > "$HOME/.netrc"
+    - chmod 600 "$HOME/.netrc"
     - apt update
     # LDAP client dependencies
     - apt-get install -y --no-install-recommends libsasl2-dev libldap2-dev libssl-dev curl poppler-utils docker.io jq
