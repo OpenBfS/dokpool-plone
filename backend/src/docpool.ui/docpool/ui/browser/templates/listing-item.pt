@@ -138,11 +138,15 @@
             <div class="d-flex align-items-center justify-content-center h-100 bg-dark-subtle"
                  tal:condition="python: is_pdf"
             >
-              <a class="pat-gallery"
+              <a class="pat-plone-modal"
                  href=""
+                 title="View"
+                 data-pat-plone-modal='{"modalSizeClass": "modal-xl", "backdropOptions": {"opacity": 1}}'
                  tal:attributes="
-                   href python: item.getURL() + '/@@preview?scale=great';
+                   href python: item.getURL() + '/@@pdfjs_file_view';
                  "
+                 i18n:attributes="title"
+                 i18n:domain="plone"
               >
                 <img class="w-100 object-fit-contain border"
                      style="height: 64px"

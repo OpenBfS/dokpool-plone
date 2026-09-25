@@ -39,7 +39,7 @@
                 <a class="pat-plone-modal"
                    href=""
                    title="View"
-                   data-pat-plone-modal="modalSizeClass: modal-fullscreen; margin: 0;"
+                   data-pat-plone-modal='{"modalSizeClass": "modal-xl", "backdropOptions": {"opacity": 1}}'
                    tal:condition="python: is_pdf"
                    tal:attributes="
                      href python: item.getURL() + '/@@pdfjs_file_view';
