@@ -182,6 +182,15 @@ class TestUIFeatures(unittest.TestCase):
         self.assertIn('class="dp-document-header', html)
         self.assertIn(">Edit the document</h1>", html)
         self.assertIn(f'href="{self.entry.absolute_url()}"', html)
+        self.assertIn('id="edit-attachments"', html)
+        self.assertIn("(2)", html)
+        self.assertIn("zip download", html)
+        self.assertIn(f"{self.entry['some-file'].absolute_url()}/@@download", html)
+        self.assertNotIn('id="attachments_grid"', html)
+        self.assertNotIn('id="attachments_list"', html)
+        self.assertIn('class="pat-upload docpool-upload d-flex flex-column my-3"', html)
+        self.assertIn("docpool-upload__formats", html)
+        self.assertIn("showTitle: false;", html)
 
     def test_attachments_view(self):
         attachments_view = api.content.get_view("attachments", self.entry, self.request)

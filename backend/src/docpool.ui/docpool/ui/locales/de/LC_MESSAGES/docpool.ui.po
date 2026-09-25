@@ -124,9 +124,17 @@ msgstr ""
 msgid "Document type and category"
 msgstr "Eintragsart und Kategorie"
 
+#: docpool.ui/docpool/ui/browser/templates/attachments_edit.pt
+msgid "Documents"
+msgstr ""
+
 #: docpool.ui/docpool/ui/browser/templates/listing-item.pt
 msgid "Download all attachments"
 msgstr "Alle Anhänge herunterladen"
+
+#: docpool.ui/docpool/ui/browser/templates/wizard_2.pt
+msgid "Drop files here to select them"
+msgstr "Dateien hier ablegen, um sie auszuwählen"
 
 #: docpool.ui/docpool/ui/browser/viewlets/header-navigation-macros.pt
 msgid "Emergency documents"
@@ -336,10 +344,18 @@ msgstr "Auf dieser Seite suchen…"
 msgid "Select a container"
 msgstr "Wählen Sie einen Ablageort"
 
+#: docpool.ui/docpool/ui/browser/templates/wizard_2.pt
+msgid "Select files"
+msgstr "Dateien auswählen"
+
 #: docpool.ui/docpool/ui/browser/templates/listing-filter-macros.pt
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
 msgid "Sorting"
 msgstr "Sortierung"
+
+#: docpool.ui/docpool/ui/browser/templates/wizard_2.pt
+msgid "Supported formats: pdf, xls, doc, jpeg, gif, png"
+msgstr ""
 
 #: docpool.ui/docpool/ui/browser/viewlets/sidebar.pt
 msgid "Tasks"

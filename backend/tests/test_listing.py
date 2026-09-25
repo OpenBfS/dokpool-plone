@@ -15,7 +15,7 @@ import transaction
 class TestListing(GroupsFolderSetupMixin):
     @pytest.fixture(autouse=True)
     def setup(self, portal_factory, playwright_page_factory) -> None:
-        self.portal = portal_factory(username=TEST_USER_NAME, roles=["Manager"])
+        self.portal = portal_factory(username=TEST_USER_NAME, roles=["User"])
         self.page = playwright_page_factory()
         self.plone_url = self.portal.absolute_url()
 
@@ -71,6 +71,62 @@ class TestListing(GroupsFolderSetupMixin):
             "#listing .listing-item", has_text="A Weatherinfo with updated title"
         )
         expect(dp_without_images).to_have_count(1)
+
+    def test_edit_attachments_refresh_after_upload(self):
+        page = self.page
+        page.goto(f"{self.entry2.absolute_url()}/@@edit")
+
+        expect(page.locator("#edit-attachments #attachments tbody tr")).to_have_count(2)
+        expect(page.locator("#attachments_grid")).to_have_count(0)
+        expect(page.locator("#attachments_list")).to_have_count(0)
+        upload = page.locator("#dpdocument-edit-upload")
+        expect(upload.locator(".upload-container > .title")).to_be_hidden()
+        expect(upload.locator("#fakeUploadFile")).to_be_hidden()
+        formats = upload.locator(".docpool-upload__formats")
+        expect(formats).to_have_text("Supported formats: pdf, xls, doc, jpeg, gif, png")
+        formats.hover()
+        expect(upload).to_have_css("background-color", "rgb(231, 241, 245)")
+        expect(upload.get_by_role("button", name="Browse")).to_be_visible()
+        progress = upload.locator(".progress.active")
+        upload_button = upload.get_by_role("button", name="Upload")
+        expect(progress).to_be_hidden()
+        expect(upload_button).to_be_hidden()
+
+        title = page.locator("#form-widgets-IDublinCore-title")
+        title.fill("Unsaved title")
+        with page.expect_response("**/@@upload") as response_info:
+            with page.expect_file_chooser() as file_chooser_info:
+                upload.get_by_role("button", name="Browse").click()
+            file_chooser_info.value.set_files("tests/image.png")
+            expect(progress).to_be_hidden()
+            expect(upload_button).to_be_visible()
+            upload_button.click()
+        assert response_info.value.ok
+
+        expect(page.locator("#edit-attachments #attachments tbody tr")).to_have_count(3)
+        expect(page.get_by_role("cell", name="image.png PNG image 1.2 KB")).to_be_visible()
+        expect(title).to_have_value("Unsaved title")
+        assert page.url.endswith("/@@edit")
+
+    def test_close_edit_refreshes_body_classes(self):
+        # Needs to be publish
+        api.content.transition(obj=self.entry2, transition="publish")
+        transaction.commit()
+        assert api.content.get_state(obj=self.entry2) == "published"
+
+        page = self.page
+        page.goto(f"{self.entry2.absolute_url()}/@@edit")
+        page.pause()
+
+        body_classes = page.locator("body").get_attribute("class").split()
+        assert "template-edit" in body_classes
+
+        page.locator(".dp-document-header .back a").click()
+        page.wait_for_url(self.entry2.absolute_url())
+
+        body_classes = page.locator("body").get_attribute("class").split()
+        assert "template-edit" not in body_classes
+        expect(page.get_by_role("heading", name="Staff Note")).to_be_visible()
 
     def test_dropdown_delete(self):
         page = self.page

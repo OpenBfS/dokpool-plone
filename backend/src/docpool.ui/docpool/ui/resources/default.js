@@ -1,4 +1,5 @@
 import "bootstrap";
+import "./upload";
 import "@patternslib/patternslib/src/pat/expandable-tree/expandable-tree.css";
 // Pat-update-notification
 import("./pat-update-notification/index.js");
@@ -334,4 +335,9 @@ $(document).on("click", "a.pat-inject.list-item-link", function (e) {
     // Override if empty
     localStorage.setItem("dokpool-listing-query", params.toString());
   }
+});
+
+// Event from pat-upload
+$(document).on("uploadAllCompleted", "#dpdocument-edit-upload", function () {
+  document.getElementById("edit-attachments-refresh")?.click();
 });

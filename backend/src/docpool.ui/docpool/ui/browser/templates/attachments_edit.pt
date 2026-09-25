@@ -1,0 +1,26 @@
+<div id="edit-attachments"
+     tal:define="
+       items python: view.items();
+       icons python:context.restrictedTraverse('@@iconresolver');
+     "
+     i18n:domain="docpool.ui"
+>
+  <tal:attachments condition="python: items">
+    <div class="d-flex">
+      <div class="p-2 flex-grow-1">
+        <label><span i18n:translate="">Documents</span>
+          (${python: len(items)})</label>
+      </div>
+      <div>
+        <a class="btn btn-secondary"
+           tal:attributes="
+             href python: context.absolute_url() + '?download_attachments=1';
+           "
+        ><img src="${python:icons.url('download')}" />
+          zip download (<span tal:replace="python: view.total_size()">556,5 Kb</span>)</a>
+      </div>
+    </div>
+
+    <tal:list replace="structure python: context.restrictedTraverse('@@attachments_list')()" />
+  </tal:attachments>
+</div>
