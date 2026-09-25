@@ -19,6 +19,7 @@ body,
 #spreadModeButtons,
 #imageAltTextSettings,
 #imageAltTextSettingsSeparator,
+#secondaryToolbarToggle,
 #toolbarButtonWithContainer,
 #secondaryToolbarButtonContainer > .horizontalToolbarSeparator {
   display: none !important;
