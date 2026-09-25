@@ -52,7 +52,7 @@ dependencies = [
     "pas.plugins.trustedproxyauth",
     "RelStorage",
     "psycopg2",
-    "collective.pdfjs",
+    "collective.pdfviewer",
 ]
 
 [dependency-groups]
@@ -552,7 +552,7 @@ constraint-dependencies = [
 "collective.eeafaceted.z3ctable" = {path = "sources/collective.eeafaceted.z3ctable", editable = true}  # managed by mxdev
 "collective.excelexport" = {path = "sources/collective.excelexport", editable = true}  # managed by mxdev
 "pas.plugins.trustedproxyauth" = {path = "sources/pas.plugins.trustedproxyauth", editable = true}  # managed by mxdev
-"collective.pdfjs" = {path = "sources/collective.pdfjs", editable = true}  # managed by mxdev
+"collective.pdfviewer" = {path = "sources/collective.pdfviewer", editable = true}
 
 [tool.hatch.version]
 path = "src/docpoolwrapper/__init__.py"

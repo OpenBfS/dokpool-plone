@@ -30,7 +30,7 @@ setup(
         "z3c.jbot",
         "zope.interface",
         "plone.patternslib",
-        "collective.pdfjs",
+        "collective.pdfviewer",
     ],
     entry_points="""
       # -*- Entry points: -*-

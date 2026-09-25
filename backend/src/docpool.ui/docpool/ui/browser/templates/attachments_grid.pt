@@ -36,10 +36,14 @@
             </a>
           </tal:image>
           <tal:pdf condition="python: is_pdf">
-            <a class="gallery-item"
+            <a class="pat-plone-modal"
+               title="View"
+               data-pat-plone-modal='{"modalSizeClass": "modal-xl", "backdropOptions": {"opacity": 1}}'
                tal:attributes="
-                 href python: item.getURL() + '/@@preview';
+                 href python: item.getURL() + '/@@pdfjs_file_view';
                "
+               i18n:attributes="title"
+               i18n:domain="plone"
             >
               <img class="rounded mx-auto d-block"
                    tal:attributes="
@@ -65,8 +69,10 @@
             </tal:pages>
           </p>
           <p tal:content="python: item.description">Description.</p>
-          <a href=""
+          <a class="pat-plone-modal"
+             href=""
              title="View"
+             data-pat-plone-modal='{"modalSizeClass": "modal-xl", "backdropOptions": {"opacity": 1}}'
              tal:condition="python: is_pdf"
              tal:attributes="
                href python: item.getURL() + '/@@pdfjs_file_view';
