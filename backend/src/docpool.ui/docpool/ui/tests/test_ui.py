@@ -146,6 +146,13 @@ class TestUIFeatures(unittest.TestCase):
         listing_item_view = api.content.get_view("listing-item", self.portal, self.request)
         html = listing_item_view(uid=uid)
         self.assertIn("A Weatherinfo</h3>", html)
+        file_url = self.entry["some-file"].absolute_url()
+        self.assertIn(f'href="{file_url}/@@pdfjs_file_view"', html)
+        self.assertIn(f'src="{file_url}/@@preview?scale=mini"', html)
+        self.assertNotIn(f'href="{file_url}/@@preview?scale=great"', html)
+        self.assertIn('"modalSizeClass": "modal-xl"', html)
+        self.assertIn('"backdropOptions": {"opacity": 1}', html)
+        self.assertIn('class="pat-gallery"', html)
 
         # On itself:
         listing_item_view = api.content.get_view("listing-item", self.entry, self.request)
@@ -182,13 +189,7 @@ class TestUIFeatures(unittest.TestCase):
         self.assertIn('class="dp-document-header', html)
         self.assertIn(">Edit the document</h1>", html)
         self.assertIn(f'href="{self.entry.absolute_url()}"', html)
-        self.assertIn('id="edit-attachments"', html)
-        self.assertIn("(2)", html)
-        self.assertIn("zip download", html)
-        self.assertIn(f"{self.entry['some-file'].absolute_url()}/@@download", html)
-        self.assertNotIn('id="attachments_grid"', html)
         self.assertNotIn('id="attachments_list"', html)
-        self.assertIn('class="pat-upload docpool-upload d-flex flex-column my-3"', html)
         self.assertIn("docpool-upload__formats", html)
         self.assertIn("showTitle: false;", html)
 
@@ -205,14 +206,19 @@ class TestUIFeatures(unittest.TestCase):
         self.assertIn(f"{file_url}/@@download", html)
         self.assertIn(f"{file_url}/@@pdfjs_file_view", html)
         self.assertIn('class="pat-plone-modal"', html)
-        self.assertIn("modalSizeClass: modal-fullscreen", html)
+        self.assertIn('"modalSizeClass": "modal-xl"', html)
+        self.assertIn('"backdropOptions": {"opacity": 1}', html)
 
     def test_attachments_grid_view(self):
         attachments_grid_view = api.content.get_view("attachments_grid", self.entry, self.request)
         html = attachments_grid_view()
-        self.assertIn(f"{self.entry['some-file'].absolute_url()}/@@preview", html)
-        self.assertIn('class="pat-plone-modal"', html)
-        self.assertIn("modalSizeClass: modal-fullscreen", html)
+        file_url = self.entry["some-file"].absolute_url()
+        self.assertIn(f'src="{file_url}/@@preview?scale=teaser"', html)
+        self.assertNotIn(f'href="{file_url}/@@preview"', html)
+        self.assertEqual(html.count(f'href="{file_url}/@@pdfjs_file_view"'), 2)
+        self.assertEqual(html.count('"modalSizeClass": "modal-xl"'), 2)
+        self.assertEqual(html.count('"backdropOptions": {"opacity": 1}'), 2)
+        self.assertIn('class="gallery-item"', html)
 
     def test_time_filter(self):
         listing_view = api.content.get_view("listing", self.group_folder, self.request)
