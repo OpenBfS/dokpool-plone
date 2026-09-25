@@ -839,7 +839,7 @@ wheels = [
 
 [[package]]
 name = "collective-pdfviewer"
-source = { directory = "sources/collective.pdfviewer" }
+source = { editable = "sources/collective.pdfviewer" }
 dependencies = [
     { name = "plone-api" },
     { name = "plone-app-contenttypes" },
@@ -1046,7 +1046,7 @@ requires-dist = [
     { name = "collective-eeafaceted-z3ctable", editable = "sources/collective.eeafaceted.z3ctable" },
     { name = "collective-excelexport", editable = "sources/collective.excelexport" },
     { name = "collective-impersonate" },
-    { name = "collective-pdfviewer", directory = "sources/collective.pdfviewer" },
+    { name = "collective-pdfviewer", editable = "sources/collective.pdfviewer" },
     { name = "docpool-api", editable = "src/docpool.api" },
     { name = "docpool-base", editable = "src/docpool.base" },
     { name = "docpool-config", editable = "src/docpool.config" },
