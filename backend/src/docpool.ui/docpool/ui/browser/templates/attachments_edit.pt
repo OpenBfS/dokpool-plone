@@ -12,12 +12,6 @@
           (${python: len(items)})</label>
       </div>
       <div>
-        <a class="btn btn-secondary"
-           tal:attributes="
-             href python: context.absolute_url() + '?download_attachments=1';
-           "
-        ><img src="${python:icons.url('download')}" />
-          zip download (<span tal:replace="python: view.total_size()">556,5 Kb</span>)</a>
       </div>
     </div>
 
