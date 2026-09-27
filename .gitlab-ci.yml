@@ -17,6 +17,7 @@ cache:
 stages:
   - test
   - build
+  - verify
   - report
   - deploy
 
@@ -115,6 +116,29 @@ build_image:
     # https://stackoverflow.com/questions/76654491/invalid-tag-missing-manifest-digest-when-exporting-nx-docker-image-to-gitlab-do
     - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
     - make build-image-ci
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "develop"'
+    - if: '$CI_COMMIT_BRANCH == "gui"'
+    - if: '$NIGHTLY_UPDATE == "True"'
+
+verify_image:
+  image: plone/server-builder:$PLONE_VERSION
+  tags:
+    - dind
+  services:
+    - docker:28.0.1-dind
+  stage: verify
+  script:
+    - apt update
+    - apt-get install -y --no-install-recommends docker.io jq
+    - cd backend
+    - export VIRTUAL_ENV=$(pwd)
+    - pip install --upgrade pip
+    - pip install uv
+    # run latest built image, verify app loads successfully into zope console
+    - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
+    - "make verify-image |tee /tmp/verify-image.out"
+    - grep 'Starting debugger (the name "app" is bound to the top-level Zope object)' /tmp/verify-image.out
   rules:
     - if: '$CI_COMMIT_BRANCH == "develop"'
     - if: '$CI_COMMIT_BRANCH == "gui"'

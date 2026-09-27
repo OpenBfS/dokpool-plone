@@ -252,6 +252,10 @@ build-image:  ## Build Container Images
 build-image-ci: build-image ## Build Docker Image
 	@docker push $(IMAGE_NAME):$(IMAGE_TAG)
 
+.PHONY: verify-image
+verify-image:
+	docker run --rm -i $(IMAGE_NAME):$(IMAGE_TAG) console
+
 # Update acceptance base Docker images
 # Needed for Plone or deps updates
 .PHONY: acceptance-update-image
