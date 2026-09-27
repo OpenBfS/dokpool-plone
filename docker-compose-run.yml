@@ -40,9 +40,6 @@ services:
       - ./devops/varnish-gui.vcl:/etc/varnish/default.vcl:ro
     environment:
       VARNISH_HTTP_PORT: 8090
-    depends_on:
-      zeoclient:
-        condition: service_healthy
     ports:
       - "9080:8090"
     networks:
