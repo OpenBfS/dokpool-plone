@@ -99,7 +99,19 @@ COPY --chown=500:500 templates/zope.ini /app/etc/zope.ini
 # Make sure we load our translation first - see #4514
 COPY --chown=500:500 templates/i18n-plone-configure.zcml /app/etc/package-includes/i18n-plone-configure.zcml
 # Adds the session temp storage to the zope conf
-COPY --chown=500:500 templates/temp_storage.conf /app/etc/zope.conf.d/temp_storage.conf
+COPY --chown=500:500 templates/temp_storage.conf /tmp/temp_storage.conf
+COPY --chown=500:500 templates/temp_storage_rel.conf /tmp/temp_storage_rel.conf
+
+# Modify default config to allow shared session storage
+# TODO ZEO
+RUN <<EOT
+    set -e
+    cat /tmp/temp_storage.conf >> /app/etc/zope.conf
+    cat /tmp/temp_storage.conf >> /app/etc/zeo.conf
+    cat /tmp/temp_storage_rel.conf >> /app/etc/relstorage.conf
+    rm /tmp/temp_storage*.conf
+EOT
+
 # Install ghostscript into prod container
 RUN <<EOT
     set -e
