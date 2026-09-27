@@ -552,7 +552,7 @@ constraint-dependencies = [
 "collective.eeafaceted.z3ctable" = {path = "sources/collective.eeafaceted.z3ctable", editable = true}  # managed by mxdev
 "collective.excelexport" = {path = "sources/collective.excelexport", editable = true}  # managed by mxdev
 "pas.plugins.trustedproxyauth" = {path = "sources/pas.plugins.trustedproxyauth", editable = true}  # managed by mxdev
-"collective.pdfviewer" = {path = "sources/collective.pdfviewer", editable = true}
+"collective.pdfviewer" = {path = "sources/collective.pdfviewer", editable = true}  # managed by mxdev
 
 [tool.hatch.version]
 path = "src/docpoolwrapper/__init__.py"
