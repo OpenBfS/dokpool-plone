@@ -162,8 +162,8 @@ def to_1011(context=None):
 def to_1012(context=None):
     # Fix regex for images and pdfs
     broken = ".*"
-    fixed_pdf = ".+\.pdf$"
-    fixed_image = ".+\.(png|jpg)$"
+    fixed_pdf = r".+\.pdf$"
+    fixed_image = r".+\.(png|jpg)$"
     for brain in api.content.find(portal_type="DocType"):
         obj = brain.getObject()
         if obj.pdfPattern and obj.pdfPattern == broken:
