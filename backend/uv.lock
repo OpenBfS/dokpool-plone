@@ -1008,6 +1008,7 @@ dependencies = [
     { name = "docpool-ui" },
     { name = "eea-facetednavigation" },
     { name = "elan-journal" },
+    { name = "horse-with-no-namespace" },
     { name = "pas-plugins-trustedproxyauth" },
     { name = "plone-api" },
     { name = "plone-app-caching" },
@@ -1030,7 +1031,6 @@ container = [
     { name = "zeo" },
 ]
 test = [
-    { name = "horse-with-no-namespace" },
     { name = "playwright" },
     { name = "plone-app-robotframework" },
     { name = "plone-app-testing" },
@@ -1059,6 +1059,7 @@ requires-dist = [
     { name = "docpool-ui", editable = "src/docpool.ui" },
     { name = "eea-facetednavigation" },
     { name = "elan-journal", editable = "src/elan.journal" },
+    { name = "horse-with-no-namespace" },
     { name = "pas-plugins-trustedproxyauth", editable = "sources/pas.plugins.trustedproxyauth" },
     { name = "plone-api" },
     { name = "plone-app-caching" },
@@ -1081,7 +1082,6 @@ container = [
     { name = "zeo", specifier = "==6.1" },
 ]
 test = [
-    { name = "horse-with-no-namespace" },
     { name = "playwright" },
     { name = "plone-app-robotframework" },
     { name = "plone-app-testing" },

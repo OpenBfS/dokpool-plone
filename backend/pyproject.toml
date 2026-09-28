@@ -53,11 +53,11 @@ dependencies = [
     "RelStorage",
     "psycopg2",
     "collective.pdfviewer",
+    "horse-with-no-namespace",
 ]
 
 [dependency-groups]
 test = [
-    "horse-with-no-namespace",
     "plone.app.testing",
     "plone.app.robotframework",
     "pytest",
