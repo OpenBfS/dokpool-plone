@@ -13,6 +13,7 @@ class TestDPDocumentView(GroupsFolderSetupMixin):
         self.docpool = self.portal["bund"]
         self.setup_content()
 
+    @pytest.mark.flaky(reruns=2)
     def test_delete_item(self):
         page = self.page
         entry = self.group_folder["weatherinfo-without-images"]

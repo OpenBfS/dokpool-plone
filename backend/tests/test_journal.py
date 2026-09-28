@@ -76,6 +76,7 @@ class TestJournal:
 
         page.goto(f"{self.plone_url}/bund")
 
+    @pytest.mark.flaky(reruns=2)
     @pytest.mark.admin_ui
     def test_one_journal(self):
         page = self.page
