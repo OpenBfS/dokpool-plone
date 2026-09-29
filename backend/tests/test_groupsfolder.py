@@ -53,3 +53,22 @@ class TestGroupsFolder(GroupsFolderSetupMixin):
         expect(second_level_link).to_be_visible()
         second_level_link.click()
         expect(page).to_have_url(f"{self.plone_url}/bund/content/Groups/bund_group1/folder-nav-2")
+
+    def test_listing_navigation_updates_groups_tree(self):
+        page = self.page
+        page.goto(f"{self.plone_url}/bund/setActiveApp?app=elan")
+        page.goto(self.group_folder.absolute_url())
+
+        desktop_nav = page.locator("#portal-column-one .sidebar-groups-tree").first
+        group_link = desktop_nav.locator("a.dp-group-link.current", has_text="Group1 (Bund)")
+        expect(group_link).to_have_count(1)
+
+        page.locator("#listing .listing-item").filter(has_text="Folder Nav 2").locator("h3").click()
+        expect(page).to_have_url(self.subnav.absolute_url())
+
+        expect(desktop_nav.locator("a.dp-group-link.current", has_text="Folder Nav 2")).to_have_count(1)
+        expect(desktop_nav.locator("a.dp-group-link.in-path", has_text="Group1 (Bund)")).to_have_count(1)
+
+        page.go_back()
+        expect(page).to_have_url(self.group_folder.absolute_url())
+        expect(group_link).to_have_count(1)

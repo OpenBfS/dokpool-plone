@@ -16,7 +16,7 @@
      href="#"
      tal:attributes="
        class python: view.pat_inject_class('list-item-link stretched-link');
-       data-pat-inject python: view.pat_inject_config();
+       data-pat-inject python: view.pat_inject_config('navigation');
        href python: data['url'];
        title python:data['doctype_title'];
      "
