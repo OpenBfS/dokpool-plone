@@ -85,8 +85,8 @@ class IREIDoc(IDocumentExtension):
         required=True,
         missing_value=[],
     )
-    read_permission(NuclearInstallations="docpool.rei.AccessRei")
-    write_permission(NuclearInstallations="docpool.rei.AccessRei")
+    read_permission(NuclearInstallations="docpool.rei.AccessREI")
+    write_permission(NuclearInstallations="docpool.rei.AccessREI")
     searchable("NuclearInstallations")
 
     directives.widget(ReiLegalBases=CheckBoxFieldWidget)
@@ -97,8 +97,8 @@ class IREIDoc(IDocumentExtension):
         required=True,
         missing_value=[],
     )
-    read_permission(ReiLegalBases="docpool.rei.AccessRei")
-    write_permission(ReiLegalBases="docpool.rei.AccessRei")
+    read_permission(ReiLegalBases="docpool.rei.AccessREI")
+    write_permission(ReiLegalBases="docpool.rei.AccessREI")
     searchable("ReiLegalBases")
 
     Medium = schema.Choice(
@@ -107,8 +107,8 @@ class IREIDoc(IDocumentExtension):
         source="docpool.rei.vocabularies.MediumVocabulary",
         required=False,
     )
-    read_permission(Medium="docpool.rei.AccessRei")
-    write_permission(Medium="docpool.rei.AccessRei")
+    read_permission(Medium="docpool.rei.AccessREI")
+    write_permission(Medium="docpool.rei.AccessREI")
     searchable("Medium")
 
     Year = schema.Choice(
@@ -117,8 +117,8 @@ class IREIDoc(IDocumentExtension):
         source="docpool.rei.vocabularies.YearVocabulary",
         required=True,
     )
-    read_permission(Year="docpool.rei.AccessRei")
-    write_permission(Year="docpool.rei.AccessRei")
+    read_permission(Year="docpool.rei.AccessREI")
+    write_permission(Year="docpool.rei.AccessREI")
     searchable("Year")
 
     Period = schema.Choice(
@@ -127,8 +127,8 @@ class IREIDoc(IDocumentExtension):
         source="docpool.rei.vocabularies.PeriodVocabulary",
         required=True,
     )
-    read_permission(Period="docpool.rei.AccessRei")
-    write_permission(Period="docpool.rei.AccessRei")
+    read_permission(Period="docpool.rei.AccessREI")
+    write_permission(Period="docpool.rei.AccessREI")
     searchable("Period")
 
     directives.widget(Origins=CheckBoxFieldWidget)
@@ -139,8 +139,8 @@ class IREIDoc(IDocumentExtension):
         required=True,
         missing_value=[],
     )
-    read_permission(Origins="docpool.rei.AccessRei")
-    write_permission(Origins="docpool.rei.AccessRei")
+    read_permission(Origins="docpool.rei.AccessREI")
+    write_permission(Origins="docpool.rei.AccessREI")
     searchable("Origins")
 
     directives.widget(MStIDs=SelectFieldWidget)
@@ -152,8 +152,8 @@ class IREIDoc(IDocumentExtension):
         missing_value=[],
         default=[],
     )
-    read_permission(MStIDs="docpool.rei.AccessRei")
-    write_permission(MStIDs="docpool.rei.AccessRei")
+    read_permission(MStIDs="docpool.rei.AccessREI")
+    write_permission(MStIDs="docpool.rei.AccessREI")
 
     mstids_initial_value = schema.TextLine(
         title=_(
@@ -171,8 +171,8 @@ class IREIDoc(IDocumentExtension):
         source="docpool.rei.vocabularies.AuthorityVocabulary",
         required=True,
     )
-    read_permission(Authority="docpool.rei.AccessRei")
-    write_permission(Authority="docpool.rei.AccessRei")
+    read_permission(Authority="docpool.rei.AccessREI")
+    write_permission(Authority="docpool.rei.AccessREI")
     searchable("Authority")
 
     PDFVersion = schema.Choice(
