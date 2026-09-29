@@ -26,6 +26,8 @@
       file="permissions.zcml"
       />
 
+  <subscriber handler=".hooks.add_backend_header" />
+
   <browser:page
       name="sharing"
       for="..interfaces.IDocumentPool"
