@@ -44,27 +44,35 @@
 
     <!-- Menu list -->
     <!-- Release Info -->
-    <li class="dropdown-item user-menu-action-item">
+    <li class="dropdown-item">
       <tal:icon tal:replace="structure python:icons.tag('info-circle', tag_class='user-menu-row-icon')" />
-      <a class="user-menu-link">Release Info</a>
+      <span class="user-menu-static-label">Release Info</span>
     </li>
 
     <!-- Accessibility -->
-    <li class="dropdown-item user-menu-action-item">
-      <tal:icon tal:replace="structure python:icons.tag('universal-access', tag_class='user-menu-row-icon')" />
-      <a class="user-menu-link">Accessibility</a>
+    <li class="user-menu-action-item">
+      <a class="dropdown-item user-menu-link"
+         href="https://www.bfs.de/DE/service/barrierefreiheit/barrierefreiheit_node.html"
+      >
+        <tal:icon tal:replace="structure python:icons.tag('universal-access', tag_class='user-menu-row-icon')" />
+        <span>Accessibility</span>
+      </a>
     </li>
 
     <!-- Hilfe -->
-    <li class="dropdown-item user-menu-action-item">
+    <li class="dropdown-item">
       <tal:icon tal:replace="structure python:icons.tag('question-square', tag_class='user-menu-row-icon')" />
-      <a class="user-menu-link">Hilfe</a>
+      <span class="user-menu-static-label">Hilfe</span>
     </li>
 
     <!-- Impressum -->
-    <li class="dropdown-item user-menu-action-item">
-      <tal:icon tal:replace="structure python:icons.tag('info-circle', tag_class='user-menu-row-icon')" />
-      <a class="user-menu-link">Impressum</a>
+    <li class="user-menu-action-item">
+      <a class="dropdown-item user-menu-link"
+         href="https://www.bfs.de/DE/service/impressum/impressum_node.html"
+      >
+        <tal:icon tal:replace="structure python:icons.tag('info-circle', tag_class='user-menu-row-icon')" />
+        <span>Impressum</span>
+      </a>
     </li>
   </ul>
 </div>
