@@ -188,7 +188,8 @@
   }
 }
 
-.menu-utility-dropdown .user-menu-link {
+.menu-utility-dropdown .user-menu-link,
+.menu-utility-dropdown .user-menu-static-label {
   text-decoration: none;
   line-height: 1.2;
 }
@@ -422,7 +423,7 @@
   padding: 0.85rem 1rem 0.9rem;
 }
 
-.right-icons .menu-user-dropdown li > .user-menu-link {
+.right-icons .menu-utility-dropdown li > .user-menu-link {
   display: flex;
   width: 100%;
   padding: 0.8rem 1rem;

@@ -12,12 +12,16 @@
     <tal:icon tal:replace="structure python:icons.tag('universal-access')" />
   </button>
   <ul class="dropdown-menu dropdown-menu-end menu-accessibility-dropdown menu-utility-dropdown">
-    <li class="dropdown-item user-menu-action-item">
-      <tal:icon tal:replace="structure python:icons.tag('universal-access', tag_class='user-menu-row-icon')" />
-      <span class="user-menu-link">Accessibility</span>
-      <span class="ms-auto">
-        <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
-      </span>
+    <li class="user-menu-action-item">
+      <a class="dropdown-item user-menu-link"
+         href="https://www.bfs.de/DE/service/barrierefreiheit/barrierefreiheit_node.html"
+      >
+        <tal:icon tal:replace="structure python:icons.tag('universal-access', tag_class='user-menu-row-icon')" />
+        <span>Accessibility</span>
+        <span class="ms-auto">
+          <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
+        </span>
+      </a>
     </li>
   </ul>
 </div>

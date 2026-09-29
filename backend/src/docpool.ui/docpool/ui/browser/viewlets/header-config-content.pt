@@ -21,43 +21,49 @@
   </button>
 
   <ul class="dropdown-menu dropdown-menu-end menu-config-dropdown menu-utility-dropdown">
-    <li class="dropdown-item user-menu-action-item"
+    <li class="user-menu-action-item"
         tal:condition="python: can_manage_events"
     >
-      <tal:icon tal:replace="structure python:icons.tag('pencil', tag_class='user-menu-row-icon')" />
-      <a class="user-menu-link"
+      <a class="dropdown-item user-menu-link"
          href="${view/events_url}"
-         i18n:domain="docpool.elan"
-         i18n:translate=""
-      >Edit Scenarios</a>
+      >
+        <tal:icon tal:replace="structure python:icons.tag('pencil', tag_class='user-menu-row-icon')" />
+        <span i18n:domain="docpool.elan"
+              i18n:translate=""
+        >Edit Scenarios</span>
+      </a>
     </li>
-    <li class="dropdown-item user-menu-action-item"
+    <li class="user-menu-action-item"
         tal:condition="python: can_manage_events"
     >
-      <tal:icon tal:replace="structure python:icons.tag('archive', tag_class='user-menu-row-icon')" />
-      <a class="user-menu-link"
+      <a class="dropdown-item user-menu-link"
          href="${dp_url}/archive"
-         i18n:domain="docpool.elan"
-         i18n:translate=""
-      >Edit Archives</a>
+      >
+        <tal:icon tal:replace="structure python:icons.tag('archive', tag_class='user-menu-row-icon')" />
+        <span i18n:domain="docpool.elan"
+              i18n:translate=""
+        >Edit Archives</span>
+      </a>
     </li>
-    <li class="dropdown-item user-menu-action-item"
+    <li class="user-menu-action-item"
         tal:condition="python: can_manage_doctypes"
     >
-      <tal:icon tal:replace="structure python:icons.tag('diagram-3', tag_class='user-menu-row-icon')" />
-      <a class="user-menu-link"
+      <a class="dropdown-item user-menu-link"
          href="${dp_url}/config/dtypes"
-         i18n:translate=""
-      >Eintragsarten</a>
+      >
+        <tal:icon tal:replace="structure python:icons.tag('diagram-3', tag_class='user-menu-row-icon')" />
+        <span i18n:translate="">Eintragsarten</span>
+      </a>
     </li>
-    <li class="dropdown-item user-menu-action-item"
+    <li class="user-menu-action-item"
         tal:condition="python: can_manage_users"
     >
-      <tal:icon tal:replace="structure python:icons.tag('people', tag_class='user-menu-row-icon')" />
-      <a class="user-menu-link"
+      <a class="dropdown-item user-menu-link"
          href="${dp_url}/@@usergroup-userprefs"
-         i18n:translate=""
-      >User Management</a>
+      >
+        <tal:icon tal:replace="structure python:icons.tag('people', tag_class='user-menu-row-icon')" />
+        <span i18n:translate="">User Management</span>
+      </a>
     </li>
   </ul>
 </div>

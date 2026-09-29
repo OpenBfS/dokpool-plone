@@ -24,12 +24,12 @@
            href="${python:
                       f'{context.absolute_url()}/@@select_scenario?scenario={scenario.UID()}&amp;_authenticator={auth_token}'}"
         >
-        ${scenario/Title}
+          ${scenario/Title}
+          <span class="mobile-event-row-meta">
+            <span class="badge tag-badge small ${badge_class}">${scenario/event_type_title}</span>
+            <span class="small text-primary">${scenario/operation_mode_title}</span>
+          </span>
         </a>
-        <div class="mobile-event-row-meta">
-          <span class="badge tag-badge small ${badge_class}">${scenario/event_type_title}</span>
-          <span class="small text-primary">${scenario/operation_mode_title}</span>
-        </div>
       </div>
       <div class="mobile-event-row-actions"
            tal:define="
@@ -61,12 +61,12 @@
            href="${python:
                       f'{context.absolute_url()}/@@select_scenario?scenario={scenario.UID()}&amp;_authenticator={auth_token}'}"
         >
-        ${scenario/Title}
+          ${scenario/Title}
+          <span class="mobile-event-row-meta">
+            <span class="badge tag-badge small ${badge_class}">${scenario/event_type_title}</span>
+            <span class="small text-primary">${scenario/operation_mode_title}</span>
+          </span>
         </a>
-        <div class="mobile-event-row-meta">
-          <span class="badge tag-badge small ${badge_class}">${scenario/event_type_title}</span>
-          <span class="small text-primary">${scenario/operation_mode_title}</span>
-        </div>
       </div>
       <div class="mobile-event-row-actions"
            tal:define="
