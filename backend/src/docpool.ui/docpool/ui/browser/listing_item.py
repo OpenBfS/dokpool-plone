@@ -33,6 +33,10 @@ TRANSITION_ICON_MAPPING = {
 
 PAT_INJECT_CONFIGS = {
     "default": "trigger: default; source: #portal-column-content; target: #content-core; history: record",
+    "navigation": (
+        "trigger: default; source: #portal-column-content; target: #content-core; history: record && "
+        "source: #portal-column-one; target: #portal-column-one; trigger: default"
+    ),
     "transition": (
         "source: #listing; target: #listing; trigger: default && "
         "source: #global_statusmessage; target: #global_statusmessage; trigger: default "
