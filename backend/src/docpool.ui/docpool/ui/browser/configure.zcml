@@ -236,6 +236,22 @@
       layer="docpool.ui.interfaces.IUITheme"
       />
 
+  <browser:page
+      name="attachment_delete_confirmation"
+      for="plone.app.contenttypes.interfaces.IFile"
+      class=".dpdocument.DPDocumentDeleteConfirmationFormUI"
+      permission="zope2.DeleteObjects"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
+  <browser:page
+      name="attachment_delete_confirmation"
+      for="plone.app.contenttypes.interfaces.IImage"
+      class=".dpdocument.DPDocumentDeleteConfirmationFormUI"
+      permission="zope2.DeleteObjects"
+      layer="docpool.ui.interfaces.IUITheme"
+      />
+
   <!-- The default view and edit views for debugging purposes -->
   <configure package="plone.app.dexterity.browser">
     <browser:page
