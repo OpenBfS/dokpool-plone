@@ -438,6 +438,9 @@ class UserDropdown(BrowserView):
             fullname = user.getProperty("fullname")
             return fullname or user.getId()
 
+    def can_access_user_preferences(self):
+        return api.user.has_permission("Plone Site Setup: Users and Groups")
+
 
 class ConfigDropdown(BrowserView):
     @property
