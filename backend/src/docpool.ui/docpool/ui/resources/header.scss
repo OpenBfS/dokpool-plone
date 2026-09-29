@@ -30,6 +30,15 @@
 }
 
 .app-dropdown-menu {
+  > li.dropdown-item:active {
+    color: var(--bs-dropdown-link-color);
+    background-color: transparent;
+
+    &.selected {
+      background-color: var(--bs-light-blue);
+    }
+  }
+
   .d-table-cell {
     padding-top: 10px;
     padding-bottom: 10px;
