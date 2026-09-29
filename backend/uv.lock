@@ -1,5 +1,5 @@
 version = 1
-revision = 2
+revision = 3
 requires-python = ">=3.13"
 
 [manifest]
@@ -1030,6 +1030,10 @@ container = [
     { name = "relstorage" },
     { name = "zeo" },
 ]
+dev = [
+    { name = "pdbpp" },
+    { name = "products-pdbdebugmode" },
+]
 test = [
     { name = "playwright" },
     { name = "plone-app-robotframework" },
@@ -1081,6 +1085,10 @@ container = [
     { name = "psycopg2", specifier = "==2.9.11" },
     { name = "relstorage", specifier = "==4.2.0" },
     { name = "zeo", specifier = "==6.1" },
+]
+dev = [
+    { name = "pdbpp" },
+    { name = "products-pdbdebugmode" },
 ]
 test = [
     { name = "playwright" },
@@ -1357,6 +1365,15 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/fb/6d/481986996af6c6640c8c167eb5b2109649fcdaf042fcf1efe87dbf8107e3/extensionclass-6.2-cp314-cp314-manylinux1_x86_64.manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_5_x86_64.whl", hash = "sha256:343807f93e92401af71dd02736510d646b264557093a58bb6c0056d6bbcec0b5", size = 93724, upload-time = "2025-11-16T10:53:00.6Z" },
     { url = "https://files.pythonhosted.org/packages/7e/79/290c40e10670ce2f6097ab88fe5b5ef256b1bd98e0a127ff1de264fd0374/extensionclass-6.2-cp314-cp314-manylinux2014_aarch64.manylinux_2_17_aarch64.whl", hash = "sha256:7d3d57456f0814642b7ce4f6c844c171fe2c4a03f87f36ec86aa5fd75f4edc5e", size = 96066, upload-time = "2025-11-16T10:53:02.018Z" },
     { url = "https://files.pythonhosted.org/packages/c3/58/b0d0233c6b4112c7741cdbcf289985b08fbe9ce9ab02e215481502e9465b/extensionclass-6.2-cp314-cp314-win_amd64.whl", hash = "sha256:7e37b6e28ecedf518a9df7ce45f06e1d3fafc9cbd965ba68970609c4182fbf09", size = 58182, upload-time = "2025-11-16T10:53:03.112Z" },
+]
+
+[[package]]
+name = "fancycompleter"
+version = "0.11.1"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/4e/4c/d11187dee93eff89d082afda79b63c79320ae1347e49485a38f05ad359d0/fancycompleter-0.11.1.tar.gz", hash = "sha256:5b4ad65d76b32b1259251516d0f1cb2d82832b1ff8506697a707284780757f69", size = 341776, upload-time = "2025-05-26T12:59:11.045Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/30/c3/6f0e3896f193528bbd2b4d2122d4be8108a37efab0b8475855556a8c4afa/fancycompleter-0.11.1-py3-none-any.whl", hash = "sha256:44243d7fab37087208ca5acacf8f74c0aa4d733d04d593857873af7513cdf8a6", size = 11207, upload-time = "2025-05-26T12:59:09.857Z" },
 ]
 
 [[package]]
@@ -1895,6 +1912,19 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/e3/97/0c4a613ec96a54d21daa7e089178263915554320402e89b4e319436a63cb/PasteDeploy-3.1.0.tar.gz", hash = "sha256:9ddbaf152f8095438a9fe81f82c78a6714b92ae8e066bed418b6a7ff6a095a95", size = 37841, upload-time = "2023-11-21T04:54:33.203Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/85/30/cdddd9a88969683a59222a6d61cd6dce923977f2e9f9ffba38e1324149cd/PasteDeploy-3.1.0-py3-none-any.whl", hash = "sha256:76388ad53a661448d436df28c798063108f70e994ddc749540d733cdbd1b38cf", size = 16943, upload-time = "2023-11-21T04:54:28.226Z" },
+]
+
+[[package]]
+name = "pdbpp"
+version = "0.12.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "fancycompleter" },
+    { name = "pygments" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/95/8d/dbc2c26f9c947e3d6df82d3ee7711fb52a92000177cea22fd3e428dc0429/pdbpp-0.12.1.tar.gz", hash = "sha256:932cc5963760105e33607f44a1a3b83d28096d7dbf055b77b527c5c70a1dafef", size = 77358, upload-time = "2026-02-23T14:23:44.993Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/05/4e/0703722c46447fa03c9425386b3ef3e90254a7c1eb5da654c3c33b210317/pdbpp-0.12.1-py3-none-any.whl", hash = "sha256:3828809519439f468c9475c4c2cbb3899f2f5ba40e79c207d90eabe4c2373f5e", size = 30659, upload-time = "2026-02-23T14:23:43.66Z" },
 ]
 
 [[package]]
@@ -4356,6 +4386,21 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/a4/43/b21b27c87d476fc25ba059e991d102ab47dc8ed70c27b0dc0550c18d3fbe/products_mimetypesregistry-4.0.0.tar.gz", hash = "sha256:5c26ac5cce73d6746dd1f7549bffc22128e1b72067510096c4299ab19f0ce654", size = 419012, upload-time = "2026-05-18T13:09:51.311Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/9b/9f/174f02e148e1a78756fe1be788f41f156eb2720566afe979a596b6044869/products_mimetypesregistry-4.0.0-py3-none-any.whl", hash = "sha256:84ac9e0780a201898c319db5835443e71cde3541e5d50e07b767bee67c8600c7", size = 435508, upload-time = "2026-05-18T13:09:49.275Z" },
+]
+
+[[package]]
+name = "products-pdbdebugmode"
+version = "3.0.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "collective-monkeypatcher" },
+    { name = "products-cmfcore" },
+    { name = "products-cmfplone" },
+    { name = "zope" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/29/91/318c9efdad4730b48b54a32b9474523bfb976b9532574db3e0ec26c35b7c/products_pdbdebugmode-3.0.0.tar.gz", hash = "sha256:a3a5f1433416b5a856b273fff5d1420dcc9aacfe1b2212279ec8c938f71ba317", size = 21136, upload-time = "2025-12-23T07:32:35.218Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/44/e1/2b4cfdff5dc8a5e37ca2427f25493f462d7c772071a1f45655dbc3992b7c/products_pdbdebugmode-3.0.0-py3-none-any.whl", hash = "sha256:33d1ea8e1be89990939850d7436813f85a3ff6b8080eaee700be0fe44408b8f6", size = 13659, upload-time = "2025-12-23T07:32:34.018Z" },
 ]
 
 [[package]]

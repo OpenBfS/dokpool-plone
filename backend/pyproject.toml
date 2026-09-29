@@ -68,6 +68,11 @@ test = [
     "playwright",
 ]
 
+dev = [
+    "pdbpp",
+    "Products.PDBDebugMode",
+]
+
 container = [
     "plone.app.upgrade",
     "psycopg2==2.9.11",
@@ -87,7 +92,7 @@ target = "plone"
 [tool.uv]
 managed = true
 package = false
-default-groups = ["test"]
+default-groups = ["test", "dev"]
 override-dependencies = []
 constraint-dependencies = [
     "AccessControl==7.3",
