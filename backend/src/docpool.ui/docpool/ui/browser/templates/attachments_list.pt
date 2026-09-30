@@ -29,6 +29,7 @@
                       is_image python: item.portal_type == 'Image';
                       mime_type python: item.getObject().content_type();
                       is_pdf python: not is_image and mime_type == 'application/pdf';
+                      is_first repeat/item/start;
                       is_last repeat/item/end;
                     ">
             <td>
@@ -61,6 +62,20 @@
                    i18n:attributes="title"
                    i18n:domain="plone"
                 ><img src="${python:icons.url('eye')}" /></a>
+                <button class="btn btn-link p-0 attachment-move-up"
+                        title="Move item up"
+                        type="button"
+                        tal:condition="python: can_reorder and not is_first"
+                        tal:attributes="
+                          data-attachment-id python: item.id;
+                          data-move-url python: context.absolute_url() + '/fc-itemOrder';
+                          data-authenticator auth_token;
+                        "
+                        i18n:attributes="title title_move_item_up"
+                        i18n:domain="docpool.base"
+                ><img alt=""
+                       src="${python:icons.url('file-arrow-up')}"
+                  /></button>
                 <button class="btn btn-link p-0 attachment-move-down"
                         title="Move item down"
                         type="button"

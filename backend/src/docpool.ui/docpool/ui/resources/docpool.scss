@@ -698,11 +698,13 @@ body.plone-toolbar-left-expanded {
   }
 }
 
+#attachments .attachment-move-up,
 #attachments .attachment-move-down,
 #attachments .attachment-delete {
   display: none;
 }
 
+#edit-attachments .attachment-move-up,
 #edit-attachments .attachment-move-down,
 #edit-attachments .attachment-delete {
   display: inline-block;

@@ -342,35 +342,39 @@ $(document).on("uploadAllCompleted", "#dpdocument-edit-upload", function () {
   document.getElementById("edit-attachments-refresh")?.click();
 });
 
-$(document).on("click", ".attachment-move-down", async function () {
-  const button = this;
-  const attachmentList = button.closest("#attachments");
-  const subsetIds = Array.from(
-    attachmentList.querySelectorAll("tr[data-attachment-id]"),
-    (row) => row.dataset.attachmentId,
-  );
-  const params = new URLSearchParams({
-    id: button.dataset.attachmentId,
-    delta: "1",
-    subsetIds: JSON.stringify(subsetIds),
-    _authenticator: button.dataset.authenticator,
-  });
-
-  button.disabled = true;
-  try {
-    const response = await fetch(button.dataset.moveUrl, {
-      method: "POST",
-      credentials: "same-origin",
-      body: params,
+$(document).on(
+  "click",
+  ".attachment-move-up, .attachment-move-down",
+  async function () {
+    const button = this;
+    const attachmentList = button.closest("#attachments");
+    const subsetIds = Array.from(
+      attachmentList.querySelectorAll("tr[data-attachment-id]"),
+      (row) => row.dataset.attachmentId,
+    );
+    const params = new URLSearchParams({
+      id: button.dataset.attachmentId,
+      delta: button.classList.contains("attachment-move-up") ? "-1" : "1",
+      subsetIds: JSON.stringify(subsetIds),
+      _authenticator: button.dataset.authenticator,
     });
-    const result = await response.json().catch(() => null);
-    if (!response.ok || result?.status !== "success") {
-      throw new Error(result?.msg || "Could not move attachment.");
+
+    button.disabled = true;
+    try {
+      const response = await fetch(button.dataset.moveUrl, {
+        method: "POST",
+        credentials: "same-origin",
+        body: params,
+      });
+      const result = await response.json().catch(() => null);
+      if (!response.ok || result?.status !== "success") {
+        throw new Error(result?.msg || "Could not move attachment.");
+      }
+      attachmentList.querySelector("#attachments-order-refresh").click();
+    } catch (error) {
+      window.alert(error.message);
+    } finally {
+      button.disabled = false;
     }
-    attachmentList.querySelector("#attachments-order-refresh").click();
-  } catch (error) {
-    window.alert(error.message);
-  } finally {
-    button.disabled = false;
-  }
-});
+  },
+);
