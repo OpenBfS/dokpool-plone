@@ -260,7 +260,7 @@
 
                   </span>
                   <div class="mobile-groups-folder-link"
-                       tal:condition="python: not groups_tree"
+                       tal:condition="python: view.groups_folder_url and not groups_tree"
                   >
                     <a class="mobile-groups-folder-label"
                        href="${python: view.groups_folder_url}"

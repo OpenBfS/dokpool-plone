@@ -180,16 +180,12 @@ class PortalHeader(EventSwitcherMixin, TimezoneTableMixin, GroupsTreeMixin, View
         self.app_logo = appLogo(self.app) if self.app else None
         self.set_scenario_attributes()
 
+        # Groups folder link always depends on groups tree
+        groups_tree = self.build_groups_tree()
         # Prepare mobile folder tree navigation
-        if is_in_dp_folder(self.context, *GROUPS_NAV_FOLDERS):
-            self.groups_tree = self.build_groups_tree()
-        else:
-            self.groups_tree = []
+        self.groups_tree = groups_tree if is_in_dp_folder(self.context, *GROUPS_NAV_FOLDERS) else []
 
-        try:
-            self.groups_folder_url = self.dp["content"]["Groups"].absolute_url()
-        except BaseException:
-            self.groups_folder_url = None
+        self.groups_folder_url = self.get_groups_folder_url(groups_tree)
         try:
             self.emergency_info_url = self.dp["hintergrundinfos-ns"].absolute_url()
         except BaseException:
@@ -209,6 +205,19 @@ class PortalHeader(EventSwitcherMixin, TimezoneTableMixin, GroupsTreeMixin, View
                 emergency=["/hintergrundinfos-ns"],
             ).items()
         }
+
+    def get_groups_folder_url(self, groups_tree):
+        # The idea is to return a groups folder url only if the groups folder listing (or its sidebar) is
+        # predicted not to be empty. While the listing view would also show content other than member,
+        # group and transfer folders, we assume that these are the only relevant kinds of content, so looking
+        # for them is supposed to be sufficient. This is the lookup already done for the groups tree.
+        if not groups_tree:
+            return
+        try:
+            url = IPlaces(self.context).content["Groups"].absolute_url()
+        except BaseException:
+            url = groups_tree[0]["getURL"]
+        return url
 
     def apps_menu(self):
         current_dp_id = self.dp.getId() if self.dp else None
