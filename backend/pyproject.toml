@@ -94,9 +94,7 @@ target = "plone"
 managed = true
 package = false
 default-groups = ["test", "dev"]
-override-dependencies = [
-    "plone.staticresources==3.1.0a3",
-]
+override-dependencies = []
 constraint-dependencies = [
     "AccessControl==7.4",
     "Acquisition==6.2",
