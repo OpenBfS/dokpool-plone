@@ -217,6 +217,7 @@ constraints = [
     { name = "plone-schema", specifier = "==3.0.0" },
     { name = "plone-schemaeditor", specifier = "==5.0.1" },
     { name = "plone-session", specifier = "==5.1.0" },
+    { name = "plone-staticresources", specifier = "==3.0.6" },
     { name = "plone-stringinterp", specifier = "==3.0.0" },
     { name = "plone-subrequest", specifier = "==3.0.0" },
     { name = "plone-supermodel", specifier = "==3.0.0" },
@@ -450,7 +451,6 @@ constraints = [
     { name = "zope2", specifier = "==4.0" },
     { name = "zopeundo", specifier = "==6.1" },
 ]
-overrides = [{ name = "plone-staticresources", specifier = "==3.1.0a3" }]
 
 [[package]]
 name = "accesscontrol"
@@ -3921,7 +3921,7 @@ wheels = [
 
 [[package]]
 name = "plone-staticresources"
-version = "3.1.0a3"
+version = "3.0.6"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "lxml" },
@@ -3932,9 +3932,9 @@ dependencies = [
     { name = "zope-i18nmessageid" },
     { name = "zope-interface" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/37/f7/ecaf2557cc1e2fa251d68a724479e65c9143a14cdbf9ff5f8e2f34ca4174/plone_staticresources-3.1.0a3.tar.gz", hash = "sha256:3e761527c515885fa9bb61980a92097e0e09ad9afdd90727cc2791fb17f6322e", size = 12670437, upload-time = "2026-09-17T15:46:15.737Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/13/08/37dfd1d4c1b22a9cd2f1620b1f2281015e52484f585e3153a956418781d7/plone_staticresources-3.0.6.tar.gz", hash = "sha256:32e9f12e8b572abc7966cbbfff9a7a43aa1668f850130d4aa2a7a6e87b38f7f4", size = 12127387, upload-time = "2026-09-09T16:14:47.173Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/d1/92/4e56f02c5050782264fc5c5f68d363338e3387da81932cbaa030509d624f/plone_staticresources-3.1.0a3-py3-none-any.whl", hash = "sha256:2a4a60e7a7a2d050f80b292ac07130ed34b56c9239003c64d9ffc22410c24f1e", size = 15101353, upload-time = "2026-09-17T15:46:10.287Z" },
+    { url = "https://files.pythonhosted.org/packages/2e/86/686d566830722e0cc68f22c52892cb872043565845232728a6c71c2fda8c/plone_staticresources-3.0.6-py3-none-any.whl", hash = "sha256:99b89f49c48b8565738df405caddf5b229af0bf9875b9ba012f0fa6a1bd9fe4e", size = 14946295, upload-time = "2026-09-09T16:14:41.469Z" },
 ]
 
 [[package]]
