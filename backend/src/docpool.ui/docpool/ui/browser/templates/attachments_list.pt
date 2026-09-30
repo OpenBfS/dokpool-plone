@@ -1,21 +1,36 @@
 <tal:attachments define="
                    items python: view.items();
                    icons python:context.restrictedTraverse('@@iconresolver');
+                   can_reorder python: view.can_reorder();
+                   auth_token context/@@authenticator/token;
                  "
                  condition="python: items"
 >
 
   <div id="attachments">
+    <a class="pat-inject d-none"
+       id="attachments-order-refresh"
+       data-pat-inject="source: #attachments; target: #attachments; trigger: default"
+       tal:attributes="
+         href python: context.absolute_url() + '/@@attachments_list';
+       "
+    ></a>
 
     <table class="pat-gallery table table-striped"
            data-pat-gallery="item-selector: a.gallery-item"
     >
       <tbody>
-        <tr tal:repeat="item python: items">
+        <tr tal:repeat="item python: items"
+            tal:attributes="
+              data-attachment-id python: item.id;
+            "
+        >
           <tal:item tal:define="
                       is_image python: item.portal_type == 'Image';
                       mime_type python: item.getObject().content_type();
                       is_pdf python: not is_image and mime_type == 'application/pdf';
+                      is_first repeat/item/start;
+                      is_last repeat/item/end;
                     ">
             <td>
               <a class="gallery-item"
@@ -47,11 +62,34 @@
                    i18n:attributes="title"
                    i18n:domain="plone"
                 ><img src="${python:icons.url('eye')}" /></a>
-                <a href=""
-                   tal:attributes="
-                     href python: item.getURL() + '/@@download';
-                   "
-                ><img src="${python:icons.url('file-arrow-down')}" /></a>
+                <button class="btn btn-link p-0 attachment-move-up"
+                        title="Move item up"
+                        type="button"
+                        tal:condition="python: can_reorder and not is_first"
+                        tal:attributes="
+                          data-attachment-id python: item.id;
+                          data-move-url python: context.absolute_url() + '/fc-itemOrder';
+                          data-authenticator auth_token;
+                        "
+                        i18n:attributes="title title_move_item_up"
+                        i18n:domain="docpool.base"
+                ><img alt=""
+                       src="${python:icons.url('file-arrow-up')}"
+                  /></button>
+                <button class="btn btn-link p-0 attachment-move-down"
+                        title="Move item down"
+                        type="button"
+                        tal:condition="python: can_reorder and not is_last"
+                        tal:attributes="
+                          data-attachment-id python: item.id;
+                          data-move-url python: context.absolute_url() + '/fc-itemOrder';
+                          data-authenticator auth_token;
+                        "
+                        i18n:attributes="title title_move_item_down"
+                        i18n:domain="docpool.base"
+                ><img alt=""
+                       src="${python:icons.url('file-arrow-down')}"
+                  /></button>
                 <a href=""
                    title="Download"
                    tal:attributes="
@@ -60,6 +98,17 @@
                    i18n:attributes="title"
                    i18n:domain="plone"
                 ><img src="${python:icons.url('download')}" /></a>
+                <a class="btn btn-link p-0 attachment-delete"
+                   title="Delete"
+                   tal:condition="python: view.can_delete(item)"
+                   tal:attributes="
+                     href python: view.delete_confirmation_url(item);
+                   "
+                   i18n:attributes="title"
+                   i18n:domain="plone"
+                ><img alt=""
+                       src="${python:icons.url('x-circle-fill')}"
+                  /></a>
               </div>
             </td>
           </tal:item>

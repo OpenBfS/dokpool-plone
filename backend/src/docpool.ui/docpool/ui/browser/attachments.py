@@ -2,6 +2,7 @@ from docpool.base.preview import ANNOTATION_KEY
 from plone import api
 from plone.base.utils import human_readable_size
 from Products.Five.browser import BrowserView
+from urllib.parse import urlencode
 from zope.annotation import IAnnotations
 
 
@@ -9,6 +10,16 @@ class Attachments(BrowserView):
     def items(self):
         contentlisting = self.context.restrictedTraverse("@@contentlisting")
         return contentlisting(portal_type=["File", "Image"])
+
+    def can_reorder(self):
+        return api.user.has_permission("Modify portal content", obj=self.context)
+
+    def can_delete(self, item):
+        return api.user.has_permission("Delete objects", obj=item.getObject())
+
+    def delete_confirmation_url(self, item):
+        query = urlencode({"came_from": f"{self.context.absolute_url()}/edit"})
+        return f"{item.getURL()}/@@attachment_delete_confirmation?{query}"
 
     def total_size(self):
         sizes = [i.getSize() for i in self.items()]

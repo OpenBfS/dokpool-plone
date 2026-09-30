@@ -123,6 +123,23 @@ class TestListing(GroupsFolderSetupMixin):
         expect(title).to_have_value("Unsaved title")
         assert page.url.endswith("/@@edit")
 
+    def test_edit_attachment_delete(self):
+        page = self.page
+        page.goto(f"{self.entry2.absolute_url()}/@@edit")
+
+        attachments = page.locator("#edit-attachments #attachments tbody tr")
+        expect(attachments).to_have_count(2)
+        attachments.filter(has_text="Some File").locator(".attachment-delete").click()
+
+        delete_button = page.locator("button[name='form.buttons.Delete']")
+        expect(delete_button).to_be_visible()
+        delete_button.click()
+
+        expect(page).to_have_url(f"{self.entry2.absolute_url()}/edit")
+        expect(attachments).to_have_count(1)
+        expect(attachments.filter(has_text="Some File")).to_have_count(0)
+        expect(attachments.filter(has_text="Some Image")).to_have_count(1)
+
     def test_close_edit_refreshes_body_classes(self):
         # Needs to be publish
         api.content.transition(obj=self.entry2, transition="publish")
