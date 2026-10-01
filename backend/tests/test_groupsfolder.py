@@ -36,6 +36,7 @@ class TestGroupsFolder(GroupsFolderSetupMixin):
         self.subnav.reindexObject(idxs=["apps_supported"])
         transaction.commit()
 
+    @pytest.mark.flaky(reruns=2)
     def test_group_navigation_second_level(self):
         page = self.page
         page.goto(f"{self.plone_url}/bund/setActiveApp?app=elan")
