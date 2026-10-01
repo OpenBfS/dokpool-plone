@@ -50,9 +50,9 @@ msgstr "Filter anwenden"
 msgid "Archived events"
 msgstr "Archivierte Ereignisse"
 
+#: docpool.ui/docpool/ui/browser/templates/dpdocument.pt
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
 #: docpool.ui/docpool/ui/browser/templates/wizard_2.pt
-#: docpool.ui/docpool/ui/browser/templates/wizard_3.pt
 msgid "Back"
 msgstr "Zurück"
 
@@ -150,7 +150,6 @@ msgstr "Einträge"
 msgid "Entrytype"
 msgstr "Eintragsart"
 
-#. Default: "Eintragsarten"
 #: docpool.ui/docpool/ui/browser/viewlets/sidebar.pt
 msgid "Entrytypes"
 msgstr "Eintragsarten"

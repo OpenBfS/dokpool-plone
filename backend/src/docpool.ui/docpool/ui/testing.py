@@ -60,6 +60,8 @@ class DocpoolUiLayer(PloneSandboxLayer):
             prefix="bund",
             supportedApps=("elan",),
         )
+        # Test should run in english
+        api.portal.set_registry_record("plone.default_language", "en")
         notify(EditFinishedEvent(dp))
         portal.acl_users.userFolderAddUser(SITE_OWNER_NAME, SITE_OWNER_PASSWORD, ["Manager"], [])
 

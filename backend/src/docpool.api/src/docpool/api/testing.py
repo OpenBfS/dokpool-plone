@@ -1,3 +1,4 @@
+from plone import api
 from plone.app.contenttypes.testing import PLONE_APP_CONTENTTYPES_FIXTURE
 from plone.app.robotframework.testing import REMOTE_LIBRARY_BUNDLE_FIXTURE
 from plone.app.testing import applyProfile
@@ -58,6 +59,8 @@ class DocpoolApiCleanLayer(PloneSandboxLayer):
 
     def setUpPloneSite(self, portal):
         portal.acl_users.userFolderAddUser(SITE_OWNER_NAME, SITE_OWNER_PASSWORD, ["Manager"], [])
+        # Test should run in english
+        api.portal.set_registry_record("plone.default_language", "en")
 
 
 DOCPOOL_API_FIXTURE = DocpoolApiLayer()

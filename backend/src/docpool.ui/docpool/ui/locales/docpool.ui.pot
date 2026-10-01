@@ -49,9 +49,9 @@ msgstr ""
 msgid "Archived events"
 msgstr ""
 
+#: docpool.ui/docpool/ui/browser/templates/dpdocument.pt
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
 #: docpool.ui/docpool/ui/browser/templates/wizard_2.pt
-#: docpool.ui/docpool/ui/browser/templates/wizard_3.pt
 msgid "Back"
 msgstr ""
 
@@ -149,7 +149,6 @@ msgstr ""
 msgid "Entrytype"
 msgstr ""
 
-#. Default: "Eintragsarten"
 #: docpool.ui/docpool/ui/browser/viewlets/sidebar.pt
 msgid "Entrytypes"
 msgstr ""

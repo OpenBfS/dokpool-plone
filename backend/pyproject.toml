@@ -94,7 +94,9 @@ target = "plone"
 managed = true
 package = false
 default-groups = ["test", "dev"]
-override-dependencies = []
+override-dependencies = [
+    "playwright==1.62.0",
+]
 constraint-dependencies = [
     "AccessControl==7.4",
     "Acquisition==6.2",

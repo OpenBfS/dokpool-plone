@@ -11,6 +11,7 @@
   >
     <viewlet name="plone.logo" />
     <viewlet name="plone.searchbox" />
+    <viewlet name="plone.app.i18n.locales.languageselector" />
   </hidden>
   <order manager="plone.portaltop"
          skinname="*"
