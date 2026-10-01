@@ -87,7 +87,7 @@ class EntryTypes(BrowserView):
                 }
                 entries.append(entry)
             if entries:
-                results[subcategory.title] = entries
+                results[category_brain.Title] = entries
 
         return results
 
