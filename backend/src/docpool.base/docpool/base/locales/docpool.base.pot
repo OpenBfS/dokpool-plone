@@ -556,6 +556,10 @@ msgstr ""
 msgid "View"
 msgstr ""
 
+#: docpool.base/docpool/base/users/usergroups_groupdetails.py
+msgid "You need to set a title."
+msgstr ""
+
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "alert_delete_popup"
 msgstr ""
