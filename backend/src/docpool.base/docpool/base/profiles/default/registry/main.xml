@@ -2,6 +2,24 @@
 <registry xmlns:i18n="http://xml.zope.org/namespaces/i18n"
           i18n:domain="docpool.base"
 >
+  <record name="plone.use_request_negotiation">
+    <value>True</value>
+  </record>
+  <record name="plone.use_cookie_negotiation">
+    <value>True</value>
+  </record>
+  <record name="plone.available_languages">
+    <value>
+      <element>de</element>
+      <element>en</element>
+    </value>
+  </record>
+  <record name="plone.default_language">
+    <value>de</value>
+  </record>
+  <record name="plone.always_show_selector">
+    <value>True</value>
+  </record>
   <record name="plone.external_links_open_new_window">
     <value>True</value>
   </record>

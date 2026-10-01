@@ -51,6 +51,8 @@ class DocpoolBaseLayer(PloneSandboxLayer):
             id="test_docpool",
             title="Test Dokpool",
         )
+        # Test should run in english
+        api.portal.set_registry_record("plone.default_language", "en")
         notify(EditFinishedEvent(docpool))
         self["test_docpool"] = docpool
         portal.acl_users.userFolderAddUser(SITE_OWNER_NAME, SITE_OWNER_PASSWORD, ["Manager"], [])

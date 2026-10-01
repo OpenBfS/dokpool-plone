@@ -5,6 +5,8 @@
        portal_url context/@@plone_portal_state/portal_url;
        user_name python:view.user_name();
        can_access_user_preferences python:view.can_access_user_preferences();
+       current_base_url context/@@plone_context_state/current_base_url;
+       language context/@@plone_portal_state/language;
      "
 >
   <button class="btn btn-icon"
@@ -51,13 +53,23 @@
       </a>
     </li>
     <li class="user-menu-action-item"
-        tal:condition="can_access_user_preferences"
+        tal:condition="python: language=='de'"
     >
       <a class="dropdown-item user-menu-link"
-         href="${portal_url}/@@user-preferences"
+         href="${current_base_url}?set_language=en"
       >
-        <tal:icon tal:replace="structure python:icons.tag('wrench', tag_class='user-menu-row-icon')" />
-        <span>Spracheinstellungen</span>
+        <tal:icon tal:replace="structure python:icons.tag('flag', tag_class='user-menu-row-icon')" />
+        <span>English</span>
+      </a>
+    </li>
+    <li class="user-menu-action-item"
+        tal:condition="python: language=='en'"
+    >
+      <a class="dropdown-item user-menu-link"
+         href="${current_base_url}?set_language=de"
+      >
+        <tal:icon tal:replace="structure python:icons.tag('flag', tag_class='user-menu-row-icon')" />
+        <span>Deutsch</span>
       </a>
     </li>
     <li class="user-menu-action-item">

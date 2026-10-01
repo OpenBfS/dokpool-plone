@@ -52,6 +52,8 @@ class Fixture(PloneSandboxLayer):
             title="Test Dokpool",
             supportedApps=("elan",),
         )
+        # Test should run in english
+        api.portal.set_registry_record("plone.default_language", "en")
         notify(EditFinishedEvent(docpool))
 
 

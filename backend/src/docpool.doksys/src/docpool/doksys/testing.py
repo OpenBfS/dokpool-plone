@@ -1,3 +1,4 @@
+from plone import api
 from plone.app.contenttypes.testing import PLONE_APP_CONTENTTYPES_FIXTURE
 from plone.app.robotframework.testing import REMOTE_LIBRARY_BUNDLE_FIXTURE
 from plone.app.testing import applyProfile
@@ -29,6 +30,8 @@ class DocpoolDoksysLayer(PloneSandboxLayer):
 
     def setUpPloneSite(self, portal):
         applyProfile(portal, "docpool.doksys:default")
+        # Test should run in english
+        api.portal.set_registry_record("plone.default_language", "en")
 
 
 DOCPOOL_DOKSYS_FIXTURE = DocpoolDoksysLayer()
