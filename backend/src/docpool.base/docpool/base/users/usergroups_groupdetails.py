@@ -95,6 +95,10 @@ class GroupDetailsControlPanel(GDCP):
                 # BfS: modifications for local user management:
                 # Automatically change id and titel with prefix
                 # when we are inside a DocumentPool
+                if not title:
+                    msg = _("You need to set a title.")
+                    IStatusMessage(self.request).add(msg, "error")
+                    return self.index()
                 props = {"title": title, "description": description}
                 if (dp := self.context).portal_type == "DocumentPool":
                     prefix = dp.prefix or dp.getId()
