@@ -226,7 +226,7 @@ class PortalHeader(EventSwitcherMixin, TimezoneTableMixin, GroupsTreeMixin, View
         )
         menu = []
 
-        for dp, _app_names in self.dp_apps:
+        for dp, active_apps in self.dp_apps:
             dp_id = dp.getId()
             physical_path = self.context.getPhysicalPath()
             keep_context = (
@@ -235,15 +235,17 @@ class PortalHeader(EventSwitcherMixin, TimezoneTableMixin, GroupsTreeMixin, View
             url = (self.context if keep_context else dp).absolute_url()
             apps = []
             for app_title, app_name in all_apps:
-                redirect_to = self.redirect_to_map.get(app_name)
-                params = "" if keep_context or redirect_to is None else f"&redirect_to={redirect_to}"
-                apps.append(
-                    dict(
-                        title=f"{app_title}",
-                        url=f"{url}/setActiveApp?app={app_name}{params}",
+                if app_name in active_apps:
+                    redirect_to = self.redirect_to_map.get(app_name)
+                    params = "" if keep_context or redirect_to is None else f"&redirect_to={redirect_to}"
+                    apps.append(
+                        dict(
+                            title=f"{app_title}",
+                            url=f"{url}/setActiveApp?app={app_name}{params}",
+                        )
                     )
-                )
-
+                else:
+                    apps.append({"title": None, "url": None})
             menu.append(
                 dict(
                     dptitle=dp.title,
