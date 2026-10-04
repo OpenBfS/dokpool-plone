@@ -54,6 +54,7 @@ class EntryTypes(BrowserView):
             "portal_type": "DocTypeCategory",
             "sort_on": "getObjPositionInParent",
             "apps_supported": self.active_apps,
+            "unrestricted": True,
         }
 
         for category_brain in api.content.find(**query):
@@ -63,6 +64,7 @@ class EntryTypes(BrowserView):
                 "portal_type": "DocTypeSubCategory",
                 "sort_on": "getObjPositionInParent",
                 "apps_supported": self.active_apps,
+                "unrestricted": True,
             }
             entries = []
             for subcategory_brain in catalog(**subquery):
@@ -72,11 +74,12 @@ class EntryTypes(BrowserView):
                     "portal_type": ["DocType"],
                     "sort_on": "getObjPositionInParent",
                     "apps_supported": self.active_apps,
+                    "unrestricted": True,
                 }
                 if not catalog(**doctypequery):
                     # Hide subcategories without DocTypes for the current app!
                     continue
-                subcategory = subcategory_brain.getObject()
+                subcategory = subcategory_brain._unrestrictedGetObject()
                 subcategory_qs = f"selected_subcategories:list={subcategory.title}"
                 entry = {
                     "title": subcategory.title,
@@ -87,7 +90,7 @@ class EntryTypes(BrowserView):
                 }
                 entries.append(entry)
             if entries:
-                results[subcategory.title] = entries
+                results[category_brain.Title] = entries
 
         return results
 
