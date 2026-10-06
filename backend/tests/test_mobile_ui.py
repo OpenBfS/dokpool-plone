@@ -16,6 +16,7 @@ class TestMobileUI:
         # Set mobile viewport
         page.set_viewport_size({"width": 375, "height": 667})
         page.goto(f"{self.plone_url}/bund/setActiveApp?app=elan")
+        expect(page).to_have_url(f"{self.plone_url}/bund/@@listing")
         # Check that offcanvas menu exists but is not visible initially
         offcanvas = page.locator("#offcanvasNavbar")
         expect(offcanvas).to_be_attached()
@@ -37,6 +38,7 @@ class TestMobileUI:
         expect(notfall_link).to_be_visible()
         notfall_link.click()
         page.wait_for_load_state("networkidle")
+        expect(page).to_have_url(f"{self.plone_url}/bund/@@overview")
 
         menu_toggle = page.locator("button.navbar-toggler.ms-2")
         expect(menu_toggle).to_be_visible()

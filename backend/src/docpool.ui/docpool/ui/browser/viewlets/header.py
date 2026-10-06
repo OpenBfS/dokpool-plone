@@ -167,7 +167,7 @@ class AppSearchBoxViewlet(SearchBoxViewlet):
 class PortalHeader(EventSwitcherMixin, TimezoneTableMixin, GroupsTreeMixin, ViewletBase):
     redirect_to_map = {
         "base": "",
-        "elan": "/@@overview",
+        "elan": "/@@listing",
         "doksys": "/@@listing",
         "rei": "/@@listing",
         "rodos": "/@@listing",

@@ -20,7 +20,7 @@ class TestNavigation:
     def test_app_switcher(self):
         page = self.page
         page.goto(f"{self.docpool_url}/setActiveApp?app={ELAN_APP}")
-        expect(page).to_have_url(f"{self.docpool_url}/@@overview")
+        expect(page).to_have_url(f"{self.docpool_url}/@@listing")
 
         app_switcher = page.locator("#docpool-header .app-switcher")
         expect(app_switcher).to_be_visible()
@@ -36,4 +36,10 @@ class TestNavigation:
         elan_link = app_menu.get_by_role("link", name="ELAN")
         expect(elan_link).to_be_visible()
         elan_link.click()
-        expect(page).to_have_url(f"{self.docpool_url}/@@overview")
+        expect(page).to_have_url(f"{self.docpool_url}/@@listing")
+
+    def test_docpool_entry(self):
+        self.page.goto(self.docpool_url)
+        expect(self.page).to_have_url(f"{self.docpool_url}/@@listing")
+        self.page.goto(f"{self.docpool_url}/@@overview")
+        expect(self.page).to_have_url(f"{self.docpool_url}/@@overview")

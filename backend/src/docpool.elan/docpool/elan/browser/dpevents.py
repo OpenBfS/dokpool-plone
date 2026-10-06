@@ -75,4 +75,5 @@ class SelectScenario(BrowserView):
     def __call__(self):
         set_scenario_for_current_user(self.request.get("scenario"))
         self.request.response.setHeader("Pragma", "no-cache")
-        return self.request.response.redirect(self.request.get("HTTP_REFERER", ""))
+        docpool = IPlaces(self.context).document_pool
+        return self.request.response.redirect(f"{docpool.absolute_url()}/@@overview")

@@ -49,8 +49,17 @@ class TestUIFeatures(unittest.TestCase):
         self.docpool = self.portal["bund"]
         self.setup_content()
 
-    def test_docpool_view_redirects_to_overview(self):
+    def test_docpool_view_redirects_to_chronology(self):
         view = api.content.get_view("view", self.docpool, self.request)
+        listing_url = f"{self.docpool.absolute_url()}/@@listing"
+
+        self.assertEqual(view(), listing_url)
+        self.assertEqual(self.request.response.getStatus(), 302)
+        self.assertEqual(self.request.response.getHeader("Location"), listing_url)
+
+    def test_scenario_selection_redirects_to_overview(self):
+        self.request.form["scenario"] = get_scenario_for_current_user(self.docpool)
+        view = api.content.get_view("select_scenario", self.docpool, self.request)
         overview_url = f"{self.docpool.absolute_url()}/@@overview"
 
         self.assertEqual(view(), overview_url)
