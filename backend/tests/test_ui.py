@@ -21,6 +21,7 @@ class TestUI:
     def test_desktop_nav_switch_event(self):
         page = self.page
         page.goto(f"{self.plone_url}/bund/setActiveApp?app=elan")
+        expect(page).to_have_url(f"{self.plone_url}/bund/@@listing")
 
         expect(page.locator("#docpool-header .desktop-settings-infos")).to_be_visible()
         selected_event_title = page.locator(
@@ -37,4 +38,10 @@ class TestUI:
         notfall_link.click()
         page.wait_for_load_state("networkidle")
 
+        expect(page).to_have_url(f"{self.plone_url}/bund/@@overview")
         expect(selected_event_title).to_have_text("Notfall")
+
+        page.goto(f"{self.plone_url}/bund/@@listing")
+        event_switcher.click()
+        notfall_link.click()
+        expect(page).to_have_url(f"{self.plone_url}/bund/@@overview")

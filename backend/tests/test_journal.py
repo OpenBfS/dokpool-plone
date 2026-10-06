@@ -37,8 +37,6 @@ class TestJournal:
         page.goto(self.plone_url)
         page.locator("button").filter(has_text="Docpools").click()
         page.get_by_role("link", name="ELAN").click()
-        assert page.url.endswith("/bund/@@overview")
-        page.goto(f"{self.plone_url}/bund/@@listing")
         expect(page.locator("#listing-filters")).to_contain_text("0 Entries")
 
         page.get_by_role("link", name="admin").click()
