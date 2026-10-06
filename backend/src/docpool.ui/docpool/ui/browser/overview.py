@@ -194,7 +194,7 @@ class MeasuresInformationPublicTile(OverviewTileListing):
         "id": "overview_tile_public_information",
         "title": _("overview_tile_public_information", default="Measures and Information for the Public"),
     }
-    tile_query = {"dp_type": ["response_action", "response_action_taken", "information-for_the_public"]}
+    tile_query = {"dp_type": ["response_action", "response_action_taken", "information_for_the_public"]}
 
 
 # Messstrategien und Messempfehlungen
