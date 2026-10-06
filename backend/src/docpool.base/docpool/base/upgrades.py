@@ -14,6 +14,7 @@ from docpool.elan.content.dpevents import IDPEvents
 from five.intid.intid import addIntIdSubscriber
 from persistent.list import PersistentList
 from plone import api
+from plone.app.textfield import RichTextValue
 from plone.app.upgrade.utils import loadMigrationProfile
 from plone.base.utils import get_installer
 from plone.base.utils import unrestricted_construct_instance
@@ -896,3 +897,56 @@ def to_3000_global_events(context):
             event.__ALLOW_DELETE_DURING_UPGRADE_STEP__ = True
             api.content.delete(obj=event)
             log.info(f"Replace {event} ({title}) by existing global {moved}")
+
+
+def to_3000_drop_description(context=None):
+    for brain in api.content.find(portal_type="DPDocument", sort_on="path"):
+        text_to_drop = [
+            "",
+            ".",
+            "..",
+            "...",
+            "Datei:",
+            "Kein Text",
+            "null",
+            "REI-Bericht",
+            "s. Anhang",
+            "siehe Anhang",
+            "siehe Anlage",
+            "Siehe Datei",
+            "siehe PDF",
+            "test",
+            "Test",
+            "Text",
+        ]
+        if not brain.Description or not brain.Description.strip():
+            continue
+        obj = brain.getObject()
+        if not obj.description or not obj.description.strip():
+            continue
+        description = obj.description.strip()
+        if description in text_to_drop:
+            del obj.description
+            obj._p_changed = 1
+            obj.reindexObject(idxs=["Description"])
+            log.info("Drop description: %s", brain.getURL())
+            continue
+        text = obj.text.raw if obj.text else ""
+        text = text if text.strip() else ""
+        portal_transforms = api.portal.get_tool("portal_transforms")
+        plain_text = portal_transforms.convert("html_to_text", text).getData().strip()
+        if plain_text in text_to_drop:
+            text = ""
+        if plain_text == description:
+            # Drop description
+            del obj.description
+            obj._p_changed = 1
+            obj.reindexObject(idxs=["Description"])
+            log.info("Drop description (same as text): %s", brain.getURL())
+            continue
+        new_text = f"<p>{description}</p>" + text
+        obj.text = RichTextValue(new_text, "text/html", "text/x-html-safe")
+        del obj.description
+        obj._p_changed = 1
+        obj.reindexObject(idxs=["Description"])
+        log.info("Added description to text: %s", brain.getURL())

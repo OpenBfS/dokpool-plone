@@ -131,6 +131,11 @@
         handler="docpool.base.upgrades.to_3000_global_events"
         />
 
+    <genericsetup:upgradeStep
+        title="Drop descriptions"
+        handler="docpool.base.upgrades.to_3000_drop_description"
+        />
+
   </genericsetup:upgradeSteps>
 
 </configure>
