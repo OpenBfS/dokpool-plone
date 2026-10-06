@@ -68,7 +68,7 @@ class TestUIFeatures(unittest.TestCase):
             f"{self.docpool.absolute_url()}/@@listing"
             "?dp_type:list=response_action"
             "&dp_type:list=response_action_taken"
-            "&dp_type:list=information-for_the_public"
+            "&dp_type:list=information_for_the_public"
         )
 
         self.assertEqual(tile_view.listing_url(), expected_url)
