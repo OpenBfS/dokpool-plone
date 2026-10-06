@@ -79,7 +79,7 @@
   <browser:page
       name="view"
       for="docpool.base.interfaces.IDocumentPool"
-      class=".overview.OverviewRedirect"
+      class=".overview.ChronologyRedirect"
       permission="zope.Public"
       layer="docpool.ui.interfaces.IUITheme"
       />

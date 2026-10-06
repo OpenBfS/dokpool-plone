@@ -11,9 +11,9 @@ from urllib.parse import urlencode
 OVERVIEW_TILE_LIMIT = 2
 
 
-class OverviewRedirect(BrowserView):
+class ChronologyRedirect(BrowserView):
     def __call__(self):
-        return self.request.response.redirect(f"{self.context.absolute_url()}/@@overview")
+        return self.request.response.redirect(f"{self.context.absolute_url()}/@@listing")
 
 
 class Overview(BrowserView):
