@@ -145,7 +145,8 @@ class Listing(BrowserView):
         selected_dp_types = form.get("dp_type") or []
         if selected_dp_types:
             self.query["dp_type"] = {"query": selected_dp_types, "not": [JOURNALENTRY_ID]}
-        else:
+        elif not selected_dp_types and not self.folder_listing:
+            # Hide journalentries unless we are listing a folder (might be a journalfolder)
             self.query["dp_type"] = {"not": [JOURNALENTRY_ID]}
 
         selected_uids = form.get("UID") or []
