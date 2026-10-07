@@ -377,6 +377,14 @@ msgstr "Zur Aufsichtsbehörde zurück ziehen"
 msgid "Revised"
 msgstr "Revidiert"
 
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "Revoke"
+msgstr "Stornieren"
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "Revoked"
+msgstr "Storniert"
+
 #: docpool.base/docpool/base/browser/dpdocument.py
 msgid "Save"
 msgstr "Speichern"

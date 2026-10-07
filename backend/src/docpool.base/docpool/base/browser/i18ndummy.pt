@@ -27,6 +27,7 @@
         <i18n:dummy translate="Publish BMUKN"></i18n:dummy>
         <i18n:dummy translate="Reject"></i18n:dummy>
         <i18n:dummy translate="Retract"></i18n:dummy>
+        <i18n:dummy translate="Revoke"></i18n:dummy>
         <i18n:dummy translate="Submit"></i18n:dummy>
         <i18n:dummy translate="alert_reject_to_authority_popup"></i18n:dummy>
         <i18n:dummy translate="alert_reject_to_bfs_popup"></i18n:dummy>
@@ -40,6 +41,7 @@
         <i18n:dummy translate="alert_submit_bmu_popup"></i18n:dummy>
         <i18n:dummy translate="submit_bmu"></i18n:dummy>
         <i18n:dummy translate="Pending BMUKN"></i18n:dummy>
+        <i18n:dummy translate="Publish BMUKN"></i18n:dummy>
         <i18n:dummy translate="Pending BfS"></i18n:dummy>
         <i18n:dummy translate="Pending authority"></i18n:dummy>
         <i18n:dummy translate="Published"></i18n:dummy>
@@ -48,6 +50,7 @@
         <i18n:dummy translate="Retract to NPP Operator"></i18n:dummy>
         <i18n:dummy translate="Retract to authority"></i18n:dummy>
         <i18n:dummy translate="Revised"></i18n:dummy>
+        <i18n:dummy translate="Revoked"></i18n:dummy>
         <i18n:dummy translate="Send back"></i18n:dummy>
         <i18n:dummy translate="Send back to BfS"></i18n:dummy>
         <i18n:dummy translate="Send back to NPP operator"></i18n:dummy>

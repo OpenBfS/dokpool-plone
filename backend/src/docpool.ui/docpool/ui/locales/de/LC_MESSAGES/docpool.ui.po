@@ -341,6 +341,10 @@ msgstr "Ergebnisse für"
 #: docpool.ui/docpool/ui/browser/dpdocument.py
 #: docpool.ui/docpool/ui/browser/listing.py
 msgid "Revised"
+msgstr "Revidiert"
+
+#: docpool.ui/docpool/ui/browser/listing.py
+msgid "Revoked"
 msgstr "Storniert"
 
 #: docpool.ui/docpool/ui/browser/templates/wizard_3.pt
