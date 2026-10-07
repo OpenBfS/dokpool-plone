@@ -6,14 +6,14 @@ import directors;
 import dynamic;
 
 probe dokpool_probe {
-	   	.window = 8;
-	   	.initial = 7;
-	   	.threshold = 6;
-	   	.interval = 5s;
+  .window = 8;
+  .initial = 7;
+  .threshold = 6;
+  .interval = 5s;
 }
 
 acl dokpoolnet_acl {
-    "172.26"/24;
+  "172.26.0.0/24";
 }
 
 
@@ -85,11 +85,11 @@ sub process_redirects{
 }
 
 sub vcl_init {
-	   	new dokpool_dir = dynamic.director(
-	   		port = "8080",
-	   		probe = dokpool_probe,
-	   		whitelist = dokpoolnet_acl,
-	   		ttl = 10s);
+  new dokpool_dir = dynamic.director(
+    port = "8080",
+    probe = dokpool_probe,
+    whitelist = dokpoolnet_acl,
+    ttl = 10s);
 }
 
 sub vcl_recv {
