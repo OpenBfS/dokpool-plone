@@ -16,6 +16,7 @@ probe dokpool_probe {
 
 acl dokpoolnet_acl {
   "172.26.0.0/24";
+  "192.168.230.0"/24;
 }
 
 
@@ -32,6 +33,7 @@ acl purge {
   "localhost";
   "127.0.0.1";
   "172.26.0.0/24";
+  " 192.168.230.0/24";
 }
 
 sub detect_protocol{
