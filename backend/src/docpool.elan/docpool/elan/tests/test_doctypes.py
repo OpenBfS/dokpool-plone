@@ -477,7 +477,7 @@ class TestDocTypes(unittest.TestCase):
 
     def test_journalentry_in_available_doctypes(self):
         docpool = self.portal["test_docpool"]
-        self.assertIn("journalentry|Tagebucheintrag", possibleDocTypes(docpool))
+        self.assertIn("journalentry|Protokolleintrag", possibleDocTypes(docpool))
 
     def test_allow_journalentry_creates_journal_folder(self):
         docpool = self.portal["test_docpool"]
