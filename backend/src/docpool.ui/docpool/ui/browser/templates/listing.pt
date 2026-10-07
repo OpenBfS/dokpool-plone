@@ -484,6 +484,7 @@
                tal:define="
                  is_selected python: view.sort_on != list(view.sort_on_options.keys())[0];
                "
+               tal:condition="python: 'sort' in view.features"
           >
             <button class="btn btn-icon dropdown-toggle"
                     aria-expanded="false"
@@ -521,7 +522,9 @@
             </div>
           </div>
 
-          <div class="m-1 d-none d-lg-block">
+          <div class="m-1 d-none d-lg-block"
+               tal:condition="python: 'print' in view.features"
+          >
             <a class="btn btn-secondary btn-icon"
                href="javascript:this.print();"
                title="Print"
@@ -532,7 +535,7 @@
           </div>
 
           <div class="ms-1 my-1 d-none d-lg-block"
-               tal:condition="python: view.folder_listing and not view.is_archive"
+               tal:condition="python: 'folder_wizard' in view.features and view.folder_listing and not view.is_archive"
           >
             <a class="btn btn-secondary btn-icon"
                href="${python: context.absolute_url()}/@@folder_wizard"
@@ -544,7 +547,7 @@
           </div>
 
           <div class="ms-1 my-1 d-none d-lg-block"
-               tal:condition="python: not view.is_archive"
+               tal:condition="python: 'entry_wizard' in view.features and not view.is_archive"
           >
             <a class="btn btn-secondary btn-icon"
                href="${python: context.absolute_url()}/@@dpdocument_wizard_1"
@@ -658,6 +661,7 @@
                       tal:attributes="
                         data-pat-tinymce python: view.tinymce_settings();
                       "
+                      i18n:attributes="placeholder"
             ></textarea>
             <input form="listing-primary-form"
                    name="journal_title"

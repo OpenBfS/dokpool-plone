@@ -391,7 +391,7 @@ span.badge.text-bg-light {
       width: 80px;
       flex-shrink: 0;
 
-      .doktype-icon-container {
+      .doctype-icon-container {
         background-color: var(--bs-gray-light);
         padding: 10px 0px 6px 0;
 
@@ -461,6 +461,14 @@ span.badge.text-bg-light {
         z-index: 1000;
       }
     }
+
+    &.doctype-journalentry .doctype-box {
+      width: 0;
+      .doctype-icon-container, .review-state {
+        visibility: hidden;
+      }
+    }
+
   }
 }
 

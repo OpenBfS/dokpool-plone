@@ -23,7 +23,7 @@
             <div class="py-3 px-2 flex-fill text-box">
               <h3 class="mb-0"
                   tal:content="python: item['title']"
-              >Tagebuch Ministerium (Bund)</h3>
+              >Protokoll Ministerium (Bund)</h3>
             </div>
 
             <div class="py-3 px-2">

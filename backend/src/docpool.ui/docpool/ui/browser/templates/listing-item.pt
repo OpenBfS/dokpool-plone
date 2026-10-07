@@ -1,4 +1,4 @@
-<div class="listing-item d-flex align-items-center border-bottom position-relative"
+<div class="listing-item d-flex align-items-center border-bottom position-relative doctype-${doctype}"
      tal:define="
        portal_state context/@@plone_portal_state;
        plone_view nocall:context/@@plone;
@@ -41,7 +41,7 @@
 
   <div class="listingitem-meta me-3 flex-shrink-0 d-flex flex-column align-items-center">
     <div class="doctype-box">
-      <div class="h-100 text-center doktype-icon-container px-3 pt-2 pb-1">
+      <div class="h-100 text-center doctype-icon-container px-3 pt-2 pb-1">
         <tal:icon tal:replace="structure python:icons.tag(data['doctype_icon_name'], tag_class='entrytype ' + data['doctype_icon_name'], tag_alt=data['doctype_title'])" />
       </div>
       <div class="card-body review-state ${python:data['state_class']}">

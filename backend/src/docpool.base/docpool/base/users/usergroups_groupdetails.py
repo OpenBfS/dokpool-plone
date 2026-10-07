@@ -212,7 +212,7 @@ def create_journalfolder(context, group):
             return
 
     else:
-        title = "Tagebuch " + group.getProperty("title")
+        title = "Protokoll " + group.getProperty("title")
         # ignore constrains
         journal_folder = unrestricted_construct_instance(
             "SimpleFolder",

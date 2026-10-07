@@ -81,15 +81,15 @@ class TestJournal:
         page.goto(f"{self.plone_url}/bund/@@journals")
         items = page.locator(".journals .listing-item")
         expect(items).to_have_count(1)
-        page.get_by_role("link", name="Tagebuch Group 1").click()
+        page.get_by_role("link", name="Protokoll Group 1").click()
 
         # We see the journal
-        url = f"/bund/@@journalentries?selected_groups={self.group_folder.UID()}&journal_title=Tagebuch%20Group%201&journal_folder_uid={self.journal_folder.UID()}"
+        url = f"/bund/@@journalentries?selected_groups={self.group_folder.UID()}&journal_title=Protokoll%20Group%201&journal_folder_uid={self.journal_folder.UID()}"
         assert page.url.endswith(url)
         items = page.get_by_role("link", name="Stretched link to details view", exact=True)
         expect(items).to_have_count(0)
 
-        fill_rich_text_widget(page, "Ein neuer Tagebucheintrag", editor_id="journalentry-text")
+        fill_rich_text_widget(page, "Ein neuer Protokolleintrag", editor_id="journalentry-text")
         page.get_by_role("button", name="Add journal entry").click()
         inject_links = page.locator("#listing .list-item-inject-link")
         expect(inject_links).to_have_count(1)
@@ -99,12 +99,21 @@ class TestJournal:
         expect(items).to_have_count(1, timeout=15_000)
         expect(page.locator("#listing .listing-item")).to_have_count(1)
 
+        # Make sure the journalentry is not in @@listing
+        page.goto(f"{self.plone_url}/bund/@@listing")
+        inject_links = page.locator("#listing .list-item-inject-link")
+        expect(inject_links).to_have_count(0)
+
         transaction.commit()
-        assert self.journal_folder.keys() == [".wf_policy_config", "ein-neuer-tagebucheintrag"]
+        assert self.journal_folder.keys() == [".wf_policy_config", "ein-neuer-protokolleintrag"]
         assert self.journal_folder[".wf_policy_config"].workflow_policy_in == "dp-private-folder"
         assert self.journal_folder[".wf_policy_config"].workflow_policy_below == "dp-private-folder"
-        entry = self.journal_folder["ein-neuer-tagebucheintrag"]
+        entry = self.journal_folder["ein-neuer-protokolleintrag"]
         assert entry.portal_type == "DPDocument"
-        assert entry.title == "Ein neuer Tagebucheintrag"
-        assert entry.text.raw == "<p>Ein neuer Tagebucheintrag</p>"
+        assert entry.title == "Ein neuer Protokolleintrag"
+        assert entry.text.raw == "<p>Ein neuer Protokolleintrag</p>"
         assert IJournalEntryMarker.providedBy(entry)
+
+        # Make sure the journalentry is not in @@listing
+        listing_view = self.docpool.restrictedTraverse("@@listing")
+        assert listing_view.find() == ([], None)

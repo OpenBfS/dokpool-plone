@@ -31,7 +31,7 @@ msgstr "Ordner anlegen"
 
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
 msgid "Add journal entry"
-msgstr "Journaleintrag hinzufügen"
+msgstr "Protokolleintrag hinzufügen"
 
 #: docpool.ui/docpool/ui/browser/viewlets/header-event-switcher-dropdown.pt
 msgid "Add scenario"
@@ -226,6 +226,10 @@ msgstr "Meine Gruppenordner"
 #: docpool.ui/docpool/ui/browser/viewlets/header-navigation-macros.pt
 msgid "Neues Ereignis anlegen"
 msgstr ""
+
+#: docpool.ui/docpool/ui/browser/templates/listing.pt
+msgid "New journal entry"
+msgstr "Neuer Protokolleintrag"
 
 #: docpool.ui/docpool/ui/browser/listing.py
 msgid "Newest first"

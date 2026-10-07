@@ -27,6 +27,10 @@ class JournalEntries(Listing):
         "text",
     ]
 
+    features = [
+        "print",
+    ]
+
     def update(self):
         self.query["dp_type"] = [JOURNALENTRY_ID]
 

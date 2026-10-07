@@ -736,7 +736,7 @@ def to_3000_refactor_journals(self):
                     )
                 if not group_folder.get(JOURNAL_FOLDER_ID):
                     # Create a new journal_folder
-                    title = "Tagebuch " + group.getProperty("title")
+                    title = "Protokoll " + group.getProperty("title")
                     # ignore constrains
                     journal_folder = unrestricted_construct_instance(
                         "SimpleFolder",
