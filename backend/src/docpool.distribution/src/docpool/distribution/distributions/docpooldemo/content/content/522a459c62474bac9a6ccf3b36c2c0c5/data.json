@@ -25,6 +25,10 @@
   "exportimport.marker_interfaces": [
     "docpool.base.marker.IJournalContainerMarker"
   ],
+  "exportimport.workflow_policy": {
+    "workflow_policy_below": "dp-private-folder",
+    "workflow_policy_in": "dp-private-folder"
+  },
   "id": "journal",
   "is_folderish": true,
   "language": "##DEFAULT##",
