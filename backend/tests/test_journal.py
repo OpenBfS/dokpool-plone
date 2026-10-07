@@ -99,6 +99,11 @@ class TestJournal:
         expect(items).to_have_count(1, timeout=15_000)
         expect(page.locator("#listing .listing-item")).to_have_count(1)
 
+        # Make sure the journalentry is not in @@listing
+        page.goto(f"{self.plone_url}/bund/@@listing")
+        inject_links = page.locator("#listing .list-item-inject-link")
+        expect(inject_links).to_have_count(0)
+
         transaction.commit()
         assert self.journal_folder.keys() == [".wf_policy_config", "ein-neuer-tagebucheintrag"]
         assert self.journal_folder[".wf_policy_config"].workflow_policy_in == "dp-private-folder"
@@ -108,3 +113,7 @@ class TestJournal:
         assert entry.title == "Ein neuer Tagebucheintrag"
         assert entry.text.raw == "<p>Ein neuer Tagebucheintrag</p>"
         assert IJournalEntryMarker.providedBy(entry)
+
+        # Make sure the journalentry is not in @@listing
+        listing_view = self.docpool.restrictedTraverse("@@listing")
+        assert listing_view.find() == ([], None)

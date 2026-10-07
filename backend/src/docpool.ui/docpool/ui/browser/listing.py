@@ -2,6 +2,7 @@ from Acquisition import aq_get
 from copy import copy
 from docpool.base.config import BASE_APP
 from docpool.base.config import FOLDER_TYPES
+from docpool.base.config import JOURNALENTRY_ID
 from docpool.base.config import OTHER_TYPES
 from docpool.base.config import PENDING_STATES
 from docpool.base.config import PRIVATE_STATES
@@ -143,7 +144,9 @@ class Listing(BrowserView):
         # TODO Hacked - Sync it with filter - needs real data
         selected_dp_types = form.get("dp_type") or []
         if selected_dp_types:
-            self.query["dp_type"] = selected_dp_types
+            self.query["dp_type"] = {"query": selected_dp_types, "not": [JOURNALENTRY_ID]}
+        else:
+            self.query["dp_type"] = {"not": [JOURNALENTRY_ID]}
 
         selected_uids = form.get("UID") or []
         if selected_uids:
@@ -377,6 +380,7 @@ class Listing(BrowserView):
             "portal_type": "DocType",
             "sort_on": "getObjPositionInParent",
             "apps_supported": self.active_apps,
+            "getId": {"not": JOURNALENTRY_ID},
         }
         brains = api.content.find(context=config, **query)
         results = {}
