@@ -49,4 +49,5 @@ PENDING_STATES = [
     "pending_second",
 ]
 PUBLISHED_STATES = ["published"]
+REVOKED_STATES = ["revoked"]
 REVISED_STATES = ["revised"]

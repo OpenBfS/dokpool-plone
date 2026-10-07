@@ -16,7 +16,8 @@ $plone-default-pending_bfs-color: #e5bc4a;
 $plone-default-pending_authority-color: #d07317;
 $plone-default-pending_bmu-color: #75a30a;
 $plone-default-published-color: #324d6a;
-$plone-default-revised-color: #d4d4d4;
+$plone-default-revoked-color: #d4d4d4;
+$plone-default-revised-color: #595375;
 
 :root {
   --bs-gray-light: #f1f3f6;
@@ -181,6 +182,11 @@ body.template-entrytypes {
         background-color: $plone-default-pending-color;
       }
 
+      .state-revoked {
+        color: #000 !important;
+        background-color: $plone-default-revoked-color;
+      }
+
       .state-revised {
         color: #000 !important;
         background-color: $plone-default-revised-color;
@@ -229,6 +235,11 @@ body.template-entrytypes {
   &.state-pending_authority {
     color: #fff !important;
     background-color: $plone-default-pending_authority-color;
+  }
+
+  &.state-revoked {
+    color: #000 !important;
+    background-color: $plone-default-revoked-color;
   }
 
   &.state-revised {
