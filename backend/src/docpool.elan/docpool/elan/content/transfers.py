@@ -43,6 +43,8 @@ class ELANSpecificTransfer:
 
         elan_copy.scenario = scenario_uid = self.scenario.UID()
 
+        return  # XXX temporary, see https://redmine-koala.bfs.de/issues/6854
+
         target_docpool = IPlaces(copy).document_pool
         scen = target_docpool.contentconfig.scen
         if scenario_uid not in scen.subscribed_events:
