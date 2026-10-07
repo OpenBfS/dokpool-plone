@@ -14,6 +14,7 @@ from docpool.elan.utils import get_scenario_for_current_user
 from docpool.elan.utils import getOpenScenarios
 from docpool.ui.browser.viewlets.footer import TimezoneTableMixin
 from docpool.ui.utils import can_view
+from docpool.ui.utils import group_has_allowed_document_types
 from importlib.metadata import distribution
 from plone import api
 from plone.app.layout.navigation.interfaces import INavtreeStrategy
@@ -90,7 +91,14 @@ class GroupsTreeMixin:
         if groups_folder is None:
             return []
 
-        return self._build_folder_tree(groups_folder).get("children", [])
+        groups_tool = api.portal.get_tool("portal_groups")
+        folder_tree = self._build_folder_tree(groups_folder)
+        visible_groups = []
+        for node in folder_tree.get("children", []):
+            group_id = node["item"].id
+            if group_has_allowed_document_types(group_id, groups_tool):
+                visible_groups.append(node)
+        return visible_groups
 
     def _transfer_folder_nodes(self, content_area):
         """The transfers area, shown as a single node. Hidden while it is empty."""

@@ -14,6 +14,7 @@ from docpool.base.content.places import IPlaces
 from docpool.elan.config import ELAN_APP
 from docpool.elan.utils import get_scenario_for_current_user
 from docpool.ui import _
+from docpool.ui.utils import group_has_allowed_document_types
 from plone import api
 from plone.protect.authenticator import createToken
 from Products.CMFPlone.browser.search import munge_search_term
@@ -312,13 +313,8 @@ class Listing(BrowserView):
                     "apps_supported": self.active_apps,
                 }
                 for brain in api.content.find(context=self.context, depth=1, **folder_query):
-                    try:
-                        grp = gtool.getGroupById(brain.id)
-                        etypes = grp.getProperty("allowedDocTypes", [])
-                        if etypes:
-                            self.folder_uids.append(brain.UID)
-                    except Exception:
-                        pass
+                    if group_has_allowed_document_types(brain.id, gtool):
+                        self.folder_uids.append(brain.UID)
             else:
                 # All folders we should show in the listing
                 folder_query = {

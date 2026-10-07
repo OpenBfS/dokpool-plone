@@ -27,6 +27,16 @@ ZMF = MessageFactory("zope")
 log = logging.getLogger(__name__)
 
 
+def group_has_allowed_document_types(group_id, groups_tool):
+    """Return whether the group has any allowed document types."""
+
+    try:
+        group = groups_tool.getGroupById(group_id)
+        return group is not None and bool(group.getProperty("allowedDocTypes", []))
+    except Exception:
+        return False
+
+
 def extract_data(portal_type, request=None):
     """
     Utility method to extract and validate data from a contextless form for a
