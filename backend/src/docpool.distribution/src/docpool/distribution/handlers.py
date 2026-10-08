@@ -1,3 +1,4 @@
+from docpool.base.marker import IImportingMarker
 from logging import getLogger
 from plone import api
 from plone.dexterity.content import ASSIGNABLE_CACHE_KEY
@@ -6,6 +7,7 @@ from Products.CMFPlone.controlpanel.events import handleConfigurationChangedEven
 from Products.CMFPlone.Portal import PloneSite
 from Products.ZCatalog.ProgressHandler import ZLogHandler
 from zope.globalrequest import getRequest
+from zope.interface import alsoProvides
 
 
 logger = getLogger(__name__)
@@ -13,6 +15,7 @@ logger = getLogger(__name__)
 
 def pre_handler(answers: dict) -> dict:
     """Process answers."""
+    alsoProvides(getRequest(), IImportingMarker)
     return answers
 
 
