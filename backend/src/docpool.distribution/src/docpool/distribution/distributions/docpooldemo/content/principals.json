@@ -102,116 +102,6 @@
     },
     {
       "allowedDocTypes": [],
-      "description": "Users who can edit journal1 in Brandenburg.",
-      "dp": "32fdd578bc7d446081ce5d64b7015724",
-      "email": "",
-      "groupid": "bb_Journal1_Editors",
-      "groups": [],
-      "principals": [],
-      "roles": [],
-      "title": "Journal 1 Editors (Brandenburg)"
-    },
-    {
-      "allowedDocTypes": [],
-      "description": "Users who can view journal1 in Brandenburg.",
-      "dp": "32fdd578bc7d446081ce5d64b7015724",
-      "email": "",
-      "groupid": "bb_Journal1_Readers",
-      "groups": [],
-      "principals": [],
-      "roles": [],
-      "title": "Journal 1 Reader (Brandenburg)"
-    },
-    {
-      "allowedDocTypes": [],
-      "description": "Users who can edit journal2 in Brandenburg.",
-      "dp": "32fdd578bc7d446081ce5d64b7015724",
-      "email": "",
-      "groupid": "bb_Journal2_Editors",
-      "groups": [],
-      "principals": [],
-      "roles": [],
-      "title": "Journal 2 Editors (Brandenburg)"
-    },
-    {
-      "allowedDocTypes": [],
-      "description": "Users who can view journal2 in Brandenburg.",
-      "dp": "32fdd578bc7d446081ce5d64b7015724",
-      "email": "",
-      "groupid": "bb_Journal2_Readers",
-      "groups": [],
-      "principals": [],
-      "roles": [],
-      "title": "Journal 2 Reader (Brandenburg)"
-    },
-    {
-      "allowedDocTypes": [],
-      "description": "Users who can edit journal3 in Brandenburg.",
-      "dp": "32fdd578bc7d446081ce5d64b7015724",
-      "email": "",
-      "groupid": "bb_Journal3_Editors",
-      "groups": [],
-      "principals": [],
-      "roles": [],
-      "title": "Journal 3 Editors (Brandenburg)"
-    },
-    {
-      "allowedDocTypes": [],
-      "description": "Users who can view journal3 in Brandenburg.",
-      "dp": "32fdd578bc7d446081ce5d64b7015724",
-      "email": "",
-      "groupid": "bb_Journal3_Readers",
-      "groups": [],
-      "principals": [],
-      "roles": [],
-      "title": "Journal 3 Reader (Brandenburg)"
-    },
-    {
-      "allowedDocTypes": [],
-      "description": "Users who can edit journal4 in Brandenburg.",
-      "dp": "32fdd578bc7d446081ce5d64b7015724",
-      "email": "",
-      "groupid": "bb_Journal4_Editors",
-      "groups": [],
-      "principals": [],
-      "roles": [],
-      "title": "Journal 4 Editors (Brandenburg)"
-    },
-    {
-      "allowedDocTypes": [],
-      "description": "Users who can view journal4 in Brandenburg.",
-      "dp": "32fdd578bc7d446081ce5d64b7015724",
-      "email": "",
-      "groupid": "bb_Journal4_Readers",
-      "groups": [],
-      "principals": [],
-      "roles": [],
-      "title": "Journal 4 Reader (Brandenburg)"
-    },
-    {
-      "allowedDocTypes": [],
-      "description": "Users who can edit journal5 in Brandenburg.",
-      "dp": "32fdd578bc7d446081ce5d64b7015724",
-      "email": "",
-      "groupid": "bb_Journal5_Editors",
-      "groups": [],
-      "principals": [],
-      "roles": [],
-      "title": "Journal 5 Editors (Brandenburg)"
-    },
-    {
-      "allowedDocTypes": [],
-      "description": "Users who can view journal5 in Brandenburg.",
-      "dp": "32fdd578bc7d446081ce5d64b7015724",
-      "email": "",
-      "groupid": "bb_Journal5_Readers",
-      "groups": [],
-      "principals": [],
-      "roles": [],
-      "title": "Journal 5 Reader (Brandenburg)"
-    },
-    {
-      "allowedDocTypes": [],
       "description": "Users of the DocPool.",
       "dp": "32fdd578bc7d446081ce5d64b7015724",
       "email": "",
@@ -364,116 +254,6 @@
       ],
       "roles": [],
       "title": "ELAN Users (Berlin)"
-    },
-    {
-      "allowedDocTypes": [],
-      "description": "Users who can edit journal1 in Berlin.",
-      "dp": "55028c031aa9493eb4b68eaf70d2e82a",
-      "email": "",
-      "groupid": "be_Journal1_Editors",
-      "groups": [],
-      "principals": [],
-      "roles": [],
-      "title": "Journal 1 Editors (Berlin)"
-    },
-    {
-      "allowedDocTypes": [],
-      "description": "Users who can view journal1 in Berlin.",
-      "dp": "55028c031aa9493eb4b68eaf70d2e82a",
-      "email": "",
-      "groupid": "be_Journal1_Readers",
-      "groups": [],
-      "principals": [],
-      "roles": [],
-      "title": "Journal 1 Reader (Berlin)"
-    },
-    {
-      "allowedDocTypes": [],
-      "description": "Users who can edit journal2 in Berlin.",
-      "dp": "55028c031aa9493eb4b68eaf70d2e82a",
-      "email": "",
-      "groupid": "be_Journal2_Editors",
-      "groups": [],
-      "principals": [],
-      "roles": [],
-      "title": "Journal 2 Editors (Berlin)"
-    },
-    {
-      "allowedDocTypes": [],
-      "description": "Users who can view journal2 in Berlin.",
-      "dp": "55028c031aa9493eb4b68eaf70d2e82a",
-      "email": "",
-      "groupid": "be_Journal2_Readers",
-      "groups": [],
-      "principals": [],
-      "roles": [],
-      "title": "Journal 2 Reader (Berlin)"
-    },
-    {
-      "allowedDocTypes": [],
-      "description": "Users who can edit journal3 in Berlin.",
-      "dp": "55028c031aa9493eb4b68eaf70d2e82a",
-      "email": "",
-      "groupid": "be_Journal3_Editors",
-      "groups": [],
-      "principals": [],
-      "roles": [],
-      "title": "Journal 3 Editors (Berlin)"
-    },
-    {
-      "allowedDocTypes": [],
-      "description": "Users who can view journal3 in Berlin.",
-      "dp": "55028c031aa9493eb4b68eaf70d2e82a",
-      "email": "",
-      "groupid": "be_Journal3_Readers",
-      "groups": [],
-      "principals": [],
-      "roles": [],
-      "title": "Journal 3 Reader (Berlin)"
-    },
-    {
-      "allowedDocTypes": [],
-      "description": "Users who can edit journal4 in Berlin.",
-      "dp": "55028c031aa9493eb4b68eaf70d2e82a",
-      "email": "",
-      "groupid": "be_Journal4_Editors",
-      "groups": [],
-      "principals": [],
-      "roles": [],
-      "title": "Journal 4 Editors (Berlin)"
-    },
-    {
-      "allowedDocTypes": [],
-      "description": "Users who can view journal4 in Berlin.",
-      "dp": "55028c031aa9493eb4b68eaf70d2e82a",
-      "email": "",
-      "groupid": "be_Journal4_Readers",
-      "groups": [],
-      "principals": [],
-      "roles": [],
-      "title": "Journal 4 Reader (Berlin)"
-    },
-    {
-      "allowedDocTypes": [],
-      "description": "Users who can edit journal5 in Berlin.",
-      "dp": "55028c031aa9493eb4b68eaf70d2e82a",
-      "email": "",
-      "groupid": "be_Journal5_Editors",
-      "groups": [],
-      "principals": [],
-      "roles": [],
-      "title": "Journal 5 Editors (Berlin)"
-    },
-    {
-      "allowedDocTypes": [],
-      "description": "Users who can view journal5 in Berlin.",
-      "dp": "55028c031aa9493eb4b68eaf70d2e82a",
-      "email": "",
-      "groupid": "be_Journal5_Readers",
-      "groups": [],
-      "principals": [],
-      "roles": [],
-      "title": "Journal 5 Reader (Berlin)"
     },
     {
       "allowedDocTypes": [],
@@ -696,118 +476,6 @@
       ],
       "roles": [],
       "title": "Event Editors (Bund)"
-    },
-    {
-      "allowedDocTypes": [],
-      "description": "Users who can edit journal1 in Bund.",
-      "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
-      "email": "",
-      "groupid": "bund_Journal1_Editors",
-      "groups": [],
-      "principals": [
-        "user-behoerde"
-      ],
-      "roles": [],
-      "title": "Journal 1 Editors (Bund)"
-    },
-    {
-      "allowedDocTypes": [],
-      "description": "Users who can view journal1 in Bund.",
-      "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
-      "email": "",
-      "groupid": "bund_Journal1_Readers",
-      "groups": [],
-      "principals": [],
-      "roles": [],
-      "title": "Journal 1 Reader (Bund)"
-    },
-    {
-      "allowedDocTypes": [],
-      "description": "Users who can edit journal2 in Bund.",
-      "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
-      "email": "",
-      "groupid": "bund_Journal2_Editors",
-      "groups": [],
-      "principals": [],
-      "roles": [],
-      "title": "Journal 2 Editors (Bund)"
-    },
-    {
-      "allowedDocTypes": [],
-      "description": "Users who can view journal2 in Bund.",
-      "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
-      "email": "",
-      "groupid": "bund_Journal2_Readers",
-      "groups": [],
-      "principals": [],
-      "roles": [],
-      "title": "Journal 2 Reader (Bund)"
-    },
-    {
-      "allowedDocTypes": [],
-      "description": "Users who can edit journal3 in Bund.",
-      "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
-      "email": "",
-      "groupid": "bund_Journal3_Editors",
-      "groups": [],
-      "principals": [],
-      "roles": [],
-      "title": "Journal 3 Editors (Bund)"
-    },
-    {
-      "allowedDocTypes": [],
-      "description": "Users who can view journal3 in Bund.",
-      "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
-      "email": "",
-      "groupid": "bund_Journal3_Readers",
-      "groups": [],
-      "principals": [],
-      "roles": [],
-      "title": "Journal 3 Reader (Bund)"
-    },
-    {
-      "allowedDocTypes": [],
-      "description": "Users who can edit journal4 in Bund.",
-      "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
-      "email": "",
-      "groupid": "bund_Journal4_Editors",
-      "groups": [],
-      "principals": [],
-      "roles": [],
-      "title": "Journal 4 Editors (Bund)"
-    },
-    {
-      "allowedDocTypes": [],
-      "description": "Users who can view journal4 in Bund.",
-      "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
-      "email": "",
-      "groupid": "bund_Journal4_Readers",
-      "groups": [],
-      "principals": [],
-      "roles": [],
-      "title": "Journal 4 Reader (Bund)"
-    },
-    {
-      "allowedDocTypes": [],
-      "description": "Users who can edit journal5 in Bund.",
-      "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
-      "email": "",
-      "groupid": "bund_Journal5_Editors",
-      "groups": [],
-      "principals": [],
-      "roles": [],
-      "title": "Journal 5 Editors (Bund)"
-    },
-    {
-      "allowedDocTypes": [],
-      "description": "Users who can view journal5 in Bund.",
-      "dp": "e84e6c60b3c34a99b9c82de2ff8f9c46",
-      "email": "",
-      "groupid": "bund_Journal5_Readers",
-      "groups": [],
-      "principals": [],
-      "roles": [],
-      "title": "Journal 5 Reader (Bund)"
     },
     {
       "allowedDocTypes": [],
@@ -1156,116 +824,6 @@
     },
     {
       "allowedDocTypes": [],
-      "description": "Users who can edit journal1 in Mecklenburg-Vorpommern.",
-      "dp": "d5aa26f2b11e4c049f1c94955c41e62a",
-      "email": "",
-      "groupid": "mv_Journal1_Editors",
-      "groups": [],
-      "principals": [],
-      "roles": [],
-      "title": "Journal 1 Editors (Mecklenburg-Vorpommern)"
-    },
-    {
-      "allowedDocTypes": [],
-      "description": "Users who can view journal1 in Mecklenburg-Vorpommern.",
-      "dp": "d5aa26f2b11e4c049f1c94955c41e62a",
-      "email": "",
-      "groupid": "mv_Journal1_Readers",
-      "groups": [],
-      "principals": [],
-      "roles": [],
-      "title": "Journal 1 Reader (Mecklenburg-Vorpommern)"
-    },
-    {
-      "allowedDocTypes": [],
-      "description": "Users who can edit journal2 in Mecklenburg-Vorpommern.",
-      "dp": "d5aa26f2b11e4c049f1c94955c41e62a",
-      "email": "",
-      "groupid": "mv_Journal2_Editors",
-      "groups": [],
-      "principals": [],
-      "roles": [],
-      "title": "Journal 2 Editors (Mecklenburg-Vorpommern)"
-    },
-    {
-      "allowedDocTypes": [],
-      "description": "Users who can view journal2 in Mecklenburg-Vorpommern.",
-      "dp": "d5aa26f2b11e4c049f1c94955c41e62a",
-      "email": "",
-      "groupid": "mv_Journal2_Readers",
-      "groups": [],
-      "principals": [],
-      "roles": [],
-      "title": "Journal 2 Reader (Mecklenburg-Vorpommern)"
-    },
-    {
-      "allowedDocTypes": [],
-      "description": "Users who can edit journal3 in Mecklenburg-Vorpommern.",
-      "dp": "d5aa26f2b11e4c049f1c94955c41e62a",
-      "email": "",
-      "groupid": "mv_Journal3_Editors",
-      "groups": [],
-      "principals": [],
-      "roles": [],
-      "title": "Journal 3 Editors (Mecklenburg-Vorpommern)"
-    },
-    {
-      "allowedDocTypes": [],
-      "description": "Users who can view journal3 in Mecklenburg-Vorpommern.",
-      "dp": "d5aa26f2b11e4c049f1c94955c41e62a",
-      "email": "",
-      "groupid": "mv_Journal3_Readers",
-      "groups": [],
-      "principals": [],
-      "roles": [],
-      "title": "Journal 3 Reader (Mecklenburg-Vorpommern)"
-    },
-    {
-      "allowedDocTypes": [],
-      "description": "Users who can edit journal4 in Mecklenburg-Vorpommern.",
-      "dp": "d5aa26f2b11e4c049f1c94955c41e62a",
-      "email": "",
-      "groupid": "mv_Journal4_Editors",
-      "groups": [],
-      "principals": [],
-      "roles": [],
-      "title": "Journal 4 Editors (Mecklenburg-Vorpommern)"
-    },
-    {
-      "allowedDocTypes": [],
-      "description": "Users who can view journal4 in Mecklenburg-Vorpommern.",
-      "dp": "d5aa26f2b11e4c049f1c94955c41e62a",
-      "email": "",
-      "groupid": "mv_Journal4_Readers",
-      "groups": [],
-      "principals": [],
-      "roles": [],
-      "title": "Journal 4 Reader (Mecklenburg-Vorpommern)"
-    },
-    {
-      "allowedDocTypes": [],
-      "description": "Users who can edit journal5 in Mecklenburg-Vorpommern.",
-      "dp": "d5aa26f2b11e4c049f1c94955c41e62a",
-      "email": "",
-      "groupid": "mv_Journal5_Editors",
-      "groups": [],
-      "principals": [],
-      "roles": [],
-      "title": "Journal 5 Editors (Mecklenburg-Vorpommern)"
-    },
-    {
-      "allowedDocTypes": [],
-      "description": "Users who can view journal5 in Mecklenburg-Vorpommern.",
-      "dp": "d5aa26f2b11e4c049f1c94955c41e62a",
-      "email": "",
-      "groupid": "mv_Journal5_Readers",
-      "groups": [],
-      "principals": [],
-      "roles": [],
-      "title": "Journal 5 Reader (Mecklenburg-Vorpommern)"
-    },
-    {
-      "allowedDocTypes": [],
       "description": "Users of the DocPool.",
       "dp": "d5aa26f2b11e4c049f1c94955c41e62a",
       "email": "",
@@ -1582,7 +1140,7 @@
     {
       "description": "",
       "dp": "",
-      "email": "",
+      "email": "ihotline@bfs.de",
       "fullname": "Docpool Administrator",
       "groups": [],
       "home_page": "",
@@ -1599,7 +1157,7 @@
     {
       "description": "",
       "dp": "",
-      "email": "",
+      "email": "ihotline@bfs.de",
       "fullname": "Docpool Manager",
       "groups": [],
       "home_page": "",
@@ -1616,7 +1174,7 @@
     {
       "description": "",
       "dp": "",
-      "email": "",
+      "email": "ihotline@bfs.de",
       "fullname": "ELAN Administrator",
       "groups": [],
       "home_page": "",
@@ -1632,7 +1190,7 @@
     {
       "description": "",
       "dp": "",
-      "email": "",
+      "email": "ihotline@bfs.de",
       "fullname": "ELAN Manager",
       "groups": [],
       "home_page": "",
@@ -1722,7 +1280,7 @@
     {
       "description": "",
       "dp": "",
-      "email": "",
+      "email": "ihotline@bfs.de",
       "fullname": "REI Administrator",
       "groups": [],
       "home_page": "",
@@ -1738,7 +1296,7 @@
     {
       "description": "",
       "dp": "",
-      "email": "",
+      "email": "ihotline@bfs.de",
       "fullname": "REI Manager",
       "groups": [],
       "home_page": "",
@@ -1827,7 +1385,6 @@
       "groups": [
         "bund_DoksysUsers",
         "bund_ELANUsers",
-        "bund_Journal1_Editors",
         "bund_Members",
         "bund_REIUsers",
         "bund_RodosUsers",
