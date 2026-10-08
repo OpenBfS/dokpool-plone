@@ -148,6 +148,43 @@ class TestUIFeatures(unittest.TestCase):
             html,
         )
 
+    def test_groups_listing_hides_folder_wizard_links(self):
+        groups = self.docpool.content.Groups
+        listing = api.content.get_view("listing", groups, self.request)
+        html = listing()
+        self.assertFalse(listing.folder_wizard_available)
+        self.assertNotIn("/@@folder_wizard", html)
+
+    def test_folder_wizard_assigns_active_app_and_appears_in_listing(self):
+        api.user.get_current().setMemberProperties({"apps": ["elan"]})
+        self.request.set("SESSION", {})
+        self.request.form = {
+            "foldertype": "SimpleFolder",
+            "form.widgets.IDublinCore.title": "New folder",
+            "form.buttons.continue": "Next",
+        }
+        wizard = api.content.get_view("folder_wizard", self.group_folder, self.request)
+        wizard()
+
+        self.assertEqual(wizard.errors, {})
+        folders = api.content.find(
+            context=self.group_folder,
+            depth=1,
+            portal_type="SimpleFolder",
+            apps_supported="elan",
+        )
+        self.assertEqual(len(folders), 1)
+        folder = folders[0].getObject()
+        self.assertEqual(folder.title, "New folder")
+        self.assertEqual(ILocalBehaviorSupport(folder).local_behaviors, ["elan"])
+        self.assertEqual(folders[0].apps_supported, ["elan"])
+
+        self.request.form = {}
+        listing = api.content.get_view("listing", self.group_folder, self.request)
+        html = listing()
+        self.assertIn(folder.UID(), listing.folder_uids)
+        self.assertIn(folder.title, html)
+
     def test_listing_item_view(self):
         uid = self.entry.UID()
 

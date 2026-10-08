@@ -21,10 +21,11 @@
   "language": "##DEFAULT##",
   "layout": "view",
   "local_behaviors": [
+    "doksys",
     "elan"
   ],
   "lock": {},
-  "modified": "2026-02-17T19:13:46+00:00",
+  "modified": "2026-10-08T11:07:11+00:00",
   "partsPattern": null,
   "pdfPattern": ".+\\.pdf$",
   "publishImmediately": false,

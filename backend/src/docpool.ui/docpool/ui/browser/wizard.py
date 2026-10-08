@@ -12,6 +12,7 @@ from docpool.elan.utils import get_scenario_for_current_user
 from docpool.ui import _
 from docpool.ui.browser.dpdocument import visibility_options
 from docpool.ui.utils import extract_data
+from docpool.ui.utils import is_folder_wizard_context
 from plone import api
 from plone.app.dexterity.interfaces import IDXFileFactory
 from plone.app.textfield.value import RichTextValue
@@ -483,9 +484,15 @@ class FolderWizard(ContextlessWizard):
     required_for_next = "required_for_1"
 
     def __call__(self):
+        if not is_folder_wizard_context(self.context):
+            raise Unauthorized("The folder wizard is not available in Groups")
+
         # Button handlers
         if self.form.get("form.buttons.cancel", None) is not None:
             return self.request.response.redirect(self.context.absolute_url())
+
+        dp_app_state = api.content.get_view("dp_app_state", self.context, self.request)
+        self.app = dp_app_state.appsActivatedByCurrentUser()[0]
 
         # Prepare addable types
         container = self.context
@@ -494,8 +501,8 @@ class FolderWizard(ContextlessWizard):
         self.foldertypes = []
         self.add_form = None
         if constrains:
-            # TODO: Ask if we should use getLocallyAllowedTypes instead
-            allowed_types = constrains.getImmediatelyAddableTypes()
+            # Show all in wizard: https://redmine-koala.bfs.de/issues/6552#note-8
+            allowed_types = constrains.getLocallyAllowedTypes()
         # check which folder_type we can add here
         for portal_type in FOLDER_TYPES:
             if constrains and portal_type not in allowed_types:
@@ -569,6 +576,7 @@ class FolderWizard(ContextlessWizard):
             container=self.context,
             type=self.portal_type,
             title=self.data["form.widgets.IDublinCore.title"],
+            local_behaviors=[self.app],
             safe_id=True,
         )
         return new
