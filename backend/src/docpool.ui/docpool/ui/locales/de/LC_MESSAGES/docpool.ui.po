@@ -302,6 +302,10 @@ msgstr "Drucken"
 msgid "Published"
 msgstr "Öffentlich"
 
+#: docpool.ui/docpool/ui/browser/viewlets/sidebar-rei.pt
+msgid "REI-Berichte"
+msgstr ""
+
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
 msgid "Reset filter"
 msgstr "Filter zurücksetzen"

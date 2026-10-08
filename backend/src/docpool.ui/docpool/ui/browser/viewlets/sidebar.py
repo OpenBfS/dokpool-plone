@@ -1,6 +1,8 @@
 from docpool.base.content.archiving import IArchiving
 from docpool.base.utils import is_in_dp_folder
 from docpool.elan.config import ELAN_APP
+from docpool.rei.config import REI_APP
+from docpool.rei.interfaces import IREIActive
 from docpool.ui.browser.viewlets.header import GROUPS_NAV_FOLDERS
 from docpool.ui.browser.viewlets.header import GroupsTreeMixin
 from plone import api
@@ -58,6 +60,9 @@ class SidebarViewlet(GroupsTreeMixin, common.ViewletBase):
             return ""
         return super().render()
 
+    def show_default_entries(self):
+        return not IREIActive.providedBy(self.request)
+
     def show_journals(self):
         dp_app_state = api.content.get_view("dp_app_state", self.context, self.request)
         active_apps = dp_app_state.appsActivatedByCurrentUser()
@@ -70,7 +75,7 @@ class SidebarViewlet(GroupsTreeMixin, common.ViewletBase):
     def show_tasks(self):
         dp_app_state = api.content.get_view("dp_app_state", self.context, self.request)
         active_apps = dp_app_state.appsActivatedByCurrentUser()
-        if ELAN_APP in active_apps:
+        if ELAN_APP in active_apps or REI_APP in active_apps:
             return True
 
     def number_of_tasks(self):

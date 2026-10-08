@@ -33,6 +33,11 @@
       />
 
   <utility
+      provides="docpool.base.marker.IAppActiveMarker"
+      component=".interfaces.IREIActive"
+      />
+
+  <utility
       name="docpool.rei.vocabularies.AuthorityVocabulary"
       component=".vocabularies.AuthorityVocabularyFactory"
       />

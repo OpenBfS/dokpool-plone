@@ -82,3 +82,24 @@ DOCPOOL_UI_ACCEPTANCE_TESTING = FunctionalTesting(
     bases=(DOCPOOL_UI_FIXTURE, REMOTE_LIBRARY_BUNDLE_FIXTURE, WSGI_SERVER_FIXTURE),
     name="DocpoolUiLayer:AcceptanceTesting",
 )
+
+
+class DocpoolUiReiLayer(PloneSandboxLayer):
+    defaultBases = (DOCPOOL_UI_FIXTURE,)
+
+    def setUpZope(self, app, configurationContext):
+        import docpool.rei
+
+        self.loadZCML(package=docpool.rei)
+
+    def setUpPloneSite(self, portal):
+        applyProfile(portal, "docpool.rei:default")
+        docpool = portal["bund"]
+        docpool.supportedApps = ("elan", "rei")
+        notify(EditFinishedEvent(docpool))
+
+
+DOCPOOL_UI_REI_FIXTURE = DocpoolUiReiLayer()
+DOCPOOL_UI_REI_INTEGRATION_TESTING = IntegrationTesting(
+    bases=(DOCPOOL_UI_REI_FIXTURE,), name="DocpoolUiReiLayer:IntegrationTesting"
+)
