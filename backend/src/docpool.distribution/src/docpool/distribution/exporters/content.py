@@ -93,6 +93,12 @@ def global_dict_hook(item, obj, config):
     # Drop bbb scenarios
     item.pop("scenarios", None)
 
+    if created_by := item.get("created_by"):
+        item["created_by"] = [i for i in created_by if i]
+
+    if modified_by := item.get("modified_by"):
+        item["modified_by"] = [i for i in modified_by if i]
+
     return item
 
 
