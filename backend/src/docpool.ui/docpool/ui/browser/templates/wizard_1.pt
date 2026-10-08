@@ -130,6 +130,7 @@
                    widget_name string:entrytype;
                    widget_id python:widget_name.replace('.', '-');
                    widget_value python:form.get(widget_name);
+                   select_first_option python: False if widget_value and widget_value in [i['id'] for i in doctypes] else True;
                    error python:errors.get(widget_name);
                    css_class python:f'mb-3 field fieldname-form.widgets.{widget_name} widget-mode-input';
                    css_class python: css_class + ' error' if error else css_class;
@@ -178,10 +179,9 @@
                            value="${python: item['id']}"
                            tal:define="
                              first_item repeat/item/start;
-                             has_value python:True if widget_value else False;
                            "
                            tal:attributes="
-                             checked python:item['id'] == widget_value if has_value else first_item;
+                             checked python:True if select_first_option and first_item else item['id'] == widget_value;
                              title python: item['title'];
                              id python: item['id'];
                            "
