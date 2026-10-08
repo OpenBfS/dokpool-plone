@@ -148,6 +148,15 @@
       layer="docpool.elan.interfaces.IELANActive"
       />
 
+  <browser:viewlet
+      name="docpool.sidebar.rei"
+      manager=".sidebar.ISidebarAppSpecificManager"
+      class=".sidebar.SidebarViewlet"
+      template="sidebar-rei.pt"
+      permission="zope2.View"
+      layer="docpool.rei.interfaces.IREIActive"
+      />
+
   <browser:viewletManager
       name="docpool.headernav.manager"
       provides=".header.IHeaderNavManager"

@@ -1,0 +1,22 @@
+<li class="nav-item flex-fill"
+    tal:define="
+      active python:view.is_active('chronology');
+      icons python:context.restrictedTraverse('@@iconresolver');
+    "
+    i18n:domain="docpool.ui"
+>
+  <a class="nav-link d-flex flex-column align-items-center justify-content-center text-decoration-none"
+     tal:attributes="
+       href string:${view/base_url}/@@listing;
+       class python:'nav-link d-flex flex-column align-items-center justify-content-center text-decoration-none' + (' active fw-bold' if active else '');
+       aria-current python:'page' if active else None;
+     "
+  >
+    <span class="icon-24 d-flex align-items-center justify-content-center mb-2">
+      <tal:icon replace="structure python:icons.tag('clock-fill', tag_class='me-0')" />
+    </span>
+    <span class="label text-center"
+          i18n:translate=""
+    >REI-Berichte</span>
+  </a>
+</li>
