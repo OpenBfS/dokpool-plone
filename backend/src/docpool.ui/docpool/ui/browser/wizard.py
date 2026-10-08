@@ -491,6 +491,9 @@ class FolderWizard(ContextlessWizard):
         if self.form.get("form.buttons.cancel", None) is not None:
             return self.request.response.redirect(self.context.absolute_url())
 
+        dp_app_state = api.content.get_view("dp_app_state", self.context, self.request)
+        self.app = dp_app_state.appsActivatedByCurrentUser()[0]
+
         # Prepare addable types
         container = self.context
         container_fti = getUtility(IDexterityFTI, name=container.portal_type)
@@ -573,6 +576,7 @@ class FolderWizard(ContextlessWizard):
             container=self.context,
             type=self.portal_type,
             title=self.data["form.widgets.IDublinCore.title"],
+            local_behaviors=[self.app],
             safe_id=True,
         )
         return new
