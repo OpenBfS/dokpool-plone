@@ -494,8 +494,8 @@ class FolderWizard(ContextlessWizard):
         self.foldertypes = []
         self.add_form = None
         if constrains:
-            # TODO: Ask if we should use getLocallyAllowedTypes instead
-            allowed_types = constrains.getImmediatelyAddableTypes()
+            # Show all in wizard: https://redmine-koala.bfs.de/issues/6552#note-8
+            allowed_types = constrains.getLocallyAllowedTypes()
         # check which folder_type we can add here
         for portal_type in FOLDER_TYPES:
             if constrains and portal_type not in allowed_types:
