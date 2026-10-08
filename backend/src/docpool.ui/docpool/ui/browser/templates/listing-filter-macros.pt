@@ -679,7 +679,7 @@
 
         <a class="dropdown-item"
            href="${python: context.absolute_url()}/@@folder_wizard"
-           tal:condition="python: view.folder_listing and not view.is_archive"
+           tal:condition="python: view.folder_listing and not view.is_archive and view.folder_wizard_available"
         >
           <span class="listing-mobile-actions-item-icon">
             <tal:icon tal:replace="structure python:icons.tag('folder-plus')" />

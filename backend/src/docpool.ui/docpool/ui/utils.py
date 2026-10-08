@@ -1,4 +1,5 @@
 from AccessControl.unauthorized import Unauthorized
+from docpool.base.content.groups import IGroups
 from plone import api
 from plone.autoform.interfaces import WIDGETS_KEY
 from plone.dexterity.interfaces import IDexterityFTI
@@ -25,6 +26,10 @@ import logging
 
 ZMF = MessageFactory("zope")
 log = logging.getLogger(__name__)
+
+
+def is_folder_wizard_context(context):
+    return not IGroups.providedBy(context)
 
 
 def group_has_allowed_document_types(group_id, groups_tool):

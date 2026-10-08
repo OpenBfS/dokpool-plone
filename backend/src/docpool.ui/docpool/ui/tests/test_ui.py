@@ -148,6 +148,13 @@ class TestUIFeatures(unittest.TestCase):
             html,
         )
 
+    def test_groups_listing_hides_folder_wizard_links(self):
+        groups = self.docpool.content.Groups
+        listing = api.content.get_view("listing", groups, self.request)
+        html = listing()
+        self.assertFalse(listing.folder_wizard_available)
+        self.assertNotIn("/@@folder_wizard", html)
+
     def test_listing_item_view(self):
         uid = self.entry.UID()
 

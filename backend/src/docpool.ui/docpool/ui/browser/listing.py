@@ -15,6 +15,7 @@ from docpool.elan.config import ELAN_APP
 from docpool.elan.utils import get_scenario_for_current_user
 from docpool.ui import _
 from docpool.ui.utils import group_has_allowed_document_types
+from docpool.ui.utils import is_folder_wizard_context
 from plone import api
 from plone.protect.authenticator import createToken
 from Products.CMFPlone.browser.search import munge_search_term
@@ -82,6 +83,7 @@ class Listing(BrowserView):
     def find(self, limit=0):
         form = self.request.form
         self.folder_listing = self.context.portal_type in FOLDER_TYPES
+        self.folder_wizard_available = is_folder_wizard_context(self.context)
 
         self.show_bulk_actions = self.folder_listing or self.__name__ in ["tasks"]
 
