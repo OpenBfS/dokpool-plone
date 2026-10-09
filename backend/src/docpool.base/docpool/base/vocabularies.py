@@ -150,6 +150,8 @@ class GroupDocTypeVocabulary:
     """ """
 
     def __call__(self, context):
+        if not context:
+            return SimpleVocabulary([])
         types = getAllowedDocumentTypesForGroup(context)
         # print len(types)
         types = [(brain.getId, brain.Title) for brain in types]

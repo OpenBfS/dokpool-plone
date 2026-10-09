@@ -7,7 +7,11 @@ BASE_APP = "base"
 TRANSFERS_APP = "transfers"
 
 FOLDER_TYPES = [
+    "SimpleFolder",
+    "ReviewFolder",
     "CollaborationFolder",
+    "PrivateFolder",
+    "InfoFolder",
     "ContentArea",
     "DPTransferFolder",
     "DPTransfersArea",
@@ -15,10 +19,6 @@ FOLDER_TYPES = [
     "Folder",
     "GroupFolder",
     "Groups",
-    "InfoFolder",
-    "PrivateFolder",
-    "ReviewFolder",
-    "SimpleFolder",
     "UserFolder",
     "Users",
 ]
