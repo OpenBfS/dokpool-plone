@@ -193,7 +193,7 @@ body.template-entrytypes {
 }
 
 .card-body.review-state {
-  padding: 0.3rem;
+  padding: 0.3rem 0.1rem;
 
   p.small {
     font-size: var(--dp-font-small);
@@ -388,7 +388,7 @@ span.badge.text-bg-light {
     }
 
     .doctype-box {
-      width: 80px;
+      width: 86px;
       flex-shrink: 0;
 
       .doctype-icon-container {

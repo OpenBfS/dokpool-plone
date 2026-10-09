@@ -331,7 +331,7 @@ msgstr "Bitte wählen Sie ein oder mehr Objekte zum Ausschneiden."
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "Private"
-msgstr "Privat"
+msgstr "Gruppenintern"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "Publish"
@@ -1057,7 +1057,7 @@ msgstr "An BMUKN eingereicht - Klicken, um den Eintrag anzuzeigen"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "private"
-msgstr ""
+msgstr "gruppenintern"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "private - Show document"
