@@ -10,6 +10,7 @@ services:
     environment:
       RELSTORAGE_DSN: "dbname='dokpool' user='dokpool' host='postgres' password='dokpool'"
       RELSTORAGE_CREATE_SCHEMA: "false"
+      SESSION_STORAGE_DSN: "dbname='sessions' user='dokpool' host='postgres-sessions' password='dokpool'"
     depends_on:
       postgres:
         condition: service_started
@@ -29,6 +30,17 @@ services:
     networks:
       - dokpool-gui-network
 
+  postgres-sessions:
+    image: postgres:16.6
+    volumes:
+      - dokpool-gui-sessions:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: dokpool
+      POSTGRES_PASSWORD: dokpool
+      POSTGRES_DB: sessions
+    networks:
+      - dokpool-gui-network
+
   varnish:
     image: varnish:7.6.1
     healthcheck:
@@ -40,9 +52,6 @@ services:
       - ./devops/varnish-gui.vcl:/etc/varnish/default.vcl:ro
     environment:
       VARNISH_HTTP_PORT: 8090
-    depends_on:
-      zeoclient:
-        condition: service_healthy
     ports:
       - "9080:8090"
     networks:
@@ -65,6 +74,9 @@ services:
 
 volumes:
   dokpool-gui-db:
+    external: false
+
+  dokpool-gui-sessions:
     external: false
 
 networks:
