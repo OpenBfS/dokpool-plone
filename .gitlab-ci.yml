@@ -18,8 +18,8 @@ stages:
   - test
   - build
   - verify
-  - report
   - deploy
+  - report
 
 lint_tests:
   image: plone/server-builder:$PLONE_VERSION
@@ -140,7 +140,7 @@ verify_image:
     - grep 'Starting debugger (the name "app" is bound to the top-level Zope object)' /tmp/verify-image.out
 
 coverage_merge:
-  stage: test
+  stage: report
   image: python:3.12
   tags:
     - dind
