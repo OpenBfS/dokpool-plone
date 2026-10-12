@@ -346,7 +346,7 @@ class EventSwitcherDropdown(EventSwitcherMixin, BrowserView):
         if can_view(self.dp, "@@snapshot"):
             actions.append(
                 dict(
-                    url=f"{self.dp_url}/@@snaphot?event={event.UID()}",
+                    url=f"{self.dp_url}/@@snapshot?event={event.UID()}",
                     icon="archive-fill",
                     text=EMF("Snapshot"),
                 )
