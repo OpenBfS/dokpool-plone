@@ -4,7 +4,9 @@ from docpool.base.content.dptransferfolder import IDPTransferFolder
 from docpool.base.utils import _copyPaste
 from docpool.elan.behaviors.elandocument import IELANDocument
 from docpool.elan.config import ELAN_APP
+from persistent.list import PersistentList
 from plone import api
+from zope.annotation.interfaces import IAnnotations
 from zope.component import adapter
 from zope.interface import implementer
 from zope.interface import named
@@ -69,6 +71,11 @@ def ensureScenarioInTarget(scenario, target_docpool):
         else:
             copy_id = _copyPaste(orig_event, scen)
             copy_event = scen[copy_id]
+            for journal in copy_event.contentValues({"portal_type": "Journal"}):
+                # purge journals
+                if journal.get_journalentries():
+                    annotations = IAnnotations(journal)
+                    annotations["journal.journalentries"] = PersistentList()
             if api.content.get_state(copy_event) == "private":
                 api.content.transition(copy_event, "publish")
 
