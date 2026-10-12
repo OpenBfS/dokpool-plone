@@ -13,6 +13,7 @@ from docpool.elan.behaviors.elandocument import IELANDocument
 from docpool.elan.config import ELAN_APP
 from logging import getLogger
 from plone import api
+from Products.CMFPlone.utils import base_hasattr
 from Products.CMFPlone.utils import log_exc
 from Products.Five.browser import BrowserView
 from zope.i18nmessageid import MessageFactory
@@ -247,7 +248,8 @@ class ArchiveAndClose(BrowserView):
             target_folder_obj.absolute_url(),
         )
 
-        mdate = obj.modified()
+        modification_date = obj.modified()
+        mdate = obj.mdate if base_hasattr(obj, "mdate") else None
         old_state = api.content.get_state(obj)
         moved_obj = api.content.move(obj, target_folder_obj)
         new_state = api.content.get_state(moved_obj)
@@ -267,7 +269,9 @@ class ArchiveAndClose(BrowserView):
 
         # Now do some repairs
         moved_obj.scenario = None
-        moved_obj.setModificationDate(mdate)
+        moved_obj.setModificationDate(modification_date)
+        if mdate:
+            moved_obj.mdate = mdate
         moved_obj.reindexObject(idxs=["modified", "review_state", "scenario"])
 
     def _copy_to_archive(self, target_folder_obj, obj):
@@ -281,7 +285,8 @@ class ArchiveAndClose(BrowserView):
         copied_obj = api.content.copy(obj, target_folder_obj)
 
         # Now do some repairs
-        mdate = obj.modified()
+        modification_date = obj.modified()
+        mdate = obj.mdate if base_hasattr(obj, "mdate") else None
         copied_obj.scenario = None
 
         old_state = api.content.get_state(obj)
@@ -300,7 +305,9 @@ class ArchiveAndClose(BrowserView):
                 # See https://redmine-koala.bfs.de/issues/5007
                 api.content.transition(copied_obj, to_state=old_state)
 
-        copied_obj.setModificationDate(mdate)
+        copied_obj.setModificationDate(modification_date)
+        if mdate:
+            copied_obj.mdate = mdate
         copied_obj.reindexObject(idxs=["modified", "review_state", "scenario"])
 
         # Cleanup original DPDocument
