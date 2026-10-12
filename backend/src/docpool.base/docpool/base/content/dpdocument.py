@@ -25,7 +25,6 @@ from plone.app.textfield import RichTextValue
 from plone.autoform.interfaces import WRITE_PERMISSIONS_KEY
 from plone.base.utils import safe_text
 from plone.dexterity.content import Container
-from plone.memoize import ram
 from plone.protect.interfaces import IDisableCSRFProtection
 from plone.resource.interfaces import IResourceDirectory
 from plone.restapi.deserializer.dxcontent import DeserializeFromJson
@@ -222,13 +221,6 @@ class DPDocument(Container, Extendable, ContentBase):
         """ """
         return self.docType
 
-    def _docTypeObj_cachekey(method, self):
-        if not self.id:
-            # The object is being initialized
-            return
-        return (self.absolute_url_path(), self.modified())
-
-    @ram.cache(_docTypeObj_cachekey)
     def docTypeObj(self):
         """ """
         if not self.id:
