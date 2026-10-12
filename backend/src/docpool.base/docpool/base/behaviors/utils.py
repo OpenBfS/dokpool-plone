@@ -25,15 +25,13 @@ def allowed_targets(context):
         return []
 
     if isinstance(context, DocType):
-        dto = context
+        dt_id = context.id
     else:
         try:
-            dto_ = context.docTypeObj
+            doctype_data = context.doctype_data()
         except AttributeError:
-            dto = None
-        else:
-            dto = dto_()
-    dt_id = dto.id if dto else "---"
+            doctype_data = None
+        dt_id = doctype_data["id"] if doctype_data else "---"
 
     targets = []
     portal_catalog = api.portal.get_tool("portal_catalog")

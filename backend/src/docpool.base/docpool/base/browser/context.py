@@ -27,8 +27,9 @@ class ApplicationState(BrowserView):
         available_apps = self.appsAvailableToCurrentUser()
         # Now get the type.
         dto = None
-        if hasattr(self.context, "docTypeObj"):
-            dto = self.context.docTypeObj()
+        if hasattr(self.context, "doctype_data"):
+            if doctype_data := self.context.doctype_data():
+                dto = api.content.get(path=doctype_data["path"])
         else:
             dtFromRequest = request.get("form.widgets.docType", [""])
             if isinstance(dtFromRequest, str):

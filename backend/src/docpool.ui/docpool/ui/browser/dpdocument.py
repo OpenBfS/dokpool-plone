@@ -52,7 +52,7 @@ class DPDocumentView(DefaultView):
         return zip_buffer.read()
 
     def icon_name(self):
-        return self.context.docTypeObj().icon_name
+        return self.context.doctype_data["icon_name"]
 
     def getDocpoolListingPath(self):
         dp = getDocumentPoolSite(self.context)

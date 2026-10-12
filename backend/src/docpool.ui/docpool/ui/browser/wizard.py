@@ -283,7 +283,7 @@ class DPDocumentWizard(ContextlessWizard):
         self.session.delete(self.session_name)
         msg = _(
             "Created ${doktype} '${title}'",
-            mapping={"doktype": new.docTypeObj().title, "title": new.title},
+            mapping={"doktype": new.doctype_data()["title"], "title": new.title},
         )
         api.portal.show_message(msg, self.request)
         return self.request.response.redirect(self.context.absolute_url() + "/@@listing")

@@ -460,18 +460,20 @@ def create_doctype_structure(log_remains=False):
             obj.docType = rename_mapping[obj.docType]
             # Update local_behaviors to fit to doctype
             # This is relevant when old obj with app 1 and doctype with app 1 changed to doctype with app 2
-            doctype_obj = obj.docTypeObj()
-            if not doctype_obj:
+            doctype_data = obj.doctype_data()
+            if not doctype_data:
                 log.info("Entry without doctype: %s", obj.absolute_url())
-            elif doctype_obj and not set(doctype_obj.local_behaviors).intersection(set(obj.local_behaviors)):
-                log.info(
-                    "Changing local_behaviors from %s to %s for %s: %s",
-                    obj.local_behaviors,
-                    doctype_obj.local_behaviors,
-                    obj.docType,
-                    obj.absolute_url(),
-                )
-                obj.local_behaviors = [i for i in doctype_obj.local_behaviors if i in dp.supportedApps]
+            elif doctype_data:
+                doctype_obj = api.content.get(path=doctype_data["path"])
+                if set(doctype_obj.local_behaviors).intersection(set(obj.local_behaviors)):
+                    log.info(
+                        "Changing local_behaviors from %s to %s for %s: %s",
+                        obj.local_behaviors,
+                        doctype_obj.local_behaviors,
+                        obj.docType,
+                        obj.absolute_url(),
+                    )
+                    obj.local_behaviors = [i for i in doctype_obj.local_behaviors if i in dp.supportedApps]
             obj.reindexObject(idxs=["category", "subcategory", "dp_type", "apps_supported"])
 
     # Change special cases for existing DPDocuments

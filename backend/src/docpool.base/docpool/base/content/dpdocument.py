@@ -1,4 +1,5 @@
 from docpool.base import DocpoolMessageFactory as _
+from docpool.base.behaviors.transferstype import ITransfersType
 from docpool.base.content.archiving import IArchiving
 from docpool.base.content.contentbase import ContentBase
 from docpool.base.content.contentbase import IContentBase
@@ -173,25 +174,24 @@ class DPDocument(Container, Extendable, ContentBase):
         """
         If my doc type is in state private, return it.
         """
-        dt = self.docTypeObj()
-        if dt:
-            tstate = api.content.get_state(dt)
-            if tstate == "private":
-                return dt
+        doctype_data = self.doctype_data()
+        if doctype_data:
+            if doctype_data["review_state"] == "private":
+                return doctype_data
         return None
 
     def dp_type(self):
         """ """
         return self.docType
 
-    def _docTypeObj_cachekey(method, self):
+    def _doctype_data_cachekey(method, self):
         if not self.id:
             # The object is being initialized
             return
         return (self.absolute_url_path(), self.modified())
 
-    @ram.cache(_docTypeObj_cachekey)
-    def docTypeObj(self):
+    @ram.cache(_doctype_data_cachekey)
+    def doctype_data(self):
         """ """
         if not self.id:
             # The object is being initialized
@@ -211,18 +211,38 @@ class DPDocument(Container, Extendable, ContentBase):
             return
         if len(brains) > 1:
             logger.info("More than one doctype for %s (%s)", doctype, self.absolute_url())
-        dto = brains[0].getObject()
-        return dto
+        brain = brains[0]
+        obj = brain.getObject()
+        if not IDocType.providedBy(obj):
+            return
+
+        data = {
+            "id": brain.id,
+            "title": brain.Title,
+            "uid": brain.UID,
+            "path": brain.getPath(),
+            "absolute_url": brain.getURL(),
+            "review_state": brain.review_state,
+            "publishImmediately": obj.publishImmediately,
+            "allowUploads": obj.allowUploads,
+            "allowTransfer": ITransfersType(obj).allowTransfer,
+            "automaticTransferTargets": ITransfersType(obj).automaticTransferTargets,
+            "allow_discussion_on_dpdocument": obj.allow_discussion_on_dpdocument,
+            "category": obj.category(),
+            "subcategory": obj.subcategory(),
+            "icon_name": obj.icon_name,
+        }
+        return data
 
     def publishedImmediately(self, raw=False):
         """ """
-        dto = self.docTypeObj()
-        if dto:
+        doctype_data = self.doctype_data()
+        if doctype_data:
             if not raw:
                 # We only publish immediately if we are not in a personal folder
-                return dto.publishImmediately and not is_individual(self)
+                return doctype_data["publishImmediately"] and not is_individual(self)
             else:
-                return dto.publishImmediately
+                return doctype_data["publishImmediately"]
         else:
             return False
 
@@ -231,9 +251,8 @@ class DPDocument(Container, Extendable, ContentBase):
         mtool = getToolByName(self, "portal_membership")
         if not mtool.checkPermission("Add portal content", self):
             return False
-        dto = self.docTypeObj()
-        if dto:
-            return dto.allowUploads
+        if doctype_data := self.doctype_data():
+            return doctype_data["allowUploads"]
         else:
             return False
 
@@ -277,17 +296,6 @@ class DPDocument(Container, Extendable, ContentBase):
         """ """
         conversation = IConversation(self)
         return len(conversation.objectIds()) > 0
-
-    def Identifier(self):
-        """
-        We offer this method here on the object, so that it is used by the RSS template.
-        """
-        dto = self.docTypeObj()
-        if dto:
-            cat = dto.contentCategory
-            if cat:
-                return f"{cat.absolute_url()}/@@dview?d={self.UID()}&disable_border=1"
-        return self.absolute_url()
 
     def SearchableText(self):
         """
@@ -353,13 +361,14 @@ class DPDocument(Container, Extendable, ContentBase):
     def allow_discussion(self):
         """Return commenting-setting of the docType unless archived.
         Uses a hack to re-add Acquisition since
-        is_archive and docTypeObj both require it.
+        is_archive and doctype_data both require it.
         """
         obj = api.content.get(UID=self.UID())
         if IArchiving(obj).is_archive:
             return False
-        doc_type = obj.docTypeObj()
-        return doc_type.allow_discussion_on_dpdocument if doc_type else False
+        if doctype_data := obj.doctype_data():
+            return doctype_data["allow_discussion_on_dpdocument"]
+        return False
 
     def is_transition_allowed(self, transition):
         """Allow by default and if at least one app allows it. Deny only if all apps do."""
@@ -372,14 +381,12 @@ class DPDocument(Container, Extendable, ContentBase):
         return default
 
     def category(self):
-        doctype = self.docTypeObj()
-        if doctype and IDocType.providedBy(doctype):
-            return doctype.category()
+        if doctype_data := self.doctype_data():
+            return doctype_data["category"]
 
     def subcategory(self):
-        doctype = self.docTypeObj()
-        if doctype and IDocType.providedBy(doctype):
-            return doctype.subcategory()
+        if doctype_data := self.doctype_data():
+            return doctype_data["subcategory"]
 
     def is_journalentry(self):
         # Why would we need that?
