@@ -21,7 +21,7 @@ class TestAppSpecificTransfer:
         self.transfer_folder = transfer_folder
 
     def assert_allowed(self):
-        return True
+        return
 
     def sender_log_entry(self):
         return {}
