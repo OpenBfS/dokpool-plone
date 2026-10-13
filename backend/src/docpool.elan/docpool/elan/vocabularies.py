@@ -55,9 +55,10 @@ class EventTypesVocabulary:
     def __call__(self, context):
         values = [
             ("Emergency", _("Emergency")),
-            ("Routine", _("Routine")),
             ("Exercise", _("Exercise")),
             ("Test", _("Test")),
+            ("Routine", _("Routine")),
+            ("Minor Situation", _("Minor Situation")),
         ]
         # value, token, title
         return SimpleVocabulary([SimpleTerm(i[0], i[0], i[1]) for i in values])
