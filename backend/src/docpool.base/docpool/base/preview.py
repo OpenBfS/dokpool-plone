@@ -28,7 +28,6 @@ ALLOWED_TYPES = ["DPDocument", "InfoDocument"]
 ALLOWED = ["application/pdf"]
 
 SCALES = [
-    ("great", 1200, 65536),
     ("teaser", 600, 65536),
     ("mini", 200, 65536),
 ]
