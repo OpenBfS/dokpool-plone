@@ -41,14 +41,7 @@ class ELANSpecificTransfer:
         if not self.scenario:
             return
 
-        elan_copy.scenario = scenario_uid = self.scenario.UID()
-
-        return  # XXX temporary, see https://redmine-koala.bfs.de/issues/6854
-
-        target_docpool = IPlaces(copy).document_pool
-        scen = target_docpool.contentconfig.scen
-        if scenario_uid not in scen.subscribed_events:
-            scen.subscribed_events.append(scenario_uid)
+        elan_copy.scenario = self.scenario.UID()
 
     def receiver_log_entry(self):
         if not self.have_elan or self.scenario is None:
