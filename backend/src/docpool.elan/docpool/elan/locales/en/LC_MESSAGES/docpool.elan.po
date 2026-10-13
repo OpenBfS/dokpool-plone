@@ -92,6 +92,10 @@ msgstr ""
 msgid "Belongs to scenario:"
 msgstr "Belongs to event:"
 
+#: docpool.elan/docpool/elan/content/transfers.py
+msgid "Cannot transfer entry to docpool without event ${event}."
+msgstr ""
+
 #: docpool.elan/docpool/elan/browser/dpevent.pt
 #: docpool.elan/docpool/elan/content/dpevent.py
 msgid "Changelog"

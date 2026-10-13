@@ -1,6 +1,8 @@
 from docpool.base.behaviors.transferable import IAppSpecificTransfer
 from docpool.base.content.dpdocument import IDPDocument
 from docpool.base.content.dptransferfolder import IDPTransferFolder
+from docpool.base.content.places import IPlaces
+from docpool.elan import DocpoolMessageFactory as _
 from docpool.elan.behaviors.elandocument import IELANDocument
 from docpool.elan.config import ELAN_APP
 from plone import api
@@ -22,7 +24,18 @@ class ELANSpecificTransfer:
         )
 
     def assert_allowed(self):
-        return
+        if self.scenario is None:
+            return
+
+        target_docpool = IPlaces(self.transfer_folder).document_pool
+        scen = target_docpool.contentconfig.scen
+        if self.scenario.UID() not in scen.subscribed_events:
+            raise ValueError(
+                _(
+                    "Cannot transfer entry to docpool without event ${event}.",
+                    mapping=dict(event=self.scenario.Title()),
+                )
+            )
 
     def sender_log_entry(self):
         return dict(scenario_id=self.scenario.getId())
