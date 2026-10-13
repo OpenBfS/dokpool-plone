@@ -43,39 +43,6 @@ class IDocType(model.Schema):
         default=False,
     )
 
-    partsPattern = schema.TextLine(
-        title=_(
-            "label_doctype_partspattern",
-            default="Name pattern for files and images belonging to this type",
-        ),
-        description=_(
-            "description_doctype_partspattern",
-            default="Used for automatically creating objects of this type from collections of files and images.",
-        ),
-        required=False,
-    )
-
-    pdfPattern = schema.TextLine(
-        title=_("label_doctype_pdfpattern", default="Name pattern for representative PDF"),
-        description=_(
-            "description_doctype_pdfpattern",
-            default="If PDF exists, an image will be created from its first page as a visual representation for objects of this type.",
-        ),
-        required=False,
-    )
-
-    imgPattern = schema.TextLine(
-        title=_(
-            "label_doctype_imgpattern",
-            default="Name pattern for representative image",
-        ),
-        description=_(
-            "description_doctype_imgpattern",
-            default="If image exists, it will be used as a visual representation for objects of this type.",
-        ),
-        required=False,
-    )
-
     icon_name = schema.Choice(
         title=_("label_doctype_icon_name", default="Icon Name"),
         description=_(

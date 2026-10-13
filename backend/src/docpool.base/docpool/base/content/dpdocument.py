@@ -1,4 +1,3 @@
-from BTrees.OOBTree import OOBTree
 from docpool.base import DocpoolMessageFactory as _
 from docpool.base.content.archiving import IArchiving
 from docpool.base.content.contentbase import ContentBase
@@ -9,17 +8,10 @@ from docpool.base.localbehavior.localbehavior import ILocalBehaviorSupport
 from docpool.base.marker import IImportingMarker
 from docpool.base.marker import IJournalContainerMarker
 from docpool.base.marker import IJournalEntryMarker
-from docpool.base.pdfconversion import get_images
-from docpool.base.pdfconversion import metadata
-from docpool.base.pdfconversion import pdfobj
-from docpool.base.utils import execute_under_special_role
 from docpool.base.utils import getDocumentPoolSite
 from docpool.base.utils import is_individual
-from io import StringIO
 from logging import getLogger
-from PIL import Image
 from plone import api
-from plone import namedfile
 from plone.app.contenttypes.content import Document
 from plone.app.dexterity.textindexer.directives import searchable
 from plone.app.discussion.interfaces import IConversation
@@ -27,7 +19,6 @@ from plone.app.textfield import RichText
 from plone.app.textfield import RichTextValue
 from plone.autoform import directives
 from plone.autoform.interfaces import WRITE_PERMISSIONS_KEY
-from plone.base.utils import safe_text
 from plone.dexterity.content import Container
 from plone.memoize import ram
 from plone.protect.interfaces import IDisableCSRFProtection
@@ -42,7 +33,6 @@ from Products.CMFPlone.utils import log_exc
 from z3c.form.interfaces import IDataManager
 from zExceptions import BadRequest
 from zope import schema
-from zope.annotation.interfaces import IAnnotations
 from zope.component import adapter
 from zope.component import getUtilitiesFor
 from zope.component import queryAdapter
@@ -305,61 +295,6 @@ class DPDocument(Container, Extendable, ContentBase):
         stsub = [obj.SearchableText() for obj in self.contentValues()]
         return st + " " + " ".join(stsub)
 
-    def getRepresentativeImage(self):
-        """ """
-        dt = self.docTypeObj()
-        if not dt:
-            return None
-        imgPattern = dt.imgPattern
-        if imgPattern:
-            p = re.compile(imgPattern, re.IGNORECASE)
-            images = self.getImages()
-            for image in images:
-                if p.match(image.getId()):
-                    return image
-        else:
-            return None
-
-    def getRepresentativePDF(self):
-        """ """
-        dt = self.docTypeObj()
-        if not dt:
-            return None
-
-        pdfPattern = dt.pdfPattern
-        if pdfPattern:
-            p = re.compile(pdfPattern, re.IGNORECASE)
-            files = self.getFiles()
-            for f in files:
-                if p.match(f.getId()):
-                    return f
-        else:
-            return None
-
-    def generatePdfImage(self, pdffile):
-        """ """
-        pdf = pdfobj(pdffile)
-        # Use BTrees
-        storage = OOBTree()
-        img = get_images(pdffile, 0, 1)
-        storage["image_thumbnails"] = img
-        meta = metadata(pdf)
-        storage["metadata"] = meta
-
-        annotations = IAnnotations(self)
-        annotations["pdfimages"] = storage
-
-        self.reindexObject()
-
-    def pdfImage(self):
-        """ """
-        annotations = IAnnotations(self)
-        if "pdfimages" in annotations:
-            image = annotations["pdfimages"]["image_thumbnails"]["1_preview"]
-            return image
-        else:
-            return None
-
     def getFileOrImageByPattern(self, pattern):
         """ """
         p = re.compile(pattern, re.IGNORECASE)
@@ -393,102 +328,6 @@ class DPDocument(Container, Extendable, ContentBase):
             return f"<img src='{img.absolute_url()}{scale}' />"
         else:
             return _("No legend image")
-
-    def getMyImage(self, refresh=False, full=True):
-        """
-        1. the map image, otherwise
-        2. the representative image, otherwise
-        3. try to generate an image from PDF
-        4. Take the first image available in the doc
-        5. a default image
-        @param refresh: True --> generate afresh from PDF if necessary
-        @param full: True --> combine map & legend images
-        @return: a tuple with an image and a filename
-        """
-        alsoProvides(getRequest(), IDisableCSRFProtection)
-
-        try:
-            doc = self
-            mapimg = self.getMapImageObj()
-            if mapimg:
-                legendimg = self.getLegendImageObj()
-                dateiname = "{}.{}".format(mapimg.getId(), "png")
-                if not full or not legendimg:
-                    return mapimg.image.data, dateiname
-                else:
-                    # combine into one image if full=True and legend available
-                    images = list(
-                        map(
-                            Image.open,
-                            [
-                                StringIO(mapimg.image.data),
-                                StringIO(legendimg.image.data),
-                            ],
-                        )
-                    )
-                    w = sum(i.size[0] for i in images)
-                    mh = max(i.size[1] for i in images)
-
-                    result = Image.new("RGBA", (w, mh), "white")
-
-                    x = 0
-                    for i in images:
-                        result.paste(i, (x, 0))
-                        x += i.size[0]
-                    res = StringIO()
-                    result.save(res, "PNG")
-                    return res.getvalue(), dateiname
-
-            img = doc.getRepresentativeImage()
-            if img:
-                dateiname = "{}.{}".format(img.getId(), "png")
-                return img.image.data, dateiname
-            img = doc.pdfImage()
-            if img and not refresh:
-                dateiname = "{}.{}".format(img.getId(), "png")
-                return img.data, dateiname
-
-            pdf = doc.getRepresentativePDF()
-            if pdf:
-                execute_under_special_role(doc, "Manager", DPDocument.generatePdfImage, doc, pdf)
-                img = doc.pdfImage()
-                dateiname = "{}.{}".format(img.getId(), "png")
-                return img.data, dateiname
-
-            img = doc.getFirstImageObj()
-            if img:
-                dateiname = "{}.{}".format(img.getId(), "png")
-                return img.image.data, dateiname
-        except Exception as e:
-            log_exc(e)
-            # TODO: Idea: support default image in DocType
-            # Show Default image, if no other image is available
-            img = self.restrictedTraverse(
-                api.portal.get().absolute_url() + "/++plone++docpool.base/docdefaultimage.png"
-            )
-            return img().read(), "docdefaultimage.png"
-
-    @property
-    def image(self):
-        """ """
-        # We need to acquire Manager rights here, since we are called in traversal code,
-        # which unfortunately comes as Anoymous
-        result = execute_under_special_role(self, "Manager", self.getMyImage, False)
-        if result:
-            data, filename = result
-            return namedfile.NamedImage(data, filename=safe_text(filename))
-
-    def getFirstImage(self, scale=""):
-        img = self.getFirstImageObj()
-        if img:
-            return f"<img src='{img.absolute_url()}{scale}' />"
-
-    def getFirstImageObj(self):
-        """ """
-        imgs = self.getImages()
-        if imgs:
-            img = imgs[0]
-            return img
 
     def getAllContentObjects(self):
         """ """
