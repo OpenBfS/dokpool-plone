@@ -103,7 +103,7 @@ sub vcl_recv {
     cookie.delete("backend");  # do not influence decisions about cacheability
   }
   if (!req.http.backend) {
-    set req.http.backend = "zeoclient";
+    set req.http.backend = std.getenv("VARNISH_BACKEND_HOST");
     set req.http.new_backend = 1;
   }
 
