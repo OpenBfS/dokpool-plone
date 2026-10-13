@@ -16,7 +16,7 @@ class ELANSpecificTransfer:
     def __init__(self, original, transfer_folder):
         self.original = original
         self.transfer_folder = transfer_folder
-        self.elanobj = IELANDocument(self.original, None)
+        self.elanobj = IELANDocument(self.original)
         self.scenario = (
             scen if (uid := self.elanobj.scenario) and (scen := api.content.get(UID=uid)) else None
         )
