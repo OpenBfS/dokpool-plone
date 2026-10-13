@@ -296,7 +296,7 @@ msgstr "Inhalte des Ereignisses löschen"
 
 #: docpool.elan/docpool/elan/vocabularies.py
 msgid "Routine"
-msgstr "Kleine Lage"
+msgstr "Normalfall"
 
 #: docpool.elan/docpool/elan/vocabularies.py
 msgid "Routine mode"
