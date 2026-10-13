@@ -4,16 +4,19 @@ vcl 4.0;
 import std;
 import directors;
 import dynamic;
+import cookie;
+import header;
 
 probe dokpool_probe {
-	   	.window = 8;
-	   	.initial = 7;
-	   	.threshold = 6;
-	   	.interval = 5s;
+  .window = 8;
+  .initial = 7;
+  .threshold = 6;
+  .interval = 5s;
 }
 
 acl dokpoolnet_acl {
-    "172.26"/24;
+  "172.26.0.0/24";
+  "192.168.230.0"/24;
 }
 
 
@@ -30,6 +33,7 @@ acl purge {
   "localhost";
   "127.0.0.1";
   "172.26.0.0/24";
+  " 192.168.230.0/24";
 }
 
 sub detect_protocol{
@@ -85,15 +89,25 @@ sub process_redirects{
 }
 
 sub vcl_init {
-	   	new dokpool_dir = dynamic.director(
-	   		port = "8080",
-	   		probe = dokpool_probe,
-	   		whitelist = dokpoolnet_acl,
-	   		ttl = 10s);
+  new dokpool_dir = dynamic.director(
+    port = "8080",
+    probe = dokpool_probe,
+    whitelist = dokpoolnet_acl,
+    ttl = 10s);
 }
 
 sub vcl_recv {
-  set req.backend_hint = dokpool_dir.backend("zeoclient");
+  cookie.parse(req.http.Cookie);
+  if (cookie.isset("backend")) {
+    set req.http.backend = cookie.get("backend");
+    cookie.delete("backend");  # do not influence decisions about cacheability
+  }
+  if (!req.http.backend) {
+    set req.http.backend = std.getenv("VARNISH_BACKEND_HOST");
+    set req.http.new_backend = 1;
+  }
+
+  set req.backend_hint = dokpool_dir.backend(req.http.backend);
   set req.http.X-Varnish-Routed = "1";
 
   # Annotate request with x-forwarded-proto
@@ -285,4 +299,9 @@ sub vcl_deliver {
     unset resp.http.x-cache-rule;
     unset resp.http.x-powered-by;
   }
+
+  if (req.http.new_backend) {
+    header.append(resp.http.Set-Cookie, "backend=" + resp.http.X-Backend);
+  }
+  unset resp.http.X-Backend;
 }
