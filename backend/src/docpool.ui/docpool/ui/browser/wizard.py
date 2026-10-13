@@ -188,6 +188,11 @@ class DPDocumentWizard(ContextlessWizard):
         if self.form.get("form.buttons.cancel", None) is not None:
             return self.request.response.redirect(self.context.absolute_url())
         if self.form.get("form.buttons.back", None) is not None:
+            # Keep data for when coming back
+            data, errors = self.extract_data()
+            data = self.transform_data_for_session(data)
+            self.data.update(data)
+            self.session[self.session_name] = self.data
             return self.request.response.redirect(self.nextURL(previous=True))
 
         dp_app_state = api.content.get_view("dp_app_state", self.context, self.request)
@@ -205,6 +210,18 @@ class DPDocumentWizard(ContextlessWizard):
                 self.add_form.portal_type = self.portal_type
                 self.add_form.update()
                 self.add_form.updateWidgets()
+                # Populate fields from previously entered data (when going back to a previous step)
+                widget_data_mapping = {
+                    "IDublinCore.title": "form.widgets.IDublinCore.title",
+                    "text": "form.widgets.text",
+                    "IDublinCore.effective": "form.widgets.IDublinCore.effective",
+                    "IELANDocument.scenario": "form.widgets.IELANDocument.scenario",
+                }
+                for widget_key, data_key in widget_data_mapping.items():
+                    if (value := self.data.get(data_key)) and (
+                        widget := self.add_form.widgets.get(widget_key)
+                    ):
+                        widget.value = value
 
         # Prepare some data for display on the form
         if container_uid:

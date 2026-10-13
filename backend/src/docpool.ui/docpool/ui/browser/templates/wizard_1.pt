@@ -129,7 +129,7 @@
             <div tal:define="
                    widget_name string:entrytype;
                    widget_id python:widget_name.replace('.', '-');
-                   widget_value python:form.get(widget_name);
+                   widget_value python:form.get(widget_name) or view.data.get(widget_name);
                    select_first_option python: False if widget_value and widget_value in [i['id'] for i in doctypes] else True;
                    error python:errors.get(widget_name);
                    css_class python:f'mb-3 field fieldname-form.widgets.{widget_name} widget-mode-input';
