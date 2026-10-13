@@ -12,7 +12,7 @@
 
     <metal:content-core fill-slot="main">
 
-      <form class="pat-inject bg-light rowlike pat-formunloadalert pat-formautofocus pat-validation enableFormTabbing"
+      <form class="bg-light rowlike pat-formunloadalert pat-formautofocus pat-validation enableFormTabbing"
             id="form"
             enctype="multipart/form-data"
             method="post"
