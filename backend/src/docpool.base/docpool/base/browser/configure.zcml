@@ -345,4 +345,15 @@
       permission="cmf.ManagePortal"
       />
 
+  <configure package="collective.impersonate.browser">
+    <browser:page
+        name="impersonate"
+        for="plone.base.interfaces.siteroot.INavigationRoot"
+        class="docpool.base.browser.impersonate.Impersonate"
+        template="impersonate.pt"
+        permission="cmf.ManagePortal"
+        layer="docpool.base.interfaces.IDocpoolBaseLayer"
+        />
+  </configure>
+
 </configure>
