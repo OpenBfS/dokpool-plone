@@ -190,7 +190,7 @@ def updateCreated(obj, event=None):
 # edited
 @adapter(IContentBase, IEditFinishedEvent)
 # Edit was finished and contents are saved. This event is fired
-#    even when no changes happen (and no modified event is fired.)
+# even when no changes happen (and no modified event is fired.)
 def updateModified(obj, event=None):
     if not IArchiving(obj).is_archive:
         obj.update_modified()
@@ -209,10 +209,9 @@ def markCreateEvent(obj, event):
 
 
 @adapter(IContentBase, IAfterTransitionEvent)
-# Edit was finished and contents are saved. This event is fired
-#    even when no changes happen (and no modified event is fired.)
 def updateWorkflow(obj, event=None):
     if IImportingMarker.providedBy(getRequest()):
         return
     if not IArchiving(obj).is_archive:
         obj.update_workflow()
+        obj.update_modified()
