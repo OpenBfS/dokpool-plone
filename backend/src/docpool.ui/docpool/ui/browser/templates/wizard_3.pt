@@ -85,7 +85,7 @@
                  tal:define="
                    widget_name string:visibility;
                    widget_id python:widget_name.replace('.', '-');
-                   widget_value python:form.get(widget_name) or 'private';
+                   widget_value python:form.get(widget_name) or view.data.get(widget_name) or 'private';
                    error python:errors.get(widget_name);
                    visibility_options python: view.visibility_options();
                  "
