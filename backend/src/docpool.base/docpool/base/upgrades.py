@@ -463,7 +463,7 @@ def create_doctype_structure(log_remains=False):
             doctype_data = obj.doctype_data()
             if not doctype_data:
                 log.info("Entry without doctype: %s", obj.absolute_url())
-            elif doctype_data:
+            else:
                 doctype_obj = api.content.get(path=doctype_data["path"])
                 if set(doctype_obj.local_behaviors).intersection(set(obj.local_behaviors)):
                     log.info(

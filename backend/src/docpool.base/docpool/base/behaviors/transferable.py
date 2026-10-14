@@ -7,7 +7,6 @@ from datetime import datetime
 from docpool.base import DocpoolMessageFactory as _
 from docpool.base.behaviors.utils import allowed_targets
 from docpool.base.browser.flexible_view import FlexibleView
-from docpool.base.config import TRANSFERS_APP
 from docpool.base.content.archiving import IArchiving
 from docpool.base.content.dpdocument import IDPDocument
 from docpool.base.content.places import IPlaces
@@ -198,10 +197,9 @@ class Transferable(FlexibleView):
 
     def transferToAll(self):
         """ """
-        doctype_data = self.context.doctype_data()
         # Intersect allowed and automatic transfer targets while keeping the order of
         # allowed targets and computing the automatic ones only once.
-        automatic = set(doctype_data["automaticTransferTargets"])
+        automatic = set(self.context.doctype_data()["automaticTransferTargets"])
         targets = [t for t in self.allowedTargets() if t in automatic]
 
         source_path = "/".join(self.context.getPhysicalPath())
@@ -230,7 +228,7 @@ class Transferable(FlexibleView):
 
         timestamp = datetime.now()
         userinfo = self.context._getUserInfoString()
-        doctype_data_id = self.context.doctype_data()["id"]
+        doctype_data = self.context.doctype_data()
 
         def error_message(esd_to_title, msg):
             pmsg = _("No transfer to ${title}. ${msg}", mapping=dict(title=esd_to_title, msg=msg))
@@ -250,7 +248,7 @@ class Transferable(FlexibleView):
 
             # Check permissions:
             # a) Is my DocType accepted (defaults to handling of unknown DocTypes)?
-            if not transfer_folder.acceptsDT(doctype_data_id):
+            if not transfer_folder.acceptsDT(doctype_data["id"]):
                 error_message(esd_to_title, _("Doc type not accepted."))
                 return
 
@@ -301,7 +299,6 @@ class Transferable(FlexibleView):
             if not my_copy.doctype_data():
                 target_config_folder = aq_get(transfer_folder, "config", None)
                 target_dt_folder = target_config_folder["dtypes"]
-                doctype_data = self.context.doctype_data()
                 doctype_obj = api.content.get(path=doctype_data["path"])
                 new_dt_id = _copyPaste(doctype_obj, target_dt_folder)
                 dto_copy = target_dt_folder[new_dt_id]
