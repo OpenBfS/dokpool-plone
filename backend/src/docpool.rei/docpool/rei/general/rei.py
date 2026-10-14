@@ -7,7 +7,6 @@ from docpool.config.utils import TYPE
 from docpool.rei.config import REI_APP
 from plone import api
 from plone.app.textfield.value import RichTextValue
-from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import _createObjectByType
 
 import transaction
@@ -18,32 +17,7 @@ def install(plonesite):
     fresh = True
     if plonesite.hasObject("rei"):
         fresh = False  # It's a reinstall
-    configUsers(plonesite, fresh)
     createStructure(plonesite, fresh)
-
-
-def configUsers(plonesite, fresh):
-    """ """
-    if fresh:
-        mtool = getToolByName(plonesite, "portal_membership")
-        mtool.addMember(
-            "reiadmin",
-            "REI Administrator (global)",
-            ["Site Administrator", "Member"],
-            [],
-        )
-        reiadmin = mtool.getMemberById("reiadmin")
-        reiadmin.setMemberProperties({"fullname": "REI Administrator"})
-        reiadmin.setSecurityProfile(password="admin")
-        mtool.addMember("reimanager", "REI Manager (global)", ["Manager", "Member"], [])
-        reimanager = mtool.getMemberById("reimanager")
-        reimanager.setMemberProperties({"fullname": "REI Manager"})
-        reimanager.setSecurityProfile(password="admin")
-        # Role from rolemap.xml
-        api.user.grant_roles(username="reimanager", roles=["REIUser"])
-        api.user.grant_roles(username="reiadmin", roles=["REIUser"])
-        api.user.grant_roles(username="dpmanager", roles=["REIUser"])
-        api.user.grant_roles(username="dpadmin", roles=["REIUser"])
 
 
 def createStructure(plonesite, fresh):

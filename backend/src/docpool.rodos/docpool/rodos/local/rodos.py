@@ -77,7 +77,6 @@ def createRodosGroups(docpool):
         "dp": docpool.UID(),
     }
     gtool.addGroup("%s_RodosUsers" % prefix, properties=props)
-    gtool.addPrincipalToGroup("%s_dpadmin" % prefix, "%s_RodosUsers" % prefix)
 
     # Group for Rodos content administration - if needed, otherwise ignore...
     props = {
@@ -87,7 +86,6 @@ def createRodosGroups(docpool):
         "dp": docpool.UID(),
     }
     gtool.addGroup("%s_RodosContentAdministrators" % prefix, properties=props)
-    gtool.addPrincipalToGroup("%s_dpadmin" % prefix, "%s_RodosContentAdministrators" % prefix)
 
     # Set Rodos role as a local role for the new group
     docpool.manage_setLocalRoles("%s_RodosUsers" % prefix, ["RodosUser"])

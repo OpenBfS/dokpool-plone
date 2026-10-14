@@ -3,8 +3,6 @@ from docpool.config.utils import createPloneObjects
 from docpool.config.utils import ID
 from docpool.config.utils import TITLE
 from docpool.config.utils import TYPE
-from plone import api
-from Products.CMFCore.utils import getToolByName
 
 import transaction
 
@@ -14,32 +12,7 @@ def install(plonesite):
     fresh = True
     if plonesite.hasObject("potentially-affected-areas"):
         fresh = False  # It's a reinstall
-    # configUsers(plonesite, fresh)
     createStructure(plonesite, fresh)
-
-
-def configUsers(plonesite, fresh):
-    """ """
-    if fresh:
-        mtool = getToolByName(plonesite, "portal_membership")
-        mtool.addMember(
-            "rodosadmin",
-            "RODOS Administrator (global)",
-            ["Site Administrator", "Member"],
-            [],
-        )
-        rodosadmin = mtool.getMemberById("rodosadmin")
-        rodosadmin.setMemberProperties({"fullname": "RODOS Administrator"})
-        rodosadmin.setSecurityProfile(password="admin")
-        mtool.addMember("rodosmanager", "RODOS Manager (global)", ["Manager", "Member"], [])
-        rodosmanager = mtool.getMemberById("rodosmanager")
-        rodosmanager.setMemberProperties({"fullname": "RODOS Manager"})
-        rodosmanager.setSecurityProfile(password="admin")
-        # Role from rolemap.xml
-        api.user.grant_roles(username="rodosmanager", roles=["RodosUser"])
-        api.user.grant_roles(username="rodosadmin", roles=["RodosUser"])
-        api.user.grant_roles(username="dpmanager", roles=["RodosUser"])
-        api.user.grant_roles(username="dpadmin", roles=["RodosUser"])
 
 
 def createStructure(plonesite, fresh):

@@ -26,7 +26,6 @@ def dpAdded(self):
         annotations[APPLICATIONS_KEY].append(BASE_APP)
 
     createContentArea(self, fresh)
-    createUsers(self)
     createGroups(self)
     setLocalRoles(self)
     navSettings(self)
@@ -49,21 +48,6 @@ CONTENT_AREA = {
 def createContentArea(self, fresh):
     """ """
     createPloneObjects(self, [CONTENT_AREA], fresh)
-
-
-def createUsers(self):
-    # Set type for user folders
-    mtool = getToolByName(self, "portal_membership")
-    prefix = self.prefix or self.getId()
-    prefix = str(prefix)
-    title = self.Title()
-    mtool.addMember("%s_dpadmin" % prefix, "DocPool Administrator (%s)" % title, ["Member"], [])
-    dpadmin = mtool.getMemberById("%s_dpadmin" % prefix)
-    dpadmin.setMemberProperties({
-        "fullname": "DocPool Administrator (%s)" % title,
-        "dp": self.UID(),
-    })
-    dpadmin.setSecurityProfile(password="admin")
 
 
 def setLocalRoles(self):
@@ -99,7 +83,6 @@ def createGroups(self):
         "dp": self.UID(),
     }
     gtool.addGroup("%s_Members" % prefix, properties=props)
-    gtool.addPrincipalToGroup("%s_dpadmin" % prefix, "%s_Members" % prefix)
     props = {
         "allowedDocTypes": [],
         "title": "Administrators (%s)" % title,
@@ -107,7 +90,6 @@ def createGroups(self):
         "dp": self.UID(),
     }
     gtool.addGroup("%s_Administrators" % prefix, properties=props)
-    gtool.addPrincipalToGroup("%s_dpadmin" % prefix, "%s_Administrators" % prefix)
 
 
 def navSettings(self):
