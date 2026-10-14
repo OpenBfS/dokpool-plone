@@ -162,6 +162,7 @@ class TestUIFeatures(unittest.TestCase):
             "foldertype": "SimpleFolder",
             "form.widgets.IDublinCore.title": "New folder",
             "form.buttons.continue": "Next",
+            "form.widgets.ILocalBehaviorSupport.local_behaviors": ["elan"],
         }
         wizard = api.content.get_view("folder_wizard", self.group_folder, self.request)
         wizard()

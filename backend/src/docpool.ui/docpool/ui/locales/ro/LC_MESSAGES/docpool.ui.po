@@ -235,7 +235,6 @@ msgstr ""
 msgid "Newest first"
 msgstr ""
 
-#: docpool.ui/docpool/ui/browser/templates/folder_wizard.pt
 #: docpool.ui/docpool/ui/browser/templates/wizard_1.pt
 #: docpool.ui/docpool/ui/browser/templates/wizard_2.pt
 msgid "Next"
