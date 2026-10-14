@@ -22,9 +22,9 @@
   "contributors": [],
   "created": "2026-07-27T20:24:21+00:00",
   "created_by": [
-    "",
+    null,
     "admin",
-    ""
+    null
   ],
   "creators": [
     "admin"
@@ -49,7 +49,7 @@
   "title": "Normalfall",
   "type_title": "DP Event",
   "version": "current",
-  "wdate": "2026-07-27T22:24:21",
+  "wdate": "2026-07-27T22:24:21+00:00",
   "workflow_history": {
     "dp_event_workflow": [
       {

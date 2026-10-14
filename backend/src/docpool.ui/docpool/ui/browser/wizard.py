@@ -515,7 +515,7 @@ class FolderWizard(ContextlessWizard):
         container = self.context
         container_fti = getUtility(IDexterityFTI, name=container.portal_type)
         constrains = IConstrainTypes(container, None)
-        self.foldertypes = []
+        self.foldertypes = {}
         self.add_form = None
         if constrains:
             # Show all in wizard: https://redmine-koala.bfs.de/issues/6552#note-8
@@ -529,20 +529,16 @@ class FolderWizard(ContextlessWizard):
                 continue
             if not container_fti.allowType(portal_type):
                 continue
-            self.foldertypes.append(fti)
+
+            item = {"id": fti.getId(), "title": fti.title}
+            self.foldertypes[portal_type] = item
 
         if not self.foldertypes:
             api.portal.show_message(_("You cannot add any folders"), self.request)
             return self.request.response.redirect(self.context.absolute_url())
 
-        self.portal_type = self.foldertypes[0].getId()
-        self.portal_type_title = self.foldertypes[0].title
-
-        if "foldertype" in self.data:
-            # does this make sense?
-            self.portal_type = self.data["foldertype"]
-            fti = getUtility(IDexterityFTI, name=self.portal_type)
-            self.portal_type_title = fti.title
+        self.portal_type = self.form.get("foldertype") or list(self.foldertypes.keys())[0]
+        self.portal_type_title = self.foldertypes[self.portal_type]["title"]
 
         self.add_form = AddForm(container, self.request)
         self.add_form.portal_type = self.portal_type
@@ -575,11 +571,6 @@ class FolderWizard(ContextlessWizard):
             logger.info(self.errors)
             return self.template()
 
-        if "foldertype" in self.data:
-            self.portal_type = self.data["foldertype"]
-            fti = getUtility(IDexterityFTI, name=self.portal_type)
-            self.portal_type_title = fti.title
-
         new = self.create_item()
         msg = _(
             "Created ${portal_type} '${title}'",
@@ -589,12 +580,18 @@ class FolderWizard(ContextlessWizard):
         return self.request.response.redirect(self.context.absolute_url())
 
     def create_item(self):
+        data = {
+            "title": self.data["form.widgets.IDublinCore.title"],
+            "safe_id": True,
+        }
+        if local_behaviors := self.form.get("form.widgets.ILocalBehaviorSupport.local_behaviors"):
+            data["local_behaviors"] = local_behaviors
+        if allowedDocTypes := self.form.get("form.widgets.allowedDocTypes"):
+            data["allowedDocTypes"] = allowedDocTypes
         new = api.content.create(
             container=self.context,
             type=self.portal_type,
-            title=self.data["form.widgets.IDublinCore.title"],
-            local_behaviors=[self.app],
-            safe_id=True,
+            **data,
         )
         return new
 

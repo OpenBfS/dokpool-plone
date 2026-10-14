@@ -90,31 +90,31 @@
                        class python:error and 'wizard-field field error' or 'wizard-field field';
                      "
                 >
-                  <div class="form-check mb-3"
-                       tal:repeat="item python: foldertypes"
+                  <div class="pat-autosubmit form-check mb-3"
+                       tal:repeat="item python: foldertypes.values()"
                   >
                     <input class="form-check-input"
                            name="${widget_name}"
                            type="radio"
-                           value="${python: item.getId()}"
+                           value="${python: item['id']}"
                            tal:define="
                              first_item repeat/item/start;
                              has_value python:True if widget_value else False;
                            "
                            tal:attributes="
-                             checked python:item.getId() == widget_value if has_value else first_item;
-                             title python: item.title;
-                             id python: item.getId();
+                             checked python:item['id'] == widget_value if has_value else first_item;
+                             title python: item['title'];
+                             id python: item['id'];
                            "
                            i18n:attributes="title"
                     />
                     <label class="form-check-label"
                            tal:attributes="
-                             for python: item.getId();
+                             for python: item['id'];
                            "
                     >
                       <tal:icon tal:replace="structure python:icons.tag('folder')" />
-                      <span tal:content="python: item.title"
+                      <span tal:content="python: item['title']"
                             i18n:domain="docpool.base"
                             i18n:translate=""
                       ></span>
@@ -132,6 +132,23 @@
             >
               <tal:widget tal:replace="structure widget/@@ploneform-render-widget" />
             </tal:block>
+
+            <tal:block tal:define="
+                         widget python:view.get_widget('allowedDocTypes');
+                       "
+                       tal:condition="python: widget"
+            >
+              <tal:widget tal:replace="structure widget/@@ploneform-render-widget" />
+            </tal:block>
+
+            <tal:block tal:define="
+                         widget python:view.get_widget('ILocalBehaviorSupport.local_behaviors');
+                       "
+                       tal:condition="python: widget"
+            >
+              <tal:widget tal:replace="structure widget/@@ploneform-render-widget" />
+            </tal:block>
+
 
           </div>
 
@@ -163,8 +180,13 @@
             <button class="btn btn-primary"
                     name="form.buttons.continue"
                     type="submit"
+            >
+              <span i18n:translate="">Create new</span>
+              <span tal:content="python: view.portal_type_title"
+                    i18n:domain="docpool.base"
                     i18n:translate=""
-            >Next</button>
+              ></span>
+            </button>
 
           </div>
         </div>

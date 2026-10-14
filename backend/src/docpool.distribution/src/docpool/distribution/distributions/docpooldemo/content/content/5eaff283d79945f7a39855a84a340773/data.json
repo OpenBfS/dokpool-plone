@@ -6,7 +6,7 @@
   "contributors": [],
   "created": "2025-09-17T13:32:23+00:00",
   "created_by": [
-    "",
+    null,
     "admin",
     "Landesministerium (Berlin)"
   ],
@@ -38,7 +38,7 @@
   "mdate": "2025-09-17T16:11:28",
   "modified": "2026-07-27T20:24:21+00:00",
   "modified_by": [
-    "",
+    null,
     "admin",
     "Transfers"
   ],
@@ -54,9 +54,9 @@
   "title": "+++\u00dcbung+++\u00dcbung+++\u00dcbung 1. Radiologisches Lagebild zur IMIS-\u00dcbung 2025",
   "transferred": "2025-09-17T16:09:38+00:00",
   "transferred_by": [
-    "",
+    null,
     "admin Landesministerium (Berlin)",
-    ""
+    null
   ],
   "type_title": "Document",
   "version": "current",

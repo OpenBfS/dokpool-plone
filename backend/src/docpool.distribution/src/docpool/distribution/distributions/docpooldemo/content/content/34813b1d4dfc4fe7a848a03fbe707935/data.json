@@ -6,9 +6,9 @@
   "contributors": [],
   "created": "2025-09-10T13:00:10+00:00",
   "created_by": [
-    "",
+    null,
     "DocPool Administrator (Bund)",
-    ""
+    null
   ],
   "creators": [
     "bund_dpadmin"
@@ -30,9 +30,9 @@
   "mdate": "2025-09-10T15:00:16",
   "modified": "2025-09-10T13:00:47+00:00",
   "modified_by": [
-    "",
+    null,
     "DocPool Administrator (Bund)",
-    ""
+    null
   ],
   "review_state": "published",
   "rights": null,

@@ -6,9 +6,9 @@
   "contributors": [],
   "created": "2025-09-10T12:24:18+00:00",
   "created_by": [
-    "",
+    null,
     "rescue",
-    ""
+    null
   ],
   "creators": [
     "rescue"
@@ -34,7 +34,7 @@
   "title": "Impressum",
   "type_title": "Textpage",
   "version": "current",
-  "wdate": "2025-09-10T14:24:18",
+  "wdate": "2025-09-10T14:24:18+00:00",
   "workflow_history": {
     "dp_one_state_workflow": [
       {

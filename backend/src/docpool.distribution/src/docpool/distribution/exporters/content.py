@@ -93,6 +93,12 @@ def global_dict_hook(item, obj, config):
     # Drop bbb scenarios
     item.pop("scenarios", None)
 
+    if created_by := item.get("created_by"):
+        item["created_by"] = IJsonCompatible(created_by)
+
+    if modified_by := item.get("modified_by"):
+        item["modified_by"] = IJsonCompatible(modified_by)
+
     return item
 
 
