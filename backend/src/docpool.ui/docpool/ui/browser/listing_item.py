@@ -32,12 +32,15 @@ TRANSITION_ICON_MAPPING = {
 }
 
 PAT_INJECT_CONFIGS = {
-    "default": "trigger: default; source: #portal-column-content; target: #content-core; history: record",
-    "navigation": (
+    # Refresh the main content while keeping the current sidebar.
+    "content_only": "trigger: default; source: #portal-column-content; target: #content-core; history: record",
+    # Refresh the main content and sidebar
+    "content_and_sidebar": (
         "trigger: default; source: #portal-column-content; target: #content-core; history: record && "
         "source: #portal-column-one; target: #portal-column-one; trigger: default"
     ),
-    "transition": (
+    # Refresh the listing and status messages without changing the URL.
+    "listing_and_status": (
         "source: #listing; target: #listing; trigger: default && "
         "source: #global_statusmessage; target: #global_statusmessage; trigger: default "
     ),
@@ -141,7 +144,7 @@ class Item(BrowserView):
             return f"pat-inject {classes}"
         return classes
 
-    def pat_inject_config(self, name="default"):
+    def pat_inject_config(self, name="content_only"):
         if self.use_pat_inject:
             return PAT_INJECT_CONFIGS[name]
         return None
