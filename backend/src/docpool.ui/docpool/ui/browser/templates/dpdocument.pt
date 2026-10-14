@@ -147,11 +147,11 @@
                   tal:define="
                     doctype_data python: context.doctype_data();
                     doctype_title python: doctype_data['title'] if doctype_data else context.dp_type();
-                    subcategory python: doctype_data['subcategory'];
+                    subcategory python: context.subcategory();
                   "
               >
                 <div>
-                  ${structure:python:icons.tag(doctype_data['icon_name'] or 'question')}
+                  ${structure:python:icons.tag(doctype_data['icon_name'] if doctype_data else 'question'))}
                   ${python: doctype_title}
                   <span tal:condition="subcategory">(${python: subcategory})</span>
                 </div>
