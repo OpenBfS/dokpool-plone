@@ -150,7 +150,7 @@ msgstr "Eintrag bearbeiten"
 
 #: docpool.base/docpool/base/browser/dp_macros.pt
 msgid "Edit unknown doc type"
-msgstr "Unbekannten Eintragsart bearbeiten"
+msgstr "Unbekannte Eintragsart bearbeiten"
 
 #: docpool.base/docpool/base/profiles/default/types/DocumentPool.xml
 msgid "Electronic Situation Display"
