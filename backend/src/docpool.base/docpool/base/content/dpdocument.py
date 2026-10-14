@@ -102,24 +102,26 @@ class DPDocument(Container, Extendable, ContentBase):
         """
         We need to check if special workflows are needed depending on the user's role.
         """
-        f = self.myFolderBase()
-        r = api.user.get_roles(obj=f, inherit=True)
-        if "Owner" in r:
+        folder = self.myFolderBase()
+        roles = api.user.get_roles(obj=folder, inherit=True)
+        if "Owner" in roles:
             return
-        if "Reviewer" in r:
+        if "Reviewer" in roles:
             log("Setting Guest Workflow on Document " + self.getId())
 
-            placeful_wf = getToolByName(self, "portal_placeful_workflow")
-            try:
-                self.manage_addProduct["CMFPlacefulWorkflow"].manage_addWorkflowPolicyConfig()
-            except BadRequest as e:
-                log_exc(e)
-            config = placeful_wf.getWorkflowPolicyConfig(self)
-            placefulWfName = "dp-guest-document"
-            config.setPolicyIn(policy=placefulWfName, update_security=False)
-            config.setPolicyBelow(policy=placefulWfName, update_security=False)
-            self.reindexObject()
-            self.reindexObjectSecurity()
+            with api.env.adopt_roles(["DocPoolAdmin"]):
+                # Temporary grant role with permission to Manage workflow policies
+                placeful_wf = getToolByName(self, "portal_placeful_workflow")
+                try:
+                    self.manage_addProduct["CMFPlacefulWorkflow"].manage_addWorkflowPolicyConfig()
+                except BadRequest as e:
+                    log_exc(e)
+                config = placeful_wf.getWorkflowPolicyConfig(self)
+                placefulWfName = "dp-guest-document"
+                config.setPolicyIn(policy=placefulWfName, update_security=False)
+                config.setPolicyBelow(policy=placefulWfName, update_security=False)
+                self.reindexObject()
+                self.reindexObjectSecurity()
 
     def getAllowedSubTypes(self):
         dto = self.docTypeObj()
