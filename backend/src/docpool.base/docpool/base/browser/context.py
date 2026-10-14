@@ -28,10 +28,7 @@ class ApplicationState(BrowserView):
         # Now get the type.
         dto = None
         if hasattr(self.context, "doctype_data"):
-            if doctype_data := self.context.doctype_data():
-                dto = api.content.get(path=doctype_data["path"])
-            else:
-                dto = None
+            dto = api.content.get(path=self.context.doctype_data().get("path", ""))
         else:
             dtFromRequest = request.get("form.widgets.docType", [""])
             if isinstance(dtFromRequest, str):

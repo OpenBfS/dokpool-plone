@@ -175,9 +175,8 @@ class DPDocument(Container, Extendable, ContentBase):
         If my doc type is in state private, return it.
         """
         doctype_data = self.doctype_data()
-        if doctype_data:
-            if doctype_data["review_state"] == "private":
-                return doctype_data
+        if doctype_data.get("review_state") == "private":
+            return doctype_data
         return None
 
     def dp_type(self):
@@ -195,7 +194,7 @@ class DPDocument(Container, Extendable, ContentBase):
         """ """
         if not self.id:
             # The object is being initialized
-            return
+            return {}
         doctype = self.docType
         if not doctype:
             # The object is being saved and the attributes have not yet been saved
@@ -203,18 +202,18 @@ class DPDocument(Container, Extendable, ContentBase):
             if doctype and isinstance(doctype, list):
                 doctype = doctype[0]
         if not doctype:
-            return
+            return {}
         path = "/".join(getDocumentPoolSite(self).getPhysicalPath()) + "/config"
         brains = api.content.find(path=path, portal_type="DocType", id=doctype)
         if not brains:
             logger.info("No doctype for %s (%s)", doctype, self.absolute_url())
-            return
+            return {}
         if len(brains) > 1:
             logger.info("More than one doctype for %s (%s)", doctype, self.absolute_url())
         brain = brains[0]
         obj = brain.getObject()
         if not IDocType.providedBy(obj):
-            return
+            return {}
 
         data = {
             "id": brain.id,
@@ -236,25 +235,19 @@ class DPDocument(Container, Extendable, ContentBase):
 
     def publishedImmediately(self, raw=False):
         """ """
-        doctype_data = self.doctype_data()
-        if doctype_data:
-            if not raw:
-                # We only publish immediately if we are not in a personal folder
-                return doctype_data["publishImmediately"] and not is_individual(self)
-            else:
-                return doctype_data["publishImmediately"]
+        publish_immediately = self.doctype_data().get("publishImmediately", False)
+        if not raw:
+            # We only publish immediately if we are not in a personal folder
+            return publish_immediately and not is_individual(self)
         else:
-            return False
+            return publish_immediately
 
     def uploadsAllowed(self):
         """ """
         mtool = getToolByName(self, "portal_membership")
         if not mtool.checkPermission("Add portal content", self):
             return False
-        if doctype_data := self.doctype_data():
-            return doctype_data["allowUploads"]
-        else:
-            return False
+        return self.doctype_data().get("allowUploads", False)
 
     def canBeDeleted(self):
         """ """
@@ -366,9 +359,7 @@ class DPDocument(Container, Extendable, ContentBase):
         obj = api.content.get(UID=self.UID())
         if IArchiving(obj).is_archive:
             return False
-        if doctype_data := obj.doctype_data():
-            return doctype_data["allow_discussion_on_dpdocument"]
-        return False
+        return obj.doctype_data().get("allow_discussion_on_dpdocument", False)
 
     def is_transition_allowed(self, transition):
         """Allow by default and if at least one app allows it. Deny only if all apps do."""
@@ -381,12 +372,10 @@ class DPDocument(Container, Extendable, ContentBase):
         return default
 
     def category(self):
-        if doctype_data := self.doctype_data():
-            return doctype_data["category"]
+        return self.doctype_data().get("category")
 
     def subcategory(self):
-        if doctype_data := self.doctype_data():
-            return doctype_data["subcategory"]
+        return self.doctype_data().get("subcategory")
 
     def is_journalentry(self):
         # Why would we need that?

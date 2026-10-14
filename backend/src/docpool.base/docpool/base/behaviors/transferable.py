@@ -185,8 +185,7 @@ class Transferable(FlexibleView):
             return False
         if not self.context.allSubobjectsPublished():
             return False
-        doctype_data = self.context.doctype_data()
-        if doctype_data and doctype_data["allowTransfer"]:
+        if self.context.doctype_data().get("allowTransfer"):
             return True
         return False
 

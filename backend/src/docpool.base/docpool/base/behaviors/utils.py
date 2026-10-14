@@ -30,8 +30,8 @@ def allowed_targets(context):
         try:
             doctype_data = context.doctype_data()
         except AttributeError:
-            doctype_data = None
-        dt_id = doctype_data["id"] if doctype_data else "---"
+            doctype_data = {}
+        dt_id = doctype_data.get("id", "---")
 
     targets = []
     portal_catalog = api.portal.get_tool("portal_catalog")
