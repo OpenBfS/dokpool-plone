@@ -108,13 +108,6 @@
       />
 
   <browser:page
-      name="docimage"
-      for="..interfaces.IDPDocument"
-      class=".dpdocument.DPDocumentdocimageView"
-      permission="zope2.View"
-      />
-
-  <browser:page
       name="meta"
       for="..interfaces.IDPDocument"
       class=".documentextension.DocMetaView"
@@ -126,19 +119,6 @@
       for="..interfaces.IDPDocument"
       class=".documentextension.DocActionsView"
       permission="zope2.View"
-      />
-
-  <browser:page
-      name="images"
-      for="..interfaces.IDPDocument"
-      class=".scaling.ImageScaling"
-      allowed_attributes="scale"
-      permission="zope2.View"
-      />
-
-  <adapter
-      factory=".scaling.ImageScalingFactory"
-      for="..interfaces.IDPDocument"
       />
 
   <browser:page

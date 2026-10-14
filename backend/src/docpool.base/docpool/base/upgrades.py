@@ -448,6 +448,14 @@ def create_doctype_structure(log_remains=False):
     log.info("Updating all DPDocuments ...")
     for brain in api.content.find(portal_type="DPDocument", sort_on="path"):
         obj = brain.getObject()
+
+        # Remove old pdf-previews and scales
+        annotations = IAnnotations(obj)
+        if "pdfimages" in annotations:
+            annotations.pop("pdfimages")
+        if "plone.scale" in annotations:
+            annotations.pop("plone.scale")
+
         if obj.docType in rename_mapping:
             obj.docType = rename_mapping[obj.docType]
             # Update local_behaviors to fit to doctype

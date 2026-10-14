@@ -7,7 +7,7 @@ from zope.annotation import IAnnotations
 
 
 class Preview(BrowserView):
-    def __call__(self, scale="great"):
+    def __call__(self, scale="preview"):
         annotations = IAnnotations(self.context)
         if (previews := annotations.get(ANNOTATION_KEY, None)) is None:
             return

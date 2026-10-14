@@ -112,11 +112,11 @@ RUN <<EOT
     rm /tmp/temp_storage*.conf
 EOT
 
-# Install ghostscript into prod container
+# Install poppler-utils (for pdftocairo) into prod container
 RUN <<EOT
     set -e
     apt update
-    apt install -y --no-install-recommends ghostscript poppler-utils
+    apt install -y --no-install-recommends poppler-utils
 EOT
 
 # Compile our mo files

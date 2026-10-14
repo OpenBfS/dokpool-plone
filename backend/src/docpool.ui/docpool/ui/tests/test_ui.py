@@ -195,7 +195,7 @@ class TestUIFeatures(unittest.TestCase):
         file_url = self.entry["some-file"].absolute_url()
         self.assertIn(f'href="{file_url}/@@pdfjs_file_view"', html)
         self.assertIn(f'src="{file_url}/@@preview?scale=mini"', html)
-        self.assertNotIn(f'href="{file_url}/@@preview?scale=great"', html)
+        self.assertNotIn(f'href="{file_url}/@@preview?scale=teaser"', html)
         self.assertIn('"modalSizeClass": "modal-xl"', html)
         self.assertIn('"backdropOptions": {"opacity": 1}', html)
         self.assertIn('class="pat-gallery"', html)

@@ -112,28 +112,6 @@ class DPDocumentcommentingView(BrowserView):
                 return viewlet.render()
 
 
-class DPDocumentdocimageView(BrowserView):
-    """Gets the correct image / pdf preview"""
-
-    def __call__(self):
-        """
-        This is the image - if possible without the legend
-        """
-        request = self.request
-        alsoProvides(request, IDisableCSRFProtection)
-        refresh = request.get("refresh", False)
-        response = request.RESPONSE
-        response.setHeader("Content-Type", "image/png")
-        response.setHeader("Cache-control", "max-age=300,s-maxage=300,must-revalidate")
-
-        # Get doc image but without legend
-        data, filename = self.context.getMyImage(refresh=refresh, full=False)
-
-        response.setHeader("Content-disposition", "inline; filename=%s" % filename)
-        response.setHeader("Content-Length", len(data))
-        return data
-
-
 class FileUploadView(BaseFileUploadView):
     """Redirect to the workspace view so we can inject."""
 

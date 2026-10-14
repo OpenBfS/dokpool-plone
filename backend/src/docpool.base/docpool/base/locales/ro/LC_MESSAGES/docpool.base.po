@@ -686,21 +686,6 @@ msgstr ""
 msgid "description_doctype_icon_name"
 msgstr ""
 
-#. Default: "If image exists, it will be used as a visual representation for objects of this type."
-#: docpool.base/docpool/base/content/doctype.py
-msgid "description_doctype_imgpattern"
-msgstr ""
-
-#. Default: "Used for automatically creating objects of this type from collections of files and images."
-#: docpool.base/docpool/base/content/doctype.py
-msgid "description_doctype_partspattern"
-msgstr ""
-
-#. Default: "If PDF exists, an image will be created from its first page as a visual representation for objects of this type."
-#: docpool.base/docpool/base/content/doctype.py
-msgid "description_doctype_pdfpattern"
-msgstr ""
-
 #: docpool.base/docpool/base/content/doctype.py
 msgid "description_doctype_publishimmediately"
 msgstr ""
@@ -902,21 +887,6 @@ msgstr ""
 #: docpool.base/docpool/base/content/doctype.py
 #: docpool.base/docpool/base/content/doctypesubcategory.py
 msgid "label_doctype_icon_name"
-msgstr ""
-
-#. Default: "Name pattern for representative image"
-#: docpool.base/docpool/base/content/doctype.py
-msgid "label_doctype_imgpattern"
-msgstr ""
-
-#. Default: "Name pattern for files and images belonging to this type"
-#: docpool.base/docpool/base/content/doctype.py
-msgid "label_doctype_partspattern"
-msgstr ""
-
-#. Default: "Name pattern for representative PDF"
-#: docpool.base/docpool/base/content/doctype.py
-msgid "label_doctype_pdfpattern"
 msgstr ""
 
 #. Default: "Publish immediately?"
