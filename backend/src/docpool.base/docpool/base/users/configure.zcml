@@ -31,7 +31,7 @@
   <browser:page
       name="usergroup-groupprefs"
       for="docpool.base.interfaces.IDocumentPool"
-      class="Products.CMFPlone.controlpanel.browser.usergroups_groupsoverview.GroupsOverviewControlPanel"
+      class=".usergroups_groupsoverview.GroupsOverviewControlPanel"
       template="templates/usergroups_groupsoverview.pt"
       permission="plone.app.controlpanel.UsersAndGroups"
       layer="docpool.base.interfaces.IDocpoolBaseLayer"
