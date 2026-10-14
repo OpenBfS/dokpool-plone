@@ -87,11 +87,9 @@ class Item(BrowserView):
                 if adapted.transferable() and allowed_targets(obj):
                     show_transfer_action = True
 
-        icon_name = "question"  # Unknown type as fallback
-        doctype_title = obj.docType  # id of initially selected DocType as fallback
-        if docTypeObj := obj.docTypeObj():
-            icon_name = docTypeObj.icon_name
-            doctype_title = docTypeObj.title
+        doctype_data = obj.doctype_data()
+        icon_name = doctype_data.get("icon_name", "question")  # Unknown type as fallback
+        doctype_title = doctype_data.get("title", obj.docType)  # id of initially selected DocType as fallback
 
         iconresolver = self.context.restrictedTraverse("@@iconresolver")
         attachments = api.content.get_view("contentlisting", obj, self.request)(portal_type=["Image", "File"])

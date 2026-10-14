@@ -145,13 +145,13 @@
               <dt i18n:translate="">Document type and category</dt>
               <dd class="field mb-2"
                   tal:define="
-                    doctype python: context.docTypeObj();
-                    doctype_title python: doctype.title if doctype else context.dp_type();
+                    doctype_data python: context.doctype_data();
+                    doctype_title python: doctype_data.get('title') or context.dp_type();
                     subcategory python: context.subcategory();
                   "
               >
                 <div>
-                  ${structure:python:icons.tag(getattr(doctype, 'icon_name', 'question'))}
+                  ${structure:python:icons.tag(doctype_data.get('icon_name', 'question'))}
                   ${python: doctype_title}
                   <span tal:condition="subcategory">(${python: subcategory})</span>
                 </div>

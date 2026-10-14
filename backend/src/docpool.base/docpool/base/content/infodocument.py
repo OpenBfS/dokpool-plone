@@ -24,8 +24,8 @@ class InfoDocument(DPDocument):
     def dp_type(self):
         return "General"
 
-    def docTypeObj(self):
-        return None
+    def doctype_data(self):
+        return {}
 
     def typeAndCat(self):
         """ """

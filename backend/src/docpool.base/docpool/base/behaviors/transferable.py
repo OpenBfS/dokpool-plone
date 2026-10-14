@@ -5,10 +5,8 @@ from contextlib import contextmanager
 from DateTime import DateTime
 from datetime import datetime
 from docpool.base import DocpoolMessageFactory as _
-from docpool.base.behaviors.transferstype import ITransfersType
 from docpool.base.behaviors.utils import allowed_targets
 from docpool.base.browser.flexible_view import FlexibleView
-from docpool.base.config import TRANSFERS_APP
 from docpool.base.content.archiving import IArchiving
 from docpool.base.content.dpdocument import IDPDocument
 from docpool.base.content.places import IPlaces
@@ -187,8 +185,7 @@ class Transferable(FlexibleView):
             return False
         if not self.context.allSubobjectsPublished():
             return False
-        dto = self.context.docTypeObj()
-        if dto and ITransfersType(dto).allowTransfer:
+        if self.context.doctype_data().get("allowTransfer"):
             return True
         return False
 
@@ -199,11 +196,9 @@ class Transferable(FlexibleView):
 
     def transferToAll(self):
         """ """
-        dto = self.context.docTypeObj()
-        dto_transfers = dto.type_extension(TRANSFERS_APP)
         # Intersect allowed and automatic transfer targets while keeping the order of
         # allowed targets and computing the automatic ones only once.
-        automatic = set(dto_transfers.automaticTransferTargets)
+        automatic = set(self.context.doctype_data()["automaticTransferTargets"])
         targets = [t for t in self.allowedTargets() if t in automatic]
 
         source_path = "/".join(self.context.getPhysicalPath())
@@ -232,7 +227,7 @@ class Transferable(FlexibleView):
 
         timestamp = datetime.now()
         userinfo = self.context._getUserInfoString()
-        dto = self.context.docTypeObj()
+        doctype_data = self.context.doctype_data()
 
         def error_message(esd_to_title, msg):
             pmsg = _("No transfer to ${title}. ${msg}", mapping=dict(title=esd_to_title, msg=msg))
@@ -252,7 +247,7 @@ class Transferable(FlexibleView):
 
             # Check permissions:
             # a) Is my DocType accepted (defaults to handling of unknown DocTypes)?
-            if not transfer_folder.acceptsDT(dto.getId()):
+            if not transfer_folder.acceptsDT(doctype_data["id"]):
                 error_message(esd_to_title, _("Doc type not accepted."))
                 return
 
@@ -300,10 +295,11 @@ class Transferable(FlexibleView):
 
             # 5) Make sure about document type in the target ESD.
             private = False
-            if not my_copy.docTypeObj():
+            if not my_copy.doctype_data():
                 target_config_folder = aq_get(transfer_folder, "config", None)
                 target_dt_folder = target_config_folder["dtypes"]
-                new_dt_id = _copyPaste(self.context.docTypeObj(), target_dt_folder)
+                doctype_obj = api.content.get(path=doctype_data["path"])
+                new_dt_id = _copyPaste(doctype_obj, target_dt_folder)
                 dto_copy = target_dt_folder[new_dt_id]
                 if api.content.get_state(dto_copy) != "private":
                     api.content.transition(dto_copy, "retract")
@@ -361,11 +357,10 @@ class Transferable(FlexibleView):
 
         if self.transferred:
             tf = self.context.myDPTransferFolder()
-            dtObj = self.context.docTypeObj()
-            tstate = api.content.get_state(obj=dtObj)
-            if tstate == "published":  # we do this for valid types only
+            doctype_data = self.context.doctype_data()
+            if doctype_data["review_state"] == "published":  # we do this for valid types only
                 # determine the applicable permission
-                perm = tf.doctype_permission(dtObj.getId())
+                perm = tf.doctype_permission(doctype_data["id"])
                 dstate = api.content.get_state(self.context)
                 if dstate == "private" and perm == "publish":
                     api.content.transition(self.context, "publish")

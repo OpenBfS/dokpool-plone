@@ -145,9 +145,8 @@ class ELANDocument(FlexibleView):
 
     def typeAndCat(self):
         """ """
-        dto = self.context.docTypeObj()
-        if dto:
-            return dto.title, [self.context.subcategory()]
+        if doctype_data := self.context.doctype_data():
+            return doctype_data["title"], [doctype_data["subcategory"]]
         return ("", [])
 
 

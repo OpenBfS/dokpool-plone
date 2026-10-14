@@ -704,7 +704,7 @@ quoted_id = quote_plus(econtext["b"].getId());
              "
              tal:condition="python: unknown_dt is not None"
              tal:attributes="
-               href unknown_dt/absolute_url;
+               href python: unknown_dt['absolute_url'];
              "
              i18n:attributes="title"
           >

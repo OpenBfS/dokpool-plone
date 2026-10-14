@@ -33,14 +33,14 @@ class FlexibleView(BrowserView):
 
     def render_view_or_template(self, vtype, **options):
         """
-        Collects suitable macros/templates from apps, types, docs
+        Collects suitable macros/templates from apps, types, docs.
         """
         document = self.context
         app = self.currentApplication()
-        doctype = document.docTypeObj()
+        doctype_data = document.doctype_data()
 
-        if doctype:
-            typename = getattr(doctype, "customViewTemplate", None) or doctype.id
+        if doctype_data:
+            typename = doctype_data["id"]
         elif base_hasattr(document, "typeName"):
             # Some (non-DPDocument) may have custom typeNames, e.g. "SituationReport" is
             # called "sitrep"

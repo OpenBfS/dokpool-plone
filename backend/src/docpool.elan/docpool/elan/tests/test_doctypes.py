@@ -363,9 +363,7 @@ class TestDocTypes(unittest.TestCase):
             weatherinfo_template, docpool["config"]["dtypes"]["staff_work"]["staff_notes"]
         )
 
-        # Invalidate Cache on dokTypeObj()
-        handleConfigurationChangedEvent(None)
-        # reindex category and subcategory for it and for all items of that type
+        # Invalidate Cache and reindex category and subcategory for it and for all items of that type
         notify(EditFinishedEvent(weatherinfo_template))
 
         brain = api.content.find(portal_type="DPDocument", dp_type="weather_conditions_and_forecast")[0]
@@ -455,8 +453,8 @@ class TestDocTypes(unittest.TestCase):
         )
         self.assertFalse(weatherinfo.restrictedTraverse("@@conversation_view").enabled())
         # inherited from doctype
-        doctype = weatherinfo.docTypeObj()
-        self.assertFalse(doctype.allow_discussion_on_dpdocument)
+        doctype_data = weatherinfo.doctype_data()
+        self.assertFalse(doctype_data["allow_discussion_on_dpdocument"])
         self.assertFalse(weatherinfo.allow_discussion)
 
         fti = getUtility(IDexterityFTI, name="DPDocument")
@@ -471,7 +469,10 @@ class TestDocTypes(unittest.TestCase):
         self.assertNotIn("pat-discussion", view_html)
 
         # Change DocType and commenting is enabled
+        doctype = api.content.get(path=doctype_data["path"])
         doctype.allow_discussion_on_dpdocument = True
+        # Needed to trigger handleConfigurationChangedEvent which invalidates cache
+        notify(EditFinishedEvent(doctype))
         view_html = view()
         self.assertIn("pat-discussion", view_html)
 
