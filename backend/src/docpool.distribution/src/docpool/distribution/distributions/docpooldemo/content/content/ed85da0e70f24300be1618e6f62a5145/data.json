@@ -5,6 +5,7 @@
   "AlertingStatus": "none",
   "AreaOfInterest": null,
   "EventCoordinates": null,
+  "EventLocation": null,
   "EventType": "Emergency",
   "Journals": [
     "Einsatztagebuch BfS",

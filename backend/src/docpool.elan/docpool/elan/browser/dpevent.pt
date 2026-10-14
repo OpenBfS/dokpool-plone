@@ -23,6 +23,7 @@
                              'EventType',
                              'Status',
                              'TimeOfEvent',
+                             'EventLocation',
                              ]">
             <tr tal:define="
                   widget python:view.widgets[field];

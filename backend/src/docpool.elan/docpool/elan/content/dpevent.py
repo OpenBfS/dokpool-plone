@@ -89,6 +89,12 @@ class IDPEvent(IContentBase):
         defaultFactory=initializeTimeOfEvent,
     )
 
+    directives.write_permission(EventLocation="docpool.elan.ManageDPEvents")
+    EventLocation = schema.Text(
+        title=_("Event location"),
+        required=False,
+    )
+
     directives.write_permission(EventCoordinates="docpool.elan.ManageDPEvents")
     EventCoordinates = schema.Text(
         title=_("Event coordinates"),
