@@ -14,12 +14,13 @@
     "Einsatztagebuch Messdienste"
   ],
   "OperationMode": "routine",
+  "SectorizingNetworks": [],
   "SectorizingSampleTypes": null,
   "Status": "active",
   "TimeOfEvent": "2026-07-27T22:24:05",
   "UID": "8e982cec0c1c4647a5e099d5a4d4c9a3",
   "allow_discussion": null,
-  "changelog": "[{\"Date\": \"27.07.2026 22:24\", \"User\": \"admin\", \"Status\": \"active\", \"EventType\": \"Routine\", \"Operation mode\": \"Routine mode\", \"Alerting status\": \"keine\", \"Alerting note\": null, \"Sectorizing sample types\": \" \"}]",
+  "changelog": "[{\"Date\": \"27.07.2026 22:24\", \"User\": \"admin\", \"Status\": \"active\", \"EventType\": \"Routine\", \"Operation mode\": \"Routine mode\", \"Alerting status\": \"keine\", \"Alerting note\": null, \"Sectorizing sample types\": \" \", \"Sectorizing networks\": \"\"}]",
   "contributors": [],
   "created": "2026-07-27T20:24:21+00:00",
   "created_by": [

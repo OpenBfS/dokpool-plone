@@ -5,6 +5,7 @@ from docpool.elan import DocpoolMessageFactory as _
 from plone import api
 from plone.base.utils import safe_bytes
 from zope.interface import implementer
+from zope.interface import provider
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
@@ -165,6 +166,55 @@ class SampleType:
 
 
 SampleTypeVocabularyFactory = SampleType()
+
+
+@provider(IVocabularyFactory)
+def NetworksVocabularyFactory(context=None):
+    items = [
+        "Alle",
+        "Alle Bundesmessnetze",
+        "Alle Länder",
+        "auslaendische Messnetze",
+        "Baden-Wuerttemberg",
+        "Bayern",
+        "Berlin",
+        "BfE",
+        "BfS (ABI)",
+        "BfS (Spuren)",
+        "BfS / ZdB",
+        "BMUKN",
+        "Brandenburg",
+        "Bremen",
+        "Bundeswehr",
+        "Endlager (Bundesaufsicht)",
+        "FhG",
+        "Hamburg",
+        "Hessen",
+        "Leitstelle BfG",
+        "Leitstelle BfS H (u.a. Trinkwasser)",
+        "Leitstelle BfS in-situ-G.",
+        "Leitstelle MRI",
+        "Leitstelle Thuenen-Institut",
+        "Mecklenburg-Vorpommern",
+        "Messnetz BfG",
+        "Messnetz BfS in-situ-G.",
+        "Messnetz BfS ODL",
+        "Messnetz BSH",
+        "Messnetz DWD",
+        "Niedersachsen",
+        "Nordrhein-Westfalen",
+        "PTB",
+        "Rheinland-Pfalz",
+        "Saarland",
+        "Sachsen",
+        "Sachsen-Anhalt",
+        "Schleswig-Holstein",
+        "Sonstige",
+        "Thueringen",
+        "ZdB-Testnetz",
+    ]
+    terms = [SimpleTerm(value, safe_bytes(value), value) for value in items]
+    return SimpleVocabulary(terms)
 
 
 allow_module("docpool.elan.vocabularies")

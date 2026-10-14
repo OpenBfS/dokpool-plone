@@ -143,6 +143,12 @@ class IDPEvent(IContentBase):
         value_type=schema.Choice(source="docpool.elan.vocabularies.SampleType"),
     )
 
+    SectorizingNetworks = schema.List(
+        title=_("Sectorizing networks"),
+        required=False,
+        value_type=schema.Choice(source="docpool.elan.vocabularies.Networks"),
+    )
+
     directives.omitted(IEditForm, "Journals")
     Journals = schema.List(
         title=_("Journals"),
@@ -282,6 +288,7 @@ def addLogEntry(obj):
     entry["Sectorizing sample types"] = ", ".join(
         obj.SectorizingSampleTypes if obj.SectorizingSampleTypes is not None else " "
     )
+    entry["Sectorizing networks"] = ", ".join(obj.SectorizingNetworks or " ")
     # Check if there are changes to prevent duplicate log entries.
     if changelog and entry == changelog[-1]:
         return

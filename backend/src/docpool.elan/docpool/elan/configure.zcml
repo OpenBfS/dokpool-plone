@@ -74,6 +74,10 @@
       component=".vocabularies.SampleTypeVocabularyFactory"
       />
   <utility
+      name="docpool.elan.vocabularies.Networks"
+      component=".vocabularies.NetworksVocabularyFactory"
+      />
+  <utility
       name="docpool.elan.vocabularies.AlertingStatus"
       component=".vocabularies.AlertingStatusVocabularyFactory"
       />

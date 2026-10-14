@@ -351,6 +351,11 @@ msgstr "Abonnement des Ereignisses beendet."
 
 #: docpool.elan/docpool/elan/browser/dpevent.pt
 #: docpool.elan/docpool/elan/content/dpevent.py
+msgid "Sectorizing networks"
+msgstr "Sektorierung Netze"
+
+#: docpool.elan/docpool/elan/browser/dpevent.pt
+#: docpool.elan/docpool/elan/content/dpevent.py
 msgid "Sectorizing sample types"
 msgstr "Sektorierung Umweltbereiche"
 

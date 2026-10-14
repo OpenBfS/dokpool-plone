@@ -351,6 +351,11 @@ msgstr ""
 
 #: docpool.elan/docpool/elan/browser/dpevent.pt
 #: docpool.elan/docpool/elan/content/dpevent.py
+msgid "Sectorizing networks"
+msgstr ""
+
+#: docpool.elan/docpool/elan/browser/dpevent.pt
+#: docpool.elan/docpool/elan/content/dpevent.py
 msgid "Sectorizing sample types"
 msgstr ""
 
