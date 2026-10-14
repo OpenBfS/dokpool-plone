@@ -273,6 +273,10 @@ msgstr "Abonnierte Ereignisse verwalten"
 msgid "Metadata"
 msgstr "Metadaten"
 
+#: docpool.elan/docpool/elan/vocabularies.py
+msgid "Minor Situation"
+msgstr "Kleine Lage"
+
 #: docpool.elan/docpool/elan/browser/archive_event_form.py
 msgid "No event specified for archiving."
 msgstr "Kein Ereignis zum Archivieren ausgewählt."
@@ -296,7 +300,7 @@ msgstr "Inhalte des Ereignisses löschen"
 
 #: docpool.elan/docpool/elan/vocabularies.py
 msgid "Routine"
-msgstr "Kleine Lage"
+msgstr "Normalfall"
 
 #: docpool.elan/docpool/elan/vocabularies.py
 msgid "Routine mode"

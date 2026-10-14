@@ -273,6 +273,10 @@ msgstr ""
 msgid "Metadata"
 msgstr ""
 
+#: docpool.elan/docpool/elan/vocabularies.py
+msgid "Minor Situation"
+msgstr ""
+
 #: docpool.elan/docpool/elan/browser/archive_event_form.py
 msgid "No event specified for archiving."
 msgstr ""
