@@ -1,0 +1,14 @@
+[Container]
+ContainerName=bfs-gui-zeoclient-init
+Environment='RELSTORAGE_DSN=dbname='"'"'dokpool'"'"' user='"'"'dokpool'"'"' host='"'"'bfs-gui-postgres'"'"' password='"'"'dokpool'"'"''
+Environment=RELSTORAGE_CREATE_SCHEMA=true
+Environment=DELETE_EXISTING=1
+Environment='SESSION_STORAGE_DSN=dbname='"'"'sessions'"'"' user='"'"'dokpool'"'"' host='"'"'bfs-gui-postgres-sessions'"'"' password='"'"'dokpool'"'"''
+Exec=create-site
+HostName=bfs-gui-zeoclient-init
+Image=git.starzel.de:5050/bfs/dokpool:gui
+Network=bfs-gui
+[Unit]
+BindsTo=bfs-gui-postgresql.service bfs-gui-postgresql-sessions.service
+After=bfs-gui-postgresql.service bfs-gui-postgresql-sessions.service
+

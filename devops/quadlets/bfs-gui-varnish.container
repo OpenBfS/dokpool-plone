@@ -1,0 +1,12 @@
+[Container]
+ContainerName=bfs-gui-varnish
+Environment=VARNISH_HTTP_PORT=8090
+Environment=VARNISH_BACKEND_HOST=bfs-gui-zeoclient-run
+HostName=bfs-gui-varnish
+Image=docker.io/library/varnish:7.6.1
+Network=bfs-gui
+PublishPort=9080:8090
+Volume=%h/.config/varnish/varnish-gui.vcl:/etc/varnish/default.vcl:ro
+[Install]
+WantedBy=default.target
+

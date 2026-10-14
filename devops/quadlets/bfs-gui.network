@@ -1,0 +1,8 @@
+[Network]
+NetworkName=bfs-gui
+Driver=bridge
+Gateway=192.168.230.1
+Subnet=192.168.230.0/24
+[Install]
+WantedBy=default.target
+

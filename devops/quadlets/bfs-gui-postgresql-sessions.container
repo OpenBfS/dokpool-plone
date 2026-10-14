@@ -1,0 +1,9 @@
+[Container]
+ContainerName=bfs-gui-postgresql-sessions
+Environment=POSTGRES_USER=dokpool
+Environment=POSTGRES_PASSWORD=dokpool
+Environment=POSTGRES_DB=sessions
+HostName=bfs-gui-postgres-sessions
+Image=docker.io/library/postgres:16.6
+Network=bfs-gui
+Volume=prod-gui-bfs-sessions:/var/lib/postgresql:Z

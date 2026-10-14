@@ -1,0 +1,16 @@
+[Container]
+ContainerName=bfs-gui-zeoclient-run-%i
+Environment='RELSTORAGE_DSN=dbname='"'"'dokpool'"'"' user='"'"'dokpool'"'"' host='"'"'bfs-gui-postgres'"'"' password='"'"'dokpool'"'"''
+Environment=RELSTORAGE_CREATE_SCHEMA=false
+Environment='SESSION_STORAGE_DSN=dbname='"'"'sessions'"'"' user='"'"'dokpool'"'"' host='"'"'bfs-gui-postgres-sessions'"'"' password='"'"'dokpool'"'"''
+HostName=bfs-gui-zeoclient-run-%i
+Image=git.starzel.de:5050/bfs/dokpool:gui
+Network=bfs-gui
+NetworkAlias=bfs-gui-zeoclient-run
+[Unit]
+BindsTo=bfs-gui-postgresql.service bfs-gui-postgresql-sessions.service
+After=bfs-gui-postgresql.service bfs-gui-postgresql-sessions.service
+
+[Install]
+WantedBy=default.target
+
