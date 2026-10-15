@@ -1,5 +1,6 @@
 from Acquisition import aq_base
 from docpool.base import DocpoolMessageFactory as _
+from docpool.base.content.archiving import IArchiving
 from docpool.base.content.folderbase import FolderBase
 from docpool.base.content.folderbase import IFolderBase
 from docpool.base.utils import getAllowedDocumentTypes
@@ -138,6 +139,9 @@ class SimpleFolder(FolderBase):
         # Extend checks of plone.dexterity.content.PasteBehaviourMixin to test for allowed docTypes
         # to prevent pasting not allowd content. See https://redmine-koala.bfs.de/issues/5849
         super()._verifyObjectPaste(obj, validate_src)
+        if IArchiving(self).is_archive:
+            # Prevent issue with archiving content of groups that have been deleted (#6637)
+            return
         if IContentish.providedBy(obj):
             portal_type = getattr(aq_base(obj), "portal_type", None)
             if portal_type == "DPDocument":
