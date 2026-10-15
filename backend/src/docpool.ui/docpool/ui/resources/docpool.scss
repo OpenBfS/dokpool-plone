@@ -540,19 +540,19 @@ body.portaltype-dpdocument.template-edit .autotoc-nav {
 
     .list-group-item {
       padding: 0;
-    }
 
-    a {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      padding: 0.75rem 0.625rem;
+      & > a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0.75rem 0.625rem;
 
-      &[href]:hover,
-      &[href]:focus-visible {
-        color: var(--bs-primary);
-        background-color: var(--bs-nav-hover-bg);
+        &[href]:hover,
+        &[href]:focus-visible {
+          color: var(--bs-primary);
+          background-color: var(--bs-nav-hover-bg);
+        }
       }
     }
 
