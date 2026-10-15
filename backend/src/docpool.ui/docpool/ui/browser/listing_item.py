@@ -32,12 +32,15 @@ TRANSITION_ICON_MAPPING = {
 }
 
 PAT_INJECT_CONFIGS = {
-    "default": "trigger: default; source: #portal-column-content; target: #content-core; history: record",
-    "navigation": (
+    # Refresh the main content while keeping the current sidebar.
+    "content_only": "trigger: default; source: #portal-column-content; target: #content-core; history: record",
+    # Refresh the main content and sidebar
+    "content_and_sidebar": (
         "trigger: default; source: #portal-column-content; target: #content-core; history: record && "
         "source: #portal-column-one; target: #portal-column-one; trigger: default"
     ),
-    "transition": (
+    # Refresh the listing and status messages without changing the URL.
+    "listing_and_status": (
         "source: #listing; target: #listing; trigger: default && "
         "source: #global_statusmessage; target: #global_statusmessage; trigger: default "
     ),
@@ -49,10 +52,11 @@ class Item(BrowserView):
     template_folder = ViewPageTemplateFile("templates/listing-folder.pt")
     template_other = ViewPageTemplateFile("templates/listing-other.pt")
 
-    def __call__(self, uid=None, show_bulk_actions=False, use_pat_inject=True):
+    def __call__(self, uid=None, show_bulk_actions=False, use_pat_inject=True, sidebar=None):
         self.folder_listing = self.context.portal_type in FOLDER_TYPES
         self.show_bulk_actions = show_bulk_actions
         self.use_pat_inject = use_pat_inject
+        self.sidebar = sidebar if use_pat_inject and not self.folder_listing else None
 
         obj = api.content.get(UID=uid) if uid else self.context
 
@@ -141,7 +145,7 @@ class Item(BrowserView):
             return f"pat-inject {classes}"
         return classes
 
-    def pat_inject_config(self, name="default"):
+    def pat_inject_config(self, name="content_only"):
         if self.use_pat_inject:
             return PAT_INJECT_CONFIGS[name]
         return None

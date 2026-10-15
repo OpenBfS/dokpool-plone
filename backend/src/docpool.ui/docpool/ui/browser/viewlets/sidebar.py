@@ -11,6 +11,9 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.viewlet.interfaces import IViewletManager
 
 
+LISTING_SIDEBAR_VIEWS = {"listing", "tasks", "journalentries"}
+
+
 class ISidebarManager(IViewletManager):
     """Custom sidebar manager"""
 
@@ -37,6 +40,9 @@ class SidebarViewlet(GroupsTreeMixin, common.ViewletBase):
         return self.navigation_root_url
 
     def is_active(self, section):
+        if listing_view := self.listing_sidebar_view():
+            return listing_view in self.section_views.get(section, set())
+
         # TODO Improve - Should not use getURL
         view_segment = self.request.getURL().rstrip("/").rsplit("/", 1)[-1]
         if not view_segment.startswith("@@"):
@@ -44,6 +50,13 @@ class SidebarViewlet(GroupsTreeMixin, common.ViewletBase):
 
         view_name = view_segment[2:]
         return view_name in self.section_views.get(section, set())
+
+    def listing_sidebar_view(self):
+        if self.context.portal_type == "DPDocument":
+            view_name = self.request.form.get("sidebar")
+            if isinstance(view_name, str) and view_name in LISTING_SIDEBAR_VIEWS:
+                return view_name
+        return None
 
     def update(self):
         super().update()
@@ -53,6 +66,9 @@ class SidebarViewlet(GroupsTreeMixin, common.ViewletBase):
             self.groups_tree = []
 
     def render(self):
+        if self.listing_sidebar_view():
+            return super().render()
+
         # XXX Paths shouldn't be hard-coded. Maybe add a property to folders or introduce a behavior.
         if is_in_dp_folder(self.context, *GROUPS_NAV_FOLDERS):
             return self.groups_nav()

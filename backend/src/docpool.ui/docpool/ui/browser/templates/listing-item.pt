@@ -16,8 +16,8 @@
      href="#"
      tal:attributes="
        class python: view.pat_inject_class('list-item-link stretched-link');
-       data-pat-inject python: view.pat_inject_config('navigation');
-       href python: data['url'];
+       data-pat-inject python: view.pat_inject_config('content_and_sidebar' if view.folder_listing else 'content_only');
+       href python: data['url'] + '?sidebar=' + view.sidebar if view.sidebar else data['url'];
        title python:data['doctype_title'];
      "
   >
@@ -252,7 +252,7 @@
                "
                tal:attributes="
                  class python: view.pat_inject_class('dropdown-item d-flex gap-2 align-items-center transition');
-                 data-pat-inject python: view.pat_inject_config('transition');
+                 data-pat-inject python: view.pat_inject_config('listing_and_status');
                  href python:'%s/@@change_state?action=%s&amp;back_to_referer=1&amp;_authenticator=%s' % (data['url'], transition['id'], token);
                  id python: 'workflow-transition-' + transition['id'];
                "

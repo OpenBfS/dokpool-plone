@@ -148,6 +148,12 @@ class TestUIFeatures(unittest.TestCase):
             html,
         )
 
+    def test_pool_listing_passes_sidebar_view_to_items(self):
+        listing = api.content.get_view("listing", self.docpool, self.request)
+        html = listing()
+
+        self.assertIn(f"@@listing-item?uid={self.entry.UID()}&amp;sidebar=listing", html)
+
     def test_groups_listing_hides_folder_wizard_links(self):
         groups = self.docpool.content.Groups
         listing = api.content.get_view("listing", groups, self.request)
@@ -193,6 +199,9 @@ class TestUIFeatures(unittest.TestCase):
         listing_item_view = api.content.get_view("listing-item", self.portal, self.request)
         html = listing_item_view(uid=uid)
         self.assertIn("A Weatherinfo</h3>", html)
+        self.assertIn(f'href="{self.entry.absolute_url()}"', html)
+        html = listing_item_view(uid=uid, sidebar="listing")
+        self.assertIn(f'href="{self.entry.absolute_url()}?sidebar=listing"', html)
         file_url = self.entry["some-file"].absolute_url()
         self.assertIn(f'href="{file_url}/@@pdfjs_file_view"', html)
         self.assertIn(f'src="{file_url}/@@preview?scale=mini"', html)
@@ -211,6 +220,8 @@ class TestUIFeatures(unittest.TestCase):
         html = listing_item_view(uid=uid)
         self.assertIn("A Weatherinfo</h3>", html)
         self.assertIn("pat-inject list-item-link stretched-link", html)
+        html = listing_item_view(uid=uid, sidebar="tasks")
+        self.assertNotIn(f"{self.entry.absolute_url()}?sidebar=tasks", html)
         html = listing_item_view(uid=uid, use_pat_inject=False)
         self.assertNotIn("pat-inject", html)
 
@@ -229,6 +240,12 @@ class TestUIFeatures(unittest.TestCase):
         dpdocument_view = api.content.get_view("view", self.entry, self.request)
         html = dpdocument_view()
         self.assertIn(">A Weatherinfo</h1>", html)
+
+    def test_dpdocument_sidebar_from_listing_link(self):
+        self.request.form["sidebar"] = "listing"
+        dpdocument_view = api.content.get_view("view", self.entry, self.request)
+        rendered = dpdocument_view()
+        self.assertIn('class="sidebar align-items-center"', rendered)
 
     def test_dpdocument_edit_view(self):
         dpdocument_edit_view = api.content.get_view("edit", self.entry, self.request)

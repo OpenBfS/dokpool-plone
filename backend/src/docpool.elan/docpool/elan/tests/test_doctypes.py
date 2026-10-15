@@ -16,7 +16,6 @@ from plone.app.testing import TEST_USER_NAME
 from plone.app.textfield import RichTextValue
 from plone.dexterity.events import EditFinishedEvent
 from plone.dexterity.interfaces import IDexterityFTI
-from Products.CMFPlone.controlpanel.events import handleConfigurationChangedEvent
 from zope.component import getUtility
 from zope.event import notify
 from zope.lifecycleevent import modified

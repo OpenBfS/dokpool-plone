@@ -13,7 +13,6 @@ from plone.app.dexterity.interfaces import IDXFileFactory
 from plone.app.layout.globals.interfaces import IViewView
 from plone.dexterity.browser import add
 from plone.dexterity.interfaces import IDexterityEditForm
-from plone.protect.interfaces import IDisableCSRFProtection
 from plone.uuid.interfaces import IUUID
 from plone.z3cform import layout
 from Products.Five.browser import BrowserView
@@ -21,7 +20,6 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from urllib.parse import quote_plus
 from z3c.form import form
 from zope.component import queryMultiAdapter
-from zope.interface import alsoProvides
 from zope.interface import classImplements
 from zope.interface import implementer
 from zope.viewlet.interfaces import IViewletManager
