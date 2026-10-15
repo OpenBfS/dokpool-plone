@@ -62,6 +62,10 @@ msgstr "Zurück"
 msgid "Cancel"
 msgstr "Abbrechen"
 
+#: docpool.ui/docpool/ui/browser/templates/dpdocument.pt
+msgid "Change visibility"
+msgstr "Sichtbarkeit ändern"
+
 #: docpool.ui/docpool/ui/browser/viewlets/sidebar.pt
 msgid "Chronology"
 msgstr "Chronologie"

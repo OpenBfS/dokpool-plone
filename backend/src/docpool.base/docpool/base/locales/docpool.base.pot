@@ -403,6 +403,10 @@ msgid "Select a value ..."
 msgstr ""
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "Send back"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "Send back to BfS"
 msgstr ""
 
