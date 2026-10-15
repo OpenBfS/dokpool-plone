@@ -17,7 +17,7 @@
      tal:attributes="
        class python: view.pat_inject_class('list-item-link stretched-link');
        data-pat-inject python: view.pat_inject_config('content_and_sidebar' if view.folder_listing else 'content_only');
-       href python: data['url'];
+       href python: data['url'] + '?sidebar=' + view.sidebar if view.sidebar else data['url'];
        title python:data['doctype_title'];
      "
   >

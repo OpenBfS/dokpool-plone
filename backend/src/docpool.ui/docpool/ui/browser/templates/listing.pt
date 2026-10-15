@@ -749,6 +749,7 @@
              tal:define="
                target python: '@@listing-item?uid='+ item;
                target python: target + '&amp;show_bulk_actions=1' if show_bulk_actions else target;
+               target python: target + '&amp;sidebar=' + view.__name__ if not view.folder_listing else target;
              "
              tal:content="python: '@@listing-item?uid='+ item"
              tal:attributes="

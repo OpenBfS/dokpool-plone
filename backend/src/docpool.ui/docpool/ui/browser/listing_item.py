@@ -52,10 +52,11 @@ class Item(BrowserView):
     template_folder = ViewPageTemplateFile("templates/listing-folder.pt")
     template_other = ViewPageTemplateFile("templates/listing-other.pt")
 
-    def __call__(self, uid=None, show_bulk_actions=False, use_pat_inject=True):
+    def __call__(self, uid=None, show_bulk_actions=False, use_pat_inject=True, sidebar=None):
         self.folder_listing = self.context.portal_type in FOLDER_TYPES
         self.show_bulk_actions = show_bulk_actions
         self.use_pat_inject = use_pat_inject
+        self.sidebar = sidebar if use_pat_inject and not self.folder_listing else None
 
         obj = api.content.get(UID=uid) if uid else self.context
 
