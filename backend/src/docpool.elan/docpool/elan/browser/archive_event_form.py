@@ -233,6 +233,18 @@ class ArchiveAndClose(BrowserView):
             if block:
                 new.__ac_local_roles_block__ = block
 
+        # 6. Show info about folders without group or user
+        if old_parent.portal_type == "GroupFolder":
+            if not old_parent.getGroupOfFolder():
+                # There is no group for this Folder
+                msg = f"The GroupFolder {old_parent.id} has no group and should be deleted: {old_parent.absolute_url()}"
+                api.portal.show_message(msg, self.request, "warn")
+        elif old_parent.portal_type == "UserFolder":
+            if not old_parent.getOwner():
+                # There is no group for this Folder
+                msg = f"The user folder {old_parent.id} has no user and should be deleted: : {old_parent.absolute_url()}"
+                api.portal.show_message(msg, self.request, "warn")
+
         return new
 
     def can_move(self, obj):

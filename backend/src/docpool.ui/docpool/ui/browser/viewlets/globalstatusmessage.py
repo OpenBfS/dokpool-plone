@@ -16,7 +16,7 @@ MTYPES_DISPLAY = {
         "icon": "info-circle",
         "cssclass": "statusmessage statusmessage-info alert",
     },
-    "warning": {
+    "warn": {
         "msg": _("statusmessage_mtype_warning", default="Warning:"),
         "icon": "exclamation-triangle",
         "cssclass": "statusmessage statusmessage-warning alert",
@@ -32,6 +32,7 @@ MTYPES_DISPLAY = {
         "cssclass": "statusmessage statusmessage-danger statusmessage-error alert",
     },
 }
+MTYPES_DISPLAY["warning"] = MTYPES_DISPLAY["warn"]  # BBB
 
 
 class GlobalStatusMessage(PloneGlobalStatusMessage):

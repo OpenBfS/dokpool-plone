@@ -47,12 +47,14 @@
       border-color: #e5bc4a;
       background-color: #e5bc4a;
       color: #000;
+      animation: None;
     }
 
     &.statusmessage-error {
       border-color: #b74d48;
       background-color: #b74d48;
       color: #fff;
+      animation: None;
     }
 
     &:not([open]) {
