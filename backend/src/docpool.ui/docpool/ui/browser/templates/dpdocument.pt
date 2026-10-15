@@ -92,6 +92,47 @@
                     <tal:icon tal:replace="structure python:icons.tag('pencil')" />
                   </a>
                 </li>
+                <li class="list-group-item border-0 bg-transparent icon-action dropdown"
+                    tal:define="
+                      available_transitions python: view.available_transitions();
+                    "
+                    tal:condition="python: available_transitions"
+                >
+                  <button class="btn btn-icon dropdown-toggle"
+                          aria-expanded="false"
+                          title="Change visibility"
+                          type="button"
+                          data-bs-auto-close="outside"
+                          data-bs-toggle="dropdown"
+                          tal:attributes="
+                            class python: 'btn btn-icon dropdown-toggle btn-secondary';
+                          "
+                          i18n:attributes="title"
+                  >
+                    <tal:icon tal:replace="structure python:icons.tag('bezier2')" />
+                  </button>
+                  <ul class="dropdown-menu pe-2 shadow">
+                    <li tal:repeat="transition python: available_transitions">
+                      <a class="dropdown-item d-flex gap-2 transition"
+                         href="#"
+                         tal:define="
+                           icon_name python: view.transition_icon(transition['id']);
+                         "
+                         tal:attributes="
+                           href python:'%s/@@change_state?action=%s&amp;back_to_referer=1&amp;_authenticator=%s' % (context.absolute_url(), transition['id'], token);
+                           id python: 'workflow-transition-' + transition['id'];
+                         "
+                      >
+                        <img src="${python:icons.url(icon_name)}" />
+                        <span tal:content="python: transition['name']"
+                              tal:omit-tag=""
+                              i18n:domain="docpool.base"
+                              i18n:translate=""
+                        ></span>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
                 <li class="list-group-item border-0 bg-transparent icon-action"
                     tal:condition="python: view.show_transfer_action"
                 >
