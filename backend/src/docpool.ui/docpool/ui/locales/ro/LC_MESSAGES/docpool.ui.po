@@ -120,6 +120,10 @@ msgstr ""
 msgid "Delete"
 msgstr ""
 
+#: docpool.ui/docpool/ui/configure.zcml
+msgid "DocPool Ui"
+msgstr ""
+
 #: docpool.ui/docpool/ui/browser/viewlets/header.pt
 msgid "Docpools"
 msgstr ""
@@ -160,6 +164,10 @@ msgstr ""
 
 #: docpool.ui/docpool/ui/browser/viewlets/header-navigation-macros.pt
 msgid "Event Timezone"
+msgstr ""
+
+#: docpool.ui/docpool/ui/configure.zcml
+msgid "Extension profile for DocPool Ui"
 msgstr ""
 
 #: docpool.ui/docpool/ui/browser/templates/listing-filter-macros.pt

@@ -1044,7 +1044,6 @@ dependencies = [
     { name = "docpool-elan" },
     { name = "docpool-rei" },
     { name = "docpool-rodos" },
-    { name = "docpool-theme" },
     { name = "docpool-ui" },
     { name = "eea-facetednavigation" },
     { name = "elan-journal" },
@@ -1100,7 +1099,6 @@ requires-dist = [
     { name = "docpool-elan", editable = "src/docpool.elan" },
     { name = "docpool-rei", editable = "src/docpool.rei" },
     { name = "docpool-rodos", editable = "src/docpool.rodos" },
-    { name = "docpool-theme", editable = "src/docpool.theme" },
     { name = "docpool-ui", editable = "src/docpool.ui" },
     { name = "eea-facetednavigation" },
     { name = "elan-journal", editable = "src/elan.journal" },
@@ -1299,21 +1297,6 @@ dependencies = [
 requires-dist = [
     { name = "docpool-base" },
     { name = "setuptools" },
-]
-
-[[package]]
-name = "docpool-theme"
-version = "1.0"
-source = { editable = "src/docpool.theme" }
-dependencies = [
-    { name = "setuptools" },
-    { name = "z3c-jbot" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "setuptools" },
-    { name = "z3c-jbot" },
 ]
 
 [[package]]

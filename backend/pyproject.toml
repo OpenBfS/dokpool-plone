@@ -45,7 +45,6 @@ dependencies = [
     "docpool.elan",
     "docpool.rei",
     "docpool.rodos",
-    "docpool.theme",
     "docpool.ui",
     "elan.journal",
     "collective.eeafaceted.z3ctable",
@@ -557,7 +556,6 @@ constraint-dependencies = [
 "docpool.elan" = {path = "src/docpool.elan", editable = true}  # managed by mxdev
 "docpool.rei" = {path = "src/docpool.rei", editable = true}  # managed by mxdev
 "docpool.rodos" = {path = "src/docpool.rodos", editable = true}  # managed by mxdev
-"docpool.theme" = {path = "src/docpool.theme", editable = true}  # managed by mxdev
 "docpool.ui" = {path = "src/docpool.ui", editable = true}  # managed by mxdev
 "elan.journal" = {path = "src/elan.journal", editable = true}  # managed by mxdev
 "collective.eeafaceted.z3ctable" = {path = "sources/collective.eeafaceted.z3ctable", editable = true}  # managed by mxdev
