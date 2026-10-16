@@ -44,6 +44,3 @@ var/
 /venv/
 constraints*.txt
 requirements*.txt
-
-# project related
-src/docpool.theme/docpool/theme/static/build/*
