@@ -24,6 +24,7 @@
         <i18n:dummy translate="alert_publish_popup"></i18n:dummy>
         <i18n:dummy translate="Submit for publication"></i18n:dummy>
         <i18n:dummy translate="Publish"></i18n:dummy>
+        <i18n:dummy translate="Publish BMUKN"></i18n:dummy>
         <i18n:dummy translate="Reject"></i18n:dummy>
         <i18n:dummy translate="Retract"></i18n:dummy>
         <i18n:dummy translate="Submit"></i18n:dummy>
@@ -47,6 +48,7 @@
         <i18n:dummy translate="Retract to NPP Operator"></i18n:dummy>
         <i18n:dummy translate="Retract to authority"></i18n:dummy>
         <i18n:dummy translate="Revised"></i18n:dummy>
+        <i18n:dummy translate="Send back"></i18n:dummy>
         <i18n:dummy translate="Send back to BfS"></i18n:dummy>
         <i18n:dummy translate="Send back to NPP operator"></i18n:dummy>
         <i18n:dummy translate="Send back to authority"></i18n:dummy>

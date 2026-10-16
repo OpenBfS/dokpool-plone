@@ -6,6 +6,7 @@ from docpool.base.content.places import IPlaces
 from docpool.base.utils import getDocumentPoolSite
 from docpool.base.utils import getUserInfo
 from docpool.ui import _
+from docpool.ui.browser.listing_item import TRANSITION_ICON_MAPPING
 from docpool.ui.utils import prepare_came_from_link
 from plone import api
 from plone.app.content.browser.actions import DeleteConfirmationForm
@@ -96,6 +97,13 @@ class DPDocumentView(DefaultView):
             "pending": {"title": _("Pending")},
             "revised": {"title": _("Revised")},
         }
+
+    def available_transitions(self):
+        portal_workflow = api.portal.get_tool("portal_workflow")
+        return portal_workflow.getTransitionsFor(self.context)
+
+    def transition_icon(self, transition_id):
+        return TRANSITION_ICON_MAPPING.get(transition_id, "arrow-right")
 
 
 def visibility_options(app, context):
