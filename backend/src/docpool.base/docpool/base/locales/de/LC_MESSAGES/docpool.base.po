@@ -338,6 +338,10 @@ msgid "Publish"
 msgstr "Veröffentlichen"
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "Publish BMUKN"
+msgstr "Freigeben"
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "Published"
 msgstr "Öffentlich"
 

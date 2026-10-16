@@ -340,6 +340,10 @@ msgid "Publish"
 msgstr ""
 
 #: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "Publish BMUKN"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
 msgid "Published"
 msgstr ""
 

@@ -109,7 +109,7 @@
                           "
                           i18n:attributes="title"
                   >
-                    <tal:icon tal:replace="structure python:icons.tag('bezier2')" />
+                    <tal:icon tal:replace="structure python:icons.tag('stoplights')" />
                   </button>
                   <ul class="dropdown-menu pe-2 shadow">
                     <li tal:repeat="transition python: available_transitions">
