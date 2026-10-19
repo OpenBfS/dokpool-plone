@@ -109,7 +109,7 @@
                           "
                           i18n:attributes="title"
                   >
-                    <tal:icon tal:replace="structure python:icons.tag('stoplights')" />
+                    <tal:icon tal:replace="structure python:icons.tag('arrow-left-right')" />
                   </button>
                   <ul class="dropdown-menu pe-2 shadow">
                     <li tal:repeat="transition python: available_transitions">
@@ -144,7 +144,7 @@
                      i18n:attributes="title"
                      i18n:domain="docpool.base"
                   >
-                    <tal:icon tal:replace="structure python:icons.tag('box-arrow-up-right')" />
+                    <tal:icon tal:replace="structure python:icons.tag('arrow-up-right-square')" />
                   </a>
                 </li>
                 <li class="list-group-item border-0 bg-transparent back icon-action">

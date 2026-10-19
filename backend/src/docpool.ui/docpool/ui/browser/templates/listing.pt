@@ -612,7 +612,7 @@
                           name="bulk_transfer"
                           type="submit"
                   >
-                    <img src="${python:icons.url('box-arrow-up-right')}" />
+                    <img src="${python:icons.url('arrow-up-right-square')}" />
                     <span tal:omit-tag=""
                           i18n:domain="docpool.base"
                           i18n:translate=""
@@ -624,9 +624,8 @@
                           name="bulk_transition"
                           type="submit"
                   >
-                    <img src="${python:icons.url('arrow-down-up')}" />
+                    <img src="${python:icons.url('arrow-left-right')}" />
                     <span tal:omit-tag=""
-                          i18n:domain="docpool.base"
                           i18n:translate=""
                     >Transition</span>
                   </button>

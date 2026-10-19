@@ -746,7 +746,7 @@
                   name="bulk_transfer"
                   type="submit"
           >
-            <tal:icon tal:replace="structure python:icons.tag('box-arrow-up-right')" />
+            <tal:icon tal:replace="structure python:icons.tag('arrow-up-right-square')" />
             <span class="listing-mobile-actions-item-label"
                   i18n:domain="docpool.base"
                   i18n:translate=""
@@ -758,7 +758,7 @@
                   name="bulk_transition"
                   type="submit"
           >
-            <tal:icon tal:replace="structure python:icons.tag('arrow-down-up')" />
+            <tal:icon tal:replace="structure python:icons.tag('arrow-left-right')" />
             <span class="listing-mobile-actions-item-label"
                   i18n:domain="docpool.base"
                   i18n:translate=""

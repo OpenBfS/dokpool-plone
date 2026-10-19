@@ -389,6 +389,10 @@ msgstr ""
 msgid "Title added"
 msgstr ""
 
+#: docpool.ui/docpool/ui/browser/templates/listing.pt
+msgid "Transition"
+msgstr ""
+
 #: docpool.ui/docpool/ui/browser/viewlets/header-navigation-macros.pt
 msgid "UTC"
 msgstr ""

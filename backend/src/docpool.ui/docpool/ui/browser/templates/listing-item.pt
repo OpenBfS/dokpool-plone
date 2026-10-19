@@ -221,7 +221,7 @@
                href python:'%s/@@dpdocument_transfer_form?uid:list=%s' % (context.absolute_url(), data['uid']);
              "
           >
-            <img src="${python:icons.url('box-arrow-up-right')}" />
+            <img src="${python:icons.url('arrow-up-right-square')}" />
             <span tal:omit-tag=""
                   i18n:domain="docpool.base"
                   i18n:translate=""

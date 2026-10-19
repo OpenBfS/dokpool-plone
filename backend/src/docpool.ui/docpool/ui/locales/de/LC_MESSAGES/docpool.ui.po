@@ -389,6 +389,10 @@ msgstr "Zeit [ME(S)Z]"
 msgid "Title added"
 msgstr "Titel ist definiert"
 
+#: docpool.ui/docpool/ui/browser/templates/listing.pt
+msgid "Transition"
+msgstr "Sichtbarkeit ändern (mehrere)"
+
 #: docpool.ui/docpool/ui/browser/viewlets/header-navigation-macros.pt
 msgid "UTC"
 msgstr ""

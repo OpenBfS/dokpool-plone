@@ -495,7 +495,7 @@ msgstr "Titel / Kurzbeschreibung / Text"
 #: docpool.base/docpool/base/browser/transfers_macros.pt
 #: docpool.base/docpool/base/profiles/default/actions.xml
 msgid "Transfer"
-msgstr "Übertragen"
+msgstr "Transferieren"
 
 #: docpool.base/docpool/base/behaviors/configure.zcml
 msgid "Transfer DocType"
