@@ -140,6 +140,14 @@ msgstr "Alle Anhänge herunterladen"
 msgid "Drop files here to select them"
 msgstr "Dateien hier ablegen, um sie auszuwählen"
 
+#: docpool.ui/docpool/ui/browser/viewlets/header-config-content.pt
+msgid "Edit Archives"
+msgstr "Archive bearbeiten"
+
+#: docpool.ui/docpool/ui/browser/viewlets/header-config-content.pt
+msgid "Edit Scenarios"
+msgstr "Ereignisse bearbeiten"
+
 #: docpool.ui/docpool/ui/browser/viewlets/header-navigation-macros.pt
 msgid "Emergency documents"
 msgstr "Dokumente Notfallschutz"
@@ -154,6 +162,7 @@ msgstr "Einträge"
 msgid "Entrytype"
 msgstr "Eintragsart"
 
+#: docpool.ui/docpool/ui/browser/viewlets/header-config-content.pt
 #: docpool.ui/docpool/ui/browser/viewlets/sidebar.pt
 msgid "Entrytypes"
 msgstr "Eintragsarten"
@@ -271,7 +280,7 @@ msgstr "Eingereicht"
 
 #: docpool.ui/docpool/ui/browser/wizard.py
 msgid "Please add either text or a document!"
-msgstr ""
+msgstr "Bitte mindestens einen Text oder eine Datei einfügen!"
 
 #: docpool.ui/docpool/ui/browser/templates/wizard_3.pt
 msgid "Please check who will have access to the entry."

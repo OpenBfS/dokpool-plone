@@ -10,7 +10,7 @@
        show_menu python: any([can_manage_events, can_manage_users, can_manage_doctypes]);
      "
      tal:condition="python: show_menu"
-     i18n:domain="docpool.base"
+     i18n:domain="docpool.ui"
 >
   <button class="btn btn-icon"
           aria-label="Config"
@@ -28,9 +28,7 @@
          href="${view/events_url}"
       >
         <tal:icon tal:replace="structure python:icons.tag('pencil', tag_class='user-menu-row-icon')" />
-        <span i18n:domain="docpool.elan"
-              i18n:translate=""
-        >Edit Scenarios</span>
+        <span i18n:translate="">Edit Scenarios</span>
       </a>
     </li>
     <li class="user-menu-action-item"
@@ -40,9 +38,7 @@
          href="${dp_url}/archive"
       >
         <tal:icon tal:replace="structure python:icons.tag('archive', tag_class='user-menu-row-icon')" />
-        <span i18n:domain="docpool.elan"
-              i18n:translate=""
-        >Edit Archives</span>
+        <span i18n:translate="">Edit Archives</span>
       </a>
     </li>
     <li class="user-menu-action-item"
@@ -52,7 +48,7 @@
          href="${dp_url}/config/dtypes"
       >
         <tal:icon tal:replace="structure python:icons.tag('diagram-3', tag_class='user-menu-row-icon')" />
-        <span i18n:translate="">Eintragsarten</span>
+        <span i18n:translate="">Entrytypes</span>
       </a>
     </li>
     <li class="user-menu-action-item"
@@ -62,7 +58,9 @@
          href="${dp_url}/@@usergroup-userprefs"
       >
         <tal:icon tal:replace="structure python:icons.tag('people', tag_class='user-menu-row-icon')" />
-        <span i18n:translate="">User Management</span>
+        <span i18n:domain="docpool.base"
+              i18n:translate=""
+        >User Management</span>
       </a>
     </li>
   </ul>

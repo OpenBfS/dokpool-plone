@@ -139,6 +139,14 @@ msgstr ""
 msgid "Drop files here to select them"
 msgstr ""
 
+#: docpool.ui/docpool/ui/browser/viewlets/header-config-content.pt
+msgid "Edit Archives"
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/viewlets/header-config-content.pt
+msgid "Edit Scenarios"
+msgstr ""
+
 #: docpool.ui/docpool/ui/browser/viewlets/header-navigation-macros.pt
 msgid "Emergency documents"
 msgstr ""
@@ -153,6 +161,7 @@ msgstr ""
 msgid "Entrytype"
 msgstr ""
 
+#: docpool.ui/docpool/ui/browser/viewlets/header-config-content.pt
 #: docpool.ui/docpool/ui/browser/viewlets/sidebar.pt
 msgid "Entrytypes"
 msgstr ""
