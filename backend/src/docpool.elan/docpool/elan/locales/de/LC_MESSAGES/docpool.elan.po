@@ -137,10 +137,6 @@ msgstr "Datum/Uhrzeit (durchgeführt von)"
 msgid "Dates"
 msgstr "Daten"
 
-#: docpool.elan/docpool/elan/profiles/default/actions.xml
-msgid "Delete Ticker"
-msgstr "Ticker löschen"
-
 #: docpool.elan/docpool/elan/browser/elanarchives.pt
 msgid "Deleted"
 msgstr "Gelöscht"
@@ -186,10 +182,6 @@ msgstr "Aktuelle Lage"
 #: docpool.elan/docpool/elan/profiles/default/types/ELANArchive.xml
 msgid "Edit"
 msgstr ""
-
-#: docpool.elan/docpool/elan/profiles/default/actions.xml
-msgid "Edit Ticker"
-msgstr "Ticker bearbeiten"
 
 #: docpool.elan/docpool/elan/browser/dpevents.pt
 msgid "Edit global events"

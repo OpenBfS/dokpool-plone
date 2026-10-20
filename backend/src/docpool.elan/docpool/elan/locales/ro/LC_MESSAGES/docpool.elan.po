@@ -141,10 +141,6 @@ msgstr ""
 msgid "Dates"
 msgstr ""
 
-#: docpool.elan/docpool/elan/profiles/default/actions.xml
-msgid "Delete Ticker"
-msgstr ""
-
 #: docpool.elan/docpool/elan/browser/elanarchives.pt
 msgid "Deleted"
 msgstr ""
@@ -189,10 +185,6 @@ msgstr ""
 #: docpool.elan/docpool/elan/profiles/default/types/DPEvents.xml
 #: docpool.elan/docpool/elan/profiles/default/types/ELANArchive.xml
 msgid "Edit"
-msgstr ""
-
-#: docpool.elan/docpool/elan/profiles/default/actions.xml
-msgid "Edit Ticker"
 msgstr ""
 
 #: docpool.elan/docpool/elan/browser/dpevents.pt
