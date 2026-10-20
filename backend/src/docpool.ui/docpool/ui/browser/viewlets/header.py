@@ -42,6 +42,12 @@ GROUPS_NAV_FOLDERS = ("content/Members", "content/Groups", "content/Transfers")
 
 
 class EventSwitcherMixin:
+    def can_edit_scenario(self, scenario):
+        helper = api.content.get_view("is", self.context, self.request)
+        return helper.can_access(api.content.get_path(scenario), "Modify portal content") and can_view(
+            scenario, "@@edit"
+        )
+
     def set_scenario_attributes(self):
         possible = [s for s in getOpenScenarios(self.context) if s.review_state == "published"]
         scenarios_by_uid = {s.UID: s.getObject() for s in possible}
@@ -333,7 +339,7 @@ class EventSwitcherDropdown(EventSwitcherMixin, BrowserView):
     def _actions(self, event):
         event_url = event.absolute_url()
         actions = []
-        if can_view(event, "@@edit"):
+        if self.can_edit_scenario(event):
             actions.append(dict(url=f"{event_url}/@@edit", icon="pencil", text="Edit"))
         if can_view(self.dp, "@@archiveAndClose"):
             actions.append(

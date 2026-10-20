@@ -72,7 +72,9 @@
         <span>Deutsch</span>
       </a>
     </li>
-    <li class="user-menu-action-item">
+    <li class="user-menu-action-item"
+        tal:condition="context/@@is/admin"
+    >
       <a class="dropdown-item user-menu-link"
          href="${dp_url}/@@impersonate"
       >

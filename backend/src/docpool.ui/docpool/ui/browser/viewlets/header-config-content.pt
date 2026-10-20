@@ -4,10 +4,11 @@
        dp_url context/@@dp_url;
        _is nocall: context/@@is;
        member context/@@plone_portal_state/member;
-       can_manage_events python: _is.admin_or_contentadmin() or (member and member.has_role('EventEditor', context));
+       can_manage_events python: (_is.admin_or_contentadmin() or (member and member.has_role('EventEditor', context))) and _is.can_access('contentconfig/scen');
+       can_manage_archives python: can_manage_events and _is.can_access('archive');
        can_manage_users python: _is.admin_on_dokpool();
        can_manage_doctypes python: _is.admin_or_contentadmin();
-       show_menu python: any([can_manage_events, can_manage_users, can_manage_doctypes]);
+       show_menu python: any([can_manage_events, can_manage_archives, can_manage_users, can_manage_doctypes]);
      "
      tal:condition="python: show_menu"
      i18n:domain="docpool.ui"
@@ -32,7 +33,7 @@
       </a>
     </li>
     <li class="user-menu-action-item"
-        tal:condition="python: can_manage_events"
+        tal:condition="python: can_manage_archives"
     >
       <a class="dropdown-item user-menu-link"
          href="${dp_url}/archive"
