@@ -102,11 +102,6 @@ sub vcl_recv {
     set req.http.backend = cookie.get("backend");
     cookie.delete("backend");  # do not influence decisions about cacheability
   }
-  if (!req.http.backend) {
-    set req.http.backend = std.getenv("VARNISH_BACKEND_HOST");
-  }
-
-  set req.backend_hint = dokpool_dir.backend(req.http.backend);
   set req.http.X-Varnish-Routed = "1";
 
   # Annotate request with x-forwarded-proto
@@ -211,6 +206,18 @@ sub vcl_hit {
   }
 }
 
+sub vcl_backend_fetch {
+  if (!bereq.http.backend || bereq.retries > 0) {
+    set bereq.http.backend = std.getenv("VARNISH_BACKEND_HOST");
+  }
+  set bereq.backend = dokpool_dir.backend(bereq.http.backend);
+}
+
+sub vcl_backend_error {
+  if (beresp.status >= 500 && bereq.retries == 0) {
+    return(retry);
+  }
+}
 
 sub vcl_backend_response {
 
