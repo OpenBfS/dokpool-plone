@@ -153,7 +153,9 @@
                 </div>
                 <div class="mobile-event-selected-actions">
                   <div class="icon-column">
-                    <a href="${scenario_url}/@@edit">
+                    <a href="${scenario_url}/@@edit"
+                       tal:condition="python: view.can_edit_scenario(scenario)"
+                    >
                       <tal:icon replace="structure python:icons.tag('pencil', tag_class='')" />
                     </a>
                   </div>

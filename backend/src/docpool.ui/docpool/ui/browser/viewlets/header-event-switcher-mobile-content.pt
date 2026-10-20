@@ -36,7 +36,9 @@
              scenario_url python: item['scenario'].absolute_url();
            "
       >
-        <a href="${scenario_url}/@@edit">
+        <a href="${scenario_url}/@@edit"
+           tal:condition="python: view.can_edit_scenario(item['scenario'])"
+        >
           <tal:icon replace="structure python:icons.tag('pencil', tag_class='')" />
         </a>
         <a href="${scenario_url}">
@@ -73,7 +75,9 @@
              scenario_url python: item['scenario'].absolute_url();
            "
       >
-        <a href="${scenario_url}/@@edit">
+        <a href="${scenario_url}/@@edit"
+           tal:condition="python: view.can_edit_scenario(item['scenario'])"
+        >
           <tal:icon replace="structure python:icons.tag('pencil', tag_class='')" />
         </a>
         <a href="${scenario_url}">

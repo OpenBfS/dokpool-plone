@@ -16,6 +16,7 @@ from plone import api
 from plone.api.exc import InvalidParameterError
 from plone.protect.interfaces import IDisableCSRFProtection
 from Products.Five import BrowserView
+from zExceptions import Unauthorized
 from zope.component import getMultiAdapter
 from zope.i18n import translate
 from zope.interface import alsoProvides
@@ -80,6 +81,16 @@ class SetActiveApp(BrowserView):
 
 
 class Is(BrowserView):
+    def can_access(self, path, permission="View"):
+        root = IPlaces(self.context).document_pool
+        if root is None:
+            return False
+        try:
+            target = root.restrictedTraverse(path)
+        except (KeyError, Unauthorized):
+            return False
+        return api.user.has_permission(permission, obj=target)
+
     def admin(self):
         return is_admin(self.context)
 
