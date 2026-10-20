@@ -5,9 +5,9 @@ import pytest
 
 class TestUI:
     @pytest.fixture(autouse=True)
-    def setup(self, acceptance, playwright_page_factory) -> None:
+    def setup(self, acceptance, content_admin_page_factory) -> None:
         self.portal = acceptance["portal"]
-        self.page = playwright_page_factory()
+        self.page = content_admin_page_factory()
         self.plone_url = self.portal.absolute_url()
 
     def test_header_dropdown(self):

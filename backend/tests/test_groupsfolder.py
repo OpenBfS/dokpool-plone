@@ -3,9 +3,6 @@ from docpool.elan.utils import get_scenario_for_current_user
 from groupsfolder_setup import GroupsFolderSetupMixin
 from playwright.sync_api import expect
 from plone import api
-from plone.app.testing import setRoles
-from plone.app.testing import TEST_USER_ID
-from plone.app.testing import TEST_USER_NAME
 
 import pytest
 import transaction
@@ -13,12 +10,11 @@ import transaction
 
 class TestGroupsFolder(GroupsFolderSetupMixin):
     @pytest.fixture(autouse=True)
-    def setup(self, portal_factory, playwright_page_factory) -> None:
-        self.portal = portal_factory(username=TEST_USER_NAME, roles=["Manager"])
-        self.page = playwright_page_factory()
+    def setup(self, acceptance, content_admin_page_factory) -> None:
+        self.portal = acceptance["portal"]
+        self.page = content_admin_page_factory()
         self.plone_url = self.portal.absolute_url()
 
-        setRoles(self.portal, TEST_USER_ID, ["Manager"])
         self.docpool = self.portal["bund"]
         self.setup_content()
 
