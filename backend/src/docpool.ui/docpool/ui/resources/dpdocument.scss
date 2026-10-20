@@ -1,3 +1,18 @@
+.template-edit.portaltype-dpdocument.docstate-published .field {
+  display: none;
+}
+
+.user-is-admin-or-contentadmin.template-edit.portaltype-dpdocument.docstate-published
+  #formfield-form-widgets-IELANDocument-scenario {
+  display: block;
+}
+
+.template-edit.portaltype-dpdocument.docstate-published #edit-attachments,
+.template-edit.portaltype-dpdocument.docstate-published
+  #dpdocument-edit-upload {
+  display: none !important;
+}
+
 .dp-document {
   label,
   dt,

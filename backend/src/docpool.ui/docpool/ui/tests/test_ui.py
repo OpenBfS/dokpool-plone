@@ -257,6 +257,42 @@ class TestUIFeatures(unittest.TestCase):
         self.assertIn("docpool-upload__formats", html)
         self.assertIn("showTitle: false;", html)
 
+    def test_dpdocument_edit_body_classes_for_published_admin(self):
+        logout()
+        login(self.portal, SITE_OWNER_NAME)
+        api.content.transition(obj=self.entry, transition="publish")
+        layout = api.content.get_view("plone_layout", self.entry, self.request)
+        edit_view = api.content.get_view("edit", self.entry, self.request)
+        body_classes = layout.bodyClass(None, edit_view).split()
+
+        self.assertIn("template-edit", body_classes)
+        self.assertIn("portaltype-dpdocument", body_classes)
+        self.assertIn("docstate-published", body_classes)
+        self.assertEqual(body_classes.count("docstate-published"), 1)
+        self.assertIn("user-is-admin-or-contentadmin", body_classes)
+
+    def test_dpdocument_edit_body_classes_for_contentadmin(self):
+        logout()
+        login(self.portal, SITE_OWNER_NAME)
+        api.group.add_user(groupname="bund_ContentAdministrators", username="user1")
+        logout()
+        login(self.portal, "user1")
+
+        layout = api.content.get_view("plone_layout", self.entry, self.request)
+        edit_view = api.content.get_view("edit", self.entry, self.request)
+        body_classes = layout.bodyClass(None, edit_view).split()
+
+        self.assertIn("user-is-admin-or-contentadmin", body_classes)
+
+    def test_dpdocument_edit_body_classes_for_unpublished_member(self):
+        layout = api.content.get_view("plone_layout", self.entry, self.request)
+        edit_view = api.content.get_view("edit", self.entry, self.request)
+        body_classes = layout.bodyClass(None, edit_view).split()
+
+        self.assertIn("docstate-" + api.content.get_state(obj=self.entry), body_classes)
+        self.assertNotIn("docstate-published", body_classes)
+        self.assertNotIn("user-is-admin-or-contentadmin", body_classes)
+
     def test_attachments_view(self):
         attachments_view = api.content.get_view("attachments", self.entry, self.request)
         html = attachments_view()
