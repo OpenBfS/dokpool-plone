@@ -185,7 +185,7 @@ class TestDocTypes(unittest.TestCase):
         self.assertEqual(archive.keys(), [".wf_policy_config"])
 
         contentconfig = docpool["contentconfig"]
-        self.assertEqual(contentconfig.keys(), ["scen", "ticker"])
+        self.assertEqual(contentconfig.keys(), ["scen"])
 
         notify(EditFinishedEvent(docpool))
         # trigger dpAdded method for enabled docpool-products
@@ -205,7 +205,7 @@ class TestDocTypes(unittest.TestCase):
         self.assertEqual(archive.keys(), [".wf_policy_config"])
 
         contentconfig = docpool["contentconfig"]
-        self.assertEqual(contentconfig.keys(), ["scen", "ticker"])
+        self.assertEqual(contentconfig.keys(), ["scen"])
 
     def test_doctypes_change_event(self):
         docpool = self.portal["test_docpool"]

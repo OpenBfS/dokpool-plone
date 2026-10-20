@@ -86,7 +86,6 @@ ADMINSTRUCTURE = [
                 ID: "scen",
                 CHILDREN: [],
             },
-            {TYPE: "Text", TITLE: "Ticker", ID: "ticker", CHILDREN: []},
         ],
     }
 ] + SPECIAL_PAGES
@@ -168,7 +167,7 @@ def createELANGroups(self):
     props = {
         "allowedDocTypes": [],
         "title": "Content Administrators (%s)" % title,
-        "description": "Responsible for the definition of scenarios, ticker texts and additional content.",
+        "description": "Responsible for the definition of scenarios and additional content.",
         "dp": self.UID(),
     }
     gtool.addGroup("%s_ContentAdministrators" % prefix, properties=props)
