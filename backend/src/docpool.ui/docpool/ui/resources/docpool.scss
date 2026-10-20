@@ -464,11 +464,11 @@ span.badge.text-bg-light {
 
     &.doctype-journalentry .doctype-box {
       width: 0;
-      .doctype-icon-container, .review-state {
+      .doctype-icon-container,
+      .review-state {
         visibility: hidden;
       }
     }
-
   }
 }
 
@@ -690,8 +690,10 @@ body.plone-toolbar-left {
   --dp-toolbar-offset: var(--plone-toolbar-width-collapsed);
 }
 
-body.plone-toolbar-left-expanded {
-  --dp-toolbar-offset: var(--plone-toolbar-width);
+body.plone-toolbar-left.plone-toolbar-left-expanded {
+  @include media-breakpoint-up(md) {
+    --dp-toolbar-offset: var(--plone-toolbar-width);
+  }
 }
 
 body.plone-toolbar-left,
