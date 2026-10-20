@@ -19,10 +19,6 @@ module.exports = () => {
         __dirname,
         "./src/docpool.ui/docpool/ui/resources/barceloneta/barceloneta.scss",
       ),
-      "docpool.theme.min": path.resolve(
-        __dirname,
-        "./src/docpool.theme/docpool/theme/resources/index.js",
-      ),
       "elan.journal.min": path.resolve(
         __dirname,
         "./src/elan.journal/elan/journal/resources/index.js",
@@ -53,18 +49,6 @@ module.exports = () => {
   config.output.path = path.resolve(
     __dirname,
     "src/docpool.ui/docpool/ui/static/build",
-  );
-  config.plugins.push(
-    mf_config({
-      name: "docpool.theme",
-      filename: "docpool.theme-remote.min.js",
-      remote_entry: config.entry["docpool.theme.min"],
-      dependencies: {
-        ...package_json_patternslib.dependencies,
-        ...package_json_mockup.dependencies,
-        ...package_json.dependencies,
-      },
-    }),
   );
   config.plugins.push(
     mf_config({

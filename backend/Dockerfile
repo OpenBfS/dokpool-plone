@@ -16,9 +16,6 @@ COPY src/elan.journal/elan/journal/resources src/elan.journal/elan/journal/resou
 
 COPY src/docpool.rei/docpool/rei/browser/static src/docpool.rei/docpool/rei/browser/static
 COPY src/docpool.ui/docpool/ui/static src/docpool.ui/docpool/ui/static
-# TODO Remove as soon as ui is the main pkg
-COPY src/docpool.theme/docpool/theme/resources src/docpool.theme/docpool/theme/resources
-COPY src/docpool.theme/docpool/theme/static src/docpool.theme/docpool/theme/static
 
 COPY package.json package.json
 COPY package-lock.json package-lock.json
@@ -92,8 +89,6 @@ LABEL maintainer="Starzel.de for Bundesamt für Strahlenschutz <info@starzel.de>
 COPY --from=builder --chown=500:500 /app /app
 # Add compiled theme from node
 COPY --from=node --chown=500:500 /app/src/docpool.ui/docpool/ui/static /app/src/src/docpool.ui/docpool/ui/static
-# TODO Remove as soon as ui is the main pkg
-COPY --from=node --chown=500:500 /app/src/docpool.theme/docpool/theme/static /app/src/src/docpool.theme/docpool/theme/static
 # Experimental: Use pyruvate
 COPY --chown=500:500 templates/zope.ini /app/etc/zope.ini
 # Make sure we load our translation first - see #4514
