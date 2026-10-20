@@ -104,7 +104,6 @@ sub vcl_recv {
   }
   if (!req.http.backend) {
     set req.http.backend = std.getenv("VARNISH_BACKEND_HOST");
-    set req.http.new_backend = 1;
   }
 
   set req.backend_hint = dokpool_dir.backend(req.http.backend);
@@ -300,8 +299,8 @@ sub vcl_deliver {
     unset resp.http.x-powered-by;
   }
 
-  if (req.http.new_backend) {
-    header.append(resp.http.Set-Cookie, "backend=" + resp.http.X-Backend);
+  if (resp.http.X-Backend) {
+    header.append(resp.http.Set-Cookie, "backend=" + resp.http.X-Backend + "; Path=/");
   }
   unset resp.http.X-Backend;
 }
