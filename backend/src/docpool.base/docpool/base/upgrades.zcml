@@ -136,6 +136,11 @@
         handler="docpool.base.upgrades.to_3000_drop_description"
         />
 
+    <genericsetup:upgradeStep
+        title="Remove function users"
+        handler="docpool.base.upgrades.to_3000_remove_function_users"
+        />
+
   </genericsetup:upgradeSteps>
 
 </configure>

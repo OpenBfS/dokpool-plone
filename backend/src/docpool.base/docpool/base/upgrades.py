@@ -972,3 +972,35 @@ def to_3000_drop_description(context=None):
         obj._p_changed = 1
         obj.reindexObject(idxs=["Description"])
         log.info("Added description to text: %s", brain.getURL())
+
+
+def to_3000_remove_function_users(context=None):
+    deleted = []
+    admin_users = [
+        "dpadmin",
+        "dpmanager",
+        "elanadmin",
+        "elanmanager",
+        "reiadmin",
+        "reimanager",
+    ]
+    to_delete = []
+    for userid in admin_users:
+        if api.user.get(userid=userid):
+            to_delete.append(userid)
+    portal_membership = api.portal.get_tool("portal_membership")
+    portal_membership.deleteMembers(to_delete)
+
+    function_user_suffixes = [
+        "contentadmin",
+        "doksysadmin",
+        "dpadmin",
+        "elanadmin",
+        "reiadmin",
+    ]
+    for user in api.user.get_users():
+        if user.getId().split("_")[-1] in function_user_suffixes:
+            api.user.delete(user=user)
+
+    # Make sure UserFolders are deleted
+    log.info("Deleted users: %s", ", ".join(deleted))
