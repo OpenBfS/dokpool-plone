@@ -67,7 +67,7 @@
 
     <metal:mobile-navigation define-macro="mobile_navigation"
                              tal:define="
-                               groups_tree python: view.groups_tree;
+                               groups_tree python: view.groups_tree if not view.active['emergency'] else [];
                              "
     >
       <div class="d-lg-none w-100 mobile-settings-infos">
@@ -273,7 +273,15 @@
                     <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
                   </span>
                 </div>
-                <div class="mobile-placeholder-link">
+                <a class="mobile-placeholder-link text-decoration-none"
+                   tal:condition="view/emergency_info_url"
+                   tal:attributes="
+                     href view/emergency_info_url;
+                     data-bs-toggle python:'offcanvas' if view.active['emergency'] and view.groups_tree else None;
+                     data-bs-target python:'#offcanvasGroupsNav' if view.active['emergency'] and view.groups_tree else None;
+                     aria-controls python:'offcanvasGroupsNav' if view.active['emergency'] and view.groups_tree else None;
+                   "
+                >
                   <span class="mobile-placeholder-icon">
                     <tal:icon tal:replace="structure python:icons.tag('file-earmark-richtext-fill')" />
                   </span>
@@ -281,7 +289,7 @@
                   <span class="mobile-placeholder-chevron">
                     <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
                   </span>
-                </div>
+                </a>
               </div>
               <h6 class="mobile-settings-infos-title">Einstellungen &amp; Infos</h6>
               <div class="mobile-settings-nav">

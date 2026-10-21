@@ -60,7 +60,9 @@ class SidebarViewlet(GroupsTreeMixin, common.ViewletBase):
 
     def update(self):
         super().update()
-        if is_in_dp_folder(self.context, *GROUPS_NAV_FOLDERS):
+        if self.is_emergency_navigation():
+            self.groups_tree = self.build_emergency_tree()
+        elif is_in_dp_folder(self.context, *GROUPS_NAV_FOLDERS):
             self.groups_tree = self.build_groups_tree()
         else:
             self.groups_tree = []
@@ -73,7 +75,7 @@ class SidebarViewlet(GroupsTreeMixin, common.ViewletBase):
         if is_in_dp_folder(self.context, *GROUPS_NAV_FOLDERS):
             return self.groups_nav()
         if is_in_dp_folder(self.context, "hintergrundinfos-ns"):
-            return ""
+            return self.groups_nav()
         return super().render()
 
     def show_default_entries(self):
