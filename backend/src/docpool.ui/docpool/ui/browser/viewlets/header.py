@@ -222,16 +222,9 @@ class PortalHeader(EventSwitcherMixin, TimezoneTableMixin, GroupsTreeMixin, View
 
     def get_groups_folder_url(self, groups_tree):
         # The idea is to return a groups folder url only if the groups folder listing (or its sidebar) is
-        # predicted not to be empty. While the listing view would also show content other than member,
-        # group and transfer folders, we assume that these are the only relevant kinds of content, so looking
-        # for them is supposed to be sufficient. This is the lookup already done for the groups tree.
-        if not groups_tree:
-            return
-        try:
-            url = IPlaces(self.context).content["Groups"].absolute_url()
-        except BaseException:
-            url = groups_tree[0]["getURL"]
-        return url
+        # predicted not to be empty.
+        if groups_tree:
+            return groups_tree[0]["getURL"]
 
     def apps_menu(self):
         current_dp_id = self.dp.getId() if self.dp else None
