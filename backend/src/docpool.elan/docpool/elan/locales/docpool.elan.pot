@@ -497,6 +497,10 @@ msgid "description_dpevent_alerting_status"
 msgstr ""
 
 #: docpool.elan/docpool/elan/content/dpevent.py
+msgid "description_dpevent_eventlocationtimezone"
+msgstr ""
+
+#: docpool.elan/docpool/elan/content/dpevent.py
 msgid "description_dpevent_status"
 msgstr ""
 
@@ -552,6 +556,11 @@ msgstr ""
 #. Default: "Changelog"
 #: docpool.elan/docpool/elan/content/dpevent.py
 msgid "label_dpevent_changelog"
+msgstr ""
+
+#. Default: "Time zone at event location"
+#: docpool.elan/docpool/elan/content/dpevent.py
+msgid "label_dpevent_eventlocationtimezone"
 msgstr ""
 
 #. Default: "Status of the event"

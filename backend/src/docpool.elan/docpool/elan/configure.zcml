@@ -77,5 +77,9 @@
       name="docpool.elan.vocabularies.AlertingStatus"
       component=".vocabularies.AlertingStatusVocabularyFactory"
       />
+  <utility
+      name="docpool.elan.vocabularies.TimeZones"
+      component=".vocabularies.TimeZonesVocabularyFactory"
+      />
 
 </configure>

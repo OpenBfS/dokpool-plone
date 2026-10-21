@@ -77,6 +77,14 @@ class IDPEvent(IContentBase):
         defaultFactory=initializeTimeOfEvent,
     )
 
+    EventLocationTimeZone = schema.Choice(
+        title=_("label_dpevent_eventlocationtimezone", default="Time zone at event location"),
+        description=_("description_dpevent_eventlocationtimezone", default=""),
+        required=True,
+        default="Europe/Berlin",
+        source="docpool.elan.vocabularies.TimeZones",
+    )
+
     directives.write_permission(EventLocation="docpool.elan.ManageDPEvents")
     EventLocation = schema.Text(
         title=_("Event location"),

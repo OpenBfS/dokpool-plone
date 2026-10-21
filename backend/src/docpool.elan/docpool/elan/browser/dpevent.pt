@@ -23,6 +23,7 @@
                              'EventType',
                              'Status',
                              'TimeOfEvent',
+                             'EventLocationTimeZone',
                              'EventLocation',
                              ]">
             <tr tal:define="

@@ -21,8 +21,7 @@ class TimezoneTableMixin:
             return
         if event_uid := get_scenario_for_current_user(self.context):
             event = api.content.get(UID=event_uid)
-            # TODO: Get timezone from event
-            if timezone := getattr(event, "timezone", "Europe/Berlin"):
+            if timezone := getattr(event, "EventLocationTimeZone", "Europe/Berlin"):
                 if tz := dateutil.tz.gettz(timezone):
                     return datetime.datetime.now(tz)
 

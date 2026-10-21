@@ -1,4 +1,5 @@
 from AccessControl.SecurityInfo import allow_module
+from babel.core import get_global
 from docpool.base.content.archiving import IArchiving
 from docpool.base.content.places import IPlaces
 from docpool.elan import DocpoolMessageFactory as _
@@ -165,3 +166,11 @@ class AlertingStatusVocabulary:
 
 
 AlertingStatusVocabularyFactory = AlertingStatusVocabulary()
+
+
+@provider(IVocabularyFactory)
+def TimeZonesVocabularyFactory(context=None):
+    # Babel's zone_territories's keys is about the same set of timezone names as
+    # zoneinfo.available_timezones() minus the aliases according to Babel's zone_aliases.
+    timezones = sorted(get_global("zone_territories"))
+    return SimpleVocabulary([SimpleTerm(tz, safe_bytes(tz), tz) for tz in timezones])

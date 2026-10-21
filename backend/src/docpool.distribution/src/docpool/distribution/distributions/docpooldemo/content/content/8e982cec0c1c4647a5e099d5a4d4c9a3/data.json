@@ -5,6 +5,7 @@
   "AlertingStatus": "none",
   "EventCoordinates": null,
   "EventLocation": null,
+  "EventLocationTimeZone": "Europe/Berlin",
   "EventType": "Routine",
   "OperationMode": "routine",
   "SectorizingNetworks": [],
