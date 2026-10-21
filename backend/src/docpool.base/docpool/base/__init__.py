@@ -1,4 +1,5 @@
 from AccessControl import allow_module
+from OFS.SimpleItem import SimpleItem
 from plone import api
 from plone.app.upgrade.utils import alias_module
 from plone.namedfile.browser import DisplayFile
@@ -23,12 +24,23 @@ api.user.__allow_access_to_unprotected_subobjects__ = 1
 api.group.__allow_access_to_unprotected_subobjects__ = 1
 
 
+if "text/html" not in DisplayFile.allowed_inline_mimetypes:
+    DisplayFile.allowed_inline_mimetypes.append("text/html")
+    logger.info("Patch plone.namedfile.browser.DisplayFile to allow text/html to be displayed inline.")
+
+
 class IBBB(Interface):
     pass
 
 
-alias_module("contentimport.interfaces.IContentimportLayer", IBBB)
+class SBBB(SimpleItem):
+    pass
 
-if "text/html" not in DisplayFile.allowed_inline_mimetypes:
-    DisplayFile.allowed_inline_mimetypes.append("text/html")
-    logger.info("Patch plone.namedfile.browser.DisplayFile to allow text/html to be displayed inline.")
+
+alias_module("contentimport.interfaces.IContentimportLayer", IBBB)
+alias_module("docpool.theme.interfaces.ICustomTheme", IBBB)
+alias_module("docpool.elan.portlets.overview.Assignment", SBBB)
+alias_module("docpool.elan.portlets.recent.Assignment", SBBB)
+alias_module("docpool.elan.content.elancurrentsituation.IELANCurrentSituation", IBBB)
+alias_module("docpool.elan.content.dpnetwork.DPNetwork", SBBB)
+alias_module("docpool.elan.content.dpnuclearpowerstation.DPNuclearPowerStation", SBBB)
