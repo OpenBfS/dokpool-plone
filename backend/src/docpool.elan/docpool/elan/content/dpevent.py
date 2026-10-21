@@ -103,16 +103,6 @@ class IDPEvent(IContentBase):
         constraint=is_coordinate,
     )
 
-    directives.write_permission(AreaOfInterest="docpool.elan.ManageDPEvents")
-    AreaOfInterest = schema.Text(
-        title=_("Area of interest"),
-        description=_(
-            "Example: POLYGON((12.307090759277342 48.613051327205255,12.25421905517578 48.61339180317094,12.253875732421873 48.59216441224561,12.305803298950195 48.59182379315598,12.307090759277342 48.613051327205255))"
-        ),
-        required=False,
-        constraint=is_point_or_polygon,
-    )
-
     directives.widget(OperationMode=RadioFieldWidget)
     OperationMode = schema.Choice(
         title=_("Operation mode"),

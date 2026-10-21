@@ -3,7 +3,6 @@
   "@type": "DPEvent",
   "AlertingNote": null,
   "AlertingStatus": "none",
-  "AreaOfInterest": null,
   "EventCoordinates": null,
   "EventLocation": null,
   "EventType": "Emergency",
