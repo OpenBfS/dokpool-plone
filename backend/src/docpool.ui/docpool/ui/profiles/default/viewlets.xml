@@ -10,6 +10,11 @@
   >
     <viewlet name=" plone.socialtags" />
   </hidden>
+  <hidden manager="plone.belowcontenttitle"
+          skinname="*"
+  >
+    <viewlet name="plone.documentbyline" />
+  </hidden>
   <hidden manager="plone.portalheader"
           skinname="*"
   >
