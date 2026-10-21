@@ -17,7 +17,6 @@ from plone.dexterity.content import Container
 from Products.CMFCore.utils import getToolByName
 from pygeoif import from_wkt
 from z3c.form.browser.radio import RadioFieldWidget
-from z3c.form.interfaces import IEditForm
 from zope import schema
 from zope.annotation.interfaces import IAnnotations
 from zope.component import adapter
@@ -120,19 +119,6 @@ class IDPEvent(IContentBase):
         title=_("Sectorizing networks"),
         required=False,
         value_type=schema.Choice(source="docpool.elan.vocabularies.Networks"),
-    )
-
-    directives.omitted(IEditForm, "Journals")
-    Journals = schema.List(
-        title=_("Journals"),
-        required=False,
-        default=[
-            "Einsatztagebuch BfS",
-            "Einsatztagebuch RLZ",
-            "Einsatztagebuch SSK",
-            "Einsatztagebuch Messdienste",
-        ],
-        value_type=schema.TextLine(),
     )
 
     changelog = schema.Text(

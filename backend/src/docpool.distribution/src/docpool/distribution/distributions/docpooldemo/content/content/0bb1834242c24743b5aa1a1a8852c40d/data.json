@@ -6,10 +6,6 @@
   "EventCoordinates": null,
   "EventLocation": null,
   "EventType": "Exercise",
-  "Journals": [
-    "Einsatztagebuch Senatsverwaltung",
-    "Einsatztagebuch Feuerwehr"
-  ],
   "OperationMode": "routine",
   "SectorizingNetworks": [],
   "Status": "active",

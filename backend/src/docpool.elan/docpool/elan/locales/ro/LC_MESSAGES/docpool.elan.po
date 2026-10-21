@@ -271,10 +271,6 @@ msgstr ""
 msgid "Item is being archived right now! Please try again in a couple of minutes."
 msgstr ""
 
-#: docpool.elan/docpool/elan/content/dpevent.py
-msgid "Journals"
-msgstr ""
-
 #: docpool.elan/docpool/elan/browser/dpevents.pt
 msgid "LT"
 msgstr ""

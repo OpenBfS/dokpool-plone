@@ -6,12 +6,6 @@
   "EventCoordinates": null,
   "EventLocation": null,
   "EventType": "Routine",
-  "Journals": [
-    "Einsatztagebuch BfS",
-    "Einsatztagebuch RLZ",
-    "Einsatztagebuch SSK",
-    "Einsatztagebuch Messdienste"
-  ],
   "OperationMode": "routine",
   "SectorizingNetworks": [],
   "Status": "active",

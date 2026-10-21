@@ -267,10 +267,6 @@ msgstr "Ungültiges Ereignis."
 msgid "Item is being archived right now! Please try again in a couple of minutes."
 msgstr "Dieses Ereignis wird momentan archiviert. Bitte versuchen Sie es in ein paar Minuten erneut."
 
-#: docpool.elan/docpool/elan/content/dpevent.py
-msgid "Journals"
-msgstr ""
-
 #: docpool.elan/docpool/elan/browser/dpevents.pt
 msgid "LT"
 msgstr "Ortszeit"
