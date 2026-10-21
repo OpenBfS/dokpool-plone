@@ -50,17 +50,6 @@ def is_coordinate(value):
     return True
 
 
-def is_point_or_polygon(value):
-    if value:
-        try:
-            wkt = from_wkt(value)
-        except Exception as exc:
-            raise Invalid("Value is not a valid WKT.") from exc
-        if wkt.geom_type not in ["Point", "Polygon"]:
-            raise Invalid("Value is neither Point nor Polygon.")
-    return True
-
-
 class IDPEvent(IContentBase):
     """ """
 
