@@ -44,16 +44,20 @@ class TestGroupsFolder(GroupsFolderSetupMixin):
         groups_root_link = page.get_by_role("link", name="My group folders")
         expect(groups_root_link).to_be_visible()
         groups_root_link.click()
-        expect(page).to_have_url(f"{self.plone_url}/bund/content/Groups")
+        expect(page).to_have_url(self.group_folder.absolute_url())
 
-        sidebar_nav = page.locator(".sidebar-groups-tree")
-        second_level_group_link = sidebar_nav.get_by_role("link", name="Group1 (Bund)")
-        expect(second_level_group_link).to_be_visible()
-        second_level_group_link.click()
+        sidebar_nav = page.locator("#portal-column-one .sidebar-groups-tree").first
+        current_link = sidebar_nav.locator("a.dp-group-link.current")
+        expect(current_link).to_have_count(1)
+        expect(current_link).to_have_text("Group1 (Bund)")
+        expect(current_link).to_have_attribute("href", self.group_folder.absolute_url())
         second_level_link = sidebar_nav.get_by_role("link", name="Folder Nav 2")
         expect(second_level_link).to_be_visible()
         second_level_link.click()
-        expect(page).to_have_url(f"{self.plone_url}/bund/content/Groups/bund_group1/folder-nav-2")
+        expect(page).to_have_url(self.subnav.absolute_url())
+        expect(current_link).to_have_count(1)
+        expect(current_link).to_have_text("Folder Nav 2")
+        expect(current_link).to_have_attribute("href", self.subnav.absolute_url())
 
     def test_listing_navigation_updates_groups_tree(self):
         page = self.page
