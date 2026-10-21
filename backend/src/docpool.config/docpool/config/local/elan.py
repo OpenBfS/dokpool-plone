@@ -50,7 +50,6 @@ def dpAdded(self):
         placefulWfName = "elan-archive"
         config.setPolicyIn(policy=placefulWfName, update_security=False)
         config.setPolicyBelow(policy=placefulWfName, update_security=False)
-        createELANUsers(self)
         createELANGroups(self)
         setELANLocalRoles(self)
         self.reindexAll()
@@ -105,28 +104,6 @@ def subscribe_events(dp):
     dp["contentconfig"]["scen"].subscribed_events.extend(global_events_by_uid())
 
 
-def createELANUsers(self):
-    # Set type for user folders
-    mtool = getToolByName(self, "portal_membership")
-    prefix = self.prefix or self.getId()
-    prefix = str(prefix)
-    title = self.Title()
-    mtool.addMember("%s_elanadmin" % prefix, "ELAN Administrator (%s)" % title, ["Member"], [])
-    elanadmin = mtool.getMemberById("%s_elanadmin" % prefix)
-    elanadmin.setMemberProperties({
-        "fullname": "ELAN Administrator (%s)" % title,
-        "dp": self.UID(),
-    })
-    elanadmin.setSecurityProfile(password="admin")
-    mtool.addMember("%s_contentadmin" % prefix, "Content Admin (%s)" % title, ["Member"], [])
-    contentadmin = mtool.getMemberById("%s_contentadmin" % prefix)
-    contentadmin.setMemberProperties({
-        "fullname": "Content Admin (%s)" % title,
-        "dp": self.UID(),
-    })
-    contentadmin.setSecurityProfile(password="admin")
-
-
 def setELANLocalRoles(self):
     """
     Normal local members: Reader
@@ -157,12 +134,9 @@ def createELANGroups(self):
     # - Sending content to others
 
     prefix = self.prefix or self.getId()
-    prefix = str(prefix)
     title = self.Title()
     gtool = getToolByName(self, "portal_groups")
-    gtool.addPrincipalToGroup("%s_elanadmin" % prefix, "%s_Members" % prefix)
-    gtool.addPrincipalToGroup("%s_contentadmin" % prefix, "%s_Members" % prefix)
-    gtool.addPrincipalToGroup("%s_elanadmin" % prefix, "%s_Administrators" % prefix)
+
     # Content administrator group
     props = {
         "allowedDocTypes": [],
@@ -171,7 +145,6 @@ def createELANGroups(self):
         "dp": self.UID(),
     }
     gtool.addGroup("%s_ContentAdministrators" % prefix, properties=props)
-    gtool.addPrincipalToGroup("%s_contentadmin" % prefix, "%s_ContentAdministrators" % prefix)
     # Group for ELAN application rights
     props = {
         "allowedDocTypes": [],
@@ -180,9 +153,6 @@ def createELANGroups(self):
         "dp": self.UID(),
     }
     gtool.addGroup("%s_ELANUsers" % prefix, properties=props)
-    gtool.addPrincipalToGroup("%s_elanadmin" % prefix, "%s_ELANUsers" % prefix)
-    gtool.addPrincipalToGroup("%s_contentadmin" % prefix, "%s_ELANUsers" % prefix)
-    gtool.addPrincipalToGroup("%s_dpadmin" % prefix, "%s_ELANUsers" % prefix)
     # Group for Situation Report users
     props = {
         "allowedDocTypes": [],
@@ -191,9 +161,6 @@ def createELANGroups(self):
         "dp": self.UID(),
     }
     gtool.addGroup("%s_SituationReportAdmins" % prefix, properties=props)
-    gtool.addPrincipalToGroup("%s_contentadmin" % prefix, "%s_SituationReportAdmins" % prefix)
-    gtool.addPrincipalToGroup("%s_dpadmin" % prefix, "%s_SituationReportAdmins" % prefix)
-    gtool.addPrincipalToGroup("%s_elanadmin" % prefix, "%s_SituationReportAdmins" % prefix)
 
     # Add 10 groups that can manage event journals
     for index in range(1, 6):

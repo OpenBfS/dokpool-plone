@@ -7,7 +7,6 @@ from docpool.config.utils import ID
 from docpool.config.utils import TITLE
 from docpool.config.utils import TYPE
 from plone import api
-from Products.CMFCore.utils import getToolByName
 
 import transaction
 
@@ -17,31 +16,7 @@ def install(self):
     fresh = True
     if self.hasObject("contentconfig"):
         fresh = False  # It's a reinstall
-    configUsers(self, fresh)
     createStructure(self, fresh)
-
-
-def configUsers(self, fresh):
-    """ """
-    if fresh:
-        mtool = getToolByName(self, "portal_membership")
-        mtool.addMember(
-            "elanadmin",
-            "ELAN Administrator (global)",
-            ["Site Administrator", "Member"],
-            [],
-        )
-        elanadmin = mtool.getMemberById("elanadmin")
-        elanadmin.setMemberProperties({"fullname": "ELAN Administrator"})
-        elanadmin.setSecurityProfile(password="admin")
-        mtool.addMember("elanmanager", "ELAN Manager (global)", ["Manager", "Member"], [])
-        elanmanager = mtool.getMemberById("elanmanager")
-        elanmanager.setMemberProperties({"fullname": "ELAN Manager"})
-        elanmanager.setSecurityProfile(password="admin")
-        api.user.grant_roles(username="elanmanager", roles=["ELANUser"])
-        api.user.grant_roles(username="elanadmin", roles=["ELANUser"])
-        api.user.grant_roles(username="dpmanager", roles=["ELANUser"])
-        api.user.grant_roles(username="dpadmin", roles=["ELANUser"])
 
 
 def createStructure(self, fresh):

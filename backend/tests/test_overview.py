@@ -1,8 +1,5 @@
 from groupsfolder_setup import GroupsFolderSetupMixin
 from playwright.sync_api import expect
-from plone.app.testing import setRoles
-from plone.app.testing import TEST_USER_ID
-from plone.app.testing import TEST_USER_NAME
 
 import pytest
 import transaction
@@ -10,12 +7,11 @@ import transaction
 
 class TestOverview(GroupsFolderSetupMixin):
     @pytest.fixture(autouse=True)
-    def setup(self, portal_factory, playwright_page_factory) -> None:
-        self.portal = portal_factory(username=TEST_USER_NAME, roles=["User"])
-        setRoles(self.portal, TEST_USER_ID, ["Manager"])
+    def setup(self, acceptance, content_admin_page_factory) -> None:
+        self.portal = acceptance["portal"]
         self.docpool = self.portal["bund"]
         self.setup_content()
-        self.page = playwright_page_factory()
+        self.page = content_admin_page_factory()
 
     def test_situation_report_assignment(self):
         self.assert_category_assignment("radiological_situation_report", "overview_tile_latest_situation")

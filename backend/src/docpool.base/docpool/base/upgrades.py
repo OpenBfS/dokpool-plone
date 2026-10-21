@@ -254,6 +254,7 @@ def to_3000(context=None):
 
     # Delete old structure first
     delete_esd_structure()
+    delete_obsolete_content()
 
     # Drop data from relationfield to speed up stuff
     marker = object()
@@ -464,16 +465,18 @@ def create_doctype_structure(log_remains=False):
             if not doctype_data:
                 log.info("Entry without doctype: %s", obj.absolute_url())
             else:
-                doctype_obj = api.content.get(path=doctype_data["path"])
-                if set(doctype_obj.local_behaviors).intersection(set(obj.local_behaviors)):
-                    log.info(
-                        "Changing local_behaviors from %s to %s for %s: %s",
-                        obj.local_behaviors,
-                        doctype_obj.local_behaviors,
-                        obj.docType,
-                        obj.absolute_url(),
-                    )
-                    obj.local_behaviors = [i for i in doctype_obj.local_behaviors if i in dp.supportedApps]
+                if set(doctype_data["local_behaviors"]).intersection(set(obj.local_behaviors)):
+                    dp = getDocumentPoolSite(obj)
+                    local_behaviors = [i for i in doctype_data["local_behaviors"] if i in dp.supportedApps]
+                    if set(local_behaviors) != set(obj.local_behaviors):
+                        log.info(
+                            "Changing local_behaviors from %s to %s for %s: %s",
+                            obj.local_behaviors,
+                            local_behaviors,
+                            obj.docType,
+                            obj.absolute_url(),
+                        )
+                        obj.local_behaviors = local_behaviors
             obj.reindexObject(idxs=["category", "subcategory", "dp_type", "apps_supported"])
 
     # Change special cases for existing DPDocuments
@@ -538,17 +541,28 @@ def create_doctype_structure(log_remains=False):
 def delete_esd_structure(context=None):
     # Delete old esd structure and types
     to_delete = [
+        "ELANCurrentSituation",
         "Dashboard",
         "DashboardsConfig",
         "DashboardCollection",
-        "ELANCurrentSituation",
         "ELANDocCollection",
         "ELANSection",
     ]
-    for brain in api.content.find(portal_type="ELANCurrentSituation", sort_on="path"):
-        obj = brain.getObject()
-        api.content.delete(obj, check_linkintegrity=False)
+    for portal_type in to_delete:
+        for brain in api.content.find(portal_type=portal_type, sort_on="path"):
+            obj = brain.getObject()
+            api.content.delete(obj, check_linkintegrity=False)
+    portal_types = api.portal.get_tool("portal_types")
+    for portal_type in to_delete:
+        if portal_type in portal_types:
+            portal_types.manage_delObjects(portal_type)
 
+
+def delete_obsolete_content():
+    to_delete = [
+        "DPNetwork",
+        "DPNuclearPowerStation",
+    ]
     for portal_type in to_delete:
         for brain in api.content.find(portal_type=portal_type, sort_on="path"):
             obj = brain.getObject()
@@ -564,7 +578,6 @@ def enable_elan_for_all_docpools():
     from docpool.config.local.elan import createBasicPortalStructure
     from docpool.config.local.elan import createContentConfig
     from docpool.config.local.elan import createELANGroups
-    from docpool.config.local.elan import createELANUsers
     from docpool.config.local.elan import setELANLocalRoles
     from Products.CMFPlone.utils import log_exc
     from zExceptions import BadRequest
@@ -590,7 +603,6 @@ def enable_elan_for_all_docpools():
             placefulWfName = "elan-archive"
             config.setPolicyIn(policy=placefulWfName, update_security=False)
             config.setPolicyBelow(policy=placefulWfName, update_security=False)
-            createELANUsers(obj)
             createELANGroups(obj)
             setELANLocalRoles(obj)
 
@@ -960,3 +972,35 @@ def to_3000_drop_description(context=None):
         obj._p_changed = 1
         obj.reindexObject(idxs=["Description"])
         log.info("Added description to text: %s", brain.getURL())
+
+
+def to_3000_remove_function_users(context=None):
+    deleted = []
+    admin_users = [
+        "dpadmin",
+        "dpmanager",
+        "elanadmin",
+        "elanmanager",
+        "reiadmin",
+        "reimanager",
+    ]
+    to_delete = []
+    for userid in admin_users:
+        if api.user.get(userid=userid):
+            to_delete.append(userid)
+    portal_membership = api.portal.get_tool("portal_membership")
+    portal_membership.deleteMembers(to_delete)
+
+    function_user_suffixes = [
+        "contentadmin",
+        "doksysadmin",
+        "dpadmin",
+        "elanadmin",
+        "reiadmin",
+    ]
+    for user in api.user.get_users():
+        if user.getId().split("_")[-1] in function_user_suffixes:
+            api.user.delete(user=user)
+
+    # Make sure UserFolders are deleted
+    log.info("Deleted users: %s", ", ".join(deleted))

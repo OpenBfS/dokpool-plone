@@ -230,6 +230,7 @@ class DPDocument(Container, Extendable, ContentBase):
             "category": obj.category(),
             "subcategory": obj.subcategory(),
             "icon_name": obj.icon_name,
+            "local_behaviors": brain.apps_supported,
         }
         return data
 

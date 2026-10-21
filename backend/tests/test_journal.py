@@ -1,9 +1,6 @@
 from docpool.base.marker import IJournalContainerMarker
 from docpool.base.marker import IJournalEntryMarker
 from playwright.sync_api import expect
-from plone.app.testing import setRoles
-from plone.app.testing import TEST_USER_ID
-from plone.app.testing import TEST_USER_NAME
 from utils import fill_rich_text_widget
 
 import pytest
@@ -12,22 +9,11 @@ import transaction
 
 class TestJournal:
     @pytest.fixture(autouse=True)
-    def setup(
-        self,
-        request,
-        portal_factory,
-        playwright_page_factory,
-        site_owner_page_factory,
-    ) -> None:
-        self.portal = portal_factory(username=TEST_USER_NAME, roles=["Manager"])
-        self.page = (
-            site_owner_page_factory()
-            if request.node.get_closest_marker("admin_ui")
-            else playwright_page_factory()
-        )
+    def setup(self, acceptance, site_owner_page_factory) -> None:
+        self.portal = acceptance["portal"]
+        self.page = site_owner_page_factory()
         self.plone_url = self.portal.absolute_url()
 
-        setRoles(self.portal, TEST_USER_ID, ["Manager"])
         self.docpool = self.portal["bund"]
         self.setup_content()
 
@@ -75,7 +61,6 @@ class TestJournal:
         page.goto(f"{self.plone_url}/bund")
 
     @pytest.mark.flaky(reruns=2)
-    @pytest.mark.admin_ui
     def test_one_journal(self):
         page = self.page
         page.goto(f"{self.plone_url}/bund/@@journals")

@@ -51,9 +51,6 @@ ADMINSTRUCTURE = [
 
 def configUserFolders(self, fresh):
     """ """
-    # Turn creation of user folders on
-    #    from plone.app.controlpanel.security import ISecuritySchema
-    # Fetch the adapter
     from Products.CMFPlone.interfaces.controlpanel import ISecuritySchema
 
     security_adapter = ISecuritySchema(self)
@@ -62,20 +59,6 @@ def configUserFolders(self, fresh):
     # Set type for user folders
     mtool = getToolByName(self, "portal_membership")
     mtool.setMemberAreaType("UserFolder")
-    if fresh:
-        mtool.addMember(
-            "dpadmin",
-            "Docpool Administrator (global)",
-            ["Site Administrator", "Member"],
-            [],
-        )
-        dpadmin = mtool.getMemberById("dpadmin")
-        dpadmin.setMemberProperties({"fullname": "Docpool Administrator"})
-        dpadmin.setSecurityProfile(password="admin")
-        mtool.addMember("dpmanager", "Docpool Manager (global)", ["Manager", "Member"], [])
-        dpmanager = mtool.getMemberById("dpmanager")
-        dpmanager.setMemberProperties({"fullname": "Docpool Manager"})
-        dpmanager.setSecurityProfile(password="admin")
 
 
 def createStructure(self, fresh):
