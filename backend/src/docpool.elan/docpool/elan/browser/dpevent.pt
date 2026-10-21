@@ -52,7 +52,6 @@
           <tal:field repeat="field python:[
                              'AlertingStatus',
                              'AlertingNote',
-                             'SectorizingSampleTypes',
                              'SectorizingNetworks',
                              ]">
             <tr tal:define="
@@ -102,7 +101,6 @@
               <th i18n:translate="">Operation mode</th>
               <th i18n:translate="">Alerting status</th>
               <th i18n:translate="">Alerting note</th>
-              <th i18n:translate="">Sectorizing sample types</th>
               <th i18n:translate="">Sectorizing networks</th>
             </tr>
           </thead>
@@ -136,10 +134,6 @@
               ></td>
               <td data-title="Alerting note"
                   tal:content="python: item.get('Alerting note', '')"
-                  i18n:attributes="data-title"
-              ></td>
-              <td data-title="Sectorizing sample types"
-                  tal:content="python: item.get('Sectorizing sample types', '')"
                   i18n:attributes="data-title"
               ></td>
               <td data-title="Sectorizing networks"

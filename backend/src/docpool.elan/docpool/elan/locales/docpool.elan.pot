@@ -357,11 +357,6 @@ msgstr ""
 msgid "Sectorizing networks"
 msgstr ""
 
-#: docpool.elan/docpool/elan/browser/dpevent.pt
-#: docpool.elan/docpool/elan/content/dpevent.py
-msgid "Sectorizing sample types"
-msgstr ""
-
 #: docpool.elan/docpool/elan/browser/archive_event_form.pt
 #: docpool.elan/docpool/elan/browser/dpevent.pt
 msgid "Show Debug-Info"

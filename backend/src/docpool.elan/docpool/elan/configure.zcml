@@ -70,10 +70,6 @@
       component=".vocabularies.ModesVocabularyFactory"
       />
   <utility
-      name="docpool.elan.vocabularies.SampleType"
-      component=".vocabularies.SampleTypeVocabularyFactory"
-      />
-  <utility
       name="docpool.elan.vocabularies.Networks"
       component=".vocabularies.NetworksVocabularyFactory"
       />

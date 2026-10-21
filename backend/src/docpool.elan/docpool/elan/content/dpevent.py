@@ -137,12 +137,6 @@ class IDPEvent(IContentBase):
         required=False,
     )
 
-    SectorizingSampleTypes = schema.List(
-        title=_("Sectorizing sample types"),
-        required=False,
-        value_type=schema.Choice(source="docpool.elan.vocabularies.SampleType"),
-    )
-
     SectorizingNetworks = schema.List(
         title=_("Sectorizing networks"),
         required=False,
@@ -285,9 +279,6 @@ def addLogEntry(obj):
     entry["Operation mode"] = modes
     entry["Alerting status"] = alerting_status
     entry["Alerting note"] = obj.AlertingNote
-    entry["Sectorizing sample types"] = ", ".join(
-        obj.SectorizingSampleTypes if obj.SectorizingSampleTypes is not None else " "
-    )
     entry["Sectorizing networks"] = ", ".join(obj.SectorizingNetworks or " ")
     # Check if there are changes to prevent duplicate log entries.
     if changelog and entry == changelog[-1]:
