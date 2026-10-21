@@ -324,8 +324,8 @@ def patched_deleteMembers_from_portal_membership(
                 member_ids.remove(member_id)
         try:
             acl_users.userFolderDelUsers(member_ids)
-        except (AttributeError, NotImplementedError):
-            raise NotImplementedError("The underlying User Folder doesn't support deleting members.")
+        except (AttributeError, NotImplementedError) as err:
+            raise NotImplementedError("The underlying User Folder doesn't support deleting members.") from err
     else:
         raise AccessControl_Unauthorized(
             "You need the 'Manage users' permission for the underlying User Folder."
