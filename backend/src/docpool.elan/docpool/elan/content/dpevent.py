@@ -228,12 +228,6 @@ class DPEvent(Container, ContentBase):
         wftool = getToolByName(self, "portal_workflow")
         return wftool.getInfoFor(self, "review_state") == "published" and self.Status == "active"
 
-    def bounds(self, fieldname="AreaOfInterest"):
-        coordinates = self.coordinates(fieldname)
-        if not coordinates:
-            return
-        return coordinates.bounds
-
     def coordinates(self, fieldname="EventCoordinates"):
         wkt = getattr(self, fieldname, None)
         if not wkt:
