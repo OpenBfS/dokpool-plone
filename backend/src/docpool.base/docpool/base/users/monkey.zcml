@@ -60,6 +60,15 @@
       />
 
   <monkey:patch
+      original="deleteMembers"
+      replacement=".monkey.patched_deleteMembers_from_portal_membership"
+      class="Products.CMFCore.MembershipTool.MembershipTool"
+      preservedoc="false"
+      docstringWarning="false"
+      description="Do not reindex security after deleting local roles"
+      />
+
+  <monkey:patch
       original="reply"
       replacement=".monkey.patched_usersdelete_reply"
       class="plone.restapi.services.users.delete.UsersDelete"

@@ -15,8 +15,12 @@ from plone.base.interfaces import ISecuritySchema
 from plone.base.interfaces.siteroot import IPloneSiteRoot
 from plone.base.utils import safe_text
 from plone.protect.interfaces import IDisableCSRFProtection
+from Products.CMFCore.exceptions import AccessControl_Unauthorized
+from Products.CMFCore.interfaces import IMemberDataTool
 from Products.CMFCore.interfaces import ISiteRoot
 from Products.CMFCore.permissions import ManagePortal
+from Products.CMFCore.permissions import ManageUsers
+from Products.CMFCore.utils import _checkPermission
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.controlpanel.browser.usergroups import UsersGroupsControlPanelView
 from Products.CMFPlone.utils import base_hasattr
@@ -26,6 +30,7 @@ from zExceptions import BadRequest
 from zExceptions import Forbidden
 from zope.component import getAdapter
 from zope.component import getUtility
+from zope.component import queryUtility
 from zope.component.globalregistry import provideAdapter
 from zope.component.hooks import getSite
 from zope.globalrequest import getRequest
@@ -300,3 +305,45 @@ def member(self):
     # Dokpool patch: Only show current name in @@change-password. https://redmine-koala.bfs.de/issues/5763
     mtool = getToolByName(self.context, "portal_membership")
     return mtool.getAuthenticatedMember()
+
+
+def patched_deleteMembers_from_portal_membership(
+    self, member_ids, delete_memberareas=1, delete_localroles=1, REQUEST=None
+):
+    """Delete members specified by member_ids.
+    Patch: Skip reindexing permissions after deleting local roles.
+    """
+    # Delete members in acl_users.
+    acl_users = self.acl_users
+    if _checkPermission(ManageUsers, acl_users):
+        if isinstance(member_ids, str):
+            member_ids = (member_ids,)
+        member_ids = list(member_ids)
+        for member_id in member_ids[:]:
+            if not acl_users.getUserById(member_id, None):
+                member_ids.remove(member_id)
+        try:
+            acl_users.userFolderDelUsers(member_ids)
+        except (AttributeError, NotImplementedError):
+            raise NotImplementedError("The underlying User Folder doesn't support deleting members.")
+    else:
+        raise AccessControl_Unauthorized(
+            "You need the 'Manage users' permission for the underlying User Folder."
+        )
+
+    # Delete member data in portal_memberdata.
+    mdtool = queryUtility(IMemberDataTool)
+    if mdtool is not None:
+        for member_id in member_ids:
+            mdtool.deleteMemberData(member_id)
+
+    # Delete members' home folders including all content items.
+    if delete_memberareas:
+        for member_id in member_ids:
+            self.deleteMemberArea(member_id)
+
+    # Delete members' local roles.
+    if delete_localroles:
+        self.deleteLocalRoles(getUtility(ISiteRoot), member_ids, reindex=0, recursive=1)
+
+    return tuple(member_ids)
