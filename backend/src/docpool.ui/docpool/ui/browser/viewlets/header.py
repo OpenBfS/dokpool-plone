@@ -57,6 +57,17 @@ class EventSwitcherMixin:
 
 
 class GroupsTreeMixin:
+    def is_emergency_navigation(self):
+        return is_in_dp_folder(self.context, "hintergrundinfos-ns")
+
+    def build_emergency_tree(self):
+        document_pool = IPlaces(self.context).document_pool
+        emergency_folder = document_pool.get("hintergrundinfos-ns") if document_pool is not None else None
+        if emergency_folder is None or not api.user.has_permission("View", obj=emergency_folder):
+            return []
+        tree = self._build_folder_tree(emergency_folder)
+        return [self._as_root_node(tree, emergency_folder, "emergency")]
+
     def build_groups_tree(self):
         content_area = IPlaces(self.context).content
         if content_area is None:
@@ -198,6 +209,8 @@ class PortalHeader(EventSwitcherMixin, TimezoneTableMixin, GroupsTreeMixin, View
         groups_tree = self.build_groups_tree()
         # Prepare mobile folder tree navigation
         self.groups_tree = groups_tree if is_in_dp_folder(self.context, *GROUPS_NAV_FOLDERS) else []
+        if self.is_emergency_navigation():
+            self.groups_tree = self.build_emergency_tree()
 
         self.groups_folder_url = self.get_groups_folder_url(groups_tree)
         try:

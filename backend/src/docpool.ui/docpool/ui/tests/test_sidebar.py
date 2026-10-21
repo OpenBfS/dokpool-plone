@@ -35,10 +35,12 @@ class TestReiSidebar(unittest.TestCase):
         api.user.get_current().setMemberProperties({"apps": [app]})
         app_active_after_traversal_subscriber(PubAfterTraversal(self.request))
 
-    def render_sidebar(self):
-        view = BrowserView(self.docpool, self.request)
+    def render_sidebar(self, context=None):
+        if context is None:
+            context = self.docpool
+        view = BrowserView(context, self.request)
         manager = getMultiAdapter(
-            (self.docpool, self.request, view), ISidebarManager, name="docpool.sidebar.manager"
+            (context, self.request, view), ISidebarManager, name="docpool.sidebar.manager"
         )
         manager.update()
         return html.fromstring(manager.render())
@@ -51,3 +53,15 @@ class TestReiSidebar(unittest.TestCase):
         self.assertNotIn("REI-Berichte", sidebar.text_content())
         self.set_active_app("rei")
         self.assertIn("REI-Berichte", self.render_sidebar().text_content())
+
+    def test_emergency_folder_uses_tree_navigation(self):
+        folder = api.content.create(
+            container=self.docpool, type="Folder", id="hintergrundinfos-ns", title="Notfallschutz"
+        )
+        child = api.content.create(container=folder, type="Folder", id="child", title="Unterordner")
+        sidebar = self.render_sidebar(child)
+        self.assertIn("Notfallschutz", sidebar.text_content())
+        self.assertTrue(
+            sidebar.xpath('.//nav//a[@href=$url][contains(@class, "current")]', url=child.absolute_url())
+        )
+        self.assertNotIn("REI-Berichte", sidebar.text_content())

@@ -28,8 +28,12 @@
     <div class="offcanvas-header mobile-offcanvas-header">
       <h5 class="offcanvas-title"
           id="offcanvasGroupsNavLabel"
-          i18n:translate=""
-      >Groups</h5>
+      >
+        <span tal:condition="python:view.is_emergency_navigation()">Notfallschutz</span>
+        <span tal:condition="python:not view.is_emergency_navigation()"
+              i18n:translate=""
+        >Groups</span>
+      </h5>
       <button class="btn btn-icon mobile-offcanvas-close"
               aria-label="Close"
               type="button"
