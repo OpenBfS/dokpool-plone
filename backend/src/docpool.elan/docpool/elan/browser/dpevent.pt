@@ -19,28 +19,18 @@
         <h4 i18n:translate="">Event Information</h4>
 
         <table class="listing table table-striped table-bordered">
-
-          <tr tal:define="
-                widget python:view.widgets['EventType'];
-              ">
-            <td tal:content="widget/label"></td>
-            <td tal:content="structure widget/render"></td>
-          </tr>
-
-          <tr tal:define="
-                widget python:view.widgets['Status'];
-              ">
-            <td tal:content="widget/label"></td>
-            <td tal:content="structure widget/render"></td>
-          </tr>
-
-          <tr tal:define="
-                widget python:view.widgets['TimeOfEvent'];
-              ">
-            <td tal:content="widget/label"></td>
-            <td tal:content="structure widget/render"></td>
-          </tr>
-
+          <tal:field repeat="field python:[
+                             'EventType',
+                             'Status',
+                             'TimeOfEvent',
+                             ]">
+            <tr tal:define="
+                  widget python:view.widgets[field];
+                ">
+              <td tal:content="widget/label"></td>
+              <td tal:content="structure widget/render"></td>
+            </tr>
+          </tal:field>
         </table>
 
         <h4 i18n:translate="">Operation mode and Alerting</h4>
@@ -58,27 +48,18 @@
               ></strong></td>
           </tr>
 
-          <tr tal:define="
-                widget python:view.widgets['AlertingStatus'];
-              ">
-            <td tal:content="widget/label"></td>
-            <td tal:content="structure widget/render"></td>
-          </tr>
-
-          <tr tal:define="
-                widget python:view.widgets['AlertingNote'];
-              ">
-            <td tal:content="widget/label"></td>
-            <td tal:content="structure widget/render"></td>
-          </tr>
-
-          <tr tal:define="
-                widget python:view.widgets['SectorizingSampleTypes'];
-              ">
-            <td tal:content="widget/label"></td>
-            <td tal:content="structure widget/render"></td>
-          </tr>
-
+          <tal:field repeat="field python:[
+                             'AlertingStatus',
+                             'AlertingNote',
+                             'SectorizingSampleTypes',
+                             ]">
+            <tr tal:define="
+                  widget python:view.widgets[field];
+                ">
+              <td tal:content="widget/label"></td>
+              <td tal:content="structure widget/render"></td>
+            </tr>
+          </tal:field>
         </table>
 
         <dl id="meta_items">
