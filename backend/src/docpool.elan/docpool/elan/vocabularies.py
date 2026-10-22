@@ -186,6 +186,16 @@ def PhasesVocabularyFactory(context=None):
     return SimpleVocabulary([SimpleTerm(key, safe_bytes(key), f"{value} ({key})") for key, value in items])
 
 
+@provider(IVocabularyFactory)
+def EmergencyClassificationsVocabularyFactory(context=None):
+    items = [
+        ("interregional", "Überregionaler Notfall"),
+        ("regional", "Regionaler Notfall"),
+        ("local", "Lokaler Notfall"),
+    ]
+    return SimpleVocabulary([SimpleTerm(key, safe_bytes(key), value) for key, value in items])
+
+
 allow_module("docpool.elan.vocabularies")
 # allow_class(ELANESDVocabulary)
 

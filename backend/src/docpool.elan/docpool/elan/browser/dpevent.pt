@@ -27,6 +27,7 @@
                              'EventLocation',
                              'ReferenceScenario',
                              'Phase',
+                             'EmergencyClassification',
                              ]">
             <tr tal:define="
                   widget python:view.widgets[field];

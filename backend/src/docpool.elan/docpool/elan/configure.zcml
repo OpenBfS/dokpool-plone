@@ -89,5 +89,9 @@
       name="docpool.elan.vocabularies.Phases"
       component=".vocabularies.PhasesVocabularyFactory"
       />
+  <utility
+      name="docpool.elan.vocabularies.EmergencyClassifications"
+      component=".vocabularies.EmergencyClassificationsVocabularyFactory"
+      />
 
 </configure>

@@ -202,6 +202,10 @@ msgstr "Den Eintrag bearbeiten"
 msgid "Emergency"
 msgstr "Notfall"
 
+#: docpool.elan/docpool/elan/content/dpevent.py
+msgid "Emergency classification"
+msgstr "Notfalleinstufung"
+
 #: docpool.elan/docpool/elan/browser/dpevents.pt
 #: docpool.elan/docpool/elan/browser/elanarchives.pt
 msgid "Entries"

@@ -3,6 +3,7 @@
   "@type": "DPEvent",
   "AlertingNote": null,
   "AlertingStatus": "none",
+  "EmergencyClassification": "regional",
   "EventCoordinates": null,
   "EventLocation": null,
   "EventLocationTimeZone": "Europe/Berlin",

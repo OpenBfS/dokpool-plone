@@ -112,6 +112,13 @@ class IDPEvent(IContentBase):
         required=True,
     )
 
+    directives.widget(EmergencyClassification=RadioFieldWidget)
+    EmergencyClassification = schema.Choice(
+        title=_("Emergency classification"),
+        vocabulary="docpool.elan.vocabularies.EmergencyClassifications",
+        required=True,
+    )
+
     directives.widget(OperationMode=RadioFieldWidget)
     OperationMode = schema.Choice(
         title=_("Operation mode"),
