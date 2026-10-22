@@ -175,6 +175,17 @@ S15 – Sonstiger Notfall beim Umgang mit einer Nuklearwaffe
     return SimpleVocabulary([SimpleTerm(key, safe_bytes(key), f"{key} – {value}") for key, value in items])
 
 
+@provider(IVocabularyFactory)
+def PhasesVocabularyFactory(context=None):
+    items = [
+        ("A", "Vorfreisetzungsphase"),
+        ("B", "Freisetzungsphase"),
+        ("C", "Frühe Nachfreisetzungsphase"),
+        ("D", "Späte Nachfreisetzungsphase"),
+    ]
+    return SimpleVocabulary([SimpleTerm(key, safe_bytes(key), f"{value} ({key})") for key, value in items])
+
+
 allow_module("docpool.elan.vocabularies")
 # allow_class(ELANESDVocabulary)
 

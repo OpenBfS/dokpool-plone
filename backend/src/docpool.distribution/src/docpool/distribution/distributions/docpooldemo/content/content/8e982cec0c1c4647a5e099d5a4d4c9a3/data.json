@@ -8,6 +8,7 @@
   "EventLocationTimeZone": "Europe/Berlin",
   "EventType": "Routine",
   "OperationMode": "routine",
+  "Phase": "A",
   "ReferenceScenario": "S0",
   "SectorizingNetworks": [],
   "Status": "active",

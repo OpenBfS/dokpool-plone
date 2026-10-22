@@ -305,6 +305,10 @@ msgstr "Betriebsart und Alarmierung"
 msgid "Original content is moved to the archive."
 msgstr "Nur diesem Ereignis zugewiesene Inhalte werden in das Archiv verschoben."
 
+#: docpool.elan/docpool/elan/content/dpevent.py
+msgid "Phase"
+msgstr "Phase"
+
 #: docpool.elan/docpool/elan/browser/i18ndummy.pt
 msgid "Purge"
 msgstr "Inhalte des Ereignisses löschen"

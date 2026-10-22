@@ -305,6 +305,10 @@ msgstr ""
 msgid "Original content is moved to the archive."
 msgstr ""
 
+#: docpool.elan/docpool/elan/content/dpevent.py
+msgid "Phase"
+msgstr ""
+
 #: docpool.elan/docpool/elan/browser/i18ndummy.pt
 msgid "Purge"
 msgstr ""

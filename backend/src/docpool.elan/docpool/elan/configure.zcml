@@ -85,5 +85,9 @@
       name="docpool.elan.vocabularies.ReferenceScenarios"
       component=".vocabularies.ReferenceScenariosVocabularyFactory"
       />
+  <utility
+      name="docpool.elan.vocabularies.Phases"
+      component=".vocabularies.PhasesVocabularyFactory"
+      />
 
 </configure>

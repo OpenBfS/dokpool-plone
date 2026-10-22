@@ -105,6 +105,13 @@ class IDPEvent(IContentBase):
         required=True,
     )
 
+    directives.widget(Phase=RadioFieldWidget)
+    Phase = schema.Choice(
+        title=_("Phase"),
+        vocabulary="docpool.elan.vocabularies.Phases",
+        required=True,
+    )
+
     directives.widget(OperationMode=RadioFieldWidget)
     OperationMode = schema.Choice(
         title=_("Operation mode"),
