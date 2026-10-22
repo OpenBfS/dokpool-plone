@@ -395,8 +395,6 @@ def updateContainerModified(obj, event=None):
 
 @adapter(IDPDocument, IObjectAddedEvent)
 def mark_journalentry(obj, event=None):
-    if IArchiving(obj).is_archive:
-        return
     if IImportingMarker.providedBy(getRequest()):
         return
     if IJournalContainerMarker.providedBy(event.newParent):
