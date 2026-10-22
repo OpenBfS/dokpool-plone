@@ -15,6 +15,7 @@
   * links relative to docpool instead of portal
   * hide user-preferences
   * hide controlpanel navigation
+  * link to groups in the user docpool
  -->
 
     <metal:main fill-slot="prefs_configlet_content"
@@ -28,7 +29,10 @@
                   errors python:request.get('errors', {});
                   userquery python:view.makeQuery(userid=userid);
                   portal_url context/portal_url;
-                  dp_url context/dp_url;
+                  dp_url context/@@dp_url;
+                  get_docpool_for_user nocall:context/@@get_docpool_for_user;
+                  docpool_for_user python: get_docpool_for_user(userid=userid);
+                  docpool_for_user_url python: docpool_for_user.absolute_url() if docpool_for_user else None;
                   showAll python:request.get('showAll', '') and not view.newSearch and 'y';
                   Batch python:modules['Products.CMFPlone'].Batch;
                   b_size python:showAll and len(view.searchResults) or 20;
@@ -130,7 +134,7 @@
                       <img tal:replace="structure python:icons.tag('people')" />
                       <a href="@@usergroup-groupdetails"
                          tal:attributes="
-                           href string:@@usergroup-groupdetails?groupname=${groupId};
+                           href string:${docpool_for_user_url}/@@usergroup-groupdetails?groupname=${groupId};
                          "
                       >
                         <span tal:replace="group/getGroupTitleOrName">group name</span>
@@ -239,7 +243,7 @@
                         <a href=""
                            tal:content="obj/getGroupTitleOrName | default"
                            tal:attributes="
-                             href python:'@@usergroup-groupdetails?'+mq(groupname=obj.getGroupName());
+                             href python:docpool_for_user_url+'/@@usergroup-groupdetails?'+mq(groupname=obj.getGroupName());
                            "
                         >
                           <span i18n:translate="link_groupname_not_available">

@@ -54,6 +54,13 @@ class DocPoolURL(BrowserView):
         return getDocumentPoolSite(self.context).absolute_url()
 
 
+class GetDocPoolForUser(BrowserView):
+    def __call__(self, userid=None):
+        if userid:
+            user = api.user.get(userid=userid)
+        return get_docpool_for_user(user)
+
+
 class ActivateAppFilter(BrowserView):
     def __call__(self):
         alsoProvides(self.request, IDisableCSRFProtection)

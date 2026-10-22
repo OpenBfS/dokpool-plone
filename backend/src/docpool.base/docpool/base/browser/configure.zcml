@@ -143,6 +143,13 @@
       />
 
   <browser:page
+      name="get_docpool_for_user"
+      for="*"
+      class=".helpers.GetDocPoolForUser"
+      permission="zope.Public"
+      />
+
+  <browser:page
       name="activateAppFilter"
       for="*"
       class=".helpers.ActivateAppFilter"
