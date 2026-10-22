@@ -16,7 +16,9 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from z3c.form import button
 from zope.interface import implementer
 
+import dateutil
 import io
+import pytz
 import zipfile
 
 
@@ -105,6 +107,15 @@ class DPDocumentView(DefaultView):
     def transition_icon(self, transition_id):
         return TRANSITION_ICON_MAPPING.get(transition_id, "arrow-right")
 
+    def timezone(self, value):
+        """The abbreviated name of the used timezone (most likely CET or CEST)"""
+        if isinstance(value, str):
+            value = dateutil.parser.parse(value)
+        elif hasattr(value, "asdatetime"):
+            value = value.asdatetime()
+        tz = api.portal.get_registry_record("plone.portal_timezone")
+        converted = value.astimezone(pytz.timezone(tz))
+        return converted.tzname()
 
 def visibility_options(app, context):
     options = []
