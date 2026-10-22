@@ -41,22 +41,6 @@
             <td tal:content="structure widget/render"></td>
           </tr>
 
-          <tal:nogeo tal:replace="nothing">
-            <tr tal:define="
-                  widget python:view.widgets['EventCoordinates'];
-                ">
-              <td tal:content="widget/label"></td>
-              <td tal:content="structure widget/render"></td>
-            </tr>
-
-            <tr tal:define="
-                  widget python:view.widgets['AreaOfInterest'];
-                ">
-              <td tal:content="widget/label"></td>
-              <td tal:content="structure widget/render"></td>
-            </tr>
-          </tal:nogeo>
-
         </table>
 
         <h4 i18n:translate="">Operation mode and Alerting</h4>
