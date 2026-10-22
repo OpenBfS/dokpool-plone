@@ -81,5 +81,9 @@
       name="docpool.elan.vocabularies.TimeZones"
       component=".vocabularies.TimeZonesVocabularyFactory"
       />
+  <utility
+      name="docpool.elan.vocabularies.ReferenceScenarios"
+      component=".vocabularies.ReferenceScenariosVocabularyFactory"
+      />
 
 </configure>

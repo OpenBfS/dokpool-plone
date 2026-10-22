@@ -149,6 +149,32 @@ def NetworksVocabularyFactory(context=None):
     return SimpleVocabulary(terms)
 
 
+@provider(IVocabularyFactory)
+def ReferenceScenariosVocabularyFactory(context=None):
+    items = [
+        line.split(" – ", 1)
+        for line in """\
+S0 – Notfall mit ungeklärtem Ursprung
+S1 – Notfall in einem deutschen Kernkraftwerk (vor Brennelementfreiheit)
+S2 – Notfall in einem Kernkraftwerk im grenznahen Ausland (in bis zu 100 km Entfernung von der deutschen Grenze)
+S3 – Notfall in einem Kernkraftwerk auf dem europäischen Kontinent (in mehr als 100 km Entfernung von der deutschen Grenze)
+S4 – Notfall in einem Kernkraftwerk außerhalb des europäischen Kontinents
+S5 – Notfall in einer ortsfesten Anlage oder Einrichtung im In- und Ausland mit besonderem Gefahrenpotenzial, die nicht unter S1 bis S4 fällt
+S6 – Notfall im Zusammenhang mit sonstigen Tätigkeiten nach § 4 StrlSchG oder vergleichbaren Tätigkeiten nach ausländischem Recht
+S7 – Transportunfall an Land (Straße, Schiene, Luft)
+S8 – Sonstiger Notfall mit radioaktiven Stoffen oder mit radioaktiven Kontaminationen
+S9 – Absturz eines Satelliten oder Raumfahrzeugs mit radioaktivem Material
+S10 – Notfall auf einem Oberflächengewässer
+S11 – Notfall auf oder in Meeresgewässern
+S12 – Vorsätzliche Straftat im In- und Ausland im Zusammenhang mit radioaktiven Stoffen ohne Bezug zu einer kerntechnischen Anlage oder Einrichtung
+S13 – Vorsätzliche Straftat, Störmaßnahme oder sonstige Einwirkung Dritter gegen oder auf eine kerntechnische Anlage oder Einrichtung
+S14 – Nuklearwaffenexplosion
+S15 – Sonstiger Notfall beim Umgang mit einer Nuklearwaffe
+""".splitlines()
+    ]
+    return SimpleVocabulary([SimpleTerm(key, safe_bytes(key), f"{key} – {value}") for key, value in items])
+
+
 allow_module("docpool.elan.vocabularies")
 # allow_class(ELANESDVocabulary)
 

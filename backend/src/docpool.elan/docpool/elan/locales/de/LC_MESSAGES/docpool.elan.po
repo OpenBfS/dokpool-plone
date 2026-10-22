@@ -309,6 +309,10 @@ msgstr "Nur diesem Ereignis zugewiesene Inhalte werden in das Archiv verschoben.
 msgid "Purge"
 msgstr "Inhalte des Ereignisses löschen"
 
+#: docpool.elan/docpool/elan/content/dpevent.py
+msgid "Reference scenario"
+msgstr "Referenzszenario"
+
 #: docpool.elan/docpool/elan/vocabularies.py
 msgid "Routine"
 msgstr "Normalfall"

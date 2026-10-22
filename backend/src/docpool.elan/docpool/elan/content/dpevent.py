@@ -99,6 +99,12 @@ class IDPEvent(IContentBase):
         constraint=is_coordinate,
     )
 
+    ReferenceScenario = schema.Choice(
+        title=_("Reference scenario"),
+        vocabulary="docpool.elan.vocabularies.ReferenceScenarios",
+        required=True,
+    )
+
     directives.widget(OperationMode=RadioFieldWidget)
     OperationMode = schema.Choice(
         title=_("Operation mode"),

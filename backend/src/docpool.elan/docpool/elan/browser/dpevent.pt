@@ -25,6 +25,7 @@
                              'TimeOfEvent',
                              'EventLocationTimeZone',
                              'EventLocation',
+                             'ReferenceScenario',
                              ]">
             <tr tal:define="
                   widget python:view.widgets[field];

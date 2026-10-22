@@ -312,6 +312,10 @@ msgstr ""
 msgid "Purge"
 msgstr ""
 
+#: docpool.elan/docpool/elan/content/dpevent.py
+msgid "Reference scenario"
+msgstr ""
+
 #: docpool.elan/docpool/elan/vocabularies.py
 msgid "Routine"
 msgstr ""

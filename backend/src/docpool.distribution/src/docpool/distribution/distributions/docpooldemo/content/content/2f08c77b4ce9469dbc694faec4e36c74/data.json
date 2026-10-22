@@ -8,6 +8,7 @@
   "EventLocationTimeZone": "Europe/Berlin",
   "EventType": "Emergency",
   "OperationMode": "routine",
+  "ReferenceScenario": "S0",
   "SectorizingNetworks": [],
   "Status": "active",
   "TimeOfEvent": "2026-07-27T22:24:05",
