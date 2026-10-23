@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<registry xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+          i18n:domain="docpool.base"
+>
+  <record name="plone.use_request_negotiation">
+    <value>True</value>
+  </record>
+  <record name="plone.use_cookie_negotiation">
+    <value>True</value>
+  </record>
+  <record name="plone.available_languages">
+    <value>
+      <element>de</element>
+      <element>en</element>
+    </value>
+  </record>
+  <record name="plone.default_language">
+    <value>de</value>
+  </record>
+  <record name="plone.always_show_selector">
+    <value>True</value>
+  </record>
+  <record name="plone.displayed_types">
+    <value purge="False">
+      <element>Folder</element>
+      <element>InfoFolder</element>
+      <element>DPConfig</element>
+      <element>DocTypes</element>
+      <element>CollaborationFolder</element>
+      <element>ReviewFolder</element>
+      <element>PrivateFolder</element>
+      <element>Groups</element>
+      <element>GroupFolder</element>
+      <element>UserFolder</element>
+      <element>SimpleFolder</element>
+      <element>DPTransfersArea</element>
+      <element>DPTransferFolder</element>
+    </value>
+  </record>
+</registry>
