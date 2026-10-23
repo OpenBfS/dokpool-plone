@@ -177,7 +177,7 @@ class Transferable(FlexibleView):
         If DocType allows it
         If Object allows it directly
         """
-        if not is_sender(self.context):
+        if not user_is_sender(self.context):
             return False
         if self.transferred or IArchiving(self.context).is_archive:
             return False
@@ -402,7 +402,7 @@ def automatic_transfer(obj):
             pass
 
 
-def is_sender(obj):
+def user_is_sender(obj):
     roles = api.user.get_roles(obj=obj)
     if "Manager" in roles or "Site Administrator" in roles or "ContentSender" in roles:
         return True
