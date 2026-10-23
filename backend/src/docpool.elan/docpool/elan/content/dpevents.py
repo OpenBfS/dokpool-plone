@@ -4,10 +4,8 @@ from docpool.elan.config import ELAN_APP
 from logging import getLogger
 from persistent.list import PersistentList
 from plone import api
-from plone.autoform import directives
 from plone.dexterity.content import Container
 from plone.supermodel import model
-from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from zope import schema
 from zope.interface import implementer
 
@@ -23,7 +21,6 @@ class IDPEvents(model.Schema):
         description=_("description_subscribed_events"),
         value_type=schema.Choice(source="docpool.elan.vocabularies.OpenEvents"),
     )
-    directives.widget(subscribed_events=CheckBoxFieldWidget)
 
 
 @implementer(IDPEvents)
