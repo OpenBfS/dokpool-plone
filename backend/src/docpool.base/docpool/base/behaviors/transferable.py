@@ -190,7 +190,8 @@ class Transferable(FlexibleView):
         return False
 
     def allowedTargets(self):
-        return [i["uid"] for i in allowed_targets(self.context)]
+        targets = sorted(allowed_targets(self.context), key=lambda t: t["from_to_title"])
+        return [t["uid"] for t in targets]
 
     security.declareProtected("Docpool: Send Content", "transferToAll")
 

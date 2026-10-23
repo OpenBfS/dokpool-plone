@@ -17,12 +17,12 @@ from zope.schema.vocabulary import SimpleVocabulary
 @provider(IContextSourceBinder)
 def possible_targets_vocabulary_factory(context):
     targets = allowed_targets(context)
-    terms = []
+    items = []
     for target in targets:
         target_apps = ", ".join([appName(app) for app in target["target_apps"]])
         title = f"{target['from_to_title']} ({target_apps})"
-        terms.append(SimpleTerm(target["uid"], target["uid"], title))
-    return SimpleVocabulary(terms)
+        items.append((title, target))
+    return SimpleVocabulary([SimpleTerm(target["uid"], title=title) for title, target in sorted(items)])
 
 
 @provider(IFormFieldProvider)
@@ -70,7 +70,7 @@ class TransfersType:
     @property
     def automaticTransferTargets(self):
         value = set(getattr(self.context, "automaticTransferTargets", ()) or ())
-        return [i["uid"] for i in allowed_targets(self.context) if i["uid"] in value]
+        return value.intersection(target["uid"] for target in allowed_targets(self.context))
 
     @automaticTransferTargets.setter
     def automaticTransferTargets(self, value):

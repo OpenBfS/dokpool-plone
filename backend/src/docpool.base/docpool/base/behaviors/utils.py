@@ -1,7 +1,6 @@
 from docpool.base.content.doctype import DocType
 from docpool.base.content.dptransferfolder import IDPTransferFolder
 from docpool.base.content.places import IPlaces
-from operator import itemgetter
 from plone import api
 
 
@@ -56,4 +55,4 @@ def allowed_targets(context):
         sent_to = {entry["transferfolder_uid"] for entry in transferable.sender_log}
         targets = [t for t in targets if t["uid"] not in sent_to]
 
-    return sorted(targets, key=itemgetter("from_to_title"))
+    return targets

@@ -41,7 +41,7 @@ class TransferForm(BrowserView):
         return self.index()
 
     def transfer_infos(self):
-        targets = []
+        targets = set()
         items = []
         # the listing passes uids
         uids = self.request.get("uid", [])
@@ -57,12 +57,12 @@ class TransferForm(BrowserView):
             except TypeError:
                 continue
             if adapted.transferable() and (allowed := adapted.allowedTargets()):
-                targets.extend(allowed)
+                targets.update(allowed)
                 items.append(obj)
 
         target_infos = []
         portal_catalog = api.portal.get_tool("portal_catalog")
-        for target in set(targets):
+        for target in targets:
             # ContentSenders do not need access to the target folders!
             brains = portal_catalog.unrestrictedSearchResults(UID=target)
             obj = brains[0]._unrestrictedGetObject()
