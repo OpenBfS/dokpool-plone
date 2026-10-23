@@ -198,6 +198,10 @@ class DPEvent(Container, ContentBase):
         IAnnotations(self).pop(ARCHIVING_KEY, None)
         self._p_changed = True
 
+    @property
+    def is_archive_uptodate(self):
+        return not self.get_documents()
+
     def get_documents(self):
         """
         Collects all DPDocuments for the current scenario

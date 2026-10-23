@@ -74,7 +74,14 @@ class ManageSubscribedEvents(DPEventsBaseView):
     def get_scenario_actions(self):
         subscribed = set(self.context.subscribed_events)
         return [
-            (sc, "subscribe" if sc.UID() not in subscribed else "unsubscribe")
+            (
+                sc,
+                "subscribe"
+                if sc.UID() not in subscribed
+                else "unsubscribe"
+                if sc.is_archive_uptodate
+                else "archive",
+            )
             for sc in sorted(global_events_folder().getDPEvents(), key=lambda sc: sc.UID() not in subscribed)
         ]
 

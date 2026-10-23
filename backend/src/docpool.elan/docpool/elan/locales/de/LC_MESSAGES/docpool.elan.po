@@ -70,6 +70,10 @@ msgstr "Archiv"
 msgid "Archive Event"
 msgstr "Ereignis archivieren"
 
+#: docpool.elan/docpool/elan/browser/manage_subscribed_events.pt
+msgid "Archive and unsubscribe"
+msgstr "Archivieren und Abonnement beenden"
+
 #: docpool.elan/docpool/elan/browser/elanarchives.pt
 msgid "Archived"
 msgstr "Archiviert"
