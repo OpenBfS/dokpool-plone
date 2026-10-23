@@ -65,8 +65,11 @@ class ManageSubscribedEvents(DPEventsBaseView):
             self.context.subscribed_events.append(sc_uid)
             api.portal.show_message(_("Scenario subscribed."), self.request)
         elif action == "unsubscribe" and sc_uid in self.context.subscribed_events:
-            self.context.subscribed_events.remove(sc_uid)
-            api.portal.show_message(_("Scenario unsubscribed."), self.request)
+            if api.content.get(UID=sc_uid).is_archive_uptodate:
+                self.context.subscribed_events.remove(sc_uid)
+                api.portal.show_message(_("Scenario unsubscribed."), self.request)
+            else:
+                api.portal.show_message(_("Scenario archive not up-to-date."), self.request, "error")
         else:
             api.portal.show_message(_("Invalid action."), self.request, "error")
         self.request.response.redirect(self.request.getURL())

@@ -333,6 +333,10 @@ msgstr ""
 msgid "Saved"
 msgstr ""
 
+#: docpool.elan/docpool/elan/browser/dpevents.py
+msgid "Scenario archive not up-to-date."
+msgstr ""
+
 #: docpool.elan/docpool/elan/browser/archive_event_form.py
 msgid "Scenario archived"
 msgstr ""

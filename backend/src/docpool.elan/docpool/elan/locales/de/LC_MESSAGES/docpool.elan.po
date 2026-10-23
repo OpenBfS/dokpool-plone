@@ -329,6 +329,10 @@ msgstr "Routinebetrieb"
 msgid "Saved"
 msgstr "Gespeichert"
 
+#: docpool.elan/docpool/elan/browser/dpevents.py
+msgid "Scenario archive not up-to-date."
+msgstr "Ereignis hat kein aktuelles Archiv."
+
 #: docpool.elan/docpool/elan/browser/archive_event_form.py
 msgid "Scenario archived"
 msgstr "Ereignis archiviert"
