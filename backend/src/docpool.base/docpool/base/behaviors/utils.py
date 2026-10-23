@@ -42,17 +42,11 @@ def allowed_targets(context):
         obj = brain._unrestrictedGetObject()
         permission = obj.doctype_permission(dt_id)
         if permission != "block":
-            from_to_title = obj.from_to_title()
-            target_docpool = IPlaces(obj).document_pool
-            targets.append({
-                "uid": brain.UID,
-                "from_to_title": from_to_title,
-                "target_apps": target_docpool.supportedApps,
-            })
+            targets.append(obj)
 
     transferable = ITransferable(context, None)
     if transferable is not None:
         sent_to = {entry["transferfolder_uid"] for entry in transferable.sender_log}
-        targets = [t for t in targets if t["uid"] not in sent_to]
+        targets = [t for t in targets if t.UID() not in sent_to]
 
     return targets

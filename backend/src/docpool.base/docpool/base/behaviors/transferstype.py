@@ -19,10 +19,10 @@ def possible_targets_vocabulary_factory(context):
     targets = allowed_targets(context)
     items = []
     for target in targets:
-        target_apps = ", ".join([appName(app) for app in target["target_apps"]])
-        title = f"{target['from_to_title']} ({target_apps})"
+        target_apps = ", ".join([appName(app) for app in IPlaces(target).document_pool.supportedApps])
+        title = f"{target.from_to_title()} ({target_apps})"
         items.append((title, target))
-    return SimpleVocabulary([SimpleTerm(target["uid"], title=title) for title, target in sorted(items)])
+    return SimpleVocabulary([SimpleTerm(target.UID(), title=title) for title, target in sorted(items)])
 
 
 @provider(IFormFieldProvider)
@@ -70,7 +70,7 @@ class TransfersType:
     @property
     def automaticTransferTargets(self):
         value = set(getattr(self.context, "automaticTransferTargets", ()) or ())
-        return value.intersection(target["uid"] for target in allowed_targets(self.context))
+        return value.intersection(target.UID() for target in allowed_targets(self.context))
 
     @automaticTransferTargets.setter
     def automaticTransferTargets(self, value):
@@ -80,6 +80,5 @@ class TransfersType:
         context = aq_inner(self.context)
         unaffected = set(getattr(context, "automaticTransferTargets", ()) or ())
         if unaffected:
-            allowed = (target["uid"] for target in allowed_targets(context))
-            unaffected.difference_update(allowed)
+            unaffected.difference_update(target.UID() for target in allowed_targets(context))
         context.automaticTransferTargets = tuple(unaffected.union(value))
