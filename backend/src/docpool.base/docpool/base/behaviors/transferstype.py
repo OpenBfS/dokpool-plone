@@ -70,9 +70,6 @@ class TransfersType:
     @property
     def automaticTransferTargets(self):
         value = set(getattr(self.context, "automaticTransferTargets", ()) or ())
-        if not value:
-            # avoid unnecessary interaction with the zope.sqlalchemy datamanager
-            return []
         return [i["uid"] for i in allowed_targets(self.context) if i["uid"] in value]
 
     @automaticTransferTargets.setter
