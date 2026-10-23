@@ -32,17 +32,15 @@ def allowed_targets(context):
             doctype_data = {}
         dt_id = doctype_data.get("id", "---")
 
-    targets = []
-    portal_catalog = api.portal.get_tool("portal_catalog")
-
-    # ContentSenders do not need access to the target folders!
-    for brain in portal_catalog.unrestrictedSearchResults(
-        object_provides=IDPTransferFolder.__identifier__, sendingESD=esd.UID()
-    ):
-        obj = brain._unrestrictedGetObject()
-        permission = obj.doctype_permission(dt_id)
-        if permission != "block":
-            targets.append(obj)
+    targets = [
+        obj
+        for brain in api.content.find(
+            object_provides=IDPTransferFolder.__identifier__,
+            sendingESD=esd.UID(),
+            unrestricted=True,  # ContentSenders do not need access to the target folders!
+        )
+        if (obj := brain._unrestrictedGetObject()).acceptsDT(dt_id)
+    ]
 
     transferable = ITransferable(context, None)
     if transferable is not None:
