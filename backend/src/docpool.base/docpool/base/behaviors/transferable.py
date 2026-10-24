@@ -373,7 +373,13 @@ class Transferable(FlexibleView):
 def automatic_transfer_on_publish(obj, event=None):
     """ """
     if event and event.action == "publish":
-        automatic_transfer(obj)
+        guarded_automatic_transfer(obj)
+
+
+def guarded_automatic_transfer(obj):
+    with transferring() as already_transferring:
+        if not already_transferring:
+            return automatic_transfer(obj)
 
 
 def automatic_transfer(obj):
@@ -392,15 +398,11 @@ def automatic_transfer(obj):
     except BaseException:
         return
 
-    with transferring() as already_transferring:
-        if already_transferring:
-            return
-
-        logger.info(f'Automatic transfer of "{obj.Title()}" from {"/".join(obj.getPhysicalPath())}')
-        try:
-            return tObj.transferToAll()
-        except BaseException:
-            pass
+    logger.info(f'Automatic transfer of "{obj.Title()}" from {"/".join(obj.getPhysicalPath())}')
+    try:
+        return tObj.transferToAll()
+    except BaseException:
+        pass
 
 
 def user_is_sender(obj):
