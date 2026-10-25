@@ -70,3 +70,13 @@ class TransferForm(BrowserView):
             "items": items,
             "targets": sorted(target_infos, key=lambda x: x["esd_to_title"]),
         }
+
+
+def show_transfer_action(obj):
+    if not api.user.has_permission("Docpool: Send Content", obj=obj):
+        return False
+    try:
+        adapted = ITransferable(obj)
+    except TypeError:
+        return False
+    return adapted.transferable() and adapted.allowed_targets()
