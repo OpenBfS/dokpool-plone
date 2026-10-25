@@ -48,6 +48,15 @@
 
   <browser:page
       name="usergroup-usermembership"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      class="Products.CMFPlone.controlpanel.browser.usergroups_usermembership.UserMembershipControlPanel"
+      template="templates/usergroups_usermembership.pt"
+      permission="plone.app.controlpanel.UsersAndGroups"
+      layer="docpool.base.interfaces.IDocpoolBaseLayer"
+      />
+
+  <browser:page
+      name="usergroup-usermembership"
       for="docpool.base.interfaces.IDocumentPool"
       class="Products.CMFPlone.controlpanel.browser.usergroups_usermembership.UserMembershipControlPanel"
       template="templates/usergroups_usermembership.pt"
