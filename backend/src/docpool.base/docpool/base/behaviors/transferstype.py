@@ -1,10 +1,12 @@
 from Acquisition import aq_inner
 from docpool.base import DocpoolMessageFactory as _
 from docpool.base.appregistry import appName
-from docpool.base.behaviors.utils import allowed_targets
+from docpool.base.content.dptransferfolder import IDPTransferFolder
 from docpool.base.content.places import IPlaces
+from plone import api
 from plone.autoform.directives import widget
 from plone.autoform.interfaces import IFormFieldProvider
+from plone.base.utils import base_hasattr
 from plone.supermodel import model
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from zope import schema
@@ -16,7 +18,7 @@ from zope.schema.vocabulary import SimpleVocabulary
 
 @provider(IContextSourceBinder)
 def possible_targets_vocabulary_factory(context):
-    targets = allowed_targets(context)
+    targets = context.allowed_targets() if base_hasattr(context, "allowed_targets") else []
     items = []
     for target in targets:
         target_apps = ", ".join([appName(app) for app in IPlaces(target).document_pool.supportedApps])
@@ -70,7 +72,7 @@ class TransfersType:
     @property
     def automaticTransferTargets(self):
         value = set(getattr(self.context, "automaticTransferTargets", ()) or ())
-        return value.intersection(target.UID() for target in allowed_targets(self.context))
+        return value.intersection(target.UID() for target in self.allowed_targets())
 
     @automaticTransferTargets.setter
     def automaticTransferTargets(self, value):
@@ -80,5 +82,26 @@ class TransfersType:
         context = aq_inner(self.context)
         unaffected = set(getattr(context, "automaticTransferTargets", ()) or ())
         if unaffected:
-            unaffected.difference_update(target.UID() for target in allowed_targets(context))
+            unaffected.difference_update(target.UID() for target in self.allowed_targets())
         context.automaticTransferTargets = tuple(unaffected.union(value))
+
+    def allowed_targets(self):
+        """
+        Other ESD must have allowed communication with my ESD (Transfer folder exists)
+        and either my DocType is known and must be accepted
+            or the DocType is not defined in the other ESD (or don't exist because e.g., we're creating it)
+               and default is not to block.
+        """
+        if not (docpool := IPlaces(self.context).document_pool):
+            return []
+
+        targets = [
+            obj
+            for brain in api.content.find(
+                object_provides=IDPTransferFolder.__identifier__,
+                sendingESD=docpool.UID(),
+                unrestricted=True,  # ContentSenders do not need access to the target folders!
+            )
+            if (obj := brain._unrestrictedGetObject()).acceptsDT(self.context.id)
+        ]
+        return targets

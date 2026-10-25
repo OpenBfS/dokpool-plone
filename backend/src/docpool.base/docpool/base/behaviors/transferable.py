@@ -5,7 +5,7 @@ from contextlib import contextmanager
 from DateTime import DateTime
 from datetime import datetime
 from docpool.base import DocpoolMessageFactory as _
-from docpool.base.behaviors.utils import allowed_targets
+from docpool.base.behaviors.transferstype import ITransfersType
 from docpool.base.browser.flexible_view import FlexibleView
 from docpool.base.content.archiving import IArchiving
 from docpool.base.content.dpdocument import IDPDocument
@@ -189,8 +189,24 @@ class Transferable(FlexibleView):
             return True
         return False
 
+    def allowed_targets(self):
+        """Targets must be allowed for our doctype and context must not have been transferred."""
+        if not IPlaces(self.context).document_pool:
+            return []
+
+        if not (doctype_uid := self.context.doctype_data().get("uid")):
+            return []
+
+        targets = ITransfersType(api.content.get(UID=doctype_uid)).allowed_targets()
+
+        if targets:
+            sent_to = {entry["transferfolder_uid"] for entry in self.sender_log}
+            targets = [t for t in targets if t.UID() not in sent_to]
+
+        return targets
+
     def allowedTargets(self):
-        targets = sorted(allowed_targets(self.context), key=lambda t: IPlaces(t).document_pool.Title())
+        targets = sorted(self.allowed_targets(), key=lambda t: IPlaces(t).document_pool.Title())
         return [t.UID() for t in targets]
 
     security.declareProtected("Docpool: Send Content", "transferToTargets")

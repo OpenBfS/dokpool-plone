@@ -1,5 +1,4 @@
 from docpool.base.behaviors.transferable import ITransferable
-from docpool.base.behaviors.utils import allowed_targets
 from docpool.base.config import FOLDER_TYPES
 from docpool.base.content.archiving import IArchiving
 from docpool.base.utils import get_current_state_title
@@ -90,7 +89,7 @@ class Item(BrowserView):
             except TypeError:
                 pass
             else:
-                if adapted.transferable() and allowed_targets(obj):
+                if adapted.transferable() and adapted.allowed_targets():
                     show_transfer_action = True
 
         doctype_data = obj.doctype_data()

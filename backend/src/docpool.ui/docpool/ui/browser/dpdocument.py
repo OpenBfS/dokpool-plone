@@ -1,5 +1,4 @@
 from docpool.base.behaviors.transferable import ITransferable
-from docpool.base.behaviors.utils import allowed_targets
 from docpool.base.browser.dpdocument import DPDocumentEditForm
 from docpool.base.content.groupfolder import IGroupFolder
 from docpool.base.content.places import IPlaces
@@ -83,7 +82,7 @@ class DPDocumentView(DefaultView):
             except TypeError:
                 pass
             else:
-                if adapted.transferable() and allowed_targets(self.context):
+                if adapted.transferable() and adapted.allowed_targets():
                     return True
 
     def visibility_options(self):
