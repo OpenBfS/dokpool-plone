@@ -22,7 +22,7 @@
       <div class="d-flex align-items-center gap-3 mt-1"
            tal:condition="python: not is_archive"
       >
-        <span class="badge bg-warning text-dark tag-badge small"
+        <span class="badge eventtype-${python:scenario.EventType.replace(' ', '-').lower()} tag-badge small"
               tal:content="python: scenario.event_type_title()"
         ></span>
         <span class="small text-primary"

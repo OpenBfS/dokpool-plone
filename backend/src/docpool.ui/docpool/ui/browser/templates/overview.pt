@@ -50,8 +50,8 @@
                 <div class="col-12 col-sm-6">
                   <dt class="overview-event-label mb-1 fw-normal text-secondary">Ereignisart</dt>
                   <dd class="overview-event-value mb-0 text-dark">
-                    <span class="badge bg-warning text-dark fw-normal rounded-pill px-3 py-1"
-                          tal:content="python:event['event_type']"
+                    <span class="badge tag-badge eventtype-${python:event['event_type'].replace(' ', '-').lower()} fw-normal rounded-pill px-3 py-1"
+                          tal:content="python:event['event_type_title']"
                     >Uebung</span>
                   </dd>
                 </div>

@@ -17,7 +17,7 @@
       <div class="mobile-event-row-main"
            tal:define="
              scenario python:item['scenario'];
-             badge_class python:'tag-badge-event-' + ((scenario.EventType or 'unknown').lower());
+             badge_class python:'tag-badge eventtype-' + ((scenario.EventType.replace(' ', '-').lower() or 'unknown').lower());
            "
       >
         <a class="mobile-event-title-link"

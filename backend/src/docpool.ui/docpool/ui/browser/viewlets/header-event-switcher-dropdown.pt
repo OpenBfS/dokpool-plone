@@ -23,7 +23,7 @@
                   replace="structure python:icons.tag('check-lg', tag_class='')"
         />
       </div>
-      <div class="badge bg-warning text-dark tag-badge small">${scenario/event_type_title}</div>
+      <div class="badge eventtype-${python:scenario.EventType.replace(' ', '-').lower()} tag-badge small">${scenario/event_type_title}</div>
       <div class="text-primary flex-grow-1 border-end event-title-column">
         <a href="${python:
                        f'{context.absolute_url()}/@@select_scenario?scenario={scenario.UID()}&amp;_authenticator={auth_token}'}">

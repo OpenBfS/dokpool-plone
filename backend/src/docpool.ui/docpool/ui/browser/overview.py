@@ -61,9 +61,11 @@ class Overview(BrowserView):
 
         # Ereignisart
         if getattr(event, "EventType", None):
-            event_type_value = event.event_type_title()
-            event_type = event_type_value if event_type_value is not None else empty_value
+            event_type_title = event.event_type_title()
+            event_type_title = event_type_title if event_type_title is not None else empty_value
+            event_type = event.EventType
         else:
+            event_type_title = empty_value
             event_type = empty_value
 
         # Betriebsart
@@ -120,6 +122,7 @@ class Overview(BrowserView):
             "headline": headline,
             "placeholder": _("Please select a scenario to view the event data."),
             "event_type": event_type,
+            "event_type_title": event_type_title,
             "event_time": event_time,
             "event_duration": event_duration_label,
             "event_time_and_duration": event_time_and_duration,

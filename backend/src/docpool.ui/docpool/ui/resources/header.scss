@@ -390,6 +390,31 @@
   border-top-right-radius: 12px;
   border-bottom-right-radius: 12px;
   font-weight: normal;
+  padding-right: 20px;
+  height: 1.75em;
+}
+
+.badge.eventtype-emergency {
+  background-color: #87211F;
+}
+
+.badge.eventtype-exercise {
+  background-color: #FED86C;
+  color: #121212;
+}
+
+.badge.eventtype-test {
+  background-color: #E1E6EB;
+  color: #121212;
+}
+
+.badge.eventtype-routine {
+  background-color: #324D6A;
+}
+
+.badge.eventtype-minor-situation {
+  background-color: #E7B5B3;
+  color: #121212;
 }
 
 .nav-btn {

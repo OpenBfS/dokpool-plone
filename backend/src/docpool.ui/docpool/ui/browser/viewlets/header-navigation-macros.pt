@@ -146,7 +146,7 @@
                   <div class="mobile-event-selected-content">
                     <div class="text-primary text-truncate fw-bold">${scenario/Title}</div>
                     <div class="d-flex align-items-center gap-3 mt-1">
-                      <span class="badge bg-warning text-dark tag-badge small">${scenario/event_type_title}</span>
+                      <span class="badge tag-badge eventtype-${python:scenario.EventType.replace(' ', '-').lower()} small">${scenario/event_type_title}</span>
                       <span class="small text-primary">${scenario/operation_mode_title}</span>
                     </div>
                   </div>
