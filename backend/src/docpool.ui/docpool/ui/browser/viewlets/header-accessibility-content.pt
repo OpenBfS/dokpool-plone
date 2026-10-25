@@ -17,9 +17,11 @@
          href="https://www.bfs.de/DE/service/barrierefreiheit/barrierefreiheit_node.html"
       >
         <tal:icon tal:replace="structure python:icons.tag('universal-access', tag_class='user-menu-row-icon')" />
-        <span>Accessibility</span>
+        <span i18n:domain="plone"
+              i18n:translate=""
+        >Accessibility</span>
         <span class="ms-auto">
-          <tal:icon tal:replace="structure python:icons.tag('chevron-right')" />
+          <tal:icon tal:replace="structure python:icons.tag('box-arrow-up-right')" />
         </span>
       </a>
     </li>
