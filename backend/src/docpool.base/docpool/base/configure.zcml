@@ -257,7 +257,11 @@
       />
   <utility
       name="docpool.transfers.vocabularies.TransferTargets"
-      component=".vocabularies.TransferTargetsVocabularyFactory"
+      component=".vocabularies.transfer_targets_vocabulary_factory"
+      />
+  <utility
+      name="docpool.transfers.vocabularies.AllowedTransferTargets"
+      component=".vocabularies.allowed_transfer_targets_vocabulary_factory"
       />
 
   <subscriber handler=".events.delete_handler" />

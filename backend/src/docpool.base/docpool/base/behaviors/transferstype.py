@@ -1,30 +1,14 @@
 from Acquisition import aq_inner
 from docpool.base import DocpoolMessageFactory as _
-from docpool.base.appregistry import appName
 from docpool.base.content.dptransferfolder import IDPTransferFolder
 from docpool.base.content.places import IPlaces
 from plone import api
 from plone.autoform.directives import widget
 from plone.autoform.interfaces import IFormFieldProvider
-from plone.base.utils import base_hasattr
 from plone.supermodel import model
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from zope import schema
 from zope.interface import provider
-from zope.schema.interfaces import IContextSourceBinder
-from zope.schema.vocabulary import SimpleTerm
-from zope.schema.vocabulary import SimpleVocabulary
-
-
-@provider(IContextSourceBinder)
-def possible_targets_vocabulary_factory(context):
-    targets = context.allowed_targets() if base_hasattr(context, "allowed_targets") else []
-    items = []
-    for target in targets:
-        target_apps = ", ".join([appName(app) for app in IPlaces(target).document_pool.supportedApps])
-        title = f"{target.from_to_title()} ({target_apps})"
-        items.append((title, target))
-    return SimpleVocabulary([SimpleTerm(target.UID(), title=title) for title, target in sorted(items)])
 
 
 @provider(IFormFieldProvider)
@@ -49,7 +33,7 @@ class ITransfersType(model.Schema):
         required=False,
         value_type=schema.Choice(
             title=_("Transfer target"),
-            source=possible_targets_vocabulary_factory,
+            source="docpool.transfers.vocabularies.AllowedTransferTargets",
         ),
     )
 

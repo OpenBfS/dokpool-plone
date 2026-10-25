@@ -12,6 +12,7 @@ from docpool.base.utils import getAllowedDocumentTypesForGroup
 from docpool.base.utils import getDocumentPoolSite
 from plone import api
 from plone.app.vocabularies.catalog import StaticCatalogVocabulary
+from plone.base.utils import base_hasattr
 from plone.registry.interfaces import IRegistry
 from Products.CMFCore.utils import getToolByName
 from zope.component import getMultiAdapter
@@ -260,8 +261,17 @@ class DTPermOptionsVocabulary:
 DTPermOptionsVocabularyFactory = DTPermOptionsVocabulary()
 
 
+def _make_transfer_targets_vocabulary(targets):
+    items = []
+    for target in targets:
+        target_apps = ", ".join([appName(app) for app in IPlaces(target).document_pool.supportedApps])
+        title = f"{target.from_to_title()} ({target_apps})"
+        items.append((title, target))
+    return SimpleVocabulary([SimpleTerm(target.UID(), title=title) for title, target in sorted(items)])
+
+
 @provider(IVocabularyFactory)
-def TransferTargetsVocabularyFactory(context=None):
+def transfer_targets_vocabulary_factory(context=None):
     """Collect transfer folders across all docpools which have the context docpool
     configured as a sending ESD. This is not about doctype configuration.
     """
@@ -275,15 +285,13 @@ def TransferTargetsVocabularyFactory(context=None):
         unrestricted=True,  # ContentSenders do not need access to the target folders.
     )
     targets = (brain.getObject() for brain in brains)
-    items = [
-        (
-            f"{t.from_to_title()} "
-            f"({', '.join(appName(app) for app in IPlaces(t).document_pool.supportedApps)})",
-            t.UID(),
-        )
-        for t in targets
-    ]
-    return SimpleVocabulary([SimpleTerm(uid, title=from_to_title) for from_to_title, uid in sorted(items)])
+    return _make_transfer_targets_vocabulary(targets)
+
+
+@provider(IVocabularyFactory)
+def allowed_transfer_targets_vocabulary_factory(context):
+    targets = context.allowed_targets() if base_hasattr(context, "allowed_targets") else []
+    return _make_transfer_targets_vocabulary(targets)
 
 
 @provider(IVocabularyFactory)
