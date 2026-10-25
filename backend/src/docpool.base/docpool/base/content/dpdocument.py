@@ -363,14 +363,12 @@ class DPDocument(Container, Extendable, ContentBase):
         return obj.doctype_data().get("allow_discussion_on_dpdocument", False)
 
     def is_transition_allowed(self, transition):
-        """Allow by default and if at least one app allows it. Deny only if all apps do."""
-        default = True
+        """Allow if at least one app allows it."""
         for app in ILocalBehaviorSupport(self).local_behaviors:
             if app_wf := queryAdapter(self, IAppSpecificWorkflow, name=app):
                 if app_wf.is_transition_allowed(transition):
                     return True
-                default = False
-        return default
+        return False
 
     def category(self):
         return self.doctype_data().get("category")

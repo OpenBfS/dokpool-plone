@@ -15,7 +15,14 @@ class ELANSpecificWorkflow:
         self.context = context
 
     def is_transition_allowed(self, transition):
-        # disallow retracting a published ELAN document except for the server admin
-        if not (transition == "retract" and api.content.get_state(self.context) == "published"):
-            return True
-        return "Manager" in api.user.get_roles()
+        roles = api.user.get_roles(obj=self.context)
+        if transition == "retract":
+            # Retracting is only for published ELAN entries except for managers
+            # See https://redmine-koala.bfs.de/issues/6342
+            review_state = api.content.get_state(self.context)
+            if review_state == "published":
+                return "Manager" in roles
+        if transition == "revoke":
+            # Revoke is only for ELAN entries and only for certain roles
+            # See https://redmine-koala.bfs.de/issues/6853
+            return set(roles) & {"Manager", "Site Administrator", "Owner"}
