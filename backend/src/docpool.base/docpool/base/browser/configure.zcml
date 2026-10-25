@@ -304,7 +304,7 @@
   <browser:page
       name="dpdocument_transfer_form"
       for="*"
-      class=".dpdocument_transfer_form.TransferForm"
+      class=".dpdocument_transfer.TransferForm"
       template="dpdocument_transfer_form.pt"
       permission="zope2.View"
       />

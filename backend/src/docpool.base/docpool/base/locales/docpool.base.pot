@@ -18,7 +18,7 @@ msgstr ""
 msgid "${count} item(s) cut."
 msgstr ""
 
-#: docpool.base/docpool/base/browser/dpdocument_transfer_form.py
+#: docpool.base/docpool/base/browser/dpdocument_transfer.py
 msgid "${transferred} Items transferred!"
 msgstr ""
 
@@ -262,7 +262,7 @@ msgstr ""
 msgid "No items deleted."
 msgstr ""
 
-#: docpool.base/docpool/base/browser/dpdocument_transfer_form.py
+#: docpool.base/docpool/base/browser/dpdocument_transfer.py
 msgid "No items or targets selected!"
 msgstr ""
 
