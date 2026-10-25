@@ -117,6 +117,7 @@ class DPDocumentView(DefaultView):
         converted = value.astimezone(pytz.timezone(tz))
         return converted.tzname()
 
+
 def visibility_options(app, context):
     options = []
     if IGroupFolder.providedBy(context):

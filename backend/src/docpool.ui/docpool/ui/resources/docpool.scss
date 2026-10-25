@@ -8,6 +8,7 @@
 @import "dpdocument";
 @import "upload";
 @import "portal-messages";
+@import "tables";
 
 $plone-default-private-color: #b74d48;
 $plone-default-pending-color: #e5bc4a;
@@ -508,6 +509,16 @@ div.pat-modal {
 
   .header {
     height: auto !important;
+
+    .close-panel {
+      background-color: transparent;
+    }
+
+    .close-panel::before {
+      content: "\2715";
+      background-color: transparent;
+    }
+
   }
 
   &.large {

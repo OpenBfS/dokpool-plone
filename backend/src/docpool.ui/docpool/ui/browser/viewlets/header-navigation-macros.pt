@@ -160,7 +160,10 @@
                     </a>
                   </div>
                   <div class="icon-column">
-                    <a href="${scenario_url}">
+                    <a class="pat-modal"
+                       href="${scenario_url}"
+                       data-pat-modal="class: large; source: #content"
+                    >
                       <tal:icon replace="structure python:icons.tag('info-circle', tag_class='')" />
                     </a>
                   </div>
