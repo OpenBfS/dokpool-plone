@@ -193,22 +193,6 @@ class Transferable(FlexibleView):
         targets = sorted(allowed_targets(self.context), key=lambda t: IPlaces(t).document_pool.Title())
         return [t.UID() for t in targets]
 
-    security.declareProtected("Docpool: Send Content", "transferToAll")
-
-    def transferToAll(self):
-        """ """
-        # Intersect allowed and automatic transfer targets while keeping the order of
-        # allowed targets and computing the automatic ones only once.
-        automatic = set(self.context.doctype_data()["automaticTransferTargets"])
-        targets = [t for t in self.allowedTargets() if t in automatic]
-
-        source_path = "/".join(self.context.getPhysicalPath())
-        if targets:
-            logger.info(f"Transfer {source_path} to up to {len(targets)} targets.")
-            self.transferToTargets(targets)
-        else:
-            logger.info(f"No transfer targets found for {source_path}.")
-
     security.declareProtected("Docpool: Send Content", "transferToTargets")
 
     def transferToTargets(self, targets=None):
@@ -398,11 +382,22 @@ def automatic_transfer(obj):
     except BaseException:
         return
 
-    logger.info(f'Automatic transfer of "{obj.Title()}" from {"/".join(obj.getPhysicalPath())}')
-    try:
-        return tObj.transferToAll()
-    except BaseException:
-        pass
+    source_path = "/".join(obj.getPhysicalPath())
+    logger.info(f'Automatic transfer of "{obj.Title()}" from {source_path}')
+
+    # Intersect allowed and automatic transfer targets while keeping the order of
+    # allowed targets and computing the automatic ones only once.
+    automatic = set(obj.doctype_data()["automaticTransferTargets"])
+    targets = [t for t in tObj.allowedTargets() if t in automatic]
+
+    if targets:
+        logger.info(f"Transfer {source_path} to up to {len(targets)} targets.")
+        try:
+            tObj.transferToTargets(targets)
+        except BaseException:
+            pass
+    else:
+        logger.info(f"No transfer targets found for {source_path}.")
 
 
 def user_is_sender(obj):
