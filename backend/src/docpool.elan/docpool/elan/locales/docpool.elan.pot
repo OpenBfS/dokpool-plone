@@ -15,11 +15,17 @@ msgstr ""
 "Domain: docpool.elan\n"
 
 #: docpool.elan/docpool/elan/browser/dpevents.pt
+#: docpool.elan/docpool/elan/browser/manage_subscribed_events.pt
 msgid "++++ Exercise ++++"
 msgstr ""
 
 #: docpool.elan/docpool/elan/browser/dpevents.pt
+#: docpool.elan/docpool/elan/browser/manage_subscribed_events.pt
 msgid "++++ Test ++++"
+msgstr ""
+
+#: docpool.elan/docpool/elan/browser/manage_subscribed_events.pt
+msgid "Action"
 msgstr ""
 
 #: docpool.elan/docpool/elan/browser/archive_event_form.pt
@@ -65,6 +71,10 @@ msgstr ""
 
 #: docpool.elan/docpool/elan/browser/archive_event_form.pt
 msgid "Archive Event"
+msgstr ""
+
+#: docpool.elan/docpool/elan/browser/manage_subscribed_events.pt
+msgid "Archive and unsubscribe"
 msgstr ""
 
 #: docpool.elan/docpool/elan/browser/elanarchives.pt
@@ -187,6 +197,7 @@ msgid "Edit"
 msgstr ""
 
 #: docpool.elan/docpool/elan/browser/dpevents.pt
+#: docpool.elan/docpool/elan/browser/manage_subscribed_events.pt
 msgid "Edit global events"
 msgstr ""
 
@@ -219,6 +230,10 @@ msgstr ""
 msgid "Event coordinates"
 msgstr ""
 
+#: docpool.elan/docpool/elan/browser/manage_subscribed_events.pt
+msgid "Event overview"
+msgstr ""
+
 #: docpool.elan/docpool/elan/content/dpevent.py
 msgid "Example: POINT(12.293121814727781 48.60338936478996)"
 msgstr ""
@@ -247,6 +262,14 @@ msgstr ""
 msgid "Intensive mode"
 msgstr ""
 
+#: docpool.elan/docpool/elan/browser/dpevents.py
+msgid "Invalid action."
+msgstr ""
+
+#: docpool.elan/docpool/elan/browser/dpevents.py
+msgid "Invalid scenario."
+msgstr ""
+
 #: docpool.elan/docpool/elan/browser/archive_event_form.py
 msgid "Item is being archived right now! Please try again in a couple of minutes."
 msgstr ""
@@ -264,7 +287,7 @@ msgid "Location"
 msgstr ""
 
 #: docpool.elan/docpool/elan/browser/dpevents.pt
-#: docpool.elan/docpool/elan/browser/dpevents.py
+#: docpool.elan/docpool/elan/browser/manage_subscribed_events.pt
 msgid "Manage event subscriptions"
 msgstr ""
 
@@ -309,8 +332,20 @@ msgstr ""
 msgid "Saved"
 msgstr ""
 
+#: docpool.elan/docpool/elan/browser/dpevents.py
+msgid "Scenario archive not up-to-date."
+msgstr ""
+
 #: docpool.elan/docpool/elan/browser/archive_event_form.py
 msgid "Scenario archived"
+msgstr ""
+
+#: docpool.elan/docpool/elan/browser/dpevents.py
+msgid "Scenario subscribed."
+msgstr ""
+
+#: docpool.elan/docpool/elan/browser/dpevents.py
+msgid "Scenario unsubscribed."
 msgstr ""
 
 #: docpool.elan/docpool/elan/browser/dpevent.pt
@@ -340,7 +375,12 @@ msgid "State"
 msgstr ""
 
 #: docpool.elan/docpool/elan/browser/dpevents.pt
+#: docpool.elan/docpool/elan/browser/manage_subscribed_events.pt
 msgid "Status"
+msgstr ""
+
+#: docpool.elan/docpool/elan/browser/manage_subscribed_events.pt
+msgid "Subscribe"
 msgstr ""
 
 #: docpool.elan/docpool/elan/vocabularies.py
@@ -384,6 +424,7 @@ msgid "This event is already being archived by"
 msgstr ""
 
 #: docpool.elan/docpool/elan/browser/dpevents.pt
+#: docpool.elan/docpool/elan/browser/manage_subscribed_events.pt
 msgid "Title/Description"
 msgstr ""
 
@@ -394,6 +435,10 @@ msgstr ""
 
 #: docpool.elan/docpool/elan/configure.zcml
 msgid "Uninstalls the docpool.elan add-on."
+msgstr ""
+
+#: docpool.elan/docpool/elan/browser/manage_subscribed_events.pt
+msgid "Unsubscribe"
 msgstr ""
 
 #: docpool.elan/docpool/elan/upgrades.zcml
@@ -495,11 +540,6 @@ msgstr ""
 #. Default: "Archive"
 #: docpool.elan/docpool/elan/browser/archive_event_form.pt
 msgid "label_archive"
-msgstr ""
-
-#. Default: "Cancel"
-#: docpool.elan/docpool/elan/browser/dpevents.py
-msgid "label_cancel"
 msgstr ""
 
 #. Default: "Belongs to scenario"

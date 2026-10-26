@@ -12,12 +12,18 @@ msgstr ""
 "Domain: DOMAIN\n"
 
 #: docpool.elan/docpool/elan/browser/dpevents.pt
+#: docpool.elan/docpool/elan/browser/manage_subscribed_events.pt
 msgid "++++ Exercise ++++"
 msgstr "++++ Übung ++++"
 
 #: docpool.elan/docpool/elan/browser/dpevents.pt
+#: docpool.elan/docpool/elan/browser/manage_subscribed_events.pt
 msgid "++++ Test ++++"
 msgstr ""
+
+#: docpool.elan/docpool/elan/browser/manage_subscribed_events.pt
+msgid "Action"
+msgstr "Aktion"
 
 #: docpool.elan/docpool/elan/browser/archive_event_form.pt
 msgid "Active Journals are purged."
@@ -63,6 +69,10 @@ msgstr "Archiv"
 #: docpool.elan/docpool/elan/browser/archive_event_form.pt
 msgid "Archive Event"
 msgstr "Ereignis archivieren"
+
+#: docpool.elan/docpool/elan/browser/manage_subscribed_events.pt
+msgid "Archive and unsubscribe"
+msgstr "Archivieren und Abonnement beenden"
 
 #: docpool.elan/docpool/elan/browser/elanarchives.pt
 msgid "Archived"
@@ -184,6 +194,7 @@ msgid "Edit"
 msgstr ""
 
 #: docpool.elan/docpool/elan/browser/dpevents.pt
+#: docpool.elan/docpool/elan/browser/manage_subscribed_events.pt
 msgid "Edit global events"
 msgstr "Ereignisse zentral bearbeiten"
 
@@ -216,6 +227,10 @@ msgstr "Ereignisinformationen"
 msgid "Event coordinates"
 msgstr "Ereigniskoordinaten"
 
+#: docpool.elan/docpool/elan/browser/manage_subscribed_events.pt
+msgid "Event overview"
+msgstr "Ereignisübersicht"
+
 #: docpool.elan/docpool/elan/content/dpevent.py
 msgid "Example: POINT(12.293121814727781 48.60338936478996)"
 msgstr "Beispiel: POINT(12.293121814727781 48.60338936478996)"
@@ -244,6 +259,14 @@ msgstr "Home"
 msgid "Intensive mode"
 msgstr "Intensivbetrieb"
 
+#: docpool.elan/docpool/elan/browser/dpevents.py
+msgid "Invalid action."
+msgstr "Ungültige Aktion."
+
+#: docpool.elan/docpool/elan/browser/dpevents.py
+msgid "Invalid scenario."
+msgstr "Ungültiges Ereignis."
+
 #: docpool.elan/docpool/elan/browser/archive_event_form.py
 msgid "Item is being archived right now! Please try again in a couple of minutes."
 msgstr "Dieses Ereignis wird momentan archiviert. Bitte versuchen Sie es in ein paar Minuten erneut."
@@ -261,7 +284,7 @@ msgid "Location"
 msgstr "Ort"
 
 #: docpool.elan/docpool/elan/browser/dpevents.pt
-#: docpool.elan/docpool/elan/browser/dpevents.py
+#: docpool.elan/docpool/elan/browser/manage_subscribed_events.pt
 msgid "Manage event subscriptions"
 msgstr "Abonnierte Ereignisse verwalten"
 
@@ -306,9 +329,21 @@ msgstr "Routinebetrieb"
 msgid "Saved"
 msgstr "Gespeichert"
 
+#: docpool.elan/docpool/elan/browser/dpevents.py
+msgid "Scenario archive not up-to-date."
+msgstr "Ereignis hat kein aktuelles Archiv."
+
 #: docpool.elan/docpool/elan/browser/archive_event_form.py
 msgid "Scenario archived"
 msgstr "Ereignis archiviert"
+
+#: docpool.elan/docpool/elan/browser/dpevents.py
+msgid "Scenario subscribed."
+msgstr "Ereignis abonniert."
+
+#: docpool.elan/docpool/elan/browser/dpevents.py
+msgid "Scenario unsubscribed."
+msgstr "Abonnement des Ereignisses beendet."
 
 #: docpool.elan/docpool/elan/browser/dpevent.pt
 #: docpool.elan/docpool/elan/content/dpevent.py
@@ -337,8 +372,13 @@ msgid "State"
 msgstr "Status des Ereignisses"
 
 #: docpool.elan/docpool/elan/browser/dpevents.pt
+#: docpool.elan/docpool/elan/browser/manage_subscribed_events.pt
 msgid "Status"
 msgstr "Status"
+
+#: docpool.elan/docpool/elan/browser/manage_subscribed_events.pt
+msgid "Subscribe"
+msgstr "Abonnieren"
 
 #: docpool.elan/docpool/elan/vocabularies.py
 msgid "Test"
@@ -381,6 +421,7 @@ msgid "This event is already being archived by"
 msgstr "Für dieses Ereignis läuft bereits die Erstellung eines Snapshots oder eine Archivierung durch"
 
 #: docpool.elan/docpool/elan/browser/dpevents.pt
+#: docpool.elan/docpool/elan/browser/manage_subscribed_events.pt
 msgid "Title/Description"
 msgstr "Titel/Beschreibung"
 
@@ -392,6 +433,10 @@ msgstr "Art des Ereignisses"
 #: docpool.elan/docpool/elan/configure.zcml
 msgid "Uninstalls the docpool.elan add-on."
 msgstr ""
+
+#: docpool.elan/docpool/elan/browser/manage_subscribed_events.pt
+msgid "Unsubscribe"
+msgstr "Abonnement beenden"
 
 #: docpool.elan/docpool/elan/upgrades.zcml
 msgid "Upgrade profile for docpool.elan"
@@ -495,11 +540,6 @@ msgstr "Anwenden"
 #: docpool.elan/docpool/elan/browser/archive_event_form.pt
 msgid "label_archive"
 msgstr "Archivieren"
-
-#. Default: "Cancel"
-#: docpool.elan/docpool/elan/browser/dpevents.py
-msgid "label_cancel"
-msgstr "Abbrechen"
 
 #. Default: "Belongs to scenario"
 #: docpool.elan/docpool/elan/behaviors/elandocument.py

@@ -25,6 +25,7 @@
       name="manage-subscribed-events"
       for="..interfaces.IDPEvents"
       class=".dpevents.ManageSubscribedEvents"
+      template="manage_subscribed_events.pt"
       permission="docpool.elan.AddDPEvent"
       />
 

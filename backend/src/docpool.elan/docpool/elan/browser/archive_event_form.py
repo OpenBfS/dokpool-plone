@@ -39,7 +39,7 @@ class ArchiveAndClose(BrowserView):
             api.portal.show_message(_("No event specified for archiving."), self.request, "warning")
             return request.response.redirect(self.context.absolute_url())
 
-        self.items = self._getDocumentsForScenario(path=IPlaces(self.context).content_path)
+        self.items = event.get_documents()
         self.full_archiving_info = event.get_archiving_info()
         self.archiving_info = self.full_archiving_info[-1] if self.full_archiving_info else {}
 
@@ -339,19 +339,6 @@ class ArchiveAndClose(BrowserView):
                 del obj.scenario
 
         obj.reindexObject(idxs=["apps_supported", "scenario"])
-
-    def _getDocumentsForScenario(self, **kwargs):
-        """
-        Collects all DPDocuments for the current scenario
-        :return: list of brains
-        """
-        args = {
-            "portal_type": "DPDocument",
-            "scenario": self.event_uid,
-            "sort_on": "sortable_title",
-        }
-        args.update(kwargs)
-        return api.content.find(**args)
 
     def _createArchive(self):
         """

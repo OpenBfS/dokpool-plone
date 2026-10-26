@@ -1,6 +1,7 @@
 from AccessControl import ClassSecurityInfo
 from docpool.base.content.contentbase import ContentBase
 from docpool.base.content.contentbase import IContentBase
+from docpool.base.content.places import IPlaces
 from docpool.base.marker import IImportingMarker
 from docpool.elan import DocpoolMessageFactory as _
 from docpool.elan.config import ELAN_APP
@@ -196,6 +197,22 @@ class DPEvent(Container, ContentBase):
     def purge_archiving_info(self):
         IAnnotations(self).pop(ARCHIVING_KEY, None)
         self._p_changed = True
+
+    @property
+    def is_archive_uptodate(self):
+        return not self.get_documents()
+
+    def get_documents(self):
+        """
+        Collects all DPDocuments for the current scenario
+        :return: list of brains
+        """
+        return api.content.find(
+            portal_type="DPDocument",
+            scenario=self.UID(),
+            sort_on="sortable_title",
+            context=IPlaces(self).content,
+        )
 
     def canBeAssigned(self):
         """
