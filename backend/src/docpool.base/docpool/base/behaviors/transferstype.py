@@ -1,8 +1,7 @@
 from Acquisition import aq_inner
 from docpool.base import DocpoolMessageFactory as _
-from docpool.base.content.dptransferfolder import IDPTransferFolder
+from docpool.base.content.dptransferfolder import target_transfer_folders_for_docpool
 from docpool.base.content.places import IPlaces
-from plone import api
 from plone.autoform.directives import widget
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.supermodel import model
@@ -76,16 +75,8 @@ class TransfersType:
             or the DocType is not defined in the other ESD (or don't exist because e.g., we're creating it)
                and default is not to block.
         """
-        if not (docpool := IPlaces(self.context).document_pool):
-            return []
-
-        targets = [
-            obj
-            for brain in api.content.find(
-                object_provides=IDPTransferFolder.__identifier__,
-                sendingESD=docpool.UID(),
-                unrestricted=True,  # ContentSenders do not need access to the target folders!
-            )
-            if (obj := brain._unrestrictedGetObject()).acceptsDT(self.context.id)
+        return [
+            target
+            for target in target_transfer_folders_for_docpool(self.context)
+            if target.acceptsDT(self.context.id)
         ]
-        return targets

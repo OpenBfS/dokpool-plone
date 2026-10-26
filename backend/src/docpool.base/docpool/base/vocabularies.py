@@ -6,7 +6,7 @@ from docpool.base.appregistry import appName
 from docpool.base.appregistry import extendingApps
 from docpool.base.appregistry import selectableApps
 from docpool.base.content.doctype import IDocType
-from docpool.base.content.dptransferfolder import IDPTransferFolder
+from docpool.base.content.dptransferfolder import target_transfer_folders_for_docpool
 from docpool.base.content.places import IPlaces
 from docpool.base.utils import getAllowedDocumentTypesForGroup
 from docpool.base.utils import getDocumentPoolSite
@@ -277,15 +277,7 @@ def transfer_targets_vocabulary_factory(context=None):
     """
     if context is None:
         return ()
-    esd = getDocumentPoolSite(context)
-    # Don't query for sorted results as our key attribute isn't part of the brain.
-    brains = api.content.find(
-        object_provides=IDPTransferFolder.__identifier__,
-        sendingESD=esd.UID(),
-        unrestricted=True,  # ContentSenders do not need access to the target folders.
-    )
-    targets = (brain.getObject() for brain in brains)
-    return _make_transfer_targets_vocabulary(targets)
+    return _make_transfer_targets_vocabulary(target_transfer_folders_for_docpool(context))
 
 
 @provider(IVocabularyFactory)

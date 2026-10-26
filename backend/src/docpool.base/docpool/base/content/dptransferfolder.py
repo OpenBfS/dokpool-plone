@@ -237,6 +237,18 @@ def transfer_folders_for(obj):
     return [brain.getObject() for brain in brains]
 
 
+def target_transfer_folders_for_docpool(obj):
+    if not (docpool := IPlaces(obj).document_pool):
+        return []
+
+    brains = api.content.find(
+        object_provides=IDPTransferFolder.__identifier__,
+        sendingESD=docpool.UID(),
+        unrestricted=True,  # ContentSenders do not need access to the target folders!
+    )
+    return [brain._unrestrictedGetObject() for brain in brains]
+
+
 @adapter(IDocType, IObjectRemovedEvent)
 def doctype_will_be_removed(obj, event=None):
     if event is None:
