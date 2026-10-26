@@ -79,7 +79,7 @@
     <permission-map acquired="False"
                     name="Add portal content"
     >
-  </permission-map>
+    </permission-map>
     <permission-map acquired="False"
                     name="Delete objects"
     >
@@ -97,7 +97,7 @@
     <permission-map acquired="False"
                     name="Sharing page: Delegate roles"
     >
-  </permission-map>
+    </permission-map>
     <permission-map acquired="False"
                     name="View"
     >
@@ -117,26 +117,16 @@
     </permission-map>
     <permission-map acquired="False"
                     name="Add portal content"
-    >
-  </permission-map>
+    />
     <permission-map acquired="False"
                     name="Delete objects"
-    >
-      <permission-role>DocPoolAdmin</permission-role>
-      <permission-role>Manager</permission-role>
-      <permission-role>Site Administrator</permission-role>
-    </permission-map>
+    />
     <permission-map acquired="False"
                     name="Modify portal content"
-    >
-      <permission-role>DocPoolAdmin</permission-role>
-      <permission-role>Manager</permission-role>
-      <permission-role>Site Administrator</permission-role>
-    </permission-map>
+    />
     <permission-map acquired="False"
                     name="Sharing page: Delegate roles"
-    >
-  </permission-map>
+    />
     <permission-map acquired="False"
                     name="View"
     >
@@ -232,7 +222,7 @@
       <expression>transition/getId|nothing</expression>
     </default>
     <guard>
-  </guard>
+    </guard>
   </variable>
   <variable for_catalog="False"
             for_status="True"
@@ -245,7 +235,7 @@
       <expression>user/getId</expression>
     </default>
     <guard>
-  </guard>
+    </guard>
   </variable>
   <variable for_catalog="False"
             for_status="True"
@@ -258,7 +248,7 @@
       <expression>python:state_change.kwargs.get('comment', '')</expression>
     </default>
     <guard>
-  </guard>
+    </guard>
   </variable>
   <variable for_catalog="False"
             for_status="False"
@@ -286,6 +276,6 @@
       <expression>state_change/getDateTime</expression>
     </default>
     <guard>
-  </guard>
+    </guard>
   </variable>
 </dc-workflow>
