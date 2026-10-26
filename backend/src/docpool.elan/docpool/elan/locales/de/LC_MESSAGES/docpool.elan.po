@@ -100,7 +100,7 @@ msgstr "Zu Ereignis:"
 
 #: docpool.elan/docpool/elan/content/transfers.py
 msgid "Cannot transfer entry to docpool without event ${event}."
-msgstr "Eintrag kann nicht in Dokpool ohne das Ereignis „${entry}“ übertragen werden."
+msgstr "Eintrag kann nicht in Dokpool ohne das Ereignis „${event}“ übertragen werden."
 
 #: docpool.elan/docpool/elan/browser/dpevent.pt
 #: docpool.elan/docpool/elan/content/dpevent.py
