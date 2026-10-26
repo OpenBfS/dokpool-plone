@@ -82,7 +82,7 @@ class IDPEvent(IContentBase):
         description=_("description_dpevent_eventlocationtimezone", default=""),
         required=True,
         default="Europe/Berlin",
-        source="docpool.elan.vocabularies.TimeZones",
+        source="plone.app.vocabularies.CommonTimezones",
     )
 
     directives.write_permission(EventLocation="docpool.elan.ManageDPEvents")

@@ -1259,7 +1259,6 @@ name = "docpool-elan"
 version = "0.0.7"
 source = { editable = "src/docpool.elan" }
 dependencies = [
-    { name = "babel" },
     { name = "docpool-base" },
     { name = "pygeoif" },
     { name = "setuptools" },
@@ -1267,7 +1266,6 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "babel" },
     { name = "docpool-base" },
     { name = "pygeoif" },
     { name = "setuptools" },
