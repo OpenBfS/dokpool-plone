@@ -194,6 +194,7 @@ class Transferable(FlexibleView, TransferRelatedMixin):
         """
         Target must be allowed for our doctype
         and context must not have been transferred to this target
+        and no app-specific condition must deny transfer to this target.
         """
         if not (doctype_uid := self.context.doctype_data().get("uid")):
             raise ValueError(_("Document has no doc type."))
@@ -202,6 +203,11 @@ class Transferable(FlexibleView, TransferRelatedMixin):
 
         if any(target.UID() == entry["transferfolder_uid"] for entry in self.sender_log):
             raise ValueError(_("Document was transferred to this target before."))
+
+        for app in ILocalBehaviorSupport(self.context).local_behaviors:
+            app_transfer = queryMultiAdapter((self.context, target), IAppSpecificTransfer, name=app)
+            if app_transfer is not None:
+                app_transfer.assert_allowed()
 
     security.declareProtected("Docpool: Send Content", "transferToTargets")
 
@@ -258,14 +264,6 @@ class Transferable(FlexibleView, TransferRelatedMixin):
                 )
                 if app_transfer is not None:
                     app_transfers.append(app_transfer)
-
-            # b) Check app-specific conditions that might deny transfer.
-            for app_transfer in app_transfers:
-                try:
-                    app_transfer.assert_allowed()
-                except BaseException as exc:
-                    error_message(esd_to_title, exc.args[0])
-                    return
 
             # At this point, transfer is allowed.
             logger.info(f"Transfer {'/'.join(self.context.getPhysicalPath())} to {esd_to_title}.")
