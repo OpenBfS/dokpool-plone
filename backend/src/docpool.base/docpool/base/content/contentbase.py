@@ -214,4 +214,3 @@ def updateWorkflow(obj, event=None):
         return
     if not IArchiving(obj).is_archive:
         obj.update_workflow()
-        obj.update_modified()
