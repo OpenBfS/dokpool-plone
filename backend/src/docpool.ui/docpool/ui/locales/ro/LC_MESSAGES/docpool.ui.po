@@ -343,6 +343,7 @@ msgstr ""
 msgid "Revised"
 msgstr ""
 
+#: docpool.ui/docpool/ui/browser/dpdocument.py
 #: docpool.ui/docpool/ui/browser/listing.py
 msgid "Revoked"
 msgstr ""

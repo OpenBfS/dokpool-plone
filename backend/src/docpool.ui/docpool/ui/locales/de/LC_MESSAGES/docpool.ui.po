@@ -195,7 +195,7 @@ msgstr "Ablageort und Eintragsart"
 
 #: docpool.ui/docpool/ui/browser/dpdocument.py
 msgid "For all users of '${app} ${docpool_title}'"
-msgstr "Für alle Anwender von '${app} ${docpool_title}' sichtbar"
+msgstr "Für alle Anwender von \"${app} ${docpool_title}\" sichtbar"
 
 #: docpool.ui/docpool/ui/browser/templates/listing-filter-macros.pt
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
@@ -271,7 +271,7 @@ msgstr "Älteste zuerst"
 
 #: docpool.ui/docpool/ui/browser/dpdocument.py
 msgid "Only for member of '${container_title}'"
-msgstr "Für alle Mitglieder der Gruppe '${container_title}' sichtbar"
+msgstr "Nur für Mitglieder der Gruppe \"${container_title}\" sichtbar"
 
 #: docpool.ui/docpool/ui/browser/viewlets/sidebar-elan.pt
 msgid "Overview"
@@ -343,6 +343,7 @@ msgstr "Ergebnisse für"
 msgid "Revised"
 msgstr "Revidiert"
 
+#: docpool.ui/docpool/ui/browser/dpdocument.py
 #: docpool.ui/docpool/ui/browser/listing.py
 msgid "Revoked"
 msgstr "Storniert"
