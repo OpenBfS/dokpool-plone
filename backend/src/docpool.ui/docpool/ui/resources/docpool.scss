@@ -1,3 +1,12 @@
+$plone-default-private-color: #b74d48;
+$plone-default-pending-color: #e5bc4a;
+$plone-default-pending_bfs-color: #e5bc4a;
+$plone-default-pending_authority-color: #d07317;
+$plone-default-pending_bmu-color: #75a30a;
+$plone-default-published-color: #324d6a;
+$plone-default-revised-color: #595375;
+$plone-default-revoked-color: #d4d4d4;
+
 @import "header";
 @import "sidebar";
 @import "overview";
@@ -9,15 +18,6 @@
 @import "upload";
 @import "portal-messages";
 @import "tables";
-
-$plone-default-private-color: #b74d48;
-$plone-default-pending-color: #e5bc4a;
-$plone-default-pending_bfs-color: #e5bc4a;
-$plone-default-pending_authority-color: #d07317;
-$plone-default-pending_bmu-color: #75a30a;
-$plone-default-published-color: #324d6a;
-$plone-default-revoked-color: #d4d4d4;
-$plone-default-revised-color: #595375;
 
 :root {
   --bs-gray-light: #f1f3f6;
@@ -182,14 +182,14 @@ body.template-entrytypes {
         background-color: $plone-default-pending-color;
       }
 
-      .state-revoked {
-        color: #000 !important;
-        background-color: $plone-default-revoked-color;
-      }
-
       .state-revised {
         color: #000 !important;
         background-color: $plone-default-revised-color;
+      }
+
+      .state-revoked {
+        color: #000 !important;
+        background-color: $plone-default-revoked-color;
       }
     }
 
@@ -237,14 +237,14 @@ body.template-entrytypes {
     background-color: $plone-default-pending_authority-color;
   }
 
-  &.state-revoked {
-    color: #000 !important;
-    background-color: $plone-default-revoked-color;
-  }
-
   &.state-revised {
     color: #000 !important;
     background-color: $plone-default-revised-color;
+  }
+
+  &.state-revoked {
+    color: #000 !important;
+    background-color: $plone-default-revoked-color;
   }
 }
 
