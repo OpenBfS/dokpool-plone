@@ -1,10 +1,12 @@
 from AccessControl.SecurityInfo import allow_module
+from babel.core import get_global
 from docpool.base.content.archiving import IArchiving
 from docpool.base.content.places import IPlaces
 from docpool.elan import DocpoolMessageFactory as _
 from plone import api
 from plone.base.utils import safe_bytes
 from zope.interface import implementer
+from zope.interface import provider
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
@@ -98,73 +100,100 @@ class ModesVocabulary:
 ModesVocabularyFactory = ModesVocabulary()
 
 
-@implementer(IVocabularyFactory)
-class SampleType:
-    def __call__(self, context=None):
-        items = [
-            ("-", "noch nicht festgelegt"),
-            ("A", "Abwasser, Reststoffe und Abfälle"),
-            ("A1", "Kläranlage"),
-            ("A2", "Verbrennungsanlage"),
-            ("A3", "Mülldeponie"),
-            ("A4", "Kompostierungsanlage"),
-            ("A5", "Spezielle Reststoffe und Abfälle"),
-            ("B", "Boden"),
-            ("B2", "Boden in-situ (nuklidspezifische Dosisleistung)"),
-            ("B3", "Weide-/ Acker-/ Wald-/ Freizeitflächen-/ Ödland- und Gartenböden"),
-            ("F", "Futtermittel"),
-            ("F1", "Grünfutter (einschl. Weide- und Wiesenbewuchs)"),
-            ("F2", "Mais"),
-            ("F3", "Futtergetreide"),
-            ("F4", "Hackfrüchte"),
-            ("F5", "Heu, Stroh, Cobs, Trockenmehle"),
-            ("F6", "Mischfuttermittelrohstoffe"),
-            ("F7", "Mischfuttermittel"),
-            ("G", "Gewässer"),
-            ("G1", "Fließgewässer"),
-            ("G2", "Stehende Gewässer"),
-            ("G3", "Meer"),
-            ("G4", "Grundwasser"),
-            ("G5", "Rohwasser zur Trinkwassergewinnung"),
-            ("GZ", "Sonstige Wässer"),
-            ("I", "Bio-Indikatoren, Tabak und Arzneimittel"),
-            ("I1", "Pflanzliche Indikatoren"),
-            ("I2", "Tabak"),
-            ("I3", "Arzneimittel"),
-            ("L", "Luft und Niederschlag"),
-            ("L1", "Luft/Gammastrahlung"),
-            ("L2", "Luft/Neutronenstrahlung"),
-            ("L3", "Luft/Aerosole"),
-            ("L4", "Luft/gasförmige Komponenten (einschl. Iod)"),
-            ("L5", "Niederschlag"),
-            ("L6", "Spurenmessung Luft"),
-            ("M", "Meteo-Umweltbereich"),
-            ("N", "Nahrungsmittel (einschl. Trinkwasser)"),
-            ("N1", "Milch"),
-            ("N2", "Frischgemüse (einschl. Kartoffeln und Pilze)"),
-            ("N3", "Getreide"),
-            ("N4", "Obst"),
-            ("N5", "Fleisch"),
-            ("N6", "Fisch und Meeresfrüchte"),
-            ("N7", "Trinkwasser"),
-            ("N8", "Gesamtnahrung, Fertiggerichte und Getränke"),
-            ("N9", "Nahrungsmittelprodukte"),
-            ("NZ", "Sonstige Nahrungsmittel"),
-            ("S", "Umweltbereiche für Störfall"),
-            ("S1", "Luft - Störfall"),
-            ("S2", "Boden/-Oberfläche - Störfall"),
-            ("S3", "Pflanzen/Bewuchs - Störfall"),
-            ("S4", "Oberirdische Gewässer - Störfall"),
-            ("Z", "Sonstige Mediengruppen"),
-            ("Z1", "Baustoffe"),
-            ("Z2", "Bodenschätze"),
-            ("Z3", "Bedarfsgegenstände und Kosmetische Mittel"),
-        ]
-        terms = [SimpleTerm(value, safe_bytes(value), f"{value} {title}") for value, title in items]
-        return SimpleVocabulary(terms)
+@provider(IVocabularyFactory)
+def NetworksVocabularyFactory(context=None):
+    items = [
+        "Alle",
+        "Alle Bundesmessnetze",
+        "Alle Länder",
+        "auslaendische Messnetze",
+        "Baden-Wuerttemberg",
+        "Bayern",
+        "Berlin",
+        "BfE",
+        "BfS (ABI)",
+        "BfS (Spuren)",
+        "BfS / ZdB",
+        "BMUKN",
+        "Brandenburg",
+        "Bremen",
+        "Bundeswehr",
+        "Endlager (Bundesaufsicht)",
+        "FhG",
+        "Hamburg",
+        "Hessen",
+        "Leitstelle BfG",
+        "Leitstelle BfS H (u.a. Trinkwasser)",
+        "Leitstelle BfS in-situ-G.",
+        "Leitstelle MRI",
+        "Leitstelle Thuenen-Institut",
+        "Mecklenburg-Vorpommern",
+        "Messnetz BfG",
+        "Messnetz BfS in-situ-G.",
+        "Messnetz BfS ODL",
+        "Messnetz BSH",
+        "Messnetz DWD",
+        "Niedersachsen",
+        "Nordrhein-Westfalen",
+        "PTB",
+        "Rheinland-Pfalz",
+        "Saarland",
+        "Sachsen",
+        "Sachsen-Anhalt",
+        "Schleswig-Holstein",
+        "Sonstige",
+        "Thueringen",
+        "ZdB-Testnetz",
+    ]
+    terms = [SimpleTerm(value, safe_bytes(value), value) for value in items]
+    return SimpleVocabulary(terms)
 
 
-SampleTypeVocabularyFactory = SampleType()
+@provider(IVocabularyFactory)
+def ReferenceScenariosVocabularyFactory(context=None):
+    items = [
+        line.split(" – ", 1)
+        for line in """\
+S0 – Notfall mit ungeklärtem Ursprung
+S1 – Notfall in einem deutschen Kernkraftwerk (vor Brennelementfreiheit)
+S2 – Notfall in einem Kernkraftwerk im grenznahen Ausland (in bis zu 100 km Entfernung von der deutschen Grenze)
+S3 – Notfall in einem Kernkraftwerk auf dem europäischen Kontinent (in mehr als 100 km Entfernung von der deutschen Grenze)
+S4 – Notfall in einem Kernkraftwerk außerhalb des europäischen Kontinents
+S5 – Notfall in einer ortsfesten Anlage oder Einrichtung im In- und Ausland mit besonderem Gefahrenpotenzial, die nicht unter S1 bis S4 fällt
+S6 – Notfall im Zusammenhang mit sonstigen Tätigkeiten nach § 4 StrlSchG oder vergleichbaren Tätigkeiten nach ausländischem Recht
+S7 – Transportunfall an Land (Straße, Schiene, Luft)
+S8 – Sonstiger Notfall mit radioaktiven Stoffen oder mit radioaktiven Kontaminationen
+S9 – Absturz eines Satelliten oder Raumfahrzeugs mit radioaktivem Material
+S10 – Notfall auf einem Oberflächengewässer
+S11 – Notfall auf oder in Meeresgewässern
+S12 – Vorsätzliche Straftat im In- und Ausland im Zusammenhang mit radioaktiven Stoffen ohne Bezug zu einer kerntechnischen Anlage oder Einrichtung
+S13 – Vorsätzliche Straftat, Störmaßnahme oder sonstige Einwirkung Dritter gegen oder auf eine kerntechnische Anlage oder Einrichtung
+S14 – Nuklearwaffenexplosion
+S15 – Sonstiger Notfall beim Umgang mit einer Nuklearwaffe
+""".splitlines()
+    ]
+    return SimpleVocabulary([SimpleTerm(key, safe_bytes(key), f"{key} – {value}") for key, value in items])
+
+
+@provider(IVocabularyFactory)
+def PhasesVocabularyFactory(context=None):
+    items = [
+        ("A", "Vorfreisetzungsphase"),
+        ("B", "Freisetzungsphase"),
+        ("C", "Frühe Nachfreisetzungsphase"),
+        ("D", "Späte Nachfreisetzungsphase"),
+    ]
+    return SimpleVocabulary([SimpleTerm(key, safe_bytes(key), f"{value} ({key})") for key, value in items])
+
+
+@provider(IVocabularyFactory)
+def EmergencyClassificationsVocabularyFactory(context=None):
+    items = [
+        ("interregional", "Überregionaler Notfall"),
+        ("regional", "Regionaler Notfall"),
+        ("local", "Lokaler Notfall"),
+    ]
+    return SimpleVocabulary([SimpleTerm(key, safe_bytes(key), value) for key, value in items])
 
 
 allow_module("docpool.elan.vocabularies")
@@ -184,3 +213,11 @@ class AlertingStatusVocabulary:
 
 
 AlertingStatusVocabularyFactory = AlertingStatusVocabulary()
+
+
+@provider(IVocabularyFactory)
+def TimeZonesVocabularyFactory(context=None):
+    # Babel's zone_territories's keys is about the same set of timezone names as
+    # zoneinfo.available_timezones() minus the aliases according to Babel's zone_aliases.
+    timezones = sorted(get_global("zone_territories"))
+    return SimpleVocabulary([SimpleTerm(tz, safe_bytes(tz), tz) for tz in timezones])

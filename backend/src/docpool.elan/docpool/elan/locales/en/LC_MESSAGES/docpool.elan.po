@@ -94,10 +94,6 @@ msgstr ""
 msgid "Area for general information"
 msgstr "Area for general information"
 
-#: docpool.elan/docpool/elan/content/dpevent.py
-msgid "Area of interest"
-msgstr ""
-
 #: docpool.elan/docpool/elan/browser/elan_macros.pt
 msgid "Belongs to scenario:"
 msgstr "Belongs to event:"
@@ -206,6 +202,10 @@ msgstr ""
 msgid "Emergency"
 msgstr ""
 
+#: docpool.elan/docpool/elan/content/dpevent.py
+msgid "Emergency classification"
+msgstr ""
+
 #: docpool.elan/docpool/elan/browser/dpevents.pt
 #: docpool.elan/docpool/elan/browser/elanarchives.pt
 msgid "Entries"
@@ -232,11 +232,11 @@ msgid "Event overview"
 msgstr ""
 
 #: docpool.elan/docpool/elan/content/dpevent.py
-msgid "Example: POINT(12.293121814727781 48.60338936478996)"
+msgid "Event location"
 msgstr ""
 
 #: docpool.elan/docpool/elan/content/dpevent.py
-msgid "Example: POLYGON((12.307090759277342 48.613051327205255,12.25421905517578 48.61339180317094,12.253875732421873 48.59216441224561,12.305803298950195 48.59182379315598,12.307090759277342 48.613051327205255))"
+msgid "Example: POINT(12.293121814727781 48.60338936478996)"
 msgstr ""
 
 #: docpool.elan/docpool/elan/vocabularies.py
@@ -269,10 +269,6 @@ msgstr ""
 
 #: docpool.elan/docpool/elan/browser/archive_event_form.py
 msgid "Item is being archived right now! Please try again in a couple of minutes."
-msgstr ""
-
-#: docpool.elan/docpool/elan/content/dpevent.py
-msgid "Journals"
 msgstr ""
 
 #: docpool.elan/docpool/elan/browser/dpevents.pt
@@ -313,8 +309,16 @@ msgstr ""
 msgid "Original content is moved to the archive."
 msgstr ""
 
+#: docpool.elan/docpool/elan/content/dpevent.py
+msgid "Phase"
+msgstr ""
+
 #: docpool.elan/docpool/elan/browser/i18ndummy.pt
 msgid "Purge"
+msgstr ""
+
+#: docpool.elan/docpool/elan/content/dpevent.py
+msgid "Reference scenario"
 msgstr ""
 
 #: docpool.elan/docpool/elan/vocabularies.py
@@ -347,7 +351,7 @@ msgstr ""
 
 #: docpool.elan/docpool/elan/browser/dpevent.pt
 #: docpool.elan/docpool/elan/content/dpevent.py
-msgid "Sectorizing sample types"
+msgid "Sectorizing networks"
 msgstr ""
 
 #: docpool.elan/docpool/elan/browser/archive_event_form.pt
@@ -502,6 +506,10 @@ msgid "description_dpevent_alerting_status"
 msgstr ""
 
 #: docpool.elan/docpool/elan/content/dpevent.py
+msgid "description_dpevent_eventlocationtimezone"
+msgstr ""
+
+#: docpool.elan/docpool/elan/content/dpevent.py
 msgid "description_dpevent_status"
 msgstr ""
 
@@ -557,6 +565,11 @@ msgstr ""
 #. Default: "Changelog"
 #: docpool.elan/docpool/elan/content/dpevent.py
 msgid "label_dpevent_changelog"
+msgstr ""
+
+#. Default: "Time zone at event location"
+#: docpool.elan/docpool/elan/content/dpevent.py
+msgid "label_dpevent_eventlocationtimezone"
 msgstr ""
 
 #. Default: "Status of the event"

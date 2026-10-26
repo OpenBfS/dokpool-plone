@@ -70,12 +70,28 @@
       component=".vocabularies.ModesVocabularyFactory"
       />
   <utility
-      name="docpool.elan.vocabularies.SampleType"
-      component=".vocabularies.SampleTypeVocabularyFactory"
+      name="docpool.elan.vocabularies.Networks"
+      component=".vocabularies.NetworksVocabularyFactory"
       />
   <utility
       name="docpool.elan.vocabularies.AlertingStatus"
       component=".vocabularies.AlertingStatusVocabularyFactory"
+      />
+  <utility
+      name="docpool.elan.vocabularies.TimeZones"
+      component=".vocabularies.TimeZonesVocabularyFactory"
+      />
+  <utility
+      name="docpool.elan.vocabularies.ReferenceScenarios"
+      component=".vocabularies.ReferenceScenariosVocabularyFactory"
+      />
+  <utility
+      name="docpool.elan.vocabularies.Phases"
+      component=".vocabularies.PhasesVocabularyFactory"
+      />
+  <utility
+      name="docpool.elan.vocabularies.EmergencyClassifications"
+      component=".vocabularies.EmergencyClassificationsVocabularyFactory"
       />
 
 </configure>

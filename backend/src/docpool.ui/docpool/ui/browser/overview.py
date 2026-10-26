@@ -101,7 +101,7 @@ class Overview(BrowserView):
         description = safe_text(description_value).strip() if description_value is not None else empty_value
         description = description or empty_value
 
-        # TODO Ereignisort (EventCoordinates & AreaOfInterest)
+        # TODO Ereignisort (EventCoordinates)
         location_static = "TODO KKW Grohnde, Deutschland / N 52.034, E 9.410"
         # TODO Image
         # coordinates_label = empty_value

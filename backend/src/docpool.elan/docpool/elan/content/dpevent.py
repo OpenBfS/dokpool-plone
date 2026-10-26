@@ -17,7 +17,6 @@ from plone.dexterity.content import Container
 from Products.CMFCore.utils import getToolByName
 from pygeoif import from_wkt
 from z3c.form.browser.radio import RadioFieldWidget
-from z3c.form.interfaces import IEditForm
 from zope import schema
 from zope.annotation.interfaces import IAnnotations
 from zope.component import adapter
@@ -50,17 +49,6 @@ def is_coordinate(value):
     return True
 
 
-def is_point_or_polygon(value):
-    if value:
-        try:
-            wkt = from_wkt(value)
-        except Exception as exc:
-            raise Invalid("Value is not a valid WKT.") from exc
-        if wkt.geom_type not in ["Point", "Polygon"]:
-            raise Invalid("Value is neither Point nor Polygon.")
-    return True
-
-
 class IDPEvent(IContentBase):
     """ """
 
@@ -89,6 +77,20 @@ class IDPEvent(IContentBase):
         defaultFactory=initializeTimeOfEvent,
     )
 
+    EventLocationTimeZone = schema.Choice(
+        title=_("label_dpevent_eventlocationtimezone", default="Time zone at event location"),
+        description=_("description_dpevent_eventlocationtimezone", default=""),
+        required=True,
+        default="Europe/Berlin",
+        source="docpool.elan.vocabularies.TimeZones",
+    )
+
+    directives.write_permission(EventLocation="docpool.elan.ManageDPEvents")
+    EventLocation = schema.Text(
+        title=_("Event location"),
+        required=False,
+    )
+
     directives.write_permission(EventCoordinates="docpool.elan.ManageDPEvents")
     EventCoordinates = schema.Text(
         title=_("Event coordinates"),
@@ -97,14 +99,24 @@ class IDPEvent(IContentBase):
         constraint=is_coordinate,
     )
 
-    directives.write_permission(AreaOfInterest="docpool.elan.ManageDPEvents")
-    AreaOfInterest = schema.Text(
-        title=_("Area of interest"),
-        description=_(
-            "Example: POLYGON((12.307090759277342 48.613051327205255,12.25421905517578 48.61339180317094,12.253875732421873 48.59216441224561,12.305803298950195 48.59182379315598,12.307090759277342 48.613051327205255))"
-        ),
-        required=False,
-        constraint=is_point_or_polygon,
+    ReferenceScenario = schema.Choice(
+        title=_("Reference scenario"),
+        vocabulary="docpool.elan.vocabularies.ReferenceScenarios",
+        required=True,
+    )
+
+    directives.widget(Phase=RadioFieldWidget)
+    Phase = schema.Choice(
+        title=_("Phase"),
+        vocabulary="docpool.elan.vocabularies.Phases",
+        required=True,
+    )
+
+    directives.widget(EmergencyClassification=RadioFieldWidget)
+    EmergencyClassification = schema.Choice(
+        title=_("Emergency classification"),
+        vocabulary="docpool.elan.vocabularies.EmergencyClassifications",
+        required=True,
     )
 
     directives.widget(OperationMode=RadioFieldWidget)
@@ -131,23 +143,10 @@ class IDPEvent(IContentBase):
         required=False,
     )
 
-    SectorizingSampleTypes = schema.List(
-        title=_("Sectorizing sample types"),
+    SectorizingNetworks = schema.List(
+        title=_("Sectorizing networks"),
         required=False,
-        value_type=schema.Choice(source="docpool.elan.vocabularies.SampleType"),
-    )
-
-    directives.omitted(IEditForm, "Journals")
-    Journals = schema.List(
-        title=_("Journals"),
-        required=False,
-        default=[
-            "Einsatztagebuch BfS",
-            "Einsatztagebuch RLZ",
-            "Einsatztagebuch SSK",
-            "Einsatztagebuch Messdienste",
-        ],
-        value_type=schema.TextLine(),
+        value_type=schema.Choice(source="docpool.elan.vocabularies.Networks"),
     )
 
     changelog = schema.Text(
@@ -222,12 +221,6 @@ class DPEvent(Container, ContentBase):
         wftool = getToolByName(self, "portal_workflow")
         return wftool.getInfoFor(self, "review_state") == "published" and self.Status == "active"
 
-    def bounds(self, fieldname="AreaOfInterest"):
-        coordinates = self.coordinates(fieldname)
-        if not coordinates:
-            return
-        return coordinates.bounds
-
     def coordinates(self, fieldname="EventCoordinates"):
         wkt = getattr(self, fieldname, None)
         if not wkt:
@@ -273,9 +266,7 @@ def addLogEntry(obj):
     entry["Operation mode"] = modes
     entry["Alerting status"] = alerting_status
     entry["Alerting note"] = obj.AlertingNote
-    entry["Sectorizing sample types"] = ", ".join(
-        obj.SectorizingSampleTypes if obj.SectorizingSampleTypes is not None else " "
-    )
+    entry["Sectorizing networks"] = ", ".join(obj.SectorizingNetworks or " ")
     # Check if there are changes to prevent duplicate log entries.
     if changelog and entry == changelog[-1]:
         return
