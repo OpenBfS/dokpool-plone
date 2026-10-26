@@ -203,10 +203,6 @@ class Transferable(FlexibleView, TransferRelatedMixin):
         if any(target.UID() == entry["transferfolder_uid"] for entry in self.sender_log):
             raise ValueError(_("Document was transferred to this target before."))
 
-    def allowedTargets(self):
-        targets = sorted(self.allowed_targets(), key=lambda t: IPlaces(t).document_pool.Title())
-        return [t.UID() for t in targets]
-
     security.declareProtected("Docpool: Send Content", "transferToTargets")
 
     def transferToTargets(self, targets=None):
@@ -400,10 +396,12 @@ def automatic_transfer(obj):
     source_path = "/".join(obj.getPhysicalPath())
     logger.info(f'Automatic transfer of "{obj.Title()}" from {source_path}')
 
-    # Intersect allowed and automatic transfer targets while keeping the order of
-    # allowed targets and computing the automatic ones only once.
     automatic = set(obj.doctype_data()["automaticTransferTargets"])
-    targets = [t for t in tObj.allowedTargets() if t in automatic]
+    targets = [
+        t_uid
+        for t in sorted(tObj.allowed_targets(), key=lambda t: IPlaces(t).document_pool.Title())
+        if (t_uid := t.UID()) in automatic
+    ]
 
     if targets:
         logger.info(f"Transfer {source_path} to up to {len(targets)} targets.")
