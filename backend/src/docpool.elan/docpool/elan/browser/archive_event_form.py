@@ -262,6 +262,7 @@ class ArchiveAndClose(BrowserView):
 
         modification_date = obj.modified()
         mdate = obj.mdate if base_hasattr(obj, "mdate") else None
+        wdate = obj.wdate if base_hasattr(obj, "wdate") else None
         old_state = api.content.get_state(obj)
         moved_obj = api.content.move(obj, target_folder_obj)
         new_state = api.content.get_state(moved_obj)
@@ -284,6 +285,8 @@ class ArchiveAndClose(BrowserView):
         moved_obj.setModificationDate(modification_date)
         if mdate:
             moved_obj.mdate = mdate
+        if wdate:
+            moved_obj.wdate = wdate
         moved_obj.reindexObject(idxs=["modified", "review_state", "scenario"])
 
     def _copy_to_archive(self, target_folder_obj, obj):
@@ -299,6 +302,7 @@ class ArchiveAndClose(BrowserView):
         # Now do some repairs
         modification_date = obj.modified()
         mdate = obj.mdate if base_hasattr(obj, "mdate") else None
+        wdate = obj.wdate if base_hasattr(obj, "wdate") else None
         copied_obj.scenario = None
 
         old_state = api.content.get_state(obj)
@@ -320,6 +324,8 @@ class ArchiveAndClose(BrowserView):
         copied_obj.setModificationDate(modification_date)
         if mdate:
             copied_obj.mdate = mdate
+        if wdate:
+            copied_obj.wdate = wdate
         copied_obj.reindexObject(idxs=["modified", "review_state", "scenario"])
 
         # Cleanup original DPDocument
