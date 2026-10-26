@@ -9,6 +9,11 @@
     <indexed_attr value="dp_type" />
   </index>
   <index meta_type="DateIndex"
+         name="sortdate"
+  >
+    <indexed_attr value="sortdate" />
+  </index>
+  <index meta_type="DateIndex"
          name="mdate"
   >
     <indexed_attr value="getMdate" />
@@ -45,6 +50,7 @@
     <indexed_attr value="subcategory" />
   </index>
 
+  <column value="sortdate" />
   <column value="getMdate" />
   <column value="changed" />
   <column value="apps_supported" />

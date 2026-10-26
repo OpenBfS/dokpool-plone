@@ -55,7 +55,7 @@ class IContentBase(model.Schema):
     directives.omitted("modified_by")
 
     mdate = schema.Datetime(
-        title=_("label_contentbase_mdate", default="Date of last user action"),
+        title=_("label_contentbase_mdate", default="Date of last user editing"),
         description=_("description_contentbase_mdate", default=""),
         required=False,
         defaultFactory=initializeMdate,
@@ -89,6 +89,14 @@ class ContentBase:
         if primary_group:
             res += " %s" % primary_group
         return res
+
+    @property
+    def sortdate(self):
+        """ """
+        mdate = self.getMdate()
+        if self.wdate and mdate:
+            return max(self.wdate.astimezone(), self.getMdate().astimezone())
+        return self.wdate or mdate
 
     def getWdate(self):
         """ """

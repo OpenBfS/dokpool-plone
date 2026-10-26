@@ -36,6 +36,7 @@ def post_handler(distribution: Distribution, site: PloneSite, answers: dict) -> 
             "created",
             "modified",
             "mdate",
+            "sortdate",
             "apps_supported",
             "changed",
             "scenario",

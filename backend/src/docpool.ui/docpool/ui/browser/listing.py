@@ -100,8 +100,8 @@ class Listing(BrowserView):
 
         # Sorting
         self.sort_on_options = {
-            "newest": ("mdate", "descending", _("Newest first")),
-            "oldest": ("mdate", "ascending", _("Oldest first")),
+            "newest": ("sortdate", "descending", _("Newest first")),
+            "oldest": ("sortdate", "ascending", _("Oldest first")),
             "a-z": ("sortable_title", "ascending", _("A-Z")),
             "z-a": ("sortable_title", "descending", _("Z-A")),
         }
