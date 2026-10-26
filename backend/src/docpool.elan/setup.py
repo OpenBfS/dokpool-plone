@@ -31,6 +31,7 @@ setup(
     install_requires=[
         # -*- Extra requirements: -*-
         "setuptools",
+        "babel",
         "docpool.base",
         "pygeoif",
     ],

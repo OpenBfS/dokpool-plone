@@ -1,5 +1,5 @@
 version = 1
-revision = 5
+revision = 3
 requires-python = ">=3.13"
 
 [manifest]
@@ -1032,7 +1032,6 @@ wheels = [
 name = "docpool"
 version = "1.0.0a0"
 source = { virtual = "." }
-default-groups = ["dev", "test"]
 dependencies = [
     { name = "collective-catalogcleanup" },
     { name = "collective-eeafaceted-z3ctable" },
@@ -1260,6 +1259,7 @@ name = "docpool-elan"
 version = "0.0.7"
 source = { editable = "src/docpool.elan" }
 dependencies = [
+    { name = "babel" },
     { name = "docpool-base" },
     { name = "pygeoif" },
     { name = "setuptools" },
@@ -1267,6 +1267,7 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
+    { name = "babel" },
     { name = "docpool-base" },
     { name = "pygeoif" },
     { name = "setuptools" },
