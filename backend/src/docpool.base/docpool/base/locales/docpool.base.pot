@@ -87,7 +87,7 @@ msgstr ""
 msgid "Disallowed to paste item(s)."
 msgstr ""
 
-#: docpool.base/docpool/base/behaviors/transferable.py
+#: docpool.base/docpool/base/behaviors/transferstype.py
 msgid "Doc type not accepted."
 msgstr ""
 
@@ -113,8 +113,16 @@ msgstr ""
 msgid "Document Type Subcategory"
 msgstr ""
 
+#: docpool.base/docpool/base/behaviors/transferable.py
+msgid "Document has no doc type."
+msgstr ""
+
 #: docpool.base/docpool/base/browser/collectiondoc.pt
 msgid "Document state"
+msgstr ""
+
+#: docpool.base/docpool/base/behaviors/transferable.py
+msgid "Document was transferred to this target before."
 msgstr ""
 
 #: docpool.base/docpool/base/browser/collectiondoc.pt

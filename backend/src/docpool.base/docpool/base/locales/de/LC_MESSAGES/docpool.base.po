@@ -86,7 +86,7 @@ msgstr "Löschen"
 msgid "Disallowed to paste item(s)."
 msgstr "Einfügen nicht erlaubt."
 
-#: docpool.base/docpool/base/behaviors/transferable.py
+#: docpool.base/docpool/base/behaviors/transferstype.py
 msgid "Doc type not accepted."
 msgstr "Eintragstyp wurde nicht akzeptiert."
 
@@ -112,9 +112,17 @@ msgstr "Kategorie"
 msgid "Document Type Subcategory"
 msgstr "Unterkategorie"
 
+#: docpool.base/docpool/base/behaviors/transferable.py
+msgid "Document has no doc type."
+msgstr "Dokument hat keinen Dokumenttyp."
+
 #: docpool.base/docpool/base/browser/collectiondoc.pt
 msgid "Document state"
 msgstr "Eintragsstatus"
+
+#: docpool.base/docpool/base/behaviors/transferable.py
+msgid "Document was transferred to this target before."
+msgstr "Dokument wurde bereits an dieses Ziel übertragen."
 
 #: docpool.base/docpool/base/browser/collectiondoc.pt
 msgid "Document workflow:"

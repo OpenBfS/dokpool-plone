@@ -37,7 +37,21 @@ class ITransfersType(model.Schema):
     )
 
 
-class TransfersType:
+class TransferRelatedMixin:
+    def assert_target_allowed(self, target):
+        pass
+
+    def allowed_targets(self):
+        targets = target_transfer_folders_for_docpool(self.context)
+        for target in targets[:]:
+            try:
+                self.assert_target_allowed(target)
+            except BaseException:
+                targets.remove(target)
+        return targets
+
+
+class TransfersType(TransferRelatedMixin):
     """ """
 
     def __init__(self, context):
@@ -68,15 +82,12 @@ class TransfersType:
             unaffected.difference_update(target.UID() for target in self.allowed_targets())
         context.automaticTransferTargets = tuple(unaffected.union(value))
 
-    def allowed_targets(self):
+    def assert_target_allowed(self, target):
         """
         Other ESD must have allowed communication with my ESD (Transfer folder exists)
         and either my DocType is known and must be accepted
             or the DocType is not defined in the other ESD (or don't exist because e.g., we're creating it)
                and default is not to block.
         """
-        return [
-            target
-            for target in target_transfer_folders_for_docpool(self.context)
-            if target.acceptsDT(self.context.id)
-        ]
+        if not target.acceptsDT(self.context.id):
+            raise ValueError(_("Doc type not accepted."))

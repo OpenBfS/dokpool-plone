@@ -6,6 +6,7 @@ from DateTime import DateTime
 from datetime import datetime
 from docpool.base import DocpoolMessageFactory as _
 from docpool.base.behaviors.transferstype import ITransfersType
+from docpool.base.behaviors.transferstype import TransferRelatedMixin
 from docpool.base.browser.flexible_view import FlexibleView
 from docpool.base.content.archiving import IArchiving
 from docpool.base.content.dpdocument import IDPDocument
@@ -113,7 +114,7 @@ class ITransferable(model.Schema):
     write_permission(transferred="docpool.transfers.AccessTransfers")
 
 
-class Transferable(FlexibleView):
+class Transferable(FlexibleView, TransferRelatedMixin):
     __allow_access_to_unprotected_subobjects__ = 1
 
     security = ClassSecurityInfo()
@@ -189,21 +190,18 @@ class Transferable(FlexibleView):
             return True
         return False
 
-    def allowed_targets(self):
-        """Targets must be allowed for our doctype and context must not have been transferred."""
-        if not IPlaces(self.context).document_pool:
-            return []
-
+    def assert_target_allowed(self, target):
+        """
+        Target must be allowed for our doctype
+        and context must not have been transferred to this target
+        """
         if not (doctype_uid := self.context.doctype_data().get("uid")):
-            return []
+            raise ValueError(_("Document has no doc type."))
 
-        targets = ITransfersType(api.content.get(UID=doctype_uid)).allowed_targets()
+        ITransfersType(api.content.get(UID=doctype_uid)).assert_target_allowed(target)
 
-        if targets:
-            sent_to = {entry["transferfolder_uid"] for entry in self.sender_log}
-            targets = [t for t in targets if t.UID() not in sent_to]
-
-        return targets
+        if any(target.UID() == entry["transferfolder_uid"] for entry in self.sender_log):
+            raise ValueError(_("Document was transferred to this target before."))
 
     def allowedTargets(self):
         targets = sorted(self.allowed_targets(), key=lambda t: IPlaces(t).document_pool.Title())
@@ -247,9 +245,10 @@ class Transferable(FlexibleView):
             esd_to_title = (dp := IPlaces(transfer_folder).document_pool).Title()
 
             # Check permissions:
-            # a) Is my DocType accepted (defaults to handling of unknown DocTypes)?
-            if not transfer_folder.acceptsDT(doctype_data["id"]):
-                error_message(esd_to_title, _("Doc type not accepted."))
+            try:
+                self.assert_target_allowed(transfer_folder)
+            except BaseException as exc:
+                error_message(esd_to_title, exc.args[0])
                 return
 
             # Collect transfer specifics for apps supported by both original and target.
