@@ -28,6 +28,7 @@ from Products.CMFCore.interfaces import IActionSucceededEvent
 from zope import schema
 from zope.annotation.interfaces import IAnnotations
 from zope.component import adapter
+from zope.component import queryAdapter
 from zope.component import queryMultiAdapter
 from zope.globalrequest import getRequest
 from zope.interface import Interface
@@ -61,6 +62,20 @@ def transferring():
 
 class ISkipAutomaticTransferMarker(Interface):
     """Marker interface for containers whose content should be ignored for automatic transfers."""
+
+
+class IAppSpecificTransferable(Interface):
+    """Handle application-specific logic related to transfer of a document.
+
+    Applied for all apps associated with the document.
+    """
+
+    def assert_transferable():
+        """Check if this app's logic allows transferring the document anywhere.
+
+        If yes, returns without error.
+        If no, raises ValueError with the reason as the exception argument.
+        """
 
 
 class IAppSpecificTransfer(Interface):
@@ -170,13 +185,16 @@ class Transferable(FlexibleView, TransferRelatedMixin):
             for event, type_ in events
         ]
 
-    def transferable(self):
+    def assert_transferable(self):
         """
         If not created by a transfer
         If published
         If all subobjects published (TODO: maybe they should even be transferable themselves)
         If DocType allows it
+        If all associated apps allow it
         If Object allows it directly
+
+        TODO Should either raise or return None
         """
         if not user_is_sender(self.context):
             return False
@@ -186,9 +204,21 @@ class Transferable(FlexibleView, TransferRelatedMixin):
             return False
         if not self.context.allSubobjectsPublished():
             return False
+
+        for app in ILocalBehaviorSupport(self.context).local_behaviors:
+            app_transfer = queryAdapter((self.context), IAppSpecificTransferable, name=app)
+            if app_transfer is not None:
+                app_transfer.assert_transferable()
+
         if self.context.doctype_data().get("allowTransfer"):
             return True
         return False
+
+    def transferable(self):
+        try:
+            return self.assert_transferable()
+        except BaseException:
+            return False
 
     def assert_target_allowed(self, target):
         """
@@ -227,8 +257,12 @@ class Transferable(FlexibleView, TransferRelatedMixin):
             return
 
         # Check permissions:
-        if not self.transferable():
-            portalMessage(self.context, _("Document cannot be transferred."), type="error")
+        try:
+            if not self.assert_transferable():
+                portalMessage(self.context, _("Document cannot be transferred."), type="error")
+                return
+        except BaseException as exc:
+            portalMessage(self.context, exc.args[0], type="error")
             return
 
         timestamp = datetime.now()
