@@ -413,9 +413,10 @@ class DPDocumentWizard(ContextlessWizard):
     def visibility_options(self):
         container = api.content.get(UID=self.data.get("container_uid"))
         workflow = self.get_workflow_for(container)
-        # check if there is a transition "publish" originating from the initial state
-        initial = workflow.states[workflow.initial_state]
-        if "publish" not in initial.transitions:
+        # We can't check transitions-guards without obj, so hard-code only for dp_doc_workflow
+        # See https://redmine-koala.bfs.de/issues/6884
+        # TODO? In dp_review_workflow: The Owner can also submit but not publish
+        if workflow.id not in ["dp_doc_workflow"]:
             return []
 
         group_folder = (
