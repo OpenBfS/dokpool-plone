@@ -66,12 +66,17 @@ class DPDocumentView(DefaultView):
         return api.content.get_state(self.context)
 
     def published_info(self):
+        # The publishing date ould be used from self.context.wdate but we also need the actor
+        # Ignore archive-workflow
+        non_archive_workflows = [
+            i for i in getattr(self.context, "workflow_history", {}).keys() if i != "elan_archive_workflow"
+        ]
+        workflow_id = non_archive_workflows[0] if non_archive_workflows else ""
         wftool = api.portal.get_tool("portal_workflow")
-        if not (wfs := wftool.getWorkflowsFor(self.context)):
-            return
-        if not (history := wftool.getHistoryOf(wfs[0].id, self.context)):
+        if not (history := wftool.getHistoryOf(workflow_id, self.context)):
             return
         if (last := history[-1])["review_state"] != "published":
+            # Only show for published items
             return
         return last["time"], self.context.formatUserInfo(getUserInfo(self.context, last["actor"]))
 
