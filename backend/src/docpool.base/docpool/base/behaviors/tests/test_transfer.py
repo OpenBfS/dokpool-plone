@@ -85,6 +85,7 @@ class TestTransferFunctional(unittest.TestCase):
             description="bar",
             file=NamedBlobFile(data=FILE_DATA, filename="file.pdf"),
         )
+        api.content.transition(obj=document, transition="publish")
 
         # Transfer to both targets, pass a (that doesn't have testapp) first on purpose. This is to make sure
         # removal of apps not present at the transfer target affects only the transfer to that target.

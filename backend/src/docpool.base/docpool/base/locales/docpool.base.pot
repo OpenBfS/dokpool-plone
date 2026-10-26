@@ -114,6 +114,10 @@ msgid "Document Type Subcategory"
 msgstr ""
 
 #: docpool.base/docpool/base/behaviors/transferable.py
+msgid "Document cannot be transferred."
+msgstr ""
+
+#: docpool.base/docpool/base/behaviors/transferable.py
 msgid "Document has no doc type."
 msgstr ""
 

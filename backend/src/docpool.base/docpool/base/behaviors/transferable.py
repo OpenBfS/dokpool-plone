@@ -226,6 +226,11 @@ class Transferable(FlexibleView, TransferRelatedMixin):
         if targets is None:
             return
 
+        # Check permissions:
+        if not self.transferable():
+            portalMessage(self.context, _("Document cannot be transferred."), type="error")
+            return
+
         timestamp = datetime.now()
         userinfo = self.context._getUserInfoString()
         doctype_data = self.context.doctype_data()
