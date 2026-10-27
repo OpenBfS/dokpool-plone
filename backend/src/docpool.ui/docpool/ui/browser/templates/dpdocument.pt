@@ -71,7 +71,7 @@
                      title="Delete"
                      data-pat-inject="source: #content; target: #content"
                      tal:attributes="
-                       href python: f'{context.absolute_url()}/@@delete_confirmation?_authenticator={token}&amp;came_from={view.getDocpoolListingPath()}';
+                       href python: f'{context.absolute_url()}/@@delete_confirmation?_authenticator={token}&amp;{view.came_from_query}';
                      "
                      i18n:attributes="title"
                      i18n:domain="plone"
@@ -85,7 +85,7 @@
                   <a href="edit"
                      title="Edit"
                      tal:attributes="
-                       href python: f'{context.absolute_url()}/@@edit?_authenticator={token}';
+                       href python: f'{context.absolute_url()}/@@edit?_authenticator={token}&amp;{view.came_from_query}';
                      "
                      i18n:attributes="title"
                      i18n:domain="plone"
@@ -153,6 +153,7 @@
                      title="Back"
                      tal:attributes="
                        href python: view.getDocpoolListingPath();
+                       data-came_from python: view.getDocpoolListingPath() if request.get('came_from') else None;
                      "
                      i18n:attributes="title"
                   >

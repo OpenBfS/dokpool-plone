@@ -5,10 +5,12 @@ from docpool.base.content.archiving import IArchiving
 from docpool.base.utils import get_current_state_title
 from docpool.elan.config import ELAN_APP
 from docpool.elan.utils import get_scenario_for_current_user
+from docpool.ui.utils import prepare_came_from_link
 from plone import api
 from plone.i18n.normalizer.interfaces import IIDNormalizer
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from urllib.parse import urlencode
 from zope.component import queryUtility
 
 
@@ -54,11 +56,16 @@ class Item(BrowserView):
     template_folder = ViewPageTemplateFile("templates/listing-folder.pt")
     template_other = ViewPageTemplateFile("templates/listing-other.pt")
 
-    def __call__(self, uid=None, show_bulk_actions=False, use_pat_inject=True, sidebar=None):
+    def __call__(self, uid=None, show_bulk_actions=False, use_pat_inject=True, sidebar=None, came_from=None):
         self.folder_listing = self.context.portal_type in FOLDER_TYPES
         self.show_bulk_actions = show_bulk_actions
         self.use_pat_inject = use_pat_inject
         self.sidebar = sidebar if use_pat_inject and not self.folder_listing else None
+        origin = prepare_came_from_link(self.request) or self.request.URL
+        self.came_from_query = urlencode({"came_from": origin})
+        self.link_query = self.came_from_query
+        if self.sidebar:
+            self.link_query += "&" + urlencode({"sidebar": self.sidebar})
 
         obj = api.content.get(UID=uid) if uid else self.context
 

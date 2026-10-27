@@ -8,7 +8,7 @@
        doctype python: data['doctype'];
        icons python:context.restrictedTraverse('@@iconresolver');
        token context/@@authenticator/token;
-       came_from request/URL;
+       came_from_query view/came_from_query;
      "
      i18n:domain="docpool.ui"
 >
@@ -17,7 +17,7 @@
      tal:attributes="
        class python: view.pat_inject_class('list-item-link stretched-link');
        data-pat-inject python: view.pat_inject_config('content_sidebar' if view.folder_listing else 'content');
-       href python: data['url'] + '?sidebar=' + view.sidebar if view.sidebar else data['url'];
+       href python: data['url'] + '?' + view.link_query;
        title python:data['doctype_title'];
      "
   >
@@ -203,7 +203,7 @@
              tal:attributes="
                class python: view.pat_inject_class('dropdown-item d-flex gap-2 align-items-center');
                data-pat-inject python: view.pat_inject_config();
-               href python: f'{data['url']}/@@edit?_authenticator={token}&amp;came_from={came_from}';
+               href python: f'{data['url']}/@@edit?_authenticator={token}&amp;{came_from_query}';
              "
           >
             <img src="${python:icons.url('pencil')}" />
@@ -285,7 +285,7 @@
              tal:attributes="
                class python: view.pat_inject_class('dropdown-item d-flex gap-2 align-items-center');
                data-pat-inject python: view.pat_inject_config();
-               href python: f'{data['url']}/@@delete_confirmation?_authenticator={token}&came_from={came_from}';
+               href python: f'{data['url']}/@@delete_confirmation?_authenticator={token}&{came_from_query}';
              "
           >
             <img src="${python:icons.url('trash')}" />

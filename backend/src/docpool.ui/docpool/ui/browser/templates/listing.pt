@@ -746,7 +746,7 @@
           <a class="pat-inject list-item-inject-link"
              data-pat-inject="trigger: autoload-visible; delay: 50; target: self"
              tal:define="
-               target python: '@@listing-item?uid='+ item;
+               target python: '@@listing-item?uid='+ item + '&amp;' + view.came_from_query;
                target python: target + '&amp;show_bulk_actions=1' if show_bulk_actions else target;
                target python: target + '&amp;sidebar=' + view.__name__ if not view.folder_listing else target;
              "

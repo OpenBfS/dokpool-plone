@@ -277,7 +277,11 @@ document.addEventListener("patterns-injected-delayed", (e) => {
   if (savedQuery && savedQuery.length > 0) {
     const $backLink = $navContainer.find(".list-group-item.back a");
     const backHref = $backLink.attr("href");
-    if (backHref && !backHref.includes("?")) {
+    if (
+      backHref &&
+      !$backLink.attr("data-came_from") &&
+      !backHref.includes("?")
+    ) {
       $backLink.attr("href", `${backHref}?${savedQuery}`);
     }
   }
@@ -317,7 +321,13 @@ function getNeighborUrl(currentUid, direction) {
   let baseUrl = document.body.dataset.portalUrl;
 
   // TODO Find url of current dokpool
-  return targetUid ? baseUrl + `/resolveuid/${targetUid}` : null;
+  if (!targetUid) return null;
+  const url = new URL(baseUrl + `/resolveuid/${targetUid}`);
+  const came_from = document
+    .querySelector(".list-group-item.back a")
+    ?.getAttribute("data-came_from");
+  if (came_from) url.searchParams.set("came_from", came_from);
+  return url.href;
 }
 
 // Saves ordered items from listing into localstorage

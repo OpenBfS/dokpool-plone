@@ -17,10 +17,12 @@ from docpool.elan.utils import get_scenario_for_current_user
 from docpool.ui import _
 from docpool.ui.utils import group_has_allowed_document_types
 from docpool.ui.utils import is_folder_wizard_context
+from docpool.ui.utils import prepare_came_from_link
 from plone import api
 from plone.protect.authenticator import createToken
 from Products.CMFPlone.browser.search import munge_search_term
 from Products.Five.browser import BrowserView
+from urllib.parse import urlencode
 
 import datetime
 import json
@@ -47,6 +49,12 @@ class Listing(BrowserView):
 
     def __call__(self, limit=0):
         form = self.request.form
+        origin = prepare_came_from_link(self.request)
+        if not origin:
+            origin = self.request.ACTUAL_URL
+            if self.request.get("QUERY_STRING"):
+                origin += "?" + self.request["QUERY_STRING"]
+        self.came_from_query = urlencode({"came_from": origin})
 
         # Execute Bulk Actions
         if form.get("uuid"):

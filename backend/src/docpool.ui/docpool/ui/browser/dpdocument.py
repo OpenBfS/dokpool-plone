@@ -13,6 +13,7 @@ from plone.app.content.browser.actions import DeleteConfirmationForm
 from plone.dexterity.browser.view import DefaultView
 from plone.dexterity.interfaces import IDexterityEditForm
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from urllib.parse import urlencode
 from z3c.form import button
 from zope.interface import implementer
 
@@ -29,6 +30,7 @@ class DPDocumentView(DefaultView):
         if "download_attachments" in self.request.form:
             return self.download_attachments()
 
+        self.came_from_query = urlencode({"came_from": self.getDocpoolListingPath()})
         self.event = api.content.get(UID=uid) if (uid := getattr(self.context, "scenario", None)) else None
         self.group_folder = api.content.get_closest_ancestor(self.context, interface=IGroupFolder)
         return super().__call__()
@@ -58,6 +60,8 @@ class DPDocumentView(DefaultView):
         return self.context.doctype_data["icon_name"]
 
     def getDocpoolListingPath(self):
+        if came_from := prepare_came_from_link(self.request):
+            return came_from
         dp = getDocumentPoolSite(self.context)
         path = "/".join(dp.getPhysicalPath()) + "/@@listing"
         return path
@@ -151,6 +155,7 @@ class DPDocumentEditFormUI(DPDocumentEditForm):
     enable_form_tabbing = False
 
     def render(self):
+        self.back_url = prepare_came_from_link(self.request) or self.context.absolute_url()
         self.title_widget = self.widgets.pop("IDublinCore.title", None)
         self.text_widget = self.widgets.pop("text", None)
         return super().render()
