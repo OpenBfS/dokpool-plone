@@ -231,13 +231,13 @@ msgstr "Ereignisinformationen"
 msgid "Event coordinates"
 msgstr "Ereigniskoordinaten"
 
-#: docpool.elan/docpool/elan/browser/manage_subscribed_events.pt
-msgid "Event overview"
-msgstr "Ereignisübersicht"
-
 #: docpool.elan/docpool/elan/content/dpevent.py
 msgid "Event location"
 msgstr "Ereignisort"
+
+#: docpool.elan/docpool/elan/browser/manage_subscribed_events.pt
+msgid "Event overview"
+msgstr "Ereignisübersicht"
 
 #: docpool.elan/docpool/elan/content/dpevent.py
 msgid "Example: POINT(12.293121814727781 48.60338936478996)"

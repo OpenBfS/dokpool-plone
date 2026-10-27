@@ -1,4 +1,4 @@
-import "bootstrap";
+import { Offcanvas } from "bootstrap";
 import "./upload";
 import "@patternslib/patternslib/src/pat/expandable-tree/expandable-tree.css";
 // Pat-update-notification
@@ -133,8 +133,40 @@ function setupHeaderMobileUi() {
   setupMobileOffcanvasSettingsNavigation();
   setupListingMobileFilters();
   setupListingDesktopFilterResets();
+  setupSearchOffcanvas();
   setupSearchContextDropdown();
   setupRecentSearches();
+}
+
+function setupSearchOffcanvas() {
+  const searchbox = document.getElementById("portal-searchbox");
+  const input = searchbox?.querySelector("#searchGadget");
+  if (!searchbox || !(input instanceof HTMLInputElement)) return;
+
+  if (searchbox.dataset.searchOffcanvasBound === "1") return;
+  searchbox.dataset.searchOffcanvasBound = "1";
+
+  // Clear the previous search before opening.
+  searchbox.addEventListener("show.bs.offcanvas", () => {
+    input.value = "";
+  });
+
+  // Focus the input after the opening animation.
+  searchbox.addEventListener("shown.bs.offcanvas", () => {
+    input.focus({ preventScroll: true });
+  });
+
+  searchbox.addEventListener("click", (event) => {
+    // Only dismiss on the background itself, leaving form and suggestions usable.
+    const target = event.target;
+    if (
+      target === searchbox ||
+      target === searchbox.querySelector(".offcanvas-body") ||
+      target === searchbox.querySelector(".dp-search-suggestions")
+    ) {
+      Offcanvas.getInstance(searchbox)?.hide();
+    }
+  });
 }
 
 function setupSearchContextDropdown() {
@@ -155,7 +187,9 @@ function setupSearchContextDropdown() {
   options.forEach((option) => {
     option.addEventListener("click", () => {
       const scope = option.getAttribute("data-search-scope");
-      const scopeLabel = option.getAttribute("data-search-scope-label");
+      const scopeLabel = option
+        .querySelector(".dp-search-context-link-title")
+        ?.textContent.trim();
       if (!scope || !scopeLabel) return;
 
       input.value = scope;
@@ -232,10 +266,12 @@ function setupRecentSearches() {
     items.unshift(cleanTerm);
     const nextItems = items.slice(0, RECENT_SEARCHES_LIMIT);
     saveRecentSearches(nextItems);
-    renderRecentSearches(nextItems);
   };
 
-  renderRecentSearches(loadRecentSearches());
+  // Refresh recent searches only when opening the search.
+  searchbox.addEventListener("show.bs.offcanvas", () => {
+    renderRecentSearches(loadRecentSearches());
+  });
 
   form.addEventListener("submit", () => {
     addRecentSearch(input.value || "");

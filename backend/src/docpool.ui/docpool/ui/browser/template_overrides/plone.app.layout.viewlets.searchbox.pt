@@ -33,7 +33,9 @@
       >Search Site</label>
 
       <div class="dp-search-row d-flex flex-column flex-md-row align-items-stretch w-100 bg-white rounded-1">
-        <div class="dp-search-context-dropdown dropdown position-relative">
+        <div class="dp-search-context-dropdown dropdown position-relative"
+             i18n:domain="docpool.ui"
+        >
           <label class="visually-hidden"
                  for="search-context-dropdown-toggle"
           >Suchkontext</label>
@@ -74,7 +76,6 @@
               <button class="dp-search-context-link ${python:'selected' if selected_search_scope == 'current_event' else ''}"
                       type="button"
                       data-search-scope="current_event"
-                      data-search-scope-label="Current event"
               >
                 <span class="dp-search-context-link-title"
                       i18n:translate=""
@@ -88,7 +89,6 @@
               <button class="dp-search-context-link ${python:'selected' if selected_search_scope == 'all_events' else ''}"
                       type="button"
                       data-search-scope="all_events"
-                      data-search-scope-label="All events"
               >
                 <span class="dp-search-context-link-title"
                       i18n:translate=""
@@ -102,7 +102,6 @@
               <button class="dp-search-context-link ${python:'selected' if selected_search_scope == 'all_archives' else ''}"
                       type="button"
                       data-search-scope="all_archives"
-                      data-search-scope-label="All archives"
               >
                 <span class="dp-search-context-link-title"
                       i18n:translate=""

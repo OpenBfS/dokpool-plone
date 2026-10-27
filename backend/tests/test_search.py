@@ -10,6 +10,17 @@ class TestSearch:
         self.page = content_admin_page_factory()
         self.plone_url = self.portal.absolute_url()
 
+    def test_search_reopens_with_empty_input(self):
+        page = self.page
+        page.goto(f"{self.plone_url}/bund/setActiveApp?app=elan")
+        page.locator("button.search-btn").click()
+        page.locator("#searchGadget").fill("Suchbegriff")
+        page.locator("#searchGadget").press("Enter")
+        expect(page.locator("#listing")).to_be_visible()
+        page.locator("button.search-btn").click()
+        expect(page.locator("#searchGadget")).to_be_visible()
+        expect(page.locator("#searchGadget")).to_have_value("")
+
     def test_search_context_dropdown_switch_event(self):
         page = self.page
         page.goto(f"{self.plone_url}/bund/setActiveApp?app=elan")
