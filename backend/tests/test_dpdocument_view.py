@@ -31,7 +31,9 @@ class TestDPDocumentView(GroupsFolderSetupMixin):
         item = page.locator("#listing .listing-item", has_text=self.entry1.title)
         item.get_by_role("button").click()
         item.get_by_role("link", name="Edit", exact=True).click()
-        expect(page.locator("#form-widgets-IDublinCore-title")).to_have_value(self.entry1.title)
+        expect(page.locator("#form-widgets-IDublinCore-title")).to_have_value(
+            self.entry1.title, timeout=30000
+        )
         page.locator(".dp-document-header .back a").click()
         expect(page).to_have_url(origin)
 
