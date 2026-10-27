@@ -13,6 +13,7 @@ from plone.app.testing import TEST_USER_ID
 from plone.dexterity.utils import datify
 from plone.namedfile.file import NamedBlobFile
 from plone.namedfile.file import NamedBlobImage
+from urllib.parse import urlencode
 
 import datetime
 import os
@@ -143,8 +144,9 @@ class TestUIFeatures(unittest.TestCase):
 
         # render listing view
         html = listing_view()
+        query = urlencode({"came_from": self.request.ACTUAL_URL})
         self.assertIn(
-            f'<a class="pat-inject list-item-inject-link" data-pat-inject="trigger: autoload-visible; delay: 50; target: self" href="@@listing-item?uid={self.entry.UID()}&amp;show_bulk_actions=1" >',
+            f'<a class="pat-inject list-item-inject-link" data-pat-inject="trigger: autoload-visible; delay: 50; target: self" href="@@listing-item?uid={self.entry.UID()}&amp;{query}&amp;show_bulk_actions=1" >',
             html,
         )
 
@@ -152,7 +154,8 @@ class TestUIFeatures(unittest.TestCase):
         listing = api.content.get_view("listing", self.docpool, self.request)
         html = listing()
 
-        self.assertIn(f"@@listing-item?uid={self.entry.UID()}&amp;sidebar=listing", html)
+        query = urlencode({"came_from": self.request.ACTUAL_URL})
+        self.assertIn(f"@@listing-item?uid={self.entry.UID()}&amp;{query}&amp;sidebar=listing", html)
 
     def test_groups_listing_hides_folder_wizard_links(self):
         groups = self.docpool.content.Groups
@@ -194,14 +197,15 @@ class TestUIFeatures(unittest.TestCase):
 
     def test_listing_item_view(self):
         uid = self.entry.UID()
+        query = urlencode({"came_from": self.request.URL})
 
         # The view can be used anywhere. On the portal:
         listing_item_view = api.content.get_view("listing-item", self.portal, self.request)
         html = listing_item_view(uid=uid)
         self.assertIn("A Weatherinfo</h3>", html)
-        self.assertIn(f'href="{self.entry.absolute_url()}"', html)
+        self.assertIn(f'href="{self.entry.absolute_url()}?{query}"', html)
         html = listing_item_view(uid=uid, sidebar="listing")
-        self.assertIn(f'href="{self.entry.absolute_url()}?sidebar=listing"', html)
+        self.assertIn(f'href="{self.entry.absolute_url()}?{query}&amp;sidebar=listing"', html)
         file_url = self.entry["some-file"].absolute_url()
         self.assertIn(f'href="{file_url}/@@pdfjs_file_view"', html)
         self.assertIn(f'src="{file_url}/@@preview?scale=mini"', html)
@@ -221,7 +225,7 @@ class TestUIFeatures(unittest.TestCase):
         self.assertIn("A Weatherinfo</h3>", html)
         self.assertIn("pat-inject list-item-link stretched-link", html)
         html = listing_item_view(uid=uid, sidebar="tasks")
-        self.assertNotIn(f"{self.entry.absolute_url()}?sidebar=tasks", html)
+        self.assertNotIn("&amp;sidebar=tasks", html)
         html = listing_item_view(uid=uid, use_pat_inject=False)
         self.assertNotIn("pat-inject", html)
 
