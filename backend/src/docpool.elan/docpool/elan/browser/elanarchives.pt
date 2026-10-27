@@ -27,6 +27,7 @@
                   i18n:translate=""
               >Title</th>
               <th i18n:translate="">Type of event</th>
+              <th></th>
               <th i18n:translate="">Entries</th>
               <th i18n:domain="plone"
                   i18n:translate=""
@@ -63,6 +64,14 @@
                       i18n:domain="z3c.form"
                       i18n:translate=""
                 >No value</span>
+              </td>
+              <td>
+                <a class="pat-modal"
+                   href="${python: archive.get_archived_event().absolute_url()}"
+                   data-pat-modal="class: large; source: #content"
+                >
+                  <tal:icon replace="structure python:icons.tag('info-circle', tag_class='')" />
+                </a>
               </td>
               <td tal:content="python: view.number_of_entries(archive)"></td>
               <td><a href=""
