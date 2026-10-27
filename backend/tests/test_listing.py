@@ -46,7 +46,7 @@ class TestListing(GroupsFolderSetupMixin):
         page.goto(f"{self.plone_url}/bund/listing")
         # Wait for items to get loaded
         items = page.locator("#listing .listing-item")
-        expect(items).to_have_count(2)
+        expect(items).to_have_count(3)
         # Tests if the DPDocument (without images) exists
         dp_without_images = page.locator("#listing .listing-item", has_text="Weatherinfo without images")
         expect(dp_without_images).to_have_count(1)
@@ -67,7 +67,7 @@ class TestListing(GroupsFolderSetupMixin):
         page.goto(f"{self.plone_url}/bund/listing")
         # Wait for items to get loaded
         items = page.locator("#listing .listing-item")
-        expect(items).to_have_count(2)
+        expect(items).to_have_count(3)
         # Tests if the DPDocument (without images) exists
         dp_without_images = page.locator("#listing .listing-item", has_text="Weatherinfo without images")
         dp_without_images.get_by_role("button").click()
@@ -161,7 +161,7 @@ class TestListing(GroupsFolderSetupMixin):
         page.goto(f"{self.plone_url}/bund/listing")
         # Wait for items to get loaded
         items = page.locator("#listing .listing-item")
-        expect(items).to_have_count(2)
+        expect(items).to_have_count(3)
         # Tests if the DPDocument (without images) exists
         dp_without_images = page.locator("#listing .listing-item", has_text="Weatherinfo without images")
         dp_without_images.get_by_role("button").click()
@@ -169,7 +169,7 @@ class TestListing(GroupsFolderSetupMixin):
         page.get_by_role("button", name="Delete").click()
         # Wait for items to get loaded
         items = page.locator("#listing .listing-item")
-        expect(items).to_have_count(1)
+        expect(items).to_have_count(2)
 
     def test_inject_and_go_back(self):
         page = self.page
@@ -187,21 +187,21 @@ class TestListing(GroupsFolderSetupMixin):
         page.get_by_role("link", name="Back").click()
         # Wait for items to get loaded
         items = page.locator("#listing .listing-item")
-        expect(items).to_have_count(2)
+        expect(items).to_have_count(3)
 
     def test_listing_filter_category(self):
         page = self.page
         page.goto(f"{self.plone_url}/bund/setActiveApp?app=elan")
         page.goto(f"{self.plone_url}/bund/listing")
         # Filter by catagory
-        expect(page.locator("#listing .listing-item")).to_have_count(2)
+        expect(page.locator("#listing .listing-item")).to_have_count(3)
         page.get_by_role("button", name="Entrytype").click()
         expect(
             page.locator("label").filter(has_text="Wetterlage und -prognosen").locator("span.badge").first
         ).to_contain_text("1")
         expect(
             page.locator("label").filter(has_text="Mitteilungen der Stäbe").locator("span.badge").first
-        ).to_contain_text("1")
+        ).to_contain_text("2")
         page.get_by_role("checkbox", name="Wetterlage und -prognosen").click()
         page.get_by_role("button", name="Filter").click()
         expect(page.locator(".listing-item")).to_have_count(1)
@@ -210,7 +210,7 @@ class TestListing(GroupsFolderSetupMixin):
         page = self.page
         page.goto(f"{self.plone_url}/bund/setActiveApp?app=elan")
         page.goto(f"{self.plone_url}/bund/listing")
-        expect(page.locator("#listing .listing-item")).to_have_count(2)
+        expect(page.locator("#listing .listing-item")).to_have_count(3)
 
         # Filter by date since
         page.get_by_role("button", name="Time [ME(S)Z]").click()
@@ -235,7 +235,7 @@ class TestListing(GroupsFolderSetupMixin):
         expect(page.locator("#listing .listing-item")).to_have_count(0)
 
         page.get_by_role("button", name="Reset filter").click()
-        expect(page.locator("#listing .listing-item")).to_have_count(2)
+        expect(page.locator("#listing .listing-item")).to_have_count(3)
 
     def test_listing_next_item(self):
         page = self.page
@@ -243,12 +243,12 @@ class TestListing(GroupsFolderSetupMixin):
         page.goto(f"{self.plone_url}/bund/listing")
         # Open the first item through pat-inject and the stretched link
         items = page.locator("#listing .list-item-inject-link")
-        expect(items).to_have_count(2)
-        # Save the two hrefs (@@listing-item?uid=16fe85e237ab46d3a10b8929e2f956be)
+        expect(items).to_have_count(3)
+        # Save the three hrefs (@@listing-item?uid=16fe85e237ab46d3a10b8929e2f956be)
         hrefs = items.evaluate_all("els => els.map(e => e.getAttribute('href'))")
         # Extract the uid from the href
         uids = [re.search(r"uid=([0-9a-f]+)", h).group(1) for h in hrefs if h]
-        assert len(uids) == 2
+        assert len(uids) == 3
         # Click one item
         uid_to_open = uids[0]
         page.locator(f'#listing a.list-item-inject-link[href*="uid={uid_to_open}"] h3').click()
@@ -259,9 +259,7 @@ class TestListing(GroupsFolderSetupMixin):
         expect(nav).to_have_attribute("data-current-item", uid_to_open)
         # Check if the next item has the other uid
         next_link = page.locator("a.next-item")
-        href = next_link.get_attribute("href")
-        assert href is not None
-        assert f"/resolveuid/{expected_next_uid}" in href
+        expect(next_link).to_have_attribute("href", re.compile(rf".*/resolveuid/{expected_next_uid}.*"))
 
     def test_wizard(self):
         page = self.page
@@ -297,7 +295,7 @@ class TestListing(GroupsFolderSetupMixin):
         # Wait for items to get loaded
         page.wait_for_selector("#listing .listing-item", state="visible")
         items = page.locator("#listing .listing-item")
-        expect(items).to_have_count(3)
+        expect(items).to_have_count(4)
         expect(page.get_by_text("Example Entry")).to_be_visible()
         # Sync to check in Plone
         transaction.commit()
@@ -307,8 +305,8 @@ class TestListing(GroupsFolderSetupMixin):
         page = self.page
         page.goto(f"{self.plone_url}/bund/setActiveApp?app=elan")
         page.goto(f"{self.plone_url}/bund/listing")
-        # 1. Prüfen, dass beide Items da sind
-        expect(page.locator("#listing .listing-item")).to_have_count(2)
+        # 1. Prüfen, dass alle drei Items da sind
+        expect(page.locator("#listing .listing-item")).to_have_count(3)
         # 2. Filter öffnen (z.B. Entrytype)
         page.get_by_role("button", name="Entrytype").click()
         # 3. Einen Filter auswählen
@@ -323,8 +321,8 @@ class TestListing(GroupsFolderSetupMixin):
         # 6. Reset durchführen
         reset_button = page.get_by_role("link", name="Reset")
         reset_button.click()
-        # 7. Prüfen, dass wieder beide Items da sind
-        expect(page.locator("#listing .listing-item")).to_have_count(2)
+        # 7. Prüfen, dass wieder alle drei Items da sind
+        expect(page.locator("#listing .listing-item")).to_have_count(3)
         expect(page.get_by_text("Weatherinfo")).to_be_visible()
         expect(page.get_by_text("Staff Note")).to_be_visible()
 
@@ -333,7 +331,7 @@ class TestListing(GroupsFolderSetupMixin):
         page.goto(f"{self.plone_url}/bund/setActiveApp?app=elan")
         page.goto(f"{self.plone_url}/bund/listing")
 
-        expect(page.locator("#listing .listing-item")).to_have_count(2)
+        expect(page.locator("#listing .listing-item")).to_have_count(3)
         page.get_by_role("button", name="Entrytype").click()
         page.get_by_role("checkbox", name="Wetterlage und -prognosen").click()
         page.get_by_role("button", name="Filter").click()
@@ -345,7 +343,7 @@ class TestListing(GroupsFolderSetupMixin):
         expect(reset_icon).to_be_visible()
         reset_icon.click()
 
-        expect(page.locator("#listing .listing-item")).to_have_count(2)
+        expect(page.locator("#listing .listing-item")).to_have_count(3)
         expect(page.get_by_text("Weatherinfo")).to_be_visible()
         expect(page.get_by_text("Staff Note")).to_be_visible()
         assert "selected_subcategories" not in page.url
@@ -357,7 +355,7 @@ class TestListing(GroupsFolderSetupMixin):
         page.goto(f"{self.plone_url}/bund/setActiveApp?app=elan")
         page.goto(f"{self.plone_url}/bund/listing")
 
-        expect(page.locator("#listing .listing-item")).to_have_count(2)
+        expect(page.locator("#listing .listing-item")).to_have_count(3)
 
         # Mobile Filter öffnen
         page.locator("#listingMobileFiltersToggle").click()
@@ -384,7 +382,7 @@ class TestListing(GroupsFolderSetupMixin):
         assert "selected_subcategories" not in href
         section_reset_button.click()
 
-        # Prüfen, dass wieder beide Items da sind
-        expect(page.locator("#listing .listing-item")).to_have_count(2)
+        # Prüfen, dass wieder alle drei Items da sind
+        expect(page.locator("#listing .listing-item")).to_have_count(3)
         expect(page.get_by_text("Weatherinfo")).to_be_visible()
         expect(page.get_by_text("Staff Note")).to_be_visible()
