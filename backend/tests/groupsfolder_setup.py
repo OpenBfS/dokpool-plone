@@ -88,4 +88,23 @@ class GroupsFolderSetupMixin:
             file=NamedBlobFile(data=FILE_DATA, filename="file.pdf"),
         )
         self.entry2.mdate = datetime(2026, 6, 1, 14, 00, 00)
+
+        # The review folder supplies the workflow for pending tasks.
+        self.review_folder = api.content.create(
+            container=self.group_folder2,
+            type="ReviewFolder",
+            title="Review",
+            local_behaviors=["elan"],
+        )
+        self.entry3 = api.content.create(
+            container=self.review_folder,
+            type="DPDocument",
+            title="Pending review entry",
+            docType="staff_note",
+            local_behaviors=["elan"],
+            scenario=get_scenario_for_current_user(self.docpool),
+        )
+        api.content.transition(obj=self.entry3, transition="submit")
+        self.entry3.creation_date = datetime(2026, 3, 1, 14, 00, 00)
+        self.entry3.reindexObject()
         transaction.commit()

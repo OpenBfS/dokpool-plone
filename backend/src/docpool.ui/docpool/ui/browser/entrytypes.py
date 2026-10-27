@@ -8,6 +8,7 @@ from docpool.elan.config import ELAN_APP
 from docpool.elan.utils import get_scenario_for_current_user
 from plone import api
 from Products.Five.browser import BrowserView
+from urllib.parse import urlencode
 
 
 class EntryTypes(BrowserView):
@@ -80,7 +81,10 @@ class EntryTypes(BrowserView):
                     # Hide subcategories without DocTypes for the current app!
                     continue
                 subcategory = subcategory_brain._unrestrictedGetObject()
-                subcategory_qs = f"selected_subcategories:list={subcategory.title}"
+                subcategory_qs = urlencode({
+                    "selected_subcategories:list": subcategory.title,
+                    "came_from": self.request.ACTUAL_URL,
+                })
                 entry = {
                     "title": subcategory.title,
                     "id": subcategory.id,

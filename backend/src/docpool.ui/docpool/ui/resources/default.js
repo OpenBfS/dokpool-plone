@@ -313,7 +313,11 @@ document.addEventListener("patterns-injected-delayed", (e) => {
   if (savedQuery && savedQuery.length > 0) {
     const $backLink = $navContainer.find(".list-group-item.back a");
     const backHref = $backLink.attr("href");
-    if (backHref && !backHref.includes("?")) {
+    if (
+      backHref &&
+      !$backLink.attr("data-came_from") &&
+      !backHref.includes("?")
+    ) {
       $backLink.attr("href", `${backHref}?${savedQuery}`);
     }
   }
@@ -322,7 +326,11 @@ document.addEventListener("patterns-injected-delayed", (e) => {
   ["next", "prev"].forEach((dir) => {
     const $link = $navContainer.find(`.list-group-item.${dir} a`);
     if ($link.length > 0) {
-      const newUrl = getNeighborUrl(currentUid, dir);
+      const newUrl = getNeighborUrl(
+        currentUid,
+        dir,
+        $navContainer.attr("data-sidebar"),
+      );
       if (newUrl) {
         $link.attr("href", newUrl);
       }
@@ -333,7 +341,7 @@ document.addEventListener("patterns-injected-delayed", (e) => {
   });
 });
 
-function getNeighborUrl(currentUid, direction) {
+function getNeighborUrl(currentUid, direction, sidebar) {
   const savedListStr = localStorage.getItem("dokpool-listing-items");
   if (!savedListStr) return null;
 
@@ -353,7 +361,14 @@ function getNeighborUrl(currentUid, direction) {
   let baseUrl = document.body.dataset.portalUrl;
 
   // TODO Find url of current dokpool
-  return targetUid ? baseUrl + `/resolveuid/${targetUid}` : null;
+  if (!targetUid) return null;
+  const url = new URL(baseUrl + `/resolveuid/${targetUid}`);
+  const came_from = document
+    .querySelector(".list-group-item.back a")
+    ?.getAttribute("data-came_from");
+  if (came_from) url.searchParams.set("came_from", came_from);
+  if (sidebar) url.searchParams.set("sidebar", sidebar);
+  return url.href;
 }
 
 // Saves ordered items from listing into localstorage

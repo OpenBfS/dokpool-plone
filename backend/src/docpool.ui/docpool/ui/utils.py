@@ -166,7 +166,7 @@ def get_field_and_schema_for_fieldname(field_id, fti):
 
 
 def prepare_came_from_link(request):
-    """Prepare came_from link for redirecting after form submission."""
+    """Validate and normalize the came_from URL for return navigation."""
 
     came_from = request.get("came_from")
     if not came_from:
