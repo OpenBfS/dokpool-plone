@@ -331,6 +331,7 @@ class EventSwitcherDropdown(EventSwitcherMixin, BrowserView):
                     selected=(uid == selected_uid),
                     last=False,
                     actions=self._actions(s),
+                    archive_url=None,
                 )
                 for uid, s in scenarios_by_uid.items()
                 if s.Status == status_term.value
@@ -338,6 +339,17 @@ class EventSwitcherDropdown(EventSwitcherMixin, BrowserView):
             if scenarios:
                 scenarios[-1]["last"] = True
                 self.scenarios.extend(scenarios)
+
+        if archive := container_with_portal_type(self.context, "ELANArchive"):
+            self.scenarios.append(
+                dict(
+                    scenario=archive.get_archived_event(),
+                    selected=False,
+                    last=True,
+                    actions=[],
+                    archive_url=archive.absolute_url(),
+                )
+            )
         return super().__call__()
 
     def _actions(self, event):
