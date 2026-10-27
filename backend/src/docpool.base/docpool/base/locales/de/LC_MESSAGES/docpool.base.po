@@ -17,7 +17,7 @@ msgstr ""
 msgid "${count} item(s) cut."
 msgstr "${count} Objekte ausgeschnitten."
 
-#: docpool.base/docpool/base/browser/dpdocument_transfer_form.py
+#: docpool.base/docpool/base/browser/dpdocument_transfer.py
 msgid "${transferred} Items transferred!"
 msgstr "${transferred} Inhalte wurden übertragen!"
 
@@ -86,7 +86,7 @@ msgstr "Löschen"
 msgid "Disallowed to paste item(s)."
 msgstr "Einfügen nicht erlaubt."
 
-#: docpool.base/docpool/base/behaviors/transferable.py
+#: docpool.base/docpool/base/behaviors/transferstype.py
 msgid "Doc type not accepted."
 msgstr "Eintragstyp wurde nicht akzeptiert."
 
@@ -112,9 +112,21 @@ msgstr "Kategorie"
 msgid "Document Type Subcategory"
 msgstr "Unterkategorie"
 
+#: docpool.base/docpool/base/behaviors/transferable.py
+msgid "Document cannot be transferred."
+msgstr "Dokument kann nicht übertragen werden."
+
+#: docpool.base/docpool/base/behaviors/transferable.py
+msgid "Document has no doc type."
+msgstr "Dokument hat keinen Dokumenttyp."
+
 #: docpool.base/docpool/base/browser/collectiondoc.pt
 msgid "Document state"
 msgstr "Eintragsstatus"
+
+#: docpool.base/docpool/base/behaviors/transferable.py
+msgid "Document was transferred to this target before."
+msgstr "Dokument wurde bereits an dieses Ziel übertragen."
 
 #: docpool.base/docpool/base/browser/collectiondoc.pt
 msgid "Document workflow:"
@@ -261,7 +273,7 @@ msgstr "Neuer Status für ${title}: ${new_state}"
 msgid "No items deleted."
 msgstr "Keine Inhalte gelöscht."
 
-#: docpool.base/docpool/base/browser/dpdocument_transfer_form.py
+#: docpool.base/docpool/base/browser/dpdocument_transfer.py
 msgid "No items or targets selected!"
 msgstr "Keine Inhalte oder Ziele ausgewählt!"
 

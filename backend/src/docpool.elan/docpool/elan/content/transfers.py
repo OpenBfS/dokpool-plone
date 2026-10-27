@@ -1,4 +1,5 @@
 from docpool.base.behaviors.transferable import IAppSpecificTransfer
+from docpool.base.behaviors.transferable import IAppSpecificTransferable
 from docpool.base.content.dpdocument import IDPDocument
 from docpool.base.content.dptransferfolder import IDPTransferFolder
 from docpool.base.content.places import IPlaces
@@ -11,17 +12,31 @@ from zope.interface import implementer
 from zope.interface import named
 
 
-@adapter(IDPDocument, IDPTransferFolder)
-@implementer(IAppSpecificTransfer)
-@named(ELAN_APP)
-class ELANSpecificTransfer:
-    def __init__(self, original, transfer_folder):
+class ELANSpecificTransferRelated:
+    def __init__(self, original):
         self.original = original
-        self.transfer_folder = transfer_folder
         self.elanobj = IELANDocument(self.original)
         self.scenario = (
             scen if (uid := self.elanobj.scenario) and (scen := api.content.get(UID=uid)) else None
         )
+
+
+@adapter(IDPDocument)
+@implementer(IAppSpecificTransferable)
+@named(ELAN_APP)
+class ELANSpecificTransferable(ELANSpecificTransferRelated):
+    def assert_transferable(self):
+        if self.scenario.EventType == "Minor Situation":
+            raise ValueError(_("Cannot transfer entry with an event of type Minor Situation."))
+
+
+@adapter(IDPDocument, IDPTransferFolder)
+@implementer(IAppSpecificTransfer)
+@named(ELAN_APP)
+class ELANSpecificTransfer(ELANSpecificTransferRelated):
+    def __init__(self, original, transfer_folder):
+        super().__init__(original)
+        self.transfer_folder = transfer_folder
 
     def assert_allowed(self):
         if self.scenario is None:

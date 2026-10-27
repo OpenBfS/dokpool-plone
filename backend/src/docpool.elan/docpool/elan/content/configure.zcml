@@ -20,6 +20,7 @@
     <implements interface="zope.component.interfaces.IPossibleSite" />
   </class>
 
+  <adapter factory=".transfers.ELANSpecificTransferable" />
   <adapter factory=".transfers.ELANSpecificTransfer" />
   <adapter factory=".workflow.ELANSpecificWorkflow" />
 

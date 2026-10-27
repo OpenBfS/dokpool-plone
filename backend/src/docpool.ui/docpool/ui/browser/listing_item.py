@@ -1,5 +1,4 @@
-from docpool.base.behaviors.transferable import ITransferable
-from docpool.base.behaviors.utils import allowed_targets
+from docpool.base.browser.dpdocument_transfer import show_transfer_action
 from docpool.base.config import FOLDER_TYPES
 from docpool.base.content.archiving import IArchiving
 from docpool.base.utils import get_current_state_title
@@ -83,16 +82,6 @@ class Item(BrowserView):
             modified_by_user = userinfo[1]
             modified_by_group = userinfo[2]
 
-        show_transfer_action = False
-        if api.user.has_permission("Docpool: Send Content", obj=obj):
-            try:
-                adapted = ITransferable(obj)
-            except TypeError:
-                pass
-            else:
-                if adapted.transferable() and allowed_targets(obj):
-                    show_transfer_action = True
-
         doctype_data = obj.doctype_data()
         icon_name = doctype_data.get("icon_name", "question")  # Unknown type as fallback
         doctype_title = doctype_data.get("title", obj.docType)  # id of initially selected DocType as fallback
@@ -107,7 +96,7 @@ class Item(BrowserView):
 
         actions = {
             "edit": api.user.has_permission("Modify portal content", obj=obj),
-            "transfer": show_transfer_action,
+            "transfer": show_transfer_action(obj),
             "favorite": False,
             "transitions": bool(available_transitions),
             "download_attachments": bool(attachments),

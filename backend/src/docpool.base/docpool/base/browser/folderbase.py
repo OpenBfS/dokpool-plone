@@ -1,7 +1,7 @@
 from AccessControl import Unauthorized
 from Acquisition import aq_inner
 from docpool.base import DocpoolMessageFactory as _
-from docpool.base.behaviors.transferable import ITransferable
+from docpool.base.browser.dpdocument_transfer import show_transfer_action
 from docpool.base.content.dpdocument import IDPDocument
 from docpool.base.content.folderbase import IFolderBase
 from docpool.base.content.infolink import IInfoLink
@@ -89,21 +89,8 @@ class FolderBaseView(BrowserView):
         # Check if transfer-action should be shown
         transfer_action = [i for i in button_actions if i["id"] == "transfer"]
         transfer_action = transfer_action[0] if transfer_action else None
-        if transfer_action:
-            show_transfer_action = False
-            for item in items:
-                obj = item.getObject()
-                if api.user.has_permission("Docpool: Send Content", obj=obj):
-                    try:
-                        adapted = ITransferable(obj)
-                    except TypeError:
-                        continue
-                    if adapted.transferable() and adapted.allowedTargets():
-                        show_transfer_action = True
-                        # shortcut
-                        break
-            if not show_transfer_action:
-                button_actions.remove(transfer_action)
+        if transfer_action and not any(show_transfer_action(item.getObject()) for item in items):
+            button_actions.remove(transfer_action)
 
         # Check if transition-action should be shown
         portal_workflow = api.portal.get_tool("portal_workflow")

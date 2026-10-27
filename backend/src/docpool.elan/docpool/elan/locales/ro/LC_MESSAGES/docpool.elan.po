@@ -106,6 +106,10 @@ msgstr ""
 msgid "Cannot transfer entry to docpool without event ${event}."
 msgstr ""
 
+#: docpool.elan/docpool/elan/content/transfers.py
+msgid "Cannot transfer entry with an event of type Minor Situation."
+msgstr ""
+
 #: docpool.elan/docpool/elan/browser/dpevent.pt
 #: docpool.elan/docpool/elan/content/dpevent.py
 msgid "Changelog"

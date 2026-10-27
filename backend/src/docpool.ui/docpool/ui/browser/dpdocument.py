@@ -1,6 +1,5 @@
-from docpool.base.behaviors.transferable import ITransferable
-from docpool.base.behaviors.utils import allowed_targets
 from docpool.base.browser.dpdocument import DPDocumentEditForm
+from docpool.base.browser.dpdocument_transfer import show_transfer_action
 from docpool.base.content.groupfolder import IGroupFolder
 from docpool.base.content.places import IPlaces
 from docpool.base.utils import getDocumentPoolSite
@@ -31,6 +30,7 @@ class DPDocumentView(DefaultView):
 
         self.event = api.content.get(UID=uid) if (uid := getattr(self.context, "scenario", None)) else None
         self.group_folder = api.content.get_closest_ancestor(self.context, interface=IGroupFolder)
+        self.show_transfer_action = show_transfer_action(self.context)
         return super().__call__()
 
     def download_attachments(self):
@@ -74,17 +74,6 @@ class DPDocumentView(DefaultView):
         if (last := history[-1])["review_state"] != "published":
             return
         return last["time"], self.context.formatUserInfo(getUserInfo(self.context, last["actor"]))
-
-    @property
-    def show_transfer_action(self):
-        if api.user.has_permission("Docpool: Send Content", obj=self.context):
-            try:
-                adapted = ITransferable(self.context)
-            except TypeError:
-                pass
-            else:
-                if adapted.transferable() and allowed_targets(self.context):
-                    return True
 
     def visibility_options(self):
         dp_app_state = api.content.get_view("dp_app_state", self.context, self.request)

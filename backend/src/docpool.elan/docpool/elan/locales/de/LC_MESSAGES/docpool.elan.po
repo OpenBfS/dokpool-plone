@@ -102,6 +102,10 @@ msgstr "Zu Ereignis:"
 msgid "Cannot transfer entry to docpool without event ${event}."
 msgstr "Eintrag kann nicht in Dokpool ohne das Ereignis „${event}“ übertragen werden."
 
+#: docpool.elan/docpool/elan/content/transfers.py
+msgid "Cannot transfer entry with an event of type Minor Situation."
+msgstr "Eintrag zu einem Ereignis vom Typ Kleine Lage kann nicht übertragen werden."
+
 #: docpool.elan/docpool/elan/browser/dpevent.pt
 #: docpool.elan/docpool/elan/content/dpevent.py
 msgid "Changelog"

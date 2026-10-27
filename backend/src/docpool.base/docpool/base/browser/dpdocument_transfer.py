@@ -41,7 +41,7 @@ class TransferForm(BrowserView):
         return self.index()
 
     def transfer_infos(self):
-        targets = []
+        targets = {}  # deduplicate targets by UID, don't rely on object identity
         items = []
         # the listing passes uids
         uids = self.request.get("uid", [])
@@ -56,21 +56,27 @@ class TransferForm(BrowserView):
                 adapted = ITransferable(obj)
             except TypeError:
                 continue
-            if adapted.transferable() and (allowed := adapted.allowedTargets()):
-                targets.extend(allowed)
+            if adapted.transferable() and (allowed := adapted.allowed_targets()):
+                targets.update({target.UID(): target for target in allowed})
                 items.append(obj)
 
         target_infos = []
-        portal_catalog = api.portal.get_tool("portal_catalog")
-        for target in set(targets):
-            # ContentSenders do not need access to the target folders!
-            brains = portal_catalog.unrestrictedSearchResults(UID=target)
-            obj = brains[0]._unrestrictedGetObject()
-            target_docpool = IPlaces(obj).document_pool
+        for target_uid, target in targets.items():
+            target_docpool = IPlaces(target).document_pool
             target_apps = ", ".join([appName(app) for app in target_docpool.supportedApps])
             to_title = f"{target_docpool.title} ({target_apps})"
-            target_infos.append({"id": target, "esd_to_title": to_title})
+            target_infos.append({"id": target_uid, "esd_to_title": to_title})
         return {
             "items": items,
             "targets": sorted(target_infos, key=lambda x: x["esd_to_title"]),
         }
+
+
+def show_transfer_action(obj):
+    if not api.user.has_permission("Docpool: Send Content", obj=obj):
+        return False
+    try:
+        adapted = ITransferable(obj)
+    except TypeError:
+        return False
+    return adapted.transferable() and adapted.allowed_targets()

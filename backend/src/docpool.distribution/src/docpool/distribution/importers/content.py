@@ -50,6 +50,8 @@ def global_obj_hook_before_deserializing(item, obj):
     """Hook to modify the created obj before deserializing the data."""
     # import simplesetter data before the rest
     for fieldname, value in item.get("exportimport.simplesetter", {}).items():
+        if fieldname == "subscribed_events" and obj.portal_type == "DPEvents":
+            value = PersistentList(value)
         setattr(obj, fieldname, value)
 
     for iface_name in item.pop(MARKER_INTERFACES_KEY, []):

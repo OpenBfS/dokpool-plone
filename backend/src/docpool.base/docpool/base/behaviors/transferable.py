@@ -5,7 +5,8 @@ from contextlib import contextmanager
 from DateTime import DateTime
 from datetime import datetime
 from docpool.base import DocpoolMessageFactory as _
-from docpool.base.behaviors.utils import allowed_targets
+from docpool.base.behaviors.transferstype import ITransfersType
+from docpool.base.behaviors.transferstype import TransferRelatedMixin
 from docpool.base.browser.flexible_view import FlexibleView
 from docpool.base.content.archiving import IArchiving
 from docpool.base.content.dpdocument import IDPDocument
@@ -27,6 +28,7 @@ from Products.CMFCore.interfaces import IActionSucceededEvent
 from zope import schema
 from zope.annotation.interfaces import IAnnotations
 from zope.component import adapter
+from zope.component import queryAdapter
 from zope.component import queryMultiAdapter
 from zope.globalrequest import getRequest
 from zope.interface import Interface
@@ -60,6 +62,20 @@ def transferring():
 
 class ISkipAutomaticTransferMarker(Interface):
     """Marker interface for containers whose content should be ignored for automatic transfers."""
+
+
+class IAppSpecificTransferable(Interface):
+    """Handle application-specific logic related to transfer of a document.
+
+    Applied for all apps associated with the document.
+    """
+
+    def assert_transferable():
+        """Check if this app's logic allows transferring the document anywhere.
+
+        If yes, returns without error.
+        If no, raises ValueError with the reason as the exception argument.
+        """
 
 
 class IAppSpecificTransfer(Interface):
@@ -113,7 +129,7 @@ class ITransferable(model.Schema):
     write_permission(transferred="docpool.transfers.AccessTransfers")
 
 
-class Transferable(FlexibleView):
+class Transferable(FlexibleView, TransferRelatedMixin):
     __allow_access_to_unprotected_subobjects__ = 1
 
     security = ClassSecurityInfo()
@@ -169,15 +185,18 @@ class Transferable(FlexibleView):
             for event, type_ in events
         ]
 
-    def transferable(self):
+    def assert_transferable(self):
         """
         If not created by a transfer
         If published
         If all subobjects published (TODO: maybe they should even be transferable themselves)
         If DocType allows it
+        If all associated apps allow it
         If Object allows it directly
+
+        TODO Should either raise or return None
         """
-        if not is_sender(self.context):
+        if not user_is_sender(self.context):
             return False
         if self.transferred or IArchiving(self.context).is_archive:
             return False
@@ -185,28 +204,40 @@ class Transferable(FlexibleView):
             return False
         if not self.context.allSubobjectsPublished():
             return False
+
+        for app in ILocalBehaviorSupport(self.context).local_behaviors:
+            app_transfer = queryAdapter((self.context), IAppSpecificTransferable, name=app)
+            if app_transfer is not None:
+                app_transfer.assert_transferable()
+
         if self.context.doctype_data().get("allowTransfer"):
             return True
         return False
 
-    def allowedTargets(self):
-        return [i["uid"] for i in allowed_targets(self.context)]
+    def transferable(self):
+        try:
+            return self.assert_transferable()
+        except BaseException:
+            return False
 
-    security.declareProtected("Docpool: Send Content", "transferToAll")
+    def assert_target_allowed(self, target):
+        """
+        Target must be allowed for our doctype
+        and context must not have been transferred to this target
+        and no app-specific condition must deny transfer to this target.
+        """
+        if not (doctype_uid := self.context.doctype_data().get("uid")):
+            raise ValueError(_("Document has no doc type."))
 
-    def transferToAll(self):
-        """ """
-        # Intersect allowed and automatic transfer targets while keeping the order of
-        # allowed targets and computing the automatic ones only once.
-        automatic = set(self.context.doctype_data()["automaticTransferTargets"])
-        targets = [t for t in self.allowedTargets() if t in automatic]
+        ITransfersType(api.content.get(UID=doctype_uid)).assert_target_allowed(target)
 
-        source_path = "/".join(self.context.getPhysicalPath())
-        if targets:
-            logger.info(f"Transfer {source_path} to up to {len(targets)} targets.")
-            self.transferToTargets(targets)
-        else:
-            logger.info(f"No transfer targets found for {source_path}.")
+        if any(target.UID() == entry["transferfolder_uid"] for entry in self.sender_log):
+            raise ValueError(_("Document was transferred to this target before."))
+
+        for app in ILocalBehaviorSupport(self.context).local_behaviors:
+            app_transfer = queryMultiAdapter((self.context, target), IAppSpecificTransfer, name=app)
+            if app_transfer is not None:
+                app_transfer.assert_allowed()
 
     security.declareProtected("Docpool: Send Content", "transferToTargets")
 
@@ -223,6 +254,15 @@ class Transferable(FlexibleView):
         """
 
         if targets is None:
+            return
+
+        # Check permissions:
+        try:
+            if not self.assert_transferable():
+                portalMessage(self.context, _("Document cannot be transferred."), type="error")
+                return
+        except BaseException as exc:
+            portalMessage(self.context, exc.args[0], type="error")
             return
 
         timestamp = datetime.now()
@@ -246,9 +286,10 @@ class Transferable(FlexibleView):
             esd_to_title = (dp := IPlaces(transfer_folder).document_pool).Title()
 
             # Check permissions:
-            # a) Is my DocType accepted (defaults to handling of unknown DocTypes)?
-            if not transfer_folder.acceptsDT(doctype_data["id"]):
-                error_message(esd_to_title, _("Doc type not accepted."))
+            try:
+                self.assert_target_allowed(transfer_folder)
+            except BaseException as exc:
+                error_message(esd_to_title, exc.args[0])
                 return
 
             # Collect transfer specifics for apps supported by both original and target.
@@ -262,14 +303,6 @@ class Transferable(FlexibleView):
                 )
                 if app_transfer is not None:
                     app_transfers.append(app_transfer)
-
-            # b) Check app-specific conditions that might deny transfer.
-            for app_transfer in app_transfers:
-                try:
-                    app_transfer.assert_allowed()
-                except BaseException as exc:
-                    error_message(esd_to_title, exc.args[0])
-                    return
 
             # At this point, transfer is allowed.
             logger.info(f"Transfer {'/'.join(self.context.getPhysicalPath())} to {esd_to_title}.")
@@ -372,7 +405,13 @@ class Transferable(FlexibleView):
 def automatic_transfer_on_publish(obj, event=None):
     """ """
     if event and event.action == "publish":
-        automatic_transfer(obj)
+        guarded_automatic_transfer(obj)
+
+
+def guarded_automatic_transfer(obj):
+    with transferring() as already_transferring:
+        if not already_transferring:
+            return automatic_transfer(obj)
 
 
 def automatic_transfer(obj):
@@ -391,18 +430,27 @@ def automatic_transfer(obj):
     except BaseException:
         return
 
-    with transferring() as already_transferring:
-        if already_transferring:
-            return
+    source_path = "/".join(obj.getPhysicalPath())
+    logger.info(f'Automatic transfer of "{obj.Title()}" from {source_path}')
 
-        logger.info(f'Automatic transfer of "{obj.Title()}" from {"/".join(obj.getPhysicalPath())}')
+    automatic = set(obj.doctype_data()["automaticTransferTargets"])
+    targets = [
+        t_uid
+        for t in sorted(tObj.allowed_targets(), key=lambda t: IPlaces(t).document_pool.Title())
+        if (t_uid := t.UID()) in automatic
+    ]
+
+    if targets:
+        logger.info(f"Transfer {source_path} to up to {len(targets)} targets.")
         try:
-            return tObj.transferToAll()
+            tObj.transferToTargets(targets)
         except BaseException:
             pass
+    else:
+        logger.info(f"No transfer targets found for {source_path}.")
 
 
-def is_sender(obj):
+def user_is_sender(obj):
     roles = api.user.get_roles(obj=obj)
     if "Manager" in roles or "Site Administrator" in roles or "ContentSender" in roles:
         return True
