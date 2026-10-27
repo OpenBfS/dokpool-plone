@@ -25,7 +25,7 @@
       </div>
       <div class="badge eventtype-${python:scenario.EventType.replace(' ', '-').lower()} tag-badge small">${scenario/event_type_title}</div>
       <div class="text-primary flex-grow-1 border-end event-title-column">
-        <a href="${python:
+        <a href="${python: item['archive_url'] if item['archive_url'] else
                        f'{context.absolute_url()}/@@select_scenario?scenario={scenario.UID()}&amp;_authenticator={auth_token}'}">
                 ${scenario/Title}
         </a>
