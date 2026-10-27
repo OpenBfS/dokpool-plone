@@ -41,6 +41,14 @@ msgstr ""
 msgid "Advanced Settings"
 msgstr ""
 
+#: docpool.ui/docpool/ui/browser/template_overrides/plone.app.layout.viewlets.searchbox.pt
+msgid "All archives"
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/template_overrides/plone.app.layout.viewlets.searchbox.pt
+msgid "All events"
+msgstr ""
+
 #: docpool.ui/docpool/ui/browser/templates/listing-filter-macros.pt
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
 msgid "Apply filter"
@@ -114,6 +122,10 @@ msgstr ""
 #: docpool.ui/docpool/ui/browser/templates/listing-filter-macros.pt
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
 msgid "Created until"
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/template_overrides/plone.app.layout.viewlets.searchbox.pt
+msgid "Current event"
 msgstr ""
 
 #: docpool.ui/docpool/ui/browser/dpdocument.py
@@ -363,8 +375,20 @@ msgstr ""
 msgid "Search RODOS"
 msgstr ""
 
+#: docpool.ui/docpool/ui/browser/template_overrides/plone.app.layout.viewlets.searchbox.pt
+msgid "Search all active events"
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/template_overrides/plone.app.layout.viewlets.searchbox.pt
+msgid "Search archived events"
+msgstr ""
+
 #: docpool.ui/docpool/ui/browser/templates/listing.pt
 msgid "Search on this page…"
+msgstr ""
+
+#: docpool.ui/docpool/ui/browser/template_overrides/plone.app.layout.viewlets.searchbox.pt
+msgid "Search only the selected event"
 msgstr ""
 
 #: docpool.ui/docpool/ui/browser/templates/wizard_1.pt
