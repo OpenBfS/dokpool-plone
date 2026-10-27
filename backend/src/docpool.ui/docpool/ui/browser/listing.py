@@ -11,6 +11,7 @@ from docpool.base.config import REVISED_STATES
 from docpool.base.config import TRANSFERS_APP
 from docpool.base.content.archiving import IArchiving
 from docpool.base.content.places import IPlaces
+from docpool.base.marker import IJournalContainerMarker
 from docpool.elan.config import ELAN_APP
 from docpool.elan.utils import get_scenario_for_current_user
 from docpool.ui import _
@@ -76,6 +77,7 @@ class Listing(BrowserView):
         # Mod-Date dazu und hash über udis & mod-date
         self.items = uids
         self.is_archive = IArchiving(self.context).is_archive
+        self.is_journalcontainer = IJournalContainerMarker.providedBy(self.context)
         self.json_items = json.dumps(uids)
         self.modified = json.dumps(modified.timeTime()) if modified else None
         return self.index()

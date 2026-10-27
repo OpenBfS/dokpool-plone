@@ -547,7 +547,7 @@
           </div>
 
           <div class="ms-1 my-1 d-none d-lg-block"
-               tal:condition="python: 'entry_wizard' in view.features and not view.is_archive"
+               tal:condition="python: 'entry_wizard' in view.features and not view.is_archive and not view.is_journalcontainer"
           >
             <a class="btn btn-secondary btn-icon"
                href="${python: context.absolute_url()}/@@dpdocument_wizard_1"
