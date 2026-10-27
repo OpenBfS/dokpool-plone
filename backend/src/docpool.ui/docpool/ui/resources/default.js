@@ -187,7 +187,9 @@ function setupSearchContextDropdown() {
   options.forEach((option) => {
     option.addEventListener("click", () => {
       const scope = option.getAttribute("data-search-scope");
-      const scopeLabel = option.getAttribute("data-search-scope-label");
+      const scopeLabel = option
+        .querySelector(".dp-search-context-link-title")
+        ?.textContent.trim();
       if (!scope || !scopeLabel) return;
 
       input.value = scope;
