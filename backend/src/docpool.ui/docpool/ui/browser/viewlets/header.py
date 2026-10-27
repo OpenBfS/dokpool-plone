@@ -203,6 +203,8 @@ class PortalHeader(EventSwitcherMixin, TimezoneTableMixin, GroupsTreeMixin, View
         self.dp_url = self.dp.absolute_url() if self.dp else None
         self.app_logo = appLogo(self.app) if self.app else None
         self.set_scenario_attributes()
+        if archive := container_with_portal_type(self.context, "ELANArchive"):
+            self.selected_scenario = archive.get_archived_event()
 
         # Groups folder link always depends on groups tree
         groups_tree = self.build_groups_tree()
