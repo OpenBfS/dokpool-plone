@@ -146,6 +146,12 @@ function setupSearchOffcanvas() {
   if (searchbox.dataset.searchOffcanvasBound === "1") return;
   searchbox.dataset.searchOffcanvasBound = "1";
 
+  // Clear the previous search before opening.
+  searchbox.addEventListener("show.bs.offcanvas", () => {
+    input.value = "";
+  });
+
+  // Focus the input after the opening animation.
   searchbox.addEventListener("shown.bs.offcanvas", () => {
     input.focus({ preventScroll: true });
   });
