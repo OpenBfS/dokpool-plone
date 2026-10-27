@@ -4,12 +4,11 @@ from docpool.base.appregistry import appLogo as appLogo
 from docpool.base.appregistry import appName
 from docpool.base.config import BASE_APP
 from docpool.base.config import TRANSFERS_APP
-from docpool.base.content.archiving import IArchiving
+from docpool.base.content.places import container_with_portal_type
 from docpool.base.content.places import IPlaces
 from docpool.base.utils import is_in_dp_folder
 from docpool.doksys.config import DOKSYS_APP
 from docpool.elan import DocpoolMessageFactory as EMF
-from docpool.elan.content.elanarchive import IELANArchive
 from docpool.elan.utils import get_scenario_for_current_user
 from docpool.elan.utils import getOpenScenarios
 from docpool.ui.browser.viewlets.footer import TimezoneTableMixin
@@ -284,18 +283,17 @@ class EventSwitcherViewlet(EventSwitcherMixin, ViewletBase):
         if self.dp is None:
             return
 
+        self.link_context = self.dp
         self.dp_url = self.dp.absolute_url()
         self.set_scenario_attributes()
 
-        self.is_archive = False
-        if IArchiving(self.context).is_archive:
-            self.is_archive = True
-            if self.context.portal_type in ["ELANArchives", "ELANArchive"]:
-                self.selected_scenario = self.context
-            else:
-                self.selected_scenario = api.content.get_closest_ancestor(
-                    self.context, interface=IELANArchive
-                )
+        self.is_archive = True
+        if archive := container_with_portal_type(self.context, "ELANArchive"):
+            self.link_context = self.selected_scenario = archive
+        elif archives := container_with_portal_type(self.context, "ELANArchives"):
+            self.link_context = archives
+        else:
+            self.is_archive = False
 
         url = self.request.getURL()
         self.active = (
