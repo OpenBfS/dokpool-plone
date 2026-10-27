@@ -2,6 +2,7 @@
      tal:define="
        icons python:context.restrictedTraverse('@@iconresolver');
        dp_url context/@@dp_url;
+       portal context/@@plone_portal_state/portal;
        portal_url context/@@plone_portal_state/portal_url;
        user_name python:view.user_name();
        can_access_user_preferences python:view.can_access_user_preferences();
@@ -73,7 +74,7 @@
       </a>
     </li>
     <li class="user-menu-action-item"
-        tal:condition="context/@@is/admin"
+        tal:condition="portal/@@is/admin"
     >
       <a class="dropdown-item user-menu-link"
          href="${dp_url}/@@impersonate"
