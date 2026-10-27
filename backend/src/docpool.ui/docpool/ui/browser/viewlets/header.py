@@ -318,6 +318,7 @@ class EventSwitcherDropdown(EventSwitcherMixin, BrowserView):
             return
 
         self.dp_url = self.dp.absolute_url()
+        archive = container_with_portal_type(self.context, "ELANArchive")
 
         scenarios_by_uid, selected_uid = self.set_scenario_attributes()
         self.scenarios = []
@@ -328,7 +329,7 @@ class EventSwitcherDropdown(EventSwitcherMixin, BrowserView):
             scenarios = [
                 dict(
                     scenario=s,
-                    selected=(uid == selected_uid),
+                    selected=(uid == selected_uid and archive is None),
                     last=False,
                     actions=self._actions(s),
                     archive_url=None,
@@ -340,11 +341,11 @@ class EventSwitcherDropdown(EventSwitcherMixin, BrowserView):
                 scenarios[-1]["last"] = True
                 self.scenarios.extend(scenarios)
 
-        if archive := container_with_portal_type(self.context, "ELANArchive"):
+        if archive is not None:
             self.scenarios.append(
                 dict(
                     scenario=archive.get_archived_event(),
-                    selected=False,
+                    selected=True,
                     last=True,
                     actions=[],
                     archive_url=archive.absolute_url(),
