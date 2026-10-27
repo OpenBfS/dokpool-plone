@@ -144,7 +144,6 @@ class TestListing(GroupsFolderSetupMixin):
 
         page = self.page
         page.goto(f"{self.entry2.absolute_url()}/@@edit")
-        page.pause()
 
         body_classes = page.locator("body").get_attribute("class").split()
         assert "template-edit" in body_classes
