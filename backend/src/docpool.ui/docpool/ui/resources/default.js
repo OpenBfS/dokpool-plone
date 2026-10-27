@@ -1,4 +1,4 @@
-import "bootstrap";
+import { Offcanvas } from "bootstrap";
 import "./upload";
 import "@patternslib/patternslib/src/pat/expandable-tree/expandable-tree.css";
 // Pat-update-notification
@@ -133,8 +133,34 @@ function setupHeaderMobileUi() {
   setupMobileOffcanvasSettingsNavigation();
   setupListingMobileFilters();
   setupListingDesktopFilterResets();
+  setupSearchOffcanvas();
   setupSearchContextDropdown();
   setupRecentSearches();
+}
+
+function setupSearchOffcanvas() {
+  const searchbox = document.getElementById("portal-searchbox");
+  const input = searchbox?.querySelector("#searchGadget");
+  if (!searchbox || !(input instanceof HTMLInputElement)) return;
+
+  if (searchbox.dataset.searchOffcanvasBound === "1") return;
+  searchbox.dataset.searchOffcanvasBound = "1";
+
+  searchbox.addEventListener("shown.bs.offcanvas", () => {
+    input.focus({ preventScroll: true });
+  });
+
+  searchbox.addEventListener("click", (event) => {
+    // Only dismiss on the background itself, leaving form and suggestions usable.
+    const target = event.target;
+    if (
+      target === searchbox ||
+      target === searchbox.querySelector(".offcanvas-body") ||
+      target === searchbox.querySelector(".dp-search-suggestions")
+    ) {
+      Offcanvas.getInstance(searchbox)?.hide();
+    }
+  });
 }
 
 function setupSearchContextDropdown() {
