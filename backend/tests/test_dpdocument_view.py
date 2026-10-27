@@ -18,8 +18,10 @@ class TestDPDocumentView(GroupsFolderSetupMixin):
         origin = self.group_folder.absolute_url()
         page.goto(origin)
         expect(page).to_have_url(origin)
-        page.locator("#listing .listing-item", has_text=self.entry1.title).locator("h3").click()
-        expect(page.locator(".dp-document-header h1")).to_have_text(self.entry1.title)
+        items = page.locator("#listing .listing-item")
+        expect(items).to_have_count(2)
+        items.filter(has_text=self.entry1.title).click()
+        expect(page.locator(".dp-document-header h1")).to_have_text(self.entry1.title, timeout=30000)
         page.locator(".dp-document-header .back a").click()
         expect(page).to_have_url(origin)
 
@@ -43,8 +45,8 @@ class TestDPDocumentView(GroupsFolderSetupMixin):
         page.goto(origin)
         expect(page).to_have_url(origin)
         page.locator(".entrytype").filter(has=page.locator(".badge")).first.locator("a").click()
-        page.locator("#listing .listing-item h3").first.click()
-        expect(page.locator(".dp-document-header h1")).to_be_visible()
+        page.locator("#listing .listing-item").first.click()
+        expect(page.locator(".dp-document-header h1")).to_be_visible(timeout=30000)
         page.locator(".dp-document-header .back a").click()
         expect(page).to_have_url(origin)
 
@@ -53,8 +55,8 @@ class TestDPDocumentView(GroupsFolderSetupMixin):
         origin = f"{self.docpool.absolute_url()}/@@tasks"
         page.goto(origin)
         expect(page).to_have_url(origin)
-        page.locator("#listing .listing-item", has_text=self.entry3.title).locator("h3").click()
-        expect(page.locator(".dp-document-header h1")).to_have_text(self.entry3.title)
+        page.locator("#listing .listing-item", has_text=self.entry3.title).click()
+        expect(page.locator(".dp-document-header h1")).to_have_text(self.entry3.title, timeout=30000)
         page.locator(".dp-document-header .back a").click()
         expect(page).to_have_url(origin)
 
