@@ -162,25 +162,6 @@ def createELANGroups(self):
     }
     gtool.addGroup("%s_SituationReportAdmins" % prefix, properties=props)
 
-    # Add 10 groups that can manage event journals
-    for index in range(1, 6):
-        props = {
-            "allowedDocTypes": [],
-            "title": f"Journal {index} Editors ({title})",
-            "description": f"Users who can edit journal{index} in {title}.",
-            "dp": self.UID(),
-        }
-        gtool.addGroup(f"{prefix}_Journal{index}_Editors", properties=props)
-
-    for index in range(1, 6):
-        props = {
-            "allowedDocTypes": [],
-            "title": f"Journal {index} Reader ({title})",
-            "description": f"Users who can view journal{index} in {title}.",
-            "dp": self.UID(),
-        }
-        gtool.addGroup(f"{prefix}_Journal{index}_Readers", properties=props)
-
 
 def dpRemoved(self):
     """
