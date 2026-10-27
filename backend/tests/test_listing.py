@@ -260,6 +260,9 @@ class TestListing(GroupsFolderSetupMixin):
         # Check if the next item has the other uid
         next_link = page.locator("a.next-item")
         expect(next_link).to_have_attribute("href", re.compile(rf".*/resolveuid/{expected_next_uid}.*"))
+        next_link.click()
+        expect(nav).to_have_attribute("data-current-item", expected_next_uid)
+        expect(nav).to_have_attribute("data-sidebar", "listing")
 
     def test_wizard(self):
         page = self.page

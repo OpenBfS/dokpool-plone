@@ -31,6 +31,7 @@
               <ul class="list-group list-group-horizontal list-group-flush justify-content-end"
                   tal:attributes="
                     data-current-item python: context.UID();
+                    data-sidebar python: request.get('sidebar');
                   "
               >
 
