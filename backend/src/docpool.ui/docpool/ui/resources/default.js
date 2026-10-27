@@ -264,10 +264,12 @@ function setupRecentSearches() {
     items.unshift(cleanTerm);
     const nextItems = items.slice(0, RECENT_SEARCHES_LIMIT);
     saveRecentSearches(nextItems);
-    renderRecentSearches(nextItems);
   };
 
-  renderRecentSearches(loadRecentSearches());
+  // Refresh recent searches only when opening the search.
+  searchbox.addEventListener("show.bs.offcanvas", () => {
+    renderRecentSearches(loadRecentSearches());
+  });
 
   form.addEventListener("submit", () => {
     addRecentSearch(input.value || "");
