@@ -2,7 +2,7 @@
 ARG PYTHON_VERSION=3.13
 
 # Stage to only build the theme
-FROM node:23-slim AS node
+FROM node:26-slim AS node
 
 WORKDIR /app
 

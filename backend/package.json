@@ -7,7 +7,8 @@
     "doc": "docs"
   },
   "engines": {
-    "node": ">=12.20.0"
+    "node": "26.x",
+    "npm": "11.x"
   },
   "scripts": {
     "build": "NODE_ENV=production webpack --config webpack.config.js",

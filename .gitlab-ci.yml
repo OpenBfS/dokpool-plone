@@ -21,7 +21,16 @@ stages:
   - deploy
   - report
 
+.node26:
+  before_script:
+    - curl -fsSL https://deb.nodesource.com/setup_26.x | bash -
+    - apt-get install -y nodejs
+    - apt-get clean && rm -rf /var/lib/apt/lists/
+    - node --version
+    - npm --version
+
 lint_tests:
+  extends: .node26
   image: plone/server-builder:$PLONE_VERSION
   tags:
     - dind
@@ -30,11 +39,7 @@ lint_tests:
     - cd backend
     - pip install --upgrade pip
     - pip install uv
-    # Node.js installieren
-    - curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
-    - apt-get install -y nodejs
-    - apt-get clean && rm -rf /var/lib/apt/lists/
-    - npm install prettier
+    - npm ci
     # lint test
     - make lint
     - make format
@@ -75,6 +80,7 @@ unit_tests:
       - backend/.coverage.unit
 
 acceptance_tests:
+  extends: .node26
   image: git.starzel.de:5050/bfs/dokpool:acceptance
   tags:
     - dind
