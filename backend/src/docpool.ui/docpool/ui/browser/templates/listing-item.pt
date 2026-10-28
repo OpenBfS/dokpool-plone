@@ -15,7 +15,7 @@
   <a class="list-item-link stretched-link"
      href="#"
      tal:attributes="
-       class python: view.pat_inject_class('list-item-link -link');
+       class python: view.pat_inject_class('list-item-link stretched-link');
        data-pat-inject python: view.pat_inject_config('content_sidebar' if view.folder_listing else 'content');
        href python: data['url'] + '?' + view.link_query;
        title python:data['doctype_title'];
