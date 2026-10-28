@@ -16,7 +16,10 @@ $(document).on(
   "leaflet.zoomend.overviewEventCross",
   ".overview-map",
   function (event, { original_event }) {
-    const zoom = original_event.target.getZoom();
+    const map = original_event.target;
+    // Remove Leaflet branding
+    map.attributionControl.setPrefix(false);
+    const zoom = map.getZoom();
     const size = Math.min(36, Math.max(16, 24 * 1.15 ** (zoom - 10)));
     this.style.setProperty("--overview-event-cross-size", `${size}px`);
   },
