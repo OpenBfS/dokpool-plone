@@ -24,7 +24,7 @@
         "/src"
     ],
     "engines": {
-        "node": ">=22"
+        "node": "26.x"
     },
     "browserslist": [
         "defaults"

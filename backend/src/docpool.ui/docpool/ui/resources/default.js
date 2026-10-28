@@ -1,4 +1,6 @@
 import { Offcanvas } from "bootstrap";
+// The npm override uses ./vendor/leaflet.simplemarkers; keep addmarker disabled.
+import "@patternslib/pat-leaflet";
 import "./upload";
 import "@patternslib/patternslib/src/pat/expandable-tree/expandable-tree.css";
 // Pat-update-notification
@@ -8,6 +10,20 @@ import registry from "@patternslib/patternslib/src/core/registry";
 const MOBILE_SCROLL_TOP_BREAKPOINT = 991;
 const MOBILE_SCROLL_TOP_OFFSET = 240;
 const RECENT_SEARCHES_LIMIT = 10;
+
+// pat-leaflet forwards zoomend as a jQuery event, including for injected maps.
+$(document).on(
+  "leaflet.zoomend.overviewEventCross",
+  ".overview-map",
+  function (event, { original_event }) {
+    const map = original_event.target;
+    // Remove Leaflet branding
+    map.attributionControl.setPrefix(false);
+    const zoom = map.getZoom();
+    const size = Math.min(36, Math.max(16, 24 * 1.15 ** (zoom - 10)));
+    this.style.setProperty("--overview-event-cross-size", `${size}px`);
+  },
+);
 
 // Initializes the mobile scroll-to-top button behavior.
 function setupMobileScrollTopButton() {

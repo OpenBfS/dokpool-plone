@@ -100,7 +100,17 @@ If Dokpool was started according to (2b), changes will be saved in backend/data 
 
 ## Development
 
-coming soon
+Frontend development and CI use Node.js 26 and npm 11. With nvm:
+
+```sh
+cd backend
+nvm install
+nvm use
+npm ci
+npm run build
+```
+
+The local direnv configuration also selects Node.js 26.
 
 ## More Information
 

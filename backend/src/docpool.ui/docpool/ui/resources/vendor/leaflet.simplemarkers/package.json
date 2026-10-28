@@ -1,0 +1,11 @@
+{
+  "name": "leaflet.simplemarkers",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Empty stub for the unused pat-leaflet marker editor",
+  "license": "MIT",
+  "main": "lib/Control.SimpleMarkers.js",
+  "files": [
+    "lib"
+  ]
+}

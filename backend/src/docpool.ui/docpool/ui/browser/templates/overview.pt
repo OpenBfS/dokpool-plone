@@ -20,7 +20,7 @@
             <header class="overview-event-header bg-white pt-4 px-4 pb-2">
               <h2 class="overview-event-headline mb-0 fw-normal text-primary"
                   tal:content="python:event['headline']"
-              >KKW Grohnde, Deutschland / N 52.034, E 9.410</h2>
+              >Ereignisort</h2>
             </header>
             <div class="overview-event-placeholder d-flex flex-grow-1 align-items-center justify-content-center p-4 text-center text-secondary"
                  tal:condition="python:not event['has_event']"
@@ -32,10 +32,19 @@
             <div class="tile-map-wrap"
                  tal:condition="python:event['has_event']"
             >
-              <img class="img-fluid tile-map-image"
-                   alt="Kartenansicht des Ereignisorts"
-                   src="++plone++docpoolui/map-overview.png"
-              />
+              <div class="overview-map pat-leaflet"
+                   aria-label="Kartenansicht des Ereignisorts"
+                   role="region"
+                   tal:condition="python:event['map'] is not None"
+                   tal:attributes="
+                     data-pat-leaflet python:event['map']['pattern_options'];
+                     data-geojson python:event['map']['geojson'];
+                   "
+              ></div>
+              <div class="overview-map-placeholder d-flex h-100 align-items-center justify-content-center p-4 text-center text-secondary"
+                   tal:condition="python:event['map'] is None"
+                   i18n:translate=""
+              >Keine g&uuml;ltigen Ereigniskoordinaten hinterlegt.</div>
             </div>
             <div class="card-body p-4"
                  tal:condition="python:event['has_event']"

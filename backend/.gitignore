@@ -26,6 +26,8 @@ eggs/
 etc/
 include/
 lib/
+# Keep the local pat-leaflet replacement assets in the repository.
+!src/docpool.ui/docpool/ui/resources/vendor/leaflet.simplemarkers/lib/
 lib64
 parts/
 pyvenv.cfg
