@@ -223,10 +223,6 @@ msgstr ""
 msgid "Entries that are also assigned to other events are copied into the archive instead of moved."
 msgstr ""
 
-#: docpool.elan/docpool/elan/browser/dpevents.py
-msgid "Error"
-msgstr ""
-
 #: docpool.elan/docpool/elan/browser/dpevent.pt
 msgid "Event Information"
 msgstr ""
@@ -335,10 +331,6 @@ msgstr ""
 
 #: docpool.elan/docpool/elan/vocabularies.py
 msgid "Routine mode"
-msgstr ""
-
-#: docpool.elan/docpool/elan/browser/dpevents.py
-msgid "Saved"
 msgstr ""
 
 #: docpool.elan/docpool/elan/browser/dpevents.py
@@ -543,11 +535,6 @@ msgstr ""
 
 #: docpool.elan/docpool/elan/vocabularies.py
 msgid "inactive"
-msgstr ""
-
-#. Default: "Apply"
-#: docpool.elan/docpool/elan/browser/dpevents.py
-msgid "label_apply"
 msgstr ""
 
 #. Default: "Archive"

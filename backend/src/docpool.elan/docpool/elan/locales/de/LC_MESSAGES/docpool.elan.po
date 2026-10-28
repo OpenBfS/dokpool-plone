@@ -219,10 +219,6 @@ msgstr "Einträge"
 msgid "Entries that are also assigned to other events are copied into the archive instead of moved."
 msgstr "Einträge, die weiteren Ereignissen zugewiesen sind, werden in das Archiv kopiert anstatt verschoben."
 
-#: docpool.elan/docpool/elan/browser/dpevents.py
-msgid "Error"
-msgstr "Fehler"
-
 #: docpool.elan/docpool/elan/browser/dpevent.pt
 msgid "Event Information"
 msgstr "Ereignisinformationen"
@@ -332,10 +328,6 @@ msgstr "Normalfall"
 #: docpool.elan/docpool/elan/vocabularies.py
 msgid "Routine mode"
 msgstr "Routinebetrieb"
-
-#: docpool.elan/docpool/elan/browser/dpevents.py
-msgid "Saved"
-msgstr "Gespeichert"
 
 #: docpool.elan/docpool/elan/browser/dpevents.py
 msgid "Scenario archive not up-to-date."
@@ -542,11 +534,6 @@ msgstr ""
 #: docpool.elan/docpool/elan/vocabularies.py
 msgid "inactive"
 msgstr "Inaktiv"
-
-#. Default: "Apply"
-#: docpool.elan/docpool/elan/browser/dpevents.py
-msgid "label_apply"
-msgstr "Anwenden"
 
 #. Default: "Archive"
 #: docpool.elan/docpool/elan/browser/archive_event_form.pt
