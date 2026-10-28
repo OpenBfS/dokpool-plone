@@ -56,10 +56,13 @@
     top: 42px;
     transform: translate(-50%, -50%);
     margin: 0;
-    width: 24px;
-    height: 24px;
+    width: var(--overview-event-cross-size, 24px);
+    height: var(--overview-event-cross-size, 24px);
     color: var(--bs-danger);
-    font: bold 24px/24px sans-serif;
+    font-family: sans-serif;
+    font-size: var(--overview-event-cross-size, 24px);
+    font-weight: bold;
+    line-height: var(--overview-event-cross-size, 24px);
     text-align: center;
 
     &::before {
