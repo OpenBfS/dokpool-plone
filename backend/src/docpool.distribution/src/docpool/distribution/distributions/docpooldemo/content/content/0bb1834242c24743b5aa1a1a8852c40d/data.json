@@ -4,7 +4,7 @@
   "AlertingNote": null,
   "AlertingStatus": "none",
   "EmergencyClassification": "regional",
-  "EventCoordinates": null,
+  "EventCoordinates": "POINT(9.48 51.31)",
   "EventLocation": null,
   "EventLocationTimeZone": "Europe/Berlin",
   "EventType": "Exercise",

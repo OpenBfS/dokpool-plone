@@ -4,7 +4,7 @@
   "AlertingNote": null,
   "AlertingStatus": "none",
   "EmergencyClassification": "regional",
-  "EventCoordinates": null,
+  "EventCoordinates": "POINT(7.85 47.995)",
   "EventLocation": null,
   "EventLocationTimeZone": "Europe/Berlin",
   "EventType": "Routine",
