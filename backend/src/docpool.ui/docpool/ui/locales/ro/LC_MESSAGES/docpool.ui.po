@@ -355,6 +355,10 @@ msgstr ""
 msgid "Revised"
 msgstr ""
 
+#: docpool.ui/docpool/ui/browser/listing.py
+msgid "Revoked"
+msgstr ""
+
 #: docpool.ui/docpool/ui/browser/templates/wizard_3.pt
 msgid "Save"
 msgstr ""

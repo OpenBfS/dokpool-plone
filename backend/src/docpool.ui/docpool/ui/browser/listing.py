@@ -8,12 +8,14 @@ from docpool.base.config import PENDING_STATES
 from docpool.base.config import PRIVATE_STATES
 from docpool.base.config import PUBLISHED_STATES
 from docpool.base.config import REVISED_STATES
+from docpool.base.config import REVOKED_STATES
 from docpool.base.config import TRANSFERS_APP
 from docpool.base.content.archiving import IArchiving
 from docpool.base.content.places import IPlaces
 from docpool.base.marker import IJournalContainerMarker
 from docpool.elan.config import ELAN_APP
 from docpool.elan.utils import get_scenario_for_current_user
+from docpool.rei.config import REI_APP
 from docpool.ui import _
 from docpool.ui.utils import group_has_allowed_document_types
 from docpool.ui.utils import is_folder_wizard_context
@@ -227,11 +229,18 @@ class Listing(BrowserView):
                 "title": _("Published"),
                 "review_states": PUBLISHED_STATES,
             },
-            "revised": {
-                "title": _("Revised"),
-                "review_states": REVISED_STATES,
+            "revoked": {
+                "title": _("Revoked"),
+                "review_states": REVOKED_STATES,
             },
         }
+        # TODO: Add other app-specific states
+        if REI_APP in self.active_apps:
+            review_state_filter_config["revised"] = {
+                "title": _("Revised"),
+                "review_states": REVISED_STATES,
+            }
+
         self.selected_review_states = form.get("review_states") or []
         if self.selected_review_states:
             filtered_by_review_states = []

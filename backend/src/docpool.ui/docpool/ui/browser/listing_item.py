@@ -136,7 +136,7 @@ class Item(BrowserView):
         return self.index()
 
     def transition_icon(self, transition_id):
-        return TRANSITION_ICON_MAPPING.get(transition_id, "arrow-right")
+        return TRANSITION_ICON_MAPPING.get(transition_id, "arrow-bar-right")
 
     def pat_inject_class(self, classes):
         if self.use_pat_inject:

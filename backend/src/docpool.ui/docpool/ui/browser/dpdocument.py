@@ -91,6 +91,7 @@ class DPDocumentView(DefaultView):
         } | {
             "pending": {"title": _("Pending")},
             "revised": {"title": _("Revised")},
+            "revoked": {"title": _("Revoked")},
         }
 
     def available_transitions(self):

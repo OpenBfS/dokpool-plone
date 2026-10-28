@@ -27,12 +27,29 @@
   }
 
   .visibility-title {
-    background-color: #de9895;
     border-radius: 5px;
     display: inline-block;
     padding: 10px;
     padding-left: 15px;
     padding-right: 15px;
+
+    &.state-private {
+      background-color: $plone-default-private-color;
+      color: #fff;
+    }
+    &.state-published {
+      background-color: $plone-default-published-color;
+      color: #fff;
+    }
+    &.state-pending {
+      background-color: $plone-default-pending-color;
+    }
+    &.state-revised {
+      background-color: $plone-default-revised-color;
+    }
+    &.state-revoked {
+      background-color: $plone-default-revoked-color;
+    }
   }
 
   .event {

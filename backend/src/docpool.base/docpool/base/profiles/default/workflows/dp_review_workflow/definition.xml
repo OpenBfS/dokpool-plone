@@ -29,7 +29,7 @@
     <permission-map acquired="False"
                     name="Add portal content"
     >
-</permission-map>
+    </permission-map>
     <permission-map acquired="False"
                     name="Delete objects"
     >
@@ -46,7 +46,7 @@
     <permission-map acquired="False"
                     name="Sharing page: Delegate roles"
     >
-</permission-map>
+    </permission-map>
     <permission-map acquired="False"
                     name="View"
     >
@@ -106,6 +106,7 @@
   <state state_id="published"
          title="Published"
   >
+    <exit-transition transition_id="revoke" />
     <description>Visible to everyone, editable by the owner.</description>
     <permission-map acquired="False"
                     name="Access contents information"
@@ -118,7 +119,7 @@
     <permission-map acquired="False"
                     name="Add portal content"
     >
-</permission-map>
+    </permission-map>
     <permission-map acquired="False"
                     name="Delete objects"
     >
@@ -134,7 +135,7 @@
     <permission-map acquired="False"
                     name="Sharing page: Delegate roles"
     >
-</permission-map>
+    </permission-map>
     <permission-map acquired="False"
                     name="View"
     >
@@ -142,6 +143,35 @@
       <permission-role>Reader</permission-role>
       <permission-role>Owner</permission-role>
       <permission-role>Reviewer</permission-role>
+    </permission-map>
+  </state>
+  <state attributes="title"
+         state_id="revoked"
+         title="Revoked"
+  >
+    <permission-map acquired="False"
+                    name="Access contents information"
+    >
+      <permission-role>Manager</permission-role>
+      <permission-role>Reader</permission-role>
+    </permission-map>
+    <permission-map acquired="False"
+                    name="Add portal content"
+    />
+    <permission-map acquired="False"
+                    name="Delete objects"
+    />
+    <permission-map acquired="False"
+                    name="Modify portal content"
+    />
+    <permission-map acquired="False"
+                    name="Sharing page: Delegate roles"
+    />
+    <permission-map acquired="False"
+                    name="View"
+    >
+      <permission-role>Manager</permission-role>
+      <permission-role>Reader</permission-role>
     </permission-map>
   </state>
   <transition after_script=""
@@ -217,6 +247,22 @@
       <guard-role>Site Administrator</guard-role>
     </guard>
   </transition>
+  <transition after_script=""
+              before_script=""
+              new_state="revoked"
+              title="Revoke"
+              transition_id="revoke"
+              trigger="USER"
+  >
+    <action category="workflow"
+            icon=""
+            translate=""
+            url="%(content_url)s/content_status_modify?workflow_action=revoke"
+    >Revoke</action>
+    <guard>
+      <guard-expression>python:here.is_transition_allowed('revoke')</guard-expression>
+    </guard>
+  </transition>
   <worklist title=""
             worklist_id="reviewer_queue"
   >
@@ -243,7 +289,7 @@
       <expression>transition/getId|nothing</expression>
     </default>
     <guard>
-</guard>
+    </guard>
   </variable>
   <variable for_catalog="False"
             for_status="True"
@@ -256,7 +302,7 @@
       <expression>user/getId</expression>
     </default>
     <guard>
-</guard>
+    </guard>
   </variable>
   <variable for_catalog="False"
             for_status="True"
@@ -269,7 +315,7 @@
       <expression>python:state_change.kwargs.get('comment', '')</expression>
     </default>
     <guard>
-</guard>
+    </guard>
   </variable>
   <variable for_catalog="False"
             for_status="False"
@@ -297,6 +343,6 @@
       <expression>state_change/getDateTime</expression>
     </default>
     <guard>
-</guard>
+    </guard>
   </variable>
 </dc-workflow>

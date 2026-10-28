@@ -389,6 +389,14 @@ msgstr ""
 msgid "Revised"
 msgstr ""
 
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "Revoke"
+msgstr ""
+
+#: docpool.base/docpool/base/browser/i18ndummy.pt
+msgid "Revoked"
+msgstr ""
+
 #: docpool.base/docpool/base/browser/dpdocument.py
 msgid "Save"
 msgstr ""
