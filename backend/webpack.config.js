@@ -46,6 +46,12 @@ module.exports = () => {
     config: config,
     package_json: package_json,
   });
+  // SVG URL references (including font files) - pat-leaflet has svg files
+  config.module.rules.push({
+    test: /\.svg$/i,
+    dependency: "url",
+    type: "asset/resource",
+  });
   config.output.path = path.resolve(
     __dirname,
     "src/docpool.ui/docpool/ui/static/build",

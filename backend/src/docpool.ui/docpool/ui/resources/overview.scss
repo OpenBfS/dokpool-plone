@@ -35,10 +35,37 @@
   background-color: var(--bs-light);
 }
 
-.tile-map-image {
+.overview-map.pat-leaflet {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  min-height: 0;
+  isolation: isolate;
+
+  .awesome-marker {
+    background: none;
+  }
+
+  .awesome-marker-shadow {
+    display: none;
+  }
+
+  .overview-event-cross {
+    // Match AwesomeMarkers' [17, 42] anchor so the X is centered on the event.
+    position: absolute;
+    left: 17px;
+    top: 42px;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    width: 24px;
+    height: 24px;
+    color: var(--bs-danger);
+    font: bold 24px/24px sans-serif;
+    text-align: center;
+
+    &::before {
+      content: "×";
+    }
+  }
 }
 
 .overview-event-header {
@@ -52,6 +79,7 @@
 
 .overview-event .tile-map-wrap {
   height: 256px;
+  flex-shrink: 0;
 }
 
 .overview-event-placeholder {

@@ -5,7 +5,10 @@ from docpool.ui.browser.listing import Listing
 from plone import api
 from plone.base.utils import safe_text
 from Products.Five.browser import BrowserView
+from pygeoif.exceptions import WKTParserError
 from urllib.parse import urlencode
+
+import json
 
 
 OVERVIEW_TILE_LIMIT = 2
@@ -26,11 +29,53 @@ class Overview(BrowserView):
             return None
         return api.content.get(UID=uid)
 
+    def map_data(self, event):
+        try:
+            point = event.coordinates()
+        except (WKTParserError, TypeError, ValueError):
+            return None
+        if not point:
+            return None
+
+        longitude, latitude = point.x, point.y
+
+        options = {
+            "latitude": latitude,
+            "longitude": longitude,
+            "zoom": 10,
+            "zoomcontrol": True,
+            "fullscreencontrol": False,
+            "useCluster": False,
+            "map_layers": [],
+            "default_map_layer": "OpenStreetMap.Mapnik",
+            "addmarker": False,
+            "geosearch": False,
+            "locatecontrol": False,
+            "autolocate": False,
+            "minimap": False,
+        }
+        feature = {
+            "type": "Feature",
+            "geometry": {"type": "Point", "coordinates": [longitude, latitude]},
+            "properties": {
+                "color": "red",
+                "extraClasses": "overview-event-cross",
+                "editable": False,
+            },
+        }
+        return {
+            "latitude": latitude,
+            "longitude": longitude,
+            "pattern_options": json.dumps(options),
+            "geojson": json.dumps(feature),
+        }
+
     def event_data(self):
         event = self.selected_event()
         if event is None:
             return {
                 "has_event": False,
+                "map": None,
                 "headline": _("No scenario selected"),
                 "placeholder": _("Please select a scenario to view the event data."),
             }
@@ -101,14 +146,15 @@ class Overview(BrowserView):
         description = safe_text(description_value).strip() if description_value is not None else empty_value
         description = description or empty_value
 
-        # TODO Ereignisort (EventCoordinates)
-        location_static = "TODO KKW Grohnde, Deutschland / N 52.034, E 9.410"
-        # TODO Image
-        # coordinates_label = empty_value
-
-        title_value = getattr(event, "title", None)
-        title = safe_text(title_value).strip() if title_value is not None else empty_value
-        headline = location_static or title or empty_value
+        map_data = self.map_data(event)
+        location = safe_text(getattr(event, "EventLocation", None) or "").strip()
+        title = safe_text(getattr(event, "title", None) or "").strip()
+        headline = location or title or empty_value
+        if map_data is not None:
+            latitude, longitude = map_data["latitude"], map_data["longitude"]
+            north_south = "N" if latitude >= 0 else "S"
+            east_west = "E" if longitude >= 0 else "W"
+            headline += f" / {north_south} {abs(latitude):.3f}, {east_west} {abs(longitude):.3f}"
 
         event_time_and_duration_values = [
             value for value in (event_time, event_duration_label) if value and value != empty_value
@@ -119,6 +165,7 @@ class Overview(BrowserView):
 
         return {
             "has_event": True,
+            "map": map_data,
             "headline": headline,
             "placeholder": _("Please select a scenario to view the event data."),
             "event_type": event_type,
