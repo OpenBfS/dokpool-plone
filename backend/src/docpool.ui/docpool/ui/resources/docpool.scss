@@ -199,55 +199,6 @@ body.template-entrytypes {
   }
 }
 
-.card-body.review-state {
-  padding: 0.3rem 0.1rem;
-
-  p.small {
-    font-size: var(--dp-font-small);
-    line-height: 1.2em;
-  }
-
-  &.state-published {
-    color: #fff !important;
-    background-color: $plone-default-published-color;
-  }
-
-  &.state-private {
-    color: #fff !important;
-    background-color: $plone-default-private-color;
-  }
-
-  &.state-pending {
-    color: #000 !important;
-    background-color: $plone-default-pending-color;
-  }
-
-  &.state-pending_bfs {
-    color: #000 !important;
-    background-color: $plone-default-pending_bfs-color;
-  }
-
-  &.state-pending_bmu {
-    color: #fff !important;
-    background-color: $plone-default-pending_bmu-color;
-  }
-
-  &.state-pending_authority {
-    color: #fff !important;
-    background-color: $plone-default-pending_authority-color;
-  }
-
-  &.state-revised {
-    color: #000 !important;
-    background-color: $plone-default-revised-color;
-  }
-
-  &.state-revoked {
-    color: #000 !important;
-    background-color: $plone-default-revoked-color;
-  }
-}
-
 #listing-filters {
   background-color: #fafafa;
   position: sticky;
@@ -389,7 +340,7 @@ span.badge.text-bg-light {
     }
 
     .dateinfo {
-      width: 80px;
+      width: 90px;
       flex-shrink: 0;
       font-size: var(--dp-font-body);
 
@@ -400,16 +351,24 @@ span.badge.text-bg-light {
     }
 
     .doctype-box {
-      width: 86px;
+      width: 90px;
       flex-shrink: 0;
+      hyphens: auto;
 
       .doctype-icon-container {
         background-color: var(--bs-gray-light);
-        padding: 10px 0px 6px 0;
+        height: 40px;
+        display: flex;
+        justify-content:center;
+        align-items:center;
+
+        &.no-review-state {
+          height: 80px;
+        }
 
         .plone-icon.entrytype {
-          width: 40px;
-          height: 40px;
+          width: 32px;
+          height: 32px;
           fill: var(--bs-primary);
 
           path {
@@ -417,13 +376,72 @@ span.badge.text-bg-light {
           }
         }
       }
+
+      .card-body.review-state {
+        padding: 0.2rem 0.25rem;
+        min-height: 40px;
+        display: flex;
+        justify-content:center;
+        align-items:center;
+
+        p.small {
+          font-size: var(--dp-font-small);
+          line-height: 1.2em;
+        }
+
+        &.state-published {
+          color: #fff !important;
+          background-color: $plone-default-published-color;
+        }
+
+        &.state-private {
+          color: #fff !important;
+          background-color: $plone-default-private-color;
+        }
+
+        &.state-pending {
+          color: #000 !important;
+          background-color: $plone-default-pending-color;
+        }
+
+        &.state-pending_bfs {
+          color: #000 !important;
+          background-color: $plone-default-pending_bfs-color;
+        }
+
+        &.state-pending_bmu {
+          color: #fff !important;
+          background-color: $plone-default-pending_bmu-color;
+        }
+
+        &.state-pending_authority {
+          color: #fff !important;
+          background-color: $plone-default-pending_authority-color;
+        }
+
+        &.state-revised {
+          color: #000 !important;
+          background-color: $plone-default-revised-color;
+        }
+
+        &.state-revoked {
+          color: #000 !important;
+          background-color: $plone-default-revoked-color;
+        }
+      }
+
+
     }
 
     @include media-breakpoint-down(lg) {
       .listingitem-meta {
-        width: 80px;
-        gap: 1rem;
+        width: 90px;
+        column-gap: 1rem;
         flex-direction: column !important;
+
+        .dateinfo {
+          padding: 5px 0;
+        }
 
         .dateinfo,
         .doctype-box {

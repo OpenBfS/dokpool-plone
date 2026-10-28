@@ -15,7 +15,7 @@
   <a class="list-item-link stretched-link"
      href="#"
      tal:attributes="
-       class python: view.pat_inject_class('list-item-link stretched-link');
+       class python: view.pat_inject_class('list-item-link -link');
        data-pat-inject python: view.pat_inject_config('content_sidebar' if view.folder_listing else 'content');
        href python: data['url'] + '?' + view.link_query;
        title python:data['doctype_title'];
@@ -41,7 +41,7 @@
 
   <div class="listingitem-meta me-3 flex-shrink-0 d-flex flex-column align-items-center">
     <div class="doctype-box">
-      <div class="h-100 text-center doctype-icon-container px-3 pt-2 pb-1">
+      <div class="h-100 text-center doctype-icon-container">
         <tal:icon tal:replace="structure python:icons.tag(data['doctype_icon_name'], tag_class='entrytype ' + data['doctype_icon_name'], tag_alt=data['doctype_title'])" />
       </div>
       <div class="card-body review-state ${python:data['state_class']}">
@@ -55,7 +55,7 @@
       </div>
     </div>
 
-    <div class="text-center px-1 dateinfo">
+    <div class="text-center dateinfo">
       <div tal:content="python: toLocalizedTime(data['date'], time_only=1)">15:45</div>
       <div class="text-muted small"
            tal:content="python: toLocalizedTime(data['date'], long_format=0)"

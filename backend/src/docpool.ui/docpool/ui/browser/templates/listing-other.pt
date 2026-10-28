@@ -41,8 +41,8 @@
 
   <div class="listingitem-meta me-3 flex-shrink-0 d-flex flex-column align-items-center">
     <div class="doctype-box">
-      <div class="h-100 doktype-icon-container px-3 pt-3 pb-3">
-        <img class="doktype-icon p-1"
+      <div class="h-100 doctype-icon-container no-review-state">
+        <img class="plone-icon entrytype"
              alt="Type"
              src="doctype"
              tal:attributes="

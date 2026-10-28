@@ -116,9 +116,13 @@
   &.listing-items {
     .listing-item {
       .listingitem-meta {
-        width: 80px;
-        gap: 1rem;
+        width: 90px;
+        column-gap: 1rem;
         flex-direction: column !important;
+
+        .dateinfo {
+          padding: 5px 0;
+        }
 
         .dateinfo,
         .doctype-box {
