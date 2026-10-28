@@ -82,7 +82,7 @@ class Journals(BrowserView):
         base_query = {
             "portal_type": "DPDocument",
             "object_provides": IJournalEntryMarker.__identifier__,
-            "sort_on": "mdate",
+            "sort_on": "sortdate",
             "sort_order": "descending",
         }
         if not IArchiving(self.context).is_archive:

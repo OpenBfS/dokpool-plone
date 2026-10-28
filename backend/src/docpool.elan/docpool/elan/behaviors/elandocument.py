@@ -1,6 +1,5 @@
 from AccessControl import ClassSecurityInfo
 from Acquisition import aq_inner
-from datetime import datetime
 from docpool.base.browser.flexible_view import FlexibleView
 from docpool.base.content.dpdocument import IAppSpecificSerializeToJsonDPDocument
 from docpool.base.content.dpdocument import IDPDocument
@@ -18,7 +17,6 @@ from plone.autoform import directives
 from plone.autoform.directives import read_permission
 from plone.autoform.directives import write_permission
 from plone.autoform.interfaces import IFormFieldProvider
-from Products.DCWorkflow.interfaces import IAfterTransitionEvent
 from z3c.form.browser.radio import RadioFieldWidget
 from zope import schema
 from zope.component import adapter
@@ -148,17 +146,6 @@ class ELANDocument(FlexibleView):
         if doctype_data := self.context.doctype_data():
             return doctype_data["title"], [doctype_data["subcategory"]]
         return ("", [])
-
-
-@adapter(IAfterTransitionEvent)
-def set_transition_mdate(event):
-    if event.transition and event.transition.id != "publish":
-        return
-    try:
-        IELANDocument(event.object)
-    except TypeError:
-        return
-    event.object.mdate = datetime.now()
 
 
 @adapter(IDPDocument)

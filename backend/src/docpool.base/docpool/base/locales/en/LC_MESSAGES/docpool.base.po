@@ -874,7 +874,7 @@ msgstr "Document types allowed for the guest group(s)"
 msgid "label_contentbase_created_by"
 msgstr "Created by"
 
-#. Default: "Date of last user action"
+#. Default: "Date of last user editing"
 #: docpool.base/docpool/base/content/contentbase.py
 msgid "label_contentbase_mdate"
 msgstr "Date of last user action"

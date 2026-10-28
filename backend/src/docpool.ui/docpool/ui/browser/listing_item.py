@@ -113,7 +113,7 @@ class Item(BrowserView):
         }
 
         self.dpdocument = {
-            "date": obj.mdate,
+            "date": obj.sortdate,
             "title": obj.title,
             "text": text,
             "id": obj.id,
@@ -173,7 +173,7 @@ class Item(BrowserView):
         }
 
         self.folder = {
-            "date": getattr(obj, "mdate", None),
+            "date": getattr(obj, "sortdate", None),
             "title": obj.title,
             "id": obj.id,
             "description": obj.description,
@@ -210,7 +210,7 @@ class Item(BrowserView):
         }
 
         self.folder = {
-            "date": getattr(obj, "mdate", None),
+            "date": getattr(obj, "sortdate", None),
             "title": obj.title,
             "id": obj.id,
             "description": obj.description,

@@ -276,6 +276,7 @@ def to_3000(context=None):
             "object_provides",
             "allowedRolesAndUsers",
             "group",
+            "sortdate",
         ],
         REQUEST=None,
         pghandler=pghandler,
