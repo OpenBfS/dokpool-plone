@@ -5,7 +5,6 @@ from docpool.elan.utils import set_scenario_for_current_user
 from docpool.ui.utils import can_view
 from plone import api
 from Products.Five.browser import BrowserView
-from z3c.form import form
 
 import logging
 
@@ -87,16 +86,6 @@ class ManageSubscribedEvents(DPEventsBaseView):
             )
             for sc in sorted(global_events_folder().getDPEvents(), key=lambda sc: sc.UID() not in subscribed)
         ]
-
-    @form.button.buttonAndHandler(_("label_apply", default="Apply"), name="apply")
-    def handle_apply(self, action):
-        data, errors = self.extractData()
-        if "subscribed_events" not in data:
-            self.status = _("Error")
-            return
-
-        self.context.subscribed_events[:] = data["subscribed_events"]
-        self.status = _("Saved")
 
 
 class SelectScenario(BrowserView):
