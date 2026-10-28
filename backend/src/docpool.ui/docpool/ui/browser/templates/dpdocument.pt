@@ -8,6 +8,7 @@
         can_delete python: context.canBeDeleted();
         token context/@@authenticator/token;
         toLocalizedTime nocall: context/@@plone/toLocalizedTime;
+        elan python: 'elan' in context.local_behaviors;
       "
       i18n:domain="docpool.ui"
 >
@@ -184,8 +185,7 @@
 
           <dl class="col-sm-4">
 
-            <tal:elan condition="python: 'elan' in context.local_behaviors">
-
+            <tal:elan condition="python: elan">
               <dt i18n:translate="">Document type and category</dt>
               <dd class="field mb-2"
                   tal:define="
@@ -200,66 +200,68 @@
                   <span tal:condition="subcategory">(${python: subcategory})</span>
                 </div>
               </dd>
-
-              <dt i18n:translate="">Visibility</dt>
-              <dd class="field mb-2"
-                  tal:define="
-                    review_state_info python:view.review_state_info();
-                  "
-              >
-                <div class="visibility-title state-${python: review_state_info['state']}" i18n:domain="docpool.base" i18n:translate="">${python: review_state_info['title']}</div>
-                <div class="visibility-description">${python: review_state_info.get('description')}</div>
-              </dd>
-
-              <tal:published define="
-                               pubinfo python: view.published_info();
-                             "
-                             condition="python: pubinfo"
-              >
-                <dt i18n:translate="">Last published</dt>
-                <dd class="field mb-2">
-                  <div>${structure:python:icons.tag('person')} ${python: pubinfo[1]}</div>
-                  <div>${structure:python:icons.tag('clock')} ${python: view.timezone(pubinfo[0])} ${python: toLocalizedTime(pubinfo[0], long_format=True)}</div>
-                </dd>
-              </tal:published>
-
-              <dt i18n:translate="">Last modified</dt>
-              <dd class="field mb-2"
-                  tal:define="
-                    modinfo python:context.modInfo();
-                  "
-              >
-                <div>${structure:python:icons.tag('person')} ${python: modinfo[1]}</div>
-                <div>${structure:python:icons.tag('clock')} ${python: view.timezone(modinfo[0])} ${python: toLocalizedTime(modinfo[0], long_format=True)}</div>
-              </dd>
-
-              <dt i18n:translate="">Created</dt>
-              <dd class="field mb-2"
-                  tal:define="
-                    modinfo python:context.modInfo(show_created=True);
-                  "
-              >
-                <div>${structure:python:icons.tag('person')} ${python: modinfo[1]}</div>
-                <div>${structure:python:icons.tag('clock')} ${python: view.timezone(modinfo[0])} ${python: toLocalizedTime(modinfo[0], long_format=True)}</div>
-              </dd>
-
-              <tal:location condition="python: view.group_folder">
-                <dt i18n:translate="">Location</dt>
-                <dd class="field mb-2">
-                  <div>${structure:python:icons.tag('folder-fill')} ${python: view.group_folder.Title()}</div>
-                </dd>
-              </tal:location>
-
-              <tal:event define="
-                           widget python: view.widgets.get('IELANDocument.scenario');
-                         "
-                         condition="python: widget and view.event"
-              >
-                <dt>${python: widget.label}</dt>
-                <dd class="field mb-2 event">${structure:python:view.event.Title()}</dd>
-              </tal:event>
-
             </tal:elan>
+
+            <dt i18n:translate="">Visibility</dt>
+            <dd class="field mb-2"
+                tal:define="
+                  review_state_info python:view.review_state_info();
+                "
+            >
+              <div class="visibility-title state-${python: review_state_info['state']}"
+                   i18n:domain="docpool.base"
+                   i18n:translate=""
+              >${python: review_state_info['title']}</div>
+              <div class="visibility-description">${python: review_state_info.get('description')}</div>
+            </dd>
+
+            <tal:published define="
+                             pubinfo python: view.published_info();
+                           "
+                           condition="python: pubinfo"
+            >
+              <dt i18n:translate="">Last published</dt>
+              <dd class="field mb-2">
+                <div>${structure:python:icons.tag('person')} ${python: pubinfo[1]}</div>
+                <div>${structure:python:icons.tag('clock')} ${python: view.timezone(pubinfo[0])} ${python: toLocalizedTime(pubinfo[0], long_format=True)}</div>
+              </dd>
+            </tal:published>
+
+            <dt i18n:translate="">Last modified</dt>
+            <dd class="field mb-2"
+                tal:define="
+                  modinfo python:context.modInfo();
+                "
+            >
+              <div>${structure:python:icons.tag('person')} ${python: modinfo[1]}</div>
+              <div>${structure:python:icons.tag('clock')} ${python: view.timezone(modinfo[0])} ${python: toLocalizedTime(modinfo[0], long_format=True)}</div>
+            </dd>
+
+            <dt i18n:translate="">Created</dt>
+            <dd class="field mb-2"
+                tal:define="
+                  modinfo python:context.modInfo(show_created=True);
+                "
+            >
+              <div>${structure:python:icons.tag('person')} ${python: modinfo[1]}</div>
+              <div>${structure:python:icons.tag('clock')} ${python: view.timezone(modinfo[0])} ${python: toLocalizedTime(modinfo[0], long_format=True)}</div>
+            </dd>
+
+            <tal:location condition="python: view.group_folder">
+              <dt i18n:translate="">Location</dt>
+              <dd class="field mb-2">
+                <div>${structure:python:icons.tag('folder-fill')} ${python: view.group_folder.Title()}</div>
+              </dd>
+            </tal:location>
+
+            <tal:event define="
+                         widget python: view.widgets.get('IELANDocument.scenario');
+                       "
+                       condition="python: elan and widget and view.event"
+            >
+              <dt>${python: widget.label}</dt>
+              <dd class="field mb-2 event">${structure:python:view.event.Title()}</dd>
+            </tal:event>
 
           </dl>
 

@@ -293,7 +293,6 @@ msgstr "Übersicht"
 msgid "Pages"
 msgstr "Seiten"
 
-#: docpool.ui/docpool/ui/browser/dpdocument.py
 #: docpool.ui/docpool/ui/browser/listing.py
 msgid "Pending"
 msgstr "Eingereicht"
@@ -350,12 +349,10 @@ msgstr "Suche zurücksetzen"
 msgid "Results for"
 msgstr "Ergebnisse für"
 
-#: docpool.ui/docpool/ui/browser/dpdocument.py
 #: docpool.ui/docpool/ui/browser/listing.py
 msgid "Revised"
 msgstr "Revidiert"
 
-#: docpool.ui/docpool/ui/browser/dpdocument.py
 #: docpool.ui/docpool/ui/browser/listing.py
 msgid "Revoked"
 msgstr "Storniert"

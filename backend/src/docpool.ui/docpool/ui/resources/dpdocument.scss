@@ -50,6 +50,17 @@
     &.state-revoked {
       background-color: $plone-default-revoked-color;
     }
+    &.state-pending_bfs {
+      background-color: $plone-default-pending_bfs-color;
+    }
+    &.state-pending_bmu {
+      background-color: $plone-default-pending_bmu-color;
+      color: #fff;
+    }
+    &.state-pending_authority {
+      background-color: $plone-default-pending_authority-color;
+      color: #fff;
+    }
   }
 
   .event {
