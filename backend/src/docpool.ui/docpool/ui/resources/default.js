@@ -1,4 +1,6 @@
 import { Offcanvas } from "bootstrap";
+// The npm override uses ./vendor/leaflet.simplemarkers; keep addmarker disabled.
+import "@patternslib/pat-leaflet";
 import "./upload";
 import "@patternslib/patternslib/src/pat/expandable-tree/expandable-tree.css";
 // Pat-update-notification

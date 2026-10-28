@@ -38,15 +38,20 @@
   },
   "dependencies": {
     "@babel/preset-react": "^7.26.3",
+    "@patternslib/pat-leaflet": "2.2.1",
     "@patternslib/patternslib": ">=9.9.10",
     "@plone/mockup": ">=5.1.12",
     "@plone/plonetheme-barceloneta-base": "^3.2.4",
-    "prettier": "^3.6.2",
     "jquery": "^3.7.1",
+    "leaflet.simplemarkers": "file:src/docpool.ui/docpool/ui/resources/vendor/leaflet.simplemarkers",
+    "prettier": "^3.6.2",
     "schema-utils": "^4.2.0",
     "svg-url-loader": "^8.0.0",
     "underscore": "^1.13.6",
     "url-loader": "^4.1.1"
+  },
+  "overrides": {
+    "leaflet.simplemarkers": "$leaflet.simplemarkers"
   },
   "resolutions": {
     "@patternslib/patternslib": "<10",
