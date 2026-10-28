@@ -2,6 +2,7 @@ from docpool.base.browser.dpdocument import DPDocumentEditForm
 from docpool.base.browser.dpdocument_transfer import show_transfer_action
 from docpool.base.content.groupfolder import IGroupFolder
 from docpool.base.content.places import IPlaces
+from docpool.base.utils import get_current_state_title
 from docpool.base.utils import getDocumentPoolSite
 from docpool.base.utils import getUserInfo
 from docpool.ui import _
@@ -66,9 +67,6 @@ class DPDocumentView(DefaultView):
         path = "/".join(dp.getPhysicalPath()) + "/@@listing"
         return path
 
-    def workflow_state(self):
-        return api.content.get_state(self.context)
-
     def published_info(self):
         # The publishing date ould be used from self.context.wdate but we also need the actor
         # Ignore archive-workflow
@@ -84,19 +82,28 @@ class DPDocumentView(DefaultView):
             return
         return last["time"], self.context.formatUserInfo(getUserInfo(self.context, last["actor"]))
 
-    def visibility_options(self):
-        dp_app_state = api.content.get_view("dp_app_state", self.context, self.request)
-        app = dp_app_state.appsActivatedByCurrentUser()[0]
-        return {
-            o["value"]: o
-            for o in visibility_options(
-                app,
-                self.group_folder if self.group_folder is not None else self.context,
+    def review_state_info(self):
+        state = api.content.get_state(self.context)
+        state_title = get_current_state_title(self.context, state)
+        if state == "private" and self.group_folder:
+            description = _(
+                "Only for member of '${container_title}'",
+                mapping={"container_title": self.group_folder.title},
             )
-        } | {
-            "pending": {"title": _("Pending")},
-            "revised": {"title": _("Revised")},
-            "revoked": {"title": _("Revoked")},
+        elif state == "published":
+            docpool_title = IPlaces(self.context).document_pool.title
+            dp_app_state = api.content.get_view("dp_app_state", self.context, self.request)
+            app = dp_app_state.appsActivatedByCurrentUser()[0]
+            description = _(
+                "For all users of '${app} ${docpool_title}'",
+                mapping={"app": app.upper(), "docpool_title": docpool_title},
+            )
+        else:
+            description = None
+        return {
+            "state": state,
+            "title": state_title,
+            "description": description,
         }
 
     def available_transitions(self):

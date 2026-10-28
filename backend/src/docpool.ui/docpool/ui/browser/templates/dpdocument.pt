@@ -8,7 +8,6 @@
         can_delete python: context.canBeDeleted();
         token context/@@authenticator/token;
         toLocalizedTime nocall: context/@@plone/toLocalizedTime;
-        workflow_state python: view.workflow_state();
       "
       i18n:domain="docpool.ui"
 >
@@ -205,11 +204,11 @@
               <dt i18n:translate="">Visibility</dt>
               <dd class="field mb-2"
                   tal:define="
-                    visibility python:view.visibility_options().get(workflow_state);
+                    review_state_info python:view.review_state_info();
                   "
               >
-                <div class="visibility-title state-${python: workflow_state}">${python: visibility['title']}</div>
-                <div class="visibility-description">${python: visibility.get('description')}</div>
+                <div class="visibility-title state-${python: review_state_info['state']}" i18n:domain="docpool.base" i18n:translate="">${python: review_state_info['title']}</div>
+                <div class="visibility-description">${python: review_state_info.get('description')}</div>
               </dd>
 
               <tal:published define="
