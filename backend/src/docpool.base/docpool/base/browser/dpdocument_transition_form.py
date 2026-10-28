@@ -2,6 +2,7 @@
 
 from DateTime import DateTime
 from docpool.base import DocpoolMessageFactory as _
+from docpool.base.utils import get_current_state_title
 from operator import itemgetter
 from plone import api
 from Products.CMFCore.interfaces._content import IFolderish
@@ -56,6 +57,7 @@ class WorkflowActionView(BrowserView):
                     "path": "/".join(obj.getPhysicalPath()),
                     "obj": obj,
                     "uid": uid,
+                    "review_state": get_current_state_title(obj),
                     "transitions": [],
                 }
                 for transition in self.pworkflow.getTransitionsFor(obj):

@@ -56,6 +56,9 @@
                       i18n:translate=""
                   >Title</th>
                   <th class="nosort"
+                      i18n:translate=""
+                  >State</th>
+                  <th class="nosort"
                       i18n:domain="docpool.base"
                       i18n:translate=""
                   >Available transitions</th>
@@ -66,6 +69,11 @@
                   <td valign="top"
                       tal:content="python: item['title']"
                   >Test1</td>
+                  <td valign="top"
+                      tal:content="python: item['review_state']"
+                      i18n:domain="docpool.base"
+                      i18n:translate=""
+                  >Private</td>
                   <td valign="top"
                       tal:content="structure python: '<br/>'.join(item['transitions'])"
                   ></td>

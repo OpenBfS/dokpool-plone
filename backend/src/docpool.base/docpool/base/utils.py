@@ -449,11 +449,13 @@ def get_docpool_for_user(user=None):
     return brains[0].getObject()
 
 
-def get_current_state_title(obj, state):
+def get_current_state_title(obj, state=None):
     """Annoyingly complex way to find the current state title
     because placeful workflows are not covered by getTitleForStateOnType.
     See _currentStateTitle of plone.app.contentmenu.menu.WorkflowSubMenuItem.
     """
+    if state is None:
+        state = api.content.get_state(obj)
     workflows = api.portal.get_tool("portal_workflow").getWorkflowsFor(obj)
     if workflows:
         for workflow in workflows:
