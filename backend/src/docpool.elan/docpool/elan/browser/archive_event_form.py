@@ -39,7 +39,7 @@ class ArchiveAndClose(BrowserView):
             api.portal.show_message(_("No event specified for archiving."), self.request, "warning")
             return request.response.redirect(self.context.absolute_url())
 
-        self.items = event.get_documents()
+        self.items = event.get_documents(self.context)
         self.full_archiving_info = event.get_archiving_info()
         self.archiving_info = self.full_archiving_info[-1] if self.full_archiving_info else {}
 

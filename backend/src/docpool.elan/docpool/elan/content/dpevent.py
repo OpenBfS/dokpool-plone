@@ -197,20 +197,19 @@ class DPEvent(Container, ContentBase):
         IAnnotations(self).pop(ARCHIVING_KEY, None)
         self._p_changed = True
 
-    @property
-    def is_archive_uptodate(self):
-        return not self.get_documents()
+    def is_archive_uptodate(self, context):
+        return not self.get_documents(context)
 
-    def get_documents(self):
+    def get_documents(self, context=None):
         """
-        Collects all DPDocuments for the current scenario
+        Collects all DPDocuments for the current scenario, in context's document pool or globally
         :return: list of brains
         """
         return api.content.find(
             portal_type="DPDocument",
             scenario=self.UID(),
             sort_on="sortable_title",
-            context=IPlaces(self).content,
+            context=IPlaces(context).content if context is not None else None,
         )
 
     def canBeAssigned(self):

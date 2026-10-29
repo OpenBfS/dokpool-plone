@@ -29,13 +29,7 @@ class DPEventsView(DPEventsBaseView):
     """Default view"""
 
     def number_of_entries(self, dpevent):
-        args = {
-            "portal_type": "DPDocument",
-            "scenario": dpevent.UID(),
-        }
-        if contentarea := IPlaces(self.context).content:
-            args["context"] = contentarea
-        return len(api.content.find(**args))
+        return len(dpevent.get_documents(self.context))
 
     @property
     def show_edit_link(self):
@@ -64,7 +58,7 @@ class ManageSubscribedEvents(DPEventsBaseView):
             self.context.subscribed_events.append(sc_uid)
             api.portal.show_message(_("Scenario subscribed."), self.request)
         elif action == "unsubscribe" and sc_uid in self.context.subscribed_events:
-            if api.content.get(UID=sc_uid).is_archive_uptodate:
+            if api.content.get(UID=sc_uid).is_archive_uptodate(self.context):
                 self.context.subscribed_events.remove(sc_uid)
                 api.portal.show_message(_("Scenario unsubscribed."), self.request)
             else:
@@ -81,7 +75,7 @@ class ManageSubscribedEvents(DPEventsBaseView):
                 "subscribe"
                 if sc.UID() not in subscribed
                 else "unsubscribe"
-                if sc.is_archive_uptodate
+                if sc.is_archive_uptodate(self.context)
                 else "archive",
             )
             for sc in sorted(global_events_folder().getDPEvents(), key=lambda sc: sc.UID() not in subscribed)
