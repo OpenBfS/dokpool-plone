@@ -72,6 +72,14 @@ $ docker exec -it dokpool_plone6_standalone_8081 /bin/bash
 
 coming soon
 
+### Running Dokpool with quadlets
+
+The directory `devops/quadlets` contains quadlet files that define a deployment including varnish, two backends and shared main and session databases.
+
+These files are meant to be placed in the service account's `.config/containers/systemd` directory. (Run `systemctl --user daemon-reload` as needed.)
+
+The quadlet files were generated for Starzel's demo deployment using ansible and custom roles but that shouldn't matter once they have been committed to the project.
+
 ## Access to the Application (Plone WebUI)
 
 Your running Dokpool is available on port 8081 on your host machine (http://localhost:8081).
