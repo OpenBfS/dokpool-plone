@@ -2,7 +2,7 @@ from setuptools import find_packages
 from setuptools import setup
 
 
-version = "2.7.0.dev0"
+version = "2.8.0.dev0"
 
 setup(
     name="docpool.base",
