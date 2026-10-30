@@ -160,7 +160,7 @@
                   ><div tal:content="portal_role"
                          i18n:translate=""
                     >Role</div></th>
-                  <th class="rotate alert-danger"><div i18n:translate="listingheader_remove">Remove</div></th>
+                  <th class="rotate table-danger"><div i18n:translate="listingheader_remove">Remove</div></th>
                 </tr>
               </thead>
               <tbody>
@@ -233,14 +233,14 @@
                         </tal:block>
                       </td>
 
-                      <td class="listingCheckbox alert-danger">
+                      <td class="listingCheckbox table-danger">
                         <input class="noborder notify"
                                name="delete:list"
                                type="checkbox"
                                value="value"
                                tal:attributes="
                                  value group_info/groupid;
-                                 disabled python:is_manager and group_info['can_delete'] and default or 'disabled';
+                                 disabled python:default if (group_info['can_delete'] and not view.group_is_protected(group_info)) else 'disabled';
                                "
                         />
                       </td>

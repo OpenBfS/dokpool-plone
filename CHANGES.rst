@@ -1,6 +1,42 @@
 Changelog
 =========
 
+2.7.0 (2026-10-30)
+------------------
+
+Fixed:
+
+- Fix translation for edit journal entry.
+  [kprobst]
+
+- Allow deleting not protected groups for local admins. (#6637)
+  [pbauer]
+
+- Fix creating content as guest by granting temporary permission to manage workflow policies. (#6490)
+  [pbauer]
+
+- Purge journals when copying an event because of transfers. (#6775)
+  [pbauer]
+
+- Fix icon and title linking to edit unknown entrytype. (#6693)
+  [pbauer]
+
+- Keep original mdate of archived objects. (#6692)
+  [pbauer]
+
+- Allow archiving content from groupfolders without group. (#6637)
+  [pbauer]
+
+- Do not store doctype infos as persistent data in (cross-request) ram-cache to prevent ConnectionStateError. (#6762)
+  [pbauer]
+
+
+Technical:
+
+- Add Hotfixes for Plone 6.1.4.
+  [pbauer]
+
+
 2.6.0 (2026-04-24)
 ------------------
 

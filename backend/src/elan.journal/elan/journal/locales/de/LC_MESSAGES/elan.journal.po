@@ -48,7 +48,7 @@ msgstr "Abbruch."
 
 #: elan.journal/elan/journal/browser/templates/edit.pt
 msgid "Edit journalentry"
-msgstr ""
+msgstr "Tagebucheintrag bearbeiten"
 
 #: elan.journal/elan/journal/browser/templates/journalentry.pt
 msgid "Extracted from:"

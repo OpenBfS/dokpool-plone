@@ -707,7 +707,7 @@ quoted_id = quote_plus(econtext["b"].getId());
           >
             <img src=""
                  tal:attributes="
-                   src string:${context/portal_url}/publish.png;
+                   src string:${context/portal_url}/++plone++docpool/transfer.png;
                  "
             />
           </a>

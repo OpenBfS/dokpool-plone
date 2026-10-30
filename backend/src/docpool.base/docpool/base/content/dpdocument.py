@@ -25,7 +25,6 @@ from plone.app.textfield import RichTextValue
 from plone.autoform.interfaces import WRITE_PERMISSIONS_KEY
 from plone.base.utils import safe_text
 from plone.dexterity.content import Container
-from plone.memoize import ram
 from plone.protect.interfaces import IDisableCSRFProtection
 from plone.resource.interfaces import IResourceDirectory
 from plone.restapi.deserializer.dxcontent import DeserializeFromJson
@@ -103,24 +102,26 @@ class DPDocument(Container, Extendable, ContentBase):
         """
         We need to check if special workflows are needed depending on the user's role.
         """
-        f = self.myFolderBase()
-        r = api.user.get_roles(obj=f, inherit=True)
-        if "Owner" in r:
+        folder = self.myFolderBase()
+        roles = api.user.get_roles(obj=folder, inherit=True)
+        if "Owner" in roles:
             return
-        if "Reviewer" in r:
+        if "Reviewer" in roles:
             log("Setting Guest Workflow on Document " + self.getId())
 
-            placeful_wf = getToolByName(self, "portal_placeful_workflow")
-            try:
-                self.manage_addProduct["CMFPlacefulWorkflow"].manage_addWorkflowPolicyConfig()
-            except BadRequest as e:
-                log_exc(e)
-            config = placeful_wf.getWorkflowPolicyConfig(self)
-            placefulWfName = "dp-guest-document"
-            config.setPolicyIn(policy=placefulWfName, update_security=False)
-            config.setPolicyBelow(policy=placefulWfName, update_security=False)
-            self.reindexObject()
-            self.reindexObjectSecurity()
+            with api.env.adopt_roles(["DocPoolAdmin"]):
+                # Temporary grant role with permission to Manage workflow policies
+                placeful_wf = getToolByName(self, "portal_placeful_workflow")
+                try:
+                    self.manage_addProduct["CMFPlacefulWorkflow"].manage_addWorkflowPolicyConfig()
+                except BadRequest as e:
+                    log_exc(e)
+                config = placeful_wf.getWorkflowPolicyConfig(self)
+                placefulWfName = "dp-guest-document"
+                config.setPolicyIn(policy=placefulWfName, update_security=False)
+                config.setPolicyBelow(policy=placefulWfName, update_security=False)
+                self.reindexObject()
+                self.reindexObjectSecurity()
 
     def getAllowedSubTypes(self):
         dto = self.docTypeObj()
@@ -222,13 +223,6 @@ class DPDocument(Container, Extendable, ContentBase):
         """ """
         return self.docType
 
-    def _docTypeObj_cachekey(method, self):
-        if not self.id:
-            # The object is being initialized
-            return
-        return (self.absolute_url_path(), self.modified())
-
-    @ram.cache(_docTypeObj_cachekey)
     def docTypeObj(self):
         """ """
         if not self.id:
