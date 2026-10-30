@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Docpool\n"
-"POT-Creation-Date: 2026-02-11 09:28+0000\n"
+"POT-Creation-Date: 2026-10-12 12:41+0000\n"
 "PO-Revision-Date: 2025-07-28 12:16+0200\n"
 "Last-Translator: Henning Rietz <hr@condat.de>\n"
 "Language-Team: BfS <docpool@bfs.de>\n"
@@ -624,6 +624,11 @@ msgstr "Eintragsarten, die ab sofort übertragen werden sollen oder deren Übert
 msgid "desc_transfer_config_transfer_targets"
 msgstr "Automatische Transfers, die für die oben ausgewählten Eintragsarten eingerichtet oder abgeschaltet werden sollen."
 
+#. Default: "Allowed document types for this group."
+#: docpool.base/docpool/base/users/usergroups_groupdetails.py
+msgid "description_allowed_doctypes"
+msgstr "Eintragsarten, die diese Gruppe erstellen darf."
+
 #: docpool.base/docpool/base/content/collaborationfolder.py
 msgid "description_collaborationfolder_allowedpartnerdoctypes"
 msgstr ""
@@ -806,6 +811,11 @@ msgstr ""
 #: docpool.base/docpool/base/browser/templates/groups.pt
 msgid "groups_name"
 msgstr ""
+
+#. Default: "Allowed document types"
+#: docpool.base/docpool/base/users/usergroups_groupdetails.py
+msgid "heading_allowed_doctypes"
+msgstr "Erlaubte Eintragsarten"
 
 #. Default: "Select the transition to be used for modifying the items state."
 #: docpool.base/docpool/base/browser/templates/dpdocument_transition_form.pt

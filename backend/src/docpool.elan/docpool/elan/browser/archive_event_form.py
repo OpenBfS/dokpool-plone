@@ -230,12 +230,12 @@ class ArchiveAndClose(BrowserView):
         if old_parent.portal_type == "GroupFolder":
             if not old_parent.getGroupOfFolder():
                 # There is no group for this Folder
-                msg = f"The GroupFolder {old_parent.id} has no group and should be deleted: {old_parent.absolute_url()}"
+                msg = _("The GroupFolder ${id} has no group and should be deleted: ${url}", mapping={"id": old_parent.id, "url": old_parent.absolute_url()})
                 api.portal.show_message(msg, self.request, "warn")
         elif old_parent.portal_type == "UserFolder":
             if not old_parent.getOwner():
                 # There is no group for this Folder
-                msg = f"The user folder {old_parent.id} has no user and should be deleted: : {old_parent.absolute_url()}"
+                msg = _("The user folder ${id} has no user and should be deleted: ${url}", mapping={"id": old_parent.id, "url": old_parent.absolute_url()})
                 api.portal.show_message(msg, self.request, "warn")
 
         return new

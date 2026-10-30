@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-02-18 14:03+0000\n"
+"POT-Creation-Date: 2026-10-30 05:59+0000\n"
 "PO-Revision-Date: 2025-05-19 17:02+0200\n"
 "Last-Translator: Philip Bauer <bauer@starzel.de>\n"
 "Language-Team: BfS <elan@bfs.de>\n"
@@ -392,6 +392,10 @@ msgstr ""
 msgid "Test"
 msgstr ""
 
+#: docpool.elan/docpool/elan/browser/archive_event_form.py
+msgid "The GroupFolder ${id} has no group and should be deleted: ${url}"
+msgstr ""
+
 #: docpool.elan/docpool/elan/browser/archive_event_form.pt
 msgid "The event and its journals are copied to the archive."
 msgstr ""
@@ -422,6 +426,10 @@ msgstr ""
 
 #: docpool.elan/docpool/elan/profiles/default/registry/querystring.xml
 msgid "The time and date an item was last modified by a user"
+msgstr ""
+
+#: docpool.elan/docpool/elan/browser/archive_event_form.py
+msgid "The user folder ${id} has no user and should be deleted: ${url}"
 msgstr ""
 
 #: docpool.elan/docpool/elan/browser/archive_event_form.pt
@@ -547,7 +555,7 @@ msgstr ""
 msgid "label_doctype_contentcategory"
 msgstr ""
 
-#. Default: "Belongs to scenarios"
+#. Default: "Belongs to scenario"
 #: docpool.elan/docpool/elan/behaviors/elandocument.py
 msgid "label_dpdocument_scenario"
 msgstr ""

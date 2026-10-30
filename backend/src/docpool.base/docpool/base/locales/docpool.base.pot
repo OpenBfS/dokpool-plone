@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2026-02-11 09:28+0000\n"
+"POT-Creation-Date: 2026-10-12 12:41+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -625,6 +625,11 @@ msgstr ""
 msgid "desc_transfer_config_transfer_targets"
 msgstr ""
 
+#. Default: "Allowed document types for this group."
+#: docpool.base/docpool/base/users/usergroups_groupdetails.py
+msgid "description_allowed_doctypes"
+msgstr ""
+
 #: docpool.base/docpool/base/content/collaborationfolder.py
 msgid "description_collaborationfolder_allowedpartnerdoctypes"
 msgstr ""
@@ -806,6 +811,11 @@ msgstr ""
 #. Default: "Name"
 #: docpool.base/docpool/base/browser/templates/groups.pt
 msgid "groups_name"
+msgstr ""
+
+#. Default: "Allowed document types"
+#: docpool.base/docpool/base/users/usergroups_groupdetails.py
+msgid "heading_allowed_doctypes"
 msgstr ""
 
 #. Default: "Select the transition to be used for modifying the items state."
